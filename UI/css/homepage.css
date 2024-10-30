@@ -52,13 +52,12 @@ a.sell:hover, a.cart i:hover {
     font-weight: 700;
 }
 
-
-.navbar-toggler {
+button.navbar-toggler {
     border: none;
     font-size: 1.25rem;
 }
 
-.navbar-toggler:focus, .btn-close:focus {
+button.navbar-toggler:focus, button.btn-close:focus {
     box-shadow: none;
     outline: none;
 }
@@ -74,23 +73,47 @@ a.nav-link:hover, .nav-link.active {
     color: #000;
 }
 
-.nav-link::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background-color: #009970;
-    visibility: hidden;
-    transition: .3s ease-in-out;
+div#offcanvasDarkNavbar.offcanvas.offcanvas-end.show .sell {
+    position: absolute !important;
+    left: 3%;
+    top: 30%;
+    color: #009970;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
-a.nav-link:hover::before, .nav-link.active::before {
-    width: 100%;
-    visibility: visible;
+div#offcanvasDarkNavbar.offcanvas.offcanvas-end.show .line-separate {
+    display: none;
 }
+
+div#offcanvasDarkNavbar.offcanvas.offcanvas-end.show .cart{
+    position: absolute !important;
+    top: 3%;
+    left: 50%;
+}
+
+@media (min-width: 990px) {
+
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 3px;
+        background-color: #009970;
+        visibility: hidden;
+        transition: .3s ease-in-out;
+    }
+
+    a.nav-link:hover::before, .nav-link.active::before {
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+
 
 /* section nav */
 
