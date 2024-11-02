@@ -1,11 +1,18 @@
 /* Chung */
 
 
+.clear {
+    clear: both;
+}
 
 
 :root {
     --main-btn-bg-color: #52b788;
     --main-text-color: #080808;
+}
+
+.container {
+    width: 830px;
 }
 
 .dp-ib {
@@ -14,6 +21,10 @@
 
 .txt-align-right {
     text-align: right;
+}
+
+.mt-n12 {
+    margin-top: -12px;
 }
 
 .w-100 {
@@ -45,9 +56,11 @@ section {
 
 /* Riêng */
 
+/* Header cart */
 
-
-
+.cart-header {
+    margin-bottom: 40px;
+}
 
 
 .cart-info .selected-count {
@@ -60,8 +73,113 @@ section {
 }
 
 .cart-info .continue-with-purchase button{
-    padding: 10px 32px;
+    padding: 10px 48px;
     font-size: 18px;
+}
+
+
+/* Cart-Item-List */
+
+
+
+
+#cart-item-list {
+    
+}
+
+
+
+#cart-item-list dl {
+    font-size: 14px;
+    line-height: 14px;
+}
+
+#cart-item-list .cart-item {
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin: 20px 0;
+}
+
+#cart-item-list .cart-item .purchaseable {
+    padding-top: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: -12px;
+}   
+
+
+#cart-item-list .cart-item .thumbnail {
+    min-height: 55px;
+    width: 170px;
+    position: relative;
+}
+
+
+
+#cart-item-list .cart-item .product {
+    max-width: 70%;
+    float: left;
+}
+
+
+#cart-item-list .cart-item .product .details dl {
+    padding-left: 155px;
+}
+
+#cart-item-list .cart-item .product .details dl dd{
+    margin-left: 0;
+}
+
+#cart-item-list .cart-item .product .details dl dt {
+    margin-left: -155px;
+    margin-top: 0;
+    width: 155px;
+}
+
+#cart-item-list .cart-item .details {
+    margin-top: -8px;
+    margin-left: 20px;
+}
+
+/* Price */
+#cart-item-list .cart-item .price {
+    margin-top: -16px;
+}
+
+#cart-item-list .cart-item .price {
+    margin-top: -16px;
+    display: inline-block;
+}
+
+#cart-item-list .cart-item .price ul{
+    list-style-type: none;
+}
+
+#cart-item-list .cart-item .price .final-price{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+#cart-item-list .cart-item .price .select-for-checkout {
+    height: 96px;
+    max-height: 96px;
+    margin-left: 28px
+}
+
+
+#cart-item-list .cart-item .price .remove-from-cart{
+    font-size: 12px;
+    margin-left: 63px;
+    margin-top: -8px;   
+}
+
+#cart-item-list .cart-item .cart-prices {
+}
+
+#selected-for-checkout {
+    cursor: pointer;
+
 }
 
 
