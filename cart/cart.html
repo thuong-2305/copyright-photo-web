@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Cart</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.6.0-web/css/all.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <div id="cart">
+    <div class="container">
+      <!-- Header Cart -->
+      <div class="cart-header w-100">
+        <h1>Giỏ hàng</h1>
+        <!-- Cart info -->
+        <div class="cart-info mb-4">
+          <div class="mt-n12 d-flex justify-content-between align-items-center">
+            <div class="selected-count fw-bold">
+              <span>Số lượng sản phẩm đang chọn: <span class="ng-binding">3</span></span>
+            </div>
+            <div class="subtotal text-right fw-bold">
+              <label class="fw-bold" for="">Tổng cộng: 924.000đ</label>
+            </div>
+          </div>
+          <div class="continue-with-purchase text-right mt-2">
+            <button type="submit" class="btn btn-success btn-lg shadow-sm">Tiếp tục mua</button>
+          </div>
+        </div>
+
+        <!-- List control -->
+        <div class="list-control">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="sort-by">
+              <select class="form-control custom-select" name="" id="">
+                <option selected="selected" label="Ngày thêm vào">Ngày thêm vào giỏ hàng</option>
+                <option selected="selected" label="Giá sản phẩm">Giá sản phẩm</option>
+              </select>
+            </div>
+            <div class="promo-code d-flex align-items-center"> <!-- Flexbox cho căn giữa -->
+              <input type="text" class="form-control mr-2" placeholder="Mã khuyến mãi" style="width: 200px;">
+              <button class="btn btn-primary shadow-sm" type="button">Áp dụng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Header Cart 
+      #cart-item-list
+        .cart-item
+          .purchaseable
+            .cart-item-container
+              figure(.thumbnail)
+              .product
+              .price  
+      -->
+      <div id="cart-item-list">
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="./assets/image/product_image/Food/001.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Sáng tạo
+                        <span class="separator"> | </span>
+                        <a href="">Link tới ảnh</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none">
+                          <li>5760 x 3840 px (19.20 x 12.80 in.) - 300 dpi - RGB</li>
+                          <li>Kích cỡ tệp 12MB</li>
+                        </ul>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>Royalty-free
+                        <span class="separator"> | </span>
+                        <a href="">Link tới giấy phép</a>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Cách sử dụng:</dt>
+                      <dd>Mục đích sử dụng tuân theo <a href="">Điều khoản</a></dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Thông tin phát hành:</dt>
+                      <dd>Không cần phát hành</dd>
+                    </div>
+
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout">
+                  <input id="selected-for-checkout" type="checkbox">
+                  <label for="selected-for-checkout">Chọn</label>
+                </div>
+                <ul>
+                  <li class="final-price">499.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart" ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>                
+              </div>
+            
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+
+        <!-- Item 2 -->
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="./assets/image/product_image/Food/002.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Sáng tạo
+                        <span class="separator"> | </span>
+                        <a href="">Link tới ảnh</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none">
+                          <li>2208 x 1361 px (7.36 x 4.54 in.) - 300 dpi - RGB</li>
+                          <li>Kích cỡ tệp 824KB</li>
+                        </ul>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>Royalty-free
+                        <span class="separator"> | </span>
+                        <a href="">Link tới giấy phép</a>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Cách sử dụng:</dt>
+                      <dd>Mục đích sử dụng tuân theo <a href="">Điều khoản</a></dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Thông tin phát hành:</dt>
+                      <dd>Không cần phát hành</dd>
+                    </div>
+
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout">
+                  <input id="selected-for-checkout" type="checkbox">
+                  <label for="selected-for-checkout">Chọn</label>
+                </div>
+                <ul>
+                  <li class="final-price">200.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart" ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>                
+              </div>
+            
+            </div>
+          </div>
+        </div>
+        <!-- Hết item 2 -->
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="./assets/image/product_image/Food/003.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Sáng tạo
+                        <span class="separator"> | </span>
+                        <a href="">Link tới ảnh</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none">
+                          <li>793 x 446 px (11.01 x 6.19 in.) - 72 dpi - RGB</li>
+                          <li>Kích cỡ tệp 470KB</li>
+                        </ul>
+                      </dd>
+                    </div>
+  
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>Royalty-free
+                        <span class="separator"> | </span>
+                        <a href="">Link tới giấy phép</a>
+                      </dd>
+                    </div>
+  
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Cách sử dụng:</dt>
+                      <dd>Mục đích sử dụng tuân theo <a href="">Điều khoản</a></dd>
+                    </div>
+  
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Thông tin phát hành:</dt>
+                      <dd>Không cần phát hành</dd>
+                    </div>
+  
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout">
+                  <input id="selected-for-checkout" type="checkbox">
+                  <label for="selected-for-checkout">Chọn</label>
+                </div>
+                <ul>
+                  <li class="final-price">125.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart" ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>                
+              </div>
+            
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+    </div>
+
+
+
+      
+    </div>
+  </div>
+  </div>
+  </div>
+
+
+  </div>
+
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
