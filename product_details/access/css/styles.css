@@ -1,0 +1,68 @@
+/* Reset css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Common */
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-size: 62.5%; */
+    font-size: 150%;
+}
+
+.row{
+    
+}
+
+.row::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.col{
+    float: left;
+}
+
+.col-half{
+    width: 50%;
+}
+
+h2,h3{
+    font-size: 16px;
+    font-style: italic;
+}
+
+p, li{
+    font-size: 14px;
+}
+
+/* Details */
+.product-container {
+    margin-top: 20px;
+    padding: 0 50px;
+}
+
+.product-details .col li{
+    list-style-type: none;
+}
+
+.product-img{
+    width: 100%;
+    /* background-size: contain; */
+}
+
+.col li {
+    list-style-type: none;
+}
+
+.product-desc {
+    color: #808080;
+    padding: 4px 0 5px;
+}
+
+.product-left{
+    padding-right: 20px;
+}
