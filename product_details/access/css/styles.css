@@ -49,10 +49,7 @@ p, li{
     list-style-type: none;
 }
 
-.product-img{
-    width: 100%;
-    /* background-size: contain; */
-}
+
 
 .col li {
     list-style-type: none;
@@ -65,4 +62,15 @@ p, li{
 
 .product-left{
     padding-right: 20px;
+}
+
+.div-img{
+    border: 1px #808080 solid;
+    height: 460px;
+}
+
+.product-img{
+    width: 100%;
+    background-size: contain;
+    display: block;
 }
