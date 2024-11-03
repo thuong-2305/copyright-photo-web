@@ -5,6 +5,10 @@
     clear: both;
 }
 
+.style-none {
+    list-style-type: none;
+}
+
 
 :root {
     --main-btn-bg-color: #52b788;
@@ -13,6 +17,7 @@
 
 .container {
     width: 830px;
+    background-color: var(--);
 }
 
 .dp-ib {
@@ -42,7 +47,7 @@
 }
 
 html {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 {
@@ -175,6 +180,14 @@ section {
 }
 
 #cart-item-list .cart-item .cart-prices {
+}
+
+#cart-item-list .cart-item .product .size-content ul {
+    margin: 0;
+}
+
+#cart-item-list .cart-item .product .size-content ul.style-none li:first-child {
+    margin-bottom: .5rem;
 }
 
 #selected-for-checkout {
