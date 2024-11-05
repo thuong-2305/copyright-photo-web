@@ -1,0 +1,16 @@
+/* Responsive */
+/* PC */
+@media (min-width: 1024px) {
+    .product-right {
+        width: 460px!important;
+    }
+    
+    .product-left {
+        width: calc(100% - 460px);
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    
+}
