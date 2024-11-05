@@ -47,8 +47,8 @@ section.banner .main-title {
 /* banner */
 
 /* categories */
-.category {
-    margin-top: 30px;
+.category .heading {
+    margin-top: 50px;
 }
 .category .list-category {
     display: flex;
