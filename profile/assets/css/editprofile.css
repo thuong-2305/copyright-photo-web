@@ -1,0 +1,101 @@
+/* Chung */
+
+:root {
+    --color-interactive-secondary-hover: #191919;
+    --color-content-inverse: #fff;
+    --chunkiness-thick: 2px;
+    --chunkiness-thin: 1px;
+    --color-content-secondary: #707070;
+    --color-surface-primary: #fff;
+    --color-content-primary: #191919;
+    --color-surface-into-default: #f0f1ff;
+}   
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mr-12 {
+    margin-right: 12px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.dp-flex {
+    display: flex;
+}
+
+#account-details {
+    margin: 0 240px;
+}
+
+.container-fluid {
+    height: 700px;
+    padding: 40px;
+}
+
+.stl-none {
+    list-style-type: none;
+}
+
+
+#account-details .account-details-container {
+    padding: 40px;
+    background: var(--color-surface-primary);
+    border: var(--chunkiness-thin) solid var(--color-content-secondary);
+    border-radius: 4px;
+}
+
+/* Heading */
+#account-details .account-details-heading h3 {
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+
+/* Body */
+
+/* Notification trở lên */
+#account-details .account-details-body .account-details-notification {
+    padding: 16px;
+    margin-bottom: 24px;
+    align-items: center;
+    border-radius: 4px;
+    background-color: var(--color-surface-into-default);
+}
+
+#account-details .account-details-body .account-details-notification .icon {
+    line-height: 40px;
+}
+
+#account-details .account-details-body .notification-content span {
+    font-size: 1rem;
+}
+
+/* Field */
+
+/* Name */
+.account-details-body .name {
+    padding-bottom: 24px;
+}
+
+/* Email */
+.account-details-body .email {
+    padding-bottom: 24px;
+}
+
+/* Username */
+.account-details-body .username {
+    padding-bottom: 24px;
+}

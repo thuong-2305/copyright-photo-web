@@ -7,6 +7,7 @@
     --chunkiness-thin: 1px;
     --color-content-secondary: #707070;
     --color-surface-primary: #fff;
+    --color-content-primary: #191919;
 }   
 
 * {
@@ -24,12 +25,37 @@ html {
     padding: 64px;
 }
 
+.stl-none {
+    list-style-type: none;
+}
+
 
 
 
 #profile {
 
 }
+
+/* CỘT 1 */
+
+.first-col {
+    padding-right: 64px;
+}
+
+.first-col span:first-child {
+    font-size: 2.15rem;
+    letter-spacing: 0;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-content-primary);
+    margin-bottom: 40px;
+}
+
+.first-col span:last-child {
+    display: block;
+    margin-top:16px;
+}
+
 
 
 
@@ -44,7 +70,8 @@ html {
 
 /* Heading */
 .profile-content .profile-heading h2 {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
+    font-size: 28px;
 }
 
 /* Body */
