@@ -72,6 +72,7 @@ p, li{
 /* Details */
 .product-container {
     margin-top: 20px;
+    margin-bottom: 50px;
     padding: 0 50px;
 }
 
@@ -121,6 +122,11 @@ p, li{
 
 .product-button li{
     margin: auto;
+    border-left: 1px #808080 solid;
+}
+
+.product-button li:first-child{
+    border-left: none;
 }
 
 
