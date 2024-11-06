@@ -18,6 +18,14 @@
   <div id="account-details">
     <div class="container-fluid">
       <div class="account-details-container">
+        <!-- Khi người dùng không điền thông tin -->
+        <div id="alert-error" class="alert alert-danger d-none" role="alert">
+          Vui lòng điền ít nhất 1 trường thông tin
+        </div>
+        <!-- Khi người dùng điền ít nhất thông tin một trường -->
+        <div id="alert-success" class="alert alert-success d-none" role="alert">
+          Thông tin đã được lưu thành công!
+        </div>
         <div class="account-details-content">
           <div class="account-details-heading">
             <h3>Thông tin chi tiết</h3>
@@ -38,7 +46,7 @@
                   </label>
                 </div>
                 <div class="first-name-input">
-                  <input class="w-100" type="text" required name="firstName">
+                  <input class="w-100 form-control" type="text" required name="firstName" id="firstname">
                 </div>
               </div>
               <div class="col-6 last-name-content">
@@ -48,7 +56,7 @@
                   </label>
                 </div>
                 <div class="last-name-input">
-                  <input class="w-100" type="text">
+                  <input class="w-100 form-control" type="text" id="lastname">
                 </div>
               </div>
             </div>
@@ -58,7 +66,7 @@
                   <label for="">Email</label>
                 </div>
                 <div class="email-input">
-                  <input class="w-100" type="text" name="email" disabled type="email" required>
+                  <input class="w-100" type="text" name="email" disabled type="email" required id="email">
                 </div>
               </div>
             </div>
@@ -70,7 +78,7 @@
                   </label>
                 </div>
                 <div class="username-input">
-                  <input class="w-100" type="text">
+                  <input class="w-100 form-control" type="text" id="username">
                 </div>
                 <!-- <span>Bạn được phép thay đổi tên người dùng 3 lần mỗi năm. Bạn còn lại 3 thay đổi.</span> -->
               </div>
@@ -78,17 +86,75 @@
           </form>
           <div class="account-details-footer">
             <div class="btn-container dp-flex">
-              <button class="dp-flex">
+              <button class="btn-save dp-flex">
                 <span>Lưu thay đổi</span>
               </button>
-              <a class="dp-flex" href="">Hủy bỏ</a>
+              <a class="cancel dp-flex" href="">Hủy bỏ</a>
             </div>
-            <span class="mt-24">Thay đổi tên người dùng của bạn có thể ảnh hưởng đến liên kết hồ sơ và các dịch vụ. Tên mới sẽ hiển thị trên hồ sơ của bạn.</span>
+            <span class="mt-24">Thay đổi tên người dùng của bạn có thể ảnh hưởng đến liên kết hồ sơ và các dịch vụ. Tên
+              mới sẽ hiển thị trên hồ sơ của bạn.</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    document.querySelector('.btn-save').addEventListener('click', function (event) {
+      event.preventDefault(); // Ngăn chặn gửi form nếu không hợp lệ
+
+      // Lấy các trường nhập liệu
+      var firstNameInput = document.getElementById('firstname');
+      var lastNameInput = document.getElementById('lastname');
+      var usernameInput = document.getElementById('username');
+
+      // Lấy giá trị của các trường
+      var firstName = firstNameInput.value;
+      var lastName = lastNameInput.value;
+      var username = usernameInput.value;
+
+      // Tham chiếu đến các thẻ alert
+      var alertError = document.getElementById('alert-error');
+      var alertSuccess = document.getElementById('alert-success');
+
+      // Kiểm tra nếu tất cả các trường đều rỗng
+      if (!firstName && !lastName && !username) {
+        // Hiển thị thông báo cảnh báo
+        alertError.classList.remove('d-none');
+        alertSuccess.classList.add('d-none'); // Ẩn thông báo thành công nếu trước đó đã hiển thị
+
+        // Thêm lớp `is-invalid` vào các trường rỗng
+        firstNameInput.classList.add('is-invalid');
+        lastNameInput.classList.add('is-invalid');
+        usernameInput.classList.add('is-invalid');
+        return;
+      }
+
+      // Nếu ít nhất một trường đã được điền, hiển thị alert thành công
+      alertError.classList.add('d-none');
+      alertSuccess.classList.remove('d-none');
+
+      // Xóa các lớp 'is-invalid' trước khi thêm lại
+      firstNameInput.classList.remove('is-invalid');
+      lastNameInput.classList.remove('is-invalid');
+      usernameInput.classList.remove('is-invalid');
+
+      // Thêm lớp 'is-valid' vào các trường đã điền
+      if (firstName) firstNameInput.classList.add('is-valid');
+      if (lastName) lastNameInput.classList.add('is-valid');
+      if (username) usernameInput.classList.add('is-valid');
+    });
+
+
+  </script>
+
+
+
+
+
+
+
+
 
   <!-- 
     #account-details
