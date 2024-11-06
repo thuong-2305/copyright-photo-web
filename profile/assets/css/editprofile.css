@@ -9,6 +9,14 @@
     --color-surface-primary: #fff;
     --color-content-primary: #191919;
     --color-surface-into-default: #f0f1ff;
+    --color-content-disabled: #949494;
+    --color-content-interactive-primary: #9cee69;
+    --color-content-interactive-primary-hover: #6cc832;
+
+    --color-content-interactive: #1a4200;
+    --transition-duration-short: 150ms;
+    --transition-easing-ease-in-out: cubic-bezier(0.42,0.58,1);
+
 }   
 
 * {
@@ -62,6 +70,7 @@ html {
 #account-details .account-details-heading h3 {
     font-size: 32px;
     margin-bottom: 24px;
+    letter-spacing: -1.5px;
 }
 
 /* Body */
@@ -81,21 +90,114 @@ html {
 
 #account-details .account-details-body .notification-content span {
     font-size: 1rem;
+    color: var(--color-content-primary);
+    font-weight: 400;
+    letter-spacing: 0;
+    font-size: 15px;
+    max-width: 500px;
+}
+
+.account-details-body .account-details-notification .icon {
+    color: blue;
+    font-size: 20px;
 }
 
 /* Field */
+
+.account-details-body span {
+    width: 100%;
+}
+
+.account-details-body .first-name-content .first-name-input input,
+.account-details-body .last-name-content .last-name-input input,
+.account-details-body .email-content .email-input input,
+.account-details-body .username-content .username-input input
+{
+    padding: 8px;
+}
 
 /* Name */
 .account-details-body .name {
     padding-bottom: 24px;
 }
 
+
+
 /* Email */
 .account-details-body .email {
     padding-bottom: 24px;
 }
 
+.account-details-body .email .email-label label {
+    color: var(--color-content-disabled);
+}
+
 /* Username */
 .account-details-body .username {
-    padding-bottom: 24px;
+    padding-bottom: 36px;
+}
+
+.account-details-body .username-content > span {
+    color: var(--color-content-secondary);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Footer */
+.account-details-footer {
+
+}
+
+.account-details-footer .btn-container button {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--color-content-interactive-primary);
+    color: var(--color-content-interactive);
+    cursor: pointer;
+    border: 0px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-weight: 600;
+    transition: all var(--transition-duration-short) var(--transition-easing-ease-in-out);
+    margin-right: 8px;
+}
+
+.account-details-footer .btn-container button:hover {
+    background-color: var(--color-content-interactive-primary-hover);
+}
+
+.account-details-footer .btn-container{
+    margin-bottom: 24px;
+}
+
+.account-details-footer .btn-container a {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-duration-short) var(--transition-easing-ease-in-out);
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 12px 24px;
+    background-color: var(--color-interactive-secondary);
+    color: var(--color-content-primary);
+    box-shadow: inset 0px 0px 0px var(--chunkiness-thin) #404040;
+}
+
+.account-details-footer .btn-container a:hover {
+    background-color: var(--color-interactive-secondary-hover);
+    color: var(--color-content-inverse);
+    box-shadow: inset 0px 0px 0px var(--chunkiness-thick) #303030;
+}
+
+.account-details-footer > span {
+    font-weight: 500;
+    text-align: center; /* Căn giữa văn bản */
+    color: var(--color-content-secondary);
+    font-size: 14px;
+    display: block; /* Đảm bảo nội dung chiếm 100% chiều rộng của span */
+    max-width: 500px; /* Giới hạn độ rộng của dòng để xuống dòng dễ hơn */
+    margin: 0 auto; /* Căn giữa span trong div cha */
 }
