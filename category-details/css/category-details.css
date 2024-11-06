@@ -47,8 +47,8 @@ section.banner .main-title {
 /* banner */
 
 /* categories */
-.category .heading {
-    margin-top: 50px;
+.category {
+    margin-top: 30px;
 }
 .category .list-category {
     display: flex;
@@ -131,7 +131,6 @@ section.banner .main-title {
     font-weight: bold;
     border-bottom: 2px solid #000;
     color: #000;
-    transition: .2 linear;
 }
 
 .content-add .download button {
@@ -140,7 +139,17 @@ section.banner .main-title {
     margin-bottom: 50px;
 }
 
+.content-add .content-text {
+    display: none;
+}
 
+.content-add .content-text ul li {
+    width: 90%;
+}
+
+.content-add .content-text.active {
+    display: inline-block;
+}
 /* content-add */
 
 

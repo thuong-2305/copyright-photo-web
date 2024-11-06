@@ -29,10 +29,10 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link mx-lg-3 active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link mx-lg-3 active" aria-current="page" href="../src/homepage.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link mx-lg-3" href="#">Category</a>
+                  <a class="nav-link mx-lg-3" href="./category-details.html">Category</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link mx-lg-3" href="#">Contact</a>
@@ -70,27 +70,8 @@
   </section>
   <!--section banner -->
 
-  <!-- section text info -->
-  <!-- <section>
-    <div class="container">
-      <div class="d-flex flex-column">
-        <h4 class="mt-20">Nơi tốt nhất để tìm ảnh</h4>
-        <p>Cần một hình ảnh thu hút ánh nhìn mà bạn có thể sử dụng nhiều lần trên các nền tảng khác nhau? Để làm 
-          điều này một cách hợp pháp, bạn sẽ cần hình ảnh không có bản quyền. Shutterstock có thể giúp bạn! Nhờ 
-          vào hàng ngàn cộng tác viên thường xuyên đóng góp các hình ảnh chất lượng cao vào thư viện của chúng 
-          tôi, Shutterstock là nơi tốt nhất để tìm ảnh, minh họa, vector không bản quyền và nhiều loại hình ảnh 
-          khác. Với hơn 150 trang danh mục và danh mục phụ hình ảnh được chọn lọc cẩn thận để bạn khám phá, chắc 
-          chắn rằng khả năng sáng tạo tại đây là vô tận.</p>
-      </div>
-    </div>
-   </section> -->
-  <!-- section text info -->
-
   <!-- section categories -->
   <section class="category">
-    <div class="container heading">
-      <h3>Các doanh mục phổ biến</h3>
-    </div>
     <div class="container list-category">
       <div class="box">
         <img src="../Images/Abstract/1.jpg" alt="" class="image">
@@ -160,47 +141,80 @@
   <section class="content-add">
     <div class="container d-flex justify-content-center align-items-center">
       <ul class="d-flex border-bottom title-content">
-        <li data-content="social-media" class="tab list-unstyled px-3 text-secondary active">Mạng xã hội</li>
-        <li data-content="marketing-campaigns" class="tab list-unstyled px-3 text-secondary">Chiến dịch thị trường</li>
-        <li data-content="website-design" class="tab list-unstyled px-3 text-secondary">Thiết kế website</li>
-        <li data-content="creative-projects" class="tab list-unstyled px-3 text-secondary">Sáng tạo dự án</li>
+        <li class="tab list-unstyled px-3 text-secondary active" data-target="social-network">Mạng xã hội</li>
+        <li class="tab list-unstyled px-3 text-secondary" data-target="marketing">Chiến dịch thị trường</li>
+        <li class="tab list-unstyled px-3 text-secondary" data-target="design">Thiết kế website</li>
+        <li class="tab list-unstyled px-3 text-secondary" data-target="creative">Sáng tạo dự án</li>
       </ul>
     </div>
-    <div class="main-content">
+    <div class=" container main-content">
       <div id="social-media" class="content">
-        <div class="container content-text">
-          <ul class="float-start w-50">
+
+        <div class="container content-text social-network active">
+          <ul class="float-start w-50 list-unstyled">
             <h2 class="my-2">Mạng xã hội</h2>
-            <li class="text-secondary my-3">Nghiên cứu trên mạng xã hội đã chỉ ra rằng việc thường xuyên đăng nội dung là một trong những chìa
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Nghiên cứu trên mạng xã hội đã chỉ 
+              ra rằng việc thường xuyên đăng nội dung là một trong những chìa
               khóa thu hút khán giả. Bạn không có thời gian đi loanh quanh để chụp ảnh cho Instagram của mình? Đừng
               lo lắng. Thư viện hình ảnh miễn phí khổng lồ của Shutterstock luôn sẵn sàng trợ giúp. Ví dụ: giả sử bạn
               muốn đăng một câu trích dẫn đầy cảm hứng và bạn cho rằng những từ đó sẽ kết hợp tốt nhất với một bức ảnh
               bình minh tuyệt đẹp. Nếu không muốn dậy sớm để tự chụp ảnh, bạn chỉ cần gõ "Sunrise" vào thanh tìm kiếm
               của Shutterstock và chọn.
             </li>
-            <li class="text-secondary my-3">Bạn có bảng màu cụ thể mà bạn sử dụng trên Instagram của mình nhưng ảnh bạn tìm thấy trong thư viện của
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Bạn có bảng màu cụ thể mà bạn sử dụng trên Instagram của mình nhưng ảnh bạn
+              tìm thấy trong thư viện của
               chúng tôi không hoàn toàn khớp với nhau? Sử dụng Shutterstock Editor để điều chỉnh màu sắc của hình ảnh
-              miễn
-              phí bản quyền. Tải xuống tác phẩm đã chỉnh sửa của bạn và chia sẻ.
+              miễn phí bản quyền. Tải xuống tác phẩm đã chỉnh sửa của bạn và chia sẻ.
             </li>
           </ul>
-          <img src="../Images/People/9.jpg" alt="" class="float-end w-50">
+          <img src="../Images/People/9.jpg" alt="" class="float-end w-50 my-3">
         </div>
-      </div>
-      <div id="marketing-campaigns" class="content" style="display: none;">
-        <h2>Marketing campaigns</h2>
-        <ul>
-          <li>Add an authentic air to your next marketing campaign with royalty-free pictures...</li>
-          <li>Want to encourage consumers to book a trip through your travel agency?... </li>
-        </ul>
-      </div>
-      <div id="website-design" class="content" style="display: none;">
-        <h2>Website Design</h2>
-        <p>Nội dung cho Website Design...</p>
-      </div>
-      <div id="creative-projects" class="content" style="display: none;">
-        <h2>Creative Projects</h2>
-        <p>Nội dung cho Creative Projects...</p>
+
+        <div class="container content-text marketing">
+          <ul class="float-start w-50 list-unstyled">
+            <h2 class="my-2">Chiến dịch thị trường</h2>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Thêm không khí đích thực vào chiến dịch tiếp thị tiếp theo của bạn bằng
+              những
+              bức ảnh miễn phí bản quyền. Không có gì ngạc nhiên khi người tiêu dùng phản ứng tích cực hơn với những
+              người
+              có vẻ ngoài chân thật trong các quảng cáo mà họ xem. Những người cứng nhắc, tạo dáng với nụ cười gượng gạo
+              sẽ không giúp bán được sản phẩm của bạn. May mắn thay, thư viện của Shutterstock tràn ngập những bức ảnh
+              miễn phí về những người có vẻ ngoài tự nhiên. Bằng cách sử dụng các tùy chọn bộ lọc của Shutterstock, bạn
+              có thể chỉ định độ tuổi, giới tính, dân tộc và số lượng người trong hình ảnh của mình.</li>
+          </ul>
+          <img src="../Images/Commercial/2.jpg" alt="" class="float-end w-50 my-3">
+        </div>
+
+        <div class="container content-text design">
+          <ul class="float-start w-50 list-unstyled">
+            <h2 class="my-2">Thiết kế web</h2>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Làm nổi bật thiết kế trang web của bạn và nổi bật giữa đám đông bằng
+              hình ảnh miễn phí bản quyền. Hãy thử khám phá trang hình ảnh "Tóm tắt" được tuyển chọn của Shutterstock.
+              Trong trang đó, bạn thậm chí sẽ tìm thấy một trang danh mục phụ dành cho "Hình nền trừu tượng" để giúp
+              bạn tiết kiệm thời gian hơn nữa khi tìm kiếm hình ảnh. Bạn cũng có thể xem trang danh mục hình ảnh
+              "Nền/Hoạ tiết" hoặc chỉ cần nhập từ khóa vào thanh tìm kiếm chính để tìm bất kỳ loại nền nào mà bạn
+              có thể nghĩ đến.
+            </li>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Sử dụng các tùy chọn bộ lọc của Shutterstock để chọn màu chính bạn muốn
+              làm nổi bật trong hình ảnh của mình. Đảm bảo màu sắc của logo công ty và nền trang web của bạn bổ sung
+              cho nhau. Điều này sẽ giúp mang lại cho trang web của bạn một cái nhìn gắn kết, chuyên nghiệp.
+            </li>
+          </ul>
+          <img src="../Images/Technology/Data/7.webp" alt="" class="float-end w-50 my-3">
+        </div>
+
+        <div class="container content-text creative">
+          <ul class="float-start w-50 list-unstyled">
+            <h2 class="my-2">Sáng tạo dự án</h2>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Với hàng triệu hình ảnh miễn phí bản quyền để lựa chọn và thư viện hình ảnh
+              ngày càng phát triển, Shutterstock chắc chắn sẽ có ảnh, hình minh họa hoặc vectơ để đáp ứng nhu cầu sáng
+              tạo của bạn. Hình ảnh của chúng tôi hoàn hảo cho nhiều tình huống và dự án, từ hình nền trang web đến
+              thiệp
+              mời đám cưới, ảnh bìa Facebook cho đến câu chuyện trên Instagram, v.v. Hãy bắt đầu ngay hôm nay.
+            </li>
+          </ul>
+          <img src="../Images/HandScenery/007.jpg" alt="" class="float-end w-50 my-3">
+        </div>
       </div>
     </div>
     <div class="download d-flex justify-content-center">
@@ -262,6 +276,8 @@
     </div>
   </section>
   <!--section footer -->
+
+  <script src="./js/javascript.js"></script>
 </body>
 
 </html>
