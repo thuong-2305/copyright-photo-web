@@ -20,7 +20,7 @@
                     <div class="col-7">
                         <header class="d-flex align-items-center">
                             <h1 class="dp-ib">Checkout</h1>
-                            <span class="ml-auto medium"><i class="fa fa-circle-check mr-1"></i>Mua hàng an toàn</span>
+                            <span class="ml-auto medium"><i class="fa fa-circle-check mr-1"></i>Bảo mật đơn hàng</span>
                         </header>
                         <div class="billing-container">
                             <div class="billing-information pb-3">
@@ -98,32 +98,31 @@
 
                                     </div>
                                      -->
-                                    <div class="row credit-card-edit no-gutters mb-5">
-                                        <div class="col-4 credit-card-edit-number bd-none">
-                                            <div class="credit-card-edit-number-content">
-                                                <div class="card-number-icon">
-                                                    <i></i>
+                                        <div class="row credit-card-edit no-gutters mb-4">
+                                            <div class="col-4 credit-card-edit-number bd-none">
+                                                <div class="credit-card-edit-number-content">
+                                                    <div class="card-number-input">
+                                                        <input class="w-100" type="text" placeholder="Số thẻ">
+                                                        <!-- Biểu tượng FontAwesome chèn vào đây, nằm trong input -->
+                                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                                                    </div>
                                                 </div>
-                                                <div class="card-number-input">
-                                                    <input class="w-100" type="text">
+                                            </div>
+                                            <div class="col-4 credit-card-date bd-none">
+                                                <div class="input-date">
+                                                    <input class="w-100" type="text" placeholder="MM/YY">
+                                                </div>
+                                            </div>
+                                            <div class="col-4 credit-card-seccode bd-none">
+                                                <div class="input-seccode">
+                                                    <input class="w-100" type="text" placeholder="CVV">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-4 credit-card-date bd-none">
-                                            <div class="input-date">
-                                                <input class="w-100" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-4 credit-card-seccode bd-none">
-                                            <div class="input-seccode">
-                                                <input class="w-100" type="text">
-                                            </div>
-                                        </div>
-                            
-                                    </div>
+                                    
                                     <div class="save-card">
                                         <div class="save-card-content">
-                                            <input type="checkbox">
+                                            <input class="cs-pointer" type="checkbox">
                                             <div class="checkbox-content dp-ib">
                                                 Lưu thẻ này cho lần thanh toán kế tiếp
                                             </div>
@@ -147,20 +146,20 @@
                         </div>
                         <div class="order-totals">
                             <ul class="order-totals-content style-none">
-                                <li>Total</li>
-                                <li>Đ924.000 VNĐ</li>
+                                <li>Tổng cộng</li>
+                                <li>924.000 VNĐ</li>
                             </ul>
                             <div class="content-license-agreement">
                                 <ul class="style-none">
                                     <li class="email-preference mb-3">
-                                        <input type="checkbox">
-                                        <span>Có, tôi muốn nhận những thông tin mới nhất và những ưu đãi đặc biệt - tôi hiểu rằng có thể hủy thông báo bất kì lúc nào</span>
+                                        <input class="cs-pointer" type="checkbox">
+                                        <span>Có, tôi muốn nhận những thông tin mới nhất và những ưu đãi đặc biệt - tôi hiểu rằng có thể hủy thông báo bất kì lúc nào.</span>
                                     </li>
                                     <li id="accept-term">
                                         Bằng cách đăng ký với PocoPhoto, bạn chấp nhận các
                                         <a href=""> Thỏa thuận cấp phép</a>, 
                                         <a href=""> Chính sách quyền riêng tư </a> và
-                                        <a href=""> Điều khoản sử dụng</a>
+                                        <a href=""> Điều khoản sử dụng</a>.
                                     </li>
                                 </ul>
                             </div>

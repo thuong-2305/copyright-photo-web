@@ -5,6 +5,10 @@
     clear: both;
 }
 
+.cs-pointer {
+    cursor: pointer;
+}
+
 .style-none {
     list-style-type: none;
 }
@@ -68,10 +72,39 @@ html {
     padding: 8px;
 }
 
+/* Đảm bảo phần tử icon Font Awesome nằm chính xác trong input */
+.card-number-input {
+    position: relative; /* Để icon có thể được đặt tuyệt đối trong input */
+}
+
+/* Điều chỉnh padding-left để tạo không gian cho icon mà không che khuất placeholder */
+.card-number-input input {
+    padding-left: 30px; /* Khoảng cách cho icon, giảm lại để không che placeholder */
+    padding-right: 5px; /* Khoảng trống bên phải input */
+    font-size: 16px; /* Đảm bảo chữ trong input dễ đọc */
+}
+
+/* Điều chỉnh icon sao cho không che mất placeholder */
+.card-number-input i {
+    position: absolute;
+    left: 10px; /* Khoảng cách từ trái cho icon */
+    top: 50%;
+    transform: translateY(-50%); /* Căn giữa icon theo chiều dọc */
+    font-size: 18px; /* Kích thước của icon */
+    color: #888; /* Màu sắc cho icon */
+}
+
+
+
+
 
 /* Order totals */
 .checkout-content .order-totals {
     padding: 25px 30px 8px;
+}
+
+.checkout-content .order-totals .order-totals-content li:first-child {
+  font-size: 24px;
 }
 
 .checkout-content .order-totals .order-totals-content li:last-child {
@@ -98,7 +131,7 @@ html {
 }
 
 #create-order-button {
-    font-size: 16px;
+    font-size: 20px;
     width: 100%;
     color: #fff;
     text-transform: uppercase;
