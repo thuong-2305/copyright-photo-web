@@ -1,0 +1,46 @@
+/* Chung */
+
+
+.clear {
+    clear: both;
+}
+
+.style-none {
+    list-style-type: none;
+}
+
+
+:root {
+    --main-btn-bg-color: #52b788;
+    --main-text-color: #080808;
+}
+
+.dp-ib {
+    display: inline-block;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#checkout .checkout-container {
+    margin: 62px;
+}
+
+/* Riêng */
+#checkout .checkout-content .col-7 .billing-container {
+    background-color: #f4f4f4;
+    padding: 28px 16px;
+}
+
+#checkout .checkout-content .billing-information > span {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
