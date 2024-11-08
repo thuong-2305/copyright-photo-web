@@ -1,0 +1,215 @@
+/* Chung */
+
+:root {
+    --color-interactive-secondary-hover: #191919;
+    --color-content-inverse: #fff;
+    --chunkiness-thick: 2px;
+    --chunkiness-thin: 1px;
+    --color-content-secondary: #707070;
+    --color-surface-primary: #fff;
+    --color-content-primary: #191919;
+    --color-surface-into-default: #f0f1ff;
+    --color-content-disabled: #949494;
+    --color-content-interactive-primary: #9cee69;
+    --color-content-interactive-primary-hover: #6cc832;
+
+    --color-content-interactive: #1a4200;
+    --transition-duration-short: 150ms;
+    --transition-easing-ease-in-out: cubic-bezier(0.42,0.58,1);
+
+}   
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.is-valid {
+    background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3e%3cpath fill="%238dd18d" d="M16 8a8 8 0 1 1-16 0 8 8 0 0 1 16 0z"/%3e%3cpath fill="%23fff" d="M5.795 8.933l2.522 2.52L13.409 6.5l-.687-.688L8.617 9.305 6.48 7.168l-.685.688z"/%3e%3c/svg%3e');
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+  
+
+.w-100 {
+    width: 100%;
+}
+
+.mr-12 {
+    margin-right: 12px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.dp-flex {
+    display: flex;
+}
+
+#account-details {
+    margin: 0 240px;
+}
+
+.container-fluid {
+    height: 700px;
+    padding: 40px;
+}
+
+.stl-none {
+    list-style-type: none;
+}
+
+
+#account-details .account-details-container {
+    padding: 40px;
+    background: var(--color-surface-primary);
+    border: var(--chunkiness-thin) solid var(--color-content-secondary);
+    border-radius: 4px;
+}
+
+/* Heading */
+#account-details .account-details-heading h3 {
+    font-size: 32px;
+    margin-bottom: 24px;
+    letter-spacing: -1.5px;
+}
+
+/* Body */
+
+/* Notification trở lên */
+#account-details .account-details-body .account-details-notification {
+    padding: 16px;
+    margin-bottom: 24px;
+    align-items: center;
+    border-radius: 4px;
+    background-color: var(--color-surface-into-default);
+}
+
+#account-details .account-details-body .account-details-notification .icon {
+    line-height: 40px;
+}
+
+#account-details .account-details-body .notification-content span {
+    font-size: 1rem;
+    color: var(--color-content-primary);
+    font-weight: 400;
+    letter-spacing: 0;
+    font-size: 15px;
+    max-width: 500px;
+}
+
+.account-details-body .account-details-notification .icon {
+    color: blue;
+    font-size: 20px;
+}
+
+/* Field */
+
+.account-details-body span {
+    width: 100%;
+}
+
+.account-details-body .first-name-content .first-name-input input,
+.account-details-body .last-name-content .last-name-input input,
+.account-details-body .email-content .email-input input,
+.account-details-body .username-content .username-input input
+{
+    padding: 8px;
+}
+
+/* Name */
+.account-details-body .name {
+    padding-bottom: 24px;
+}
+
+
+
+/* Email */
+.account-details-body .email {
+    padding-bottom: 24px;
+}
+
+.account-details-body .email .email-label label {
+    color: var(--color-content-disabled);
+}
+
+.account-details-body .email .email-input input {
+    cursor: not-allowed;
+}
+
+/* Username */
+.account-details-body .username {
+    padding-bottom: 36px;
+}
+
+.account-details-body .username-content > span {
+    color: var(--color-content-secondary);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Footer */
+.account-details-footer {
+
+}
+
+.account-details-footer .btn-container button {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--color-content-interactive-primary);
+    color: var(--color-content-interactive);
+    cursor: pointer;
+    border: 0px;
+    border-radius: 4px;
+    padding: 12px 24px;
+    font-weight: 600;
+    transition: all var(--transition-duration-short) var(--transition-easing-ease-in-out);
+    margin-right: 8px;
+}
+
+.account-details-footer .btn-container button:hover {
+    background-color: var(--color-content-interactive-primary-hover);
+}
+
+.account-details-footer .btn-container{
+    margin-bottom: 24px;
+}
+
+.account-details-footer .btn-container a {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-duration-short) var(--transition-easing-ease-in-out);
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 12px 24px;
+    background-color: var(--color-interactive-secondary);
+    color: var(--color-content-primary);
+    box-shadow: inset 0px 0px 0px var(--chunkiness-thin) #404040;
+}
+
+.account-details-footer .btn-container a:hover {
+    background-color: var(--color-interactive-secondary-hover);
+    color: var(--color-content-inverse);
+    box-shadow: inset 0px 0px 0px var(--chunkiness-thick) #303030;
+}
+
+.account-details-footer > span {
+    font-weight: 500;
+    text-align: center; /* Căn giữa văn bản */
+    color: var(--color-content-secondary);
+    font-size: 15px;
+    display: block; /* Đảm bảo nội dung chiếm 100% chiều rộng của span */
+    max-width: 500px; /* Giới hạn độ rộng của dòng để xuống dòng dễ hơn */
+    margin: 0 auto; /* Căn giữa span trong div cha */
+}
