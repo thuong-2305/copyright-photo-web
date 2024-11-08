@@ -1,0 +1,177 @@
+/* Chung */
+
+.heading-title {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+
+
+.clear {
+    clear: both;
+}
+
+.cs-pointer {
+    cursor: pointer;
+}
+
+.style-none {
+    list-style-type: none;
+}
+
+.bd-none {
+    border: none;
+}
+
+.txt-deco-none {
+    text-decoration: none;
+}
+
+
+:root {
+    --main-btn-bg-color: #52b788;
+    --main-text-color: #080808;
+}
+
+
+
+.maxw-100 {
+    max-width: 100%;
+}
+
+.dp-ib {
+    display: inline-block;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#checkout .checkout-container {
+    margin: 62px;
+}
+
+/* Riêng */
+
+/* Billing */
+
+#checkout .checkout-content .col-7 .billing-container {
+    background-color: #f4f4f4;
+    padding: 28px 16px;
+    margin-bottom: 16px;
+}
+
+#checkout .checkout-content .billing-information > span {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+#checkout .billing-container .name,
+#checkout .billing-container .email
+{
+    padding-bottom: 20px;
+}
+
+/* Credit-card */
+.credit-card .credit-card-edit .col-4 input {
+    padding: 8px;
+}
+
+.credit-card .credit-card-content .card-image-content > i {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+/* Order totals */
+.checkout-content .order-totals {
+    padding: 25px 30px 8px;
+}
+
+.checkout-content .order-totals .order-totals-content li:first-child {
+  font-size: 24px;
+}
+
+.checkout-content .order-totals .order-totals-content li:last-child {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.checkout-content .order-totals .content-license-agreement .email-preference {
+    font-size: 12px;
+}
+
+.checkout-content .order-totals .content-license-agreement .email-preference > span {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+#accept-term {
+    font-size: 13px;
+}
+
+#accept-term a {
+    text-decoration: none;
+}
+
+#create-order-button {
+    font-size: 20px;
+    width: 100%;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+/* .checkout-content .order-totals .content-license-agreement > ul {
+    font-size: 12px;
+    line-height: 18px;
+} */
+
+/* Chi tiết hóa đơn */
+
+/* Heading */
+
+.checkout-content .purchase-details-container .purchase-details-header .select-items {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 32px;
+} 
+
+.checkout-content .purchase-details-container .purchase-details-header .edit-cart {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 32px;
+}    
+
+/* Body */
+
+.purchase-details-container .purchase-details-body .price-listing-totals > span {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.purchase-details-container .purchase-details-body .show-full-purchase {
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#cart-summary-content .item {
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#cart-summary-content .item figure{
+    float: left;
+    max-width: 160px;
+    padding-right: .75em;
+}
+
+#cart-summary-content .item .lst-property li:last-child {
+    font-weight: 500;
+}
+
