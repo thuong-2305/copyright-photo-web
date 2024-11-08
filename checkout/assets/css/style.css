@@ -85,31 +85,10 @@ html {
     padding: 8px;
 }
 
-/* Đảm bảo phần tử icon Font Awesome nằm chính xác trong input */
-.card-number-input {
-    position: relative; /* Để icon có thể được đặt tuyệt đối trong input */
+.credit-card .credit-card-content .card-image-content > i {
+    font-size: 24px;
+    margin-right: 12px;
 }
-
-/* Điều chỉnh padding-left để tạo không gian cho icon mà không che khuất placeholder */
-.card-number-input input {
-    padding-left: 30px; /* Khoảng cách cho icon, giảm lại để không che placeholder */
-    padding-right: 5px; /* Khoảng trống bên phải input */
-    font-size: 16px; /* Đảm bảo chữ trong input dễ đọc */
-}
-
-/* Điều chỉnh icon sao cho không che mất placeholder */
-.card-number-input i {
-    position: absolute;
-    left: 10px; /* Khoảng cách từ trái cho icon */
-    top: 50%;
-    transform: translateY(-50%); /* Căn giữa icon theo chiều dọc */
-    font-size: 18px; /* Kích thước của icon */
-    color: #888; /* Màu sắc cho icon */
-}
-
-
-
-
 
 /* Order totals */
 .checkout-content .order-totals {
