@@ -64,20 +64,35 @@
     <section class="products">
         <div class="container d-flex flex-column">
             <div class="heading">
+                <div class="search-container">
+                    <div class="dropdown">
+                        <button class="fw-medium" id="type-search"><i class="fa-solid fa-pen-fancy px-2"></i> Illustrations<i class="fa-solid fa-caret-down px-1"></i></button>
+                        <div class="dropdown-content">
+                            <a href="#"><i class="fa-regular fa-image pe-3 "></i>All images</a>
+                            <a href="#"><i class="fa-solid fa-camera px-3"></i>Photos</a>
+                            <a href="#"><i class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+                            <a href="#" class="text-success"><i class="fa-solid fa-pen-fancy px-3"></i>Illustrations</a>
+                        </div>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search for illustrations">
+                    </div>
+                    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
                 <div class="related-search d-flex align-items-center">
                     <span class="fw-bold">Tìm kiếm liên quan:</span>
                     <div class="data1 d-flex justify-content-center align-items-center">
-                       <img src="../Images/Vietnam/diadiem/1.jfif" alt="">
-                       <p>địa điểm du lịch</p> 
+                        <img src="../Images/Vietnam/diadiem/1.jfif" alt="">
+                        <p>địa điểm du lịch</p>
                     </div>
                     <div class="data1 d-flex justify-content-center align-items-center">
                         <img src="../Images/Vietnam/diadiem/17.jpg" alt="">
-                        <p>địa điểm thư giãn</p> 
-                     </div>
-                     <div class="data1 d-flex justify-content-center align-items-center">
+                        <p>địa điểm thư giãn</p>
+                    </div>
+                    <div class="data1 d-flex justify-content-center align-items-center">
                         <img src="../Images/Vietnam/diadiem/16.jpg" alt="">
-                        <p>địa điểm vui chơi</p> 
-                     </div>
+                        <p>địa điểm vui chơi</p>
+                    </div>
                 </div>
                 <div class="path">
                     <p class="text-primary">
@@ -100,7 +115,8 @@
             <div class="show-products">
                 <div class="content-products">
                     <p class="fs-3 fw-bold">Ảnh địa điểm ở Việt Nam có giấy phép bản quyền</p>
-                    <p class="text-secondary">99,420 dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ CoRiPhoto.</p>
+                    <p class="text-secondary">99,420 dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ
+                        CoRiPhoto.</p>
                     <button class="btn border-secondary"><i class="fa-solid fa-sliders"></i> Lọc</button>
                 </div>
                 <div class="photo-products">
@@ -162,15 +178,17 @@
     <!-- products -->
 
     <!-- evaluate -->
-     <section class="emotion">
-        <div class="container d-flex justify-content-center align-items-center flex-column py-4 rounded-3">
-            <p class="fw-bold fs-5">Những kết quả này có phù hợp với kết quả của bạn không?</p>
-            <div class="icon">
-                <i class="fa-regular fa-face-laugh-beam"></i>
-                <i class="fa-regular fa-face-smile-beam"></i>
+    <section class="emotion">
+        <div class="container d-flex justify-content-between align-items-center flex-column py-3 rounded-3">
+            <div class="ques">
+                <p class="fw-bold fs-5">Những kết quả này có phù hợp với kết quả của bạn không?
+                <div class="icon text-center">
+                    <i class="fs-3 fa-regular fa-face-laugh-beam"></i>
+                    <i class="fs-3 fa-regular fa-face-frown-open"></i>
+                </div>
             </div>
         </div>
-     </section>
+    </section>
     <!-- evaluate -->
 
     <!--section footer -->
