@@ -1,5 +1,12 @@
 /* Chung */
 
+.heading-title {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+
 
 .clear {
     clear: both;
@@ -17,14 +24,20 @@
     border: none;
 }
 
+.txt-deco-none {
+    text-decoration: none;
+}
+
 
 :root {
     --main-btn-bg-color: #52b788;
     --main-text-color: #080808;
 }
 
-.w-100 {
-    width: 100%;
+
+
+.maxw-100 {
+    max-width: 30%;
 }
 
 .dp-ib {
@@ -141,3 +154,21 @@ html {
     font-size: 12px;
     line-height: 18px;
 } */
+
+/* Chi tiết hóa đơn */
+
+/* Heading */
+
+.checkout-content .purchase-details-container .purchase-details-header .select-items {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 32px;
+} 
+
+.checkout-content .purchase-details-container .purchase-details-header .edit-cart {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 32px;
+}    
+
+
