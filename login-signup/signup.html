@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form đăng nhập</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../fontawesome-free-6.6.0-web/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/signup.css" />
+  </head>
+  <body>
+    <div class="frame-signup">
+      <div class="signup-container">
+        <h2 class="text-center mb-4">Đăng ký</h2>
+        <form>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Nhập email của bạn"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              for="password"
+              class="form-label d-flex justify-content-between"
+            >
+              Mật khẩu:
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Nhập mật khẩu của bạn"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              for="password"
+              class="form-label d-flex justify-content-between"
+            >
+              Nhập lại mật khẩu:
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Nhập lại mật khẩu"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-signup w-100 mb-3">
+            Đăng ký
+          </button>
+        </form>
+        <button class="btn btn-google">
+          <i class="fa-brands fa-google"></i>Đăng ký bằng Google
+        </button>
+        <button class="btn btn-facebook">
+          <i class="fa-brands fa-facebook"></i>Đăng ký bằng Facebook
+        </button>
+        <button class="btn btn-apple">
+          <i class="fa-brands fa-apple"></i>Đăng ký bằng Apple
+        </button>
+
+        <div class="text-center mt-4">
+          <span
+            >Bạn đã có tài khoản?
+            <a href="./login.html" class="text-decoration-none"
+              >Đăng nhập</a
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/bootstrap-icons.min.js"></script>
+  </body>
+</html>
