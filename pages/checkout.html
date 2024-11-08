@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Thanh toán</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/checkout.css">
+</head>
+
+<body>
+    <div id="checkout">
+        <div class="container-fluid">
+            <div class="checkout-container">
+                <div class="row checkout-content">
+                    <div class="col-7">
+                        <header class="d-flex align-items-center">
+                            <h1 class="dp-ib">Checkout</h1>
+                            <span class="ml-auto medium"><i class="fa fa-circle-check mr-1"></i>Bảo mật đơn hàng</span>
+                        </header>
+                        <div class="billing-container">
+                            <div class="billing-information pb-3">
+                                <span>Thông tin thanh toán</span>
+                            </div>
+                            <div class="row name">
+                                <div class="col-6 first-name-content">
+                                    <div class="first-name-label">
+                                        <label for="">
+                                            <span>Họ</span>
+                                        </label>
+                                    </div>
+                                    <div class="first-name-input">
+                                        <input class="p-2 w-100" type="text">
+                                    </div>
+                                </div>
+                                <div class="col-6 last-name-content">
+                                    <div class="last-name-label">
+                                        <label for="">
+                                            <span>Tên</span>
+                                        </label>
+                                    </div>
+                                    <div class="last-name-input">
+                                        <input class="p-2 w-100" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="email mb-5">
+                                <div class="email-content">
+                                    <div class="email-label">
+                                        <label for="">
+                                            <span>Email</span>
+                                        </label>
+                                    </div>
+                                    <div class="email-input">
+                                        <input class="w-100 p-2" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="credit-card">
+                                <div class="credit-card-content">
+                                    <h4 class="mb-5">Thẻ tín dụng</h4>
+                                    <div class="card-image">
+                                        <div class="card-image-content mb-3">
+                                            <i class="fab fa-cc-visa" aria-hidden="true"></i>
+                                            <i class="fab fa-cc-paypal" aria-hidden="true"></i>
+                                            <i class="fab fa-cc-mastercard" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="row credit-card-edit no-gutters mb-4">
+                                        <div class="col-4 credit-card-edit-number bd-none">
+                                            <div class="credit-card-edit-number-content">
+                                                <div class="card-number-input">
+                                                    <input class="w-100" type="text" placeholder="Số thẻ">
+                                                    <!-- Biểu tượng FontAwesome chèn vào đây, nằm trong input -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 credit-card-date bd-none">
+                                            <div class="input-date">
+                                                <input class="w-100" type="text" placeholder="MM/YY">
+                                            </div>
+                                        </div>
+                                        <div class="col-4 credit-card-seccode bd-none">
+                                            <div class="input-seccode">
+                                                <input class="w-100" type="text" placeholder="CVV">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="save-card">
+                                        <div class="save-card-content">
+                                            <input class="cs-pointer" type="checkbox">
+                                            <div class="checkbox-content dp-ib">
+                                                Lưu thẻ này cho lần thanh toán kế tiếp
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="order-totals">
+                            <ul class="order-totals-content style-none">
+                                <li>Tổng cộng</li>
+                                <li>924.000 VNĐ</li>
+                            </ul>
+                            <div class="content-license-agreement">
+                                <ul class="style-none">
+                                    <li class="email-preference mb-3">
+                                        <input class="cs-pointer" type="checkbox">
+                                        <span>Có, tôi muốn nhận những thông tin mới nhất và những ưu đãi đặc biệt - tôi
+                                            hiểu rằng có thể hủy thông báo bất kì lúc nào.</span>
+                                    </li>
+                                    <li id="accept-term">
+                                        Bằng cách đăng ký với PocoPhoto, bạn chấp nhận các
+                                        <a href=""> Thỏa thuận cấp phép</a>,
+                                        <a href=""> Chính sách quyền riêng tư </a> và
+                                        <a href=""> Điều khoản sử dụng</a>.
+                                    </li>
+                                </ul>
+                            </div>
+                            <button id="create-order-button" class="btn btn-success mt-4 p-3">
+                                Thanh toán ngay
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="col-5 mt-2">
+                        <div class="purchase-details-container">
+                            <div class="promo-code-container d-flex ml-auto mb-3">
+                                <div class="promo-code d-flex ml-auto"> <!-- Flexbox cho căn giữa -->
+                                    <input type="text" class="form-control mr-2" placeholder="Mã khuyến mãi"
+                                        style="width: 200px;">
+                                    <button class="btn btn-primary shadow-sm" type="button">Áp dụng</button>
+                                </div>
+                            </div>
+
+                            <div class="purchase-details">
+                                <div class="purchase-details-header d-flex mb-3">
+                                    <span class="heading-title mr-2">Chi tiết hóa đơn</span>
+                                    <span class="select-items">(3 sản phẩm)</span>
+                                    <a class="edit-cart txt-deco-none ml-auto" href="">Chỉnh sửa giỏ hàng</a>
+                                </div>
+                                <div class="purchase-details-body">
+                                    <div id="cart-summary-content">
+                                        <section class="pb-4 rounded item mb-2">
+                                            <figure>
+                                                <img class="maxw-100 img-fluid rounded"
+                                                    src="../assets/images/Abstract/1.jpg" alt="">
+                                            </figure>
+                                            <ul class="lst-property list-unstyled flex-grow-1">
+                                                <li class="text-left">Image #: 583809524</li>
+                                                <li class="text-left">Royaltl-free</li>
+                                                <li class="text-left">12 MB</li>
+                                                <li class="text-right">499.000 VNĐ</li>
+                                            </ul>
+                                        </section>
+                                        <section class="pb-4 rounded item mb-2">
+                                            <figure>
+                                                <img class="maxw-100 img-fluid rounded"
+                                                    src="../assets/images/Abstract/5.jpg" alt="">
+                                            </figure>
+                                            <ul class="lst-property list-unstyled flex-grow-1">
+                                                <li class="text-left">Image #: 1396388341</li>
+                                                <li class="text-left">Royaltl-free</li>
+                                                <li class="text-left">824 KB</li>
+                                                <li class="text-right">300.000 VNĐ</li>
+                                            </ul>
+                                        </section>
+                                        <section class="pb-4 rounded item mb-2">
+                                            <figure>
+                                                <img class="maxw-100 img-fluid rounded"
+                                                    src="../assets/images/Abstract/3.jpg" alt="">
+                                            </figure>
+                                            <ul class="lst-property list-unstyled flex-grow-1">
+                                                <li class="text-left">Image #: 1458782106</li>
+                                                <li class="text-left">Royaltl-free</li>
+                                                <li class="text-left">470 KB</li>
+                                                <li class="text-right">125.000 VNĐ</li>
+                                            </ul>
+                                        </section>
+
+                                    </div>
+
+                                    <div class="show-full-purchase pb-3 pt-2">
+                                        <a href="">Xem thêm</a>
+                                    </div>
+                                    <div class="price-listing-totals d-flex mt-4">
+                                        <span class="dp-ib">Total</span>
+                                        <span class="price-totals ml-auto">924.000 VNĐ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

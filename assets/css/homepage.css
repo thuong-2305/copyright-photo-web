@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-size: 14px;
+    font-family: "Poppins", serif;
+}
+
+/* section banner */
+.banner {
+    width: 100%;
+    height: calc(50vh - 60px);
+    background-image: url('../images/banner.jpg');
+    background-size: cover;
+}
+
+.banner .banner-home {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner .banner-home .main-title h1 {
+    font-weight: 700px;
+    margin: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 80%;
+    background-color: white;
+}
+
+.search-bar input[type="text"] {
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    flex: 1;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: #009970;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.search-bar button.search-image {
+    background-color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: black;
+    font-size: 16px;
+}
+
+.search-bar button.search-image i {
+    padding-right: 5px;
+}
+
+.search-bar .search-image {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    
+}
+
+/* end section banner */
+
+/* section category-home */
+.title-categories {
+    background-color: #f4f4f4;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+}
+
+.category-home a.active {
+    background-color: white; 
+    border: 1px solid #00b383;
+    color: #009970;
+}
+
+.title-categories a:hover:not(.active) {
+    color: #009970;
+}
+
+.category-home .container {
+    display: none;
+}
+
+.category-home .container a {
+    text-decoration: none;
+}
+
+.category-home .container.active {
+    display: block;
+    display: flex;
+    flex-wrap: nowrap;
+    max-width: none;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.category-home .container.active a:hover {
+    cursor: pointer;
+}
+
+.category-home .container.active a:hover span {
+    letter-spacing: 2px;
+    transition: 0.5s ease-in-out;
+}
+
+.category-home .container.active .category {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-home .category img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.category-home .category span {
+    position: relative;
+    z-index: 1;
+}
+
+.category::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .category-home .container.active .category {
+        width: 200px;
+        height: 200px;
+        font-size: 18px;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-home .container.active .category {
+        width: 150px;
+        height: 150px;
+        font-size: 16px;
+    }
+    
+    .category-home .container.active {
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+
+/* new events */
+.container.raw-images {
+    flex-direction: column;
+}
+.raw-images .heading{
+    padding-top: 50px;
+}
+
+.raw-images .heading h3 {
+    font-size: 3em;
+    font-weight: bolder;
+}
+
+.raw-images .heading span {
+    padding: 5px;
+    border-radius: 10px;
+    color: #009970;
+    border-bottom: 2px solid #00b383;
+}
+
+.raw-images .heading .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+.raw-images .heading .custom-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.raw-images .heading .custom-button i {
+    font-size: 16px;
+}
+
+.raw-images .heading .custom-button:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+.new-events {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 10px auto 20px auto;
+}
+
+.new-events .box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: 1140px;
+    overflow-y: hidden;
+}
+
+.new-events .box  .dream {
+    display: flex;
+    flex-direction: column;
+    width: 32.5%;
+}
+
+.new-events .box .dream .pic {
+    position: relative;
+}
+
+.new-events .box .dream img {
+    width: 100%;
+    padding-top: 15px;
+    border-radius: 5px;
+    z-index: -1;
+}
+
+.new-events .box  .dream .pic > p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
+}
+.new-events .box  .dream .pic {
+    position: relative;
+    display: inline-block;
+}
+
+.new-events .box  .dream .pic img {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: filter 0.3s;
+}
+
+.new-events .box  .dream .pic:hover img {
+    filter: brightness(80%);
+    transition: .5s ease-in-out;
+}
+
+.new-events .box  .dream .pic .hover-options {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-15%, 15%);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.new-events .box  .dream .pic .hover-options .option-button {
+    background-color: #262626;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-events .box  .dream .pic .hover-options .option-button:hover {
+    color: #262626;
+    background: white;
+    transition: .5 ease-in-out;
+}
+
+.new-events .box  .dream .pic .hover-options .option-button:last-child {
+    color: white;
+    background: #009970;
+} 
+
+.new-events .box  .dream .pic .hover-options .option-button:last-child:hover {
+    background: rgba(0, 0, 0, 0.6);
+    color:#00b383;
+}
+
+.new-events .box .dream .pic:hover .hover-options {
+    opacity: 1;
+}
+
+.image-text {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 5px;
+    width: 100%;
+    opacity: 0;
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.new-events .box  .dream .pic:hover .image-text {
+    opacity: 1;
+}
+
+.see-more {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.see-more-button {
+    background: #00b383;
+    color: #fff;
+    padding: 10px 50px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.5s;
+}
+
+.see-more-button:hover {
+    background: linear-gradient(50deg, #00b383 0%, rgba(0,255,85,1) 100%);
+}
+
+
+
+

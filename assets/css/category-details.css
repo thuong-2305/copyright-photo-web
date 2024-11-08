@@ -1,0 +1,156 @@
+:root {
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --social-bg-color: #6c757d;
+    --gradient-color: rgba(0,255,85,1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* banner */
+section.banner {
+    position: relative;
+    background-image: url(../images/banner-category.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+}
+
+section.banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+section.banner .main-title {
+    position: relative;
+    z-index: 2;
+}
+/* banner */
+
+/* categories */
+.category .heading {
+    margin-top: 50px;
+}
+.category .list-category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.category .list-category .box {
+    height: 250px;
+    width: 350px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.category .list-category .box img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: .2s linear;
+}
+
+.category .list-category .box:hover img {
+    transform: scale(1.2);
+} 
+
+.category .list-category .box p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 5%;
+    height: 20%;
+    background-color: #000;
+    margin: 0;
+    transition: .2s linear;
+}
+
+.category .list-category .box a {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 15%;
+    margin-right: 5%;
+    transition: .2s linear;
+}
+
+.category .list-category .box:hover a {
+    height: 25%;
+}
+
+.category .list-category .box:hover p {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 30%;
+}
+
+/* categories */
+
+
+/* content-add */
+.content-add {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.content-add .title-content {
+    padding: 0;
+}
+
+.content-add .title-content li {
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray;
+    cursor: pointer;
+}
+
+.content-add .title-content li.active {
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    color: #000;
+}
+
+.content-add .download button {
+    padding: 10px 50px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.content-add .content-text {
+    display: none;
+}
+
+.content-add .content-text ul li {
+    width: 90%;
+}
+
+.content-add .content-text.active {
+    display: inline-block;
+}
+/* content-add */
+
+
+
