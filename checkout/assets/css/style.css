@@ -173,6 +173,15 @@ html {
 
 /* Body */
 
+.purchase-details-container .purchase-details-body .price-listing-totals > span {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.purchase-details-container .purchase-details-body .show-full-purchase {
+    border-bottom: 1px solid #e3e3e3;
+}
+
 #cart-summary-content .item {
     border-bottom: 1px solid #e3e3e3;
 }
@@ -186,3 +195,4 @@ html {
 #cart-summary-content .item .lst-property li:last-child {
     font-weight: 500;
 }
+
