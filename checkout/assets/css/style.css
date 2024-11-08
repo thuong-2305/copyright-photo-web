@@ -37,7 +37,7 @@
 
 
 .maxw-100 {
-    max-width: 30%;
+    max-width: 100%;
 }
 
 .dp-ib {
@@ -171,4 +171,18 @@ html {
     line-height: 32px;
 }    
 
+/* Body */
 
+#cart-summary-content .item {
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#cart-summary-content .item figure{
+    float: left;
+    max-width: 160px;
+    padding-right: .75em;
+}
+
+#cart-summary-content .item .lst-property li:last-child {
+    font-weight: 500;
+}
