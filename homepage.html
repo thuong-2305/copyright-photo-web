@@ -16,8 +16,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg w-100">
                 <div class="container-fluid">
-                    <a class="navbar-brand me-auto" href="#">
-                        <span class="title-logo">CoRiPhoto</span>
+                    <a class="navbar-brand me-auto" href="homepage.html">
+                        <span class="title-logo fw-bold"><span class="text-success">C</span>o<span class="text-success">R</span>iPhoto</span>
                     </a>
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
                         aria-labelledby="offcanvasDarkNavbarLabel">
@@ -29,29 +29,69 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3 active" aria-current="page"
-                                        href="homepage.html">Home</a>
+                                    <a class="nav-link mx-lg-3" aria-current="page" href="homepage.html"><span>Ảnh</span><i class="fa-solid fa-angle-down px-2"></i></a>
+                                    <div class="link-hover">
+                                        <a href="#" class="">Ảnh chụp</a>
+                                        <a href="#" class="">Ảnh vectors</a>
+                                        <a href="#" class="">Ảnh AI</a>
+                                    </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3" href="./pages/category-details.html">Category</a>
+                                    <a class="nav-link mx-lg-3" href="./pages/category-details.html">Danhh mục<i class="fa-solid fa-angle-down px-2"></i></a>
+                                    <div class="link-hover">
+                                        <div class="dropdown">
+                                            <a href="#"> Ảnh Trừu tượng</a>
+                                            <a href="#"> Ảnh Công nghệ</a>
+                                            <a href="#"> Ảnh Tự nhiên</a>
+                                            <a href="#"> Ảnh Cuộc sống</a>
+                                            <a href="#"> Ảnh Động vật</a>
+                                        </div>
+                                        <div class="dropdown">
+                                            <a href="#"> Ảnh Các mùa</a>
+                                            <a href="#"> Ảnh Trên không</a>
+                                            <a href="#"> Ảnh Ban đêm</a>
+                                            <a href="#"> Ảnh Thành phố</a>
+                                            <a href="#"> Ảnh Quê hương</a>
+                                        </div>
+                                        <div class="dropdown">
+                                            <a href="#"> Ảnh Con người</a>
+                                            <a href="#"> Ảnh Du lịch</a>
+                                            <a href="#"> Ảnh Nghệ thuật</a>
+                                            <a href="#"> Ảnh Cuộc sống</a>
+                                            <a href="#"> Ảnh Tất cả</a>
+                                        </div>                                        
+                                    </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3" href="#">Contact</a>
+                                    <a class="nav-link mx-lg-3" href="./pages/category-details.html">Giấy phép<i class="fa-solid fa-angle-down px-2"></i></a>
+                                    <div class="link-hover">
+                                        <a href="#" class="">Giấy phép ảnh tiêu chuẩn</a>
+                                        <a href="#" class="">Giấy phép miễn phí bản quyền</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-lg-3" href="#">Giới thiệu</a>
                                 </li>
                             </ul>
-                            <div class="d-flex align-items-center pt-1">
-                                <a href="#" class="sell mx-lg-2">Sell</a>
-                                <div class="line-separate mx-lg-1"></div>
-                                <a href="./pages/cart.html" class="cart mx-lg-4"><i class="fa-solid fa-cart-shopping"></i></a>
-                            </div>
                         </div>
                     </div>
-                    <a href="./pages/login-signup/login.html" class="login-button">Login</a>
+                    <div class="d-flex align-items-center pt-1">
+                        <div class="sell">
+                            <a href="#" class="sell mx-lg-2">Sell<i class="fa-solid fa-angle-down px-2"></i></a>
+                            <div class="link-hover">
+                                <a href="#">Đăng ký thành người phân phối</a>
+                            </div>
+                        </div>
+                        <div class="line-separate mx-lg-1"></div>
+                        <a href="./pages/love.html" class="love"><i class="fa-regular fa-heart"></i></a>
+                        <a href="./pages/cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
-                        aria-label="Toggle navigation">
+                    data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                    aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <a href="./pages/login-signup/login.html" class="login-button">Login</a>
                 </div>
             </nav>
         </div>
@@ -412,6 +452,7 @@
 
     <script src="./assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/homepage.js"></script>
+    <script src="./assets/js/navbar.js"></script>
 </body>
 
 </html>
