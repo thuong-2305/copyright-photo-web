@@ -8,6 +8,7 @@
   align-items: center;
   height: 100vh;
   background-color: rgb(247, 248, 250);
+  flex: 1;
 }
 .signup-container {
   word-break: break-word;
@@ -60,4 +61,15 @@
 
 .btn-apple {
   background-color: #000;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-about img {
+  width: 50vw;
+  height: 100vh;
+  object-fit: cover;
 }
