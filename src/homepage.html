@@ -60,100 +60,100 @@
 
     <!--section banner -->
     <section class="banner">
-        <div class="banner-home">
-            <div class="main-title">
-                <h1>CoRiPhoTo</h1>
-                <p>Kho hình ảnh cho mọi yêu cầu của bạn</p>
+        <div class="banner-home d-flex justify-content-center align-items-center flex-column">
+            <div class="main-title d-flex justify-content-center flex-column align-items-center">
+                <h1 class="fw-900 m-2">CoRiPhoTo</h1>
+                <p>Thêm điều kỳ diệu vào câu chuyện của bạn với hơn 1 ngàn ảnh, vectơ
+                    , hình minh họa và hình ảnh biên tập.</p>
             </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Start your next project">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                <button class="search-image">
-                    <i class="fa-solid fa-camera"></i>
-                    <span>Search by image</span>
-                </button>
+            <div class="search-container">
+                <div class="dropdown">
+                    <button class="fw-medium" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" class="active" data-icon="fa-image"><i class="fa-solid fa-image pe-3"></i>Tất cả ảnh</a>
+                        <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
+                        <a href="#" data-icon="fa-vector-square"><i class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+                        <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
+                    </div>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Tìm kiếm cho ảnh">
+                </div>
+                <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
     </section>
     <!--section banner -->
 
+    <!--section type-images -->
+    <section class="type-images">
+        <div class="container title">
+            <p>Khám phá những hình ảnh khơi dậy sự sáng tạo của bạn</p>
+        </div>
+        <div class="container d-flex justify-content-between detail">
+            <a href="#" class="text-decoration-none text-dark">
+                <div class="category-item">
+                    <img src="../Images/Photos/children/4.jpg" alt="">
+                    <p>Ảnh chụp</p>
+                </div>
+            </a>
+            <a href="#" class="text-decoration-none text-dark">
+                <div class="category-item">
+                    <img src="../Images/vector/cartoon/2.jpg" alt="">
+                    <p>Ảnh Vector</p>
+                </div>
+            </a>
+            <a href="#" class="text-decoration-none text-dark">
+                <div class="category-item">
+                    <img src="../Images/ai/Animal/015.jpg" alt="">
+                    <p>Ảnh AI</p>
+                </div>
+            </a>
+        </div>
+    </section>
+    <!--section type-images -->
+
     <!--section category -->
     <section class="category-home">
-        <div class="title-categories">
-            <a href="#" class="btn mx-2 active" data-target="all">Tất cả</a>
-            <a href="#" class="btn mx-2" data-target="world">Thế giới</a>
-            <a href="#" class="btn mx-2" data-target="vietnam">Việt Nam</a>
-            <a href="#" class="btn mx-2" data-target="school">Trường học</a>
+        <div class="container title align-items-center">
+            <p>Các danh mục phổ biến</p>
+            <a href="#" class="btn btn-outline-success rounded-pill fs-5">Xem nhiều hơn</a>
         </div>
 
-        <!-- world -->
-        <div class="container all active">
+        <!-- photos -->
+        <div class="container photos">
             <a href="#">
                 <div class="category">
                     <img src="../Images/Animals/1.jpg" alt="">
-                    <span>Animals</span>
+                    <span>Động vật</span>
                 </div>
             </a>
             <a href="#">
                 <div class="category">
                     <img src="../Images/Food/001.jpg" alt="">
-                    <span>Food</span>
+                    <span>Thức ăn</span>
                 </div>
             </a>
             <a href="#">
                 <div class="category">
                     <img src="../Images/Nature/1.jpg" alt="">
-                    <span>Nature</span>
+                    <span>Tự nhiên</span>
                 </div>
             </a>
             <a href="#">
                 <div class="category">
                     <img src="../Images/People/1.jpg" alt="">
-                    <span>People</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Still Life/1.jpg" alt="">
-                    <span>Still life</span>
-                </div>
-            </a>
-        </div>
-
-        <!-- vietnam -->
-        <div class="container vietnam">
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Vietnam/07.jpg" alt="">
-                    <span>Quê hương</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Vietnam/11.jpg" alt="">
-                    <span>Chợ</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Vietnam/03.jpg" alt="">
-                    <span>Ruộng</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Vietnam/10.jpg" alt="">
                     <span>Con người</span>
                 </div>
             </a>
             <a href="#">
                 <div class="category">
-                    <img src="../Images/Vietnam/06.jpg" alt="">
-                    <span>Địa điểm</span>
+                    <img src="../Images/Still Life/1.jpg" alt="">
+                    <span>Sự sống</span>
                 </div>
             </a>
         </div>
-
+        <a href="#" class="btn btn-outline-success rounded-pill fs-5 d-none see-more">Xem nhiều hơn</a>
     </section>
     <!--section category -->
 
@@ -162,14 +162,14 @@
         <div class="heading">
             <h3>Những gì đang có <span>xu hướng</span> trong tuần</h3>
             <div class="button-container">
-                <button class="custom-button"><i class="fa fa-search"></i> Nature</button>
+                <button class="custom-button"><i class="fa fa-search"></i> Tự nhiên</button>
                 <button class="custom-button"><i class="fa fa-search"></i> Athlete</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Family</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Underwater</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Still Life</button>
+                <button class="custom-button"><i class="fa fa-search"></i> Gia đình</button>
+                <button class="custom-button"><i class="fa fa-search"></i> Thác nước</button>
+                <button class="custom-button"><i class="fa fa-search"></i> Sự sống</button>
                 <button class="custom-button"><i class="fa fa-search"></i> Portrait</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Cityscape</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Travel</button>
+                <button class="custom-button"><i class="fa fa-search"></i> Thành phố</button>
+                <button class="custom-button"><i class="fa fa-search"></i> Du lịch</button>
             </div>
         </div>
         <div class="new-events">
@@ -183,7 +183,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>Nature Pattern</p>
+                            <p>Đất nứt</p>
                         </div>
                     </div>
                     <div class="pic">
@@ -194,7 +194,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>MT Hood</p>
+                            <p>Mây núi</p>
                         </div>
                     </div>
                     <div class="pic">
@@ -205,7 +205,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>Spiral of a Lilly</p>
+                            <p>Hoa huệ</p>
                         </div>
                     </div>
                     <div class="pic">
@@ -216,7 +216,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>Lecottage</p>
+                            <p>Bánh trứng</p>
                         </div>
                     </div>
                     <div class="pic">
@@ -227,7 +227,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>Alien</p>
+                            <p>Đà điểu</p>
                         </div>
                     </div>
                 </div>
@@ -241,7 +241,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>Bearbeitet</p>
+                            <p>Thác nước bạc</p>
                         </div>
                     </div>
                     <div class="pic">
@@ -263,7 +263,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>Land Cruisers in Petra</p>
+                            <p>Lạc đà xa mạc</p>
                         </div>
                     </div>
                     <div class="pic">
@@ -274,7 +274,7 @@
                             <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
                         </div>
                         <div class="image-text">
-                            <p>Nature Pattern</p>
+                            <p>Phố đông đúc</p>
                         </div>
                     </div>
                     <div class="pic">
