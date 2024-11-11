@@ -97,20 +97,20 @@ html {
     border-bottom: 1px solid #ced4da;
 }
 
-#payment-method .bank-method  {
+#payment-method .bank-method .bank-method-header {
     border-bottom: 1px solid #ced4da;
 }
 
-#payment-method .credit-card-method button,
-#payment-method .bank-method button
+#payment-method .credit-card-method .button-add-credit-card button,
+#payment-method .bank-method .button-add-bank button
 {
     color: #fff;
     background-color: #469118;
     border: 0
 }
 
-#payment-method .credit-card-method button:hover,
-#payment-method .bank-method button:hover
+#payment-method .credit-card-method .button-add-credit-card button:hover,
+#payment-method .bank-method .button-add-bank button:hover
 {
     background-color: #469118;
     opacity: 0.9;
@@ -127,6 +127,39 @@ html {
     font-weight: 500;
     font-size: 20px;
 }
+
+
+/* Card */
+
+#payment-method .ba-card .ba-card-brief .ba-card-account-status {
+    color:#949494;
+    opacity: 0.7;
+}
+
+#payment-method .ba-card .ba-card-brief .ba-card-name {
+    text-transform: uppercase;
+}
+
+#payment-method .ba-card .ba-card-brief .ba-card-default-badge {
+    color: #fff;
+    background-color: var(--color-content-interactive-primary-hover);
+    border-radius: 4px;
+    padding: 0 6px;
+}
+
+#payment-method .ba-card .ba-card-branch-label {
+    color:#949494;
+    opacity: 0.7;
+}
+
+#payment-method .ba-card .ba-card-buttons button {
+    border: solid 1px #e3e3e3;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 0 8px;
+
+}
+
 
 
 

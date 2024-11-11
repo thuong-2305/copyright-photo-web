@@ -93,7 +93,7 @@ html {
 
 
 #account-menu-container {
-    /* background-color: #3e3e3e; */
+    /* background-color: #e3e3e3; */
 }
 
 
@@ -129,7 +129,7 @@ html {
 
 /* Heading */
 #account-details .account-details-heading h3 {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 24px;
     letter-spacing: -1.5px;
 }
@@ -137,6 +137,9 @@ html {
 /* Body */
 
 /* Notification trở lên */
+
+
+
 #account-details .account-details-body .account-details-notification {
     padding: 16px;
     margin-bottom: 24px;
