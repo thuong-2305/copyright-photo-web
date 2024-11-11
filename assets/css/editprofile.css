@@ -19,6 +19,12 @@
 
 }   
 
+
+a:hover {
+    text-decoration: none;
+    
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -35,7 +41,11 @@ html {
     background-position: right calc(.375em + .1875rem) center;
     background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
-  
+
+
+.dp-ib {
+    display: inline-block;
+}
 
 .w-100 {
     width: 100%;
@@ -54,12 +64,10 @@ html {
 }
 
 #account-details {
-    margin: 0 240px;
+    margin: 0 120px;
 }
 
 .container-fluid {
-    height: 700px;
-    padding: 40px;
 }
 
 .stl-none {
@@ -67,16 +75,61 @@ html {
 }
 
 
+/* Navigation */
+
+
+#account-menu-container {
+
+}
+/* Avatar */
+#account-menu-container .profile-image > img {
+    max-width: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+/* Navigate link */
+
+
+#account-menu-container {
+    /* background-color: #e3e3e3; */
+}
+
+
+
+#account-menu-container .menu-link li > a {
+    color: #191919;
+    font-size: 16px;
+}
+
+
+#account-menu-container .menu-link li > a:hover {
+    color: var(--color-content-interactive-primary-hover);
+}
+
+
+
+#account-menu-container .account-menu-content {
+
+}
+
+
+/* Content */
+.col-6.main-content {
+    max-height: 400px;
+}
+
 #account-details .account-details-container {
     padding: 40px;
-    background: var(--color-surface-primary);
-    border: var(--chunkiness-thin) solid var(--color-content-secondary);
-    border-radius: 4px;
+    /* background: var(--color-surface-primary); */
+    /* border: var(--chunkiness-thin) solid var(--color-content-secondary); */
+    /* border-radius: 4px; */
 }
 
 /* Heading */
 #account-details .account-details-heading h3 {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 24px;
     letter-spacing: -1.5px;
 }
@@ -84,6 +137,9 @@ html {
 /* Body */
 
 /* Notification trở lên */
+
+
+
 #account-details .account-details-body .account-details-notification {
     padding: 16px;
     margin-bottom: 24px;
@@ -124,6 +180,7 @@ html {
     padding: 8px;
 }
 
+
 /* Name */
 .account-details-body .name {
     padding-bottom: 24px;
@@ -136,23 +193,24 @@ html {
     padding-bottom: 24px;
 }
 
-.account-details-body .email .email-label label {
-    color: var(--color-content-disabled);
-}
-
-.account-details-body .email .email-input input {
-    cursor: not-allowed;
-}
 
 /* Username */
 .account-details-body .username {
     padding-bottom: 36px;
 }
 
+.account-details-body .username .username-label label {
+    color: var(--color-content-disabled);
+}
+
 .account-details-body .username-content > span {
     color: var(--color-content-secondary);
     font-weight: 500;
     font-size: 14px;
+}
+
+.account-details-body .username .username-input input {
+    cursor: not-allowed;
 }
 
 /* Footer */

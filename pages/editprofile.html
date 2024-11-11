@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Thông tin chi tiết</title>
+  <title>Hồ sơ</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +15,9 @@
 </head>
 
 <body>
+
+  
+
   <div id="account-details">
     <div class="container-fluid">
       <div class="account-details-container">
@@ -27,77 +30,123 @@
           Thông tin đã được lưu thành công!
         </div>
         <div class="account-details-content">
-          <div class="account-details-heading">
-            <h3>Thông tin chi tiết</h3>
-          </div>
-          <form action="" class="account-details-body">
-            <div class="account-details-notification dp-flex">
-              <i class="icon fa fa-info-circle mr-12" aria-hidden="true"></i>
-              <div class="notification-content dp-flex">
-                <span>Một số trường không thể chỉnh sửa ở đây. Vui lòng cập nhật chúng thông qua tài khoản Google của
-                  bạn.</span>
-              </div>
-            </div>
-            <div class="row name">
-              <div class="col-6 first-name-content">
-                <div class="first-name-label font-weight-bold">
-                  <label for="firstName">
-                    <span>Họ</span>
-                  </label>
-                </div>
-                <div class="first-name-input">
-                  <input class="w-100 form-control" type="text" required name="firstName" id="firstname">
-                </div>
-              </div>
-              <div class="col-6 last-name-content">
-                <div class="last-name-label font-weight-bold">
-                  <label for="">
-                    <span>Tên</span>
-                  </label>
-                </div>
-                <div class="last-name-input">
-                  <input class="w-100 form-control" type="text" id="lastname">
-                </div>
-              </div>
-            </div>
-            <div class="email">
-              <div class="email-content">
-                <div class="email-label">
-                  <label for="">Email</label>
-                </div>
-                <div class="email-input">
-                  <input class="w-100" type="text" name="email" disabled type="email" required id="email">
+          <div class="row">
+            <!-- 
+              .nav #account-menu-container
+                invidual-menu
+                  menu-heading
+                  ul.menu-link
+                    li
+                      a
+                  
+            -->
+            <div class="col-3">
+              <div class="nav" id="account-menu-container">
+                <div class="account-menu-content">
+                  <!-- Avatar -->
+                  <div class="profile-avatar-container">
+                    <div class="profile-avatar-content">
+                      <div class="profile-image dp-ib">
+                        <img src="/assets/images/avatar_profile.jpg" alt="">
+                      </div>
+                      <div class="font-weight-bold ml-2 dp-ib profile-name">
+                        Zupiter
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Navigation -->
+                  <ul class="mt-3 menu-link stl-none">
+                    <li class="profile mt-2">
+                      <a href="">Hồ sơ</a>
+                    </li>
+                    <li class="payment-method mt-2">
+                      <a href="">Phương thức thanh toán</a>
+                    </li>
+                    <li class="orders-history mt-2">
+                      <a href="">Lịch sử mua hàng</a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-            <div class="username">
-              <div class="username-content">
-                <div class="username-label font-weight-bold">
-                  <label for="">
-                    <span>Tên người dùng</span>
-                  </label>
+            <!-- Content -->
+            <div class="col-8 main-content">
+              <div class="account-details-heading">
+                <h3>Hồ sơ</h3>
+              </div>
+              <form action="" class="account-details-body">
+                <div class="account-details-notification dp-flex">
+                  <i class="icon fa fa-info-circle mr-12" aria-hidden="true"></i>
+                  <div class="notification-content dp-flex">
+                    <span>Một số trường không thể chỉnh sửa ở đây. Vui lòng cập nhật thông qua tài khoản Google của
+                      bạn.</span>
+                  </div>
                 </div>
-                <div class="username-input">
-                  <input class="w-100 form-control" type="text" id="username">
+                <div class="row name">
+                  <div class="col-6 first-name-content">
+                    <div class="first-name-label">
+                      <label for="firstName">
+                        <span>Họ</span>
+                      </label>
+                    </div>
+                    <div class="first-name-input">
+                      <input class="w-100 form-control" type="text" required name="firstName" id="firstname">
+                    </div>
+                  </div>
+                  <div class="col-6 last-name-content">
+                    <div class="last-name-label">
+                      <label for="">
+                        <span>Tên</span>
+                      </label>
+                    </div>
+                    <div class="last-name-input">
+                      <input class="w-100 form-control" type="text" id="lastname">
+                    </div>
+                  </div>
                 </div>
-                <!-- <span>Bạn được phép thay đổi tên người dùng 3 lần mỗi năm. Bạn còn lại 3 thay đổi.</span> -->
+                <div class="email">
+                  <div class="email-content">
+                    <div class="email-label">
+                      <label for="">Email</label>
+                    </div>
+                    <div class="email-input">
+                      <input class="w-100 form-control" type="text" name="email" type="email" required id="email">
+                    </div>
+                  </div>
+                </div>
+                <div class="username">
+                  <div class="username-content">
+                    <div class="username-label">
+                      <label for="">
+                        <span>Tên người dùng</span>
+                      </label>
+                    </div>
+                    <div class="username-input">
+                      <input class="w-100 form-control" type="text" placeholder="Zupiter" disabled required id="username" >
+                    </div>
+                    <!-- <span>Bạn được phép thay đổi tên người dùng 3 lần mỗi năm. Bạn còn lại 3 thay đổi.</span> -->
+                  </div>
+                </div>
+              </form>
+              <div class="account-details-footer">
+                <div class="btn-container dp-flex">
+                  <button class="btn-save dp-flex">
+                    <span>Lưu thay đổi</span>
+                  </button>
+                  <a class="cancel dp-flex" href="">Hủy bỏ</a>
+                </div>
+                <span class="mt-24">Thay đổi tên người dùng của bạn có thể ảnh hưởng đến liên kết hồ sơ và các dịch vụ. Tên
+                  mới sẽ hiển thị trên hồ sơ của bạn.</span>
               </div>
             </div>
-          </form>
-          <div class="account-details-footer">
-            <div class="btn-container dp-flex">
-              <button class="btn-save dp-flex">
-                <span>Lưu thay đổi</span>
-              </button>
-              <a class="cancel dp-flex" href="">Hủy bỏ</a>
-            </div>
-            <span class="mt-24">Thay đổi tên người dùng của bạn có thể ảnh hưởng đến liên kết hồ sơ và các dịch vụ. Tên
-              mới sẽ hiển thị trên hồ sơ của bạn.</span>
           </div>
         </div>
       </div>
+
+
     </div>
   </div>
+          
 
   <script src="../assets/js/editprofile.js"></script>
   <!-- Optional JavaScript -->
