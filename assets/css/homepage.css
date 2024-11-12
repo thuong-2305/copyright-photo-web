@@ -29,7 +29,7 @@ body {
 .banner {
     width: 100%;
     height: 70vh;
-    background-image: url('../../Images/banner.jpg');
+    background-image: url('../images/banner.jpg');
     background-size: cover;
 }
 
