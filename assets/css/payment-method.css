@@ -74,6 +74,8 @@ html {
     cursor: pointer;
 }
 
+
+
 /* Navigate link */
 #account-menu-container .menu-link li > a {
     color: #191919;
@@ -157,8 +159,18 @@ html {
     border-radius: 4px;
     background-color: #fff;
     padding: 0 8px;
-
 }
+
+
+#payment-method .ba-card .ba-card-buttons .ba-btn-delete  {
+    border: none;
+    text-decoration: underline;
+}
+
+#payment-method .ba-card .ba-card-buttons .ba-btn-set-default:hover  {
+    cursor: not-allowed;
+}
+
 
 
 
