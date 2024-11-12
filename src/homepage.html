@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="css/navbar-footer.css">
     <link rel="stylesheet" href="../Libraries/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../Libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <title>CoRiPhoto</title>
 </head>
 
@@ -87,9 +89,6 @@
 
     <!--section type-images -->
     <section class="type-images">
-        <div class="container title">
-            <p>Khám phá những hình ảnh khơi dậy sự sáng tạo của bạn</p>
-        </div>
         <div class="container d-flex justify-content-between detail">
             <a href="#" class="text-decoration-none text-dark">
                 <div class="category-item">
@@ -121,38 +120,52 @@
         </div>
 
         <!-- photos -->
-        <div class="container photos">
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Animals/1.jpg" alt="">
-                    <span>Động vật</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Food/001.jpg" alt="">
-                    <span>Thức ăn</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Nature/1.jpg" alt="">
-                    <span>Tự nhiên</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/People/1.jpg" alt="">
-                    <span>Con người</span>
-                </div>
-            </a>
-            <a href="#">
-                <div class="category">
-                    <img src="../Images/Still Life/1.jpg" alt="">
-                    <span>Sự sống</span>
-                </div>
-            </a>
-        </div>
+        <div class="swiper-container category-home">
+            <div class="swiper-wrapper container photos">
+               <div class="swiper-slide">
+                  <a href="#">
+                     <div class="category">
+                        <img src="../Images/Animals/1.jpg" alt="">
+                        <span>Động vật</span>
+                     </div>
+                  </a>
+               </div>
+               <div class="swiper-slide">
+                  <a href="#">
+                     <div class="category">
+                        <img src="../Images/Food/001.jpg" alt="">
+                        <span>Thức ăn</span>
+                     </div>
+                  </a>
+               </div>
+               <div class="swiper-slide">
+                  <a href="#">
+                     <div class="category">
+                        <img src="../Images/Nature/1.jpg" alt="">
+                        <span>Tự nhiên</span>
+                     </div>
+                  </a>
+               </div>
+               <div class="swiper-slide">
+                  <a href="#">
+                     <div class="category">
+                        <img src="../Images/People/1.jpg" alt="">
+                        <span>Con người</span>
+                     </div>
+                  </a>
+               </div>
+               <div class="swiper-slide">
+                  <a href="#">
+                     <div class="category">
+                        <img src="../Images/Still Life/1.jpg" alt="">
+                        <span>Sự sống</span>
+                     </div>
+                  </a>
+               </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+         </div>
         <a href="#" class="btn btn-outline-success rounded-pill fs-5 d-none see-more">Xem nhiều hơn</a>
     </section>
     <!--section category -->
@@ -351,7 +364,7 @@
         </div>
         <div class="see-more">
             <button class="see-more-button">
-                <a href="../category-details/category-details.html" class="text-white text-decoration-none">Xem thêm</a>
+                <a href="../category-details/category-details.html" class="text-success text-decoration-none">Xem nhiều hơn</a>
             </button>
         </div>
         </div>

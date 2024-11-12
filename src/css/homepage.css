@@ -28,7 +28,7 @@ body {
 
 .banner {
     width: 100%;
-    height: 60vh;
+    height: 70vh;
     background-image: url('../../Images/banner.jpg');
     background-size: cover;
 }
@@ -190,11 +190,6 @@ body {
     margin-bottom: 50px;
 }
 
-.type-images .title p {
-    font-size: 30px;
-    font-weight: bold;
-}
-
 .type-images .container a {
     width: 30%;
 }
@@ -288,6 +283,7 @@ body {
 
 .category-home .container.photos {
     margin: 0;
+    width: 250px !important;
 }
 
 .category-home .container .category {
@@ -335,6 +331,11 @@ body {
     z-index: 0;
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+    display: none !important;
+}
+
 @media (max-width: 768px) {
     .category-home .title p {
         font-size: 35px;
@@ -350,7 +351,7 @@ body {
 
     .category-home .see-more {
         display: block !important;
-        margin-top: 15px;
+        margin-top: 30px;
         margin-bottom: 15px;
         width: 50%;
         margin-left: auto;
@@ -364,6 +365,28 @@ body {
 
     .category::after {
         background: rgba(0, 0, 0, 0.3);
+    }
+
+    
+    .swiper-container {
+        position: relative;
+    }
+
+    .swiper-slide.swiper-slide-active,
+    .swiper-slide.swiper-slide-next,
+    .swiper-slide.swiper-slide-pre {
+        width: 140px !important;
+    }
+
+    .swiper-slide.swiper-slide {
+        width: auto !important;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        display: block !important;
+        color: white !important;
+        height: 20px !important;
     }
 }
 
@@ -554,6 +577,8 @@ body {
     opacity: 0;
     font-weight: bold;
     transition: opacity 0.3s;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .new-events .box  .dream .pic:hover .image-text {
@@ -566,18 +591,22 @@ body {
 }
 
 .see-more-button {
-    background: #00b383;
-    color: #fff;
+    color: var(--primary-color);
     padding: 10px 50px;
-    border: 1px solid lightgray;
+    border: 1px solid var(--primary-color);
     border-radius: 20px;
     cursor: pointer;
+    background-color: transparent;
     font-weight: bold;
     transition: background-color 0.5s;
 }
 
 .see-more-button:hover {
-    background: linear-gradient(50deg, #00b383 0%, rgba(0,255,85,1) 100%);
+    background: var(--primary-color);
+}
+
+.see-more-button:hover a {
+    color: white !important;
 }
 
 @media screen and (max-width: 768px) {
