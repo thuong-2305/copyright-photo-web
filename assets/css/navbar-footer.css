@@ -16,6 +16,7 @@
 #nav .container {
     padding: 0;
     margin: 5px auto;
+    max-width: 90% !important;
 }
 
 #nav .container .fa-solid.fa-angle-down {

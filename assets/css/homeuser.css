@@ -1,0 +1,142 @@
+:root {
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+}
+
+.user-icon .avatar {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    border-radius: 50%;
+    border: none; 
+}
+
+/* user-account */
+.user-account {
+    position: fixed;
+    top: 0;
+    right: -20%;
+    height: 100vh;
+    width: 40vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    box-shadow: .5rem 0 .5rem rgba(0, 0, 0, .1);
+    transition: .4s linear;
+    z-index: 9999;
+}
+
+.user-account.active {
+    right: 0;
+    transition: .4s linear;
+}
+
+.user-account .container {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin-left: 10px;
+}
+
+.user-account .close-user {
+    position: absolute;
+    right: 7%;
+    top: 3%;
+}
+
+.user-account .line-seperate {
+    display: inline-block;
+    height: 1px;
+    width: 100%;
+    background-color: var(--line-seperate);
+}
+
+.user-account .container .top img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.user-account .container .top .info {
+    margin-left: 20px;
+}
+
+.user-account .container .top .info .name span {
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+.user-account .container .top .info .name p {
+    color: var(--footer-text-color);
+    margin-bottom: 0;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.user-account .container .top .info a {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.user-account .container .option ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.user-account .container .option ul li {
+    margin: 15px 0;
+    padding: 10px 0;
+    transition: .2s linear;
+}
+
+.user-account .container .option ul li:hover {
+    margin-left: 5px;
+    transition: .2 linear;
+}
+
+.user-account .container .option a {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--footer-text-color);
+}
+
+.user-account .container .option li:hover a {
+    color: var(--primary-color);
+}
+
+.user-account .container .option i.fa-solid {
+    margin-right: 10px;
+}
+
+.user-account .container .option ul li a p {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .user-account .close-user {
+        right: 0;
+    }
+}
+
+/* user-account */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
