@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  //Handler swiper
   let swiper;
   function initializeSwiper() {
     swiper = new Swiper('.swiper-container', {
@@ -81,5 +82,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   checkScreenSize();
 
+
+  // input search
+  const searchInput = document.getElementById('search-input');
+  const clearBtn = document.querySelector('.clear-btn');
+
+  searchInput.addEventListener('input', function () {
+    if (searchInput.value) {
+      clearBtn.style.display = 'block';
+    } else {
+      clearBtn.style.display = 'none';
+    }
+  });
+
+  clearBtn.addEventListener('click', function () {
+    searchInput.value = '';
+    clearBtn.style.display = 'none';
+    searchInput.focus();
+  });
 
 });
