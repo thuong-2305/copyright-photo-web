@@ -173,6 +173,8 @@ li {
 
 #modal-image img {
   width: 100%;
+  /* Fix khoảng trắng nằm dưới img khiến cho nó không khớp với div */
+  display: block;
 }
 /* END modal */
 
@@ -324,3 +326,77 @@ li {
 .condition div p {
   margin-top: 8px;
 }
+
+/* Begin: Categories tương tự */
+.categories-container {
+  margin-top: 20px;
+  padding: 0 50px;
+  margin-bottom: 100px;
+}
+
+.container-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-title p {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.categories-image {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.image {
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.image img {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 8px;
+  aspect-ratio: 1.4 / 1;
+  display: block;
+}
+
+.image:hover img {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.image .btn-in-image {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.image .btn-in-image button {
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.image .btn-in-image button:hover {
+  background-color: #fff;
+  color: #000;
+}
+/* End: Categories tương tự */
