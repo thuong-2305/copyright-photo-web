@@ -29,6 +29,7 @@
                 <div class="product">
                     <div class="div-img">
                         <img src="../assets/images/Animals/1.jpg" alt="" class="product-img">
+                        <button class="btn-enlarge">Phóng to<i class="fa-solid fa-search-plus"></i></button>
                     </div>
                     <div class="product-nav">
                         <ul class="product-button">
@@ -108,5 +109,21 @@
             </div>
         </div>
     </div>
+
+    <!-- Javascipt -->
+    <!-- Phóng to hình ảnh -->
+    <script>
+        const modalImage = document.getElementById('modal-image');
+        const btnEnlarge = document.querySelector('.btn-enlarge');
+        const btnClose = document.querySelector('.btn-close');
+
+        btnEnlarge.addEventListener('click', () => {
+            modalImage.style.display = 'flex';
+        });
+
+        btnClose.addEventListener('click', () => {
+            modalImage.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
