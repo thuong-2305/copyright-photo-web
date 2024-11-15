@@ -116,13 +116,29 @@
         const modalImage = document.getElementById('modal-image');
         const btnEnlarge = document.querySelector('.btn-enlarge');
         const btnClose = document.querySelector('.btn-close');
+        const divImg = document.querySelector('.div-img');
 
-        btnEnlarge.addEventListener('click', () => {
+        function openModal() {
             modalImage.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modalImage.style.display = 'none';
+        }
+
+        btnEnlarge.addEventListener('click', openModal);
+        btnClose.addEventListener('click', closeModal);
+
+        //Ấn vào hình ảnh để phóng to
+        divImg.addEventListener('click', function() {
+            openModal();
         });
 
-        btnClose.addEventListener('click', () => {
-            modalImage.style.display = 'none';
+        //Ấn ra ngoài modal để đóng modal
+        modalImage.addEventListener('click', function(e) {
+            if (e.target === modalImage) {
+                closeModal();
+            }
         });
     </script>
 </body>

@@ -141,10 +141,6 @@ li {
   padding: 50px;
 }
 
-#modal-image.open {
-  display: flex;
-}
-
 #modal-image .modal-container {
   background: #fff;
   position: relative;
