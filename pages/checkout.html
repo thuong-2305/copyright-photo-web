@@ -5,20 +5,60 @@
     <title>Thanh toán</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/homepage.css">
+    <link rel="stylesheet" href="../assets/css/navbar-footer.css">
+    <link rel="stylesheet" href="../assets/css/homeuser.css">
     <link rel="stylesheet" href="../assets/css/checkout.css">
+
+
+   <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
 
 <body>
+    <section id="nav">
+        <div class="container">
+          <nav class="navbar navbar-expand-lg w-100">
+            <div class="container-fluid">
+              <a class="navbar-brand me-auto" href="homepage.html">
+                <span class="title-logo fw-bold"><span class="text-success">C</span>o<span
+                    class="text-success">R</span>iPhoto</span>
+              </a>
+    
+              <div class="d-flex align-items-center pt-1">
+                <div class="sell">
+                  <a href="#" class="sell mx-lg-2">Sell<i class="fa-solid fa-angle-down px-2"></i></a>
+                  <div class="link-hover">
+                    <a href="#">Đăng ký thành người phân phối</a>
+                  </div>
+                </div>
+                <div class="line-separate mx-lg-1"></div>
+                <a href="#" class="love"><i class="fa-regular fa-heart"></i></a>
+                <a href="./pages/cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+              </div>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+                aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="d-flex align-items-center user-icon" id="user">
+                <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                <i class="fa fa-caret-down ms-2"></i>
+              </div>
+            </div>
+          </nav>
+        </div>
+    </section>
+
     <div id="checkout">
         <div class="container-fluid">
             <div class="checkout-container">
                 <div class="row checkout-content">
                     <div class="col-7">
                         <header class="d-flex align-items-center">
-                            <h1 class="dp-ib">Checkout</h1>
+                            <h1 class="dp-ib">Thanh toán</h1>
                             <span class="ml-auto medium"><i class="fa fa-circle-check mr-1"></i>Bảo mật đơn hàng</span>
                         </header>
                         <div class="billing-container">
@@ -153,7 +193,7 @@
                                                     src="../assets/images/Abstract/1.jpg" alt="">
                                             </figure>
                                             <ul class="lst-property list-unstyled flex-grow-1">
-                                                <li class="text-left">Image #: 583809524</li>
+                                                <li class="text-left">Ảnh #: 583809524</li>
                                                 <li class="text-left">Royaltl-free</li>
                                                 <li class="text-left">12 MB</li>
                                                 <li class="text-right">499.000 VNĐ</li>
@@ -165,7 +205,7 @@
                                                     src="../assets/images/Abstract/5.jpg" alt="">
                                             </figure>
                                             <ul class="lst-property list-unstyled flex-grow-1">
-                                                <li class="text-left">Image #: 1396388341</li>
+                                                <li class="text-left">Ảnh #: 1396388341</li>
                                                 <li class="text-left">Royaltl-free</li>
                                                 <li class="text-left">824 KB</li>
                                                 <li class="text-right">300.000 VNĐ</li>
@@ -177,7 +217,7 @@
                                                     src="../assets/images/Abstract/3.jpg" alt="">
                                             </figure>
                                             <ul class="lst-property list-unstyled flex-grow-1">
-                                                <li class="text-left">Image #: 1458782106</li>
+                                                <li class="text-left">Ảnh #: 1458782106</li>
                                                 <li class="text-left">Royaltl-free</li>
                                                 <li class="text-left">470 KB</li>
                                                 <li class="text-right">125.000 VNĐ</li>
@@ -190,7 +230,7 @@
                                         <a href="">Xem thêm</a>
                                     </div>
                                     <div class="price-listing-totals d-flex mt-4">
-                                        <span class="dp-ib">Total</span>
+                                        <span class="dp-ib">Tổng cộng</span>
                                         <span class="price-totals ml-auto">924.000 VNĐ</span>
                                     </div>
                                 </div>

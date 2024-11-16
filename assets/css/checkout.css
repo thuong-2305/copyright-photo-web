@@ -90,7 +90,7 @@ html {
 
 /* Order totals */
 .checkout-content .order-totals {
-    padding: 25px 30px 8px;
+    padding: 25px 12px 8px;
 }
 
 .checkout-content .order-totals .order-totals-content li:first-child {
