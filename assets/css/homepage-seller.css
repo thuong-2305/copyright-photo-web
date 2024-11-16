@@ -1,0 +1,114 @@
+/* Chung */
+:root {
+    --color-interactive-secondary-hover: #191919;
+    --color-content-inverse: #fff;
+    --chunkiness-thick: 2px;
+    --chunkiness-thin: 1px;
+    --color-content-secondary: #707070;
+    --color-surface-primary: #fff;
+    --color-content-primary: #191919;
+    --color-surface-into-default: #f0f1ff;
+    --color-content-disabled: #949494;
+    --color-content-interactive-primary: #9cee69;
+    --color-content-interactive-primary-hover: #6cc832;
+    --color-content-interactive: #1a4200;
+    --transition-duration-short: 150ms;
+    --transition-easing-ease-in-out: cubic-bezier(0.42,0.58,1);
+
+   /* Color homeuser */
+   --primary-hover-color: #00b383;
+
+}   
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;   
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.dp-ib {
+    display: inline-block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mr-12 {
+    margin-right: 12px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.dp-flex {
+    display: flex;
+}
+
+.stl-none {
+    list-style-type: none;
+}
+
+/* Riêng */
+
+/* Navbar-side */
+
+/* Avatar */
+#navbar-side .profile-avatar-content {
+    height: 200px;
+    background-color: rgba(248, 243, 243, 0.788);
+}
+
+
+
+#navbar-side .profile-avatar-content img {
+    max-width: 70px;
+    max-height: 70px;
+}
+
+
+
+/* Link navigate */
+#navbar-side .menu-link {
+    padding: 0;
+}
+
+#navbar-side .menu-link li {
+    width: 100%;
+    height: 64px;  
+}
+
+#navbar-side .menu-link li:hover {
+   background-color: var(--primary-hover-color);
+}
+
+
+.menu-link li a {
+    font-size: 16px;
+    color: #000;
+}
+
+.menu-link li i {
+    font-size: 28px;
+    margin-right: 8px;
+}
+
+
+
+
+
+
