@@ -20,6 +20,10 @@
 
 }   
 
+.shadow-bottom {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Chỉ có bóng ở dưới */
+}
+
 a {
     text-decoration: none;
 }
@@ -71,6 +75,7 @@ html {
 #navbar-side .profile-avatar-content {
     height: 200px;
     background-color: rgba(248, 243, 243, 0.788);
+
 }
 
 
@@ -78,6 +83,14 @@ html {
 #navbar-side .profile-avatar-content img {
     max-width: 70px;
     max-height: 70px;
+    border: 2.5px solid #000;
+    cursor: pointer;
+
+}
+
+#navbar-side .profile-avatar-content .profile-name {
+    font-size: 20px;
+    font-weight: 600;
 }
 
 
@@ -94,6 +107,8 @@ html {
 
 #navbar-side .menu-link li:hover {
    background-color: var(--primary-hover-color);
+   cursor: pointer;
+
 }
 
 
@@ -102,10 +117,16 @@ html {
     color: #000;
 }
 
+.menu-link li a:hover {
+    text-decoration: none;
+}
+
 .menu-link li i {
     font-size: 28px;
     margin-right: 8px;
 }
+
+
 
 
 

@@ -25,8 +25,8 @@
 
 <body>
     <!-- Navigation -->
-    <section id="nav">
-        <div class="container">
+    <section id="nav" class="shadow-bottom">
+        <div class="container mb-0 mt-0">
             <nav class="navbar navbar-expand-lg w-100">
                 <div class="container-fluid">
                     <a class="navbar-brand me-auto" href="homepage.html">
@@ -50,27 +50,25 @@
                 <div class="homepage-seller-content">
                     <div class="row">
                         <!-- Sidebar -->
-                        <div class="col-2 pl-0">
-                            <div id="navbar-side" class="bg-light">
+                        <div class="col-2 pl-0 pr-0">
+                            <div id="navbar-side" class="bg-light shadow-sm">
                                 <div class="navbar-side-content">
-                                    <div
-                                        class="profile-avatar-content w-100 d-flex text-center align-items-center justify-content-center py-3">
+                                    <div class="profile-avatar-content w-100 d-flex flex-column text-center align-items-center justify-content-center py-3">
                                         <div class="profile-image">
-                                            <img class="rounded-circle mx-auto" src="/assets/images/avatar_profile.jpg"
-                                                alt="Avatar profile">
+                                            <img class="rounded-circle mx-auto" src="/assets/images/avatar_profile.jpg" alt="Avatar profile">
                                         </div>
                                         <div class="profile-name mt-2">
-                                            <!-- Profile Name -->
+                                            Zupiter
                                         </div>
                                     </div>
                                     <ul class="menu-link stl-none mt-3">
                                         <li
                                             class="dashboard d-flex text-center align-items-center justify-content-center">
-                                            <a href="" class="text-dark"><i class="fa fa-chart-simple"></i> Thống kê</a>
+                                            <a href="" class="text-dark"><i class="fa fa-chart-simple"></i> Thống Kê</a>
                                         </li>
                                         <li
                                             class="my-photos d-flex text-center align-items-center justify-content-center">
-                                            <a href="" class="text-dark"><i class="fas fa-image"></i> Ảnh của tôi</a>
+                                            <a href="" class="text-dark"><i class="fas fa-image"></i> Ảnh Của Tôi</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -78,22 +76,24 @@
                         </div>
 
                         <!-- Main content -->
-                        <div class="col-10">
+                        <div class="col-10 pl-0 pr-0">
                             <div id="main-content">
+
+                                <!-- Các ô thông tin xem thống kê -->
                                 <div class="row mb-3">
-                                    <div class="col-4">
-                                        <div class="download p-3 bg-light rounded">
-                                            <div class="download-text">
-                                                Lượt tải
+                                    <div class="col-4 pr-0">
+                                        <div class="download p-3 bg-light rounded d-flex">
+                                            <div class="download-text text-uppercase">
+                                                Lượt mua
                                             </div>
                                             <div class="dowload-count">
                                                 3
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-8">
-                                        <div class="earning p-3 bg-light rounded">
-                                            <div class="earning-text">
+                                    <div class="col-8 pl-0">
+                                        <div class="earning p-3 bg-light rounded d-flex">
+                                            <div class="earning-text text-uppercase">
                                                 Thu nhập
                                             </div>
                                             <div class="earning-total">
@@ -116,6 +116,20 @@
                                         <button class="btn btn-secondary">AI</button>
                                     </div>
                                 </div>
+
+
+                                <!-- Trang nội dung xem chính, nút upload ảnh -->
+                                <div class="upload-container">
+                                    <div class="upload-content">
+                                        <div class="upload-image">
+                                            <svg width="280" height="255" viewBox="0 0 280 255" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                
+                                            </svg>                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </div>
