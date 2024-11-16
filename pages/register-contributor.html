@@ -163,6 +163,7 @@
         background-color: #e3e9ed; /* Nền của thanh cuộn */
       }
 
+      .btn-upload,
       .btn-save,
       .btn-agree {
         display: block;
@@ -182,13 +183,24 @@
         margin-right: 8px; /* Khoảng cách giữa icon và chữ */
       }
 
+      .btn-upload:hover,
       .btn-save:hover,
       .btn-agree:hover {
         background-color: #1a6bbd; /* Màu nền khi hover */
       }
       /* End: Content */
+
       .info-user {
         display: none;
+      }
+
+      .welcome-frame {
+        display: none;
+      }
+
+      .welcome-frame .content {
+        margin-bottom: 20px;
+        text-align: center;
       }
     </style>
   </head>
@@ -322,6 +334,20 @@
           </div>
         </div>
         <!-- End: Content condition -->
+        <!-- Begin: Welcom -->
+        <div class="welcome-frame">
+          <div class="content">
+            <h2>Chào mừng bạn đến với CoRiPhoTo</h2>
+            <p>Bạn gần như đã sẵn sàng để bắt đầu tải ảnh lên rồi.</p>
+            <p>
+              Tuy nhiên, trước khi làm điều đó, chúng tôi khuyên bạn nên đọc Sổ
+              tay dành cho người sáng tạo có chứa tất cả thông tin quan trọng
+              liên quan đến hệ thống Người đóng góp của chúng tôi.
+            </p>
+          </div>
+          <button class="btn-upload">Bắt đầu tải lên</button>
+        </div>
+        <!-- End: Welcom -->
       </div>
     </div>
 
