@@ -86,6 +86,9 @@ html {
     color: var(--color-content-interactive-primary-hover);
 }
 
+#account-menu-container .menu-link .payment-method a {
+    color: var(--color-content-interactive-primary-hover);
+}
 
 
 /* Copy hết trên */

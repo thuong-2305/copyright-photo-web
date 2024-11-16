@@ -8,15 +8,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../assets/css/payment-method.css">
+  <link rel="stylesheet" href="../assets/css/homepage.css">
+  <link rel="stylesheet" href="../assets/css/navbar-footer.css">
+  <link rel="stylesheet" href="../assets/css/homeuser.css">
+  <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
-  <link rel="stylesheet" href="../assets/css/payment-method.css">
 </head>
 
 <body>
 
-
+  <section id="nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg w-100">
+        <div class="container-fluid">
+          <a class="navbar-brand me-auto" href="homepage.html">
+            <span class="title-logo fw-bold"><span class="text-success">C</span>o<span
+                class="text-success">R</span>iPhoto</span>
+          </a>
+         
+          <div class="d-flex align-items-center pt-1">
+            <div class="sell">
+              <a href="#" class="sell mx-lg-2">Sell<i class="fa-solid fa-angle-down px-2"></i></a>
+              <div class="link-hover">
+                <a href="#">Đăng ký thành người phân phối</a>
+              </div>
+            </div>
+            <div class="line-separate mx-lg-1"></div>
+            <a href="#" class="love"><i class="fa-regular fa-heart"></i></a>
+            <a href="./pages/cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="d-flex align-items-center user-icon" id="user">
+            <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+            <i class="fa fa-caret-down ms-2"></i>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
 
   <div id="payment-method">
     <div class="container-fluid">
@@ -127,7 +164,7 @@
   </div>
   </div>
 
-
+  <script src="../assets/js/navbar.js"></script>
   <script src="../assets/js/editprofile.js"></script>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -141,9 +178,7 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <script>
-
-  </script>
+ 
 </body>
 
 </html>
