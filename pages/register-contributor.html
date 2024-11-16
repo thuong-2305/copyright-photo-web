@@ -8,6 +8,10 @@
       rel="stylesheet"
       href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.css"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
       /* Reset CSS */
       * {
@@ -37,6 +41,22 @@
         list-style: none;
         position: relative;
         padding: 0;
+      }
+
+      .nav-list:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        height: 2px;
+        transition: width 2s !important;
+        left: 150px;
+        z-index: 1;
+      }
+
+      /* Đổi màu thanh tiến trình */
+      .nav-list.mid::before {
+        background-color: #2c8cf4;
+        width: calc(50% - 150px);
       }
 
       .nav-list::after {
@@ -76,6 +96,10 @@
         font-weight: bold;
       }
 
+      .nav-list li:first-child.complete::before {
+        background-color: #2c8cf4;
+      }
+      /* Đổi màu step */
       .nav-list li.active::before {
         border-color: #2c8cf4;
         color: #2c8cf4;
@@ -92,6 +116,7 @@
         font-weight: bold;
       }
       /* End: Nav */
+
       /* Begin: Content */
       .content-frame {
         width: 100%;
@@ -138,6 +163,7 @@
         background-color: #e3e9ed; /* Nền của thanh cuộn */
       }
 
+      .btn-save,
       .btn-agree {
         display: block;
         margin: 20px auto 0;
@@ -156,8 +182,13 @@
         margin-right: 8px; /* Khoảng cách giữa icon và chữ */
       }
 
+      .btn-save:hover,
       .btn-agree:hover {
         background-color: #1a6bbd; /* Màu nền khi hover */
+      }
+      /* End: Content */
+      .info-user {
+        display: none;
       }
     </style>
   </head>
@@ -176,85 +207,142 @@
         </li>
       </ul>
       <!-- End: Nav -->
-      <!-- Begin: Content -->
-      <div class="content-frame">
-        <div class="content">
-          <h2>Điều khoản và điều kiện cấp phép cộng tác viên CoRiPhoTo</h2>
+      <div class="secsion">
+        <div class="content-frame">
+          <div class="content">
+            <h2>Điều khoản và điều kiện cấp phép cộng tác viên CoRiPhoTo</h2>
 
-          <h2>Tháng 11 Năm 2024</h2>
+            <h2>Tháng 11 Năm 2024</h2>
 
-          <h3>1. Đăng ký</h3>
+            <h3>1. Đăng ký</h3>
 
-          <p>
-            1.1 Người đóng góp phải tạo tài khoản bằng cách cung cấp địa chỉ
-            email hợp lệ.
-          </p>
-          <p>
-            1.2 Chỉ được có một tài khoản đang hoạt động tại bất kỳ thời điểm
-            nào.
-          </p>
+            <p>
+              1.1 Người đóng góp phải tạo tài khoản bằng cách cung cấp địa chỉ
+              email hợp lệ.
+            </p>
+            <p>
+              1.2 Chỉ được có một tài khoản đang hoạt động tại bất kỳ thời điểm
+              nào.
+            </p>
 
-          <h3>2. Giấy phép cho tác phẩm</h3>
+            <h3>2. Giấy phép cho tác phẩm</h3>
 
-          <p>
-            Người đóng góp cấp cho Công ty quyền sử dụng các tác phẩm mà họ tải
-            lên một cách không độc quyền, toàn cầu, và có thể chuyển nhượng.
-          </p>
+            <p>
+              Người đóng góp cấp cho Công ty quyền sử dụng các tác phẩm mà họ
+              tải lên một cách không độc quyền, toàn cầu, và có thể chuyển
+              nhượng.
+            </p>
 
-          <h3>3. Tiền tham gia</h3>
+            <h3>3. Tiền tham gia</h3>
 
-          <p>
-            3.1 Cộng tác viên sẽ nhận 50% doanh thu ròng từ tác phẩm được phân
-            phối dưới dạng cao cấp.
-          </p>
-          <p>
-            3.2 Khoản thù lao sẽ được thanh toán vào tài khoản Ngân hàng khi đạt
-            tối thiểu 500.000VND.
-          </p>
+            <p>
+              3.1 Cộng tác viên sẽ nhận 50% doanh thu ròng từ tác phẩm được phân
+              phối dưới dạng cao cấp.
+            </p>
+            <p>
+              3.2 Khoản thù lao sẽ được thanh toán vào tài khoản Ngân hàng khi
+              đạt tối thiểu 500.000VND.
+            </p>
 
-          <h3>4. Cam kết & Vấn đề trách nhiệm</h3>
+            <h3>4. Cam kết & Vấn đề trách nhiệm</h3>
 
-          <p>
-            4.1 Người đóng góp đảm bảo tác phẩm không vi phạm quyền của bên thứ
-            ba và tự chịu trách nhiệm về việc này.
-          </p>
-          <p>
-            4.2 Bảo vệ và giữ cho Công ty an toàn khỏi mọi khiếu nại liên quan
-            đến vi phạm bản quyền.
-          </p>
+            <p>
+              4.1 Người đóng góp đảm bảo tác phẩm không vi phạm quyền của bên
+              thứ ba và tự chịu trách nhiệm về việc này.
+            </p>
+            <p>
+              4.2 Bảo vệ và giữ cho Công ty an toàn khỏi mọi khiếu nại liên quan
+              đến vi phạm bản quyền.
+            </p>
 
-          <h3>5. Chấm dứt hợp đồng</h3>
+            <h3>5. Chấm dứt hợp đồng</h3>
 
-          <p>
-            5.1 Người đóng góp có quyền chấm dứt các điều khoản bất cứ lúc nào
-            nhưng vẫn phải thông báo rõ ràng.
-          </p>
-          <p>
-            5.2 Công ty cũng giữ quyền chấm dứt các điều khoản này mà không cần
-            báo trước vì lý do chính đáng.
-          </p>
+            <p>
+              5.1 Người đóng góp có quyền chấm dứt các điều khoản bất cứ lúc nào
+              nhưng vẫn phải thông báo rõ ràng.
+            </p>
+            <p>
+              5.2 Công ty cũng giữ quyền chấm dứt các điều khoản này mà không
+              cần báo trước vì lý do chính đáng.
+            </p>
 
-          <h3>6. Bảo vệ dữ liệu</h3>
+            <h3>6. Bảo vệ dữ liệu</h3>
 
-          <p>
-            Dữ liệu cá nhân sẽ được xử lý để thực hiện hợp đồng và tuân thủ quy
-            định pháp lý của Tây Ban Nha.
-          </p>
-          <p></p>
+            <p>
+              Dữ liệu cá nhân sẽ được xử lý để thực hiện hợp đồng và tuân thủ
+              quy định pháp lý của Tây Ban Nha.
+            </p>
+            <p></p>
 
-          <p>
-            Điều khoản này tạo ra một sự thỏa thuận ràng buộc giữa Công ty và
-            người đóng góp, quy định rõ quyền lợi, trách nhiệm và nghĩa vụ của
-            mỗi bên liên quan đến việc sử dụng và phân phối các tác phẩm sáng
-            tạo.
-          </p>
+            <p>
+              Điều khoản này tạo ra một sự thỏa thuận ràng buộc giữa Công ty và
+              người đóng góp, quy định rõ quyền lợi, trách nhiệm và nghĩa vụ của
+              mỗi bên liên quan đến việc sử dụng và phân phối các tác phẩm sáng
+              tạo.
+            </p>
+          </div>
+          <button class="btn-agree">
+            <i class="fa-solid fa-check"></i>Tôi chấp nhận các điều khoản và
+            điều kiện
+          </button>
         </div>
-        <button class="btn-agree">
-          <i class="fa-solid fa-check"></i>Tôi chấp nhận các điều khoản và điều
-          kiện
-        </button>
+        <!-- End: Content condition-->
+        <!-- Begin: Content condition -->
+        <div class="info-user">
+          <div class="content">
+            <h2>Thông tin cá nhân</h2>
+            <form>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Nhập email của bạn"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label
+                  for="username"
+                  class="form-label d-flex justify-content-between"
+                >
+                  Tên tài khoản:
+                </label>
+                <input
+                  type="username"
+                  class="form-control"
+                  id="username"
+                  placeholder="Nhập tên tài khoản của bạn"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-save w-100 mb-3">Lưu</button>
+            </form>
+          </div>
+        </div>
+        <!-- End: Content condition -->
       </div>
-      <!-- End: Content -->
     </div>
+
+    <!-- Hành động khi nhấn btn chấp nhận -->
+    <script>
+      const navItem = document.querySelectorAll(".nav-list li");
+      const contentFrame = document.querySelector(".content-frame");
+      const infoUser = document.querySelector(".info-user");
+      const btnAgree = document.querySelector(".btn-agree");
+      const navList = document.querySelector(".nav-list");
+
+      function hideContent() {
+        contentFrame.style.display = "none";
+        infoUser.style.display = "block";
+        navList.classList.add("mid");
+        navItem[0].classList.remove("active");
+        navItem[0].classList.add("complete");
+        navItem[1].classList.add("active");
+      }
+
+      btnAgree.addEventListener("click", hideContent);
+    </script>
   </body>
 </html>
