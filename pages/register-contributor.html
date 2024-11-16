@@ -20,11 +20,12 @@
       .container {
         margin: 30px auto;
         width: 100%;
-        max-width: 800px;
+        max-width: 1000px;
         padding: 20px;
         text-align: center;
       }
 
+      /* Begin: Nav */
       .nav-list {
         display: flex;
         justify-content: space-between;
@@ -38,8 +39,8 @@
         content: "";
         position: absolute;
         top: 0;
-        left: 120px;
-        right: 120px;
+        left: 150px;
+        right: 150px;
         height: 2px;
         background: #e3e9ed;
         z-index: 0;
@@ -86,10 +87,64 @@
         color: #2c8cf4;
         font-weight: bold;
       }
+      /* End: Nav */
+      /* Begin: Content */
+      .content-frame {
+        width: 100%;
+        max-width: 1000px; /* Giới hạn chiều rộng */
+        margin: 20px auto;
+        border: 1px solid #e3e9ed; /* Viền nhẹ */
+        border-radius: 8px; /* Bo góc */
+        padding: 20px;
+        background-color: #fff; /* Màu nền */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+      }
+
+      .content {
+        max-height: 500px; /* Chiều cao tối đa cho khung */
+        overflow-y: auto; /* Cuộn theo chiều dọc */
+        padding-right: 10px; /* Khoảng cách giữa nội dung và thanh cuộn */
+      }
+
+      .content::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .content::-webkit-scrollbar-thumb {
+        background-color: #2c8cf4; /* Màu thanh cuộn */
+        border-radius: 4px;
+      }
+
+      .content::-webkit-scrollbar-track {
+        background-color: #e3e9ed; /* Nền của thanh cuộn */
+      }
+
+      .btn-agree {
+        display: block;
+        margin: 20px auto 0; /* Căn giữa nút và tạo khoảng cách */
+        padding: 10px 20px;
+        background-color: #2c8cf4;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .btn-agree i {
+        margin-right: 8px; /* Khoảng cách giữa icon và chữ */
+      }
+
+      .btn-agree:hover {
+        background-color: #1a6bbd; /* Màu nền khi hover */
+      }
     </style>
   </head>
   <body>
     <div class="container">
+      <!-- Begin: Nav -->
       <ul class="nav-list">
         <li class="item active" data-step="1">
           <p>Điều khoản và điều kiện</p>
@@ -101,6 +156,25 @@
           <p>Chào mừng</p>
         </li>
       </ul>
+      <!-- End: Nav -->
+      <!-- Begin: Content -->
+      <div class="content-frame">
+        <div class="content">
+          <h2>Điều khoản và điều kiện</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+            quidem, voluptates, quod, quae quia quibusdam quos dolorum
+            repudiandae, nemo voluptatum quas. Quisquam quidem, voluptates,
+            quod, quae quia quibusdam quos dolorum repudiandae, nemo voluptatum
+            quas.
+          </p>
+        </div>
+        <button class="btn-agree">
+          <i class="fa-regular fa-check"></i>Tôi chấp nhận các điều khoản và
+          điều kiện
+        </button>
+      </div>
+      <!-- End: Content -->
     </div>
   </body>
 </html>
