@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Bar</title>
+    <style>
+      /* Reset CSS */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        margin: 30px auto;
+        width: 100%;
+        max-width: 800px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .nav-list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        position: relative;
+        padding: 0;
+      }
+
+      .nav-list::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 120px;
+        right: 120px;
+        height: 2px;
+        background: #e3e9ed;
+        z-index: 0;
+      }
+
+      .nav-list li {
+        flex: 1;
+        text-align: center;
+        position: relative;
+      }
+
+      .nav-list li::before {
+        content: attr(data-step);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: 2px solid #e3e9ed;
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        font-size: 14px;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .nav-list li.active::before {
+        border-color: #2c8cf4;
+        color: #2c8cf4;
+      }
+
+      .nav-list li p {
+        margin-top: 30px;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .nav-list li.active p {
+        color: #2c8cf4;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="nav-list">
+        <li class="item active" data-step="1">
+          <p>Điều khoản và điều kiện</p>
+        </li>
+        <li class="item" data-step="2">
+          <p>Hồ sơ</p>
+        </li>
+        <li class="item" data-step="3">
+          <p>Chào mừng</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
