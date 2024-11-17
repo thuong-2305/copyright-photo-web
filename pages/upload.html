@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../assets/css/upload.css">
+    <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <title>CoRiPhoto</title>
+</head>
+
+<body>
+    <section class="wh-100 vh-100 d-flex justify-content-center align-items-center">
+        <button class="btn btn-outline-success" id="btn-upload">Upload</button>
+    </section>
+    <!-- section user account -->
+    <section class="upload bg-white">
+        <div class="container">
+            <div class="top d-flex align-items-center header">
+                <i class="fa-solid fa-upload"></i>
+                <p class="text fw-bold fs-5 my-0">Upload</p>
+            </div>
+            <div class="option">
+                <div class="box d-flex flex-column align-items-center justify-content-center h-100">
+                    <i class="fa-solid fa-upload fs-2 fw-0"></i>
+                    <span class="fs-5 fw-bold my-4">Kéo thả các file để tải lên</span>
+                    <label for="file-upload" class="btn btn-success rounded-pill fw-bold py-2 px-4">
+                        Thêm ảnh
+                    </label>
+                    <input type="file" id="file-upload" accept="image/*" class="d-none" />
+                </div>
+            </div>
+            <div class="show-pane">
+                <div class="pane-left">
+                    <span class="d-block mb-3 fw-bold"><i class="fa-solid fa-paperclip me-2"></i>Tổng quan ảnh</span>
+                    <div class="box-imgs d-flex flex-wrap">
+                        <div class="image-text active">
+                            <img src="../assets/images/Animals/3.jpg" alt="">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                        <div class="bg-white d-flex justify-content-center align-items-center add-img"><i class="fa-solid fa-plus"></i></div>
+                    </div>
+                </div>
+                <div class="pane-right">
+                    <div class="bar">
+                        <ul class="nav-list mid last">
+                            <li class="item complete" data-step="1">
+                                <p>Ảnh</p>
+                            </li>
+                            <li class="item active" data-step="2">
+                                <p>Chi tiết</p>
+                            </li>
+                            <li class="item" data-step="3">
+                                <p>Thêm thông tin</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content-2">
+                        <p>Thêm hoặc xác nhận thông tin ảnh của bạn. Để giúp dễ dàng tìm kiếm và đạt
+                            được bởi người dùng đối với ảnh của bạn.</p>
+                        <form>
+                            <label for="title">Tên:</label>
+                            <input type="text" id="title" name="title" placeholder="Nhập tên" required>
+
+                            <label for="description">Mô tả:</label>
+                            <textarea id="description" name="description" placeholder="Nhập mô tả" required></textarea>
+
+                            <label for="category">Danh mục:</label>
+                            <select id="category" name="category" required>
+                                <option value="">Chọn danh mục</option>
+                                <option value="category1">Trừu tượng</option>
+                                <option value="category2">Phong cảnh</option>
+                                <option value="category3">Con người</option>
+                                <option value="category4">Công nghệ</option>
+                                <option value="category5">Tự nhiên</option>
+                                <option value="category6">Thành phố</option>
+                                <option value="category7">AI</option>
+                                <option value="category8">Thức ăn</option>
+                                <option value="category9">Nghệ thuật</option>
+                                <option value="category10">Khác</option>
+                            </select>
+
+                            <button type="submit">Tiếp theo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn-close btn-close-black close-upload"></button>
+    </section>
+    <div class="overlay"></div>
+    <!-- section user account -->
+
+    <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/upload.js"></script>
+</body>
+
+</html>
