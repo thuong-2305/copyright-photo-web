@@ -51,11 +51,14 @@
                     <div class="row">
                         <!-- Sidebar -->
                         <div class="col-2 pl-0 pr-0">
-                            <div id="navbar-side" class="bg-light shadow-sm">
+                            <div id="navbar-side" class="shadow-sm">
                                 <div class="navbar-side-content">
-                                    <div class="profile-avatar-content w-100 d-flex flex-column text-center align-items-center justify-content-center py-3">
-                                        <div class="profile-image">
-                                            <img class="rounded-circle mx-auto" src="/assets/images/avatar_profile.jpg" alt="Avatar profile">
+                                    <div class="profile-avatar-content w-100 d-flex flex-column text-center align-items-center justify-content-center py-3 bg-light">
+                                        <div class="profile-image-container d-flex text-center align-items-center justify-content-center py-3">
+                                            <div class="profile-image">
+                                                <img class="rounded-circle mx-auto" src="/assets/images/avatar_profile.jpg" alt="Avatar profile">
+                                            </div>
+                                            <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                         </div>
                                         <div class="profile-name mt-2">
                                             Zupiter
@@ -64,11 +67,11 @@
                                     <ul class="menu-link stl-none mt-3">
                                         <li
                                             class="dashboard d-flex text-center align-items-center justify-content-center">
-                                            <a href="" class="text-dark"><i class="fa fa-chart-simple"></i> Thống Kê</a>
+                                            <a href=""><i class="fa fa-chart-simple"></i> Thống Kê</a>
                                         </li>
                                         <li
                                             class="my-photos d-flex text-center align-items-center justify-content-center">
-                                            <a href="" class="text-dark"><i class="fas fa-image"></i> Ảnh Của Tôi</a>
+                                            <a href=""><i class="fas fa-image"></i> Ảnh Của Tôi</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -76,62 +79,99 @@
                         </div>
 
                         <!-- Main content -->
-                        <div class="col-10 pl-0 pr-0">
+                        <div class="col-10">
                             <div id="main-content">
-
+                                <div class="heading-content">
+                                    <h2>Thống kê</h2>
+                                    <h5 class="font-weight-normal">5 ảnh</h5>
+                                </div>
+                        
                                 <!-- Các ô thông tin xem thống kê -->
-                                <div class="row mb-3">
-                                    <div class="col-4 pr-0">
-                                        <div class="download p-3 bg-light rounded d-flex">
-                                            <div class="download-text text-uppercase">
-                                                Lượt mua
+                                <div class="show-statistic">
+                                    <div class="row mb-3 mt-4">
+                                        <!-- Lượt mua -->
+                                        <div class="col-3 download-container">
+                                            <div class="download p-3 rounded d-flex align-items-center">
+                                                <div class="download-image mr-3">
+                                                    <i class="fas fa-download"></i>
+                                                </div>
+                                                <div class="download-text-content d-flex flex-column">
+                                                    <div class="download-text">
+                                                        Lượt mua
+                                                    </div>
+                                                    <div class="download-count font-weight-bold">
+                                                        3
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="dowload-count">
-                                                3
+                                            
+                                        </div>
+                                        <!-- Tổng thu nhập -->
+                                        <div class="col-3 earning-container">
+                                            <div class="earning p-3 rounded d-flex align-items-center">
+                                                <div class="earning-image mr-3">
+                                                    <i class="fas fa-money-bill"></i>
+                                                </div>
+                                                <div class="earning-text-content d-flex flex-column">
+                                                    <div class="earning-text">
+                                                        Tổng thu nhập
+                                                    </div>
+                                                    <div class="earning-total font-weight-bold">
+                                                        10.000.000VNĐ
+                                                    </div>
+                                                </div>
+                                               
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-8 pl-0">
-                                        <div class="earning p-3 bg-light rounded d-flex">
-                                            <div class="earning-text text-uppercase">
-                                                Thu nhập
+                                        <!-- Số tiền hiện có -->
+                                        <div class="col-6 available-earning-container">
+                                            <div class="available-earning p-3 rounded d-flex align-items-center">
+                                                <div class="available-earning-image mr-3">
+                                                    <i class="fas fa-money-bill-wave"></i>
+                                                </div>
+                                                <div class="available-earning-text-content d-flex flex-column">
+                                                    <div class="availabe-earning-text">
+                                                        Số tiền hiện có <i class="fas fa-info-circle"></i>
+                                                    </div>
+                                                    <div class="available-earning-total font-weight-bold">
+                                                        2.000.000VNĐ
+                                                    </div>
+                                                </div>
+                                                <div class="request-payout ml-auto">
+                                                    <button class="pt-2 pb-2 pl-4 pr-4 btn btn-dark">Rút tiền ngay</button>
+                                                </div>
                                             </div>
-                                            <div class="earning-total">
-                                                25.000Đ
-                                            </div>
+                                            
+
+
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        <button class="btn btn-secondary">Tất cả</button>
+                                
+                        
+                                <!-- Các nút danh mục -->
+                                <div class="row btn-list mb-3">
+                                    <div class="col-3 pr-0">
+                                        <button class="btn btn-secondary w-100">Tất cả</button>
                                     </div>
-                                    <div class="col-3">
-                                        <button class="btn btn-secondary">Photo</button>
+                                    <div class="col-3 px-0">
+                                        <button class="btn btn-secondary w-100">Photo</button>
                                     </div>
-                                    <div class="col-3">
-                                        <button class="btn btn-secondary">Vector</button>
+                                    <div class="col-3 px-0">
+                                        <button class="btn btn-secondary w-100">Vector</button>
                                     </div>
-                                    <div class="col-3">
-                                        <button class="btn btn-secondary">AI</button>
+                                    <div class="col-3 pl-0">
+                                        <button class="btn btn-secondary w-100">AI</button>
                                     </div>
                                 </div>
-
-
-                                <!-- Trang nội dung xem chính, nút upload ảnh -->
-                                <div class="upload-container">
-                                    <div class="upload-content">
-                                        <div class="upload-image">
-                                            <svg width="280" height="255" viewBox="0 0 280 255" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                
-                                            </svg>                                            
-                                        </div>
-                                    </div>
-
-                                </div>
-
+                        
+                                <!-- Khu vực upload -->
+                               
+                        
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

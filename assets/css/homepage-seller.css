@@ -15,8 +15,8 @@
     --transition-duration-short: 150ms;
     --transition-easing-ease-in-out: cubic-bezier(0.42,0.58,1);
 
-   /* Color homeuser */
-   --primary-hover-color: #00b383;
+
+    --secondary-text-color: rgb(109, 115, 120);
 
 }   
 
@@ -72,6 +72,11 @@ html {
 /* Navbar-side */
 
 /* Avatar */
+
+#navbar-side .profile-image-container {
+    filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 4px 12px) drop-shadow(rgba(0, 0, 0, 0.08) 0px 0px 4px);
+}
+
 #navbar-side .profile-avatar-content {
     height: 200px;
     background-color: rgba(248, 243, 243, 0.788);
@@ -80,12 +85,12 @@ html {
 
 
 
+
+
 #navbar-side .profile-avatar-content img {
     max-width: 70px;
     max-height: 70px;
-    border: 2.5px solid #000;
-    cursor: pointer;
-
+    border: 2.5px solid #fff;
 }
 
 #navbar-side .profile-avatar-content .profile-name {
@@ -93,6 +98,24 @@ html {
     font-weight: 600;
 }
 
+#navbar-side .profile-image-container {
+    position: relative;
+    cursor: pointer;
+}
+
+#navbar-side .profile-image-container > i {
+    position: absolute;
+    right: -16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+}   
 
 
 /* Link navigate */
@@ -106,9 +129,12 @@ html {
 }
 
 #navbar-side .menu-link li:hover {
-   background-color: var(--primary-hover-color);
+   background-color: #303030;
    cursor: pointer;
+}
 
+.menu-link li:hover a {
+    color: #fff;
 }
 
 
@@ -121,10 +147,70 @@ html {
     text-decoration: none;
 }
 
-.menu-link li i {
+.menu-link li    i {
     font-size: 28px;
     margin-right: 8px;
 }
+
+/* Main content */
+#main-content {
+    padding: 48px 48px 24px;
+}
+
+
+/* Heading */
+#main-content .heading-content h5 {
+    color: var(--secondary-text-color);
+    font-size: 20px;
+}
+
+
+
+
+
+/* Các ô thống kê */
+#main-content .show-statistic .download,
+#main-content .show-statistic .earning,
+#main-content .show-statistic .available-earning {
+    border: 1px solid rgb(238, 239, 242);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px 0px;
+}
+
+
+
+#main-content .show-statistic .download .download-image i,
+#main-content .show-statistic .earning .earning-image i,
+#main-content .show-statistic .available-earning .available-earning-image i{
+    padding: 14px;
+    font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px 0px;
+    border-radius: 50%;
+}
+
+#main-content .show-statistic .download .download-text-content .download-text,
+#main-content .show-statistic .earning .earning-text-content .earning-text,
+#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-text
+ {
+    color: var(--secondary-text-color);
+}
+
+#main-content .show-statistic .download .download-text-content .download-count,
+#main-content .show-statistic .earning .earning-text-content .earning-total,
+#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-total {
+    font-size: 20px;
+
+}
+
+
+#main-content .show-statistic .available-earning .request-payout > button {
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+}
+
+
+
 
 
 
