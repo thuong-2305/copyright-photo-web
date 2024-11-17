@@ -53,10 +53,13 @@
                         <div class="col-2 pl-0 pr-0">
                             <div id="navbar-side" class="shadow-sm">
                                 <div class="navbar-side-content">
-                                    <div class="profile-avatar-content w-100 d-flex flex-column text-center align-items-center justify-content-center py-3 bg-light">
-                                        <div class="profile-image-container d-flex text-center align-items-center justify-content-center py-3">
+                                    <div
+                                        class="profile-avatar-content w-100 d-flex flex-column text-center align-items-center justify-content-center py-3 bg-light">
+                                        <div
+                                            class="profile-image-container d-flex text-center align-items-center justify-content-center py-3">
                                             <div class="profile-image">
-                                                <img class="rounded-circle mx-auto" src="/assets/images/avatar_profile.jpg" alt="Avatar profile">
+                                                <img class="rounded-circle mx-auto"
+                                                    src="/assets/images/avatar_profile.jpg" alt="Avatar profile">
                                             </div>
                                             <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                         </div>
@@ -85,7 +88,7 @@
                                     <h2>Thống kê</h2>
                                     <h5 class="font-weight-normal">5 ảnh</h5>
                                 </div>
-                        
+
                                 <!-- Các ô thông tin xem thống kê -->
                                 <div class="show-statistic">
                                     <div class="row mb-3 mt-4">
@@ -104,7 +107,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                         <!-- Tổng thu nhập -->
                                         <div class="col-3 earning-container">
@@ -120,7 +123,7 @@
                                                         10.000.000VNĐ
                                                     </div>
                                                 </div>
-                                               
+
                                             </div>
                                         </div>
                                         <!-- Số tiền hiện có -->
@@ -138,40 +141,133 @@
                                                     </div>
                                                 </div>
                                                 <div class="request-payout ml-auto">
-                                                    <button class="pt-2 pb-2 pl-4 pr-4 btn btn-dark">Rút tiền ngay</button>
+                                                    <button class="pt-2 pb-2 pl-4 pr-4 btn btn-dark">Rút tiền
+                                                        ngay</button>
                                                 </div>
                                             </div>
-                                            
+
 
 
 
                                         </div>
                                     </div>
                                 </div>
-                                
-                        
+
+
                                 <!-- Các nút danh mục -->
-                                <div class="row btn-list mb-3">
-                                    <div class="col-3 pr-0">
-                                        <button class="btn btn-secondary w-100">Tất cả</button>
-                                    </div>
-                                    <div class="col-3 px-0">
-                                        <button class="btn btn-secondary w-100">Photo</button>
-                                    </div>
-                                    <div class="col-3 px-0">
-                                        <button class="btn btn-secondary w-100">Vector</button>
-                                    </div>
-                                    <div class="col-3 pl-0">
-                                        <button class="btn btn-secondary w-100">AI</button>
+                                <!-- Combobox danh mục -->
+                                <div class="dropdown mt-5 mb-3">
+                                    <button class="btn dropdown-toggle border" type="button"
+                                        id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Tất cả
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                        <a class="dropdown-item" href="#">Tất cả</a>
+                                        <a class="dropdown-item" href="#">Photo</a>
+                                        <a class="dropdown-item" href="#">Vector</a>
                                     </div>
                                 </div>
-                        
-                                <!-- Khu vực upload -->
-                               
-                        
+
+
+
+                                <form action="" class="statistics-form mt-2">
+                                    <table class="table admin-table table-statistics">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-image text-style-col">Ảnh</th>
+                                                <th class="product-purchases text-style-col">Số lượt mua</th>
+                                                <th class="product-average text-style-col">Trung bình</th>
+                                                <th class="product-total text-style-col">Tổng tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Item 1 -->
+                                            <tr class="statistics-item">
+                                                <!-- Ảnh -->
+                                                <td class="product-image d-flex ">
+                                                    <a href="">
+                                                        <img class="image-style" src="../assets/images/Abstract/3.jpg"
+                                                            alt="Ảnh sản phẩm">
+                                                    </a>
+                                                    <div class="ml-2 product-image-content d-flex flex-column">
+                                                        <div class="product-image-title">
+                                                            CSB 20
+                                                        </div>
+                                                        <div class="product-image-id">
+                                                            #85493232
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <!-- Số lượt mua -->
+                                                <td class="product-purchases align-middle">
+                                                    <span class="purchase-count">25</span>
+                                                </td>
+                                                <!-- Trung bình -->
+                                                <td class="product-average align-middle">
+                                                    <span class="price-amount">
+                                                        30.40<span class="currencySymbol">VNĐ</span>
+                                                    </span>
+                                                </td>
+                                                <!-- Tổng tiền -->
+                                                <td class="product-total align-middle">
+                                                    <span class="price-amount">
+                                                        760.00<span class="currencySymbol">VNĐ</span>
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+                                            <!-- Dòng 2 -->
+                                            <tr class="statistics-item">
+                                                <!-- Ảnh -->
+                                                <td class="product-image d-flex ">
+                                                    <a href="">
+                                                        <img class="image-style" src="../assets/images/Abstract/1.jpg"
+                                                            alt="Ảnh sản phẩm">
+                                                    </a>
+                                                    <div class="ml-2 product-image-content d-flex flex-column">
+                                                        <div class="product-image-title">
+                                                            Sunnfjell Stone Universe
+                                                        </div>
+                                                        <div class="product-image-id">
+                                                            #542543743
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <!-- Số lượt mua -->
+                                                <td class="product-purchases align-middle">
+                                                    <span class="purchase-count">15</span>
+                                                </td>
+                                                <!-- Trung bình -->
+                                                <td class="product-average align-middle">
+                                                    <span class="price-amount">
+                                                        45.00<span class="currencySymbol">VNĐ</span>
+                                                    </span>
+                                                </td>
+                                                <!-- Tổng tiền -->
+                                                <td class="product-total align-middle">
+                                                    <span class="price-amount">
+                                                        675.00<span class="currencySymbol">VNĐ</span>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+
+
+                                <!-- Khu vực content -->
+                                <!-- 
+                                .list-item-seller
+                                    .item-seller
+                                        Sẽ có 1 cái bảng bao gồm các cột: Ảnh, Số lượt mua, trung bình, tổng tiền                
+                                -->
+
+
+
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

@@ -210,6 +210,23 @@ html {
 }
 
 
+/* Item seller */
+#main-content .admin-table .statistics-item .product-image img {
+    max-width: 80px;
+    max-height: 80px;
+}
+
+
+#main-content .admin-table td,tr {
+    color: var(--secondary-text-color);
+    font-weight: 600;
+}
+
+#main-content .admin-table .statistics-item .product-image {
+    cursor: pointer;
+}
+
+
 
 
 
