@@ -1,8 +1,8 @@
 /* Chung */
 :root {
+   
     --primary-text-color: #0870D1;
     --secondary-text-color: rgb(109, 115, 120);
-
     --background-hover-color: rgb(237, 246, 254);
 }   
 
@@ -53,12 +53,67 @@ html {
     list-style-type: none;
 }
 
+/* Thêm hiệu ứng shadow khi hover */
+.shadow-effect {
+    transition: box-shadow 0.3s ease;  /* Thêm hiệu ứng chuyển động mượt mà */
+}
+  
+.shadow-effect:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Shadow khi hover */
+}
+
 /* Riêng */
 
 /* Navbar-side */
 
 /* Avatar */
 
+#navbar-side .profile-image-container {
+    filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 4px 12px) drop-shadow(rgba(0, 0, 0, 0.08) 0px 0px 4px);
+}
+
+#navbar-side .profile-avatar-content {
+    height: 200px;
+    background-color: rgba(248, 243, 243, 0.788);
+
+}
+
+
+
+
+
+#navbar-side .profile-avatar-content img {
+    max-width: 70px;
+    max-height: 70px;
+    border: 2.5px solid #fff;
+}
+
+#navbar-side .profile-avatar-content .profile-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#navbar-side .profile-image-container {
+    position: relative;
+    cursor: pointer;
+}
+
+#navbar-side .profile-image-container > i {
+    position: absolute;
+    right: -16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+}   
+
+
+/* Link navigate */
 #navbar-side .profile-image-container {
     filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 4px 12px) drop-shadow(rgba(0, 0, 0, 0.08) 0px 0px 4px);
 }
@@ -124,15 +179,15 @@ html {
 }
 
 
-#navbar-side .menu-link .dashboard,
-#navbar-side .menu-link .dashboard:hover {
+#navbar-side .menu-link .my-photos,
+#navbar-side .menu-link .my-photos:hover {
     background-color: var(--primary-text-color);
 }
 
 
 
-#navbar-side .menu-link .dashboard a,
-#navbar-side .menu-link .dashboard:hover a {
+#navbar-side .menu-link .my-photos a,
+#navbar-side .menu-link .my-photos:hover a {
     color: #fff;
 }
 
@@ -147,11 +202,11 @@ html {
     margin-right: 8px;
 }
 
-/* Main content */
+/* main content */
+
 #main-content {
     padding: 48px 48px 24px;
 }
-
 
 /* Heading */
 #main-content .heading-content h5 {
@@ -161,75 +216,48 @@ html {
 
 
 
-
-
-/* Các ô thống kê */
-#main-content .show-statistic .download,
-#main-content .show-statistic .earning,
-#main-content .show-statistic .available-earning {
-    border: 1px solid rgb(238, 239, 242);
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px 0px;
-}
-
-
-
-#main-content .show-statistic .download .download-image i,
-#main-content .show-statistic .earning .earning-image i,
-#main-content .show-statistic .available-earning .available-earning-image i{
-    padding: 14px;
-    font-size: 20px;
-    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px 0px;
-    border-radius: 50%;
-}
-
-#main-content .show-statistic .download .download-text-content .download-text,
-#main-content .show-statistic .earning .earning-text-content .earning-text,
-#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-text
- {
+/* Filter button */
+#main-content .body-content .filter .sort-text {
     color: var(--secondary-text-color);
 }
 
-#main-content .show-statistic .download .download-text-content .download-count,
-#main-content .show-statistic .earning .earning-text-content .earning-total,
-#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-total {
-    font-size: 20px;
 
+
+
+#main-content .body-content .upload-your-photo i {
+    font-size: 24px;
 }
 
 
-#main-content .show-statistic .available-earning .request-payout > button {
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: 600;
-}
-
-
-/* Item seller */
-#main-content .admin-table .statistics-item .product-image img {
-    max-width: 80px;
-    max-height: 80px;
-}
-
-
-#main-content .admin-table td,tr {
-    color: var(--secondary-text-color);
-    font-weight: 600;
-}
-
-#main-content .admin-table .statistics-item .product-image {
+/* My photo items */
+#main-content .body-content .upload-your-photo,
+#main-content .body-content .photo {
+    background-color: rgb(255,255,255);
+    width: 280px;
+    height: 320px;
+    box-shadow:rgba(0, 0, 0, 0.08) 1px 2px 6px;
     cursor: pointer;
 }
 
 
+  
+#main-content .body-content .photo:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Shadow khi hover */
+}
 
 
 
+#main-content .body-content .photo .photo-image img {
+    height: 280px;
+    width: 280px;
+}
 
+#main-content .body-content .photo .photo-text-content .photo-text-title {
+    font-size: 13px;
+}
 
-
-
-
-
-
+#main-content .body-content .photo .photo-text-content .photo-text-privacy {
+    color: var(--secondary-text-color);
+    font-size: 14px;
+}
 
