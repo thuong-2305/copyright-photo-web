@@ -143,17 +143,31 @@ html {
 }
 
 /* Heading */
+
+#account-details .account-details-heading {
+    padding-bottom: 21px;
+    border-bottom: 1px solid #ced4da;
+}
+
+
 #account-details .account-details-heading h3 {
     font-size: 28px;
-    margin-bottom: 24px;
     letter-spacing: -1.5px;
+}
+
+#account-details .account-details-heading h5 {
+  color: var(--color-content-secondary);
+  font-weight: 400;
+  font-size: 16px;
 }
 
 /* Body */
 
 /* Notification trở lên */
 
-
+#account-details .account-details-body {
+    padding-top: 21px;
+}
 
 #account-details .account-details-body .account-details-notification {
     padding: 16px;
@@ -187,6 +201,16 @@ html {
     width: 100%;
 }
 
+.account-details-body label {
+    color: var(--color-content-secondary);
+    font-size: 16px;
+}
+
+.account-details-body .email .email-text-from-user,
+.account-details-body .username .username-text-from-user {
+    font-size: 16px;
+}
+
 .account-details-body .first-name-content .first-name-input input,
 .account-details-body .last-name-content .last-name-input input,
 .account-details-body .email-content .email-input input,
@@ -208,14 +232,19 @@ html {
     padding-bottom: 24px;
 }
 
+.account-details-body .email .email-text .email-text-from-user > button {
+    color: #05a;
+    text-decoration: underline;
+}
+
 
 /* Username */
 .account-details-body .username {
     padding-bottom: 36px;
 }
 
-.account-details-body .username .username-label label {
-    color: var(--color-content-disabled);
+/* .account-details-body .username .username-label label {
+    color: var(--color-content-secondary);
 }
 
 .account-details-body .username-content > span {
@@ -226,7 +255,7 @@ html {
 
 .account-details-body .username .username-input input {
     cursor: not-allowed;
-}
+} */
 
 /* Footer */
 .account-details-footer {

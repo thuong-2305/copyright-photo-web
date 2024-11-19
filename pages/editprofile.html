@@ -112,15 +112,16 @@
             <div class="col-8 main-content">
               <div class="account-details-heading">
                 <h3>Hồ sơ</h3>
+                <h5>Quản lý thông tin hồ sơ để bảo vệ tài khoản</h5>
               </div>
               <form action="" class="account-details-body">
-                <div class="account-details-notification dp-flex">
+                <!-- <div class="account-details-notification dp-flex">
                   <i class="icon fa fa-info-circle mr-12" aria-hidden="true"></i>
                   <div class="notification-content dp-flex">
                     <span>Một số trường không thể chỉnh sửa ở đây. Vui lòng cập nhật thông qua tài khoản Google của
                       bạn.</span>
                   </div>
-                </div>
+                </div> -->
                 <div class="row name">
                   <div class="col-6 first-name-content">
                     <div class="first-name-label">
@@ -144,40 +145,43 @@
                   </div>
                 </div>
                 <div class="email">
-                  <div class="email-content">
-                    <div class="email-label">
-                      <label for="">Email</label>
+                  <div class="email-content row align-items-center">
+                    <div class="email-label col-3 text-left pr-2">
+                      <label class="mb-0" for="">Email</label>
                     </div>
-                    <div class="email-input">
-                      <input class="w-100 form-control" type="text" name="email" type="email" required id="email">
+                    <div class="email-text col-9">
+                      <div class="email-text-from-user d-flex align-items-center text-left">
+                        vo********@gmail.com
+                        <button class="btn email-change pb-0 pt-0 mb-0 mt-0 ml-2">Thay đổi</button>
+                      </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="username">
-                  <div class="username-content">
-                    <div class="username-label">
-                      <label for="">
-                        <span>Tên người dùng</span>
-                      </label>
+                  <div class="username-content row align-items-center">
+                    <div class="username-label col-3 text-left pr-2">
+                      <label class="mb-0" for="">Tên đăng nhập</label>
                     </div>
-                    <div class="username-input">
-                      <input class="w-100 form-control" type="text" placeholder="Zupiter" disabled required
-                        id="username">
+                    <div class="username-text col-9">
+                      <div class="username-text-from-user text-left">
+                        Zupiter
+                      </div>
                     </div>
-                    <!-- <span>Bạn được phép thay đổi tên người dùng 3 lần mỗi năm. Bạn còn lại 3 thay đổi.</span> -->
                   </div>
                 </div>
+                
               </form>
               <div class="account-details-footer">
                 <div class="btn-container dp-flex">
                   <button class="btn-save dp-flex">
                     <span>Lưu thay đổi</span>
                   </button>
-                  <a class="cancel dp-flex" href="">Hủy bỏ</a>
+                  <!-- <a class="cancel dp-flex" href="">Hủy bỏ</a> -->
                 </div>
-                <span class="mt-24">Thay đổi tên người dùng của bạn có thể ảnh hưởng đến liên kết hồ sơ và các dịch vụ.
+                <!-- <span class="mt-24">Thay đổi tên người dùng của bạn có thể ảnh hưởng đến liên kết hồ sơ và các dịch vụ.
                   Tên
-                  mới sẽ hiển thị trên hồ sơ của bạn.</span>
+                  mới sẽ hiển thị trên hồ sơ của bạn.</span> -->
               </div>
             </div>
           </div>
@@ -191,7 +195,7 @@
 
   <script src="../assets/js/navbar.js"></script>
   <script src="../assets/js/editprofile.js"></script>
-  
+
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
