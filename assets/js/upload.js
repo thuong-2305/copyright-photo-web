@@ -1,5 +1,5 @@
 const uploadButton = document.getElementById("btn-upload1");
-const overlay = document.querySelector(".overlay");
+const overlay2 = document.querySelector(".overlay2");
 const windowUpload = document.querySelector(".upload");
 const closeWindow = document.querySelector(".close-upload");
 const optionContent = document.querySelector(".option");
@@ -16,12 +16,12 @@ const succes = document.querySelector(".success");
 
 uploadButton.addEventListener('click', () => {
     windowUpload.classList.add("active");
-    overlay.style.display = 'block';
+    overlay2.style.display = 'block';
 })
 
 closeWindow.addEventListener('click', () => {
     windowUpload.classList.remove("active");
-    overlay.style.display = 'none';
+    overlay2.style.display = 'none';
     paneShow.classList.remove("curr");
     optionContent.classList.remove("pass");
 })
@@ -44,7 +44,7 @@ next.addEventListener('click', (e) => {
 
 succes.addEventListener('click', () => {
     windowUpload.classList.remove("active");
-    overlay.style.display = 'none';
+    overlay2.style.display = 'none';
     paneShow.classList.remove("curr");
     optionContent.classList.remove("pass");
 })

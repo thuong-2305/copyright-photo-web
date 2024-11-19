@@ -1,3 +1,17 @@
+:root {
+  --primary-color: #009970;
+  --primary-hover-color: #00b383;
+  --text-color: #666777;
+  --text-hover-color: #000;
+  --footer-bg-color: #f9f9f9;
+  --footer-link-color: #333;
+  --input-border-color: #ccc;
+  --button-hover-color: #4a84d9;
+  --footer-border-color: #e0e0e0;
+  --footer-text-color: #777;
+  --line-seperate: #e0e0e0;
+}
+
 .frame-signup {
   min-height: 600px;
   display: flex;
@@ -46,21 +60,13 @@
 }
 
 .btn-signup {
-  background-color: #00ff7b;
+  background-color: var(--primary-color);
 }
 
 .btn-google {
   background-color: #fff;
   border: 1px solid #626161;
   color: #676767;
-}
-
-.btn-facebook {
-  background-color: #2e41d0;
-}
-
-.btn-apple {
-  background-color: #000;
 }
 
 .content {

@@ -37,6 +37,7 @@
 
 #nav .container .nav-item {
     position: relative;
+    z-index: 999;
 }
 
 #nav .container .sell {
@@ -97,6 +98,7 @@
 #nav .container:hover .sell:hover .link-hover {
     margin-top: 20px;
     margin-left: -20px;
+    z-index: 999;
 }
 
 #nav .container .sell:hover a.sell {
@@ -143,7 +145,8 @@
 }
 
 #nav .container a.cart i:hover,
-#nav .container a.love i:hover {
+#nav .container a.love i:hover,
+#nav .container .nav-item:hover .nav-link span {
     color: var(--primary-color);
 }
 

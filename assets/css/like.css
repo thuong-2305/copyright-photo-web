@@ -18,14 +18,6 @@
     box-sizing: border-box;
 }
 
-#nav .nav-item {
-    z-index: 999;
-}
-
-.user-account .close-user {
-    right: 5% !important;
-}
-
 /* search */
 
 .search .search-container {

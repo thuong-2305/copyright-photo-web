@@ -29,13 +29,6 @@ html {
     list-style-type: none;
 }
 
-
-
-
-#profile {
-
-}
-
 /* CỘT 1 */
 
 .first-col {
@@ -54,6 +47,11 @@ html {
 .first-col span:last-child {
     display: block;
     margin-top:16px;
+}
+
+.first-col .info-pic {
+    width: 500px;
+    height: 400px;
 }
 
 

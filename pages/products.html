@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/products.css">
     <link rel="stylesheet" href="../assets/css/navbar-footer.css">
+    <link rel="stylesheet" href="../assets/css/homeuser.css">
     <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
     <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
     <title>Products</title>
@@ -17,68 +18,188 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg w-100">
                 <div class="container-fluid">
-                    <a class="navbar-brand me-auto" href="#">
-                        <span class="title-logo">CoRiPhoto</span>
+                    <a class="navbar-brand me-auto" href="homepage.html">
+                        <span class="title-logo fw-bold"><span class="text-success">C</span>o<span
+                                class="text-success">R</span>iPhoto</span>
                     </a>
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
                         aria-labelledby="offcanvasDarkNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">CoRiPhoto</h5>
+                            <h5 class="offcanvas-title fw-bold" id="offcanvasDarkNavbarLabel">
+                                <span class="text-success">C</span>o<span class="text-success">R</span>iPhoto
+                            </h5>
                             <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
-                            <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                            <ul class="navbar-nav justify-content-center flex-grow-1">
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3 active" aria-current="page"
-                                        href="../homepage.html">Home</a>
+                                    <a class="nav-link mx-lg-3" aria-current="page" href="homepage.html">
+                                        <span>Ảnh</span>
+                                        <i class="fa-solid fa-angle-down px-2"></i>
+                                    </a>
+                                    <div class="link-hover">
+                                        <a href="#" class="">Ảnh chụp</a>
+                                        <a href="#" class="">Ảnh vectors</a>
+                                        <a href="#" class="">Ảnh AI</a>
+                                    </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3"
-                                        href="category-details.html">Category</a>
+                                    <a class="nav-link mx-lg-3" href="./pages/category-details.html">
+                                        <span>Danhh mục</span>
+                                        <i class="fa-solid fa-angle-down px-2"></i>
+                                    </a>
+                                    <div class="link-hover">
+                                        <div class="dropdown">
+                                            <a href="./products.html"> Trừu tượng</a>
+                                            <a href="./products.html"> Công nghệ</a>
+                                            <a href="./products.html"> Tự nhiên</a>
+                                            <a href="./products.html"> Cuộc sống</a>
+                                            <a href="./products.html"> Động vật</a>
+                                        </div>
+                                        <div class="dropdown">
+                                            <a href="./products.html"> Các mùa</a>
+                                            <a href="./products.html"> Trên không</a>
+                                            <a href="./products.html"> Ban đêm</a>
+                                            <a href="./products.html"> Thành phố</a>
+                                            <a href="./products.html"> Quê hương</a>
+                                        </div>
+                                        <div class="dropdown">
+                                            <a href="./products.html"> Con người</a>
+                                            <a href="./products.html"> Du lịch</a>
+                                            <a href="./products.html"> Nghệ thuật</a>
+                                            <a href="./products.html"> Cuộc sống</a>
+                                            <a href="../pages/category-details.html"> Tất cả Danh mục</a>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3" href="#">Contact</a>
+                                    <a class="nav-link mx-lg-3" href="#">
+                                        <span>Giấy phép</span>
+                                        <i class="fa-solid fa-angle-down px-2"></i>
+                                    </a>
+                                    <div class="link-hover">
+                                        <a href="#" class="">Giấy phép ảnh tiêu chuẩn</a>
+                                        <a href="#" class="">Giấy phép miễn phí bản quyền</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-lg-3" href="#">Giới thiệu</a>
                                 </li>
                             </ul>
-                            <div class="d-flex align-items-center pt-1">
-                                <a href="#" class="sell mx-lg-2">Sell</a>
-                                <div class="line-separate mx-lg-1"></div>
-                                <a href="#" class="cart mx-lg-4"><i class="fa-solid fa-cart-shopping"></i></a>
-                            </div>
                         </div>
                     </div>
-                    <a href="#" class="login-button">Login</a>
+                    <div class="d-flex align-items-center pt-1">
+                        <div class="sell">
+                            <a href="../pages/register-contributor.html" class="sell mx-lg-2">Người phân phối<i
+                                    class="fa-solid fa-angle-down px-2"></i></a>
+                            <div class="link-hover">
+                                <a href="#">Đăng ký thành người phân phối</a>
+                            </div>
+                        </div>
+                        <div class="line-separate mx-lg-1"></div>
+                        <a href="#" class="love"><i class="fa-regular fa-heart"></i></a>
+                        <a href="./pages/cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div class="d-flex align-items-center user-icon" id="user">
+                        <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                        <i class="fa fa-caret-down ms-2"></i>
+                    </div>
                 </div>
             </nav>
         </div>
     </section>
     <!--section navbar -->
 
+    <!-- section user account -->
+    <section class="user-account bg-white">
+        <div class="container">
+            <div class="top d-flex mt-5 align-items-center">
+                <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                <div class="info">
+                    <div class="name">
+                        <span>Hi, Test</span>
+                        <p>test@gmail.com</p>
+                    </div>
+                    <a href="./editprofile.html" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
+                </div>
+            </div>
+            <div class="line-seperate"></div>
+            <div class="option">
+                <ul class="">
+                    <li class="item">
+                        <a href="./homeprofile.html">
+                            <i class="fas fa-user-cog me-2"></i>
+                            <p>Chi tiết tài khoản</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="./like.html">
+                            <i class="fas fa-heart me-2"></i>
+                            <p>Yêu thích</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="cart.html">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <p>Giỏ hàng</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <p>Lịch sử mua hàng</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="../homepage.html">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <p class="mb-0">Đăng xuất</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn-close btn-close-black close-user"></button>
+        </div>
+    </section>
+    <div class="overlay"></div>
+    <!-- section user account -->
+
     <!-- products -->
     <section class="products">
         <div class="container d-flex flex-column">
             <div class="heading">
-                <div class="search-container">
-                    <div class="dropdown">
-                        <button class="fw-medium" id="type-search"><i class="fa-solid fa-pen-fancy px-2"></i> Illustrations<i class="fa-solid fa-caret-down px-1"></i></button>
-                        <div class="dropdown-content">
-                            <a href="#"><i class="fa-regular fa-image pe-3 "></i>All images</a>
-                            <a href="#"><i class="fa-solid fa-camera px-3"></i>Photos</a>
-                            <a href="#"><i class="fa-solid fa-vector-square px-3"></i>Vectors</a>
-                            <a href="#" class="text-success"><i class="fa-solid fa-pen-fancy px-3"></i>Illustrations</a>
+                <!--search -->
+                <section class="search">
+                    <div class="search-container">
+                        <div class="dropdown">
+                            <button class="text-secondary" id="type-search"><i
+                                    class="fa-solid fa-image px-2"></i><span>Tất cả
+                                    ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
+                            <div class="dropdown-content">
+                                <a href="#" class="active" data-icon="fa-image"><i
+                                        class="fa-solid fa-image pe-3"></i>Tất cả
+                                    ảnh</a>
+                                <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
+                                <a href="#" data-icon="fa-vector-square"><i
+                                        class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+                                <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
+                            </div>
                         </div>
+                        <div class="search-bar">
+                            <input type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
+                            <span class="clear-btn">&#10005;</span>
+                        </div>
+                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm
+                                kiếm</span></button>
                     </div>
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search for illustrations">
-                    </div>
-                    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
+                </section>
+                <!--search -->
                 <div class="related-search d-flex align-items-center">
                     <span class="fw-bold">Tìm kiếm liên quan:</span>
                     <div class="data1 d-flex justify-content-center align-items-center">
@@ -96,20 +217,16 @@
                 </div>
                 <div class="path">
                     <p class="text-primary">
-                        Images
+                        Danhmuc
                         <span class="text-secondary">
                             <i class="fa-solid fa-angle-right"></i>
                         </span>
-                        Vietname
+                        Vietnam
                         <span class="text-secondary">
                             <i class="fa-solid fa-angle-right"></i>
                         </span>
                         diadiem
                     </p>
-                </div>
-                <div class="nav-title">
-                    <p>Tất cả</p>
-                    <p>Nổi bật</p>
                 </div>
             </div>
             <div class="show-products">
@@ -117,7 +234,18 @@
                     <p class="fs-3 fw-bold">Ảnh địa điểm ở Việt Nam có giấy phép bản quyền</p>
                     <p class="text-secondary">99,420 dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ
                         CoRiPhoto.</p>
-                    <button class="btn border-secondary"><i class="fa-solid fa-sliders"></i> Lọc</button>
+                    <div class="tool d-flex justify-content-between">
+                        <button class="btn border-secondary"><i class="fa-solid fa-sliders"></i> Lọc</button>
+                        <button class="btn border-secondary" id="sortButton">
+                            Sắp xếp: 
+                            <span class="fw-bold type-sort" id="selectedSort">Phổ biến nhất</span>
+                            <i class="fa-solid fa-caret-down ps-1"></i>
+                        </button>
+                        <div class="options" id="sortOptions">
+                            <p class="option-item popular active" data-value="Phổ biến nhất">Phổ biến nhất</p>
+                            <p class="option-item newitem" data-value="Mới nhất">Mới nhất</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="photo-products">
                     <div class="box">
@@ -195,7 +323,7 @@
 
     <!--section footer -->
     <section class="footer">
-        <div class="container">
+        <div class="container d-flex justify-content-space">
             <div class="footer-column">
                 <h3 class="fw-bold"><span class="text-success">C</span>o<span class="text-success">R</span>iPhoto</h3>
                 <br><br>
@@ -240,13 +368,15 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Privacy Policy • Terms and conditions</p>
-            <p>Dribbble • Behance • Instagram</p>
+            <p>Chính sách bảo mật • Điều khoản và điều kiện</p>
         </div>
     </section>
     <!--section footer -->
 
     <script src="../Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/homeuser.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/products.js"></script>
 </body>
 
 </html>
