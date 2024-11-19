@@ -65,11 +65,13 @@
                                     </div>
                                     <ul class="menu-link stl-none mt-3">
                                         <li
-                                            class="dashboard d-flex text-center align-items-center justify-content-center">
+                                        class="dashboard d-flex text-center align-items-center justify-content-center"
+                                        onclick="location.href='./homepage-seller.html';">
                                             <a href="./homepage-seller.html"><i class="fa fa-chart-simple"></i> Thống Kê</a>
                                         </li>
                                         <li
-                                            class="my-photos d-flex text-center align-items-center justify-content-center">
+                                        class="my-photos d-flex text-center align-items-center justify-content-center"
+                                        onclick="location.href='./myphoto-seller.html';">
                                             <a href="./myphoto-seller.html"><i class="fas fa-image"></i> Ảnh Của Tôi</a>
                                         </li>
                                     </ul>
@@ -106,13 +108,18 @@
                                             <div class="upload-your-photo shadow-effect mr-3 d-flex flex-column text-center align-items-center justify-content-center">
                                                 <i class="fas fa-arrow-up mb-3"></i>
                                                 <div class="text-upload">Tải những bức ảnh của bạn</div>
-                                                <button class="pl-4 pr-4 btn btn-primary btn-upload mt-3 rounded">Tải ảnh</button>
+                                                <button class="pl-4 pr-4 pt-2 pb-2 btn btn-primary btn-upload mt-3">Tải ảnh</button>
                                             </div>
                                             <!-- Photo 1 -->
                                             <div class="photo shadow-effect mr-3">
-                                                <div class="photo-image">
-                                                    <img src="..//assets/images/Abstract/5.jpg" alt="">
+                                                <div class="photo-image" style="position: relative;">
+                                                    <img src="../assets/images/Abstract/5.jpg" alt="">
+                                                    <button type="button" class="btn btn-dropdown" onclick="toggleMenu(this)">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </button>
+                                                    
                                                 </div>
+                                                
                                                 <div class="photo-text-content d-flex justify-content-between mt-2">
                                                     <div class="photo-text-title font-weight-bold pl-2">Sunnfjell Stone Universe</div>
                                                     <div class="photo-text-privacy pr-2">Công khai</div>
@@ -122,6 +129,7 @@
                                             <div class="photo shadow-effect mr-3">
                                                 <div class="photo-image">
                                                     <img src="..//assets/images/Abstract/6.jpg" alt="">
+                                                    <button type="button btn"><i class="fas fa-ellipsis-h"></i></button>
                                                 </div>
                                                 <div class="photo-text-content d-flex justify-content-between mt-2">
                                                     <div class="photo-text-title font-weight-bold pl-2">Sunnfjell Stone Universe</div>
@@ -132,6 +140,7 @@
                                             <div class="photo shadow-effect mr-3">
                                                 <div class="photo-image">
                                                     <img src="..//assets/images/Abstract/7.jpg" alt="">
+                                                    <button type="button btn"><i class="fas fa-ellipsis-h"></i></button>
                                                 </div>
                                                 <div class="photo-text-content d-flex justify-content-between mt-2">
                                                     <div class="photo-text-title font-weight-bold pl-2">Sunnfjell Stone Universe</div>
@@ -160,7 +169,7 @@
         </div>
     </div>
 
-      
+    <script src="../assets/js/myphoto-seller.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

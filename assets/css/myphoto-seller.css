@@ -216,6 +216,8 @@ html {
 
 
 
+
+
 /* Filter button */
 #main-content .body-content .filter .sort-text {
     color: var(--secondary-text-color);
@@ -238,6 +240,39 @@ html {
     box-shadow:rgba(0, 0, 0, 0.08) 1px 2px 6px;
     cursor: pointer;
 }
+
+#main-content .body-content .upload-your-photo > button {
+    border-radius: 26px;
+}
+
+#main-content .body-content .upload-your-photo .text-upload {
+    font-weight: 500;
+}
+
+#main-content .body-content .photo .photo-image {
+    position: relative;
+}
+
+#main-content .body-content .photo .photo-image button {
+    border: none;
+    position: absolute;
+    bottom: 10px;
+    right: 8px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--primary-text-color);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px;
+}
+
+
+
+
+#main-content .body-content .photo .photo-image button:hover {
+    background-color: var(--background-hover-color);
+}
+
 
 
   
