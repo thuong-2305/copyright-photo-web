@@ -61,9 +61,11 @@ html {
 /* Billing */
 
 #checkout .checkout-content .col-7 .billing-container {
-    background-color: #f4f4f4;
+    /* background-color: #f4f4f4; */
     padding: 28px 16px;
     margin-bottom: 16px;
+    /* border: 1px solid rgba(0, 0, 0, 0.12); */
+    border-radius: 4px;
 }
 
 #checkout .checkout-content .billing-information > span {
@@ -79,18 +81,29 @@ html {
 }
 
 /* Credit-card */
-.credit-card .credit-card-edit .col-4 input {
+
+#credit-card .save-card {
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+/* .credit-card .credit-card-edit .col-4 input {
     padding: 8px;
 }
 
 .credit-card .credit-card-content .card-image-content > i {
     font-size: 24px;
     margin-right: 12px;
-}
+} */
 
 /* Order totals */
 .checkout-content .order-totals {
-    padding: 25px 12px 8px;
+    padding: 8px 12px;
 }
 
 .checkout-content .order-totals .order-totals-content li:first-child {
@@ -173,6 +186,6 @@ html {
 }
 
 #cart-summary-content .item .lst-property li:last-child {
-    font-weight: 500;
+    font-weight: 400;
 }
 
