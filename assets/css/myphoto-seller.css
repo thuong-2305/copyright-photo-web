@@ -273,6 +273,19 @@ html {
     background-color: var(--background-hover-color);
 }
 
+/* Dropdown */
+#main-content .photo .dropdown {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px, rgba(0, 0, 0, 0.16) 0px 4px 12px;
+}
+
+#main-content .photo .dropdown .dropdown-item{
+    font-size: 14px;
+}
+
+#main-content .photo .dropdown .dropdown-item:hover {
+    color: #fff;
+    background-color: var(--primary-text-color);    
+}
 
 
   

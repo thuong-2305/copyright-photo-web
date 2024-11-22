@@ -62,9 +62,15 @@ a,a:hover {
 }
 
 /* List Control */
-#cart .list-control .form-control {
-    padding: 0 28px 0 16px;
+#cart .list-control .select-all,
+#cart .list-control .delete-all {
+    font-size: 16px;
 }
+
+#cart .list-control .select-all > input {
+    cursor: pointer;
+}
+
 
 /* Cart-Item-List */
 #cart-item-list {
@@ -124,6 +130,8 @@ a,a:hover {
     margin-top: 0;
     width: 155px;
 }
+
+
 
 #cart-item-list .cart-item .details {
     margin-top: -8px;

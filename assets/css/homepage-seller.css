@@ -100,7 +100,7 @@ html {
     border-radius: 50%;
     width: 34px;
     height: 34px;
-    font-size: 20px;
+    font-size: 18px;
 }   
 
 
@@ -187,21 +187,32 @@ html {
 #main-content .show-statistic .available-earning .available-earning-text-content .available-earning-text
  {
     color: var(--secondary-text-color);
+    font-size: 14px;
 }
 
 #main-content .show-statistic .download .download-text-content .download-count,
 #main-content .show-statistic .earning .earning-text-content .earning-total,
 #main-content .show-statistic .available-earning .available-earning-text-content .available-earning-total {
-    font-size: 20px;
+    font-size: 18px;
 
+}
+
+#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-text > i {
+    color: #303030;
 }
 
 
 #main-content .show-statistic .available-earning .request-payout > button {
     border: none;
-    border-radius: 8px;
+    border-radius: 24px;
     color: #fff;
     font-weight: 600;
+    background-color: var(--primary-text-color);
+}
+
+#main-content .show-statistic .available-earning .request-payout > button:hover {
+    opacity: 0.92;
+    background-color: var(--primary-text-color);
 }
 
 
