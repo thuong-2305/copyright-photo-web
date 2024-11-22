@@ -164,6 +164,10 @@ html {
 
 
 /* Các ô thống kê */
+
+
+
+
 #main-content .show-statistic .download,
 #main-content .show-statistic .earning,
 #main-content .show-statistic .available-earning {
@@ -217,6 +221,32 @@ html {
 
 
 /* Item seller */
+.table thead {
+    border-bottom: 1px solid #dee2e6;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: none !important;
+}
+
+.table td, .table th {
+    border-top: none !important;
+}
+
+
+
+
 #main-content .admin-table .statistics-item .product-image img {
     max-width: 80px;
     max-height: 80px;
