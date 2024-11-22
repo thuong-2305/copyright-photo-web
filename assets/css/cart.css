@@ -74,12 +74,12 @@ a,a:hover {
 
 /* Cart-Item-List */
 #cart-item-list {
-    padding: 0 120px;
+    /* padding: 0 120px; */
 }
 
 #cart-item-list dl {
-    font-size: 14px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 16px;
 }
 
 #cart-item-list .cart-item {
@@ -103,7 +103,7 @@ a,a:hover {
 
 #cart-item-list .cart-item .thumbnail {
     min-height: 55px;
-    width: 170px;
+    width: 210px;
     position: relative;
 }
 

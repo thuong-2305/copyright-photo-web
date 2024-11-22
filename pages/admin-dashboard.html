@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin - Bán ảnh bản quyền</title>
+    <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- Our files -->
+    <link rel="stylesheet" href="../../assets/css/admin-dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Main content With Graph-->
+    <div id="admin-dashboard-graph">
+        <div class="container mt-4">
+            <h1 class="text-primary mb-4">Trang chủ</h1>
+    
+            <!-- Stat Cards -->
+            <div class="row stats-section">
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg rounded" id="visitors-card">
+                        <div class="card-body text-center py-3">
+                            <i class="fas fa-users fa-2x text-primary mb-3"></i>
+                            <h3 class="text-primary">13,294</h3>
+                            <p class="card-title">Lượt truy cập</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg rounded" id="subscribers-card">
+                        <div class="card-body text-center py-3">
+                            <i class="fas fa-user-friends fa-2x text-info mb-3"></i>
+                            <h3 class="text-info">1,303</h3>
+                            <p class="card-title">Người dùng</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg rounded" id="sales-card">
+                        <div class="card-body text-center py-3">
+                            <i class="fas fa-dollar-sign fa-2x text-success mb-3"></i>
+                            <h3 class="text-success">123,345,432VNĐ</h3>
+                            <p class="card-title">Doanh thu</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg rounded" id="orders-card">
+                        <div class="card-body text-center py-3">
+                            <i class="fas fa-box fa-2x text-warning mb-3"></i>
+                            <h3 class="text-warning">576</h3>
+                            <p class="card-title">Đơn hàng</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Thống kê người dùng + Doanh thu hàng ngày + Người dùng trực tuyến -->
+            <div class="d-flex flex-row mt-4 stats-overview">
+                <!-- Thống kê người dùng -->
+                <div class="col-8 user-statistics-section">
+                    <div class="card shadow-lg rounded" id="user-statistics-card">
+                        <div class="card-header bg-primary text-white">
+                            <h5>Thống kê người dùng</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- Canvas for Chart -->
+                            <canvas id="userStatisticsChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Doanh thu theo tháng + Người dùng trực tuyến -->
+                <div class="col-4 d-flex flex-column sales-and-online-section">
+                    <!-- Doanh thu theo tháng -->
+                    <div class="card mb-3 shadow-lg rounded" id="daily-sales-card">
+                        <div class="card-body text-center py-3">
+                            <h4>Doanh thu theo tháng</h4>
+                            <h3 class="text-primary">4,423,530VNĐ</h3>
+                        </div>
+                    </div>
+                    <!-- Người dùng trực tuyến -->
+                    <div class="card stats-card shadow-lg rounded" id="users-online-card">
+                        <div class="card-body text-center py-3">
+                            <i class="fas fa-users fa-2x mb-3"></i>
+                            <h3>17</h3>
+                            <p class="card-title">Người dùng trực tuyến</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Main content with table -->
+    <div id="admin-dashboard-table">
+        <div class="container mt-4">
+            <h1 class="text-primary mb-4">Dashboard</h1>
+    
+            <!-- Stat Cards -->
+            <div class="row stats-section">
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg" id="visitors-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-users fa-2x text-primary mb-3"></i>
+                            <h3 class="text-primary">1,294</h3>
+                            <p class="card-title">Visitors</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg" id="subscribers-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-user-friends fa-2x text-info mb-3"></i>
+                            <h3 class="text-info">1,303</h3>
+                            <p class="card-title">Subscribers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg" id="sales-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-dollar-sign fa-2x text-success mb-3"></i>
+                            <h3 class="text-success">$1,345</h3>
+                            <p class="card-title">Sales</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card shadow-lg" id="orders-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-box fa-2x text-warning mb-3"></i>
+                            <h3 class="text-warning">576</h3>
+                            <p class="card-title">Orders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- User Statistics Table -->
+            <div class="d-flex flex-row mt-4 stats-overview">
+                <div class="col-8">
+                    <div class="card shadow-lg" id="user-statistics-card">
+                        <div class="card-header bg-primary text-white">
+                            <h5>User Statistics</h5>
+                        </div>
+                        <div class="card-body">
+                            <!-- User Statistics Table -->
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>New Users</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>January</td>
+                                        <td>120</td>
+                                    </tr>
+                                    <tr>
+                                        <td>February</td>
+                                        <td>150</td>
+                                    </tr>
+                                    <tr>
+                                        <td>March</td>
+                                        <td>180</td>
+                                    </tr>
+                                    <tr>
+                                        <td>April</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>May</td>
+                                        <td>220</td>
+                                    </tr>
+                                    <tr>
+                                        <td>June</td>
+                                        <td>250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>July</td>
+                                        <td>300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>August</td>
+                                        <td>350</td>
+                                    </tr>
+                                    <tr>
+                                        <td>September</td>
+                                        <td>400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>October</td>
+                                        <td>450</td>
+                                    </tr>
+                                    <tr>
+                                        <td>November</td>
+                                        <td>500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>December</td>
+                                        <td>550</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Daily Sales + Users Online -->
+                <div class="col-4 d-flex flex-column sales-and-online-section">
+                    <!-- Daily Sales -->
+                    <div class="card mb-3 shadow-lg" id="daily-sales-card">
+                        <div class="card-body text-center">
+                            <h4>Daily Sales</h4>
+                            <p class="text-muted">March 25 - April 02</p>
+                            <h3 class="text-primary">$4,578.58</h3>
+                        </div>
+                    </div>
+                    <!-- Users Online -->
+                    <div class="card stats-card shadow-lg" id="users-online-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-users fa-2x mb-3"></i>
+                            <h3>17</h3>
+                            <p class="card-title">Users Online</p>
+                            <p class="text-success">+5%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="../assets/js/admin-dashboard.js"></script>
+</body>
+
+</html>

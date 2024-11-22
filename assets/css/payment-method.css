@@ -17,6 +17,17 @@
     --transition-duration-short: 150ms;
     --transition-easing-ease-in-out: cubic-bezier(0.42,0.58,1);
 
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
 }   
 
 
@@ -83,11 +94,11 @@ html {
 }
 
 #account-menu-container .menu-link li > a:hover {
-    color: var(--color-content-interactive-primary-hover);
+    color: var(--primary-color);
 }
 
 #account-menu-container .menu-link .payment-method a {
-    color: var(--color-content-interactive-primary-hover);
+    color: var(--primary-color);
 }
 
 
@@ -109,16 +120,15 @@ html {
 #payment-method .credit-card-method .button-add-credit-card button,
 #payment-method .bank-method .button-add-bank button
 {
-    color: #fff;
-    background-color: #469118;
+    color: var(--color-surface-primary);
+    background-color: var(--primary-color);
     border: 0
 }
 
 #payment-method .credit-card-method .button-add-credit-card button:hover,
 #payment-method .bank-method .button-add-bank button:hover
 {
-    background-color: #469118;
-    opacity: 0.9;
+    background-color: var(--primary-hover-color);
 }
 
 
