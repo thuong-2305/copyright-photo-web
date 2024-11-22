@@ -130,15 +130,17 @@ body {
 
 .content h2 {
   font-size: 24px;
+  font-weight: 600;
   color: #333;
   margin-bottom: 20px;
 }
 
 .content h3 {
   font-size: 18px;
-  color: #333;
+  font-weight: 550;
+  color: #000;
   margin-top: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .content::-webkit-scrollbar {

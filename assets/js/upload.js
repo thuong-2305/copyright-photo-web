@@ -2,7 +2,7 @@ const uploadButton = document.getElementById("btn-upload1");
 const overlay2 = document.querySelector(".overlay2");
 const windowUpload = document.querySelector(".upload");
 const closeWindow = document.querySelector(".close-upload");
-const optionContent = document.querySelector(".option");
+const optionContent = document.querySelector(".option.v2");
 const inputAdd = document.getElementById("file-upload");
 const paneShow = document.querySelector(".show-pane");
 const next = document.querySelector(".next");
@@ -29,7 +29,9 @@ closeWindow.addEventListener('click', () => {
 inputAdd.addEventListener('click', (e) => {
     e.preventDefault();
     optionContent.classList.add("pass");
+    console.log(optionContent.classList)
     paneShow.classList.add("curr");
+    console.log(paneShow.classList)
 })
 
 next.addEventListener('click', (e) => {

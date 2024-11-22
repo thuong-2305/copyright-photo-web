@@ -59,18 +59,16 @@ html {
   margin-top: 32px;
 }
 
-h1,
-h2,
-h3 {
-  font-size: 16px;
-}
-
 p,
 li {
   font-size: 14px;
 }
 
 /* Common */
+.row h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
 .product-container {
   margin-top: 20px;
   margin-bottom: 50px;
@@ -81,8 +79,13 @@ li {
   list-style-type: none;
 }
 
+.product-name {
+  font-size: 20px;
+  font-weight: 650;
+}
+
 .product-desc {
-  color: var(--border-color);
+  color: #aaa;
   padding: 4px 0 5px;
 }
 

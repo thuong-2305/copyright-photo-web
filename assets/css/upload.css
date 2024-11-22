@@ -39,6 +39,7 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 10px;
+    z-index: 1000;
 }
 
 .upload.active {
@@ -80,7 +81,7 @@
     z-index: 7;
 }
 
-.upload .container .option {
+.upload .option {
     background: var(--footer-bg-color);
     border: 1px dashed;
     border-radius: 20px;
@@ -89,7 +90,7 @@
     display: block;
 }
 
-.upload .container .option.pass {
+.upload .option.pass {
     display: none;
 }
 
