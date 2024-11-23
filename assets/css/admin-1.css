@@ -95,6 +95,9 @@ p {
 /* LEFT MAIN */
 
 /* RIGHT CATEGORY */
+.right-category .container {
+    max-width: 100% !important;
+}
 .right-category .add-category .fa-print {
     padding: 7px;
     background-color: #feefc6;

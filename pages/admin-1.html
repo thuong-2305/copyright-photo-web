@@ -27,13 +27,13 @@
                     <a href="#"><i class="bi bi-list-task"></i>Danh mục</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa-solid fa-user"></i>Khách hàng</a>
+                    <a href="./admin-2.html"><i class="fa-solid fa-user"></i>Khách hàng</a>
                 </li>
                 <li>
                     <a href="#"><i class="bi bi-wallet-fill"></i>Đặt hàng</a>
                 </li>
                 <li>
-                    <a href="#"><i class="bi bi-coin"></i>Người phân phối</a>
+                    <a href="./admin-3.html"><i class="bi bi-coin"></i>Người phân phối</a>
                 </li>
                 <hr>
                 <li>
@@ -240,5 +240,12 @@
     <!-- MAIN -->
     <script src="../assets/js/admin.js"></script>
     <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        document.querySelector(".btn.btn-primary").addEventListener("click", () => {
+            new bootstrap.Modal(document.getElementById("categoryModal")).show();
+        });
+    </script>
 </body>
 </html>
