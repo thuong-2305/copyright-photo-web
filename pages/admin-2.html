@@ -23,10 +23,10 @@
                 <li>
                     <a href="#"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="#"><i class="bi bi-list-task"></i>Danh mục</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#"><i class="fa-solid fa-user"></i>Khách hàng</a>
                 </li>
                 <li>
@@ -61,17 +61,17 @@
         <section class="right-category">
             <div class="mt-4">
                 <div class="container header d-flex justify-content-between align-items-center mb-3 py-2">
-                    <h3>Các danh mục</h3>
+                    <h3>Danh sách khách hàng</h3>
                     <div class="add-category">
                         <i class="fa-solid fa-print"></i>
                         <i class="bi bi-arrow-bar-down mx-2"></i>
-                        <button class="btn btn-primary">+ Thêm danh mục mới</button>
+                        <button class="btn btn-primary">+ Thêm khách hàng mới</button>
                     </div>
                 </div>
                 <div class="d-flex mb-3 align-items-center search px-3 py-2">
                     <div class="d-flex align-items-center input-search">
                         <i class="fa-solid fa-magnifying-glass ps-2"></i>
-                        <input type="text" class="form-control" placeholder="Tìm kiếm mã">
+                        <input type="text" class="form-control customer" placeholder="Loại trạng thái">
                     </div>
                     <div class="filter">
                         <button class="btn ms-3 fw-semibold"><i class="bi bi-funnel"></i> Lọc</button>
@@ -80,18 +80,20 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Mã</th>
-                            <th id="categoryName">Tên</th>
-                            <th id="categoryProducts">Sản phẩm</th>
-                            <th id="categoryStatus">Trạng thái</th>
-                            <th>Hành động</th>
+                            <th>Mã khách hàng</th>
+                            <th id="#">Họ Tên</th>
+                            <th id="#">Email</th>
+                            <th id="#">Mật khẩu</th>
+                            <th id="#">Trạng thái</th>
+                            <th id="#">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>123</td>
-                            <td>Tự nhiên</td>
-                            <td>10 ảnh</td>
+                            <td>22130000</td>
+                            <td><span><img src="../assets/images/avart-default.png" alt="avatar"></span>Nguyễn Văn A</td>
+                            <td>test1@gmail.com</td>
+                            <td>1234567890</td>
                             <td><span class="badge bg-success">Hoạt động</span></td>
                             <td>
                                 <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
@@ -99,9 +101,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>413</td>
-                            <td>Động vật</td>
-                            <td>10 ảnh</td>
+                            <td>22130000</td>
+                            <td><span><img src="../assets/images/avart-default.png" alt="avatar"></span>Nguyễn Văn A</td>
+                            <td>test1@gmail.com</td>
+                            <td>1234567890</td>
                             <td><span class="badge bg-success">Hoạt động</span></td>
                             <td>
                                 <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
@@ -109,9 +112,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>456</td>
-                            <td>Thành phố</td>
-                            <td>15 ảnh</td>
+                            <td>22130000</td>
+                            <td><span><img src="../assets/images/avart-default.png" alt="avatar"></span>Nguyễn Văn A</td>
+                            <td>test1@gmail.com</td>
+                            <td>1234567890</td>
                             <td><span class="badge bg-success">Hoạt động</span></td>
                             <td>
                                 <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
@@ -119,65 +123,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>111</td>
-                            <td>Gia đình</td>
-                            <td>10 ảnh</td>
-                            <td><span class="badge bg-success">Hoạt động</span></td>
+                            <td>22130000</td>
+                            <td><span><img src="../assets/images/avart-default.png" alt="avatar"></span>Nguyễn Văn A</td>
+                            <td>test1@gmail.com</td>
+                            <td>1234567890</td>
+                            <td><span class="badge bg-secondary">Bị khóa</span></td>
                             <td>
                                 <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
                                 <button class="btn btn-sm btn-danger fw-semibold"><i class="bi bi-trash3 pe-2"></i>Xóa</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>122</td>
-                            <td>Thức ăn</td>
-                            <td>10 ảnh</td>
-                            <td><span class="badge bg-success">Hoạt động</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
-                                <button class="btn btn-sm btn-danger fw-semibold"><i class="bi bi-trash3 pe-2"></i>Xóa</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>123</td>
-                            <td>Tự nhiên</td>
-                            <td>10 ảnh</td>
-                            <td><span class="badge bg-success">Hoạt động</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
-                                <button class="btn btn-sm btn-danger fw-semibold"><i class="bi bi-trash3 pe-2"></i>Xóa</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>222</td>
-                            <td>Cuộc sống</td>
-                            <td>10 ảnh</td>
-                            <td><span class="badge bg-success">Hoạt động</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
-                                <button class="btn btn-sm btn-danger fw-semibold"><i class="bi bi-trash3 pe-2"></i>Xóa</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>999</td>
-                            <td>AI</td>
-                            <td>20 ảnh</td>
-                            <td><span class="badge bg-secondary"> Không hoạt động</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
-                                <button class="btn btn-sm btn-danger fw-semibold"><i class="bi bi-trash3 pe-2"></i>Xóa</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>444</td>
-                            <td>Quê hương</td>
-                            <td>10 ảnh</td>
-                            <td><span class="badge bg-success">Hoạt động</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-primary fw-semibold"><i class="bi bi-pencil pe-2"></i>Sửa</button>
-                                <button class="btn btn-sm btn-danger fw-semibold"><i class="bi bi-trash3 pe-2"></i>Xóa</button>
-                            </td>
-                        </tr>                        
+                                                
                         <!-- Add more rows as needed -->
                     </tbody>
                 </table>

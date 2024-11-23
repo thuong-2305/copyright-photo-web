@@ -1,3 +1,5 @@
+
+// Lọc
 document.querySelector('input[type="text"]').addEventListener('input', function () {
     const searchValue = this.value.toLowerCase();
     const rows = document.querySelectorAll('tbody tr');
@@ -12,6 +14,22 @@ document.querySelector('input[type="text"]').addEventListener('input', function 
     });
 });
 
+document.querySelector('input[type="text"].customer').addEventListener('input', function () {
+    const searchValue = this.value.toLowerCase();
+    const rows = document.querySelectorAll('tbody tr');
+
+    rows.forEach(row => {
+        const name = row.cells[4].textContent.toLowerCase();
+        if (name.includes(searchValue)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+
+// Thêm 
 let editingCategoryIndex = null; // Dùng để theo dõi mục đang chỉnh sửa
 
 // Mở modal để thêm mới danh mục
