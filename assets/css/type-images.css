@@ -1,0 +1,61 @@
+:root {
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+}
+
+p {
+    color: var(--footer-text-color);
+}
+
+.type-image {
+    margin-left: 20px;
+}
+
+.type-image .contain-box {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.type-image .contain-box .box {
+    position: relative;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+.type-image .contain-box .box p {
+    position: absolute;
+    color: black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}   
+
+.type-image .contain-box .box img {
+    width: 200px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    filter: brightness(80%);
+}
+
+.type-image .contain-box .box:hover img {
+   
+    cursor: pointer;
+}
+
+
+
