@@ -3,14 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail</title>
-    <link rel="stylesheet" href="../assets/css/product-details.css">
     <link rel="stylesheet" href="../assets/css/homepage.css">
     <link rel="stylesheet" href="../assets/css/navbar-footer.css">
     <link rel="stylesheet" href="../assets/css/homeuser.css">
-    <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/type-images.css">
     <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <title>CoRiPhoto</title>
 </head>
 
 <body>
@@ -47,7 +48,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-lg-3" href="./pages/category-details.html">
-                                        <span>Danhh mục</span>
+                                        <span>Danh mục</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
@@ -92,8 +93,7 @@
                     </div>
                     <div class="d-flex align-items-center pt-1">
                         <div class="sell">
-                            <a href="../pages/register-contributor.html" class="sell mx-lg-2">Người phân phối<i
-                                    class="fa-solid fa-angle-down px-2"></i></a>
+                            <a href="../pages/register-contributor.html" class="sell mx-lg-2">Người phân phối<i class="fa-solid fa-angle-down px-2"></i></a>
                             <div class="link-hover">
                                 <a href="#">Đăng ký thành người phân phối</a>
                             </div>
@@ -108,7 +108,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="d-flex align-items-center user-icon" id="user">
-                        <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                        <img class="avatar position-relative" src="../assets/images/avart-default.png"/>
                         <i class="fa fa-caret-down ms-2"></i>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
     <section class="user-account bg-white">
         <div class="container">
             <div class="top d-flex mt-5 align-items-center">
-                <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                <img class="avatar position-relative" src="../assets/images/avart-default.png"/>
                 <div class="info">
                     <div class="name">
                         <span>Hi, Test</span>
@@ -166,168 +166,86 @@
                 </ul>
             </div>
             <button class="btn-close btn-close-black close-user"></button>
-        </div>
+        </div>                    
     </section>
     <div class="overlay"></div>
     <!-- section user account -->
-    <!-- Modal enlarge image -->
-    <div id="modal-image">
-        <div class="modal-container">
-            <button class="btn-close"><i class="fa-solid fa-xmark"></i></button>
-            <div class="image-container">
-                <img src="../assets/images/Animals/1.jpg" alt="" class="overlay-img">
+
+    <!--section banner -->
+    <section class="banner">
+        <div class="banner-home d-flex justify-content-center align-items-center flex-column">
+            <div class="main-title d-flex justify-content-center flex-column align-items-center">
+                <h1 class="fw-900 m-2">CoRiPhoTo</h1>
+                <p>Thêm điều kỳ diệu vào câu chuyện của bạn với hơn 1 ngàn ảnh, vectơ
+                    , hình minh họa và hình ảnh biên tập.</p>
             </div>
-        </div>
-    </div>
-    <!-- Begin: Product detail -->
-    <div class="product-container">
-        <div>
-            <h1 class="product-name">Con mèo nheo mắt</h1>
-            <p class="product-desc">Một con mèo đang nheo mắt</p>
-        </div>
-        <div class="row">
-            <div class="product-left col col-half">
-                <div class="product">
-                    <div class="div-img">
-                        <img src="../assets/images/Animals/1.jpg" alt="" class="product-img">
-                        <button class="btn-enlarge">Phóng to<i class="fa-solid fa-search-plus"></i></button>
-                    </div>
-                    <div class="product-nav">
-                        <ul class="product-button">
-                            <li class="btn-left"><button class="btn-preview">Xem trước<i
-                                        class="fa-solid fa-download"></i></button></li>
-                            <li class="btn-left"><button class="btn-save">Lưu<i
-                                        class="fa-solid fa-floppy-disk"></i></button></li>
-                            <li class="btn-left"><button class="btn-share">Chia sẻ<i
-                                        class="fa-solid fa-share"></i></button></li>
-                        </ul>
+            <div class="search-container">
+                <div class="dropdown">
+                    <button class="fw-medium" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
+                            ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#" class="active" data-icon="fa-image"><i class="fa-solid fa-image pe-3"></i>Tất cả
+                            ảnh</a>
+                        <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
+                        <a href="#" data-icon="fa-vector-square"><i
+                                class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+                        <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
                     </div>
                 </div>
-
-                <div class="product-details mt-16">
-                    <h2>Thuộc tính ảnh</h2>
-                    <div class="row">
-                        <div class="col col-full">
-                            <ul>
-                                <li>
-                                    <strong>ID - Hình ảnh: </strong>
-                                    <p>01</p>
-                                </li>
-                                <li>
-                                    <strong>Tác giả: </strong>
-                                    <p>Huỳnh Đăng Khanh</p>
-                                </li>
-                                <li>
-                                    <strong>Kích thước tập tin: </strong>
-                                    <p>1MB</p>
-                                </li>
-                                <li>
-                                    <strong>Bản phát hành: </strong>
-                                    <p>Model - no</p>
-                                </li>
-                                <li>
-                                    <strong>Kích thước ảnh: </strong>
-                                    <p>1024x1960</p>
-                                </li>
-                                <li>
-                                    <strong>Ngày chụp: </strong>
-                                    <p>1/1/2024</p>
-                                </li>
-                                <li>
-                                    <strong>Vị trí: </strong>
-                                    <p>Việt Nam</p>
-                                </li>
-                        </div>
-                    </div>
-
-                    </ul>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Tìm kiếm tất cả ảnh">
+                    <span class="clear-btn">&#10005;</span>
                 </div>
-            </div>
-
-            <div class="product-right col col-half">
-                <h2 class="mt-8">Loại giấy phép</h2>
-                <ul class="product-conditions mt-8">
-                    <li class="condition">
-                        <div>
-                            <div>
-                                <span>
-                                    <input type="radio" name="condition" id="condition1" checked>
-                                </span>
-                            </div>
-                            <div>
-                                <label for="condition1">Giấy phép tiêu chuẩn</label>
-                                <p>Sử dụng không giới hạn trong in ấn, quảng cáo và đóng gói. Phân phối web không giới
-                                    hạn.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="condition">
-                        <div>
-                            <div>
-                                <span>
-                                    <input type="radio" name="condition" id="condition1" checked>
-                                </span>
-                            </div>
-                            <div>
-                                <label for="condition1">Giấy phép nâng cao</label>
-                                <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân
-                                    phối web không giới hạn.</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-                <p class="product-price mt-16">45.000vnd</p>
-                <button onclick="window.location.href='../pages/checkout.html'" class="btn-right btn-buy mt-16">Mua và tải xuống ngay bây giờ</button>
-                <button onclick="window.location.href='../pages/cart.html'" class="btn-right btn-add-cart mt-16">Thêm vào giỏ hàng</button>
+                <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2 fw-bold">Tìm
+                        kiếm</span></button>
             </div>
         </div>
-    </div>
-    <!-- End: Product detail -->
-    <!-- Begin: Categories image -->
-    <div class="categories-container">
-        <div class="container-title">
-            <p>Hình ảnh tương tự</p>
-            <p><a href="">Xem tất cả</a></p>
+    </section>
+    <!--section banner -->
+
+
+    <!-- section category detail -->
+    <section class="type-image">
+        <div class="pane-top text-center pt-5 mt-5">
+            <h1>Khám phá tài nguyên theo phong cách</h1>
+            <p class="fs-4">Khám phá các phong cách hình ảnh AI khác nhau để thể hiện những ý tưởng mạnh mẽ của bạn và kết nối với khán giả</p>
         </div>
-        <div class="categories-image">
-            <div class="image">
-                <img src="../assets/images/Animals/1.jpg" alt="" />
-                <div class="btn-in-image">
-                    <button><i class="fa-regular fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
-                </div>
+        <div class="contain-box d-flex">
+            <div class="box">
+                <img src="../assets/images/ai/Animal/10.jpg" alt="">
+                <p>Động vật</p>
             </div>
-            <div class="image">
-                <img src="../assets/images/Animals/1.jpg" alt="" />
-                <div class="btn-in-image">
-                    <button><i class="fa-regular fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
-                </div>
+            <div class="box">
+                <img src="../assets/images/ai/Character/N.jpg" alt="">
+                <p>Kí tự</p>
             </div>
-            <div class="image">
-                <img src="../assets/images/Animals/1.jpg" alt="" />
-                <div class="btn-in-image">
-                    <button><i class="fa-regular fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
-                </div>
+            <div class="box">
+                <img src="../assets/images/ai/ImageWorld/001.jpg" alt="">
+                <p>Hoạt hình</p>
             </div>
-            <div class="image">
-                <img src="../assets/images/Animals/1.jpg" alt="" />
-                <div class="btn-in-image">
-                    <button><i class="fa-regular fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
-                </div>
+            <div class="box">
+                <img src="../assets/images/ai/SkyHouse/03.png" alt="">
+                <p>Viễn tưởng</p>
             </div>
-            <div class="image">
-                <img src="../assets/images/Animals/1.jpg" alt="" />
-                <div class="btn-in-image">
-                    <button><i class="fa-regular fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
-                </div>
+            <div class="box">
+                <img src="../assets/images/ai/Animal/10.jpg" alt="">
+                <p>Động vật</p>
+            </div>
+            <div class="box">
+                <img src="../assets/images/ai/Character/N.jpg" alt="">
+                <p>Kí tự</p>
+            </div>
+            <div class="box">
+                <img src="../assets/images/ai/ImageWorld/001.jpg" alt="">
+                <p>Hoạt hình</p>
+            </div>
+            <div class="box">
+                <img src="../assets/images/ai/SkyHouse/03.png" alt="">
+                <p>Viễn tưởng</p>
             </div>
         </div>
-    </div>
-    <!-- End: Categories image -->
+    </section>
+    <!-- section category detail -->
 
     <!--section footer -->
     <section class="footer">
@@ -381,12 +299,10 @@
     </section>
     <!--section footer -->
 
-    <!-- Javascipt -->
     <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/homepage.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/homeuser.js"></script>
-    <script src="../assets/js/product-details.js"></script>
 </body>
 
 </html>
