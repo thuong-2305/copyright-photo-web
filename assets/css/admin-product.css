@@ -9,6 +9,14 @@ body {
   background-color: rgb(33, 34, 45);
   color: #e4e7ea;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  height: 100%;
+  background-color: #000;
+}
 /* ---------------------------------------------------Begin: San pham------------------------------------*/
 .table-outline {
   width: 100%;
@@ -191,7 +199,7 @@ body {
 }
 /* -----------------------------------------------End: San pham */
 /* -----------------------------------------------Begin: Thong ke------------------------------------------------ */
-.statistic__container {
+.frame__container {
   padding: 24px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px,
     rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
@@ -202,7 +210,7 @@ body {
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 10px;
 }
-.statistic__title {
+.frame__title {
   margin: 0px 0px 5px;
   font-size: 1.5rem;
   font-weight: 600;
@@ -210,7 +218,7 @@ body {
   line-height: 1.235;
   color: rgb(255, 255, 255);
 }
-.statistic__desc {
+.frame__desc {
   margin: 0px 0px 24px;
   font-size: 1rem;
   font-weight: 600;
@@ -219,13 +227,13 @@ body {
   color: rgb(160, 160, 160);
 }
 
-.statistic__frame {
+.frame__content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
-.statistic .content__container {
+.statistic .statistic__container {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -234,13 +242,13 @@ body {
   height: 100%;
   background-color: rgb(23, 24, 33);
 }
-.statistic .content i {
+.statistic i {
   color: rgb(255, 255, 255);
   font-size: 30px;
   width: 26px;
   height: 26px;
 }
-.statistic .content .content-bot__price {
+.statistic .statistic-bot__price {
   margin: 0px 0px 16px;
   font-size: 1.5rem;
   font-weight: 600;
@@ -249,7 +257,7 @@ body {
   color: rgb(255, 255, 255);
 }
 
-.statistic .content .content-bot__name {
+.statistic .statistic-bot__name {
   margin: 0px 0px 8px;
   font-size: 1rem;
   font-weight: 500;
@@ -257,7 +265,7 @@ body {
   line-height: 1.5;
   color: rgb(232, 232, 232);
 }
-.statistic .content .content-bot__compare {
+.statistic .statistic-bot__compare {
   margin: 0px;
   font-size: 0.75rem;
   font-weight: 500;
