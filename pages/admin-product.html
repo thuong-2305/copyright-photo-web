@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Bar</title>
+    <link rel="stylesheet" href="../assets/css/admin-product.css" />
+    <link
+      rel="stylesheet"
+      href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.css"
+    />
+  </head>
+  <body>
+    <!-- Begin: Thong ke -->
+    <div class="statistic">
+      <div class="statistic__container">
+        <h2 class="statistic__title">Doanh số bán hàng</h2>
+        <p class="statistic__desc">Tóm tắt doanh số bán hàng</p>
+        <div class="statistic__frame">
+          <!-- 1. Thong ke so luong ban hang -->
+          <div class="content">
+            <div class="content__container">
+              <i class="fa-solid fa-chart-simple"></i>
+              <div class="content-bot">
+                <h2 class="content-bot__price">5.000.000 VND</h2>
+                <p class="content-bot__name">Tổng doanh thu</p>
+                <p class="content-bot__compare">+10% so với hôm qua</p>
+              </div>
+            </div>
+          </div>
+          <!-- 2. Thong ke so luong san pham -->
+          <div class="content">
+            <div class="content__container">
+              <i class="fa-solid fa-chart-simple"></i>
+              <div class="content-bot">
+                <h2 class="content-bot__price">5.000.000 VND</h2>
+                <p class="content-bot__name">Tổng doanh thu</p>
+                <p class="content-bot__compare">+10% so với hôm qua</p>
+              </div>
+            </div>
+          </div>
+          <!-- 3. Thong ke so luong san pham -->
+          <div class="content">
+            <div class="content__container">
+              <i class="fa-solid fa-chart-simple"></i>
+              <div class="content-bot">
+                <h2 class="content-bot__price">5.000.000 VND</h2>
+                <p class="content-bot__name">Tổng doanh thu</p>
+                <p class="content-bot__compare">+10% so với hôm qua</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Thong ke so luong san pham -->
+          <div class="content">
+            <div class="content__container">
+              <i class="fa-solid fa-chart-simple"></i>
+              <div class="content-bot">
+                <h2 class="content-bot__price">5.000.000 VND</h2>
+                <p class="content-bot__name">Tổng doanh thu</p>
+                <p class="content-bot__compare">+10% so với hôm qua</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End: THong ke -->
+    <!-- Begin: Table SAN PHAM -->
+    <div class="sanpham">
+      <table class="table-header">
+        <tr>
+          <!-- Theo độ rộng của table content -->
+          <th
+            title="Sắp xếp"
+            style="width: 5%"
+            onclick="sortProductsTable('stt')"
+          >
+            STT <i class="fa fa-sort"></i>
+          </th>
+          <th
+            title="Sắp xếp"
+            style="width: 10%"
+            onclick="sortProductsTable('masp')"
+          >
+            ID <i class="fa fa-sort"></i>
+          </th>
+          <th
+            title="Sắp xếp"
+            style="width: 40%"
+            onclick="sortProductsTable('ten')"
+          >
+            Tên hình ảnh <i class="fa fa-sort"></i>
+          </th>
+          <th
+            title="Sắp xếp"
+            style="width: 15%"
+            onclick="sortProductsTable('gia')"
+          >
+            Danh mục <i class="fa fa-sort"></i>
+          </th>
+          <th
+            title="Sắp xếp"
+            style="width: 15%"
+            onclick="sortProductsTable('khuyenmai')"
+          >
+            Giá <i class="fa fa-sort"></i>
+          </th>
+          <th style="width: 15%">Hành động</th>
+        </tr>
+      </table>
+
+      <div class="table-content">
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 5%">1</td>
+              <td style="width: 10%">2000</td>
+              <td style="width: 40%">Con mèo nheo mắt</td>
+              <td style="width: 15%">Động vật</td>
+              <td style="width: 15%">45.000 VND</td>
+              <td style="width: 15%"></td>
+            </tr>
+            <tr>
+              <td style="width: 5%">2</td>
+              <td style="width: 10%">2001</td>
+              <td style="width: 40%">Bầu trời</td>
+              <td style="width: 15%">Sky</td>
+              <td style="width: 15%">500.000 VND</td>
+              <td style="width: 15%"></td>
+            </tr>
+            <tr>
+              <td style="width: 5%">3</td>
+              <td style="width: 10%">2002</td>
+              <td style="width: 40%">Đom đóm</td>
+              <td style="width: 15%">Động vật</td>
+              <td style="width: 15%">5.000.000 VND</td>
+              <td style="width: 15%"></td>
+            </tr>
+            <tr>
+              <td style="width: 5%">4</td>
+              <td style="width: 10%">2003</td>
+              <td style="width: 40%">Cá chimera</td>
+              <td style="width: 15%">Động vật</td>
+              <td style="width: 15%">700.000 VND</td>
+              <td style="width: 15%"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer">
+        <select name="kieuTimSanPham">
+          <option value="ma">Tìm theo ID</option>
+          <option value="ten">Tìm theo tên</option>
+        </select>
+        <input
+          type="text"
+          placeholder="Tìm kiếm..."
+          onkeyup="timKiemSanPham(this)"
+        />
+        <button
+          onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)'; autoMaSanPham()"
+        >
+          <i class="fa fa-plus-square"></i>
+          Thêm hình ảnh
+        </button>
+      </div>
+
+      <div id="khungThemSanPham" class="overlay">
+        <span
+          class="close"
+          onclick="this.parentElement.style.transform = 'scale(0)';"
+          >&times;</span
+        >
+        <table class="overlayTable table-outline table-content table-header">
+          <tr>
+            <th colspan="2">Thêm hình ảnh</th>
+          </tr>
+          <tr>
+            <td>Hình:</td>
+            <td>
+              <img class="hinhDaiDien" id="anhDaiDienSanPhamThem" src="" />
+              <input
+                type="file"
+                accept="image/*"
+                onchange="capNhatAnhSanPham(this.files, 'anhDaiDienSanPhamThem')"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th colspan="2">Thông số kĩ thuật</th>
+          </tr>
+          <tr>
+            <td>ID hình ảnh:</td>
+            <td><input type="text" id="maspThem" /></td>
+          </tr>
+          <tr>
+            <td>Tên hình ảnh:</td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>Mô tả:</td>
+            <td><input type="text" /></td>
+          </tr>
+
+          <tr>
+            <td>Loại hình ảnh:</td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>Giá</td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>Ngươi đóng góp:</td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>Định dạng hình ảnh:</td>
+            <td>
+              <select>
+                <option value="png">.png</option>
+                <option value="jpg">.jpg</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Dung lượng ảnh:</td>
+            <td><input type="text" placeholder="" /></td>
+          </tr>
+
+          <tr>
+            <td>Ngày chụp:</td>
+            <td><input type="text" /></td>
+          </tr>
+          <tr>
+            <td>Giá:</td>
+            <td><input type="text" /></td>
+          </tr>
+
+          <tr>
+            <td colspan="2" class="table-footer">
+              <button onclick="themSanPham()">THÊM</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="khungSuaSanPham" class="overlay"></div>
+    </div>
+    <!-- End: Tabale SAN PHAM -->
+  </body>
+</html>
