@@ -19,7 +19,7 @@
           <p class="frame__desc">Tóm tắt doanh số bán hàng</p>
           <div class="frame__content">
             <!-- 1. Thong ke so luong ban hang -->
-            <div class="statistic">
+            <div class="statistic statistic--increase">
               <div class="statistic__container">
                 <i class="fa-solid fa-chart-simple"></i>
                 <div class="statistic-bot">
@@ -30,7 +30,7 @@
               </div>
             </div>
             <!-- 2. Thong ke so luong san pham -->
-            <div class="statistic">
+            <div class="statistic statistic--increase">
               <div class="statistic__container">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <div class="statistic-bot">
@@ -41,7 +41,7 @@
               </div>
             </div>
             <!-- 3. Thong ke so luong san pham -->
-            <div class="statistic">
+            <div class="statistic statistic--increase">
               <div class="statistic__container">
                 <i class="fa-solid fa-user-plus"></i>
                 <div class="statistic-bot">
@@ -53,7 +53,7 @@
             </div>
 
             <!-- 4. Thong ke so luong san pham -->
-            <div class="statistic">
+            <div class="statistic statistic--decrease">
               <div class="statistic__container">
                 <i class="fa-regular fa-eye"></i>
                 <div class="statistic-bot">
@@ -74,137 +74,136 @@
           <p class="frame__desc"></p>
           <div class="sanpham">
             <table class="table-header">
-              <tr>
-                <!-- Theo độ rộng của table content -->
-                <th
-                  title="Sắp xếp"
-                  style="width: 5%"
-                  onclick="sortProductsTable('stt')"
-                >
-                  STT <i class="fa fa-sort"></i>
-                </th>
-                <th
-                  title="Sắp xếp"
-                  style="width: 10%"
-                  onclick="sortProductsTable('masp')"
-                >
-                  ID <i class="fa fa-sort"></i>
-                </th>
-                <th
-                  title="Sắp xếp"
-                  style="width: 40%"
-                  onclick="sortProductsTable('ten')"
-                >
-                  Tên hình ảnh <i class="fa fa-sort"></i>
-                </th>
-                <th
-                  title="Sắp xếp"
-                  style="width: 15%"
-                  onclick="sortProductsTable('gia')"
-                >
-                  Danh mục <i class="fa fa-sort"></i>
-                </th>
-                <th
-                  title="Sắp xếp"
-                  style="width: 15%"
-                  onclick="sortProductsTable('khuyenmai')"
-                >
-                  Giá <i class="fa fa-sort"></i>
-                </th>
-                <th style="width: 15%">Hành động</th>
-              </tr>
+              <thead>
+                <tr>
+                  <!-- Theo độ rộng của table content -->
+                  <th
+                    title="Sắp xếp"
+                    style="width: 5%"
+                    onclick="sortProductsTable('stt')"
+                  >
+                    STT <i class="fa fa-sort"></i>
+                  </th>
+                  <th
+                    title="Sắp xếp"
+                    style="width: 10%"
+                    onclick="sortProductsTable('masp')"
+                  >
+                    ID <i class="fa fa-sort"></i>
+                  </th>
+                  <th
+                    title="Sắp xếp"
+                    style="width: 40%"
+                    onclick="sortProductsTable('ten')"
+                  >
+                    Tên hình ảnh <i class="fa fa-sort"></i>
+                  </th>
+                  <th
+                    title="Sắp xếp"
+                    style="width: 15%"
+                    onclick="sortProductsTable('gia')"
+                  >
+                    Danh mục <i class="fa fa-sort"></i>
+                  </th>
+                  <th
+                    title="Sắp xếp"
+                    style="width: 15%"
+                    onclick="sortProductsTable('khuyenmai')"
+                  >
+                    Giá <i class="fa fa-sort"></i>
+                  </th>
+                  <th style="width: 15%">Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="width: 5%">1</td>
+                  <td style="width: 10%">2000</td>
+                  <td style="width: 40%">Con mèo nheo mắt</td>
+                  <td style="width: 15%">Động vật</td>
+                  <td style="width: 15%">45.000 VND</td>
+                  <td style="width: 15%">
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-wrench"
+                        onclick="addKhungSuaSanPham('` + p.masp + `')"
+                      ></i>
+                    </div>
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-trash"
+                        onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
+                      ></i>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 5%">2</td>
+                  <td style="width: 10%">2001</td>
+                  <td style="width: 40%">Bầu trời</td>
+                  <td style="width: 15%">Sky</td>
+                  <td style="width: 15%">500.000 VND</td>
+                  <td style="width: 15%">
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-wrench"
+                        onclick="addKhungSuaSanPham('` + p.masp + `')"
+                      ></i>
+                    </div>
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-trash"
+                        onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
+                      ></i>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 5%">3</td>
+                  <td style="width: 10%">2002</td>
+                  <td style="width: 40%">Đom đóm</td>
+                  <td style="width: 15%">Động vật</td>
+                  <td style="width: 15%">5.000.000 VND</td>
+                  <td style="width: 15%">
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-wrench"
+                        onclick="addKhungSuaSanPham('` + p.masp + `')"
+                      ></i>
+                    </div>
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-trash"
+                        onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
+                      ></i>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 5%">4</td>
+                  <td style="width: 10%">2003</td>
+                  <td style="width: 40%">Cá chimera</td>
+                  <td style="width: 15%">Động vật</td>
+                  <td style="width: 15%">700.000 VND</td>
+                  <td style="width: 15%">
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-wrench"
+                        onclick="addKhungSuaSanPham('` + p.masp + `')"
+                      ></i>
+                    </div>
+                    <div class="tooltip">
+                      <i
+                        class="fa fa-trash"
+                        onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
+                      ></i>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
 
-            <div class="table-content">
-              <table>
-                <tbody>
-                  <tr>
-                    <td style="width: 5%">1</td>
-                    <td style="width: 10%">2000</td>
-                    <td style="width: 40%">Con mèo nheo mắt</td>
-                    <td style="width: 15%">Động vật</td>
-                    <td style="width: 15%">45.000 VND</td>
-                    <td style="width: 15%">
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-wrench"
-                          onclick="addKhungSuaSanPham('` + p.masp + `')"
-                        ></i>
-                      </div>
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-trash"
-                          onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
-                        ></i>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="width: 5%">2</td>
-                    <td style="width: 10%">2001</td>
-                    <td style="width: 40%">Bầu trời</td>
-                    <td style="width: 15%">Sky</td>
-                    <td style="width: 15%">500.000 VND</td>
-                    <td style="width: 15%">
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-wrench"
-                          onclick="addKhungSuaSanPham('` + p.masp + `')"
-                        ></i>
-                      </div>
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-trash"
-                          onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
-                        ></i>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="width: 5%">3</td>
-                    <td style="width: 10%">2002</td>
-                    <td style="width: 40%">Đom đóm</td>
-                    <td style="width: 15%">Động vật</td>
-                    <td style="width: 15%">5.000.000 VND</td>
-                    <td style="width: 15%">
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-wrench"
-                          onclick="addKhungSuaSanPham('` + p.masp + `')"
-                        ></i>
-                      </div>
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-trash"
-                          onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
-                        ></i>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="width: 5%">4</td>
-                    <td style="width: 10%">2003</td>
-                    <td style="width: 40%">Cá chimera</td>
-                    <td style="width: 15%">Động vật</td>
-                    <td style="width: 15%">700.000 VND</td>
-                    <td style="width: 15%">
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-wrench"
-                          onclick="addKhungSuaSanPham('` + p.masp + `')"
-                        ></i>
-                      </div>
-                      <div class="tooltip">
-                        <i
-                          class="fa fa-trash"
-                          onclick="xoaSanPham('` + p.masp + `', '`+p.name+`')"
-                        ></i>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <div class="table-content"></div>
 
             <div class="table-footer">
               <select name="kieuTimSanPham">

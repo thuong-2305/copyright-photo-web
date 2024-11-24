@@ -1,3 +1,11 @@
+:root {
+  --primary-color: #ccc;
+  --secondary-color: rgb(255, 255, 255);
+  --text-color: #000;
+  --nonary-color: #0b6508d8;
+  --denary-color: #f33;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,16 +14,16 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: rgb(33, 34, 45);
-  color: #e4e7ea;
+  background-color: var(--primary-color);
 }
+
 main {
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding: 24px;
   height: 100%;
-  background-color: #000;
+  background-color: var(--primary-color);
 }
 /* ---------------------------------------------------Begin: San pham------------------------------------*/
 .table-outline {
@@ -26,11 +34,14 @@ main {
 /* phần chứa header (th) */
 .table-header {
   width: 100%;
+  background-color: #000;
+  color: var(--text-color);
+  border-spacing: 0;
 }
 
 .table-header th {
-  color: #e4e7ea;
-  background-color: #3e464d;
+  color: var(--text-color);
+  background-color: #f2f2f2;
   border-color: #23282c;
 }
 
@@ -56,23 +67,31 @@ main {
   border-top: 1px solid #23282c;
 }
 /* phần chứa nội dung  */
-.table-content {
+/* .table-content {
   min-height: 200px;
   max-height: 550px;
   overflow: auto;
   margin: 0 auto;
   width: 100%;
-}
+} */
 
-.table-content table {
-  width: 100%;
-}
-
-.table-content table td {
+.table-header tbody td {
   padding: 12px;
 }
 
-.table-content table td div {
+.table-header tbody tr:nth-child(odd) {
+  background-color: #e6e6e6; /* Màu cho hàng lẻ */
+}
+
+.table-header tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Màu cho hàng chẵn */
+}
+
+.table-header tbody td:last-child {
+  text-align: center;
+}
+
+.table-header tbody td div {
   display: inline;
 }
 
@@ -82,13 +101,13 @@ main {
 
 .table-content td {
   position: relative;
-  color: #e4e7ea;
+  color: #fff;
 }
 
 /* Link chi tiet san pham */
 .table-content td a {
   display: block;
-  color: #e4e7ea;
+  color: #fff;
 }
 
 .table-content td a:hover {
@@ -119,7 +138,6 @@ main {
 
 /*  phần footer table  */
 .table-footer {
-  background-color: #3e464d;
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #23282c;
@@ -209,7 +227,7 @@ main {
     rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(33, 34, 45);
+  background-color: var(--secondary-color);
   height: 100%;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 10px;
@@ -220,7 +238,7 @@ main {
   font-weight: 600;
   font-family: Inter, sans-serif;
   line-height: 1.235;
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
 }
 .frame__desc {
   margin: 0px 0px 24px;
@@ -244,10 +262,11 @@ main {
   padding: 20px;
   border-radius: 16px;
   height: 100%;
-  background-color: rgb(23, 24, 33);
+  background-color: var(--primary-color);
+  box-shadow: 3px 5px 8px 0px;
 }
 .statistic i {
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
   font-size: 30px;
   width: 26px;
   height: 26px;
@@ -258,7 +277,7 @@ main {
   font-weight: 600;
   font-family: Inter, sans-serif;
   line-height: 1.235;
-  color: rgb(255, 255, 255);
+  color: var(--text-color);
 }
 
 .statistic .statistic-bot__name {
@@ -267,14 +286,25 @@ main {
   font-weight: 500;
   font-family: Inter, sans-serif;
   line-height: 1.5;
-  color: rgb(232, 232, 232);
+  color: var(--text-color);
 }
 .statistic .statistic-bot__compare {
   margin: 0px;
   font-size: 0.75rem;
   font-weight: 500;
   font-family: Inter, sans-serif;
-  color: rgb(252, 184, 89);
+  color: var(--text-color);
   line-height: 1.25;
+}
+
+/* Màu cho số liệu tăng giảm */
+.statistic--increase .statistic-bot__compare,
+.statistic--increase i {
+  color: var(--nonary-color);
+}
+
+.statistic--decrease .statistic-bot__compare,
+.statistic--decrease i {
+  color: var(--denary-color);
 }
 /*-------------------------------------------------- End: THong ke --------------------------------------*/
