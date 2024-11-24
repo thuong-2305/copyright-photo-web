@@ -99,6 +99,7 @@
     border-radius: 10px;
     width: 150px;
     background-color: white;
+    z-index: 9999;
 }
 
 .products .tool .options p {
@@ -266,11 +267,6 @@
     width: 100%;
 }
 
-.products .related-search {
-    gap: 10px;
-    padding: 10px 0;
-}
-
 .products .data1 {
     cursor: pointer;
     border: 1px solid #ddd;
@@ -312,6 +308,8 @@
     box-sizing: border-box;
 }
 
+
+
 .products .photo-products .box img {
     width: 100%;
     height: 210px;
@@ -330,4 +328,80 @@
     padding: 5px;
     border: 1px solid #f3f4f5;
     cursor: pointer;
+}
+
+
+/*  */
+
+.products .photo-products .box  {
+    position: relative;
+    overflow: hidden;
+}
+
+.products .photo-products .box .info p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    opacity: 0;
+    transform: translateY(-50%);
+}
+
+.products .photo-products .box:hover .info p {
+    transform: translateY(0); 
+    opacity: 1;
+}
+
+.products .photo-products .box  .info .hover-options {
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    margin-top: 10px;
+}
+
+.products .photo-products .box  .info .hover-options a {
+    color: white;
+    text-decoration: none;
+}
+
+.products .photo-products .box  .option-button {
+    background-color: #e63946;
+    border: none;
+    border-radius: 20px;
+    padding: 7px 20px;
+    cursor: pointer;
+    font-size: 15px;
+    color: white;
+}
+
+.products .photo-products .box .option-button.heart {
+    background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 75%;
+    left: 2%;
+    transform: translateY(+150%);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.products .photo-products .box:hover .option-button.heart,
+.products .photo-products .box:hover .option-button.buy {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.products .photo-products .box .option-button.buy {
+    position: absolute;
+    top: 75%;
+    right: 2%;
+    transform: translateY(+150%);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+    opacity: 0;
 }
