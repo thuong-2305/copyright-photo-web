@@ -72,6 +72,10 @@ main {
   padding: 12px;
 }
 
+.table-content table td div {
+  display: inline;
+}
+
 .table-content tr:nth-of-type(even) {
   background-color: #3e4144;
 }
