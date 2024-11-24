@@ -178,58 +178,22 @@
     <div id="checkout">
         <div class="container-fluid">
             <div class="checkout-container">
+                <h1 class="ml-3 mb-3">Thanh toán</h1>
                 <div class="row checkout-content">
                     <div class="col-7">
                         <header class="d-flex align-items-center">
-                            <h1 class="dp-ib">Thanh toán</h1>
-                            <span class="ml-auto medium"><i class="fa fa-circle-check mr-1"></i>Bảo mật đơn hàng</span>
                         </header>
                         <div class="billing-container mt-3">
-                            <!-- <div class="billing-information pb-3">
-                                <span>Thông tin thanh toán</span>
-                            </div> -->
-                            <!-- <div class="row name">
-                                <div class="col-6 first-name-content">
-                                    <div class="first-name-label">
-                                        <label for="">
-                                            <span>Họ</span>
-                                        </label>
-                                    </div>
-                                    <div class="first-name-input">
-                                        <input class="p-2 w-100" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-6 last-name-content">
-                                    <div class="last-name-label">
-                                        <label for="">
-                                            <span>Tên</span>
-                                        </label>
-                                    </div>
-                                    <div class="last-name-input">
-                                        <input class="p-2 w-100" type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="email mb-5">
-                                <div class="email-content">
-                                    <div class="email-label">
-                                        <label for="">
-                                            <span>Email</span>
-                                        </label>
-                                    </div>
-                                    <div class="email-input">
-                                        <input class="w-100 p-2" type="text">
-                                    </div>
-                                </div>
-                            </div> -->
                             <div class="container p-0">
                                 <div class="card shadow">
                                     <div class="card-header p-0">
                                         <div class="btn-group w-100" role="group">
-                                            <button id="credit-card-tab" class="btn btn-light active" onclick="showTab('credit-card')">
+                                            <button id="credit-card-tab" class="btn btn-light active"
+                                                onclick="showTab('credit-card')">
                                                 THẺ TÍN DỤNG/GHI NỢ
                                             </button>
-                                            <button id="paypal-tab" class="btn btn-dark text-white" onclick="showTab('paypal')">
+                                            <button id="paypal-tab" class="btn btn-dark text-white"
+                                                onclick="showTab('paypal')">
                                                 <i class="fab fa-paypal"></i> PayPal
                                             </button>
                                         </div>
@@ -238,45 +202,43 @@
                                         <!-- Tab: Credit Card -->
                                         <div id="credit-card" class="payment-tab">
                                             <div class="alert alert-info text-center" role="alert">
-                                                <i class="fas fa-lock"></i> Mọi thông tin thẻ đều được mã hóa, bảo mật và bảo vệ toàn diện.
+                                                <i class="fas fa-lock"></i> Mọi thông tin thẻ đều được mã hóa, bảo mật
+                                                và bảo vệ toàn diện.
                                                 <a href="#">Tìm hiểu thêm</a>
                                             </div>
                                             <form>
                                                 <h4 class="mb-4">Thông tin thẻ</h4>
                                                 <div class="form-group">
                                                     <label for="card-name">Tên trên thẻ *</label>
-                                                    <input type="text" class="form-control" id="card-name" placeholder="Tên trên thẻ">
+                                                    <input type="text" class="form-control" id="card-name"
+                                                        placeholder="Tên trên thẻ">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="card-number">Số thẻ tín dụng/ghi nợ *</label>
-                                                    <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456">
+                                                    <input type="text" class="form-control" id="card-number"
+                                                        placeholder="1234 5678 9012 3456">
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="form-group col-md-6">
                                                         <label for="card-expiry">Ngày hết hạn *</label>
-                                                        <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY">
+                                                        <input type="text" class="form-control" id="card-expiry"
+                                                            placeholder="MM/YY">
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label for="card-cvc">CVC *</label>
-                                                        <input type="text" class="form-control" id="card-cvc" placeholder="3 hoặc 4 chữ số">
+                                                        <input type="text" class="form-control" id="card-cvc"
+                                                            placeholder="3 hoặc 4 chữ số">
                                                     </div>
                                                 </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="save-card ml-auto d-flex">
-                                                        <input type="checkbox" class="form-check-input" id="save-card-checkbox">
-                                                        <label for="save-card-checkbox" class="form-check-label mb-0 ml-1">
-                                                            Lưu thẻ này vào tài khoản của tôi
-                                                        </label>
-                                                    </div>
-                                                    
-                                                </div>
+                                                
                                             </form>
                                         </div>
-                        
+
                                         <!-- Tab: PayPal -->
                                         <div id="paypal" class="payment-tab d-none text-center">
                                             <div class="alert alert-info text-center" role="alert">
-                                                <i class="fas fa-lock"></i> Mọi thông tin thẻ đều được mã hóa, bảo mật và bảo vệ toàn diện.
+                                                <i class="fas fa-lock"></i> Mọi thông tin thẻ đều được mã hóa, bảo mật
+                                                và bảo vệ toàn diện.
                                                 <a href="#">Tìm hiểu thêm</a>
                                             </div>
                                             <button class="btn btn-warning btn-lg text-dark">
@@ -287,8 +249,32 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                        <!-- Thẻ đã lưu -->
+                        <!-- <div class="save-cards-container pl-3 pr-3 pb-3 mb-4">
+                            <h4 class="mb-3 mr-4 text-center">Thẻ đã lưu</h4>
+                            <div class="sava-cards-content d-flex flex-row">
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" name="savedCard" id="card1">
+                                    <label class="form-check-label" for="card1">
+                                        <i class="fab fa-cc-visa mr-2"></i> **** **** **** 1234 - Hết hạn: 08/25
+                                    </label>
+                                </div>
+                                <div class="form-check mr-3">
+                                    <input class="form-check-input" type="radio" name="savedCard" id="card2">
+                                    <label class="form-check-label" for="card2">
+                                        <i class="fab fa-cc-mastercard mr-2"></i> **** **** **** 5678 - Hết hạn: 01/26
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="savedCard" id="card3">
+                                    <label class="form-check-label" for="card3">
+                                        <i class="fab fa-cc-discover mr-2"></i> **** **** **** 9101 - Hết hạn: 05/24
+                                    </label>
+                                </div>
+                            </div>
+                        </div> -->
+
                         <div class="order-totals">
                             <ul class="order-totals-content style-none">
                                 <li>Tổng cộng</li>

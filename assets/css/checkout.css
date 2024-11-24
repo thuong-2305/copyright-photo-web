@@ -53,7 +53,7 @@ html {
 }
 
 #checkout .checkout-container {
-    margin: 62px;
+    margin: 48px;
 }
 
 /* Riêng */
@@ -63,7 +63,6 @@ html {
 #checkout .checkout-content .col-7 .billing-container {
     /* background-color: #f4f4f4; */
     padding: 28px 16px;
-    margin-bottom: 16px;
     /* border: 1px solid rgba(0, 0, 0, 0.12); */
     border-radius: 4px;
 }
