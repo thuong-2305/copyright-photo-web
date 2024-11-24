@@ -51,7 +51,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-lg-3" href="./pages/category-details.html">
-                                        <span>Danhh mục</span>
+                                        <span>Danh mục</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
@@ -181,100 +181,141 @@
                 <h1 class="ml-3 mb-3">Thanh toán</h1>
                 <div class="row checkout-content">
                     <div class="col-7">
-                        <header class="d-flex align-items-center">
-                        </header>
                         <div class="billing-container mt-3">
                             <div class="container p-0">
                                 <div class="card shadow">
-                                    <div class="card-header p-0">
-                                        <div class="btn-group w-100" role="group">
-                                            <button id="credit-card-tab" class="btn btn-light active"
-                                                onclick="showTab('credit-card')">
-                                                THẺ TÍN DỤNG/GHI NỢ
-                                            </button>
-                                            <button id="paypal-tab" class="btn btn-dark text-white"
-                                                onclick="showTab('paypal')">
-                                                <i class="fab fa-paypal"></i> PayPal
-                                            </button>
-                                        </div>
-                                    </div>
                                     <div class="card-body">
-                                        <!-- Tab: Credit Card -->
-                                        <div id="credit-card" class="payment-tab">
-                                            <div class="alert alert-info text-center" role="alert">
-                                                <i class="fas fa-lock"></i> Mọi thông tin thẻ đều được mã hóa, bảo mật
-                                                và bảo vệ toàn diện.
-                                                <a href="#">Tìm hiểu thêm</a>
+                                        <!-- Radio Button chọn phương thức thanh toán -->
+                                        <div class="form-group mb-4">
+                                            <h3 class="mb-4">Phương thức thanh toán</h3>
+                                            <div class="d-flex flex-column mb-3">
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="radio" name="payment-method" id="saved-cards-radio" value="saved-cards" checked onclick="togglePaymentMethod('saved-cards')">
+                                                    <label class="form-check-label" for="saved-cards-radio">
+                                                        Sử dụng thẻ đã lưu
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="payment-method" id="new-payment-radio" value="new-payment" onclick="togglePaymentMethod('new-payment')">
+                                                    <label class="form-check-label" for="new-payment-radio">
+                                                        Thanh toán bằng phương thức khác
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <form>
-                                                <h4 class="mb-4">Thông tin thẻ</h4>
-                                                <div class="form-group">
-                                                    <label for="card-name">Tên trên thẻ *</label>
-                                                    <input type="text" class="form-control" id="card-name"
-                                                        placeholder="Tên trên thẻ">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="card-number">Số thẻ tín dụng/ghi nợ *</label>
-                                                    <input type="text" class="form-control" id="card-number"
-                                                        placeholder="1234 5678 9012 3456">
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col-md-6">
-                                                        <label for="card-expiry">Ngày hết hạn *</label>
-                                                        <input type="text" class="form-control" id="card-expiry"
-                                                            placeholder="MM/YY">
-                                                    </div>
-                                                    <div class="form-group col-md-6">
-                                                        <label for="card-cvc">CVC *</label>
-                                                        <input type="text" class="form-control" id="card-cvc"
-                                                            placeholder="3 hoặc 4 chữ số">
-                                                    </div>
-                                                </div>
-                                                
-                                            </form>
                                         </div>
-
-                                        <!-- Tab: PayPal -->
-                                        <div id="paypal" class="payment-tab d-none text-center">
-                                            <div class="alert alert-info text-center" role="alert">
-                                                <i class="fas fa-lock"></i> Mọi thông tin thẻ đều được mã hóa, bảo mật
-                                                và bảo vệ toàn diện.
-                                                <a href="#">Tìm hiểu thêm</a>
+                        
+                                        <!-- Phần thẻ đã lưu -->
+                                        <div id="saved-cards-section" class="payment-method-content">
+                                            <h4 class="mb-3">Thẻ đã lưu</h4>
+                                            <div class="list-group">
+                                                <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onclick="selectSavedCard('1234')">
+                                                    <div>
+                                                        <i class="fas fa-credit-card"></i> Visa **** 1234
+                                                    </div>
+                                                    <span class="badge badge-primary">Dùng thẻ này</span>
+                                                </button>
+                                                <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onclick="selectSavedCard('5678')">
+                                                    <div>
+                                                        <i class="fas fa-credit-card"></i> Mastercard **** 5678
+                                                    </div>
+                                                    <span class="badge badge-primary">Dùng thẻ này</span>
+                                                </button>
+                                                <button class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onclick="selectSavedCard('9012')">
+                                                    <div>
+                                                        <i class="fas fa-credit-card"></i> JCB **** 9012
+                                                    </div>
+                                                    <span class="badge badge-primary">Dùng thẻ này</span>
+                                                </button>
                                             </div>
-                                            <button class="btn btn-warning btn-lg text-dark">
-                                                <i class="fab fa-paypal"></i> PayPal
-                                            </button>
-                                            <p class="mt-3">Phương thức thanh toán an toàn và dễ dàng hơn</p>
+                                        </div>
+                        
+                                        <!-- Phần thanh toán mới -->
+                                        <div id="new-payment-section" class="payment-method-content d-none">
+                                            <!-- Tabs -->
+                                            <div class="card-header p-0">
+                                                <div class="btn-group w-100" role="group">
+                                                    <button id="credit-card-tab" class="btn btn-light text-dark active" onclick="showTab('credit-card')">
+                                                        THẺ TÍN DỤNG/GHI NỢ
+                                                    </button>
+                                                    <button id="bank-account-tab" class="btn btn-light text-dark" onclick="showTab('bank-account')">
+                                                        TÀI KHOẢN NGÂN HÀNG
+                                                    </button>
+                                                    <button id="paypal-tab" class="btn btn-light text-dark" onclick="showTab('paypal')">
+                                                        <i class="fab fa-paypal"></i> PayPal
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <!-- Tab: Credit Card -->
+                                                <div id="credit-card" class="payment-tab">
+                                                    <div class="alert alert-info text-center" role="alert">
+                                                        <i class="fas fa-lock"></i> Mọi thông tin thẻ đều được mã hóa, bảo mật và bảo vệ toàn diện.
+                                                        <a href="#">Tìm hiểu thêm</a>
+                                                    </div>
+                                                    <form>
+                                                        <h4 class="mb-4">Nhập thẻ mới</h4>
+                                                        <div class="form-group">
+                                                            <label for="card-name">Tên trên thẻ *</label>
+                                                            <input type="text" class="form-control" id="card-name" placeholder="Tên trên thẻ">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="card-number">Số thẻ tín dụng/ghi nợ *</label>
+                                                            <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456">
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="card-expiry">Ngày hết hạn *</label>
+                                                                <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="card-cvc">CVC *</label>
+                                                                <input type="text" class="form-control" id="card-cvc" placeholder="3 hoặc 4 chữ số">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                        
+                                                <!-- Tab: Bank Account -->
+                                                <div id="bank-account" class="payment-tab d-none">
+                                                    <div class="alert alert-info text-center" role="alert">
+                                                        <i class="fas fa-lock"></i> Mọi thông tin tài khoản ngân hàng đều được mã hóa, bảo mật và bảo vệ toàn diện.
+                                                        <a href="#">Tìm hiểu thêm</a>
+                                                    </div>
+                                                    <form>
+                                                        <h4 class="mb-4">Nhập thông tin tài khoản ngân hàng</h4>
+                                                        <div class="form-group">
+                                                            <label for="bank-account-holder">Chủ tài khoản *</label>
+                                                            <input type="text" class="form-control" id="bank-account-holder" placeholder="Tên chủ tài khoản">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="bank-account-number">Số tài khoản ngân hàng *</label>
+                                                            <input type="text" class="form-control" id="bank-account-number" placeholder="1234567890">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="bank-name">Tên ngân hàng *</label>
+                                                            <input type="text" class="form-control" id="bank-name" placeholder="Tên ngân hàng">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                        
+                                                <!-- Tab: PayPal -->
+                                                <div id="paypal" class="payment-tab d-none text-center">
+                                                    <div class="alert alert-info text-center" role="alert">
+                                                        <i class="fas fa-lock"></i> Mọi thông tin đều được mã hóa, bảo mật và bảo vệ toàn diện.
+                                                        <a href="#">Tìm hiểu thêm</a>
+                                                    </div>
+                                                    <button class="btn btn-warning btn-lg text-dark">
+                                                        <i class="fab fa-paypal"></i> Thanh toán với PayPal
+                                                    </button>
+                                                    <p class="mt-3">Phương thức thanh toán an toàn và dễ dàng hơn</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Thẻ đã lưu -->
-                        <!-- <div class="save-cards-container pl-3 pr-3 pb-3 mb-4">
-                            <h4 class="mb-3 mr-4 text-center">Thẻ đã lưu</h4>
-                            <div class="sava-cards-content d-flex flex-row">
-                                <div class="form-check mr-3">
-                                    <input class="form-check-input" type="radio" name="savedCard" id="card1">
-                                    <label class="form-check-label" for="card1">
-                                        <i class="fab fa-cc-visa mr-2"></i> **** **** **** 1234 - Hết hạn: 08/25
-                                    </label>
-                                </div>
-                                <div class="form-check mr-3">
-                                    <input class="form-check-input" type="radio" name="savedCard" id="card2">
-                                    <label class="form-check-label" for="card2">
-                                        <i class="fab fa-cc-mastercard mr-2"></i> **** **** **** 5678 - Hết hạn: 01/26
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="savedCard" id="card3">
-                                    <label class="form-check-label" for="card3">
-                                        <i class="fab fa-cc-discover mr-2"></i> **** **** **** 9101 - Hết hạn: 05/24
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
-
+                         
                         <div class="order-totals">
                             <ul class="order-totals-content style-none">
                                 <li>Tổng cộng</li>
@@ -298,78 +339,76 @@
                             <button id="create-order-button" class="btn btn-success mt-4 p-3">
                                 Thanh toán ngay
                             </button>
-
                         </div>
                     </div>
-                    <div class="col-5 mt-2">
-                        <div class="purchase-details-container">
-                            <div class="promo-code-container d-flex ml-auto mb-3">
-                                <div class="promo-code d-flex ml-auto"> <!-- Flexbox cho căn giữa -->
-                                    <input type="text" class="form-control mr-2" placeholder="Mã khuyến mãi"
-                                        style="width: 200px;">
-                                    <button class="btn btn-primary shadow-sm" type="button">Áp dụng</button>
-                                </div>
+                <div class="col-5 mt-2">
+                    <div class="purchase-details-container">
+                        <div class="promo-code-container d-flex ml-auto mb-3">
+                            <div class="promo-code d-flex ml-auto"> <!-- Flexbox cho căn giữa -->
+                                <input type="text" class="form-control mr-2" placeholder="Mã khuyến mãi"
+                                    style="width: 200px;">
+                                <button class="btn btn-primary shadow-sm" type="button">Áp dụng</button>
                             </div>
+                        </div>
 
-                            <div class="purchase-details">
-                                <div class="purchase-details-header d-flex mb-3">
-                                    <span class="heading-title mr-2">Chi tiết hóa đơn</span>
-                                    <span class="select-items">(3 sản phẩm)</span>
-                                    <a class="edit-cart txt-deco-none ml-auto" href="">Chỉnh sửa giỏ hàng</a>
+                        <div class="purchase-details">
+                            <div class="purchase-details-header d-flex mb-3">
+                                <span class="heading-title mr-2">Chi tiết hóa đơn</span>
+                                <span class="select-items">(3 sản phẩm)</span>
+                                <a class="edit-cart txt-deco-none ml-auto" href="">Chỉnh sửa giỏ hàng</a>
+                            </div>
+                            <div class="purchase-details-body">
+                                <div id="cart-summary-content">
+                                    <section class="pb-4 rounded item mb-2">
+                                        <figure>
+                                            <img class="maxw-100 img-fluid rounded"
+                                                src="../assets/images/Abstract/1.jpg" alt="">
+                                        </figure>
+                                        <ul class="lst-property list-unstyled flex-grow-1">
+                                            <li class="text-left">Ảnh #: 583809524</li>
+                                            <li class="text-left">Tiêu chuẩn</li>
+                                            <li class="text-left">12 MB</li>
+                                            <li class="text-right">499.000 VNĐ</li>
+                                        </ul>
+                                    </section>
+                                    <section class="pb-4 rounded item mb-2">
+                                        <figure>
+                                            <img class="maxw-100 img-fluid rounded"
+                                                src="../assets/images/Abstract/5.jpg" alt="">
+                                        </figure>
+                                        <ul class="lst-property list-unstyled flex-grow-1">
+                                            <li class="text-left">Ảnh #: 1396388341</li>
+                                            <li class="text-left">Nâng cao</li>
+                                            <li class="text-left">824 KB</li>
+                                            <li class="text-right">300.000 VNĐ</li>
+                                        </ul>
+                                    </section>
+                                    <section class="pb-4 rounded item mb-2">
+                                        <figure>
+                                            <img class="maxw-100 img-fluid rounded"
+                                                src="../assets/images/Abstract/3.jpg" alt="">
+                                        </figure>
+                                        <ul class="lst-property list-unstyled flex-grow-1">
+                                            <li class="text-left">Ảnh #: 1458782106</li>
+                                            <li class="text-left">Tiêu chuẩn</li>
+                                            <li class="text-left">470 KB</li>
+                                            <li class="text-right">125.000 VNĐ</li>
+                                        </ul>
+                                    </section>
+
                                 </div>
-                                <div class="purchase-details-body">
-                                    <div id="cart-summary-content">
-                                        <section class="pb-4 rounded item mb-2">
-                                            <figure>
-                                                <img class="maxw-100 img-fluid rounded"
-                                                    src="../assets/images/Abstract/1.jpg" alt="">
-                                            </figure>
-                                            <ul class="lst-property list-unstyled flex-grow-1">
-                                                <li class="text-left">Ảnh #: 583809524</li>
-                                                <li class="text-left">Tiêu chuẩn</li>
-                                                <li class="text-left">12 MB</li>
-                                                <li class="text-right">499.000 VNĐ</li>
-                                            </ul>
-                                        </section>
-                                        <section class="pb-4 rounded item mb-2">
-                                            <figure>
-                                                <img class="maxw-100 img-fluid rounded"
-                                                    src="../assets/images/Abstract/5.jpg" alt="">
-                                            </figure>
-                                            <ul class="lst-property list-unstyled flex-grow-1">
-                                                <li class="text-left">Ảnh #: 1396388341</li>
-                                                <li class="text-left">Nâng cao</li>
-                                                <li class="text-left">824 KB</li>
-                                                <li class="text-right">300.000 VNĐ</li>
-                                            </ul>
-                                        </section>
-                                        <section class="pb-4 rounded item mb-2">
-                                            <figure>
-                                                <img class="maxw-100 img-fluid rounded"
-                                                    src="../assets/images/Abstract/3.jpg" alt="">
-                                            </figure>
-                                            <ul class="lst-property list-unstyled flex-grow-1">
-                                                <li class="text-left">Ảnh #: 1458782106</li>
-                                                <li class="text-left">Tiêu chuẩn</li>
-                                                <li class="text-left">470 KB</li>
-                                                <li class="text-right">125.000 VNĐ</li>
-                                            </ul>
-                                        </section>
 
-                                    </div>
-
-                                    <!-- <div class="show-full-purchase pb-3 pt-2">
+                                <!-- <div class="show-full-purchase pb-3 pt-2">
                                         <a href="">Xem thêm</a>
                                     </div> -->
-                                    <div class="price-listing-totals d-flex mt-4">
-                                        <span class="dp-ib">Tổng cộng</span>
-                                        <span class="price-totals ml-auto">924.000 VNĐ</span>
-                                    </div>
+                                <div class="price-listing-totals d-flex mt-4">
+                                    <span class="dp-ib">Tổng cộng</span>
+                                    <span class="price-totals ml-auto">924.000 VNĐ</span>
                                 </div>
                             </div>
                         </div>
-
                     </div>
+
                 </div>
             </div>
         </div>

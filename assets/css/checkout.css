@@ -58,6 +58,44 @@ html {
 
 /* Riêng */
 
+
+/* Tab credit, bank, paypal */
+/* Xóa trạng thái màu chữ xanh từ Bootstrap */
+.btn-dark {
+    background-color: #343a40 !important;
+    color: #fff !important; /* Đảm bảo chữ màu trắng */
+}
+
+/* Trạng thái khi được nhấn hoặc đang focus */
+.btn-dark:focus, .btn-dark.active {
+    background-color: #343a40 !important; /* Đen */
+    color: #fff !important; /* Chữ trắng */
+    box-shadow: none !important; /* Xóa hiệu ứng ánh sáng xanh */
+}
+
+.btn:focus, .btn.active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Áp dụng riêng cho tab */
+#credit-card-tab, #bank-account-tab, #paypal-tab {
+    color: #343a40; /* Màu chữ mặc định (đen) khi chưa active */
+    background-color: #f8f9fa; /* Nền mặc định */
+}
+
+#credit-card-tab.active, #bank-account-tab.active, #paypal-tab.active {
+    color: #fff !important; /* Chữ trắng */
+    background-color: #343a40 !important; /* Nền đen */
+    box-shadow: none !important; /* Xóa ánh sáng mặc định */
+}
+
+
+
+
+
+
+
 /* Billing */
 
 #checkout .checkout-content .col-7 .billing-container {
