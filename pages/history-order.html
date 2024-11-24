@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../assets/css/navbar-footer.css">
+    <link rel="stylesheet" href="../assets/css/history-order.css">
     <link rel="stylesheet" href="../assets/css/like.css">
     <link rel="stylesheet" href="../assets/css/homeuser.css">
     <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
@@ -137,25 +138,25 @@
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#">
+                        <a href="./like.html">
                             <i class="fas fa-heart me-2"></i>
                             <p>Yêu thích</p>
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#">
+                        <a href="./cart.html">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <p>Giỏ hàng</p>
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#">
+                        <a href="./history-order.html">
                             <i class="fa-solid fa-clock-rotate-left"></i>
                             <p>Lịch sử mua hàng</p>
                         </a>
                     </li>
                     <li class="item">
-                        <a href="#">
+                        <a href="../homepage.html">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             <p class="mb-0">Đăng xuất</p>
                         </a>
@@ -192,81 +193,113 @@
     </section>
     <!--search -->
 
-    <!--section favourate -->
-    <section class="likes container">
-        <div class="title">
-            <h3>Hình ảnh yêu thích&#40;<span>4</span>&#41;</h3>
+    <!--section history -->
+    <section class="history container">
+        <div class="title mt-5">
+            <h3>Đơn hàng của bạn</h3>
         </div>
-        <div class="img-like">
-            <div class="toolbar d-flex flex-row">
-                <button class="btn"><i class="fa fa-th-large"></i></button>
-                <button class="btn"><i class="fa fa-cart-shopping"></i> <span>Thêm giỏ hàng</span></button>
-                <button class="btn"><i class="fa fa-trash"></i> <span>Xóa tất cả</span></button>
-                <div class="line-separate"></div>
-                <button class="select">Chọn tất cả</button>
-                <div class="line-separate"></div>
-                <button class="clear">Hủy chọn</button>
-            </div>
-            
-            <div class="d-flex flex-wrap gap-4 show-images">
-            <!-- Image Container -->
-                <div class="image-container">
-                    <a href="#"><img src="../assets/images/ai/Number/03.png" alt="Image"></a>
-                    <div class="details">
-                        <div class="header d-flex flex-row justify-content-between">
-                            <p><strong>RF</strong> Royalty Free</p>
-                            <p><strong>ID</strong> ai03111</p>
-                        </div>
-                        <p>Tháp số 2 khu nhà máy bỏ trống</p>
-                        <p>Credit: CoRiPhoto</p>
-                        <input type="checkbox" name="" id="item-like" value="check" class="float-end">
+        <div class="history-line d-flex flex-wrap">           
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <span class="order-id fs-5">Đơn hàng #2472</span>
+                        <span class="order-status paid">Đã trả</span>
                     </div>
-                    <button class="btn-close close-user"></button>
+                    <div class="order-price">
+                        120.000 vnđ
+                    </div>
                 </div>
-
-                <div class="image-container">
-                    <a href="#"><img src="../assets/images/ai/ImageWorld/002.jpg" alt="Image"></a>
-                    <div class="details">
-                        <div class="header d-flex flex-row justify-content-between">
-                            <p><strong>RF</strong> Royalty Free</p>
-                            <p><strong>ID</strong> ai03111</p>
-                        </div>
-                        <p>Sách chứa lâu đài thu nhỏ với sông nước</p>
-                        <p>Nguồn: CoRiPhoto</p>
-                        <input type="checkbox" name="" id="item-like" value="check" class="float-end">
+                <div class="order-details">
+                    <div class="details-header">
+                        <span class="shipping-info"><i class="fa-regular fa-calendar"></i> Thời gian:</span>
+                        <span class="order-date">16 Tháng 11, 2022 lúc 12:05 PM</span>
                     </div>
-                    <button class="btn-close close-user"></button>
-                </div>
-
-                <div class="image-container">
-                    <a href="#"><img src="../assets/images/Landscapes/3.jpg" alt="Image"></a>
-                    <div class="details">
-                        <div class="header d-flex flex-row justify-content-between">
-                            <p><strong>RF</strong> Royalty Free</p>
-                            <p><strong>ID</strong> ai03111</p>
+                    <div class="product-item">
+                        <img src="../assets/images/ai/Food/005.jpg" class="product-img" />
+                        <div class="product-info">
+                            <span class="product-name">Bánh sanwith dưới màn đen</span>
+                            <span class="product-sku">Giấy phép tiêu chuẩn,</span>
+                            <span class="product-quantity fw-semibold">Giá: 120.000đ</span>
+                            <a href="./product_details.html" class="text-success px-2">Xem ảnh</a>
                         </div>
-                        <p>Ngôi nhà dưới bầu trời xanh giữa đồng bằng</p>
-                        <p>Nguồn: CoRiPhoto</p>
-                        <input type="checkbox" name="" id="item-like" value="check" class="float-end">
                     </div>
-                    <button class="btn-close close-user"></button>
-                </div>
-
-                <div class="image-container">
-                    <a href="#"><img src="../assets/images/Animals/8.jpg" alt="Image"></a>
-                    <div class="details">
-                        <div class="header d-flex flex-row justify-content-between">
-                            <p><strong>RF</strong> Royalty Free</p>
-                            <p><strong>ID</strong> ai03111</p>
-                        </div>
-                        <p>Ốc trắng dưới biển</p>
-                        <p>Nguồn: CoRiPhoto</p>
-                        <input type="checkbox" name="" id="item-like" value="check" class="float-end">
-                    </div>
-                    <button class="btn-close close-user"></button>
                 </div>
             </div>
-            
+
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <span class="order-id fs-5">Đơn hàng #2325</span>
+                        <span class="order-status paid">Đã trả</span>
+                    </div>
+                    <div class="order-price">
+                        360.000 vnđ
+                    </div>
+                </div>
+                <div class="order-details">
+                    <div class="details-header">
+                        <span class="shipping-info"><i class="fa-regular fa-calendar"></i> Thời gian:</span>
+                        <span class="order-date">16 Tháng 11, 2022 lúc 12:05 PM</span>
+                    </div>
+                    <div class="product-item">
+                        <img src="../assets/images/ai/Food/005.jpg" class="product-img" />
+                        <div class="product-info">
+                            <span class="product-name">Bánh sanwith dưới màn đen</span>
+                            <span class="product-sku">Giấy phép tiêu chuẩn,</span>
+                            <span class="product-quantity fw-semibold">Giá: 120.000đ</span>
+                            <a href="./product_details.html" class="text-success px-2">Xem ảnh</a>
+                        </div>
+                    </div>
+                    <div class="more-items">
+                        <div class="product-item">
+                            <img src="../assets/images/ai/Food/002.jpg" class="product-img" />
+                            <div class="product-info">
+                                <span class="product-name">Bánh sanwith dưới màn đen</span>
+                                <span class="product-sku">Giấy phép tiêu chuẩn,</span>
+                                <span class="product-quantity fw-semibold">Giá: 120.000đ</span>
+                                <a href="./product_details.html" class="text-success px-2">Xem ảnh</a>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <img src="../assets/images/ai/Food/001.jpg" class="product-img" />
+                            <div class="product-info">
+                                <span class="product-name">Bánh sanwith dưới màn đen</span>
+                                <span class="product-sku">Giấy phép tiêu chuẩn,</span>
+                                <span class="product-quantity fw-semibold">Giá: 120.000đ</span>
+                                <a href="./product_details.html" class="text-success px-2">Xem ảnh</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-info">
+                        <span class="order-id fs-5">Đơn hàng #2111</span>
+                        <span class="order-status paid">Đã trả</span>
+                    </div>
+                    <div class="order-price">
+                        120.000 vnđ
+                    </div>
+                </div>
+                <div class="order-details">
+                    <div class="details-header">
+                        <span class="shipping-info"><i class="fa-regular fa-calendar"></i> Thời gian:</span>
+                        <span class="order-date">16 Tháng 11, 2022 lúc 12:05 PM</span>
+                    </div>
+                    <div class="product-item">
+                        <img src="../assets/images/ai/Food/005.jpg" class="product-img" />
+                        <div class="product-info">
+                            <span class="product-name">Bánh sanwith dưới màn đen</span>
+                            <span class="product-sku">Giấy phép tiêu chuẩn,</span>
+                            <span class="product-quantity fw-semibold">Giá: 120.000đ</span>
+                            <a href="./product_details.html" class="text-success px-2">Xem ảnh</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
     <!--section favourate -->
@@ -327,7 +360,6 @@
     <script src="../assets/js/homepage.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/homeuser.js"></script>
-    <script src="../assets/js/like.js"></script>
 </body>
 
 </html>
