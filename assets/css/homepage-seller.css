@@ -219,6 +219,26 @@ html {
     background-color: var(--primary-text-color);
 }
 
+/* Tùy chỉnh tooltip */
+.tooltip-inner {
+    background-color: white !important; /* Nền trắng */
+    color: black !important; /* Chữ đen */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow */
+    border-radius: 4px; /* Bo góc */
+    text-align: left !important; /* Căn lề trái */
+    padding: 10px; /* Padding bên trong */
+    min-width: 300px; /* Chiều rộng tối thiểu */
+    max-width: 400px; /* Chiều rộng tối đa */
+    white-space: normal; /* Đảm bảo chữ không bị cắt */
+}
+
+.tooltip-arrow {
+    border-top-color: white !important; /* Màu của mũi tên tooltip */
+}
+
+
+
+
 
 /* Item seller */
 .table thead {
