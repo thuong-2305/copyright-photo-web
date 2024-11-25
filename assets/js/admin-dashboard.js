@@ -2,7 +2,7 @@
 // Xử lý biểu đồ
 // Data for the chart
 const labels = [
-    "1", "2", "3", "4", "5", "6", 
+    "1", "2", "3", "4", "5", "6",
     "7", "8", "9", "10", "11", "12"
 ];
 const data = {
@@ -57,7 +57,7 @@ const config = {
                     text: "Tháng",
                 },
             },
-           
+
         },
     },
 };
@@ -65,8 +65,6 @@ const config = {
 // Render the chart in the canvas element
 const ctx = document.getElementById("userStatisticsChart").getContext("2d");
 new Chart(ctx, config);
-
-
 
 // Xử lý doanh thu theo tháng 
 // Dữ liệu giả
