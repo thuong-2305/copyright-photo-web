@@ -1,23 +1,20 @@
 :root {
-  --primary-color: #009970;
-  --primary-hover-color: #00b383;
-  --text-color: #666777;
-  --text-hover-color: #000;
-  --footer-bg-color: #f9f9f9;
-  --footer-link-color: #333;
-  --input-border-color: #ccc;
-  --button-hover-color: #4a84d9;
-  --footer-border-color: #e0e0e0;
-  --footer-text-color: #777;
-  --line-seperate: #e0e0e0;
+  --primary-color: #ccc;
+  --secondary-color: rgb(255, 255, 255);
+  --text-color: #000;
+  --nonary-color: #0b6508d8;
+  --denary-color: #f33;
+}
 
-  --swatch_1: #f0f4f9;
-  --swatch_2: #b5d2e1;
-  --swatch_3: #a2a9b6;
-  --swatch_4: #03d1a8;
-  --swatch_5: #3f4759;
-  --swatch_6: #49bbae;
-  --swatch_7: #696dbf;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--primary-color);
 }
 
 main {
@@ -25,7 +22,7 @@ main {
   flex-direction: column;
   gap: 24px;
   height: 100%;
-  background-color: var(--swatch_1);
+  background-color: var(--primary-color);
 }
 
 /* ---------------------------------------------------Begin: San pham------------------------------------*/
@@ -43,13 +40,15 @@ main {
 /* phần chứa header (th) */
 .table-header {
   width: 100%;
+  background-color: #000;
+  color: var(--text-color);
+  border-spacing: 0;
 }
 
 .table-header th {
-  color: #e4e7ea;
-  background-color: white;
-  border-color: black;
-  color: black;
+  color: var(--text-color);
+  background-color: #f2f2f2;
+  border-color: #23282c;
 }
 
 .table-header th {
@@ -74,22 +73,30 @@ main {
 }
 
 /* phần chứa nội dung  */
-.table-content {
+/* .table-content {
+  min-height: 200px;
+  max-height: 550px;
   overflow: auto;
   width: 100%;
-  padding: 0 !important
+} */
+
+.table-header tbody td {
+  padding: 12px;
 }
 
-.table-content table {
-  width: 100%;
+.table-header tbody tr:nth-child(odd) {
+  background-color: #e6e6e6; /* Màu cho hàng lẻ */
 }
 
-.table-content nav {
-  width: 100%;
+.table-header tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Màu cho hàng chẵn */
 }
 
+.table-header tbody td:last-child {
+  text-align: center;
+}
 
-.table-content table td div {
+.table-header tbody td div {
   display: inline;
 }
 
@@ -107,13 +114,13 @@ main {
 
 .table-content td {
   position: relative;
-  color: black;
+  color: var(--text-color);
 }
 
 /* Link chi tiet san pham */
 .table-content td a {
   display: block;
-  color: black;
+  color: #fff;
 }
 
 .table-content td a:hover {
@@ -144,7 +151,6 @@ main {
 
 /*  phần footer table  */
 .table-footer {
-  background-color: white;
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #23282c;
@@ -198,7 +204,7 @@ main {
   padding: 4px 10px;
   border: none;
   border-radius: 5px;
-  background-color: #e7e7e7;
+  background-color: #aaa;
 }
 
 .overlayTable input[type="file"] {
@@ -230,8 +236,26 @@ main {
 .frame__container {
   display: flex;
   flex-direction: column;
-  background: var(--swatch_1);
-  margin: 20px;
+  background-color: var(--secondary-color);
+  height: 100%;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+}
+.frame__title {
+  margin: 0px 0px 5px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  line-height: 1.235;
+  color: var(--text-color);
+}
+.frame__desc {
+  margin: 0px 0px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  line-height: 1.57;
+  color: rgb(160, 160, 160);
 }
 
 .frame__content {
@@ -247,10 +271,11 @@ main {
   padding: 20px;
   border-radius: 16px;
   height: 100%;
-  background-color: white;
+  background-color: var(--primary-color);
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.25);
 }
 .statistic i {
-  color: black;
+  color: var(--text-color);
   font-size: 30px;
   width: 26px;
   height: 26px;
@@ -261,7 +286,7 @@ main {
   font-weight: 600;
   font-family: Inter, sans-serif;
   line-height: 1.235;
-  color: black;
+  color: var(--text-color);
 }
 
 .statistic .statistic-bot__name {
@@ -270,14 +295,25 @@ main {
   font-weight: 500;
   font-family: Inter, sans-serif;
   line-height: 1.5;
-  color: black;
+  color: var(--text-color);
 }
 .statistic .statistic-bot__compare {
   margin: 0px;
   font-size: 0.75rem;
   font-weight: 500;
   font-family: Inter, sans-serif;
-  color: rgb(252, 184, 89);
+  color: var(--text-color);
   line-height: 1.25;
+}
+
+/* Màu cho số liệu tăng giảm */
+.statistic--increase .statistic-bot__compare,
+.statistic--increase i {
+  color: var(--nonary-color);
+}
+
+.statistic--decrease .statistic-bot__compare,
+.statistic--decrease i {
+  color: var(--denary-color);
 }
 /*-------------------------------------------------- End: THong ke --------------------------------------*/

@@ -66,8 +66,8 @@ li {
 
 /* Common */
 .row h2 {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
 }
 .product-container {
   margin-top: 20px;
@@ -237,6 +237,7 @@ li {
 
 .product-details p {
   width: 70%;
+  margin-bottom: 0;
 }
 /* END LEFT */
 
@@ -254,8 +255,12 @@ li {
 }
 
 .product-right {
-  border: 1px var(--border-color) solid;
-  padding: 16px;
+  padding: 0 16px;
+}
+
+.product-right .liscense a {
+  margin-left: 16px;
+  color: #000;
 }
 
 .btn-buy {
@@ -274,7 +279,7 @@ li {
   background: #f4f4f4;
 }
 
-.product-price {
+.product-price p {
   font-size: 20px;
   font-weight: 700;
 }
@@ -282,6 +287,7 @@ li {
 .product-conditions {
   border: 1px var(--border-color) solid;
   padding: 4px 0;
+  margin-bottom: 30px;
 }
 
 .product-conditions li {
@@ -328,6 +334,59 @@ li {
 
 .condition div p {
   margin-top: 8px;
+}
+
+/* Begin: Promotion */
+.promotion {
+  border-top: 1px solid #000;
+  padding: 16px 0;
+  border-bottom: 1px solid #000;
+}
+
+.promotion .title {
+  display: flex;
+  gap: 10px;
+}
+
+.promotion .title p {
+  font-size: 16px;
+  color: #000;
+  font-weight: 700;
+}
+
+.grid-btn {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.grid-btn .btn--packageimg {
+  display: inline-block;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 48px;
+  min-width: 80px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #000;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.grid-btn .btn--packageimg:hover {
+  background-color: #eee;
+}
+
+.grid-btn .btn--packageimg.active {
+  background-color: #000;
+  color: #fff;
 }
 
 /* Begin: Categories tương tự */

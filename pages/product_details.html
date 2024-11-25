@@ -245,13 +245,13 @@
             </div>
 
             <div class="product-right col col-half">
-                <h2 class="mt-8">Loại giấy phép</h2>
+                <h2 class="liscense mt-8">1. Chọn giấy phép của bạn <a href="../pages/license-basic.html"><i class="fa-solid fa-circle-info"></i></a></h2>
                 <ul class="product-conditions mt-8">
                     <li class="condition">
                         <div>
                             <div>
                                 <span>
-                                    <input type="radio" name="condition" id="condition1" checked>
+                                    <input type="radio" name="condition" id="condition1" value="standard" checked>
                                 </span>
                             </div>
                             <div>
@@ -265,7 +265,7 @@
                         <div>
                             <div>
                                 <span>
-                                    <input type="radio" name="condition" id="condition1" checked>
+                                    <input type="radio" name="condition" id="condition1" value="advanced">
                                 </span>
                             </div>
                             <div>
@@ -276,7 +276,30 @@
                         </div>
                     </li>
                 </ul>
-                <p class="product-price mt-16">45.000vnd</p>
+
+                <div class="promotion">
+                    <div class="title">
+                        <p>2. </p>
+                        <p>Bạn có muốn mua hình ảnh này như một phần của gói không? Nó có thể rẻ hơn và bạn không phải chọn tất cả hình ảnh ngay bây giờ.</p>
+                    </div>
+                    <div class="grid-btn">
+                        <button class="btn--packageimg active" data-label="Hình ảnh đơn" data-discount="1">
+                            <span>Hình ảnh đơn</span><span></span>
+                        </button>
+                        <button class="btn--packageimg " data-label="Gói 5" data-discount="0.5">
+                            <span>Gói 5</span><span style="color: green; font-size: 12px;">(-50%)</span>
+                        </button>
+                        <button class="btn--packageimg " data-label="Gói 10" data-discount="0.35">
+                            <span>Gói 10</span><span style="color: green; font-size: 12px;">(-65%)</span>
+                        </button>
+                        <button class="btn--packageimg " data-label="Gói 25" data-discount="0.2">
+                            <span>Gói 25</span><span style="color: green; font-size: 12px;">(-80%)</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-price mt-16">
+                    <p>45.000 VND</p>
+                </div>
                 <button onclick="window.location.href='../pages/checkout.html'" class="btn-right btn-buy mt-16">Mua và tải xuống ngay bây giờ</button>
                 <button onclick="window.location.href='../pages/cart.html'" class="btn-right btn-add-cart mt-16">Thêm vào giỏ hàng</button>
             </div>
