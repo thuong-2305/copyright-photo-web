@@ -3,7 +3,6 @@ const btnEnlarge = document.querySelector(".btn-enlarge");
 const btnClose = document.querySelector("#modal-image .btn-close");
 const divImg = document.querySelector(".div-img");
 
-alert(btnClose);
 function openModal() {
   modalImage.style.display = "flex";
 }
@@ -28,4 +27,18 @@ modalImage.addEventListener("click", function (e) {
   if (e.target === modalImage) {
     closeModal();
   }
+});
+
+// Lấy tất cả các button trong div grid-btn
+const buttons = document.querySelectorAll(".grid-btn .btn--packageimg");
+
+// Thêm sự kiện click cho mỗi button
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Loại bỏ class 'active' khỏi tất cả các button
+    buttons.forEach((btn) => btn.classList.remove("active"));
+
+    // Thêm class 'active' vào button được nhấn
+    button.classList.add("active");
+  });
 });

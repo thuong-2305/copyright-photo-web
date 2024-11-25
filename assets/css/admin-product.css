@@ -101,7 +101,7 @@ main {
 
 .table-content td {
   position: relative;
-  color: #fff;
+  color: var(--text-color);
 }
 
 /* Link chi tiet san pham */
@@ -192,7 +192,7 @@ main {
   padding: 4px 10px;
   border: none;
   border-radius: 5px;
-  background-color: #e7e7e7;
+  background-color: #aaa;
 }
 
 .overlayTable input[type="file"] {
