@@ -1,61 +1,68 @@
 :root {
-    --primary-color: #009970;
-    --primary-hover-color: #00b383;
-    --text-color: #666777;
-    --text-hover-color: #000;
-    --footer-bg-color: #f9f9f9;
-    --footer-link-color: #333;
-    --input-border-color: #ccc;
-    --button-hover-color: #4a84d9;
-    --footer-border-color: #e0e0e0;
-    --footer-text-color: #777;
-    --line-seperate: #e0e0e0;
+  --primary-color: #009970;
+  --primary-hover-color: #00b383;
+  --text-color: #666777;
+  --text-hover-color: #000;
+  --footer-bg-color: #f9f9f9;
+  --footer-link-color: #333;
+  --input-border-color: #ccc;
+  --button-hover-color: #4a84d9;
+  --footer-border-color: #e0e0e0;
+  --footer-text-color: #777;
+  --line-seperate: #e0e0e0;
 }
 
-p {
-    color: var(--footer-text-color);
+/* Global styles for the custom slider */
+::-webkit-scrollbar {
+  width: 1.3rem;
 }
 
-.type-image {
-    margin-left: 20px;
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: #797979;
+  transition: all 0.5s ease-in-out;
 }
 
-.type-image .contain-box {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    overflow-x: scroll;
+::-webkit-scrollbar-thumb:hover {
+  background: #222224;
 }
 
-.type-image .contain-box .box {
-    position: relative;
-    margin-right: 20px;
-    overflow: hidden;
+::-webkit-scrollbar-track {
+  background: #f9f9f9;
 }
 
-.type-image .contain-box .box p {
-    position: absolute;
-    color: black;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-}   
-
-.type-image .contain-box .box img {
-    width: 200px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 5px;
-    filter: brightness(80%);
+/* Section-specific styles */
+#tranding {
+  padding: 4rem 0;
 }
 
-.type-image .contain-box .box:hover img {
-   
-    cursor: pointer;
+#trading .tranding-container {
+  margin-top: 50px;
 }
 
+#tranding .custom-text-center {
+  text-align: center;
+}
 
+#tranding .section-heading {
+  font-size: 3rem;
+  color: var(--custom-primary);
+  padding: 2rem 0;
+}
 
+#tranding .tranding-slide {
+  width: 22rem;
+  height: 20rem;
+  position: relative;
+}
+
+#tranding .tranding-slide-img img {
+  width: 20rem;
+  height: 15rem;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+#tranding .tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
+  background: var(--custom-primary);
+}
