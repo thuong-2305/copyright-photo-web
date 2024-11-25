@@ -17,7 +17,7 @@ const data = {
             tension: 0.4, // Smooth curve
         },
         {
-            label: "Người dùng",
+            label: "Khách hàng",
             data: [450, 550, 650, 580, 620, 700, 750, 800, 820, 850, 900, 950],
             borderColor: "rgba(75, 192, 192, 1)",
             backgroundColor: "rgba(75, 192, 192, 0.2)",
@@ -25,7 +25,7 @@ const data = {
             tension: 0.4,
         },
         {
-            label: "Người mới",
+            label: "Người dùng mới",
             data: [200, 220, 300, 250, 270, 300, 320, 330, 340, 350, 360, 380],
             borderColor: "rgba(255, 99, 132, 1)",
             backgroundColor: "rgba(255, 99, 132, 0.2)",

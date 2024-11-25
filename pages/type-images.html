@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="../assets/css/homepage.css">
     <link rel="stylesheet" href="../assets/css/navbar-footer.css">
     <link rel="stylesheet" href="../assets/css/homeuser.css">
+    <link rel="stylesheet" href="../assets/css/type-images.css">
     <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="../assets/libraries/swiper/css/swiper-bundle.min.css">
     <title>CoRiPhoto</title>
 </head>
 
@@ -92,7 +92,8 @@
                     </div>
                     <div class="d-flex align-items-center pt-1">
                         <div class="sell">
-                            <a href="../pages/register-contributor.html" class="sell mx-lg-2">Người phân phối<i class="fa-solid fa-angle-down px-2"></i></a>
+                            <a href="../pages/register-contributor.html" class="sell mx-lg-2">Người phân phối<i
+                                    class="fa-solid fa-angle-down px-2"></i></a>
                             <div class="link-hover">
                                 <a href="#">Đăng ký thành người phân phối</a>
                             </div>
@@ -107,7 +108,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="d-flex align-items-center user-icon" id="user">
-                        <img class="avatar position-relative" src="../assets/images/avart-default.png"/>
+                        <img class="avatar position-relative" src="../assets/images/avart-default.png" />
                         <i class="fa fa-caret-down ms-2"></i>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
     <section class="user-account bg-white">
         <div class="container">
             <div class="top d-flex mt-5 align-items-center">
-                <img class="avatar position-relative" src="../assets/images/avart-default.png"/>
+                <img class="avatar position-relative" src="../assets/images/avart-default.png" />
                 <div class="info">
                     <div class="name">
                         <span>Hi, Test</span>
@@ -165,7 +166,7 @@
                 </ul>
             </div>
             <button class="btn-close btn-close-black close-user"></button>
-        </div>                    
+        </div>
     </section>
     <div class="overlay"></div>
     <!-- section user account -->
@@ -202,289 +203,232 @@
     </section>
     <!--section banner -->
 
-    <!--section type-images -->
-    <section class="type-images">
-        <div class="container d-flex justify-content-between detail">
-            <a href="#" class="text-decoration-none text-dark">
-                <div class="category-item">
-                    <img src="../assets/images/Photos/children/4.jpg" alt="">
-                    <p>Ảnh chụp</p>
-                </div>
-            </a>
-            <a href="#" class="text-decoration-none text-dark">
-                <div class="category-item">
-                    <img src="../assets/images/vector/bg/3.avif" alt="">
-                    <p>Ảnh Vector</p>
-                </div>
-            </a>
-            <a href="#" class="text-decoration-none text-dark">
-                <div class="category-item">
-                    <img src="../assets/images/ai/Animal/023.jpg" alt="">
-                    <p>Ảnh AI</p>
-                </div>
-            </a>
-        </div>
-    </section>
-    <!--section type-images -->
 
-    <!--section category -->
-    <section class="category-home">
-        <div class="container title align-items-center">
-            <p>Các danh mục phổ biến</p>
-            <a href="#" class="btn btn-outline-success rounded-pill fs-5">Xem nhiều hơn</a>
+    <!-- section category detail -->
+    <section id="tranding">
+        <div class="pane-top text-center my-3">
+            <h1 class="fw-bold">Khám phá tài nguyên theo phong cách</h1>
+            <p class="fs-3 mb-5">Khám phá các phong cách <span class="text-success fw-semibold">hình ảnh AI</span> khác nhau
+                để thể hiện những ý tưởng mạnh mẽ của bạn và kết nối với khán giả</p>
         </div>
-
-        <!-- photos -->
-        <div class="swiper-container category-home">
-            <div class="swiper-wrapper container photos">
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="category">
-                            <img src="../assets/images/Animals/1.jpg" alt="">
-                            <span>Động vật</span>
+        <div class="tranding-container">
+            <div class="swiper tranding-slider">
+                <div class="swiper-wrapper">
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/Animal/10.jpg" alt="Trending">
                         </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="category">
-                            <img src="../assets/images/Food/001.jpg" alt="">
-                            <span>Thức ăn</span>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Động vật</h5>
+                            </div>
                         </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="category">
-                            <img src="../assets/images/Nature/1.jpg" alt="">
-                            <span>Tự nhiên</span>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/Character/N.jpg" alt="Trending">
                         </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="category">
-                            <img src="../assets/images/People/1.jpg" alt="">
-                            <span>Con người</span>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Kí tự</h5>
+                            </div>
                         </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#">
-                        <div class="category">
-                            <img src="../assets/images/Still Life/1.jpg" alt="">
-                            <span>Sự sống</span>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/ImageWorld/004.jpg" alt="Trending">
                         </div>
-                    </a>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Hoạt hình</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/SkyHouse/03.png" alt="Trending">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Viễn tưởng</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/Food/003.jpg" alt="Trending">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thức ăn</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/Plant/08.png" alt="Trending">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thực vật</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/ImageWorld/004.jpg" alt="Trending">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Hoạt hình</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/SkyHouse/03.png" alt="Trending">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Viễn tưởng</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/Food/003.jpg" alt="Trending">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thức ăn</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Slide-start -->
+                    <div class="swiper-slide tranding-slide">
+                        <div class="tranding-slide-img">
+                            <img src="../assets/images/ai/Plant/08.png" alt="Trending">
+                        </div>
+                        <div class="tranding-slide-content">
+                            <div class="tranding-slide-content-bottom">
+                                <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thực vật</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide-end -->
+                    <!-- Add more slides here as needed -->
                 </div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
-        <a href="#" class="btn btn-outline-success rounded-pill fs-5 d-none see-more">Xem nhiều hơn</a>
     </section>
-    <!--section category -->
+    <!-- section category detail -->
 
-    <!-- section raw images -->
-    <section class="container raw-images">
-        <div class="heading">
-            <h3>Những gì đang có <span>xu hướng</span> trong tuần</h3>
-            <div class="button-container">
-                <button class="custom-button"><i class="fa fa-search"></i> Tự nhiên</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Athlete</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Gia đình</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Thác nước</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Sự sống</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Portrait</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Thành phố</button>
-                <button class="custom-button"><i class="fa fa-search"></i> Du lịch</button>
+    <hr>
+    <!-- section category trend -->
+    <section class="trend-type">
+        <div class="trending-section">
+            <h1 class="title mb-2 fs-1">Xu hướng tháng này</h1>
+            <p class="subtitle fs-3">Khám phá các vectơ hoàn hảo cho các dự án và chiến dịch trong mùa này.</p>
+            <div class="trending-items">
+                <div class="item">
+                    <div class="image-layout">
+                        <div class="column left">
+                            <img src="../assets/images/ai/Plant/03.png">
+                            <img src="../assets/images/ai/Plant/05.png">
+                        </div>
+                        <div class="column right">
+                            <img src="../assets/images/ai/Plant/18.png">
+                        </div>
+                    </div>
+                    <p class="item-title">Hoa thực vật</p>
+                </div>
+                <div class="item">
+                    <div class="image-layout">
+                        <div class="column left">
+                            <img src="../assets/images/ai/Number/02.png">
+                            <img src="../assets/images/ai/Number/05.png">
+                        </div>
+                        <div class="column right">
+                            <img src="../assets/images/ai/Number/09.png">
+                        </div>
+                    </div>
+                    <p class="item-title">Các con số</p>
+                </div>
+                <div class="item">
+                    <div class="image-layout">
+                        <div class="column left">
+                            <img src="../assets/images/ai/Animal/054.png">
+                            <img src="../assets/images/ai/Animal/055.png">
+                        </div>
+                        <div class="column right">
+                            <img src="../assets/images/ai/Animal/056.png">
+                        </div>
+                    </div>
+                    <p class="item-title">Động vật</p>
+                </div>
+                <div class="item">
+                    <div class="image-layout">
+                        <div class="column left">
+                            <img src="../assets/images/ai/ImageWorld/006.jpg">
+                            <img src="../assets/images/ai/ImageWorld/003.jpg">
+                        </div>
+                        <div class="column right">
+                            <img src="../assets/images/ai/ImageWorld/000.jpg">
+                        </div>
+                    </div>
+                    <p class="item-title">Thế giới trong sách</p>
+                </div>
             </div>
         </div>
-        <div class="new-events">
+    </section>
+    <!-- section category trend -->
+
+    <!-- section infomation addition -->
+     <section class="info-why">
+        <h1 class="title mb-2 fs-1 text-center">Tại sao giấy phép hỉnh ảnh AI</h1>
+        <div class="contain d-flex ">
             <div class="box">
-                <div class="dream">
-                    <div class="pic">
-                        <img src="../assets/images/Abstract/5.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Đất nứt</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Aerial/3.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Mây núi</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Fine Art/10.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Hoa huệ</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Commercial/1.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Bánh trứng</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Macro/2.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Đà điểu</p>
-                        </div>
-                    </div>
+                <img src="../assets/images/ai/Plant/20.png" alt="">
+                <div class="content">
+                    <h3>Không giới hạn về sáng tạo</h3>
+                    <p>Bạn có thể tìm thấy hình ảnh minh họa cho bất kỳ chủ đề nào bạn muốn, 
+                        từ những hình ảnh trừu tượng đến những hình ảnh chân thực.</p>
                 </div>
-
-                <div class="dream">
-                    <div class="pic">
-                        <img src="../assets/images/Travel/6.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Thác nước bạc</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/City and Architecture/2.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Thành phố đêm</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Transportation/7.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Lạc đà xa mạc</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/People/8.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Phố đông đúc</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Vietnam/01.webp">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Vịnh Hạ Long</p>
-                        </div>
-                    </div>
+            </div>
+            <div class="box">
+                <img src="../assets/images/ai/Food/010.webp" alt="">
+                <div class="content">
+                    <h3>Hài hòa về nghệ thuật</h3>
+                    <p>Hình ảnh minh họa giúp bạn tạo ra những thiết kế đồng nhất và chuyên nghiệp.</p>
                 </div>
-
-                <div class="dream">
-                    <div class="pic">
-                        <img src="../assets/images/Landscapes/9.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Down by the river</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Other/10.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Machinery</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Animals/5.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Gấu đen</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Vietnam/05.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Việt nam vô địch</p>
-                        </div>
-                    </div>
-                    <div class="pic">
-                        <img src="../assets/images/Food/003.jpg">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                        <div class="image-text">
-                            <p>Tàu hủ xào rau</p>
-                        </div>
-                    </div>
+            </div>
+            <div class="box">
+                <img src="../assets/images/ai/Animal/014.jpg" alt="">
+                <div class="content">
+                    <h3>Hoàn hảo để kể chuyện</h3>
+                    <p>Hình ảnh minh họa là một cách tuyệt vời để kể những câu chuyện hấp dẫn và gây ấn tượng.</p>
                 </div>
             </div>
         </div>
-        <div class="see-more">
-            <button class="see-more-button">
-                <a href="./pages/category-details.html" class="text-success text-decoration-none">Xem nhiều hơn</a>
-            </button>
-        </div>
-        </div>
-    </section>
-    <!-- section raw images -->
+     </section>
+    <!-- section infomation addition -->
 
     <!--section footer -->
     <section class="footer">
@@ -539,9 +483,11 @@
     <!--section footer -->
 
     <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/libraries/swiper/js/swiper-bundle.min.js"></script>
     <script src="../assets/js/homepage.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/homeuser.js"></script>
+    <script src="../assets/js/type-images.js"></script>
 </body>
 
 </html>

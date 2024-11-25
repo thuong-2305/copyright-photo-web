@@ -53,17 +53,54 @@ html {
 }
 
 #checkout .checkout-container {
-    margin: 62px;
+    margin: 48px;
 }
 
 /* Riêng */
+
+
+/* Tab credit, bank, paypal */
+/* Xóa trạng thái màu chữ xanh từ Bootstrap */
+.btn-dark {
+    background-color: #343a40 !important;
+    color: #fff !important; /* Đảm bảo chữ màu trắng */
+}
+
+/* Trạng thái khi được nhấn hoặc đang focus */
+.btn-dark:focus, .btn-dark.active {
+    background-color: #343a40 !important; /* Đen */
+    color: #fff !important; /* Chữ trắng */
+    box-shadow: none !important; /* Xóa hiệu ứng ánh sáng xanh */
+}
+
+.btn:focus, .btn.active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Áp dụng riêng cho tab */
+#credit-card-tab, #bank-account-tab, #paypal-tab {
+    color: #343a40; /* Màu chữ mặc định (đen) khi chưa active */
+    background-color: #f8f9fa; /* Nền mặc định */
+}
+
+#credit-card-tab.active, #bank-account-tab.active, #paypal-tab.active {
+    color: #fff !important; /* Chữ trắng */
+    background-color: #343a40 !important; /* Nền đen */
+    box-shadow: none !important; /* Xóa ánh sáng mặc định */
+}
+
+
+
+
+
+
 
 /* Billing */
 
 #checkout .checkout-content .col-7 .billing-container {
     /* background-color: #f4f4f4; */
     padding: 28px 16px;
-    margin-bottom: 16px;
     /* border: 1px solid rgba(0, 0, 0, 0.12); */
     border-radius: 4px;
 }
@@ -188,4 +225,22 @@ html {
 #cart-summary-content .item .lst-property li:last-child {
     font-weight: 400;
 }
+
+
+
+.purchase-details .payment-details .heading-payment-details {
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+.purchase-details .payment-details span {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+
+
+
 
