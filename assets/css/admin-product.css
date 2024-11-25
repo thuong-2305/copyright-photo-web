@@ -1,26 +1,43 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root {
+  --primary-color: #009970;
+  --primary-hover-color: #00b383;
+  --text-color: #666777;
+  --text-hover-color: #000;
+  --footer-bg-color: #f9f9f9;
+  --footer-link-color: #333;
+  --input-border-color: #ccc;
+  --button-hover-color: #4a84d9;
+  --footer-border-color: #e0e0e0;
+  --footer-text-color: #777;
+  --line-seperate: #e0e0e0;
+
+  --swatch_1: #f0f4f9;
+  --swatch_2: #b5d2e1;
+  --swatch_3: #a2a9b6;
+  --swatch_4: #03d1a8;
+  --swatch_5: #3f4759;
+  --swatch_6: #49bbae;
+  --swatch_7: #696dbf;
 }
 
-body {
-  font-family: "Roboto", sans-serif;
-  background-color: rgb(33, 34, 45);
-  color: #e4e7ea;
-}
 main {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 24px;
   height: 100%;
-  background-color: #000;
+  background-color: var(--swatch_1);
 }
+
 /* ---------------------------------------------------Begin: San pham------------------------------------*/
+
 .table-outline {
   width: 100%;
-  border: 1px solid #23282c;
+  border: 1px solid white;
+}
+
+.sanpham {
+  width: 95%;
+  margin: 0 auto;
 }
 
 /* phần chứa header (th) */
@@ -30,12 +47,14 @@ main {
 
 .table-header th {
   color: #e4e7ea;
-  background-color: #3e464d;
-  border-color: #23282c;
+  background-color: white;
+  border-color: black;
+  color: black;
 }
 
 .table-header th {
   cursor: pointer;
+  padding: 10px;
 }
 
 .table-header th i {
@@ -50,45 +69,51 @@ main {
 
 .table-header th,
 .table-content td {
-  padding: 0.75rem;
   text-align: center;
-  vertical-align: top;
-  border-top: 1px solid #23282c;
+  border: 1px solid var(--line-seperate);
 }
+
 /* phần chứa nội dung  */
 .table-content {
-  min-height: 200px;
-  max-height: 550px;
   overflow: auto;
-  margin: 0 auto;
   width: 100%;
+  padding: 0 !important
 }
 
 .table-content table {
   width: 100%;
 }
 
-.table-content table td {
-  padding: 12px;
+.table-content nav {
+  width: 100%;
 }
+
 
 .table-content table td div {
   display: inline;
 }
 
+.table-content table td .btn {
+  margin: 5px;
+}
+
+.table-content tr{
+  background-color: lightgray;
+}
+
 .table-content tr:nth-of-type(even) {
-  background-color: #3e4144;
+  background-color: white;
 }
 
 .table-content td {
   position: relative;
-  color: #e4e7ea;
+  color: black;
 }
 
 /* Link chi tiet san pham */
 .table-content td a {
   display: block;
-  color: #e4e7ea;
+  color: black;
 }
 
 .table-content td a:hover {
@@ -119,7 +144,7 @@ main {
 
 /*  phần footer table  */
 .table-footer {
-  background-color: #3e464d;
+  background-color: white;
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #23282c;
@@ -130,7 +155,6 @@ main {
 .table-footer select {
   padding: 5px 10px;
   border: 3px solid transparent;
-  background-color: #cccece;
 }
 
 /* Nút bấm ở footer */
@@ -204,31 +228,10 @@ main {
 /* -----------------------------------------------End: San pham */
 /* -----------------------------------------------Begin: Thong ke------------------------------------------------ */
 .frame__container {
-  padding: 24px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px,
-    rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(33, 34, 45);
-  height: 100%;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 10px;
-}
-.frame__title {
-  margin: 0px 0px 5px;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: Inter, sans-serif;
-  line-height: 1.235;
-  color: rgb(255, 255, 255);
-}
-.frame__desc {
-  margin: 0px 0px 24px;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: Inter, sans-serif;
-  line-height: 1.57;
-  color: rgb(160, 160, 160);
+  background: var(--swatch_1);
+  margin: 20px;
 }
 
 .frame__content {
@@ -244,10 +247,10 @@ main {
   padding: 20px;
   border-radius: 16px;
   height: 100%;
-  background-color: rgb(23, 24, 33);
+  background-color: white;
 }
 .statistic i {
-  color: rgb(255, 255, 255);
+  color: black;
   font-size: 30px;
   width: 26px;
   height: 26px;
@@ -258,7 +261,7 @@ main {
   font-weight: 600;
   font-family: Inter, sans-serif;
   line-height: 1.235;
-  color: rgb(255, 255, 255);
+  color: black;
 }
 
 .statistic .statistic-bot__name {
@@ -267,7 +270,7 @@ main {
   font-weight: 500;
   font-family: Inter, sans-serif;
   line-height: 1.5;
-  color: rgb(232, 232, 232);
+  color: black;
 }
 .statistic .statistic-bot__compare {
   margin: 0px;

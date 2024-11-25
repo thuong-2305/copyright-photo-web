@@ -21,7 +21,7 @@
 }
 
 .shadow-bottom {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Chỉ có bóng ở dưới */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 a {
