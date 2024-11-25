@@ -25,6 +25,7 @@
     margin-left: 20px;
     border-radius: 50%;
     border: none; 
+    cursor: pointer;
 }
 
 #nav .container .fa-solid.fa-angle-down {
