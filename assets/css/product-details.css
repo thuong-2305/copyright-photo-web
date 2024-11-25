@@ -274,7 +274,7 @@ li {
   background: #f4f4f4;
 }
 
-.product-price {
+.product-price p {
   font-size: 20px;
   font-weight: 700;
 }
