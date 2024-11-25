@@ -76,7 +76,7 @@ html {
 
 /* Avatar */
 #account-menu-container .profile-image>img {
-    max-width: 70px;
+    max-width: 60px;
     border-radius: 50%;
     cursor: pointer;
 }

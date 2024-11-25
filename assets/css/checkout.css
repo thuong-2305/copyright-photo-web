@@ -226,3 +226,21 @@ html {
     font-weight: 400;
 }
 
+
+
+.purchase-details .payment-details .heading-payment-details {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+.purchase-details .payment-details span {
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+
+
+
+

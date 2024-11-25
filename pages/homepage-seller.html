@@ -194,7 +194,7 @@
                                             class="profile-image-container d-flex text-center align-items-center justify-content-center py-3">
                                             <div class="profile-image">
                                                 <img class="rounded-circle mx-auto"
-                                                    src="/assets/images/avatar_profile.jpg" alt="Avatar profile">
+                                                    src="../assets/images/avart-default.png" alt="Avatar profile">
                                             </div>
                                             <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                         </div>
@@ -270,15 +270,16 @@
                                                 </div>
                                                 <div class="available-earning-text-content d-flex flex-column">
                                                     <div class="available-earning-text">
-                                                        Số tiền hiện có <i class="fas fa-info-circle"></i>
+                                                        Số tiền hiện có
+                                                        <!-- Thêm tooltip -->
+                                                        <i class="fas fa-info-circle icon-available-earning-text" data-toggle="tooltip" data-html="true" title="<strong>Làm thế nào để tôi được trả tiền?</strong><br>Số tiền tối thiểu để rút về cần ít nhất hoặc nhiều hơn 500.000VNĐ."></i>
                                                     </div>
                                                     <div class="available-earning-total font-weight-bold">
                                                         2.000.000VNĐ
                                                     </div>
                                                 </div>
                                                 <div class="request-payout ml-auto">
-                                                    <button class="pt-2 pb-2 pl-4 pr-4">Rút tiền
-                                                        ngay</button>
+                                                    <button class="pt-2 pb-2 pl-4 pr-4">Rút tiền ngay</button>
                                                 </div>
                                             </div>
 
@@ -301,6 +302,7 @@
                                         <a class="dropdown-item" href="#">Tất cả</a>
                                         <a class="dropdown-item" href="#">Photo</a>
                                         <a class="dropdown-item" href="#">Vector</a>
+                                        <a class="dropdown-item" href="#">AI</a>
                                     </div>
                                 </div>
 
@@ -503,6 +505,8 @@
         </div>
     </div>
 
+
+    <script src="../assets/js/homepage-seller.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/homeuser.js"></script>
     <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
