@@ -188,13 +188,27 @@
               <span>Số lượng sản phẩm đang chọn: <span class="ng-binding">3</span></span>
             </div>
             <div class="subtotal text-right fw-bold">
-              <label for="">Tổng cộng: 924.000đ</label>
+              <!-- Hiển thị giá gốc và giá sau khi giảm -->
+              <label for="" class="d-block">
+                <!-- Giá gốc -->
+                <span class="text-decoration-line-through me-2">1.000.000đ</span>
+
+                <!-- Giá sau giảm -->
+                <span>924.000đ</span>
+
+                <!-- Thông tin tổng cộng -->
+                <small class="text-danger d-block mt-1">
+                  (Giảm giá: 76.000đ)
+                </small>
+              </label>
+
             </div>
           </div>
           <div class="continue-with-purchase text-right mt-2">
             <a href="checkout.html" class="btn btn-success shadow-sm">Mua hàng</a>
           </div>
         </div>
+
 
         <!-- List control -->
         <div class="list-control">
@@ -205,14 +219,14 @@
                 <label for="select-all" class="mb-0">Chọn Tất Cả</label>
               </div>
             </div>
-            
-            <div class="promo-code d-flex align-items-center"> 
+
+            <div class="promo-code d-flex align-items-center">
               <input type="text" class="form-control mr-2" placeholder="Mã khuyến mãi" style="width: 200px;">
               <button class="btn btn-primary shadow-sm" type="button">Áp dụng</button>
             </div>
           </div>
         </div>
-        
+
       </div>
       <!-- End Header Cart 
       #cart-item-list
@@ -260,19 +274,23 @@
                       <dd>
                         <div class="d-flex align-items-center">
                           <div class="form-check mr-4">
-                            <input type="radio" name="options_1" class="form-check-input" style="width: 16px; height: 16px;">
-                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu chuẩn</label>
+                            <input type="radio" name="options_1" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
                           </div>
                           <div class="form-check">
-                            <input type="radio" name="options_1" class="form-check-input" style="width: 16px; height: 16px;">
-                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng cao</label>
+                            <input type="radio" name="options_1" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
                           </div>
                         </div>
 
                       </dd>
                     </div>
 
-                    
+
 
                     <div class="d-flex align-items-start">
                       <dt class="font-weight-normal">Tác giả:</dt>
@@ -337,18 +355,22 @@
                       <dd>
                         <div class="d-flex align-items-center">
                           <div class="form-check mr-4">
-                            <input type="radio" name="options_2" class="form-check-input" style="width: 16px; height: 16px;">
-                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu chuẩn</label>
+                            <input type="radio" name="options_2" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
                           </div>
                           <div class="form-check">
-                            <input type="radio" name="options_2" class="form-check-input" style="width: 16px; height: 16px;">
-                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng cao</label>
+                            <input type="radio" name="options_2" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
                           </div>
                         </div>
                       </dd>
                     </div>
 
-                    
+
 
                     <div class="d-flex align-items-start">
                       <dt class="font-weight-normal">Tác giả:</dt>
@@ -411,18 +433,22 @@
                       <dd>
                         <div class="d-flex align-items-center">
                           <div class="form-check mr-4">
-                            <input type="radio" name="options_3" class="form-check-input" style="width: 16px; height: 16px;">
-                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu chuẩn</label>
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
                           </div>
                           <div class="form-check">
-                            <input type="radio" name="options_3" class="form-check-input" style="width: 16px; height: 16px;">
-                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng cao</label>
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
                           </div>
                         </div>
                       </dd>
                     </div>
 
-                    
+
 
                     <div class="d-flex align-items-start">
                       <dt class="font-weight-normal">Tác giả:</dt>
