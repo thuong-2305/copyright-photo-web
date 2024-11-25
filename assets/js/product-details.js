@@ -43,7 +43,11 @@ const conditionItems = document.querySelectorAll(".condition");
 
 // Hàm reset trạng thái các nút giảm giá
 function resetButtons() {
-  buttons.forEach((button) => {
+  buttons.forEach((button, index) => {
+    if (index === 0) {
+      button.classList.add("active");
+      return;
+    }
     button.classList.remove("active");
   });
 }

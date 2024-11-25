@@ -258,6 +258,11 @@ li {
   padding: 0 16px;
 }
 
+.product-right .liscense a {
+  margin-left: 16px;
+  color: #000;
+}
+
 .btn-buy {
   background-color: #00ff7b;
 }
