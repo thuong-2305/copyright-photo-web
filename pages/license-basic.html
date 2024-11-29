@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../assets/css/homepage.css">
     <link rel="stylesheet" href="../assets/css/navbar-footer.css">
     <link rel="stylesheet" href="../assets/css/license.css">
+    <link rel="stylesheet" href="../assets/css/homeuser.css">
     <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -35,19 +36,19 @@
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-center flex-grow-1">
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3" aria-current="page" href="../homepage.html">
-                                        <span>Ảnh</span>
+                                    <a class="nav-link mx-lg-3" aria-current="page" href="homepage.html">
+                                        <span class="fw-semibold">Ảnh</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
-                                        <a href="#" class="">Ảnh chụp</a>
-                                        <a href="#" class="">Ảnh vectors</a>
-                                        <a href="#" class="">Ảnh AI</a>
+                                        <a href="./type-images.html">Ảnh chụp</a>
+                                        <a href="./type-images.html">Ảnh vectors</a>
+                                        <a href="./type-images.html">Ảnh AI</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-lg-3" href="./category-details.html">
-                                        <span>Danh mục</span>
+                                        <span class="fw-semibold">Danh mục</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
@@ -76,23 +77,23 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-lg-3" href="#">
-                                        <span>Giấy phép</span>
+                                        <span class="fw-semibold">Giấy phép</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
-                                        <a href="#" class="">Giấy phép ảnh tiêu chuẩn</a>
-                                        <a href="#" class="">Giấy phép miễn phí bản quyền</a>
+                                        <a href="./license-basic.html">Giấy phép ảnh tiêu chuẩn</a>
+                                        <a href="./license-basic.html">Giấy phép miễn phí bản quyền</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3" href="#">Giới thiệu</a>
+                                    <a class="nav-link mx-lg-3 fw-semibold" href="#">Giới thiệu</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="d-flex align-items-center pt-1">
                         <div class="sell">
-                            <a href="#" class="sell mx-lg-2">Người phân phối<i
+                            <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i
                                     class="fa-solid fa-angle-down px-2"></i></a>
                             <div class="link-hover">
                                 <a href="./register-contributor.html">Đăng ký thành người phân phối</a>
@@ -107,12 +108,69 @@
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a href="./login-signup/login.html" class="login-button">Đăng nhập</a>
+                    <div class="d-flex align-items-center user-icon" id="user">
+                        <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                        <i class="fa fa-caret-down ms-2"></i>
+                    </div>
                 </div>
             </nav>
         </div>
     </section>
     <!--section navbar -->
+
+    <!-- section user account -->
+    <section class="user-account bg-white">
+        <div class="container">
+            <div class="top d-flex mt-5 align-items-center">
+                <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                <div class="info">
+                    <div class="name">
+                        <span>Hi, Test</span>
+                        <p>test@gmail.com</p>
+                    </div>
+                    <a href="./editprofile.html" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
+                </div>
+            </div>
+            <div class="line-seperate"></div>
+            <div class="option">
+                <ul class="">
+                    <li class="item">
+                        <a href="./homeprofile.html">
+                            <i class="fas fa-user-cog me-2"></i>
+                            <p>Chi tiết tài khoản</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="./like.html">
+                            <i class="fas fa-heart me-2"></i>
+                            <p>Yêu thích</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="cart.html">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <p>Giỏ hàng</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                            <p>Lịch sử mua hàng</p>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="../homepage.html">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <p class="mb-0">Đăng xuất</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn-close btn-close-black close-user"></button>
+        </div>
+    </section>
+    <div class="overlay"></div>
+    <!-- section user account -->
 
     <!--section banner -->
     <section class="banner">
@@ -128,73 +186,93 @@
     <section class="license-basic">
         <div class="license-guide container my-5">
             <h2 class="text-dark fw-bold mb-4 text-start fs-2">Thỏa thuận cấp phép của CoRiPhoto</h2>
-            <p>Gửi người dùng CoRiPhoto:</p>  
-            <p>Các Điều khoản dịch vụ ("TOS") sau đây là thỏa thuận pháp lý giữa bạn hoặc chủ lao động 
-                hoặc tổ chức khác mà bạn thay mặt ký kết thỏa thuận này ("bạn" hoặc "Khách hàng") và 
-                CoRiPhoto (theo định nghĩa của thuật ngữ này trong Phần V Mục 24 bên dưới) và nêu 
+            <p>Gửi người dùng CoRiPhoto:</p>
+            <p>Các Điều khoản dịch vụ ("TOS") sau đây là thỏa thuận pháp lý giữa bạn hoặc chủ lao động
+                hoặc tổ chức khác mà bạn thay mặt ký kết thỏa thuận này ("bạn" hoặc "Khách hàng") và
+                CoRiPhoto (theo định nghĩa của thuật ngữ này trong Phần V Mục 24 bên dưới) và nêu
                 rõ các quyền và nghĩa vụ liên quan đến bất kỳ Nội dung nào được bạn cấp phép.</p>
 
-            <p>Vui lòng xem lại TOS này khi bạn mua bất kỳ giấy phép Nội dung nào. CoRiPhoto có quyền 
-                sửa đổi TOS bất kỳ lúc nào theo quyết định riêng của mình. Trước khi những thay đổi đó có 
-                hiệu lực, CoRiPhoto sẽ nỗ lực hợp lý để thông báo cho bạn về bất kỳ thay đổi nào như vậy. 
-                Thông báo đó có thể được gửi qua email đến địa chỉ email đã lưu trong tài khoản CoRiPhoto 
-                của bạn, thông báo trên trang này, trang đăng nhập của bạn và/hoặc bằng các phương tiện khác. 
-                Các sửa đổi đối với TOS này sẽ chỉ áp dụng cho các giao dịch mua tiềm năng (bao gồm bất kỳ gia 
-                hạn tự động nào). Bằng cách cấp phép Nội dung sau bất kỳ sửa đổi nào như vậy, bạn đồng ý ràng 
+            <p>Vui lòng xem lại TOS này khi bạn mua bất kỳ giấy phép Nội dung nào. CoRiPhoto có quyền
+                sửa đổi TOS bất kỳ lúc nào theo quyết định riêng của mình. Trước khi những thay đổi đó có
+                hiệu lực, CoRiPhoto sẽ nỗ lực hợp lý để thông báo cho bạn về bất kỳ thay đổi nào như vậy.
+                Thông báo đó có thể được gửi qua email đến địa chỉ email đã lưu trong tài khoản CoRiPhoto
+                của bạn, thông báo trên trang này, trang đăng nhập của bạn và/hoặc bằng các phương tiện khác.
+                Các sửa đổi đối với TOS này sẽ chỉ áp dụng cho các giao dịch mua tiềm năng (bao gồm bất kỳ gia
+                hạn tự động nào). Bằng cách cấp phép Nội dung sau bất kỳ sửa đổi nào như vậy, bạn đồng ý ràng
                 buộc với TOS đã sửa đổi.</p>
 
-            <p>ĐÂY LÀ GIẤY PHÉP MỘT CHỖ NGỒI CHO PHÉP MỘT CÁ NHÂN CẤP PHÉP, TẢI XUỐNG VÀ SỬ DỤNG NỘI DUNG. TRỪ 
+            <p>ĐÂY LÀ GIẤY PHÉP MỘT CHỖ NGỒI CHO PHÉP MỘT CÁ NHÂN CẤP PHÉP, TẢI XUỐNG VÀ SỬ DỤNG NỘI DUNG. TRỪ
                 KHI BẠN CHỌN <span class="text-primary">"GIẤY PHÉP NÂNG CAO"</span>, KHÔNG CÓ NGƯỜI NÀO KHÁC (
-                    BAO GỒM NHÂN VIÊN, ĐỒNG NGHIỆP HOẶC NHÀ THẦU ĐỘC LẬP) ĐƯỢC TRUY CẬP VÀ SỬ DỤNG NỘI DUNG ĐƯỢC 
-                    CẤP PHÉP THÔNG QUA TÀI KHOẢN CỦA BẠN.</p>
+                BAO GỒM NHÂN VIÊN, ĐỒNG NGHIỆP HOẶC NHÀ THẦU ĐỘC LẬP) ĐƯỢC TRUY CẬP VÀ SỬ DỤNG NỘI DUNG ĐƯỢC
+                CẤP PHÉP THÔNG QUA TÀI KHOẢN CỦA BẠN.</p>
 
-            <p>NẾU BẠN MUA <span class="text-primary">"GIẤY PHÉP TIÊU CHUẨN"</span>, QUYỀN CẤP PHÉP, TẢI XUỐNG VÀ SỬ DỤNG NỘI DUNG BỊ GIỚI HẠN Ở SỐ LƯỢNG NGƯỜI 
-                DÙNG ĐƯỢC PHÉP THEO ĐĂNG KÝ NHÓM ĐÓ. <span class="text-primary">"GIẤY PHÉP NÂNG CAO"</span> CỦA <span class="text-primary">CORIPHOTO</span> CẤP QUYỀN TRUY CẬP VÀ SỬ DỤNG 
+            <p>NẾU BẠN MUA <span class="text-primary">"GIẤY PHÉP TIÊU CHUẨN"</span>, QUYỀN CẤP PHÉP, TẢI XUỐNG VÀ SỬ
+                DỤNG NỘI DUNG BỊ GIỚI HẠN Ở SỐ LƯỢNG NGƯỜI
+                DÙNG ĐƯỢC PHÉP THEO ĐĂNG KÝ NHÓM ĐÓ. <span class="text-primary">"GIẤY PHÉP NÂNG CAO"</span> CỦA <span
+                    class="text-primary">CORIPHOTO</span> CẤP QUYỀN TRUY CẬP VÀ SỬ DỤNG
                 CHO NGƯỜI DÙNG KHÔNG GIỚI HẠN CÙNG VỚI CÁC QUYỀN BỔ SUNG KHÁC.</p>
 
-            <p>NẾU BẠN ĐANG MUA ĐĂNG KÝ DỊCH VỤ CỦA <span class="text-primary">CORIPHOTO</span>, DỊCH VỤ ĐÓ PHẢI TUÂN THEO CÁC ĐIỀU KHOẢN PHẦN MỀM DƯỚI 
+            <p>NẾU BẠN ĐANG MUA ĐĂNG KÝ DỊCH VỤ CỦA <span class="text-primary">CORIPHOTO</span>, DỊCH VỤ ĐÓ PHẢI TUÂN
+                THEO CÁC ĐIỀU KHOẢN PHẦN MỀM DƯỚI
                 DẠNG DỊCH VỤ CÓ SẴN "TẠI ĐÂY"</p>
 
             <hr>
-            <p>CoRiPhoto cấp cho bạn quyền không độc quyền, không thể chuyển nhượng để sử dụng, sửa đổi (trừ khi bị nghiêm 
-                cấm rõ ràng tại đây) và sao chép Nội dung trực quan trên toàn thế giới, vĩnh viễn, theo như được phép rõ ràng 
+            <p>CoRiPhoto cấp cho bạn quyền không độc quyền, không thể chuyển nhượng để sử dụng, sửa đổi (trừ khi bị
+                nghiêm
+                cấm rõ ràng tại đây) và sao chép Nội dung trực quan trên toàn thế giới, vĩnh viễn, theo như được phép rõ
+                ràng
                 bởi giấy phép hiện hành và tuân theo các giới hạn được nêu tại đây:</p>
-            
+
             <p><span class="fw-semibold">GIẤY PHÉP HÌNH ẢNH TIÊU CHUẨN</span> cấp cho bạn quyền sử dụng Hình ảnh:</p>
             <ol>
-                <li>Là bản sao kỹ thuật số, bao gồm trên các trang web, trong quảng cáo trực tuyến, trong phương tiện truyền 
-                    thông xã hội, trong quảng cáo di động, "ứng dụng" di động, phần mềm, thiệp điện tử, ấn phẩm điện tử (sách 
-                    điện tử, tạp chí điện tử, blog, v.v.), tiếp thị qua email và phương tiện truyền thông trực tuyến (bao gồm 
-                    trên các dịch vụ chia sẻ video như YouTube, Dailymotion, Vimeo, v.v., tùy thuộc vào các giới hạn ngân sách
-                     được nêu trong tiểu mục 4 bên dưới);
+                <li>Là bản sao kỹ thuật số, bao gồm trên các trang web, trong quảng cáo trực tuyến, trong phương tiện
+                    truyền
+                    thông xã hội, trong quảng cáo di động, "ứng dụng" di động, phần mềm, thiệp điện tử, ấn phẩm điện tử
+                    (sách
+                    điện tử, tạp chí điện tử, blog, v.v.), tiếp thị qua email và phương tiện truyền thông trực tuyến
+                    (bao gồm
+                    trên các dịch vụ chia sẻ video như YouTube, Dailymotion, Vimeo, v.v., tùy thuộc vào các giới hạn
+                    ngân sách
+                    được nêu trong tiểu mục 4 bên dưới);
                 </li>
-                <li>Được in dưới dạng vật lý như một phần của bao bì và nhãn sản phẩm, tiêu đề thư và danh thiếp, quảng cáo tại 
-                    điểm bán hàng, bìa CD và DVD hoặc trong quảng cáo và bản sao của phương tiện truyền thông hữu hình, bao gồm 
+                <li>Được in dưới dạng vật lý như một phần của bao bì và nhãn sản phẩm, tiêu đề thư và danh thiếp, quảng
+                    cáo tại
+                    điểm bán hàng, bìa CD và DVD hoặc trong quảng cáo và bản sao của phương tiện truyền thông hữu hình,
+                    bao gồm
                     tạp chí, báo và sách với điều kiện không có Hình ảnh nào được sao chép quá 500.000 lần tổng cộng;
                 </li>
-                <li>Là một phần của chiến dịch quảng cáo "Ngoài trời", bao gồm trên các biển quảng cáo, đồ nội thất đường phố, 
+                <li>Là một phần của chiến dịch quảng cáo "Ngoài trời", bao gồm trên các biển quảng cáo, đồ nội thất
+                    đường phố,
                     v.v., với điều kiện đối tượng mục tiêu của chiến dịch đó là ít hơn 500.000 lần hiển thị gộp.
                 </li>
-                <li>Được đưa vào phim, video, phim truyền hình, quảng cáo hoặc các sản phẩm nghe nhìn khác để phân phối trên bất 
+                <li>Được đưa vào phim, video, phim truyền hình, quảng cáo hoặc các sản phẩm nghe nhìn khác để phân phối
+                    trên bất
                     kỳ phương tiện nào hiện được biết đến hoặc được phát minh sau này, không tính đến quy mô khán giả;
                 </li>
-                <li>Cho mục đích sử dụng cá nhân, phi thương mại của riêng bạn (không để bán lại, tải xuống, phân phối hoặc bất kỳ 
+                <li>Cho mục đích sử dụng cá nhân, phi thương mại của riêng bạn (không để bán lại, tải xuống, phân phối
+                    hoặc bất kỳ
                     mục đích sử dụng thương mại nào)
                 </li>
             </ol>
 
-            <p><span class="fw-semibold">GIẤY PHÉP HÌNH ẢNH NÂNG CAO</span> cấp cho bạn quyền sử dụng Hình ảnh (các quyền này ngoài các quyền từ 1-5 ở trên và độc quyền 
+            <p><span class="fw-semibold">GIẤY PHÉP HÌNH ẢNH NÂNG CAO</span> cấp cho bạn quyền sử dụng Hình ảnh (các
+                quyền này ngoài các quyền từ 1-5 ở trên và độc quyền
                 đối với Giấy phép Hình ảnh Nâng cao):</p>
             <ol>
-                <li>Theo bất kỳ cách nào được phép theo Giấy phép Hình ảnh Chuẩn, không giới hạn số lần sao chép, hiển thị hoặc ngân sách;
+                <li>Theo bất kỳ cách nào được phép theo Giấy phép Hình ảnh Chuẩn, không giới hạn số lần sao chép, hiển
+                    thị hoặc ngân sách;
 
                 </li>
-                <li>Được đưa vào hàng hóa dự định bán hoặc phân phối quảng cáo (gọi chung là "Hàng hóa"), bao gồm nhưng không giới hạn ở 
-                    hàng dệt may, tác phẩm nghệ thuật, nam châm, tranh tường, lịch, đồ chơi, văn phòng phẩm, thiệp chúc mừng và bất kỳ bản 
-                    sao vật lý nào khác để bán lại hoặc phân phối, với điều kiện Hàng hóa đó kết hợp các yếu tố sáng tạo hoặc chức năng vật 
+                <li>Được đưa vào hàng hóa dự định bán hoặc phân phối quảng cáo (gọi chung là "Hàng hóa"), bao gồm nhưng
+                    không giới hạn ở
+                    hàng dệt may, tác phẩm nghệ thuật, nam châm, tranh tường, lịch, đồ chơi, văn phòng phẩm, thiệp chúc
+                    mừng và bất kỳ bản
+                    sao vật lý nào khác để bán lại hoặc phân phối, với điều kiện Hàng hóa đó kết hợp các yếu tố sáng tạo
+                    hoặc chức năng vật
                     chất ngoài Hình ảnh.
                 </li>
-                <li>Trong nghệ thuật treo tường (và không yêu cầu thêm các yếu tố sáng tạo hoặc chức năng) cho mục đích trang trí trong không 
+                <li>Trong nghệ thuật treo tường (và không yêu cầu thêm các yếu tố sáng tạo hoặc chức năng) cho mục đích
+                    trang trí trong không
                     gian thương mại do bạn hoặc khách hàng của bạn sở hữu và không phải để bán.
                 </li>
                 <li>Được đưa vào dưới dạng các yếu tố của mẫu kỹ thuật số để bán hoặc phân phối.
@@ -204,22 +282,31 @@
 
             <hr class="my-5">
             <strong class="fs-4">CORIPHOTO BẢO ĐẢM VÀ TUYÊN BỐ VỀ:</strong>
-            <p class="mt-4">Những người đóng góp của CoRiPhoto đã cấp cho CoRiPhoto mọi quyền cần thiết trong và đối với Nội dung để cấp các quyền 
+            <p class="mt-4">Những người đóng góp của CoRiPhoto đã cấp cho CoRiPhoto mọi quyền cần thiết trong và đối với
+                Nội dung để cấp các quyền
                 được nêu trong Phần I hoặc Phần II khi áp dụng.</p>
-            <p>Video và Hình ảnh ở dạng gốc chưa chỉnh sửa và được sử dụng tuân thủ đầy đủ TOS này và luật hiện hành sẽ không: i) vi 
-                phạm bất kỳ bản quyền, nhãn hiệu hoặc quyền sở hữu trí tuệ nào khác; ii) vi phạm bất kỳ quyền riêng tư hoặc công khai 
-                nào của bên thứ ba; iii) vi phạm bất kỳ luật, quy chế, sắc lệnh hoặc quy định nào của Hoa Kỳ; hoặc iv) mang tính phỉ 
+            <p>Video và Hình ảnh ở dạng gốc chưa chỉnh sửa và được sử dụng tuân thủ đầy đủ TOS này và luật hiện hành sẽ
+                không: i) vi
+                phạm bất kỳ bản quyền, nhãn hiệu hoặc quyền sở hữu trí tuệ nào khác; ii) vi phạm bất kỳ quyền riêng tư
+                hoặc công khai
+                nào của bên thứ ba; iii) vi phạm bất kỳ luật, quy chế, sắc lệnh hoặc quy định nào của Hoa Kỳ; hoặc iv)
+                mang tính phỉ
                 báng, bôi nhọ, khiêu dâm hoặc tục tĩu.</p>
-            <p>CORIPHOTO KHÔNG BẢO HÀNH HOẶC CAM KẾT NÀO KHÁC NGOÀI NHỮNG ĐIỀU ĐÃ ĐƯỢC NÊU RÕ TRONG PHẦN "BẢO HÀNH VÀ CAM KẾT" NÀY.</p>
+            <p>CORIPHOTO KHÔNG BẢO HÀNH HOẶC CAM KẾT NÀO KHÁC NGOÀI NHỮNG ĐIỀU ĐÃ ĐƯỢC NÊU RÕ TRONG PHẦN "BẢO HÀNH VÀ
+                CAM KẾT" NÀY.</p>
             <hr class="my-5">
             <strong class="fs-4">BỒI THƯỜNG VÀ TRÁCH NHIỆM PHÁP LÝ</strong>
-            <p class="mt-4">Coriphoto sẽ không chịu trách nhiệm cho bất kỳ thiệt hại, chi phí hoặc mất mát nào phát sinh do việc sửa đổi Nội dung hoặc do bối 
+            <p class="mt-4">Coriphoto sẽ không chịu trách nhiệm cho bất kỳ thiệt hại, chi phí hoặc mất mát nào phát sinh
+                do việc sửa đổi Nội dung hoặc do bối
                 cảnh bạn sử dụng Nội dung.</p>
-            <p>Bạn sẽ bồi thường Coriphoto và nhà cung cấp của Coriphoto, khỏi mọi thiệt hại hoặc trách nhiệm pháp lý phát sinh từ 
-                bất kỳ việc sử dụng Nội dung trực quan nào khác ngoài các mục đích sử dụng được TOS này cho phép rõ ràng. Bạn cũng đồng ý 
-                bồi thường cho Coriphoto mọi chi phí và khoản phí mà Coriphoto phải chịu trong trường hợp bạn vi phạm bất kỳ điều 
+            <p>Bạn sẽ bồi thường Coriphoto và nhà cung cấp của Coriphoto, khỏi mọi thiệt hại hoặc trách nhiệm pháp lý
+                phát sinh từ
+                bất kỳ việc sử dụng Nội dung trực quan nào khác ngoài các mục đích sử dụng được TOS này cho phép rõ
+                ràng. Bạn cũng đồng ý
+                bồi thường cho Coriphoto mọi chi phí và khoản phí mà Coriphoto phải chịu trong trường hợp bạn vi phạm
+                bất kỳ điều
                 khoản nào của thỏa thuận này hoặc bất kỳ thỏa thuận nào khác với Coriphoto.</p>
-            <p>NGÀY CÓ HIỆU LỰC: 17 Tháng 11 2024</p>    
+            <p>NGÀY CÓ HIỆU LỰC: 17 Tháng 11 2024</p>
         </div>
     </section>
     <!--section licence basic-->
@@ -277,8 +364,9 @@
     <!--section footer -->
 
     <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/homepage.js"></script>
     <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/homeuser.js"></script>
+    <script src="../assets/js/homepage.js"></script>
 </body>
 
 </html>

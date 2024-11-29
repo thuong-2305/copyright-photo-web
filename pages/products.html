@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../assets/css/products.css">
     <link rel="stylesheet" href="../assets/css/navbar-footer.css">
     <link rel="stylesheet" href="../assets/css/homeuser.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
     <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
     <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
     <title>Products</title>
@@ -35,18 +36,18 @@
                             <ul class="navbar-nav justify-content-center flex-grow-1">
                                 <li class="nav-item">
                                     <a class="nav-link mx-lg-3" aria-current="page" href="homepage.html">
-                                        <span>Ảnh</span>
+                                        <span class="fw-semibold">Ảnh</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
-                                        <a href="#" class="">Ảnh chụp</a>
-                                        <a href="#" class="">Ảnh vectors</a>
-                                        <a href="#" class="">Ảnh AI</a>
+                                        <a href="./type-images.html">Ảnh chụp</a>
+                                        <a href="./type-images.html">Ảnh vectors</a>
+                                        <a href="./type-images.html">Ảnh AI</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3" href="./pages/category-details.html">
-                                        <span>Danh mục</span>
+                                    <a class="nav-link mx-lg-3" href="./category-details.html">
+                                        <span class="fw-semibold">Danh mục</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
@@ -69,37 +70,37 @@
                                             <a href="./products.html"> Du lịch</a>
                                             <a href="./products.html"> Nghệ thuật</a>
                                             <a href="./products.html"> Cuộc sống</a>
-                                            <a href="../pages/category-details.html"> Tất cả Danh mục</a>
+                                            <a href="./category-details.html"> Tất cả Danh mục</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-lg-3" href="#">
-                                        <span>Giấy phép</span>
+                                        <span class="fw-semibold">Giấy phép</span>
                                         <i class="fa-solid fa-angle-down px-2"></i>
                                     </a>
                                     <div class="link-hover">
-                                        <a href="#" class="">Giấy phép ảnh tiêu chuẩn</a>
-                                        <a href="#" class="">Giấy phép miễn phí bản quyền</a>
+                                        <a href="./license-basic.html">Giấy phép ảnh tiêu chuẩn</a>
+                                        <a href="./license-basic.html">Giấy phép miễn phí bản quyền</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-lg-3" href="#">Giới thiệu</a>
+                                    <a class="nav-link mx-lg-3 fw-semibold" href="#">Giới thiệu</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="d-flex align-items-center pt-1">
                         <div class="sell">
-                            <a href="../pages/register-contributor.html" class="sell mx-lg-2">Người phân phối<i
+                            <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i
                                     class="fa-solid fa-angle-down px-2"></i></a>
                             <div class="link-hover">
-                                <a href="#">Đăng ký thành người phân phối</a>
+                                <a href="./register-contributor.html">Đăng ký thành người phân phối</a>
                             </div>
                         </div>
                         <div class="line-separate mx-lg-1"></div>
-                        <a href="#" class="love"><i class="fa-regular fa-heart"></i></a>
-                        <a href="./pages/cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                        <a href="./like.html" class="love"><i class="fa-regular fa-heart"></i></a>
+                        <a href="./cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
                     </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
@@ -170,36 +171,51 @@
     <div class="overlay"></div>
     <!-- section user account -->
 
+    <section class="search">
+        <div class="search-container">
+            <div class="dropdown">
+                <button class="text-secondary" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
+                        ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" class="active" data-icon="fa-image"><i class="fa-solid fa-image pe-3"></i>Tất cả
+                        ảnh</a>
+                    <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
+                    <a href="#" data-icon="fa-vector-square"><i class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+                    <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
+                </div>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
+                <span class="clear-btn text-dark">&#10005;</span>
+            </div>
+            <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm
+                    kiếm</span></button>
+        </div>
+    </section>
+
     <!-- products -->
     <section class="products">
         <div class="container d-flex flex-column">
             <div class="heading">
-                <!--search -->
-                <section class="search">
-                    <div class="search-container">
-                        <div class="dropdown">
-                            <button class="text-secondary" id="type-search"><i
-                                    class="fa-solid fa-image px-2"></i><span>Tất cả
-                                    ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
-                            <div class="dropdown-content">
-                                <a href="#" class="active" data-icon="fa-image"><i
-                                        class="fa-solid fa-image pe-3"></i>Tất cả
-                                    ảnh</a>
-                                <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
-                                <a href="#" data-icon="fa-vector-square"><i
-                                        class="fa-solid fa-vector-square px-3"></i>Vectors</a>
-                                <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
-                            </div>
-                        </div>
-                        <div class="search-bar">
-                            <input type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
-                            <span class="clear-btn">&#10005;</span>
-                        </div>
-                        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm
-                                kiếm</span></button>
+                <div class="related-search d-flex align-items-center my-4">
+                    <span class="fw-bold me-3">Thẻ phổ biến:</span>
+                    <div class="data1 d-flex justify-content-center align-items-center">
+                        <i class="fa fa-search"></i> 
+                        <p>Tự nhiên</p>
                     </div>
-                </section>
-                <!--search -->
+                    <div class="data1 d-flex justify-content-center align-items-center">
+                        <i class="fa fa-search"></i> 
+                        <p>Phong cảnh</p>
+                    </div>
+                    <div class="data1 d-flex justify-content-center align-items-center">
+                        <i class="fa fa-search"></i> 
+                        <p>Hoa cỏ</p>
+                    </div>
+                    <div class="data1 d-flex justify-content-center align-items-center">
+                        <i class="fa fa-search"></i> 
+                        <p>Nhà</p>
+                    </div>
+                </div>
                 <div class="path">
                     <p class="text-primary">
                         Danhmuc
@@ -219,9 +235,10 @@
                     <p class="fs-3 fw-bold">Ảnh địa điểm ở Việt Nam có giấy phép bản quyền</p>
                     <p class="text-secondary">1231 dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ
                         CoRiPhoto.</p>
-                    <div class="tool d-flex justify-content-end">
+                    <div class="tool d-flex justify-content-between">
+                        <button class="btn border-secondary" onclick="toggleFilter()"><i class="fa-solid fa-sliders"></i> Lọc</button>
                         <button class="btn border-secondary" id="sortButton">
-                            Chọn: 
+                            Sắp xếp:
                             <span class="fw-bold type-sort" id="selectedSort">Phổ biến nhất</span>
                             <i class="fa-solid fa-caret-down ps-1"></i>
                         </button>
@@ -229,8 +246,39 @@
                             <p class="option-item popular active" data-value="Phổ biến nhất">Phổ biến nhất</p>
                             <p class="option-item newitem" data-value="Mới nhất">Mới nhất</p>
                         </div>
-                        <button class="btn border-secondary ms-2"><i class="fa-solid fa-sliders"></i> Lọc</button>
                     </div>
+                </div>
+                <div class="filter-panel">
+                    <div class="filter-header">
+                        <span class="filter-title"><i class="fa-solid fa-sliders"></i> Chọn tiêu chí muốn lọc</span>
+                    </div>
+                    <hr>
+                    <div class="filter-section">
+                        <h4>Dung lượng ảnh tối thiểu</h4>
+                        <div class="filter-options">
+                            <button class="filter-button">15 MB</button>
+                            <button class="filter-button">24 MB</button>
+                            <button class="filter-button">30 MB</button>
+                            <button class="filter-button">35 MB</button>
+                        </div>
+                    </div>
+                
+                    <div class="filter-section">
+                        <h4>Date taken</h4>
+                        <select class="filter-select">
+                            <option value="any">Ngày đăng ảnh</option>
+                            <option value="last-24h">24 giờ trước</option>
+                            <option value="last-week">Tuần trước</option>
+                            <option value="last-month">Tháng trước</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-options justify-content-end">
+                            <button class="filter-button-apply">Áp dụng</button>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="photo-products">
                     <div class="box">
@@ -240,8 +288,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a href="./product_details.html">Tải ảnh</a></button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a
+                                        href="./product_details.html">Tải ảnh</a></button>
                             </div>
                         </div>
                     </div>
@@ -250,19 +300,23 @@
                         <div class="info">
                             <p class="fw-semibold">Hồ Gươm, Hà Nội</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="box">
                         <img src="../assets/images/Vietnam/diadiem/3.jpg" alt="">
                         <div class="info">
                             <p class="fw-semibold">Phố cổ Hội An, Quảng Nam</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -271,8 +325,10 @@
                         <div class="info">
                             <p class="fw-semibold">Phố đèn lồng Hội An vào ban đêm</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -281,8 +337,10 @@
                         <div class="info">
                             <p class="fw-semibold">Tràng An, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -291,8 +349,10 @@
                         <div class="info">
                             <p class="fw-semibold">Chùa Một Cột, Hà Nội</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -301,8 +361,10 @@
                         <div class="info">
                             <p class="fw-semibold">Kinh thành Huế, Thừa Thiên Huế</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -311,8 +373,10 @@
                         <div class="info">
                             <p class="fw-semibold">Bãi biển và nhà nghỉ trên biển, Nha Trang hoặc Phú Quốc</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -321,8 +385,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -331,8 +397,10 @@
                         <div class="info">
                             <p class="fw-semibold">Cầu Vàng, Đà Nẵng</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -341,8 +409,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -351,8 +421,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -361,8 +433,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -371,8 +445,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -381,8 +457,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -391,8 +469,10 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -401,8 +481,179 @@
                         <div class="info">
                             <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
                             <div class="hover-options">
-                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>
-                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải ảnh</button>
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/18.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Vịnh Hạ Long, Quảng Ninh</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/19.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Hòn Ngọc Viễn Đông, Hồ Chí Minh</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/20.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Huế - Nơi ghi dấu lịch sử dân tộc</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/21.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Vườn quốc gia Phong Nha - Kẻ Bàngội</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/22.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thánh địa Mỹ Sơn</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/23.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Bãi biển và nhà nghỉ trên biển, Nha Trang hoặc Phú Quốc</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/24.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/25.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Cầu Vàng, Đà Nẵng</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/26.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/27.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/28.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/29.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/31.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <img src="../assets/images/Vietnam/diadiem/32.jpg" alt="">
+                        <div class="info">
+                            <p class="fw-semibold">Thác Bích Động, Ninh Bình</p>
+                            <div class="hover-options">
+                                <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
+                                    Thích</button>
+                                <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> Tải
+                                    ảnh</button>
                             </div>
                         </div>
                     </div>
@@ -480,8 +731,16 @@
 
     <script src="../Libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/homeuser.js"></script>
+    <script src="../assets/js/homepage.js"></script>
     <script src="../assets/js/navbar.js"></script>
     <script src="../assets/js/products.js"></script>
+
+    <script>
+        function toggleFilter() {
+    const filterPanel = document.querySelector(".filter-panel");
+    filterPanel.classList.toggle("active");
+}
+    </script>
 </body>
 
 </html>

@@ -1,14 +1,33 @@
+:root {
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+}
+
 body {
     font-family: Arial, sans-serif;
 }
 
 .order-card {
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--input-border-color);
     border-radius: 8px;
     padding: 16px;
     margin: 16px 0;
     background-color: #fff;
     width: 100%;
+}
+
+.order-card:hover {
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease-in-out;
 }
 
 .order-header {
@@ -43,11 +62,6 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: #333;
-}
-
-.order-details {
-    border-top: 1px solid #e5e5e5;
-    padding-top: 16px;
 }
 
 .details-header {
@@ -138,12 +152,17 @@ body {
     font-size: 15px;
 }
 
-.more-items a {
-    font-size: 14px;
-    color: #007bff;
-    text-decoration: none;
+.more-items {
+    border: 1px solid var(--line-seperate);
+    padding: 20px 20px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
-.more-items a:hover {
-    text-decoration: underline;
+.text-with-line {
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    font-weight: bold;
 }
+

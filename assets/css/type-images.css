@@ -78,6 +78,9 @@
   background: var(--custom-primary);
 }
 
+.banner {
+  background-image: url(../images/ai/Scenery/image_02.png) !important;
+}
 /* trend-type */
 .trend-type .trending-section {
   text-align: center;

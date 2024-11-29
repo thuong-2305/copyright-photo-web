@@ -21,13 +21,16 @@
   -webkit-box-align: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(247, 248, 250);
+  background-image: url(../images/Animals/7.jpg);
+  object-fit: cover;
 }
+
 .forgot-container {
   word-break: break-word;
   padding: 24px;
   width: 70vw;
   max-width: 448px;
+  border-radius: 10px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(238, 239, 242);
 }

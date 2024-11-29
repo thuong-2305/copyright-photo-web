@@ -224,5 +224,9 @@ section.banner .main-title {
 }
 /* content-add */
 
+/* banner2 */
+section.banner.ver2 {
+    background-image: url(../images/Landscapes/8.jpg);
+}
 
 

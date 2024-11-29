@@ -32,7 +32,10 @@
     --main-text-color: #080808;
 }
 
-
+section#nav {
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
 
 .maxw-100 {
     max-width: 100%;
