@@ -104,7 +104,7 @@ a:hover {
 }
 
 #cart-item-list .cart-item .thumbnail {
-    min-height: 55px;
+    max-height: 117.6px;
     width: 210px;
     position: relative;
 }
@@ -168,6 +168,12 @@ a:hover {
 #cart-item-list .cart-item .price .remove-from-cart {
     font-size: 12px;
     margin-left: 63px;
+    margin-top: -8px;
+}
+
+#cart-item-list .cart-item.package .price .remove-from-cart {
+    font-size: 12px;
+    margin-left: 135px;
     margin-top: -8px;
 }
 

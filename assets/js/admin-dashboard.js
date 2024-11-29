@@ -24,14 +24,7 @@ const data = {
             fill: true,
             tension: 0.4,
         },
-        {
-            label: "Người dùng mới",
-            data: [200, 220, 300, 250, 270, 300, 320, 330, 340, 350, 360, 380],
-            borderColor: "rgba(255, 99, 132, 1)",
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            fill: true,
-            tension: 0.4,
-        },
+       
     ],
 };
 
