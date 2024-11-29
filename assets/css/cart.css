@@ -3,7 +3,6 @@
     clear: both;
 }
 
-
 .style-none {
     list-style-type: none;
 }
@@ -19,13 +18,15 @@
     margin: 0;
 }
 
-
-
-a,a:hover {
-    text-decoration: none;
+section#nav {
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
 
-
+a,
+a:hover {
+    text-decoration: none;
+}
 
 /* Private */
 
@@ -33,20 +34,11 @@ a,a:hover {
     padding: 0 160px;
 }
 
-
-
-/* Header cart */
-
-.cart-header {
-}
-
-
-
 .cart-info .selected-count {
     color: var(--main-text-color);
 }
 
-.cart-info .selected-count > span {
+.cart-info .selected-count>span {
     font-size: 18px;
     font-weight: 400;
 }
@@ -56,7 +48,7 @@ a,a:hover {
     font-weight: 500;
 }
 
-.cart-info .continue-with-purchase > a{
+.cart-info .continue-with-purchase>a {
     padding: 10px 52px;
     font-size: 18px;
     font-weight: 500;
@@ -68,7 +60,7 @@ a,a:hover {
     font-size: 16px;
 }
 
-#cart .list-control .select-all > input {
+#cart .list-control .select-all>input {
     cursor: pointer;
 }
 
@@ -100,7 +92,7 @@ a,a:hover {
 }
 
 #cart-item-list .cart-item:hover {
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -131,7 +123,7 @@ a,a:hover {
     padding-left: 155px;
 }
 
-#cart-item-list .cart-item .product .details dl dd{
+#cart-item-list .cart-item .product .details dl dd {
     margin-left: 0;
 }
 
@@ -158,11 +150,11 @@ a,a:hover {
     display: inline-block;
 }
 
-#cart-item-list .cart-item .price ul{
+#cart-item-list .cart-item .price ul {
     list-style-type: none;
 }
 
-#cart-item-list .cart-item .price .final-price{
+#cart-item-list .cart-item .price .final-price {
     font-weight: 500;
     font-size: 20px;
 }
@@ -173,10 +165,10 @@ a,a:hover {
     margin-left: 28px
 }
 
-#cart-item-list .cart-item .price .remove-from-cart{
+#cart-item-list .cart-item .price .remove-from-cart {
     font-size: 12px;
     margin-left: 63px;
-    margin-top: -8px;   
+    margin-top: -8px;
 }
 
 #cart-item-list .cart-item .product .size-content ul {
@@ -190,8 +182,3 @@ a,a:hover {
 #selected-for-checkout {
     cursor: pointer;
 }
-
-
-
-
-

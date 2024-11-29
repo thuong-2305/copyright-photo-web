@@ -10,6 +10,14 @@
   --footer-border-color: #e0e0e0;
   --footer-text-color: #777;
   --line-seperate: #e0e0e0;
+
+  --swatch_1: #f0f4f9;
+  --swatch_2: #b5d2e1;
+  --swatch_3: #a2a9b6;
+  --swatch_4: #03d1a8;
+  --swatch_5: #3f4759;
+  --swatch_6: #49bbae;
+  --swatch_7: #696dbf;
 }
 
 .frame-signup {
@@ -21,7 +29,7 @@
   -webkit-box-align: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(247, 248, 250);
+  background-color: var(--swatch_1);
   flex: 1;
 }
 .signup-container {
@@ -29,6 +37,7 @@
   padding: 24px;
   width: 70vw;
   max-width: 448px;
+  border-radius: 10px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(238, 239, 242);
 }

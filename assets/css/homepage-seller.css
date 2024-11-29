@@ -1,8 +1,30 @@
 /* Chung */
 :root {
-    --primary-text-color: #0870D1;
     --secondary-text-color: rgb(109, 115, 120);
 
+    --background-hover-color: rgb(237, 246, 254);
+
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+
+    --swatch_1: #f0f4f9;
+    --swatch_2: #b5d2e1;
+    --swatch_3: #a2a9b6;
+    --swatch_4: #03d1a8;
+    --swatch_5: #3f4759;
+    --swatch_6: #49bbae;
+    --swatch_7: #696dbf;
+
+    --secondary-text-color: rgb(109, 115, 120);
     --background-hover-color: rgb(237, 246, 254);
 }   
 
@@ -16,6 +38,13 @@ a {
 
 a:hover {
     text-decoration: none;   
+}
+
+section#nav {
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    position: relative;
+    z-index: 1;
 }
 
 * {
@@ -95,7 +124,7 @@ html {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--primary-text-color);
+    background-color: var(--primary-color);
     color: white;
     border-radius: 50%;
     width: 34px;
@@ -120,20 +149,20 @@ html {
 }
 
 #navbar-side .menu-link li:hover a {
-    color: var(--primary-text-color);
+    color: var(--primary-color);
 }
 
 
 #navbar-side .menu-link .dashboard,
 #navbar-side .menu-link .dashboard:hover {
-    background-color: var(--primary-text-color);
+    background-color: var(--primary-color);
 }
 
 
 
 #navbar-side .menu-link .dashboard a,
 #navbar-side .menu-link .dashboard:hover a {
-    color: #fff;
+    color: #fff !important;
 }
 
 
@@ -155,7 +184,7 @@ html {
 
 /* Heading */
 #main-content .heading-content h5 {
-    color: var(--primary-text-color);
+    color: var(--primary-color);
     font-size: 20px;
 }
 
@@ -211,12 +240,12 @@ html {
     border-radius: 24px;
     color: #fff;
     font-weight: 600;
-    background-color: var(--primary-text-color);
+    background-color: var(--primary-color);
 }
 
 #main-content .show-statistic .available-earning .request-payout > button:hover {
     opacity: 0.92;
-    background-color: var(--primary-text-color);
+    background-color: var(--primary-color);
 }
 
 /* Tùy chỉnh tooltip */

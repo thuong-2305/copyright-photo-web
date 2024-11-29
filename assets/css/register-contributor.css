@@ -1,3 +1,25 @@
+:root {
+  --primary-color: #009970;
+  --primary-hover-color: #00b383;
+  --text-color: #666777;
+  --text-hover-color: #000;
+  --footer-bg-color: #f9f9f9;
+  --footer-link-color: #333;
+  --input-border-color: #ccc;
+  --button-hover-color: #4a84d9;
+  --footer-border-color: #e0e0e0;
+  --footer-text-color: #777;
+  --line-seperate: #e0e0e0;
+
+  --swatch_1: #f0f4f9;
+  --swatch_2: #b5d2e1;
+  --swatch_3: #a2a9b6;
+  --swatch_4: #03d1a8;
+  --swatch_5: #3f4759;
+  --swatch_6: #49bbae;
+  --swatch_7: #696dbf;
+}
+
 /* Reset CSS */
 * {
   margin: 0;
@@ -41,12 +63,12 @@ body {
 
 /* Đổi màu thanh tiến trình */
 .nav-list.mid::before {
-  background-color: #2c8cf4;
+  background-color: var(--primary-color);
   width: calc(50% - 150px);
 }
 
 .nav-list.last::before {
-  background-color: #2c8cf4;
+  background-color: var(--primary-color);
   width: calc(68%);
 }
 
@@ -88,12 +110,12 @@ body {
 }
 
 .nav-list li.complete::before {
-  background-color: #2c8cf4;
+  background-color: var(--primary-color);
 }
 /* Đổi màu step */
 .nav-list li.active::before {
-  border-color: #2c8cf4;
-  color: #2c8cf4;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 .nav-list li p {
@@ -103,7 +125,7 @@ body {
 }
 
 .nav-list li.active p {
-  color: #2c8cf4;
+  color: var(--primary-color);
   font-weight: bold;
 }
 /* End: Nav */
@@ -128,6 +150,12 @@ body {
   line-height: 1.6;
 }
 
+.content p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
 .content h2 {
   font-size: 24px;
   font-weight: 600;
@@ -139,8 +167,8 @@ body {
   font-size: 18px;
   font-weight: 550;
   color: #000;
-  margin-top: 15px;
-  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-bottom: 4px;
 }
 
 .content::-webkit-scrollbar {
@@ -148,7 +176,7 @@ body {
 }
 
 .content::-webkit-scrollbar-thumb {
-  background-color: #2c8cf4; /* Màu thanh cuộn */
+  background-color: var(--primary-color); /* Màu thanh cuộn */
   border-radius: 4px;
 }
 
@@ -162,7 +190,7 @@ body {
   display: block;
   margin: 20px auto 0;
   padding: 10px 20px;
-  background-color: #2c8cf4;
+  background-color: var(--primary-color);
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -179,7 +207,7 @@ body {
 .btn-upload:hover,
 .btn-save:hover,
 .btn-agree:hover {
-  background-color: #1a6bbd; /* Màu nền khi hover */
+  background-color: var(--primary-hover-color); /* Màu nền khi hover */
 }
 /* End: Content */
 

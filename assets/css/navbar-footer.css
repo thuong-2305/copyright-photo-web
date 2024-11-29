@@ -131,6 +131,29 @@
     background-color: var(--primary-hover-color);
 }
 
+#nav .container a.cart {
+    position: relative; 
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+#nav .container a.cart::before {
+    content: "3"; 
+    position: absolute;
+    top: -5px; 
+    right: -10px; 
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 12px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; 
+    font-weight: bold; 
+}
+
 #nav .container a.cart i,
 #nav .container a.love i {
     font-size: 20px;
