@@ -51,6 +51,7 @@ a:hover {
 .cart-info .continue-with-purchase>a {
     padding: 10px 52px;
     font-size: 18px;
+    font-weight: 500;
 }
 
 /* List Control */
@@ -62,6 +63,15 @@ a:hover {
 #cart .list-control .select-all>input {
     cursor: pointer;
 }
+
+#cart .list-control .continue-buy > a {
+    font-size: 16px;
+}
+
+#cart .list-control .continue-buy  {
+    margin-right: 28px;
+}
+
 
 
 /* Cart-Item-List */

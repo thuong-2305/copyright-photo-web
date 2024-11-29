@@ -150,6 +150,12 @@ body {
   line-height: 1.6;
 }
 
+.content p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
 .content h2 {
   font-size: 24px;
   font-weight: 600;
@@ -161,8 +167,8 @@ body {
   font-size: 18px;
   font-weight: 550;
   color: #000;
-  margin-top: 15px;
-  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-bottom: 4px;
 }
 
 .content::-webkit-scrollbar {
