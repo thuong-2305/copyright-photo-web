@@ -1,284 +1,283 @@
 :root {
-    --primary-color: #009970;
-    --primary-hover-color: #00b383;
-    --text-color: #666777;
-    --text-hover-color: #000;
-    --footer-bg-color: #f9f9f9;
-    --footer-link-color: #333;
-    --input-border-color: #ccc;
-    --button-hover-color: #4a84d9;
-    --footer-border-color: #e0e0e0;
-    --footer-text-color: #777;
-    --line-seperate: #e0e0e0;
-  
-    --swatch_1: #f0f4f9;
-    --swatch_2: #b5d2e1;
-    --swatch_3: #a2a9b6;
-    --swatch_4: #03d1a8;
-    --swatch_5: #3f4759;
-    --swatch_6: #49bbae;
-    --swatch_7: #696dbf;
-  }
-  
-  main {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    height: 100%;
-    background-color: var(--swatch_1);
-  }
-  
-  /* ---------------------------------------------------Begin: San pham------------------------------------*/
-  
-  .table-outline {
-    width: 100%;
-    border: 1px solid white;
-  }
-  
-  .sanpham {
-    width: 95%;
-    margin: 0 auto;
-  }
-  
-  /* phần chứa header (th) */
-  .table-header {
-    width: 100%;
-  }
-  
-  .table-header th {
-    color: #e4e7ea;
-    background-color: white;
-    border-color: black;
-    color: black;
-  }
-  
-  .table-header th {
-    cursor: pointer;
-    padding: 10px;
-  }
-  
-  .table-header th i {
-    /* Ẩn icon sort */
-    transform: scale(0);
-    transition-duration: 0.2s;
-  }
-  
-  .table-header th:hover i {
-    transform: scale(1);
-  }
-  
-  .table-header th,
-  .table-content td {
-    text-align: center;
-    border: 1px solid var(--line-seperate);
-  }
-  
-  /* phần chứa nội dung  */
-  .table-content {
-    overflow: auto;
-    width: 100%;
-    padding: 0 !important
-  }
-  
-  .table-content table {
-    width: 100%;
-  }
-  
-  .table-content nav {
-    width: 100%;
-  }
-  
-  
-  .table-content table td div {
-    display: inline;
-  }
-  
-  .table-content table td .btn {
-    margin: 5px;
-  }
-  
-  .table-content tr{
-    background-color: lightgray;
-  }
-  
-  .table-content tr:nth-of-type(even) {
-    background-color: white;
-  }
-  
-  .table-content td {
-    position: relative;
-    color: black;
-  }
-  
-  /* Link chi tiet san pham */
-  .table-content td a {
-    display: block;
-    color: black;
-  }
-  
-  .table-content td a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Hành động */
-  .table-content td i {
-    padding: 0.3em;
-    cursor: pointer;
-  }
-  
-  .table-content td i.fa-wrench:hover {
-    color: #63c2de;
-  }
-  
-  .table-content td i.fa-trash:hover {
-    color: #f86c6b;
-  }
-  
-  .table-content td i.fa-check:hover {
-    color: #5ce457d8;
-  }
-  
-  .table-content td i.fa-remove:hover {
-    color: #f86c6b;
-  }
-  
-  /*  phần footer table  */
-  .table-footer {
-    background-color: white;
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #23282c;
-  }
-  
-  .table-footer input,
-  .table-footer button,
-  .table-footer select {
-    padding: 5px 10px;
-    border: 3px solid transparent;
-  }
-  
-  /* Nút bấm ở footer */
-  .table-footer button {
-    cursor: pointer;
-    background-color: #23282c;
-    color: #e4e7ea;
-    transition-duration: 0.2s;
-  }
-  
-  .table-footer button:hover {
-    background-color: #7a879486;
-    border-color: #73818f;
-  }
-  
-  /* ================== Những table thêm sửa sẽ có dạng overlay -> mặc định ẩn  ====================== */
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    z-index: 14;
-    transition: 0.2s ease;
-    transform: scale(0);
-    background-color: #020202d8;
-  }
-  
-  .overlayTable {
-    margin: 50px auto;
-    width: auto;
-    background-color: #23282c;
-  }
-  
-  .overlayTable td:first-child {
-    text-align: right;
-  }
-  
-  .overlayTable input {
-    padding: 4px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #e7e7e7;
-  }
-  
-  .overlayTable input[type="file"] {
-    background-color: transparent;
-  }
-  
-  .close {
-    /* nút tắt form */
-    position: fixed;
-    top: 5px;
-    right: 5px;
-    font-size: 3rem;
-    width: 1em;
-    height: 1em;
-    line-height: 1em;
-    text-align: center;
-    color: #aaa;
-    cursor: pointer;
-    transition: 0.2s ease;
-  }
-  
-  .close:hover {
-    color: #fff;
-    background-color: #f33;
-    border-radius: 50%;
-  }
-  /* -----------------------------------------------End: San pham */
-  /* -----------------------------------------------Begin: Thong ke------------------------------------------------ */
-  .frame__container {
-    display: flex;
-    flex-direction: column;
-    background: var(--swatch_1);
-    margin: 20px;
-  }
-  
-  .frame__content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-  
-  .statistic .statistic__container {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 20px;
-    border-radius: 16px;
-    height: 100%;
-    background-color: white;
-  }
-  .statistic i {
-    color: black;
-    font-size: 30px;
-    width: 26px;
-    height: 26px;
-  }
-  .statistic .statistic-bot__price {
-    margin: 0px 0px 16px;
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: Inter, sans-serif;
-    line-height: 1.235;
-    color: black;
-  }
-  
-  .statistic .statistic-bot__name {
-    margin: 0px 0px 8px;
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: Inter, sans-serif;
-    line-height: 1.5;
-    color: black;
-  }
-  .statistic .statistic-bot__compare {
-    margin: 0px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    font-family: Inter, sans-serif;
-    color: rgb(252, 184, 89);
-    line-height: 1.25;
-  }
-  /*-------------------------------------------------- End: THong ke --------------------------------------*/
-  
+  --primary-color: #009970;
+  --primary-hover-color: #00b383;
+  --text-color: #666777;
+  --text-hover-color: #000;
+  --footer-bg-color: #f9f9f9;
+  --footer-link-color: #333;
+  --input-border-color: #ccc;
+  --button-hover-color: #4a84d9;
+  --footer-border-color: #e0e0e0;
+  --footer-text-color: #777;
+  --line-seperate: #e0e0e0;
+
+  --swatch_1: #f0f4f9;
+  --swatch_2: #b5d2e1;
+  --swatch_3: #a2a9b6;
+  --swatch_4: #03d1a8;
+  --swatch_5: #3f4759;
+  --swatch_6: #49bbae;
+  --swatch_7: #696dbf;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  background-color: var(--swatch_1);
+}
+
+/* ---------------------------------------------------Begin: San pham------------------------------------*/
+
+.table-outline {
+  width: 100%;
+  border: 1px solid white;
+}
+
+.sanpham {
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* phần chứa header (th) */
+.table-header {
+  width: 100%;
+}
+
+.table-header th {
+  color: #e4e7ea;
+  background-color: white;
+  border-color: black;
+  color: black;
+}
+
+.table-header th {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.table-header th i {
+  /* Ẩn icon sort */
+  transform: scale(0);
+  transition-duration: 0.2s;
+}
+
+.table-header th:hover i {
+  transform: scale(1);
+}
+
+.table-header th,
+.table-content td {
+  text-align: center;
+  border: 1px solid var(--line-seperate);
+}
+
+/* phần chứa nội dung  */
+.table-content {
+  overflow: auto;
+  width: 100%;
+  padding: 0 !important;
+}
+
+.table-content table {
+  width: 100%;
+}
+
+.table-content nav {
+  width: 100%;
+}
+
+.table-content table td div {
+  display: inline;
+}
+
+.table-content table td .btn {
+  margin: 5px;
+}
+
+.table-content tr {
+  background-color: lightgray;
+}
+
+.table-content tr:nth-of-type(even) {
+  background-color: white;
+}
+
+.table-content td {
+  position: relative;
+  color: black;
+}
+
+/* Link chi tiet san pham */
+.table-content td a {
+  display: block;
+  color: black;
+}
+
+.table-content td a:hover {
+  text-decoration: underline;
+}
+
+/* Hành động */
+.table-content td i {
+  padding: 0.3em;
+  cursor: pointer;
+}
+
+.table-content td i.fa-wrench:hover {
+  color: #63c2de;
+}
+
+.table-content td i.fa-trash:hover {
+  color: #f86c6b;
+}
+
+.table-content td i.fa-check:hover {
+  color: #5ce457d8;
+}
+
+.table-content td i.fa-remove:hover {
+  color: #f86c6b;
+}
+
+/*  phần footer table  */
+.table-footer {
+  background-color: white;
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #23282c;
+}
+
+.table-footer input,
+.table-footer button,
+.table-footer select {
+  padding: 5px 10px;
+  border: 3px solid transparent;
+}
+
+/* Nút bấm ở footer */
+.table-footer button {
+  cursor: pointer;
+  background-color: #23282c;
+  color: #e4e7ea;
+  transition-duration: 0.2s;
+}
+
+.table-footer button:hover {
+  background-color: #7a879486;
+  border-color: #73818f;
+}
+
+/* ================== Những table thêm sửa sẽ có dạng overlay -> mặc định ẩn  ====================== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 14;
+  transition: 0.2s ease;
+  transform: scale(0);
+  background-color: #020202d8;
+}
+
+.overlayTable {
+  margin: 50px auto;
+  width: auto;
+  background-color: #23282c;
+}
+
+.overlayTable td:first-child {
+  text-align: right;
+}
+
+.overlayTable input {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+  margin: 5px 0;
+}
+
+.overlayTable input[type="file"] {
+  background-color: transparent;
+}
+
+.close {
+  /* nút tắt form */
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  font-size: 3rem;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  text-align: center;
+  color: #aaa;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.close:hover {
+  color: #fff;
+  background-color: #f33;
+  border-radius: 50%;
+}
+/* -----------------------------------------------End: San pham */
+/* -----------------------------------------------Begin: Thong ke------------------------------------------------ */
+.frame__container {
+  display: flex;
+  flex-direction: column;
+  background: var(--swatch_1);
+  margin: 20px;
+}
+
+.frame__content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.statistic .statistic__container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+  border-radius: 16px;
+  height: 100%;
+  background-color: white;
+}
+.statistic i {
+  color: black;
+  font-size: 30px;
+  width: 26px;
+  height: 26px;
+}
+.statistic .statistic-bot__price {
+  margin: 0px 0px 16px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  line-height: 1.235;
+  color: black;
+}
+
+.statistic .statistic-bot__name {
+  margin: 0px 0px 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: Inter, sans-serif;
+  line-height: 1.5;
+  color: black;
+}
+.statistic .statistic-bot__compare {
+  margin: 0px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-family: Inter, sans-serif;
+  color: rgb(252, 184, 89);
+  line-height: 1.25;
+}
+/*-------------------------------------------------- End: THong ke --------------------------------------*/
