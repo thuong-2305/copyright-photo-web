@@ -90,7 +90,7 @@ p {
 
 .container-main .left a {
     text-decoration: none;
-    color: var(--swatch_3);
+    color: var(--footer-link-color);
 }
 /* LEFT MAIN */
 
