@@ -29,7 +29,10 @@ main {
 }
 
 /* ---------------------------------------------------Begin: San pham------------------------------------*/
-
+.frame_manager {
+  background-color: transparent !important;
+  padding: 0 !important;
+}
 .table-outline {
   width: 100%;
   border: 1px solid white;
@@ -38,6 +41,7 @@ main {
 .sanpham {
   width: 95%;
   margin: 0 auto;
+  align-items: ;
 }
 
 /* phần chứa header (th) */
@@ -231,7 +235,7 @@ main {
   display: flex;
   flex-direction: column;
   background: var(--swatch_1);
-  margin: 20px;
+  margin: 20px 30px 10px;
 }
 
 .frame__content {
@@ -279,5 +283,15 @@ main {
   font-family: Inter, sans-serif;
   color: rgb(252, 184, 89);
   line-height: 1.25;
+}
+/* Màu cho số liệu tăng giảm */
+.statistic--increase .statistic-bot__compare,
+.statistic--increase i {
+  color: var(--primary-color);
+}
+
+.statistic--decrease .statistic-bot__compare,
+.statistic--decrease i {
+  color: rgb(252, 184, 89);
 }
 /*-------------------------------------------------- End: THong ke --------------------------------------*/
