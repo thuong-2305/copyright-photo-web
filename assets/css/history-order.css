@@ -1,0 +1,168 @@
+:root {
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.order-card {
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #fff;
+    width: 100%;
+}
+
+.order-card:hover {
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.order-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-id {
+    font-weight: bold;
+}
+
+.order-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.order-status.paid {
+    background-color: #28a745;
+}
+
+.order-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.details-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.shipping-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.shipping-info a:hover {
+    text-decoration: underline;
+}
+
+.order-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.status-label {
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.status-label.new {
+    background-color: #17a2b8;
+}
+
+.action-btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.action-btn.auto-sms {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.action-btn.auto-viber {
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+.action-btn.blacklist {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.speedy-badge {
+    font-size: 12px;
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.product-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.product-info {
+    font-size: 14px;
+}
+
+.product-name {
+    font-weight: bold;
+    display: block;
+    font-size: 15px;
+}
+
+.more-items {
+    border: 1px solid var(--line-seperate);
+    padding: 20px 20px 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.text-with-line {
+    display: inline-block;
+    position: relative;
+    font-size: 16px;
+    font-weight: bold;
+}
+

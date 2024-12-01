@@ -1,0 +1,337 @@
+/* Chung */
+
+:root {
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+
+    --swatch_1: #f0f4f9;
+    --swatch_2: #b5d2e1;
+    --swatch_3: #a2a9b6;
+    --swatch_4: #03d1a8;
+    --swatch_5: #3f4759;
+    --swatch_6: #49bbae;
+    --swatch_7: #696dbf;
+
+    --secondary-text-color: rgb(109, 115, 120);
+    --background-hover-color: rgb(237, 246, 254);
+}
+
+.shadow-bottom {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Chỉ có bóng ở dưới */
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;   
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.dp-ib {
+    display: inline-block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mr-12 {
+    margin-right: 12px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.dp-flex {
+    display: flex;
+}
+
+.stl-none {
+    list-style-type: none;
+}
+
+section#nav {
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Thêm hiệu ứng shadow khi hover */
+.shadow-effect {
+    transition: box-shadow 0.3s ease;  /* Thêm hiệu ứng chuyển động mượt mà */
+}
+  
+.shadow-effect:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Shadow khi hover */
+}
+
+/* Riêng */
+
+/* Navbar-side */
+
+/* Avatar */
+
+#navbar-side .profile-image-container {
+    filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 4px 12px) drop-shadow(rgba(0, 0, 0, 0.08) 0px 0px 4px);
+}
+
+#navbar-side .profile-avatar-content {
+    height: 200px;
+    background-color: rgba(248, 243, 243, 0.788);
+
+}
+
+
+
+
+
+#navbar-side .profile-avatar-content img {
+    max-width: 70px;
+    max-height: 70px;
+    border: 2.5px solid #fff;
+}
+
+#navbar-side .profile-avatar-content .profile-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#navbar-side .profile-image-container {
+    position: relative;
+    cursor: pointer;
+}
+
+#navbar-side .profile-image-container > i {
+    position: absolute;
+    right: -16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 20px;
+}   
+
+
+/* Link navigate */
+#navbar-side .profile-image-container {
+    filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 4px 12px) drop-shadow(rgba(0, 0, 0, 0.08) 0px 0px 4px);
+}
+
+#navbar-side .profile-avatar-content {
+    height: 200px;
+    background-color: rgba(248, 243, 243, 0.788);
+
+}
+
+
+
+
+
+#navbar-side .profile-avatar-content img {
+    max-width: 70px;
+    max-height: 70px;
+    border: 2.5px solid #fff;
+}
+
+#navbar-side .profile-avatar-content .profile-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#navbar-side .profile-image-container {
+    position: relative;
+    cursor: pointer;
+}
+
+#navbar-side .profile-image-container > i {
+    position: absolute;
+    right: -16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+}   
+
+
+/* Link navigate */
+#navbar-side .menu-link {
+    padding: 0;
+}
+
+#navbar-side .menu-link li {
+    width: 100%;
+    height: 64px;  
+}
+
+#navbar-side .menu-link li:hover {
+   background-color: var(--background-hover-color);
+   cursor: pointer;
+}
+
+#navbar-side .menu-link li:hover a {
+    color: var(--primary-color);
+}
+
+
+#navbar-side .menu-link .my-photos,
+#navbar-side .menu-link .my-photos:hover {
+    background-color: var(--primary-color);
+}
+
+
+
+#navbar-side .menu-link .my-photos a,
+#navbar-side .menu-link .my-photos:hover a {
+    color: #fff !important;
+}
+
+
+
+.menu-link li a:hover {
+    text-decoration: none;
+}
+
+.menu-link li i {
+    font-size: 28px;
+    margin-right: 8px;
+}
+
+/* main content */
+
+#main-content {
+    padding: 48px 48px 24px;
+}
+
+/* Heading */
+#main-content .heading-content h5 {
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+
+
+
+
+/* Filter button */
+#main-content .body-content .filter .sort-text {
+    color: var(--secondary-text-color);
+}
+
+
+
+
+#main-content .body-content .upload-your-photo i {
+    font-size: 24px;
+}
+
+
+/* My photo items */
+#main-content .body-content .upload-your-photo,
+#main-content .body-content .photo {
+    background-color: rgb(255,255,255);
+    width: 280px;
+    height: 320px;
+    box-shadow:rgba(0, 0, 0, 0.08) 1px 2px 6px;
+    cursor: pointer;
+}
+
+#main-content .body-content .upload-your-photo > button {
+    border-radius: 26px;
+}
+
+#main-content .body-content .upload-your-photo .text-upload {
+    font-weight: 500;
+}
+
+#main-content .body-content .photo .photo-image {
+    position: relative;
+}
+
+#main-content .body-content .photo .photo-image button {
+    border: none;
+    position: absolute;
+    bottom: 10px;
+    right: 8px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--primary-color);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px;
+}
+
+
+
+
+#main-content .body-content .photo .photo-image button:hover {
+    background-color: var(--background-hover-color);
+}
+
+/* Dropdown */
+#main-content .photo .dropdown {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 4px, rgba(0, 0, 0, 0.16) 0px 4px 12px;
+}
+
+#main-content .photo .dropdown .dropdown-item{
+    font-size: 14px;
+}
+
+#main-content .photo .dropdown .dropdown-item:hover {
+    color: #fff;
+    background-color: var(--primary-color);    
+}
+
+
+  
+#main-content .body-content .photo:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Shadow khi hover */
+}
+
+
+
+#main-content .body-content .photo .photo-image img {
+    height: 280px;
+    width: 280px;
+}
+
+#main-content .body-content .photo .photo-text-content .photo-text-title {
+    font-size: 13px;
+}
+
+#main-content .body-content .photo .photo-text-content .photo-text-privacy {
+    color: var(--secondary-text-color);
+    font-size: 14px;
+}
+

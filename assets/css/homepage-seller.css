@@ -1,0 +1,325 @@
+/* Chung */
+:root {
+    --secondary-text-color: rgb(109, 115, 120);
+
+    --background-hover-color: rgb(237, 246, 254);
+
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+
+    --swatch_1: #f0f4f9;
+    --swatch_2: #b5d2e1;
+    --swatch_3: #a2a9b6;
+    --swatch_4: #03d1a8;
+    --swatch_5: #3f4759;
+    --swatch_6: #49bbae;
+    --swatch_7: #696dbf;
+
+    --secondary-text-color: rgb(109, 115, 120);
+    --background-hover-color: rgb(237, 246, 254);
+}   
+
+.shadow-bottom {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Chỉ có bóng ở dưới */
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;   
+}
+
+section#nav {
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    position: relative;
+    z-index: 1;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.dp-ib {
+    display: inline-block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mr-12 {
+    margin-right: 12px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+.dp-flex {
+    display: flex;
+}
+
+.stl-none {
+    list-style-type: none;
+}
+
+/* Riêng */
+
+/* Navbar-side */
+
+/* Avatar */
+
+#navbar-side .profile-image-container {
+    filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 4px 12px) drop-shadow(rgba(0, 0, 0, 0.08) 0px 0px 4px);
+}
+
+#navbar-side .profile-avatar-content {
+    height: 200px;
+    background-color: rgba(248, 243, 243, 0.788);
+
+}
+
+
+
+
+
+#navbar-side .profile-avatar-content img {
+    max-width: 70px;
+    max-height: 70px;
+    border: 2.5px solid #fff;
+}
+
+#navbar-side .profile-avatar-content .profile-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#navbar-side .profile-image-container {
+    position: relative;
+    cursor: pointer;
+}
+
+#navbar-side .profile-image-container > i {
+    position: absolute;
+    right: -16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+}   
+
+
+/* Link navigate */
+#navbar-side .menu-link {
+    padding: 0;
+}
+
+#navbar-side .menu-link li {
+    width: 100%;
+    height: 64px;  
+}
+
+#navbar-side .menu-link li:hover {
+   background-color: var(--background-hover-color);
+   cursor: pointer;
+}
+
+#navbar-side .menu-link li:hover a {
+    color: var(--primary-color);
+}
+
+
+#navbar-side .menu-link .dashboard,
+#navbar-side .menu-link .dashboard:hover {
+    background-color: var(--primary-color);
+}
+
+
+
+#navbar-side .menu-link .dashboard a,
+#navbar-side .menu-link .dashboard:hover a {
+    color: #fff !important;
+}
+
+
+
+.menu-link li a:hover {
+    text-decoration: none;
+}
+
+.menu-link li i {
+    font-size: 28px;
+    margin-right: 8px;
+}
+
+/* Main content */
+#main-content {
+    padding: 48px 48px 24px;
+}
+
+
+/* Heading */
+#main-content .heading-content h5 {
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+
+
+
+
+/* Các ô thống kê */
+
+
+
+
+#main-content .show-statistic .download,
+#main-content .show-statistic .earning,
+#main-content .show-statistic .available-earning {
+    border: 1px solid rgb(238, 239, 242);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px 0px;
+}
+
+
+
+#main-content .show-statistic .download .download-image i,
+#main-content .show-statistic .earning .earning-image i,
+#main-content .show-statistic .available-earning .available-earning-image i{
+    padding: 14px;
+    font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 6px 0px;
+    border-radius: 50%;
+}
+
+#main-content .show-statistic .download .download-text-content .download-text,
+#main-content .show-statistic .earning .earning-text-content .earning-text,
+#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-text
+ {
+    color: var(--secondary-text-color);
+    font-size: 14px;
+}
+
+#main-content .show-statistic .download .download-text-content .download-count,
+#main-content .show-statistic .earning .earning-text-content .earning-total,
+#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-total {
+    font-size: 18px;
+
+}
+
+#main-content .show-statistic .available-earning .available-earning-text-content .available-earning-text > i {
+    color: #303030;
+}
+
+
+#main-content .show-statistic .available-earning .request-payout > button {
+    border: none;
+    border-radius: 24px;
+    color: #fff;
+    font-weight: 600;
+    background-color: var(--primary-color);
+}
+
+#main-content .show-statistic .available-earning .request-payout > button:hover {
+    opacity: 0.92;
+    background-color: var(--primary-color);
+}
+
+/* Tùy chỉnh tooltip */
+.tooltip-inner {
+    background-color: white !important; /* Nền trắng */
+    color: black !important; /* Chữ đen */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow */
+    border-radius: 4px; /* Bo góc */
+    text-align: left !important; /* Căn lề trái */
+    padding: 10px; /* Padding bên trong */
+    min-width: 300px; /* Chiều rộng tối thiểu */
+    max-width: 400px; /* Chiều rộng tối đa */
+    white-space: normal; /* Đảm bảo chữ không bị cắt */
+}
+
+.tooltip-arrow {
+    border-top-color: white !important; /* Màu của mũi tên tooltip */
+}
+
+
+
+
+
+/* Item seller */
+.table thead {
+    border-bottom: 1px solid #dee2e6;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: none !important;
+}
+
+.table td, .table th {
+    border-top: none !important;
+}
+
+
+
+
+#main-content .admin-table .statistics-item .product-image img {
+    max-width: 80px;
+    max-height: 80px;
+}
+
+
+#main-content .admin-table td,tr {
+    color: var(--secondary-text-color);
+    font-weight: 600;
+}
+
+#main-content .admin-table .statistics-item .product-image {
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
