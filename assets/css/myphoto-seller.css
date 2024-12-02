@@ -335,3 +335,20 @@ section#nav {
     font-size: 14px;
 }
 
+select[multiple] {
+    width: 100%;
+    height: 150px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    padding: 8px;
+    outline: none;
+}
+
+/* Kiểu cho các mục được chọn */
+select[multiple] option:checked {
+    background-color: #d3d3d3; /* Màu xám nhạt */
+    color: #000; /* Màu chữ đen */
+    border: none; /* Không viền */
+}
+

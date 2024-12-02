@@ -411,6 +411,12 @@
                             <label for="description">Mô tả:</label>
                             <textarea id="description" name="description" placeholder="Nhập mô tả" required></textarea>
 
+                            <label for="dimension">Tên:</label>
+                            <input type="text" id="dimension" name="dimension" placeholder="Nhập kích thước ảnh" required>
+
+                            <label for="file-size">Tên:</label>
+                            <input type="text" id="file-size" name="file-size" placeholder="Nhập dung lượng ảnh" required>
+
                             <label for="category">Danh mục:</label>
                             <select id="category" name="category" required>
                                 <option value="">Chọn danh mục</option>
@@ -426,6 +432,20 @@
                                 <option value="category10">Khác</option>
                             </select>
 
+                            <label for="tags">Thẻ:</label>
+                            <select id="tags" name="tags[]" multiple required>
+                                <option value="abstract">Trừu tượng</option>
+                                <option value="landscape">Phong cảnh</option>
+                                <option value="people">Con người</option>
+                                <option value="technology">Công nghệ</option>
+                                <option value="nature">Tự nhiên</option>
+                                <option value="city">Thành phố</option>
+                                <option value="ai">AI</option>
+                                <option value="food">Thức ăn</option>
+                                <option value="art">Nghệ thuật</option>
+                                <option value="other">Khác</option>
+                            </select>
+                            <small>Nhấn Ctrl (hoặc Cmd trên Mac) để chọn nhiều thẻ</small>
                             <button type="submit" class="next">Tiếp theo</button>
                         </form>
                     </div>
