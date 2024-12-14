@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="../assets/css/homepage.css">
+  <link rel="stylesheet" href="../assets/css/navbar-footer.css">
+  <link rel="stylesheet" href="../assets/css/homeuser.css">
+  <link rel="stylesheet" href="../assets/css/cart.css">
+  <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+  <!--section navbar -->
+  <section id="nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg w-100">
+        <div class="container-fluid">
+          <a class="navbar-brand me-auto" href="homeuser.html">
+            <span class="title-logo fw-bold"><span class="text-success">C</span>o<span
+                class="text-success">R</span>iPhoto</span>
+          </a>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="offcanvasDarkNavbarLabel">
+                <span class="text-success">C</span>o<span class="text-success">R</span>iPhoto
+              </h5>
+              <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-center flex-grow-1">
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-3" aria-current="page" href="homepage.html">
+                    <span class="fw-semibold">Ảnh</span>
+                    <i class="fa-solid fa-angle-down px-2"></i>
+                  </a>
+                  <div class="link-hover">
+                    <a href="type-images.html">Ảnh chụp</a>
+                    <a href="type-images.html">Ảnh vectors</a>
+                    <a href="type-images.html">Ảnh AI</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-3" href="category-details.html">
+                    <span class="fw-semibold">Danh mục</span>
+                    <i class="fa-solid fa-angle-down px-2"></i>
+                  </a>
+                  <div class="link-hover">
+                    <div class="dropdown">
+                      <a href="products.html"> Trừu tượng</a>
+                      <a href="products.html"> Công nghệ</a>
+                      <a href="products.html"> Tự nhiên</a>
+                      <a href="products.html"> Cuộc sống</a>
+                      <a href="products.html"> Động vật</a>
+                    </div>
+                    <div class="dropdown">
+                      <a href="products.html"> Các mùa</a>
+                      <a href="products.html"> Trên không</a>
+                      <a href="products.html"> Ban đêm</a>
+                      <a href="products.html"> Thành phố</a>
+                      <a href="products.html"> Quê hương</a>
+                    </div>
+                    <div class="dropdown">
+                      <a href="products.html"> Con người</a>
+                      <a href="products.html"> Du lịch</a>
+                      <a href="products.html"> Nghệ thuật</a>
+                      <a href="products.html"> Cuộc sống</a>
+                      <a href="category-details.html"> Tất cả Danh mục</a>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-3" href="#">
+                    <span class="fw-semibold">Giấy phép</span>
+                    <i class="fa-solid fa-angle-down px-2"></i>
+                  </a>
+                  <div class="link-hover">
+                    <a href="license-basic.html">Giấy phép ảnh tiêu chuẩn</a>
+                    <a href="license-basic.html">Giấy phép miễn phí bản quyền</a>
+                  </div>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link mx-lg-3 fw-semibold" href="#">Giới thiệu</a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex align-items-center pt-1">
+            <div class="sell">
+              <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i
+                  class="fa-solid fa-angle-down px-2"></i></a>
+              <div class="link-hover">
+                <a href="register-contributor.html">Đăng ký thành người phân phối</a>
+              </div>
+            </div>
+            <div class="line-separate mx-lg-1"></div>
+            <a href="like.html" class="love"><i class="fa-regular fa-heart"></i></a>
+            <a href="./cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="d-flex align-items-center user-icon" id="user">
+            <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+            <i class="fa fa-caret-down ms-2"></i>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+  <!--section navbar -->
+
+  <!-- section user account -->
+  <section class="user-account bg-white">
+    <div class="container">
+      <div class="top d-flex mt-5 align-items-center">
+        <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+        <div class="info">
+          <div class="name">
+            <span>Hi, Test</span>
+            <p>test@gmail.com</p>
+          </div>
+          <a href="editprofile.html" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
+        </div>
+      </div>
+      <div class="line-seperate"></div>
+      <div class="option">
+        <ul class="">
+          <li class="item">
+            <a href="homeprofile.html">
+              <i class="fas fa-user-cog me-2"></i>
+              <p>Chi tiết tài khoản</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="like.html">
+              <i class="fas fa-heart me-2"></i>
+              <p>Yêu thích</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="./cart.html">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <p>Giỏ hàng</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="history-order.html">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <p>Lịch sử mua hàng</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="../homepage.html">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <p class="mb-0">Đăng xuất</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button class="btn-close btn-close-black close-user"></button>
+    </div>
+  </section>
+  <div class="overlay"></div>
+  <!-- section user account -->
+
+  <div id="cart">
+    <div class="container d-flex flex-column">
+      <!-- Header Cart -->
+      <div class="cart-header w-100">
+        <h1 class="mt-3 fw-semibold fs-2">Giỏ hàng</h1>
+        <!-- Cart info -->
+        <div class="cart-info mb-4">
+          <div class="mt-2 d-flex justify-content-between align-items-center">
+            <div class="selected-count fw-bold">
+              <span>Số lượng sản phẩm đang chọn: <span class="ng-binding">0</span></span>
+            </div>
+            <div class="subtotal text-right fw-bold">
+              <!-- Hiển thị giá gốc và giá sau khi giảm -->
+              <label for="" class="d-block">
+                <!-- Giá gốc -->
+                <span class="text-decoration-line-through me-2">1.500.000đ</span>
+
+                <!-- Giá sau giảm -->
+                <span>1.350.000đ</span>
+
+                <!-- Thông tin tổng cộng -->
+                <small class="text-danger d-block mt-1">
+                  (Giảm giá: 150.000đ)
+                </small>
+              </label>
+
+            </div>
+          </div>
+          <div class="continue-with-purchase text-right mt-2">
+            <a href="checkout.html" class="btn btn-success shadow-sm">Tiếp tục thanh toán</a>
+          </div>
+        </div>
+
+
+        <!-- List control -->
+        <div class="list-control">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="select-all d-flex align-items-center mr-3">
+                <input type="checkbox" class="mr-2">
+                <label for="select-all" class="mb-0">Chọn Tất Cả</label>
+              </div>
+
+
+            </div>
+            <div class=" continue-buy align-items-center">
+              <a href="homeuser.html">Tiếp tục mua sắm</a>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+      <!-- End Header Cart 
+      #cart-item-list
+        .cart-item
+          .purchaseable
+            .cart-item-container
+              figure(.thumbnail)
+              .product
+              .price  
+      -->
+      <div id="cart-item-list">
+        <!-- Package discount -->
+        
+
+        <!-- Item 1 -->
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="../assets/images/Food/001.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1 mt-2 ">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Món ăn
+                        <span class="separator"> | </span>
+                        <a href="">#1458782106</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none pl-0">
+                          <li>5760 x 3840 px</li>
+                          <li>Kích cỡ tệp 12MB</li>
+                        </ul>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>
+                        <div class="d-flex align-items-center">
+                          <div class="form-check mr-4">
+                            <input type="radio" name="options_1" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" name="options_1" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
+                          </div>
+                        </div>
+
+                      </dd>
+                    </div>
+
+
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Tác giả:</dt>
+                      <dd><a href="">Võ Hoàng Phúc</a></dd>
+                    </div>
+
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout d-flex">
+                  <div class="select-for-checkout-content ml-auto">
+                    <input id="selected-for-checkout" type="checkbox">
+                    <label for="selected-for-checkout">Chọn</label>
+                  </div>
+                </div>
+                <ul>
+                  <li class="final-price">100.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart"
+                    ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+
+        <!-- Item 2 -->
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="../assets/images/Food/002.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1 mt-2">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Món ăn
+                        <span class="separator"> | </span>
+                        <a href="">#1396388341</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none pl-0">
+                          <li>2208 x 1361 px</li>
+                          <li>Kích cỡ tệp 824KB</li>
+                        </ul>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>
+                        <div class="d-flex align-items-center">
+                          <div class="form-check mr-4">
+                            <input type="radio" name="options_2" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" name="options_2" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
+                          </div>
+                        </div>
+                      </dd>
+                    </div>
+
+
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Tác giả:</dt>
+                      <dd><a href="">Huỳnh Đăng Khanh</a></dd>
+                    </div>
+
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout d-flex">
+                  <div class="select-for-checkout-content ml-auto">
+                    <input id="selected-for-checkout" type="checkbox">
+                    <label for="selected-for-checkout">Chọn</label>
+                  </div>
+                </div>
+                <ul>
+                  <li class="final-price">200.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart"
+                    ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Hết item 2 -->
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="../assets/images/Food/003.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1 mt-2">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Món ăn
+                        <span class="separator"> | </span>
+                        <a href="">#583809524</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none pl-0">
+                          <li>793 x 446 px</li>
+                          <li>Kích cỡ tệp 470KB</li>
+                        </ul>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>
+                        <div class="d-flex align-items-center">
+                          <div class="form-check mr-4">
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
+                          </div>
+                        </div>
+                      </dd>
+                    </div>
+
+
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Tác giả:</dt>
+                      <dd><a href="">Nguyễn Thanh Thương</a></dd>
+                    </div>
+
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout d-flex">
+                  <div class="select-for-checkout-content ml-auto">
+                    <input id="selected-for-checkout" type="checkbox">
+                    <label for="selected-for-checkout">Chọn</label>
+                  </div>
+                </div>
+                <ul>
+                  <li class="final-price">300.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart"
+                    ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="../assets/images/Food/007.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1 mt-2">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Món ăn
+                        <span class="separator"> | </span>
+                        <a href="">#583809524</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none pl-0">
+                          <li>793 x 446 px</li>
+                          <li>Kích cỡ tệp 470KB</li>
+                        </ul>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>
+                        <div class="d-flex align-items-center">
+                          <div class="form-check mr-4">
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
+                          </div>
+                        </div>
+                      </dd>
+                    </div>
+
+
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Tác giả:</dt>
+                      <dd><a href="">Nguyễn Thanh Thương</a></dd>
+                    </div>
+
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout d-flex">
+                  <div class="select-for-checkout-content ml-auto">
+                    <input id="selected-for-checkout" type="checkbox">
+                    <label for="selected-for-checkout">Chọn</label>
+                  </div>
+                </div>
+                <ul>
+                  <li class="final-price">400.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart"
+                    ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="cart-item">
+          <div class="purchaseable">
+            <div class="cart-item-container d-flex">
+              <figure class="thumbnail">
+                <a href="">
+                  <div class="asset-wrapper">
+                    <img class="img-fluid" src="../assets/images/Food/008.jpg" alt="">
+                  </div>
+                </a>
+              </figure>
+              <div class="product flex-grow-1 mt-2">
+                <section class="details">
+                  <dl class="mb-3">
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại hình ảnh:</dt>
+                      <dd>Món ăn
+                        <span class="separator"> | </span>
+                        <a href="">#583809524</a>
+                      </dd>
+                    </div>
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Kích thước:</dt>
+                      <dd class="size-content">
+                        <ul class="style-none pl-0">
+                          <li>793 x 446 px</li>
+                          <li>Kích cỡ tệp 470KB</li>
+                        </ul>
+                      </dd>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Loại giấy phép:</dt>
+                      <dd>
+                        <div class="d-flex align-items-center">
+                          <div class="form-check mr-4">
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="standard" style="font-size: 16px;">Tiêu
+                              chuẩn</label>
+                          </div>
+                          <div class="form-check">
+                            <input type="radio" name="options_3" class="form-check-input"
+                              style="width: 16px; height: 16px;">
+                            <label class="form-check-label ml-1 mt-1" for="advanced" style="font-size: 16px;">Nâng
+                              cao</label>
+                          </div>
+                        </div>
+                      </dd>
+                    </div>
+
+
+
+                    <div class="d-flex align-items-start">
+                      <dt class="font-weight-normal">Tác giả:</dt>
+                      <dd><a href="">Nguyễn Thanh Thương</a></dd>
+                    </div>
+
+                  </dl>
+                </section>
+              </div>
+              <div class="price">
+                <div class="select-for-checkout d-flex">
+                  <div class="select-for-checkout-content ml-auto">
+                    <input id="selected-for-checkout" type="checkbox">
+                    <label for="selected-for-checkout">Chọn</label>
+                  </div>
+                </div>
+                <ul>
+                  <li class="final-price">500.000đ</li>
+                  <a href="" class="remove-from-cart" data-testid="remove-from-cart" gi-track="removeFromCart"
+                    ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+  <!--section footer -->
+  <section class="footer">
+    <div class="container d-flex justify-content-space">
+      <div class="footer-column">
+        <h3 class="fw-bold"><span class="text-success">C</span>o<span class="text-success">R</span>iPhoto</h3>
+        <br><br>
+        <div class="social-icons d-flex">
+          <a href="#" class="text-decoration-none text-dark mx-2">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" class="text-decoration-none text-dark mx-2">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="#" class="text-decoration-none text-dark mx-2">
+            <i class="fa-brands fa-pinterest-p"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Giấy phép</h3>
+        <br>
+        <ul>
+          <li><a href="#">Về giấy phép</a></li>
+          <li><a href="#">Nhà phân phối</a></li>
+          <li><a href="#">Bản quyền</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Về chúng tôi</h3>
+        <br>
+        <ul>
+          <li><a href="#"><i class="fa-solid fa-envelope pe-2"></i>coriphoto@gmail.com</a></li>
+          <li><a href="#"><i class="fa-solid fa-phone pe-2"></i>081 222 1111</a></li>
+          <li><a href="#"><i class="fa-solid fa-location-dot pe-2"></i>Hồ Chí Minh, Việt Nam</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 class="fs-4 mb-3 fw-bold">Bản tin</h3>
+        <p>Đăng ký nhận bản tin của chúng tôi để nhận được những hình ảnh mới, mẹo và chương trình giảm giá mỗi
+          tuần.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Chính sách bảo mật • Điều khoản và điều kiện</p>
+    </div>
+  </section>
+  <!--section footer -->
+  <script src="../assets/js/cart.js"></script>
+  <script src="../assets/js/homepage.js"></script>
+  <script src="../assets/js/navbar.js"></script>
+  <script src="../assets/js/homeuser.js"></script>
+  <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
