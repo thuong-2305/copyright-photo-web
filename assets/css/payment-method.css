@@ -1,0 +1,191 @@
+/* Chung */
+
+:root {
+    --color-interactive-secondary-hover: #191919;
+    --color-content-inverse: #fff;
+    --chunkiness-thick: 2px;
+    --chunkiness-thin: 1px;
+    --color-content-secondary: #707070;
+    --color-surface-primary: #fff;
+    --color-content-primary: #191919;
+    --color-surface-into-default: #f0f1ff;
+    --color-content-disabled: #949494;
+    --color-content-interactive-primary: #9cee69;
+    --color-content-interactive-primary-hover: #6cc832;
+
+    --color-content-interactive: #1a4200;
+    --transition-duration-short: 150ms;
+    --transition-easing-ease-in-out: cubic-bezier(0.42,0.58,1);
+
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+}   
+
+
+a:hover {
+    text-decoration: none;
+    
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.dp-ib {
+    display: inline-block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+
+
+.dp-flex {
+    display: flex;
+}
+
+
+.stl-none {
+    list-style-type: none;
+}
+
+
+
+#payment-method .payment-method-container {
+    padding: 40px;
+}
+
+/* Navigation */
+section#nav {
+    padding: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+/* Avatar */
+#account-menu-container .profile-image > img {
+    max-width: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
+
+/* Navigate link */
+#account-menu-container .menu-link li > a {
+    color: #191919;
+    font-size: 16px;
+}
+
+#account-menu-container .menu-link li > a:hover {
+    color: var(--primary-color);
+}
+
+#account-menu-container .menu-link .payment-method a {
+    color: var(--primary-color);
+}
+
+
+/* Copy hết trên */
+
+/* Content */
+#payment-method {
+    margin: 0 120px;
+}
+
+#payment-method .credit-card-method .credit-card-header{
+    border-bottom: 1px solid #ced4da;
+}
+
+#payment-method .bank-method .bank-method-header {
+    border-bottom: 1px solid #ced4da;
+}
+
+#payment-method .credit-card-method .button-add-credit-card button,
+#payment-method .bank-method .button-add-bank button
+{
+    color: var(--color-surface-primary);
+    background-color: var(--primary-color);
+    border: 0
+}
+
+#payment-method .credit-card-method .button-add-credit-card button:hover,
+#payment-method .bank-method .button-add-bank button:hover
+{
+    background-color: var(--primary-hover-color);
+}
+
+
+#payment-method .credit-card-method .credit-card-body {
+    height: 200px;
+}
+
+#payment-method .credit-card-method .title-credit-card > span,
+#payment-method .bank-method .title-bank-method > span
+{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+
+/* Card */
+
+#payment-method .ba-card .ba-card-brief .ba-card-account-status {
+    color:#949494;
+    opacity: 0.7;
+}
+
+#payment-method .ba-card .ba-card-brief .ba-card-name {
+    text-transform: uppercase;
+}
+
+#payment-method .ba-card .ba-card-brief .ba-card-default-badge {
+    color: #fff;
+    background-color: var(--color-content-interactive-primary-hover);
+    border-radius: 4px;
+    padding: 0 6px;
+}
+
+#payment-method .ba-card .ba-card-branch-label {
+    color:#949494;
+    opacity: 0.7;
+}
+
+#payment-method .ba-card .ba-card-buttons button {
+    border: solid 1px #e3e3e3;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 0 8px;
+}
+
+
+#payment-method .ba-card .ba-card-buttons .ba-btn-delete  {
+    border: none;
+    text-decoration: underline;
+}
+
+#payment-method .ba-card .ba-card-buttons .ba-btn-set-default:hover  {
+    cursor: not-allowed;
+}
+
+
+
+
+
+
+

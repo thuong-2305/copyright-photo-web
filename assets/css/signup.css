@@ -1,0 +1,90 @@
+:root {
+  --primary-color: #009970;
+  --primary-hover-color: #00b383;
+  --text-color: #666777;
+  --text-hover-color: #000;
+  --footer-bg-color: #f9f9f9;
+  --footer-link-color: #333;
+  --input-border-color: #ccc;
+  --button-hover-color: #4a84d9;
+  --footer-border-color: #e0e0e0;
+  --footer-text-color: #777;
+  --line-seperate: #e0e0e0;
+
+  --swatch_1: #f0f4f9;
+  --swatch_2: #b5d2e1;
+  --swatch_3: #a2a9b6;
+  --swatch_4: #03d1a8;
+  --swatch_5: #3f4759;
+  --swatch_6: #49bbae;
+  --swatch_7: #696dbf;
+}
+
+.frame-signup {
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--swatch_1);
+  flex: 1;
+}
+.signup-container {
+  word-break: break-word;
+  padding: 24px;
+  width: 70vw;
+  max-width: 448px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(238, 239, 242);
+}
+
+.btn {
+  width: 100%;
+  margin-top: 10px;
+  color: #fff;
+  border-radius: 28px;
+  font-size: 16px;
+  line-height: 30px;
+  font-weight: bold;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.btn i {
+  position: absolute;
+  left: 25px;
+  font-size: 20px;
+}
+
+.btn:hover {
+  opacity: 0.8;
+  --bs-btn-hover-color: #000;
+  --bs-btn-hover-bg: #fb7d7d;
+}
+
+.btn-signup {
+  background-color: var(--primary-color);
+}
+
+.btn-google {
+  background-color: #fff;
+  border: 1px solid #626161;
+  color: #676767;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-about img {
+  width: 50vw;
+  height: 100vh;
+  object-fit: cover;
+}

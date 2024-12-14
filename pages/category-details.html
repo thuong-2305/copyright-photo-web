@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Category Details</title>
+  <link rel="stylesheet" href="../assets/css/navbar-footer.css">
+  <link rel="stylesheet" href="../assets/css/homeuser.css">
+  <link rel="stylesheet" href="../assets/css/category-details.css">
+  <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+</head>
+
+<body>
+  <!--section navbar -->
+  <section id="nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg w-100">
+        <div class="container-fluid">
+          <a class="navbar-brand me-auto" href="homeuser.html">
+            <span class="title-logo fw-bold"><span class="text-success">C</span>o<span
+                class="text-success">R</span>iPhoto</span>
+          </a>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
+            aria-labelledby="offcanvasDarkNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title fw-bold" id="offcanvasDarkNavbarLabel">
+                <span class="text-success">C</span>o<span class="text-success">R</span>iPhoto
+              </h5>
+              <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-center flex-grow-1">
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-3" aria-current="page" href="homepage.html">
+                    <span class="fw-semibold">Ảnh</span>
+                    <i class="fa-solid fa-angle-down px-2"></i>
+                  </a>
+                  <div class="link-hover">
+                    <a href="./type-images.html">Ảnh chụp</a>
+                    <a href="./type-images.html">Ảnh vectors</a>
+                    <a href="./type-images.html">Ảnh AI</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-3" href="./category-details.html">
+                    <span class="fw-semibold">Danh mục</span>
+                    <i class="fa-solid fa-angle-down px-2"></i>
+                  </a>
+                  <div class="link-hover">
+                    <div class="dropdown">
+                      <a href="./products.html"> Trừu tượng</a>
+                      <a href="./products.html"> Công nghệ</a>
+                      <a href="./products.html"> Tự nhiên</a>
+                      <a href="./products.html"> Cuộc sống</a>
+                      <a href="./products.html"> Động vật</a>
+                    </div>
+                    <div class="dropdown">
+                      <a href="./products.html"> Các mùa</a>
+                      <a href="./products.html"> Trên không</a>
+                      <a href="./products.html"> Ban đêm</a>
+                      <a href="./products.html"> Thành phố</a>
+                      <a href="./products.html"> Quê hương</a>
+                    </div>
+                    <div class="dropdown">
+                      <a href="./products.html"> Con người</a>
+                      <a href="./products.html"> Du lịch</a>
+                      <a href="./products.html"> Nghệ thuật</a>
+                      <a href="./products.html"> Cuộc sống</a>
+                      <a href="./category-details.html"> Tất cả Danh mục</a>
+                    </div>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link mx-lg-3" href="#">
+                    <span class="fw-semibold">Giấy phép</span>
+                    <i class="fa-solid fa-angle-down px-2"></i>
+                  </a>
+                  <div class="link-hover">
+                    <a href="./license-basic.html">Giấy phép ảnh tiêu chuẩn</a>
+                    <a href="./license-basic.html">Giấy phép miễn phí bản quyền</a>
+                  </div>
+                </li>
+                <!-- <li class="nav-item">
+                  <a class="nav-link mx-lg-3 fw-semibold" href="#">Giới thiệu</a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <div class="d-flex align-items-center pt-1">
+            <div class="sell">
+              <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i
+                  class="fa-solid fa-angle-down px-2"></i></a>
+              <div class="link-hover">
+                <a href="./register-contributor.html">Đăng ký thành người phân phối</a>
+              </div>
+            </div>
+            <div class="line-separate mx-lg-1"></div>
+            <a href="./like.html" class="love"><i class="fa-regular fa-heart"></i></a>
+            <a href="./cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+            aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="d-flex align-items-center user-icon" id="user">
+            <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+            <i class="fa fa-caret-down ms-2"></i>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+  <!--section navbar -->
+
+  <!-- section user account -->
+  <section class="user-account bg-white">
+    <div class="container">
+      <div class="top d-flex mt-5 align-items-center">
+        <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+        <div class="info">
+          <div class="name">
+            <span>Hi, Test</span>
+            <p>test@gmail.com</p>
+          </div>
+          <a href="./editprofile.html" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
+        </div>
+      </div>
+      <div class="line-seperate"></div>
+      <div class="option">
+        <ul class="">
+          <li class="item">
+            <a href="./homeprofile.html">
+              <i class="fas fa-user-cog me-2"></i>
+              <p>Chi tiết tài khoản</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="./like.html">
+              <i class="fas fa-heart me-2"></i>
+              <p>Yêu thích</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="cart.html">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <p>Giỏ hàng</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="history-order.html">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <p>Lịch sử mua hàng</p>
+            </a>
+          </li>
+          <li class="item">
+            <a href="../homepage.html">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <p class="mb-0">Đăng xuất</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button class="btn-close btn-close-black close-user"></button>
+    </div>
+  </section>
+  <div class="overlay"></div>
+  <!-- section user account -->
+
+  <!--section banner -->
+  <section class="banner d-flex flex-column justify-content-center align-items-center">
+    <div class="banner-home">
+      <div class="main-title text-white text-center">
+        <h1 class="fw-bolder">Khám phá hàng trăm ảnh có bản quyền của chúng tôi.</h1>
+        <p class="w-50 mx-auto">Với hàng trăm hình ảnh bản quyền trong danh mục của chúng tôi và nhiều hình ảnh khác
+          được thêm
+          vào mỗi ngày, bạn chắc chắn sẽ tìm thấy hình ảnh hoặc đồ họa hoàn hảo cho dự án tiếp theo của mình tại
+          CoRiPhoto.</p>
+      </div>
+    </div>
+  </section>
+  <!--section banner -->
+
+  <!-- section categories -->
+  <section class="category">
+    <div class="container list-category">
+      <div class="box">
+        <img src="../assets/images/Vietnam/10.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Việt Nam</p>
+        <a href="products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Abstract/1.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Trừu tượng</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Animals/7.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Động vật</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Food/009.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Thức ăn</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Travel/4.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Du lịch</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Technology/Data/6.webp" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Công nghệ</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/People/6.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Con người</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Fine Art/3.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Nghệ thuật</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Nature/1.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Thiên nhiên</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/City and Architecture/3.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Thành phố</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Technology/Robots/2.webp" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">AI</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Still Life/1.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Hoa</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Aerial/1.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Thành phố</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Fine Art/2.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Nghệ thuật</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Macro/6.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Hoa</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/vector/bg/3.avif" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Vector</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Photos/family/11.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Gia đình</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+      <div class="box">
+        <img src="../assets/images/Photos/children/3.jpg" alt="" class="image">
+        <p class="text-white fw-bolder fs-4">Trẻ em</p>
+        <a href="./products.html" class="text-white">Xem</a>
+      </div>
+
+    </div>
+  </section>
+  <!-- section categories -->
+
+  <!-- section content-add -->
+  <section class="content-add">
+    <div class="container d-flex justify-content-center align-items-center bar-content">
+      <ul class="d-flex border-bottom title-content">
+        <li class="tab list-unstyled px-3 text-secondary active" data-target="social-network">Mạng xã hội</li>
+        <li class="tab list-unstyled px-3 text-secondary" data-target="marketing">Chiến dịch thị trường</li>
+        <li class="tab list-unstyled px-3 text-secondary" data-target="design">Thiết kế website</li>
+        <li class="tab list-unstyled px-3 text-secondary" data-target="creative">Sáng tạo dự án</li>
+      </ul>
+    </div>
+    <div class="container main-content">
+      <div id="social-media" class="content">
+        <div class="container content-text social-network active">
+          <ul class="float-start w-50 list-unstyled">
+            <h2 class="my-2">Mạng xã hội</h2>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Nghiên cứu trên mạng xã
+              hội đã chỉ
+              ra rằng việc thường xuyên đăng nội dung là một trong những chìa
+              khóa thu hút khán giả. Bạn không có thời gian đi loanh quanh để chụp ảnh cho Instagram của mình? Đừng
+              lo lắng. Thư viện hình ảnh miễn phí khổng lồ của CoRiPhoto luôn sẵn sàng trợ giúp. Ví dụ: giả sử bạn
+              muốn đăng một câu trích dẫn đầy cảm hứng và bạn cho rằng những từ đó sẽ kết hợp tốt nhất với một bức ảnh
+              bình minh tuyệt đẹp. Nếu không muốn dậy sớm để tự chụp ảnh, bạn chỉ cần gõ "Sunrise" vào thanh tìm kiếm
+              của CoRiPhoto và chọn.
+            </li>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Bạn có bảng màu cụ thể
+              mà bạn sử dụng trên Instagram của mình nhưng ảnh bạn
+              tìm thấy trong thư viện của
+              chúng tôi không hoàn toàn khớp với nhau? Sử dụng CoRiPhoto Editor để điều chỉnh màu sắc của hình ảnh
+              miễn phí bản quyền. Tải xuống tác phẩm đã chỉnh sửa của bạn và chia sẻ.
+            </li>
+          </ul>
+          <img src="../assets/images/People/9.jpg" alt="" class="float-end w-50 my-3">
+        </div>
+
+        <div class="container content-text marketing">
+          <ul class="float-start w-50 list-unstyled">
+            <h2 class="my-2">Chiến dịch thị trường</h2>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Thêm không khí đích
+              thực vào chiến dịch tiếp thị tiếp theo của bạn bằng
+              những
+              bức ảnh miễn phí bản quyền. Không có gì ngạc nhiên khi người tiêu dùng phản ứng tích cực hơn với những
+              người
+              có vẻ ngoài chân thật trong các quảng cáo mà họ xem. Những người cứng nhắc, tạo dáng với nụ cười gượng gạo
+              sẽ không giúp bán được sản phẩm của bạn. May mắn thay, thư viện của CoRiPhoto tràn ngập những bức ảnh
+              miễn phí về những người có vẻ ngoài tự nhiên. Bằng cách sử dụng các tùy chọn bộ lọc của CoRiPhoto, bạn
+              có thể chỉ định độ tuổi, giới tính, dân tộc và số lượng người trong hình ảnh của mình.</li>
+          </ul>
+          <img src="../assets/images/Commercial/2.jpg" alt="" class="float-end w-50 my-3">
+        </div>
+
+        <div class="container content-text design">
+          <ul class="float-start w-50 list-unstyled">
+            <h2 class="my-2">Thiết kế web</h2>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Làm nổi bật thiết kế
+              trang web của bạn và nổi bật giữa đám đông bằng
+              hình ảnh miễn phí bản quyền. Hãy thử khám phá trang hình ảnh "Tóm tắt" được tuyển chọn của CoRiPhoto.
+              Trong trang đó, bạn thậm chí sẽ tìm thấy một trang danh mục phụ dành cho "Hình nền trừu tượng" để giúp
+              bạn tiết kiệm thời gian hơn nữa khi tìm kiếm hình ảnh. Bạn cũng có thể xem trang danh mục hình ảnh
+              "Nền/Hoạ tiết" hoặc chỉ cần nhập từ khóa vào thanh tìm kiếm chính để tìm bất kỳ loại nền nào mà bạn
+              có thể nghĩ đến.
+            </li>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Sử dụng các tùy chọn bộ
+              lọc của CoRiPhoto để chọn màu chính bạn muốn
+              làm nổi bật trong hình ảnh của mình. Đảm bảo màu sắc của logo công ty và nền trang web của bạn bổ sung
+              cho nhau. Điều này sẽ giúp mang lại cho trang web của bạn một cái nhìn gắn kết, chuyên nghiệp.
+            </li>
+          </ul>
+          <img src="../assets/images/Technology/Data/7.webp" alt="" class="float-end w-50 my-3">
+        </div>
+
+        <div class="container content-text creative">
+          <ul class="float-start w-50 list-unstyled">
+            <h2 class="my-2">Sáng tạo dự án</h2>
+            <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Với hàng triệu hình ảnh
+              miễn phí bản quyền để lựa chọn và thư viện hình ảnh
+              ngày càng phát triển, CoRiPhoto chắc chắn sẽ có ảnh, hình minh họa hoặc vectơ để đáp ứng nhu cầu sáng
+              tạo của bạn. Hình ảnh của chúng tôi hoàn hảo cho nhiều tình huống và dự án, từ hình nền trang web đến
+              thiệp
+              mời đám cưới, ảnh bìa Facebook cho đến câu chuyện trên Instagram, v.v. Hãy bắt đầu ngay hôm nay.
+            </li>
+          </ul>
+          <img src="../assets/images/HandScenery/007.jpg" alt="" class="float-end w-50 my-3">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- section content-add -->
+
+  <!--section banner2 -->
+  <section class="banner ver2 d-flex flex-column justify-content-center align-items-center">
+    <div class="banner-home">
+      <div class="main-title text-white text-center">
+        <h1 class="fw-bolder mb-3">Không thể tìm thấy những gì bạn đang tìm kiếm.</h1>
+        <section class="search">
+          <div class="search-container">
+              <div class="dropdown">
+                  <button class="text-secondary" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
+                          ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
+                  <div class="dropdown-content">
+                      <a href="#" class="active" data-icon="fa-image"><i class="fa-solid fa-image pe-3"></i>Tất cả
+                          ảnh</a>
+                      <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
+                      <a href="#" data-icon="fa-vector-square"><i class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+                      <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
+                  </div>
+              </div>
+              <div class="search-bar">
+                  <input type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
+                  <span class="clear-btn text-dark">&#10005;</span>
+              </div>
+              <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm
+                      kiếm</span></button>
+          </div>
+      </section>
+      </div>
+    </div>
+  </section>
+  <!--section banner2 -->
+
+  <!--section footer -->
+  <section class="footer">
+    <div class="container d-flex justify-content-space">
+      <div class="footer-column">
+        <h3 class="fw-bold"><span class="text-success">C</span>o<span class="text-success">R</span>iPhoto</h3>
+        <br><br>
+        <div class="social-icons d-flex">
+          <a href="./license-basic.html" class="text-decoration-none text-dark mx-2">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="./license-basic.html" class="text-decoration-none text-dark mx-2">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="./license-basic.html" class="text-decoration-none text-dark mx-2">
+            <i class="fa-brands fa-pinterest-p"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Giấy phép</h3>
+        <br>
+        <ul>
+          <li><a href="#">Về giấy phép</a></li>
+          <li><a href="#">Nhà phân phối</a></li>
+          <li><a href="#">Bản quyền</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Về chúng tôi</h3>
+        <br>
+        <ul>
+          <li><a href="#"><i class="fa-solid fa-envelope pe-2"></i>coriphoto@gmail.com</a></li>
+          <li><a href="#"><i class="fa-solid fa-phone pe-2"></i>081 222 1111</a></li>
+          <li><a href="#"><i class="fa-solid fa-location-dot pe-2"></i>Hồ Chí Minh, Việt Nam</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 class="fs-4 mb-3 fw-bold">Bản tin</h3>
+        <p>Đăng ký nhận bản tin của chúng tôi để nhận được những hình ảnh mới, mẹo và chương trình giảm giá mỗi
+          tuần.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Chính sách bảo mật • Điều khoản và điều kiện</p>
+    </div>
+  </section>
+  <!--section footer -->
+
+  <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/category-details.js"></script>
+  <script src="../assets/js/homeuser.js"></script>
+  <script src="../assets/js/homepage.js"></script>
+  <script src="../assets/js/navbar.js"></script>
+</body>
+
+</html>

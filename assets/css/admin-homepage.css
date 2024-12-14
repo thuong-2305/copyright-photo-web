@@ -1,0 +1,48 @@
+:root {
+    --primary-color: #009970;
+    --primary-hover-color: #00b383;
+    --text-color: #666777;
+    --text-hover-color: #000;
+    --footer-bg-color: #f9f9f9;
+    --footer-link-color: #333;
+    --input-border-color: #ccc;
+    --button-hover-color: #4a84d9;
+    --footer-border-color: #e0e0e0;
+    --footer-text-color: #777;
+    --line-seperate: #e0e0e0;
+
+    --swatch_1: #f0f4f9;
+    --swatch_2: #b5d2e1;
+    --swatch_3: #a2a9b6;
+    --swatch_4: #03d1a8;
+    --swatch_5: #3f4759;
+    --swatch_6: #49bbae;
+    --swatch_7: #696dbf;
+}
+
+.shadow-bottom {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;   
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.right-category .card-header {
+    background: var(--swatch_4) !important;
+}
+

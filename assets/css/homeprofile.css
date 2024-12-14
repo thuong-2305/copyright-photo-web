@@ -1,0 +1,107 @@
+/* Chung */
+
+:root {
+    --color-interactive-secondary-hover: #191919;
+    --color-content-inverse: #fff;
+    --chunkiness-thick: 2px;
+    --chunkiness-thin: 1px;
+    --color-content-secondary: #707070;
+    --color-surface-primary: #fff;
+    --color-content-primary: #191919;
+}   
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-fluid {
+    height: 450px;
+    padding: 64px;
+}
+
+.stl-none {
+    list-style-type: none;
+}
+
+/* CỘT 1 */
+
+.first-col {
+    padding-right: 64px;
+}
+
+.first-col span:first-child {
+    font-size: 2.15rem;
+    letter-spacing: 0;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-content-primary);
+    margin-bottom: 40px;
+}
+
+.first-col span:last-child {
+    display: block;
+    margin-top:16px;
+}
+
+.first-col .info-pic {
+    width: 500px;
+    height: 400px;
+}
+
+
+
+
+/* CỘT 2 */
+.second-col {
+    background: var(--color-surface-primary); 
+    border: var(--chunkiness-thin) solid var(--color-content-secondary);
+    border-radius: 4px;
+    padding: 28px;
+}
+
+
+/* Heading */
+.profile-content .profile-heading h2 {
+    margin-bottom: 28px;
+    font-size: 28px;
+}
+
+/* Body */
+
+.profile-content .profile-body {
+    margin-bottom: 28px;
+}
+
+.profile-content .profile-body h6:last-child {
+    margin-bottom: 24px;
+}
+
+
+/* Footer */
+.profile-content .profile-footer a {
+    padding: 12px 0;
+    color: #000;
+    height: 48px;
+    display: block;
+    text-align: center;
+    border: 1.5px #000 solid;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 16px;
+}
+
+.profile-content .profile-footer a:hover {
+    background-color: var(--color-interactive-secondary-hover);
+    color: var(--color-content-inverse);
+    box-shadow: inset 0px 0px 0px var(--chunkiness-thick) #404040;
+}
+
+
+
