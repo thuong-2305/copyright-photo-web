@@ -11,7 +11,8 @@ public class User {
     private String email;
     private LocalDate createDate;
 
-    public User() {}
+    public User() {
+    }
 
     public User(int uid, int role, String fullName, String username, String password, String email, LocalDate createDate) {
         this.uid = uid;
@@ -78,4 +79,5 @@ public class User {
     public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
     }
+
 }

@@ -1,0 +1,46 @@
+package vn.edu.hcmuaf.fit.coriphoto.controller;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.coriphoto.model.User;
+import vn.edu.hcmuaf.fit.coriphoto.services.UserService;
+
+import java.io.IOException;
+
+@WebServlet(name = "ChangeEmail", value = "/ChangeEmail")
+public class ChangeEmail extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String userOtp = request.getParameter("otp");
+        String newEmail = request.getParameter("newEmail");
+
+        HttpSession session = request.getSession();
+        int otp = (int) session.getAttribute("otp");
+
+        if (String.valueOf(otp).equals(userOtp)) {
+            try {
+                // Update email in database
+                UserService userService = new UserService();
+                User currentUser = (User) session.getAttribute("loggedInUser");
+                userService.updateProfileEmail(currentUser.getUid(), newEmail);
+
+                // Update email in session
+                currentUser.setEmail(newEmail);
+                session.setAttribute("loggedInUser", currentUser);
+
+                // Remove OTP from session
+                session.removeAttribute("otp");
+
+                // Return success status
+                response.getWriter().write("success");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.getWriter().write("error");
+            }
+        } else {
+            response.getWriter().write("invalidOtp");
+        }
+    }}
