@@ -1,11 +1,19 @@
+let myPmid = null;
+
 function confirmDelete(pmid) {
+    myPmid = pmid;
     const modal = document.getElementById('confirmDeleteModal');
-    modal.classList.add('show');  // Thêm class 'show' để hiển thị modal
-    const proceedButton = document.getElementById('confirmDeleteButton');
-    proceedButton.setAttribute('data-pmid', pmid);  // Lưu pmid vào nút xác nhận
+    modal.style.display = 'flex';
 }
 
 function closeModal() {
+    myPmid = null;
     const modal = document.getElementById('confirmDeleteModal');
-    modal.classList.remove('show');  // Loại bỏ class 'show' để ẩn modal
+    modal.style.display = 'none';
+}
+
+function proceedDelete() {
+    if (myPmid) {
+        window.location.href = `DeletePaymentMethod?pmid=${myPmid}`;
+    }
 }

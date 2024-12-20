@@ -4,6 +4,7 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.PaymentMethod;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
+import vn.edu.hcmuaf.fit.coriphoto.services.UserService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -130,6 +131,36 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean addPaymentMethodCard(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate, int cvc) {
+        try {
+            Jdbi jdbi = DBConnect.get();
+            return jdbi.withHandle(handle ->
+                    handle.execute(
+                            "INSERT INTO payment_method (uid, accountName, accountNumber, pmTypeId, provider, expiryDate, cvc) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                            uid, accountName, accountNumber, pmTypeId, provider, expiryDate, cvc
+                    ) > 0
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean addPaymentMethodBank(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate) {
+        try {
+            Jdbi jdbi = DBConnect.get();
+            return jdbi.withHandle(handle ->
+                    handle.execute(
+                            "INSERT INTO payment_method (uid, accountName, accountNumber, pmTypeId, provider, expiryDate, cvc) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                            uid, accountName, accountNumber, pmTypeId, provider, expiryDate, null
+                    ) > 0
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 

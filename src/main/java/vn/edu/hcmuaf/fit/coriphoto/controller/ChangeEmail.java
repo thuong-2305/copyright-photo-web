@@ -21,19 +21,13 @@ public class ChangeEmail extends HttpServlet {
 
         if (String.valueOf(otp).equals(userOtp)) {
             try {
-                // Update email in database
                 UserService userService = new UserService();
                 User currentUser = (User) session.getAttribute("loggedInUser");
                 userService.updateProfileEmail(currentUser.getUid(), newEmail);
 
-                // Update email in session
                 currentUser.setEmail(newEmail);
                 session.setAttribute("loggedInUser", currentUser);
-
-                // Remove OTP from session
                 session.removeAttribute("otp");
-
-                // Return success status
                 response.getWriter().write("success");
 
             } catch (Exception e) {

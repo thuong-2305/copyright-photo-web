@@ -20,10 +20,11 @@ public class DeletePaymentMethod extends HttpServlet {
             UserService userService = new UserService();
             boolean isDeleted = userService.deletePaymentMethodById(Integer.parseInt(pmid));
             if (isDeleted) {
+                session.setAttribute("deleteSuccess", "Xóa thành công");
                 response.sendRedirect("ShowPaymentMethodProfile");
             } else {
-                request.setAttribute("errorMessage", "Xóa thất bại!");
-                request.getRequestDispatcher("ShowPaymentMethodProfile").forward(request, response);
+                session.setAttribute("deleteError", "Xóa thất bại!");
+                response.sendRedirect("ShowPaymentMethodProfile");
             }
         }
         else {

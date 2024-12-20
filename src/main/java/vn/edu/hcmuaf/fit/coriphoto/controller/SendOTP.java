@@ -22,25 +22,20 @@ public class SendOTP extends HttpServlet {
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("loggedInUser");
 
-        // Check if the user is logged in
         if (currentUser != null) {
             String email = currentUser.getEmail();
             int otp = EmailUtils.generateOTP();
-
             try {
                 String subject = "Mã OTP xác thực thay đổi email";
                 String message = "Mã OTP của bạn là: " + otp + ". Vui lòng không chia sẻ mã này với bất kỳ ai.";
                 EmailUtils.sendEmail(email, subject, message);
-
-                // Store OTP in session and return success
                 session.setAttribute("otp", otp);
-                response.getWriter().write("success");  // Send "success" back to the client
+                response.getWriter().write("success");
             } catch (Exception e) {
                 e.printStackTrace();
-                response.getWriter().write("error");  // Send "error" back to the client if there is an issue
+                response.getWriter().write("error");
             }
         } else {
-            // If user is not logged in, redirect to profile edit page
             response.sendRedirect("editprofile.jsp");
         }
     }

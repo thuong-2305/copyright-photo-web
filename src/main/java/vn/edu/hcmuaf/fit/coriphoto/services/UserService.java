@@ -4,10 +4,12 @@ import vn.edu.hcmuaf.fit.coriphoto.UserDAO;
 import vn.edu.hcmuaf.fit.coriphoto.model.PaymentMethod;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserService {
     private UserDAO userDao;
+
 
     public UserService() {
         this.userDao = new UserDAO();
@@ -42,7 +44,12 @@ public class UserService {
         }
         return false;
     }
-
+    public boolean addPaymentMethodCard(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate, int cvc) {
+        return userDao.addPaymentMethodCard(uid, accountName,accountNumber,1,provider,expiryDate,cvc);
+    }
+    public boolean addPaymentMethodBank(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate) {
+        return userDao.addPaymentMethodBank(uid, accountName,accountNumber,2,provider,expiryDate);
+    }
 
 
 

@@ -216,18 +216,65 @@
                     </div>
                 </div>
                 <div class="col-9 main-content">
+                    <c:if test="${not empty addCardError}">
+                        <div class="alert alert-danger">
+                                ${addCardError}
+                        </div>
+                        <c:remove var="addCardError"/>
+                    </c:if>
+
+                    <c:if test="${not empty addBankError}">
+                        <div class="alert alert-danger">
+                                ${addBankError}
+                        </div>
+                        <c:remove var="addBankError"/>
+                    </c:if>
+
+                    <c:if test="${not empty deleteError}">
+                        <div class="alert alert-danger">
+                                ${deleteError}
+                        </div>
+                        <c:remove var="deleteError"/>
+                    </c:if>
+
+                    <c:if test="${not empty addBankSuccess}">
+                        <div class="alert alert-success">
+                                ${addBankSuccess}
+                        </div>
+                        <c:remove var="addBankSuccess"/>
+                    </c:if>
+
+                    <c:if test="${not empty addCardSuccess}">
+                        <div class="alert alert-success">
+                                ${addCardSuccess}
+                        </div>
+                        <c:remove var="addCardSuccess"/>
+                    </c:if>
+
+                    <c:if test="${not empty deleteSuccess}">
+                        <div class="alert alert-success">
+                                ${deleteSuccess}
+                        </div>
+                        <c:remove var="deleteSuccess"/>
+                    </c:if>
+
+
                     <div class="credit-card-method">
                         <div class="credit-card-header pb-4 pt-4 d-flex">
                             <div class="title-credit-card dp-ib">
                                 <span>Thẻ Tín Dụng/Ghi Nợ</span>
                             </div>
                             <div class="button-add-credit-card ml-auto">
-                                <button class="pl-4 pr-4 pb-2 pt-2">
+                                <button class="pl-4 pr-4 pb-2 pt-2" data-toggle="modal" data-target="#addCreditCardModal">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                     Thêm thẻ mới
                                 </button>
                             </div>
                         </div>
+
+
+
+
 
                         <c:if test="${empty paymentMethods || !hasCard}">
                             <div class="mt-4 d-flex justify-content-center align-items-center">
@@ -235,11 +282,7 @@
                             </div>
                         </c:if>
 
-                        <c:if test="${not empty errorMessage}">
-                            <div class="alert alert-danger">
-                                    ${errorMessage}
-                            </div>
-                        </c:if>
+
 
                         <c:forEach var="payment" items="${paymentMethods}">
                             <c:if test="${payment.pmTypeId == 1}">
@@ -266,7 +309,7 @@
                                         </div>
                                         <div class="ba-card-buttons ml-auto">
                                             <button class="ba-btn-delete align-items-center"
-                                                    data-pmid="${payment.pmid}">Xóa
+                                                    onclick="confirmDelete('${payment.pmid}')">Xóa
                                             </button>
                                         </div>
 
@@ -282,7 +325,7 @@
                                 <span>Tài Khoản Ngân Hàng Của Tôi</span>
                             </div>
                             <div class="button-add-bank ml-auto">
-                                <button class="pl-4 pr-4 pb-2 pt-2">
+                                <button class="pl-4 pr-4 pb-2 pt-2" data-toggle="modal" data-target="#addBankAccountModal">
                                     <i class="fa fa-plus" aria-hidden="true"></i>
                                     Thêm Tài Khoản Ngân Hàng Liên Kết
                                 </button>
@@ -329,7 +372,7 @@
                                             </div>
                                             <div class="ba-card-buttons ml-auto">
                                                 <button class="ba-btn-delete align-items-center"
-                                                        data-pmid="${payment.pmid}">Xóa
+                                                        onclick="confirmDelete('${payment.pmid}')">Xóa
                                                 </button>
                                             </div>
 
@@ -339,7 +382,111 @@
                             </c:forEach>
                         </div>
                     </div>
-                    <div id="confirmDeleteModal" class="modal" style="display: none;">
+
+                    <!-- Modal: Add Credit/Debit Card -->
+                    <div class="modal fade" id="addCreditCardModal" tabindex="-1" role="dialog"
+                         aria-labelledby="addCreditCardModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addCreditCardModalLabel">Thêm Thẻ Tín dụng/Ghi nợ</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="AddCreditCard" method="POST">
+                                        <div class="form-group">
+                                            <label for="cardNumber">Số thẻ</label>
+                                            <input type="text" id="cardNumber" name="cardNumber" class="form-control"
+                                                   placeholder="Nhập số thẻ" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="cardExpiryDate">Ngày hết hạn</label>
+                                                <input type="date" id="cardExpiryDate" name="cardExpiryDate"
+                                                       class="form-control" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="cvc">Mã CVV</label>
+                                                <input type="text" id="cvc" name="cvc" class="form-control"
+                                                       placeholder="CVC" required>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="provider">Tên ngân hàng</label>
+                                                <input type="text" id="provider" name="provider" class="form-control"
+                                                       placeholder="Tên ngân hàng" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cardName">Họ và tên chủ thẻ</label>
+                                            <input type="text" id="cardName" name="cardName" class="form-control"
+                                                   placeholder="Nhập họ và tên" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở Lại
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Hoàn thành</button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal: Add Bank Account -->
+                    <div class="modal fade" id="addBankAccountModal" tabindex="-1" role="dialog"
+                         aria-labelledby="addBankAccountModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addBankAccountModalLabel">Thêm Tài Khoản Ngân Hàng</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="AddBank" method="POST">
+                                        <div class="form-group">
+                                            <label for="bankName">Tên ngân hàng</label>
+                                            <select id="bankName" name="bankName" class="form-control" required>
+                                                <option value="">Chọn ngân hàng</option>
+                                                <option value="vietcombank">Vietcombank</option>
+                                                <option value="bidv">BIDV</option>
+                                                <option value="agribank">Agribank</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="accountNumber">Số tài khoản</label>
+                                            <input type="text" id="accountNumber" name="accountNumber"
+                                                   class="form-control" placeholder="Nhập số tài khoản" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="accountHolder">Tên đầy đủ (viết in hoa, không dấu)</label>
+                                            <input type="text" id="accountHolder" name="accountHolder"
+                                                   class="form-control" placeholder="Nhập tên đầy đủ" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="accountExpiryDate">Ngày hết hạn</label>
+                                            <input type="date" id="accountExpiryDate" name="accountExpiryDate"
+                                                   class="form-control" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Trở Lại
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">Hoàn Thành</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="confirmDeleteModal" class="modal">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -352,7 +499,6 @@
                                     <p>Bạn có chắc chắn muốn xóa phương thức thanh toán này không?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <!-- Thêm data-pmid vào nút xác nhận -->
                                     <button type="button" class="btn btn-danger" id="confirmDeleteButton"
                                             onclick="proceedDelete()">Xác nhận
                                     </button>

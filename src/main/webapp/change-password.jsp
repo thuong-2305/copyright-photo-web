@@ -131,7 +131,7 @@
 <section class="user-account bg-white">
     <div class="container">
         <div class="top d-flex mt-5 align-items-center">
-            <img class="avatar position-relative" src="../assets/images/avart-default.png"/>
+            <img class="avatar position-relative" src="assets/images/avart-default.png"/>
             <div class="info">
                 <div class="name">
                     <span>Hi, Test</span>
@@ -225,14 +225,12 @@
                     </div>
 
                     <form class="ml-4 password-form mt-4" action="ChangePassword" method="POST">
-                        <!-- Thông báo thành công -->
                         <c:if test="${not empty successMessage}">
                             <div class="alert alert-success">
                                     ${successMessage}
                             </div>
                         </c:if>
 
-                        <!-- Thông báo lỗi -->
                         <c:if test="${not empty errorMessage}">
                             <div class="alert alert-danger">
                                     ${errorMessage}
