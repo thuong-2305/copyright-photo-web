@@ -29,7 +29,7 @@ section.banner {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 50vh;
+    height: 70vh;
 }
 
 section.banner::before {
@@ -226,7 +226,7 @@ section.banner .main-title {
 
 /* banner2 */
 section.banner.ver2 {
-    background-image: url(../images/Landscapes/8.jpg);
+    background-image: url(../images/Landscape/8.jpg);
 }
 
 

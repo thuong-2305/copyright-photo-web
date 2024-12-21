@@ -4,7 +4,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg w-100">
             <div class="container-fluid">
-                <a class="navbar-brand me-auto" href="homepage.html">
+                <a class="navbar-brand me-auto" href="${ pageContext.request.contextPath }/">
                     <span class="title-logo fw-bold"><span class="text-success">C</span>o<span class="text-success">R</span>iPhoto</span>
                 </a>
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
@@ -54,7 +54,7 @@
                                         <a href="pages/products.html"> Du lịch</a>
                                         <a href="pages/products.html"> Nghệ thuật</a>
                                         <a href="pages/products.html"> Cuộc sống</a>
-                                        <a href="pages/category-details.html"> Tất cả Danh mục</a>
+                                        <a href="categories"> Tất cả Danh mục</a>
                                     </div>
                                 </div>
                             </li>
@@ -68,9 +68,6 @@
                                     <a href="pages/license-basic.html">Giấy phép miễn phí bản quyền</a>
                                 </div>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link mx-lg-3 fw-semibold" href="#">Giới thiệu</a>
-                            </li> -->
                         </ul>
                     </div>
                 </div>
