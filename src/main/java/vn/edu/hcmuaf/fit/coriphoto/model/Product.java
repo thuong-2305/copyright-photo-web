@@ -118,4 +118,21 @@ public class Product {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "," + id +
+                ", " + uid +
+                ", " + cid +
+                ", '" + name +
+                ", " + description +
+                ", " + size +
+                ", " + dimension +
+                ", " + dateUpload +
+                ", " + url +
+                ", " + price +
+                ", " + status +
+                '}';
+    }
 }
