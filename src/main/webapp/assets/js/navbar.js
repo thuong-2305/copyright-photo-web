@@ -29,3 +29,13 @@ document.querySelectorAll('.nav-link').forEach(function(link) {
         }
     });
 });
+
+const navbar = document.getElementById("nav");
+
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});

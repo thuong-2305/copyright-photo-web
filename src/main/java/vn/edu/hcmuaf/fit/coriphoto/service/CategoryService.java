@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import vn.edu.hcmuaf.fit.coriphoto.dao.CategoryDAO;
 import vn.edu.hcmuaf.fit.coriphoto.model.Category;
+import vn.edu.hcmuaf.fit.coriphoto.model.CategoryParent;
 
 import java.util.List;
 
@@ -14,6 +15,10 @@ public class CategoryService {
 
     public List<Category> getTrendCategory() {
         return categories.getTrendCategory();
+    }
+
+    public List<CategoryParent> getTypeImages() {
+        return categories.getTypeImage();
     }
 
 }

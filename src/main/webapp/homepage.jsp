@@ -45,24 +45,15 @@
     <!--section type-images -->
     <section class="type-images">
         <div class="container d-flex justify-content-between detail">
+            <jsp:useBean id="categoriesParent" scope="request" type="java.util.List"/>
+            <c:forEach var="item" items="${ categoriesParent }">
             <a href="pages/type-images.html" class="text-decoration-none text-dark">
                 <div class="category-item">
-                    <img src="assets/images/Photos/children/4.jpg" alt="">
-                    <p>Ảnh chụp</p>
+                    <img src="assets/images/TypeImages/${ item.getName() }.jpg" alt="">
+                    <p>${ item.getName() }</p>
                 </div>
             </a>
-            <a href="pages/type-images.html" class="text-decoration-none text-dark">
-                <div class="category-item">
-                    <img src="assets/images/vector/bg/3.avif" alt="">
-                    <p>Ảnh Vector</p>
-                </div>
-            </a>
-            <a href="pages/type-images.html" class="text-decoration-none text-dark">
-                <div class="category-item">
-                    <img src="assets/images/ai/Animal/023.jpg" alt="">
-                    <p>Ảnh AI</p>
-                </div>
-            </a>
+            </c:forEach>
         </div>
     </section>
     <!--section type-images -->

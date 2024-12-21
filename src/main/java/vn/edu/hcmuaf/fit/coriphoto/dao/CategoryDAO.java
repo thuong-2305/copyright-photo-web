@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Category;
+import vn.edu.hcmuaf.fit.coriphoto.model.CategoryParent;
 
 import java.util.List;
 
@@ -31,7 +32,12 @@ public class CategoryDAO {
                 .mapToBean(Category.class).list());
     }
 
+    public List<CategoryParent> getTypeImage() {
+        String sqlQuery = "SELECT * FROM categories_parent where name IN ('ai', 'vector', 'photo')";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .mapToBean(CategoryParent.class).list());
+    }
+
     public static void main(String[] args) {
-        System.out.println(new CategoryDAO().getTrendCategory());
     }
 }
