@@ -71,7 +71,7 @@
                 <jsp:useBean id="trendsCategories" scope="request" type="java.util.List"/>
                 <c:forEach var="item" items="${ trendsCategories }">
                 <div class="swiper-slide">
-                    <a href="pages/products.html">
+                    <a href="products?cid=${ item.getCid() }">
                         <div class="category">
                             <img src="${ item.getUrl() }" alt="">
                             <span>${ item.getName() }</span>

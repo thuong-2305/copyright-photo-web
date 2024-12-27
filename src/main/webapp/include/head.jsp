@@ -6,3 +6,8 @@
 <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<link rel="stylesheet" href="../assets/css/products.css">
+<link rel="stylesheet" href="../assets/css/homeuser.css">
+<link rel="stylesheet" href="../assets/css/search.css">
+

@@ -6,37 +6,38 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.hcmuaf.fit.coriphoto.dao.CategoryDAO;
 import vn.edu.hcmuaf.fit.coriphoto.model.Category;
-import vn.edu.hcmuaf.fit.coriphoto.model.CategoryParent;
-import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
+import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "HomeController", value = "/")
-public class HomeController extends HttpServlet {
+@WebServlet(name = "ProductControll", value = "/products")
+public class ProductControll extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int cid = Integer.parseInt(request.getParameter("cid"));
         ProductService productService = new ProductService();
-        List<TrendProducts> trendProducts = productService.getTopTrend();
-        request.setAttribute("trendsProducts", trendProducts);
-
         CategoryService categoryService = new CategoryService();
+        List<Product> products = productService.getByCategoryId(cid);
+        request.setAttribute("products", products);
+        String duongdan = categoryService.getById(cid).getName();
+        request.setAttribute("duongdan", duongdan);
+        request.setAttribute("cid", cid);
+
         List<Category> categories = categoryService.getAll();
         request.setAttribute("categories", categories);
-        List<Category> trendCategories = categoryService.getTrendCategory();
-        request.setAttribute("trendsCategories", trendCategories);
-        List<CategoryParent> categoriesParent = categoryService.getTypeImages();
-        request.setAttribute("categoriesParent", categoriesParent);
-        request.getRequestDispatcher("homepage.jsp").forward(request, response);
+
+        String latest = request.getParameter("latest");
+        System.out.println(latest);
+        request.getRequestDispatcher("products.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+ 
     }
 }

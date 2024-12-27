@@ -92,7 +92,7 @@
         <div class="box">
             <img src="${ item.getUrl() }" alt="" class="image">
             <p class="text-white fw-bolder fs-4">${ item.getName() }</p>
-            <a href="pages/products.html" class="text-white">Xem</a>
+            <a href="products?cid=${ item.getCid() }" class="text-white">Xem</a>
         </div>
         </c:forEach>
     </div>

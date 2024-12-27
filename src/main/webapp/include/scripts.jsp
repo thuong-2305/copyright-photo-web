@@ -4,3 +4,4 @@
 <script src="../assets/js/navbar.js"></script>
 <script src="../assets/js/category-details.js"></script>
 <script src="../assets/js/homeuser.js"></script>
+<script src="../assets/js/products.js"></script>

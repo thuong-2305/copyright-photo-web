@@ -21,8 +21,16 @@ public class ProductService {
         return products.getTrendProducts();
     }
 
+    public List<Product> getByCategoryId(int cid) {
+        return products.getByCategoryId(cid);
+    }
+
+    public List<Product> sortProductsLatest(int cid) {
+        return products.sortProductsLatest(cid);
+    }
+
     public static void main(String[] args) {
-        List<TrendProducts> res = new ProductService().getTopTrend();
-        res.forEach(e -> System.out.println(res.size()));
+        List<Product> res = new ProductService().sortProductsLatest(23);
+        res.forEach(e -> System.out.println(e));
     }
 }

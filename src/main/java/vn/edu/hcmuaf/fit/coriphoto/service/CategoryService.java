@@ -21,4 +21,12 @@ public class CategoryService {
         return categories.getTypeImage();
     }
 
+    public Category getById(int cid) {
+        return categories.getById(cid);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new CategoryService().getAll());
+    }
+
 }

@@ -6,7 +6,9 @@ import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductDAO {
     private static final Jdbi jdbi = new DBConnect().get();
@@ -33,8 +35,20 @@ public class ProductDAO {
                 .mapToBean(TrendProducts.class).list());
     }
 
+    public List<Product> getByCategoryId(int cid) {
+        String sqlQuery = "SELECT * FROM products WHERE cid = ?";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .bind(0, cid).mapToBean(Product.class).list());
+    }
+
+    public List<Product> sortProductsLatest(int cid) {
+        return this.getByCategoryId(cid).stream()
+                .sorted(Comparator.comparing(Product::getDateUpload).reversed())
+                .toList();
+    }
+
     public static void main(String[] args) {
-        System.out.println(new ProductDAO().getTrendProducts());
+        System.out.println(new ProductDAO().getByCategoryId(1));
 //        new ProductDAO().getTrendProducts();
     }
 }

@@ -19,6 +19,11 @@ public class CategoryDAO {
                    .mapToBean(Category.class).list());
     }
 
+    public Category getById(int cid) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM categories WHERE cid = ?")
+                .bind(0, cid).mapToBean(Category.class).findFirst().orElse(null));
+    }
+
     public List<Category> getTrendCategory() {
         String sqlQuery = "SELECT c.cid, c.name, COUNT(v.id) AS total_views, MAX(p.url) AS url " +
                 "FROM Views v " +
