@@ -29,6 +29,14 @@ public class ProductService {
         return products.sortProductsLatest(cid);
     }
 
+    public List<Product> getProductPopular(int cid) {
+        return products.getProductPopular(cid);
+    }
+
+    public List<Product> getProductLatest(int cid) {
+        return products.getProductLatest(cid);
+    }
+
     public static void main(String[] args) {
         List<Product> res = new ProductService().sortProductsLatest(23);
         res.forEach(e -> System.out.println(e));

@@ -41,6 +41,25 @@ public class ProductDAO {
                 .bind(0, cid).mapToBean(Product.class).list());
     }
 
+    public List<Product> getProductPopular(int cid) {
+        String sqlQuery = "SELECT p.id ,p.name, p.url, COUNT(v.id) AS view_count " +
+                "FROM products p " +
+                "LEFT JOIN views v ON p.id = v.pid " +
+                "WHERE p.cid = ? and p.status = 'accepted' " +
+                "GROUP BY p.id, p.name, p.url " +
+                "ORDER BY view_count DESC;";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .bind(0, cid).mapToBean(Product.class).list());
+    }
+
+    public List<Product> getProductLatest(int cid) {
+        String sqlQuery = "SELECT * FROM products " +
+                "WHERE cid = ? and status = 'accepted' " +
+                "ORDER BY dateUpload DESC;";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .bind(0, cid).mapToBean(Product.class).list());
+    }
+
     public List<Product> sortProductsLatest(int cid) {
         return this.getByCategoryId(cid).stream()
                 .sorted(Comparator.comparing(Product::getDateUpload).reversed())
@@ -48,7 +67,7 @@ public class ProductDAO {
     }
 
     public static void main(String[] args) {
-        System.out.println(new ProductDAO().getByCategoryId(1));
+        System.out.println(new ProductDAO().getProductLatest(5));
 //        new ProductDAO().getTrendProducts();
     }
 }

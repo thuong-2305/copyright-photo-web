@@ -11,3 +11,6 @@
 <link rel="stylesheet" href="../assets/css/homeuser.css">
 <link rel="stylesheet" href="../assets/css/search.css">
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+

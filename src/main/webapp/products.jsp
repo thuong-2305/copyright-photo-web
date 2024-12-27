@@ -1,3 +1,4 @@
+<jsp:useBean id="cid" scope="request" type="java.lang.Integer"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -78,12 +79,22 @@
                             class="fa-solid fa-sliders"></i> Lọc
                     </button>
                     <div class="dropdown">
-                        <button class="btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button
+                                class="btn-outline-secondary dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                id="dropdownButton-products"
+                        >
                             Sắp xếp: Phổ biến nhất
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="products?popular=true %>">Phổ biến nhất</a></li>
-                            <li><a class="dropdown-item" href="products?latest=true">Mới nhất</a></li>
+                            <li class="dropdown-item active" data-value="popular" style="cursor: pointer;">
+                                Phổ biến nhất
+                            </li>
+                            <li class="dropdown-item" data-value="latest" style="cursor: pointer;">
+                                Mới nhất
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -121,8 +132,8 @@
 
             </div>
             <div class="photo-products">
-                <jsp:useBean id="products" scope="request" type="java.util.List"/>
-                <c:forEach var="item" items="${ products }">
+                <jsp:useBean id="productSorted" scope="request" type="java.util.List"/>
+                <c:forEach var="item" items="${ productSorted }">
                 <div class="box">
                     <a href="#">
                         <img src="${ item.getUrl() }" alt="">
@@ -165,6 +176,52 @@
         const filterPanel = document.querySelector(".filter-panel");
         filterPanel.classList.toggle("active");
     }
+</script>
+<script>
+    $(document).ready(function() {
+        // Lắng nghe sự kiện click trên các mục trong dropdown
+        $(".dropdown-menu .dropdown-item").on("click", function() {
+            $(".dropdown-menu .dropdown-item").removeClass("active");
+            $(this).addClass("active");
+
+            var content = $(this).text().trim();
+            var sortValue = $(this).data("value");
+
+            $("#dropdownButton-products").text("Sắp xếp: " + content);
+            $.ajax({
+                url: "products?cid=${ cid }",
+                method: "GET",
+                dataType: "json",
+                data: { sortType: sortValue },
+                success: function(response) {
+                    // Giả sử dữ liệu trả về là JSON (danh sách sản phẩm đã sắp xếp)
+                    // var products = JSON.parse(response); // Nếu server trả về JSON
+                    alert(response)
+                    // // Cập nhật lại phần tử .photo-products bằng HTML mới
+                    // var htmlContent = '';
+                    // $.each(products, function(index, item) {
+                    //     htmlContent += '<div class="box">';
+                    //     htmlContent += '<a href="#"><img src="' + item.url + '" alt=""></a>';
+                    //     htmlContent += '<div class="info">';
+                    //     htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
+                    //     htmlContent += '<div class="hover-options">';
+                    //     htmlContent += '<button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>';
+                    //     htmlContent += '<button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a href="product_details.html">Tải ảnh</a></button>';
+                    //     htmlContent += '</div></div></div>';
+                    // });
+                    //
+                    // // Cập nhật nội dung của photo-products với HTML mới
+                    // $(".photo-products").html(htmlContent);
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error: ", error);
+                    console.error("Status: ", status);
+                    console.error("Response Text: ", xhr.responseText);
+                    alert("Có lỗi xảy ra.");
+                }
+            });
+        });
+    });
 </script>
 </body>
 
