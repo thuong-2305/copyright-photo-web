@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <link rel="stylesheet" href="../assets/css/products.css">
