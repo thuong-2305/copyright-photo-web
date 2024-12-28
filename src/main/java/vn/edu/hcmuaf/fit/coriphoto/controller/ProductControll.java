@@ -58,17 +58,17 @@ public class ProductControll extends HttpServlet {
         } catch (Exception _) { }
 
         // Trả về danh sách sản phẩm đã sắp xếp dưới dạng JSON hoặc HTML.
-
-        // Nếu bạn trả về dữ liệu dưới dạng JSON, bạn có thể chuyển danh sách sản phẩm thành JSON:
-
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
                 .create();
         String json = gson.toJson(productSorted);
-        System.out.println("JSON Response: " + json);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+        if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+            // Trả về JSON
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
+            return;
+        }
 
         request.setAttribute("productSorted", productSorted);
 

@@ -193,25 +193,27 @@
                 method: "GET",
                 dataType: "json",
                 data: { sortType: sortValue },
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
                 success: function(response) {
                     // Giả sử dữ liệu trả về là JSON (danh sách sản phẩm đã sắp xếp)
-                    // var products = JSON.parse(response); // Nếu server trả về JSON
-                    alert(response)
-                    // // Cập nhật lại phần tử .photo-products bằng HTML mới
-                    // var htmlContent = '';
-                    // $.each(products, function(index, item) {
-                    //     htmlContent += '<div class="box">';
-                    //     htmlContent += '<a href="#"><img src="' + item.url + '" alt=""></a>';
-                    //     htmlContent += '<div class="info">';
-                    //     htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
-                    //     htmlContent += '<div class="hover-options">';
-                    //     htmlContent += '<button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>';
-                    //     htmlContent += '<button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a href="product_details.html">Tải ảnh</a></button>';
-                    //     htmlContent += '</div></div></div>';
-                    // });
-                    //
-                    // // Cập nhật nội dung của photo-products với HTML mới
-                    // $(".photo-products").html(htmlContent);
+                    var products = response; // Nếu server trả về JSON
+                    // Cập nhật lại phần tử .photo-products bằng HTML mới
+                    var htmlContent = '';
+                    $.each(products, function(index, item) {
+                        htmlContent += '<div class="box">';
+                        htmlContent += '<a href="#"><img src="' + item.url + '" alt=""></a>';
+                        htmlContent += '<div class="info">';
+                        htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
+                        htmlContent += '<div class="hover-options">';
+                        htmlContent += '<button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>';
+                        htmlContent += '<button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a href="product_details.html">Tải ảnh</a></button>';
+                        htmlContent += '</div></div></div>';
+                    });
+
+                    // Cập nhật nội dung của photo-products với HTML mới
+                    $(".photo-products").html(htmlContent);
                 },
                 error: function(xhr, status, error) {
                     console.error("AJAX Error: ", error);
