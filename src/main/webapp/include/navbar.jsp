@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="vn.edu.hcmuaf.fit.coriphoto.model.Category" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -90,7 +91,15 @@
                         aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a href="pages/login-signup/login.html" class="login-button fw-semibold">Đăng nhập</a>
+                <c:if test="${auth == null}">
+                    <a href="login" class="login-button fw-semibold">Đăng nhập</a>
+                </c:if>
+                <c:if test="${auth != null}">
+                    <div class="d-flex align-items-center user-icon" id="user">
+                        <img class="avatar position-relative" src="../assets/images/avart-default.png" />
+                        <i class="fa fa-caret-down ms-2"></i>
+                    </div>
+                </c:if>
             </div>
         </nav>
     </div>
@@ -137,7 +146,7 @@
                     </a>
                 </li>
                 <li class="item">
-                    <a href="../homepage.html">
+                    <a href="logout">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         <p class="mb-0">Đăng xuất</p>
                     </a>

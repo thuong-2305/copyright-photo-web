@@ -3,7 +3,7 @@ package vn.edu.hcmuaf.fit.coriphoto.controller;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.coriphoto.services.AuthService;
+import vn.edu.hcmuaf.fit.coriphoto.service.AuthService;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ public class SignupController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Chuyển đến trang đăng ký (signup.jsp)
-        request.getRequestDispatcher("/jsps/login-signup/signup.jsp").forward(request, response);
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
     @Override
@@ -29,17 +29,17 @@ public class SignupController extends HttpServlet {
         if (authService.isEmailExist(email)) {
             // Nếu email đã tồn tại, gửi lại thông báo lỗi
             request.setAttribute("error", "Email đã được sử dụng!");
-            request.getRequestDispatcher("/jsps/login-signup/signup.jsp").forward(request, response);
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
         } else {
             // Nếu email chưa tồn tại, tạo tài khoản mới
             boolean isCreated = authService.registerUser(email, password, username);
             if (isCreated) {
                 // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
-                response.sendRedirect("/CoRiPhoTo/jsps/login-signup/login.jsp");
+                response.sendRedirect("login.jsp");
             } else {
                 // Thông báo lỗi nếu không thể tạo tài khoản
                 request.setAttribute("error", "Đăng ký không thành công, vui lòng thử lại!");
-                request.getRequestDispatcher("/jsps/login-signup/signup.jsp").forward(request, response);
+                request.getRequestDispatcher("signup.jsp").forward(request, response);
             }
         }
     }
