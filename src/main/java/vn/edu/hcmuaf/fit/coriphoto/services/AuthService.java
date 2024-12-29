@@ -1,12 +1,9 @@
 package vn.edu.hcmuaf.fit.coriphoto.services;
-import vn.edu.hcmuaf.fit.coriphoto.dao.UserDao;
+import vn.edu.hcmuaf.fit.coriphoto.dao.UserDAO;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 public class AuthService {
-    private final UserDao userDao = new UserDao();
+    private final UserDAO userDao = new UserDAO();
 
     public boolean isEmailExist(String email) {
         // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu chưa
@@ -20,7 +17,7 @@ public class AuthService {
 
 
     public boolean checkLogin(String email, String password) {
-        UserDao userDao = new UserDao();
+        UserDAO userDao = new UserDAO();
         User user = userDao.findByEmail(email);
 
         if (user == null) {

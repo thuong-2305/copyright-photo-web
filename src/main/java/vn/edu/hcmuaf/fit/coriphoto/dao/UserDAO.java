@@ -6,11 +6,10 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.ResultSet;
 import java.time.LocalDate;
 
-public class UserDao {
-    public UserDao() {
+public class UserDAO {
+    public UserDAO() {
     }
 
     public User findByEmail(String email) {
