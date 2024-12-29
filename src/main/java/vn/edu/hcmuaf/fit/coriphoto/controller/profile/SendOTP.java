@@ -4,14 +4,9 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
-import vn.edu.hcmuaf.fit.coriphoto.services.EmailUtils;
+import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
 
 import java.io.IOException;
-
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
 
 @WebServlet(name = "SendOTP", value = "/SendOTP")
 public class SendOTP extends HttpServlet {

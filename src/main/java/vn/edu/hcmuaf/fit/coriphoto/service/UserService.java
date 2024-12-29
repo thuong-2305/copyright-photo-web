@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.coriphoto.services;
+package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import vn.edu.hcmuaf.fit.coriphoto.dao.UserDAO;
 import vn.edu.hcmuaf.fit.coriphoto.model.PaymentMethod;

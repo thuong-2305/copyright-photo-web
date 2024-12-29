@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.coriphoto.services;
+package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import javax.mail.*;
 import javax.mail.internet.*;

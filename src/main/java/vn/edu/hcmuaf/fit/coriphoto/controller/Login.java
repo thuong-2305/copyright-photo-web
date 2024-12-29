@@ -4,7 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
-import vn.edu.hcmuaf.fit.coriphoto.services.UserService;
+import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
 
 import java.io.IOException;
 
@@ -31,9 +31,5 @@ public class Login extends HttpServlet {
         else {
             response.sendRedirect("login.jsp");
         }
-
-
-
-
     }
 }

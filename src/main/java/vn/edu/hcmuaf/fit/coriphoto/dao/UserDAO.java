@@ -123,6 +123,4 @@ public class UserDAO {
             System.out.print("Không tim thấy User");
         }
     }
-
-
 }
