@@ -20,7 +20,6 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
         UserService userService = new UserService();
         User currentUser = userService.getUserByCredentials(username, password);
 
