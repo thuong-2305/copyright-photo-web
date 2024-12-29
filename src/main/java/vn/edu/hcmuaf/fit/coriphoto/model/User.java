@@ -23,6 +23,15 @@ public class User {
         this.createDate = createDate;
     }
 
+    public User(int uid, int role, String fullName, String username, String password, String email) {
+        this.uid = uid;
+        this.role = role;
+        this.fullName = fullName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public int getUid() {
         return uid;
     }

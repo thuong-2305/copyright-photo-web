@@ -450,7 +450,7 @@ body {
 @media screen and (min-width: 1400px) {
     .swiper-container {
         max-width: calc(100% - 20%) !important;
-        margin-left: auto;
+        margin-left: 100px;
         margin-right: auto;
     }
 }

@@ -5,13 +5,32 @@ import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.PaymentMethod;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
-import java.sql.SQLException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
     private final Jdbi jdbi = new DBConnect().get();
+
+    public User findByEmail(String email) {
+        String query = "SELECT * FROM users WHERE email = :email";
+        return jdbi.withHandle(handle ->
+            handle.createQuery(query)
+                .bind("email", email) // Gắn giá trị tham số email
+                .map((rs, ctx) -> new User(
+                    rs.getInt("uid"),             // Mapping cột "uid"
+                    rs.getInt("role"),            // Mapping cột "role"
+                    rs.getString("fullName"),     // Mapping cột "fullName"
+                    rs.getString("username"),     // Mapping cột "username"
+                    rs.getString("password"),     // Mapping cột "password"
+                    rs.getString("email"),        // Mapping cột "email"
+                    rs.getObject("createDate", LocalDate.class) // Mapping cột "createDate"
+                ))
+                .findOne()
+                .orElse(null) // Trả về null nếu không tìm thấy
+        );
+    }
 
     public User getUserByCredentials(String username, String password) {
         return jdbi.withHandle(handle ->
@@ -75,6 +94,33 @@ public class UserDAO {
         return updated > 0;
     }
 
+    public boolean createUser(String email, String password, String username) {
+        String hashedPassword = hashPasswordMD5(password);
+        if (hashedPassword == null) return false;
+
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO users (role, username, email, password, createDate) VALUES (?, ?, ?, ?, ?)",
+                2, username, email, hashedPassword, LocalDate.now()
+        ));
+
+        return true;
+    }
+
+    public String hashPasswordMD5(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashBytes = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     public void updateProfileName(int uid, String fullname) {
         jdbi.withHandle(handle -> {
             handle.createUpdate("UPDATE users SET fullname = :fullname WHERE uid = :uid")
@@ -123,4 +169,5 @@ public class UserDAO {
             System.out.print("Không tim thấy User");
         }
     }
+
 }
