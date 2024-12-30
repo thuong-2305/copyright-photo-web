@@ -72,10 +72,6 @@ public class ProductControll extends HttpServlet {
 
         request.setAttribute("productSorted", productSorted);
 
-        //      get categories for navbar
-        List<Category> categories = categoryService.getAll();
-        request.setAttribute("categories", categories);
-
         request.getRequestDispatcher("products.jsp").forward(request, response);
     }
 

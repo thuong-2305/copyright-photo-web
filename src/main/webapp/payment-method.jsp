@@ -15,6 +15,9 @@
         #nav {
             position: relative;
         }
+        .modal {
+            z-index: 9999;
+        }
     </style>
 </head>
 

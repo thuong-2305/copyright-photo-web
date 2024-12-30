@@ -26,8 +26,6 @@ public class HomeController extends HttpServlet {
         request.setAttribute("trendsProducts", trendProducts);
 
         CategoryService categoryService = new CategoryService();
-        List<Category> categories = categoryService.getAll();
-        request.setAttribute("categories", categories);
         List<Category> trendCategories = categoryService.getTrendCategory();
         request.setAttribute("trendsCategories", trendCategories);
         List<CategoryParent> categoriesParent = categoryService.getTypeImages();

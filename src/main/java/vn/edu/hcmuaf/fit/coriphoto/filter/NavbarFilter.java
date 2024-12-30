@@ -13,11 +13,11 @@ import java.util.List;
 public class NavbarFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-//        HttpServletRequest httpRequest = (HttpServletRequest) request;
-//
-//        CategoryService categoryService = new CategoryService();
-//        List<Category> categories = categoryService.getAll();
-//        httpRequest.setAttribute("categories", categories);
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+        CategoryService categoryService = new CategoryService();
+        List<Category> categories = categoryService.getAll();
+        httpRequest.setAttribute("categories", categories);
 
 
         chain.doFilter(request, response);

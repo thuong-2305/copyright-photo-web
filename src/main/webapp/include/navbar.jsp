@@ -22,7 +22,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-center flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-3" aria-current="page" href="homepage.html">
+                                <a class="nav-link mx-lg-3" aria-current="page" href="#">
                                     <span class="fw-semibold">Ảnh</span>
                                     <i class="fa-solid fa-angle-down px-2"></i>
                                 </a>
@@ -54,11 +54,12 @@
                                         <% } %>
                                     </div>
                                     <div class="dropdown">
-                                        <% for(int i = 10; i < 15; i++) {
+                                        <% for(int i = 10; i < 14; i++) {
                                                 Category item = categories.get(i);
                                         %>
                                         <a href="products?cid=<%= item.getCid() %>"> <%= item.getName() %></a>
                                         <% } %>
+                                        <a href="categories">Tất cả</a>
                                     </div>
                                 </div>
                             </li>
@@ -112,10 +113,10 @@
             <img class="avatar position-relative" src="../assets/images/avart-default.png" />
             <div class="info">
                 <div class="name">
-                    <span>Hi, Test</span>
-                    <p>test@gmail.com</p>
+                    <span>Hi, ${ auth.getUsername() }</span>
+                    <p>${ auth.getEmail() }</p>
                 </div>
-                <a href="editprofile.html" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
+                <a href="ShowProfileInformation" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
             </div>
         </div>
         <div class="line-seperate"></div>
