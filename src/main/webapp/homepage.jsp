@@ -110,17 +110,19 @@
                         for (int i = 0; i < 5; i++) {
                             TrendProducts product = trendsProducts.get(i);
                     %>
-                    <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <a href="product-detail?pid=<%= product.getId() %>">
+                        <div class="pic">
+                            <img src="<%= product.getUrl() %>" alt="">
+                            <div class="hover-options">
+                                <button class="option-button"><i class="fa-regular fa-heart"></i></button>
+                                <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
+                                <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                            <div class="image-text">
+                                <p><%= product.getName() %></p>
+                            </div>
                         </div>
-                        <div class="image-text">
-                            <p><%= product.getName() %></p>
-                        </div>
-                    </div>
+                    </a>
                     <% } %>
                 </div>
 
@@ -129,17 +131,19 @@
                         for (int i = 5; i < 10; i++) {
                             TrendProducts product = trendsProducts.get(i);
                     %>
-                    <div class="pic">
-                        <img src="<%= product.getUrl() %>">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <a href="product-detail?pid=<%= product.getId() %>">
+                        <div class="pic">
+                            <img src="<%= product.getUrl() %>">
+                            <div class="hover-options">
+                                <button class="option-button"><i class="fa-regular fa-heart"></i></button>
+                                <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
+                                <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                            <div class="image-text">
+                                <p><%= product.getName() %></p>
+                            </div>
                         </div>
-                        <div class="image-text">
-                            <p><%= product.getName() %></p>
-                        </div>
-                    </div>
+                    </a>
                     <% } %>
                 </div>
 
@@ -148,24 +152,26 @@
                         for (int i = 10; i < 15; i++) {
                             TrendProducts product = trendsProducts.get(i);
                     %>
-                    <div class="pic">
-                        <img src="<%= product.getUrl() %>">
-                        <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <a href="product-detail?pid=<%= product.getId() %>">
+                        <div class="pic">
+                            <img src="<%= product.getUrl() %>">
+                            <div class="hover-options">
+                                <button class="option-button"><i class="fa-regular fa-heart"></i></button>
+                                <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
+                                <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                            <div class="image-text">
+                                <p><%= product.getName() %></p>
+                            </div>
                         </div>
-                        <div class="image-text">
-                            <p><%= product.getName() %></p>
-                        </div>
-                    </div>
+                    </a>
                     <% } %>
                 </div>
             </div>
         </div>
         <div class="see-more">
             <button class="see-more-button">
-                <a href="pages/category-details.html" class="text-success text-decoration-none">Xem nhiều hơn</a>
+                <a href="#" class="text-success text-decoration-none">Xem nhiều hơn</a>
             </button>
         </div>
         </div>

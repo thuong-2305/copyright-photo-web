@@ -37,6 +37,10 @@ public class ProductService {
         return products.getProductLatest(cid);
     }
 
+    public List<Product> getProductsRelated(int cid, int id) {
+        return products.getProductsRelated(cid, id);
+    }
+
     public static void main(String[] args) {
         List<Product> res = new ProductService().sortProductsLatest(23);
         res.forEach(e -> System.out.println(e));

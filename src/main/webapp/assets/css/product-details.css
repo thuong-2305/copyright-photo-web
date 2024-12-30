@@ -27,55 +27,6 @@
   --swatch_7: #696dbf;
 }
 
-/* Common */
-html {
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-size: 150%;
-}
-
-.row::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.col {
-  float: left;
-}
-
-.col-full {
-  width: 100%;
-}
-
-.col-half {
-  width: 50%;
-}
-
-.col-third {
-  width: 33.3333%;
-}
-
-.mt-4 {
-  margin-top: 4px;
-}
-
-.mt-8 {
-  margin-top: 8px;
-}
-
-.mt-16 {
-  margin-top: 16px;
-}
-
-.mt-32 {
-  margin-top: 32px;
-}
-
-p,
-li {
-  font-size: 14px;
-}
-
 .search {
   width: 90%;
   margin-left: auto;

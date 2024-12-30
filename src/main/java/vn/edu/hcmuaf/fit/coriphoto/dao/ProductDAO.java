@@ -66,6 +66,14 @@ public class ProductDAO {
                 .toList();
     }
 
+    public List<Product> getProductsRelated(int cid, int id) {
+        String sqlQuery = "SELECT * FROM products " +
+                "WHERE cid = ? and status = 'accepted' and id != ?";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .bind(0, cid).bind(1, id)
+                .mapToBean(Product.class).list());
+    }
+
     public static void main(String[] args) {
         System.out.println(new ProductDAO().getProductLatest(5));
 //        new ProductDAO().getTrendProducts();
