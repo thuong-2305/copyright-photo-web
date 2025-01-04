@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css" />
     <link rel="stylesheet" href="./assets/css/signup.css" />
 </head>
+
 <body>
 <div class="content">
     <div class="image-about">
@@ -16,10 +17,12 @@
     <div class="frame-signup">
         <div class="signup-container">
             <h2 class="text-center mb-4">Đăng ký</h2>
-            <form>
+            <form action="signup" method="post">
+                <p class="text-danger">${ error }</p>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
                     <input
+                            name="email"
                             type="email"
                             class="form-control"
                             id="email"
@@ -46,6 +49,7 @@
                         Mật khẩu:
                     </label>
                     <input
+                            name = "password"
                             type="password"
                             class="form-control"
                             id="password"
@@ -61,7 +65,7 @@
                         Nhập lại mật khẩu:
                     </label>
                     <input
-                            name="password"
+                            name="confirmPassword"
                             type="password"
                             class="form-control"
                             placeholder="Nhập lại mật khẩu"
@@ -69,12 +73,13 @@
                     />
                 </div>
                 <button type="submit" class="btn btn-signup w-100 mb-3">
-                    <a href="" class="text-decoration-none text-light">Đăng ký</a>
+                    Đăng ký
                 </button>
             </form>
             <button class="btn btn-google">
                 <i class="fa-brands fa-google"></i>Tiếp tục với Google
             </button>
+
             <div class="text-center mt-4">
                 <span>Bạn đã có tài khoản?
                   <a href="login" class="text-decoration-none">Đăng nhập</a>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css"/>
     <link rel="stylesheet" href="./assets/css/login.css"/>
 </head>
+
 <body>
 <div class="content">
     <div class="image-about">
@@ -21,13 +22,14 @@
                     <input name="email" type="email" class="form-control" id="email" placeholder="Nhập email của bạn"
                            required value="${email != null ? email : ''}"/>
                 </div>
+                <p class="text-danger">${ errorEmail }</p>
                 <div class="mb-3">
                     <label for="password" class="form-label d-flex justify-content-between">
                         Mật khẩu:<a href="forgot-pass.jsp" class="text-decoration-none">Quên mật khẩu?</a>
                     </label>
                     <input name="password" type="password" class="form-control" id="password" placeholder="Nhập mật khẩu của bạn" required />
                 </div>
-                <p class="text-danger">${ error }</p>
+                <p class="text-danger">${ errorPassword }</p>
                 <button type="submit" class="btn btn-login w-100 mb-3">
                     Đăng nhập
                 </button>
@@ -37,7 +39,7 @@
             </button>
             <div class="text-center mt-4">
                 <span>Bạn chưa có tài khoản?
-                    <a href="signup.jsp" class="text-decoration-none">Đăng ký</a>
+                    <a href="signup" class="text-decoration-none">Đăng ký</a>
                 </span>
             </div>
         </div>

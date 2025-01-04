@@ -9,7 +9,6 @@ import java.io.IOException;
 
 @WebServlet(name = "SignupController", value = "/signup")
 public class SignupController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Chuyển đến trang đăng ký (signup.jsp)
@@ -21,7 +20,15 @@ public class SignupController extends HttpServlet {
         // Lấy thông tin từ form đăng ký
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
         String username = request.getParameter("username");
+
+        // So sánh mật khẩu và xác nhận mật khẩu
+        if (!password.equals(confirmPassword)) {
+            request.setAttribute("error", "Mật khẩu và Nhập lại mật khẩu không khớp!");
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
+            return;
+        }
 
         AuthService authService = new AuthService();
 
@@ -32,12 +39,12 @@ public class SignupController extends HttpServlet {
             request.getRequestDispatcher("signup.jsp").forward(request, response);
         } else {
             // Nếu email chưa tồn tại, tạo tài khoản mới
+
             boolean isCreated = authService.registerUser(email, password, username);
             if (isCreated) {
                 // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
                 response.sendRedirect("login.jsp");
             } else {
-                // Thông báo lỗi nếu không thể tạo tài khoản
                 request.setAttribute("error", "Đăng ký không thành công, vui lòng thử lại!");
                 request.getRequestDispatcher("signup.jsp").forward(request, response);
             }

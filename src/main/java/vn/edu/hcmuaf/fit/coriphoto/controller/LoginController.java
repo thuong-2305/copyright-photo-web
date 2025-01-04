@@ -17,8 +17,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        response.sendRedirect("login.jsp");
+        request.getRequestDispatcher("login.jsp").forward(request, response);//chuyển đến trang login vẫn giữ đg dẫn gốc
     }
 
     @Override
@@ -32,10 +31,14 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user);
             session.setAttribute("loggedInUser", user);
-            response.sendRedirect("/");
+            response.sendRedirect("homepage.jsp");
         }else{
-            request.setAttribute("email", email);
-            request.setAttribute("error","Email hoặc mật khẩu không đúng.");
+            if (service.checkEmail(email)) {
+                request.setAttribute("email", email);
+                request.setAttribute("errorPassword","Mật khẩu không đúng.");
+            }else {
+                request.setAttribute("errorEmail", "Email không tồn tại.");
+            }
             request.getRequestDispatcher("login.jsp").forward(request,response);
         }
     }
