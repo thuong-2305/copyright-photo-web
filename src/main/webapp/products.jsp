@@ -135,7 +135,7 @@
                 <jsp:useBean id="productSorted" scope="request" type="java.util.List"/>
                 <c:forEach var="item" items="${ productSorted }">
                 <div class="box">
-                    <a href="#">
+                    <a href="product-detail?pid=${ item.getId() }">
                         <img src="${ item.getUrl() }" alt="">
                     </a>
                     <div class="info">
@@ -143,8 +143,10 @@
                         <div class="hover-options">
                             <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
                                 Thích</button>
-                            <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a
-                                    href="product_details.html">Tải ảnh</a></button>
+                            <button class="option-button buy fw-bold addCart" data-product-id=${ item.getId() }>
+                                <i class="bi bi-bag-check-fill"></i>
+                                Thêm giỏ hàng
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -168,6 +170,25 @@
     </div>
 </section>
 <!-- evaluate -->
+
+<%-- notification --%>
+<div class="d-none">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    </svg>
+    <div class="alert alert-primary d-flex align-items-center" role="alert" style="display: none;">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+            <use xlink:href="#info-fill" />
+        </svg>
+        <div></div>
+    </div>
+    <div class="alert alert-success d-flex align-items-center" role="alert" style="display: none;">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill" />
+        </svg>
+        <div></div>
+    </div>
+</div>
+<%-- notification --%>
 
 <jsp:include page="include/footer.jsp"/>
 <jsp:include page="include/scripts.jsp"/>
@@ -203,7 +224,7 @@
                     var htmlContent = '';
                     $.each(products, function(index, item) {
                         htmlContent += '<div class="box">';
-                        htmlContent += '<a href="#"><img src="' + item.url + '" alt=""></a>';
+                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
                         htmlContent += '<div class="info">';
                         htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                         htmlContent += '<div class="hover-options">';
@@ -225,6 +246,35 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        $(".addCart").click(function () {
+            let productId = $(this).data("product-id");
+            $.ajax({
+                url: "addToCart",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ pid: productId }),
+                success: function (response) {
+                    if (response.success) {
+                        var res = response.cartLen;
+                        alert("Sản phẩm đã được thêm vào giỏ hàng!");
+                        alert(res);
+                    } else {
+                        alert("Sản phẩm đã có trong giỏ hàng!");
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+                }
+            });
+        });
+    });
+</script>
+
+
+
 </body>
 
 </html>

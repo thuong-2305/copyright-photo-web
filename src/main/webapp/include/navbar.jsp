@@ -85,7 +85,7 @@
                     </div>
                     <div class="line-separate mx-lg-1"></div>
                     <a href="pages/like.html" class="love"><i class="fa-regular fa-heart"></i></a>
-                    <a href="pages/cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="cart" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"

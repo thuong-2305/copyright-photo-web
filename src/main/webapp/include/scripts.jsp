@@ -6,3 +6,4 @@
 <script src="../assets/js/homeuser.js"></script>
 <script src="../assets/js/products.js"></script>
 <script src="../assets/js/product-details.js"></script>
+<script src="../assets/js/cart.js"></script>

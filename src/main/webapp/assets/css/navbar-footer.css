@@ -12,6 +12,7 @@
     --footer-border-color: #e0e0e0;
     --footer-text-color: #777;
     --line-seperate: #e0e0e0;
+    --cart-len: "0";
 }
 
 /* navbar */
@@ -155,7 +156,7 @@
 }
 
 #nav .container a.cart::before {
-    content: "3"; 
+    content: var(--cart-len, "0");
     position: absolute;
     top: -5px; 
     right: -10px; 

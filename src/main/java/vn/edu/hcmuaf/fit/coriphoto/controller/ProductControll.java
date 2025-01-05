@@ -57,7 +57,7 @@ public class ProductControll extends HttpServlet {
                 } }
         } catch (Exception _) { }
 
-        // Trả về danh sách sản phẩm đã sắp xếp dưới dạng JSON hoặc HTML.
+        // Trả về danh sách sản phẩm đã sắp xếp dưới dạng JSON
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
                 .create();
