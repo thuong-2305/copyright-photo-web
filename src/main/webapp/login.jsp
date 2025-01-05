@@ -34,9 +34,12 @@
                     Đăng nhập
                 </button>
             </form>
-            <button class="btn btn-google">
+
+            <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
+            &redirect_uri=http://localhost:8080/CoRiPhoto/login&response_type=code
+&client_id=347849780193-j9q68d1s2iu8g598kc2tsgqcdd2r4ved.apps.googleusercontent.com" class="btn btn-google">
                 <i class="fa-brands fa-google"></i>Đăng nhập bằng Google
-            </button>
+            </a>
             <div class="text-center mt-4">
                 <span>Bạn chưa có tài khoản?
                     <a href="signup" class="text-decoration-none">Đăng ký</a>

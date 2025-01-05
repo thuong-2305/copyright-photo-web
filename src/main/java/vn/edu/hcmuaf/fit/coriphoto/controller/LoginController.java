@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import vn.edu.hcmuaf.fit.coriphoto.controller.login.constant.GoogleAccount;
+import vn.edu.hcmuaf.fit.coriphoto.controller.login.constant.LoginGoogle;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.AuthService;
 
@@ -17,7 +19,30 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);//chuyển đến trang login vẫn giữ đg dẫn gốc
+        //Ktra người dùng có login bằng gg hay không
+        String code = request.getParameter("code");
+        if (code != null) {
+            LoginGoogle google = new LoginGoogle();
+            String accessToken = google.getToken(code);
+            GoogleAccount account = google.getUserInfo(accessToken);
+            System.out.println(account);
+
+            //Xác thực tài khoản
+            if (account != null) {
+                AuthService service = new AuthService();
+
+                User user = service.getUserByEmail(account.getEmail());
+                if (user == null) {
+                    service.registerUser(account.getEmail(), "", account.getName());
+                    user = service.getUserByEmail(account.getEmail());
+                }
+                HttpSession session = request.getSession();
+                session.setAttribute("auth", user);
+                session.setAttribute("loggedInUser", user);
+            }
+        }
+
+        request.getRequestDispatcher("homepage.jsp").forward(request, response);//chuyển đến trang login vẫn giữ đg dẫn gốc
     }
 
     @Override
