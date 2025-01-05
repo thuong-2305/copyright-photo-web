@@ -1,0 +1,501 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: ADMIN
+  Date: 1/6/2025
+  Time: 12:37 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="./assets/css/homepage.css">
+  <link rel="stylesheet" href="./assets/css/navbar-footer.css">
+  <link rel="stylesheet" href="./assets/css/homeuser.css">
+  <link rel="stylesheet" href="./assets/css/type-images.css">
+  <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+  <link rel="stylesheet" href="./assets/libraries/swiper/css/swiper-bundle.min.css">
+
+  <title>CoRiPhoto</title>
+</head>
+
+<body>
+<!--section navbar -->
+<section id="nav">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg w-100">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="homeuser.jsp">
+          <span class="title-logo fw-bold"><span class="text-success">C</span>o<span class="text-success">R</span>iPhoto</span>
+        </a>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
+             aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title fw-bold" id="offcanvasDarkNavbarLabel">
+              <span class="text-success">C</span>o<span class="text-success">R</span>iPhoto
+            </h5>
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-center flex-grow-1">
+              <li class="nav-item">
+                <a class="nav-link mx-lg-3" aria-current="page" href="homepage.jsp">
+                  <span class="fw-semibold">Ảnh</span>
+                  <i class="fa-solid fa-angle-down px-2"></i>
+                </a>
+                <div class="link-hover">
+                  <a href="./type-images.jsp">Ảnh chụp</a>
+                  <a href="./type-images.jsp">Ảnh vectors</a>
+                  <a href="./type-images.jsp">Ảnh AI</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-3" href="category-details.jsp">
+                  <span class="fw-semibold">Danh mục</span>
+                  <i class="fa-solid fa-angle-down px-2"></i>
+                </a>
+                <div class="link-hover">
+                  <div class="dropdown">
+                    <a href="products.jsp"> Trừu tượng</a>
+                    <a href="products.jsp"> Công nghệ</a>
+                    <a href="products.jsp"> Tự nhiên</a>
+                    <a href="products.jsp"> Cuộc sống</a>
+                    <a href="products.jsp"> Động vật</a>
+                  </div>
+                  <div class="dropdown">
+                    <a href="products.jsp"> Các mùa</a>
+                    <a href="products.jsp"> Trên không</a>
+                    <a href="products.jsp"> Ban đêm</a>
+                    <a href="products.jsp"> Thành phố</a>
+                    <a href="products.jsp"> Quê hương</a>
+                  </div>
+                  <div class="dropdown">
+                    <a href="products.jsp"> Con người</a>
+                    <a href="products.jsp"> Du lịch</a>
+                    <a href="products.jsp"> Nghệ thuật</a>
+                    <a href="products.jsp"> Cuộc sống</a>
+                    <a href="category-details.jsp"> Tất cả Danh mục</a>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link mx-lg-3" href="#">
+                  <span class="fw-semibold">Giấy phép</span>
+                  <i class="fa-solid fa-angle-down px-2"></i>
+                </a>
+                <div class="link-hover">
+                  <a href="license-basic.jsp">Giấy phép ảnh tiêu chuẩn</a>
+                  <a href="license-basic.jsp">Giấy phép miễn phí bản quyền</a>
+                </div>
+              </li>
+              <!-- <li class="nav-item">
+                  <a class="nav-link mx-lg-3 fw-semibold" href="#">Giới thiệu</a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex align-items-center pt-1">
+          <div class="sell">
+            <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i class="fa-solid fa-angle-down px-2"></i></a>
+            <div class="link-hover">
+              <a href="register-contributor.jsp">Đăng ký thành người phân phối</a>
+            </div>
+          </div>
+          <div class="line-separate mx-lg-1"></div>
+          <a href="like.jsp" class="love"><i class="fa-regular fa-heart"></i></a>
+          <a href="cart.jsp" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex align-items-center user-icon" id="user">
+          <img class="avatar position-relative" src="./assets/images/avart-default.png" />
+          <i class="fa fa-caret-down ms-2"></i>
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+<!--section navbar -->
+
+<!-- section user account -->
+<section class="user-account bg-white">
+  <div class="container">
+    <div class="top d-flex mt-5 align-items-center">
+      <img class="avatar position-relative" src="./assets/images/avart-default.png" />
+      <div class="info">
+        <div class="name">
+          <span>Hi, Test</span>
+          <p>test@gmail.com</p>
+        </div>
+        <a href="editprofile.jsp" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
+      </div>
+    </div>
+    <div class="line-seperate"></div>
+    <div class="option">
+      <ul class="">
+        <li class="item">
+          <a href="homeprofile.jsp">
+            <i class="fas fa-user-cog me-2"></i>
+            <p>Chi tiết tài khoản</p>
+          </a>
+        </li>
+        <li class="item">
+          <a href="like.jsp">
+            <i class="fas fa-heart me-2"></i>
+            <p>Yêu thích</p>
+          </a>
+        </li>
+        <li class="item">
+          <a href="cart.jsp">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p>Giỏ hàng</p>
+          </a>
+        </li>
+        <li class="item">
+          <a href="history-order.jsp">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <p>Lịch sử mua hàng</p>
+          </a>
+        </li>
+        <li class="item">
+          <a href="./homepage.jsp">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <p class="mb-0">Đăng xuất</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <button class="btn-close btn-close-black close-user"></button>
+  </div>
+</section>
+<div class="overlay"></div>
+<!-- section user account -->
+
+<!--section banner -->
+<section class="banner">
+  <div class="banner-home d-flex justify-content-center align-items-center flex-column">
+    <div class="main-title d-flex justify-content-center flex-column align-items-center">
+      <h1 class="fw-bold m-2">ẢNH AI</h1>
+      <p>Khá phá nhiều hơn về tập ảnh ai của chúng tôi.</p>
+    </div>
+    <div class="search-container">
+      <div class="dropdown">
+        <button class="fw-medium" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
+                            ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
+        <div class="dropdown-content">
+          <a href="#" class="active" data-icon="fa-image"><i class="fa-solid fa-image pe-3"></i>Tất cả
+            ảnh</a>
+          <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
+          <a href="#" data-icon="fa-vector-square"><i
+                  class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+          <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
+        </div>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Tìm kiếm tất cả ảnh">
+        <span class="clear-btn">&#10005;</span>
+      </div>
+      <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2 fw-bold">Tìm
+                        kiếm</span></button>
+    </div>
+  </div>
+</section>
+<!--section banner -->
+
+
+<!-- section category detail -->
+<section id="tranding">
+  <div class="pane-top text-center my-3">
+    <h1 class="fw-bold">Khám phá tài nguyên theo phong cách</h1>
+    <p class="fs-3 mb-5">Khám phá các phong cách <span class="text-success fw-semibold">hình ảnh AI</span> khác nhau
+      để thể hiện những ý tưởng mạnh mẽ của bạn và kết nối với khán giả</p>
+  </div>
+  <div class="tranding-container">
+    <div class="swiper tranding-slider">
+      <div class="swiper-wrapper">
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/Animal/10.jpg" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Động vật</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/Character/N.jpg" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Kí tự</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/ImageWorld/004.jpg" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Hoạt hình</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/SkyHouse/03.png" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Viễn tưởng</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/Food/003.jpg" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thức ăn</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/Plant/08.png" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thực vật</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/ImageWorld/004.jpg" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Hoạt hình</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/SkyHouse/03.png" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Viễn tưởng</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/Food/003.jpg" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thức ăn</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Slide-start -->
+        <div class="swiper-slide tranding-slide">
+          <div class="tranding-slide-img">
+            <img src="./assets/images/ai/Plant/08.png" alt="Trending">
+          </div>
+          <div class="tranding-slide-content">
+            <div class="tranding-slide-content-bottom">
+              <h5 class="style text-success fw-semibold mt-1"><i class="fa-solid fa-tags me-2"></i>Thực vật</h5>
+            </div>
+          </div>
+        </div>
+        <!-- Slide-end -->
+        <!-- Add more slides here as needed -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- section category detail -->
+
+<hr>
+<!-- section category trend -->
+<section class="trend-type">
+  <div class="trending-section">
+    <h1 class="title mb-2 fs-1">Xu hướng tháng này</h1>
+    <p class="subtitle fs-5">Khám phá các vectơ hoàn hảo cho các dự án và chiến dịch trong mùa này.</p>
+    <div class="trending-items">
+      <div class="item">
+        <div class="image-layout">
+          <div class="column left">
+            <img src="./assets/images/ai/Plant/03.png" alt="">
+            <img src="./assets/images/ai/Plant/05.png" alt="">
+          </div>
+          <div class="column right">
+            <img src="./assets/images/ai/Plant/18.png" alt="">
+          </div>
+        </div>
+        <p class="item-title">Hoa thực vật</p>
+      </div>
+      <div class="item">
+        <div class="image-layout">
+          <div class="column left">
+            <img src="./assets/images/ai/Number/02.png" alt="">
+            <img src="./assets/images/ai/Number/05.png" alt="">
+          </div>
+          <div class="column right">
+            <img src="./assets/images/ai/Number/09.png" alt="">
+          </div>
+        </div>
+        <p class="item-title">Các con số</p>
+      </div>
+      <div class="item">
+        <div class="image-layout">
+          <div class="column left">
+            <img src="./assets/images/ai/Animal/054.png" alt="">
+            <img src="./assets/images/ai/Animal/055.png" alt="">
+          </div>
+          <div class="column right">
+            <img src="./assets/images/ai/Animal/056.png" alt="">
+          </div>
+        </div>
+        <p class="item-title">Động vật</p>
+      </div>
+      <div class="item">
+        <div class="image-layout">
+          <div class="column left">
+            <img src="./assets/images/ai/ImageWorld/006.jpg" alt="">
+            <img src="./assets/images/ai/ImageWorld/003.jpg" alt="">
+          </div>
+          <div class="column right">
+            <img src="./assets/images/ai/ImageWorld/000.jpg" alt="">
+          </div>
+        </div>
+        <p class="item-title">Thế giới trong sách</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- section category trend -->
+
+<!-- section infomation addition -->
+<section class="info-why">
+  <h1 class="title mb-2 fs-1 text-center">Tại sao giấy phép hỉnh ảnh AI</h1>
+  <div class="contain d-flex ">
+    <div class="box">
+      <img src="./assets/images/ai/Plant/20.png" alt="">
+      <div class="content">
+        <h3>Không giới hạn về sáng tạo</h3>
+        <p>Bạn có thể tìm thấy hình ảnh minh họa cho bất kỳ chủ đề nào bạn muốn,
+          từ những hình ảnh trừu tượng đến những hình ảnh chân thực.</p>
+      </div>
+    </div>
+    <div class="box">
+      <img src="./assets/images/ai/Food/010.webp" alt="">
+      <div class="content">
+        <h3>Hài hòa về nghệ thuật</h3>
+        <p>Hình ảnh minh họa giúp bạn tạo ra những thiết kế đồng nhất và chuyên nghiệp.</p>
+      </div>
+    </div>
+    <div class="box">
+      <img src="./assets/images/ai/Animal/045.jpg" alt="">
+      <div class="content">
+        <h3>Hoàn hảo để kể chuyện</h3>
+        <p>Hình ảnh minh họa là một cách tuyệt vời để kể những câu chuyện hấp dẫn và gây ấn tượng.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- section infomation addition -->
+
+<!--section footer -->
+<section class="footer">
+  <div class="container d-flex justify-content-space">
+    <div class="footer-column">
+      <h3 class="fw-bold"><span class="text-success">C</span>o<span class="text-success">R</span>iPhoto</h3>
+      <br><br>
+      <div class="social-icons d-flex">
+        <a href="#" class="text-decoration-none text-dark mx-2">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="#" class="text-decoration-none text-dark mx-2">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="#" class="text-decoration-none text-dark mx-2">
+          <i class="fa-brands fa-pinterest-p"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Giấy phép</h3>
+      <br>
+      <ul>
+        <li><a href="#">Về giấy phép</a></li>
+        <li><a href="#">Nhà phân phối</a></li>
+        <li><a href="#">Bản quyền</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Về chúng tôi</h3>
+      <br>
+      <ul>
+        <li><a href="#"><i class="fa-solid fa-envelope pe-2"></i>coriphoto@gmail.com</a></li>
+        <li><a href="#"><i class="fa-solid fa-phone pe-2"></i>081 222 1111</a></li>
+        <li><a href="#"><i class="fa-solid fa-location-dot pe-2"></i>Hồ Chí Minh, Việt Nam</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3 class="fs-4 mb-3 fw-bold">Bản tin</h3>
+      <p>Đăng ký nhận bản tin của chúng tôi để nhận được những hình ảnh mới, mẹo và chương trình giảm giá mỗi
+        tuần.</p>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Chính sách bảo mật • Điều khoản và điều kiện</p>
+  </div>
+</section>
+<!--section footer -->
+
+<script src="./assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/libraries/swiper/js/swiper-bundle.min.js"></script>
+<script src="./assets/js/homepage.js"></script>
+<script src="./assets/js/navbar.js"></script>
+<script src="./assets/js/homeuser.js"></script>
+<script src="./assets/js/type-images.js"></script>
+
+</body>
+
+</html>
