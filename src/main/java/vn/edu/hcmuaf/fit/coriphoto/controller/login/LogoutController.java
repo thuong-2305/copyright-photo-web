@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.coriphoto.controller;
+package vn.edu.hcmuaf.fit.coriphoto.controller.login;
 
 
 import jakarta.servlet.ServletException;

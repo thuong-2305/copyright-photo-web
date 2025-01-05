@@ -1,4 +1,4 @@
-package vn.edu.hcmuaf.fit.coriphoto.controller;
+package vn.edu.hcmuaf.fit.coriphoto.controller.login;
 
 
 import jakarta.servlet.ServletException;
@@ -19,6 +19,7 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean isLoginGoogle = false;
         //Ktra người dùng có login bằng gg hay không
         String code = request.getParameter("code");
         if (code != null) {
@@ -39,10 +40,14 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("auth", user);
                 session.setAttribute("loggedInUser", user);
+                isLoginGoogle = true;
             }
         }
-
-        request.getRequestDispatcher("homepage.jsp").forward(request, response);//chuyển đến trang login vẫn giữ đg dẫn gốc
+        if (!isLoginGoogle) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);//chuyển đến trang login vẫn giữ đg dẫn gốc
+        }else {
+            request.getRequestDispatcher("homepage").forward(request, response);
+        }
     }
 
     @Override
@@ -56,7 +61,7 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession(true);
             session.setAttribute("auth", user);
             session.setAttribute("loggedInUser", user);
-            response.sendRedirect("homepage.jsp");
+            response.sendRedirect("homepage");
         }else{
             if (service.checkEmail(email)) {
                 request.setAttribute("email", email);

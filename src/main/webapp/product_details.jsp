@@ -104,10 +104,9 @@
                                 <strong>Ngày đăng ảnh: </strong>
                                 <p>${ product.getDateUpload() }</p>
                             </li>
+                        </ul>
                     </div>
                 </div>
-
-                </ul>
             </div>
         </div>
 
@@ -133,11 +132,11 @@
                     <div>
                         <div>
                                 <span>
-                                    <input type="radio" name="condition" id="condition1" value="advanced">
+                                    <input type="radio" name="condition" id="condition2" value="advanced">
                                 </span>
                         </div>
                         <div>
-                            <label for="condition1">Giấy phép nâng cao</label>
+                            <label for="condition2">Giấy phép nâng cao</label>
                             <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân
                                 phối web không giới hạn.</p>
                         </div>
