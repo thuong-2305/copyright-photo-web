@@ -6,12 +6,12 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 public class AuthService {
     private final UserDAO users = new UserDAO();
 
-    public User checkLogin(String email, String password) {
-        return users.findByEmail(email, password);
-    }
-
     public boolean checkEmail(String email) {
         return users.findByEmail(email) != null;
+    }
+
+    public User checkLogin(String email, String password) {
+        return users.findByEmail(email, password);
     }
 
     public User getUserByCredentials(String username, String password) {
@@ -26,6 +26,10 @@ public class AuthService {
     public boolean registerUser(String email, String password, String username) {
         // Tạo tài khoản mới
         return users.createUser(email, password, username);
+    }
+
+    public boolean registerSeller(User seller) {
+        return users.createSeller(seller);
     }
 
     public User getUserByEmail(String email) {

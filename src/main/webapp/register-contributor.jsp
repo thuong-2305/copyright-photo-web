@@ -38,6 +38,7 @@
     </ul>
     <!-- End: Nav -->
     <div class="secsion">
+        <!-- Begin: content frame-->
         <div class="content-frame">
             <div class="content">
                 <h2>Điều khoản và điều kiện cấp phép cộng tác viên CoRiPhoTo</h2>
@@ -116,19 +117,21 @@
                 điều kiện
             </button>
         </div>
-        <!-- End: Content condition-->
+        <!-- End: Content frame-->
         <!-- Begin: Content condition -->
         <div class="info-user">
             <div class="content">
                 <h2>Xác nhận thông tin cá nhân</h2>
-                <form>
+                <form action="register-contributor" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
                         <input
+                                name="email"
                                 type="email"
                                 class="form-control"
                                 id="email"
-                                placeholder="Email của bạn"
+                                placeholder="Xác nhận Email của bạn/Thay đổi email"
+                                value="${email != null ? email : ''}"
                                 required
                         />
                     </div>
@@ -140,15 +143,16 @@
                             Tên tài khoản:
                         </label>
                         <input
+                                name="username"
                                 type="text"
                                 class="form-control"
                                 id="username"
-                                placeholder="Tên tài khoản của bạn"
-                                value=""
+                                placeholder="Xác nhận tên tài khoản của bạn"
+                                value="${uname != null ? uname : ''}"
                                 required
                         />
                     </div>
-                    <button type="submit" class="btn btn-save w-100 mb-3">Lưu</button>
+                    <button type="submit" class="btn btn-save w-100 mb-3">Lưu thông tin</button>
                 </form>
             </div>
         </div>
@@ -173,7 +177,16 @@
 </div>
 
 <!-- Hành động khi nhấn btn chấp nhận -->
-<script src="../assets/js/register-contributor.js"></script>
+<script src="./assets/js/register-contributor.js?v=12345"></script>
+<script>
+    // Truyền giá trị từ server vào JavaScript
+    const successRegister = ${requestScope.successRegisSeller ? requestScope.successRegisSeller : false};
+    // Nếu `successRegister` tồn tại, gọi hàm `hideInfoUser`
+    if (successRegister) {
+        hideContent();
+        hideInfoUser();
+    }
+</script>
 </body>
 </html>
 

@@ -76,6 +76,43 @@ public class UserDAO {
         return "";
     }
 
+    public boolean createSeller(User seller) {
+        //cập nhật info user gồm role seller / nếu có thay đổi email/username
+        updateUser(seller);
+        //Thêm info của seller
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO sellers (uid, registryDate, balance) VALUES (?, ?, ?)",
+                seller.getUid() ,LocalDate.now(), 0
+        ));
+        return true;
+    }
+
+    public boolean updateUser(User user) {
+        String sql = """
+                UPDATE users
+                SET 
+                    role = :role,
+                    fullName = :fullName,
+                    username = :username,
+                    password = :password,
+                    email = :email,
+                    createDate = :createDate
+                WHERE uid = :uid
+                """;
+
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("uid", user.getUid())
+                        .bind("role", user.getRole())
+                        .bind("fullName", user.getFullName())
+                        .bind("username", user.getUsername())
+                        .bind("password", user.getPassword())
+                        .bind("email", user.getEmail())
+                        .bind("createDate", user.getCreateDate())
+                        .execute() > 0
+        );
+    }
+
     public User getUserByCredentials(String username, String password) {
         return jdbi.withHandle(handle ->
             handle.createQuery("SELECT * FROM users WHERE username = :username AND password = :password")
