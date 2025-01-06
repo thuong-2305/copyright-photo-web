@@ -135,7 +135,7 @@
                 <jsp:useBean id="productSorted" scope="request" type="java.util.List"/>
                 <c:forEach var="item" items="${ productSorted }">
                 <div class="box">
-                    <a href="#">
+                    <a href="product-detail?pid=${item.getId()}">
                         <img src="${ item.getUrl() }" alt="">
                     </a>
                     <div class="info">
@@ -144,7 +144,7 @@
                             <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
                                 Thích</button>
                             <button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a
-                                    href="product_details.html">Tải ảnh</a></button>
+                                    href="product-detail?pid=${item.getId()}">Tải ảnh</a></button>
                         </div>
                     </div>
                 </div>

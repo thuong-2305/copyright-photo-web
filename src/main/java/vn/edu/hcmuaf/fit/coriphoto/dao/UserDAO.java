@@ -16,13 +16,14 @@ public class UserDAO {
     public UserDAO() { }
 
     public User findByEmail(String email, String password) {
+        String hashPassword = hashPasswordMD5(password);//Mã hóa pass để so sánh với db
         User user = null;
         try {
             String query = "SELECT * FROM users WHERE email = ? and password = ?";
             user = jdbi.withHandle(handle ->
                     handle.createQuery(query)
                             .bind(0, email)
-                            .bind(1, password)
+                            .bind(1, hashPassword)
                             .mapToBean(User.class).findFirst()
                             .orElse(null)
             );
@@ -45,6 +46,70 @@ public class UserDAO {
                 ))
                 .findOne()
                 .orElse(null) // Trả về null nếu không tìm thấy
+        );
+    }
+
+    public boolean createUser(String email, String password, String username) {
+        String hashedPassword = hashPasswordMD5(password);
+        if (hashedPassword == null) return false;
+
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO users (role, username, email, password, createDate) VALUES (?, ?, ?, ?, ?)",
+                2, username, email, hashedPassword, LocalDate.now()
+        ));
+
+        return true;
+    }
+
+    public String hashPasswordMD5(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashBytes = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public boolean createSeller(User seller) {
+        //cập nhật info user gồm role seller / nếu có thay đổi email/username
+        updateUser(seller);
+        //Thêm info của seller
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO sellers (uid, registryDate, balance) VALUES (?, ?, ?)",
+                seller.getUid() ,LocalDate.now(), 0
+        ));
+        return true;
+    }
+
+    public boolean updateUser(User user) {
+        String sql = """
+                UPDATE users
+                SET 
+                    role = :role,
+                    fullName = :fullName,
+                    username = :username,
+                    password = :password,
+                    email = :email,
+                    createDate = :createDate
+                WHERE uid = :uid
+                """;
+
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("uid", user.getUid())
+                        .bind("role", user.getRole())
+                        .bind("fullName", user.getFullName())
+                        .bind("username", user.getUsername())
+                        .bind("password", user.getPassword())
+                        .bind("email", user.getEmail())
+                        .bind("createDate", user.getCreateDate())
+                        .execute() > 0
         );
     }
 
@@ -108,33 +173,6 @@ public class UserDAO {
                 .execute()
         );
         return updated > 0;
-    }
-
-    public boolean createUser(String email, String password, String username) {
-        String hashedPassword = hashPasswordMD5(password);
-        if (hashedPassword == null) return false;
-
-        jdbi.useHandle(handle -> handle.execute(
-                "INSERT INTO users (role, username, email, password, createDate) VALUES (?, ?, ?, ?, ?)",
-                2, username, email, hashedPassword, LocalDate.now()
-        ));
-
-        return true;
-    }
-
-    public String hashPasswordMD5(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] hashBytes = md.digest(password.getBytes());
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hashBytes) {
-                sb.append(String.format("%02x", b));
-            }
-            return sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 
     public void updateProfileName(int uid, String fullname) {

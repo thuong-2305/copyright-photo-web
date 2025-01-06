@@ -47,7 +47,7 @@
         <div class="container d-flex justify-content-between detail">
             <jsp:useBean id="categoriesParent" scope="request" type="java.util.List"/>
             <c:forEach var="item" items="${ categoriesParent }">
-            <a href="pages/type-images.html" class="text-decoration-none text-dark">
+            <a href="type-images" class="text-decoration-none text-dark">
                 <div class="category-item">
                     <img src="assets/images/TypeImages/${ item.getName() }.jpg" alt="">
                     <p>${ item.getName() }</p>

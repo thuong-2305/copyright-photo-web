@@ -80,7 +80,7 @@
                     <div class="sell">
                         <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i class="fa-solid fa-angle-down px-2"></i></a>
                         <div class="link-hover">
-                            <a href="pages/register-contributor.html">Đăng ký thành người phân phối</a>
+                            <a href="register-contributor">Đăng ký thành người phân phối</a>
                         </div>
                     </div>
                     <div class="line-separate mx-lg-1"></div>

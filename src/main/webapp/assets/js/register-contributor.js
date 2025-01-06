@@ -16,12 +16,31 @@ function hideContent() {
 btnAgree.addEventListener("click", hideContent);
 
 const btnSave = document.querySelector(".btn-save");
+
+//Lắng nghe sự kiện submit để gửi method post
+const form = document.querySelector('form[action="register-contributor"]');
+form.addEventListener('submit', function (event) {
+    event.preventDefault(); // Ngăn hành động mặc định (tạm thời)
+    if (form.checkValidity()) {
+        // Gửi form
+        form.submit();
+    } else {
+        alert("Vui lòng điền đầy đủ thông tin trước khi tiếp tục!");
+    }
+});
+
 // const infoUser = document.querySelector(".info-user");
 const welcomeFrame = document.querySelector(".welcome-frame");
 
 function hideInfoUser(event) {
+    // const form = document.querySelector('form[action="register-contributor"]');
+    //
+    // if (form.checkValidity()) {
+    //     // Gửi form
+    //     form.submit();
+    // }
     // Ngăn hành động mặc định của submit form quay vể đầu trang
-    event.preventDefault();
+    // event.preventDefault();
 
     infoUser.style.display = "none";
     welcomeFrame.style.display = "block";
@@ -31,4 +50,4 @@ function hideInfoUser(event) {
     navItem[2].classList.add("active");
 }
 
-btnSave.addEventListener("click", hideInfoUser);
+// btnSave.addEventListener("click", hideInfoUser);
