@@ -111,39 +111,39 @@
             </div>
         </div>
 
-        <div class="product-right col col-half">
-            <h2 class="liscense mt-8 mb-4">1. Chọn giấy phép của bạn <a href="basic.html"><i
-                    class="fa-solid fa-circle-info"></i></a></h2>
-            <ul class="product-conditions mt-8">
-                <li class="condition">
-                    <div>
+            <div class="product-right col col-half">
+                <h2 class="liscense mt-8 mb-4">1. Chọn giấy phép của bạn <a href="basic.html"><i
+                        class="fa-solid fa-circle-info"></i></a></h2>
+                <ul class="product-conditions mt-8">
+                    <li class="condition">
                         <div>
-                                <span>
-                                    <input type="radio" name="condition" id="condition1" value="standard" checked>
-                                </span>
+                            <div>
+                                    <span>
+                                        <input type="radio" name="condition" id="condition1" value="standard" checked>
+                                    </span>
+                            </div>
+                            <div>
+                                <label for="condition1">Giấy phép tiêu chuẩn</label>
+                                <p>Sử dụng không giới hạn trong in ấn, quảng cáo và đóng gói. Phân phối web không giới
+                                    hạn.</p>
+                            </div>
                         </div>
+                    </li>
+                    <li class="condition">
                         <div>
-                            <label for="condition1">Giấy phép tiêu chuẩn</label>
-                            <p>Sử dụng không giới hạn trong in ấn, quảng cáo và đóng gói. Phân phối web không giới
-                                hạn.</p>
+                            <div>
+                                    <span>
+                                        <input type="radio" name="condition" id="condition2" value="advance">
+                                    </span>
+                            </div>
+                            <div>
+                                <label for="condition2">Giấy phép nâng cao</label>
+                                <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân
+                                    phối web không giới hạn.</p>
+                            </div>
                         </div>
-                    </div>
-                </li>
-                <li class="condition">
-                    <div>
-                        <div>
-                                <span>
-                                    <input type="radio" name="condition" id="condition1" value="advanced">
-                                </span>
-                        </div>
-                        <div>
-                            <label for="condition1">Giấy phép nâng cao</label>
-                            <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân
-                                phối web không giới hạn.</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
 
             <div class="promotion">
                 <div class="title">
@@ -169,7 +169,7 @@
             <div class="product-price mt-16">
                 <p><fmt:formatNumber value="${ product.getPrice() }"/> VND</p>
             </div>
-            <button onclick="window.location.href='checkout.html'" class="btn-right btn-buy mt-16">Mua ngay</button>
+            <button onclick="redirectToCheckout()" class="btn-right btn-buy mt-16">Mua ngay</button>
             <button onclick="window.location.href='cart.html'" class="btn-right btn-add-cart mt-16">Thêm
                 vào giỏ hàng
             </button>
@@ -248,6 +248,8 @@
 </div>
 <%--</c:if>--%>
 <!-- End: Categories image -->
+<script src="assets/js/redirect-to-checkout-on-product-detail.js"></script>
+
 
 <jsp:include page="include/footer.jsp"/>
 

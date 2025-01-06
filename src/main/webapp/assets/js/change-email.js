@@ -1,3 +1,4 @@
+
 document.getElementById("submitNewEmail").addEventListener("click", function () {
     const newEmail = document.getElementById("newEmail").value;
     const userOtp = prompt("Vui lòng nhập mã OTP:");

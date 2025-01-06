@@ -118,7 +118,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <p>Chúng tôi sẽ gửi OTP đến email của bạn để xác nhận thay đổi.</p>
-                                                <button type="button" id="sendOtpButton" class="btn btn-primary">Gửi OTP</button>
+                                                <button type="button" id="sendOtpButton" class="btn btn-primary" data-dismiss="modal">Gửi OTP</button>
                                             </div>
                                         </div>
                                     </div>
