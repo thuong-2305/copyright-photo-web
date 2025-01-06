@@ -1,8 +1,9 @@
+<jsp:useBean id="product" scope="request" type="vn.edu.hcmuaf.fit.coriphoto.model.Product"/>
 <%@ page import="vn.edu.hcmuaf.fit.coriphoto.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,21 +45,21 @@
     <div class="modal-container">
         <button class="btn-close"><i class="fa-solid fa-xmark"></i></button>
         <div class="image-container">
-            <img src="${ product.getUrl() }" alt="" class="overlay-img">
+            <img src="${ product.url }" alt="" class="overlay-img">
         </div>
     </div>
 </div>
 <!-- Begin: Product detail -->
 <div class="product-container">
     <div>
-        <h1 class="product-name">${ product.getName() }</h1>
-        <p class="product-desc">${ product.getDescription() }</p>
+        <h1 class="product-name">${ product.name }</h1>
+        <p class="product-desc">${ product.description }</p>
     </div>
     <div class="row">
         <div class="product-left col col-half">
             <div class="product">
                 <div class="div-img">
-                    <img src="${ product.getUrl() }" alt="" class="product-img">
+                    <img src="${ product.url }" alt="" class="product-img">
                     <button class="btn-enlarge">Phóng to<i class="fa-solid fa-search-plus"></i></button>
                 </div>
                 <div class="product-nav">
@@ -86,23 +87,23 @@
                         <ul>
                             <li>
                                 <strong>ID - Hình ảnh: </strong>
-                                <p>#${ product.getId() }</p>
+                                <p>#${ product.id }</p>
                             </li>
                             <li>
                                 <strong>Ngươi đăng ảnh: </strong>
-                                <p>${ product.getUid() }</p>
+                                <p>${ product.uid }</p>
                             </li>
                             <li>
                                 <strong>Kích thước tập tin: </strong>
-                                <p>${ product.getSize() }</p>
+                                <p>${ product.size }</p>
                             </li>
                             <li>
                                 <strong>Kích thước ảnh: </strong>
-                                <p>${ product.getDimension() }</p>
+                                <p>${ product.dimension }</p>
                             </li>
                             <li>
                                 <strong>Ngày đăng ảnh: </strong>
-                                <p>${ product.getDateUpload() }</p>
+                                <p>${ product.dateUpload }</p>
                             </li>
                         </ul>
                     </div>
@@ -166,7 +167,7 @@
                 </div>
             </div>
             <div class="product-price mt-16">
-                <p><fmt:formatNumber value="${ product.getPrice() }"/> VND</p>
+                <p><fmt:formatNumber value="${ product.price }"/> VND</p>
             </div>
             <button onclick="window.location.href='checkout.html'" class="btn-right btn-buy mt-16">Mua ngay</button>
             <button onclick="window.location.href='cart.html'" class="btn-right btn-add-cart mt-16">Thêm
@@ -210,7 +211,7 @@
 <div class="categories-container">
     <div class="container-title">
         <p>Hình ảnh tương tự</p>
-        <p><a href="products?cid=${ product.getCid() }">Xem tất cả</a></p>
+        <p><a href="products?cid=${ product.cid }">Xem tất cả</a></p>
     </div>
     <div class="categories-image">
         <%
