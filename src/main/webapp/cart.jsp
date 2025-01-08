@@ -1,3 +1,10 @@
+<%@ page import="vn.edu.hcmuaf.fit.coriphoto.model.CartDetail" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.hcmuaf.fit.coriphoto.model.Product" %>
+<%@ page import="vn.edu.hcmuaf.fit.coriphoto.service.CategoryService" %>
+<%@ page import="vn.edu.hcmuaf.fit.coriphoto.service.LisenseService" %>
+<%@ page import="vn.edu.hcmuaf.fit.coriphoto.service.UserService" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
@@ -11,7 +18,6 @@
         #nav {
             position: relative;
         }
-
         .modal {
             z-index: 9999;
         }
@@ -35,9 +41,9 @@
                     </div>
                     <div class="subtotal text-right fw-bold">
                         <!-- Hiển thị giá gốc và giá sau khi giảm -->
-                        <label for="" class="d-block">
+                        <label class="d-block">
                             <!-- Giá gốc -->
-                            <span class="text-decoration-line-through me-2">1.500.000đ</span>
+                            <span class="text-decoration-line-through me-2"><fmt:formatNumber value="${total}"/>đ</span>
 
                             <!-- Giá sau giảm -->
                             <span>1.350.000đ</span>
@@ -61,30 +67,27 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="select-all d-flex align-items-center mr-3">
                             <input type="checkbox" class="mr-2">
-                            <label for="select-all" class="mb-0">Chọn Tất Cả</label>
+                            <label class="mb-0">Chọn Tất Cả</label>
                         </div>
-
-
                     </div>
                     <div class=" continue-buy align-items-center">
-                        <a href="homeuser.html">Tiếp tục mua sắm</a>
+                        <a href="/">Tiếp tục mua sắm</a>
                     </div>
-
-
                 </div>
             </div>
 
         </div>
         <div id="cart-item-list">
-            <!-- Package discount -->
-            <!-- Item 1 -->
+            <% List<CartDetail> items = (List<CartDetail>) request.getAttribute("cartItems"); %>
+            <% List<Product> products = (List<Product>) request.getAttribute("products"); %>
+            <% for(int i = 0; i < items.size(); i++) { %>
             <div class="cart-item">
                 <div class="purchaseable">
                     <div class="cart-item-container d-flex">
                         <figure class="thumbnail">
                             <a href="">
                                 <div class="asset-wrapper">
-                                    <img class="img-fluid" src="./assets/images/Food/001.jpg" alt="">
+                                    <img class="img-fluid" src="<%= products.get(i).getUrl() %>" alt="">
                                 </div>
                             </a>
                         </figure>
@@ -93,17 +96,23 @@
                                 <dl class="mb-3">
                                     <div class="d-flex align-items-start">
                                         <dt class="font-weight-normal">Loại hình ảnh:</dt>
-                                        <dd>Món ăn
+                                        <dd>
+                                            <%
+                                                CategoryService categoryService = new CategoryService();
+                                                int cid = products.get(i).getCid();
+                                                String name = categoryService.getById(cid).getName();
+                                            %>
+                                            <%= name %>
                                             <span class="separator"> | </span>
-                                            <a href="">#1458782106</a>
+                                            <a href="">#<%= products.get(i).getId() %></a>
                                         </dd>
                                     </div>
                                     <div class="d-flex align-items-start">
                                         <dt class="font-weight-normal">Kích thước:</dt>
                                         <dd class="size-content">
                                             <ul class="style-none pl-0">
-                                                <li>5760 x 3840 px</li>
-                                                <li>Kích cỡ tệp 12MB</li>
+                                                <li><%= products.get(i).getDimension() %></li>
+                                                <li>Kích cỡ tệp <%= products.get(i).getSize() %></li>
                                             </ul>
                                         </dd>
                                     </div>
@@ -112,31 +121,14 @@
                                         <dt class="font-weight-normal">Loại giấy phép:</dt>
                                         <dd>
                                             <div class="d-flex align-items-center">
-                                                <div class="form-check mr-4">
-                                                    <input type="radio" name="options_1" class="form-check-input"
-                                                           style="width: 16px; height: 16px;">
-                                                    <label class="form-check-label ml-1 mt-1" for="standard"
-                                                           style="font-size: 16px;">Tiêu
-                                                        chuẩn</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input type="radio" name="options_1" class="form-check-input"
-                                                           style="width: 16px; height: 16px;">
-                                                    <label class="form-check-label ml-1 mt-1" for="advanced"
-                                                           style="font-size: 16px;">Nâng
-                                                        cao</label>
-                                                </div>
+                                                <%= new LisenseService().getLisenseName(items.get(i).getLisenseId()) %>
                                             </div>
-
                                         </dd>
                                     </div>
-
-
                                     <div class="d-flex align-items-start">
                                         <dt class="font-weight-normal">Tác giả:</dt>
-                                        <dd><a href="">Võ Hoàng Phúc</a></dd>
+                                        <dd><a href=""><%= new UserService().getFullName( products.get(i).getUid()) %></a></dd>
                                     </div>
-
                                 </dl>
                             </section>
                         </div>
@@ -148,22 +140,19 @@
                                 </div>
                             </div>
                             <ul>
-                                <li class="final-price">100.000đ</li>
+                                <li class="final-price"><fmt:formatNumber value="<%= products.get(i).getPrice() %>" />đ</li>
                                 <a href="" class="remove-from-cart" data-testid="remove-from-cart"
                                    gi-track="removeFromCart"
                                    ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>
+            <% } %>
             <div class="clear"></div>
         </div>
-
     </div>
-
-
 </div>
 
 <jsp:include page="include/footer.jsp"/>

@@ -15,6 +15,11 @@ public class UserDAO {
 
     public UserDAO() { }
 
+    public String getFullName(int uid) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT fullname FROM users WHERE uid = ?")
+                .bind(0, uid).mapTo(String.class).one());
+    }
+
     public User findByEmail(String email, String password) {
         User user = null;
         try {
@@ -29,6 +34,7 @@ public class UserDAO {
         } catch (Exception _) { }
         return user;
     }
+
     public User findByEmail(String email) {
         String query = "SELECT * FROM users WHERE email = :email";
         return jdbi.withHandle(handle ->

@@ -14,6 +14,10 @@ public class UserService {
         this.userDao = new UserDAO();
     }
 
+    public String getFullName(int uid) {
+        return userDao.getFullName(uid);
+    }
+
     public User getUserByCredentials(String username, String password) {
         return userDao.getUserByCredentials(username, password);
     }

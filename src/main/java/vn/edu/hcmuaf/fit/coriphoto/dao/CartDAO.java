@@ -66,4 +66,14 @@ public class CartDAO {
         return res;
     }
 
+    public double getCartTotal(int uid) {
+        String query = "SELECT SUM(p.price) AS total_price " +
+                        "FROM cart c " +
+                        "JOIN cart_detail cd ON c.cartId = cd.cartId " +
+                        "JOIN products p ON cd.pid = p.id " +
+                        "WHERE c.uid = ?";
+        return jdbi.withHandle(handle -> handle.createQuery(query)
+                .bind(0, uid).mapTo(Double.class).one());
+    }
+
 }

@@ -18,4 +18,7 @@ public class CartService {
         return cart.getCarts(uid);
     }
 
+    public double getCartTotal(int uid) {
+        return cart.getCartTotal(uid);
+    }
 }

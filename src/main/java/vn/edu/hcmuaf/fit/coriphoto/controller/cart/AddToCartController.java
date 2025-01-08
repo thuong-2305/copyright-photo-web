@@ -1,24 +1,18 @@
 package vn.edu.hcmuaf.fit.coriphoto.controller.cart;
 
-
-import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.json.JSONException;
 import org.json.JSONObject;
 import vn.edu.hcmuaf.fit.coriphoto.model.Cart;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 
 @WebServlet(name = "AddToCartController", value = "/addToCart")
 public class AddToCartController extends HttpServlet {
