@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
+import vn.edu.hcmuaf.fit.coriphoto.dao.PaymentMethodDAO;
 import vn.edu.hcmuaf.fit.coriphoto.dao.UserDAO;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.FormatDateTime;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
@@ -124,14 +125,20 @@ public class OrderController extends HttpServlet {
             orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalAfterDiscount, products);
         }
         else {
+            int getPmId = -1;
+            PaymentMethodDAO paymentMethodDAO = new PaymentMethodDAO();
             UserService userService = new UserService();
             if (Integer.parseInt(paymentTypeId) == 1) {
                 LocalDate cardExpiryLD = FormatDateTime.format(cardExpiry);
                 System.out.println("Add card: " + userService.addPaymentMethodCard(uid, cardName, cardNumber, Integer.parseInt(paymentTypeId), cardBank, cardExpiryLD , Integer.parseInt(cardCVC)));
+                getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, cardNumber);
+                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalAfterDiscount, products);
             }
             else if (Integer.parseInt(paymentTypeId) == 2) {
                 LocalDate bankExpiryLD = FormatDateTime.format(bankExpiry);
                 System.out.println("Add bank: " +  userService.addPaymentMethodBank(uid, bankAccountHolder, bankAccountNumber, Integer.parseInt(paymentTypeId), bankName, bankExpiryLD));
+                getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
+                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalAfterDiscount, products);
             }
         }
         response.sendRedirect("/");
