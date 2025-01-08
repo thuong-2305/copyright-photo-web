@@ -66,13 +66,20 @@ public class CartDAO {
         return res;
     }
 
+    public void deleteItem(int uid, int pid) {
+        int cartId = getCartId(uid);
+        String querySql = "DELETE FROM cart_detail WHERE cartId = ? AND pid = ?";
+        jdbi.useHandle(handle -> handle.createUpdate(querySql)
+                .bind(0, cartId).bind(1, pid).execute());
+    }
+
     public double getCartTotal(int uid) {
-        String query = "SELECT SUM(p.price) AS total_price " +
+        String querySql = "SELECT SUM(p.price) AS total_price " +
                         "FROM cart c " +
                         "JOIN cart_detail cd ON c.cartId = cd.cartId " +
                         "JOIN products p ON cd.pid = p.id " +
                         "WHERE c.uid = ?";
-        return jdbi.withHandle(handle -> handle.createQuery(query)
+        return jdbi.withHandle(handle -> handle.createQuery(querySql)
                 .bind(0, uid).mapTo(Double.class).one());
     }
 

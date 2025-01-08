@@ -18,6 +18,10 @@ public class CartService {
         return cart.getCarts(uid);
     }
 
+    public void deleteItem(int uid, int pid) {
+        cart.deleteItem(uid, pid);
+    }
+
     public double getCartTotal(int uid) {
         return cart.getCartTotal(uid);
     }

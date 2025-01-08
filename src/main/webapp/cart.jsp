@@ -43,7 +43,9 @@
                         <!-- Hiển thị giá gốc và giá sau khi giảm -->
                         <label class="d-block">
                             <!-- Giá gốc -->
-                            <span class="text-decoration-line-through me-2"><fmt:formatNumber value="${total}"/>đ</span>
+                            <span class="text-decoration-line-through me-2"  id="originalPrice">
+                                <fmt:formatNumber value="${total}"/>đ
+                            </span>
 
                             <!-- Giá sau giảm -->
                             <span>1.350.000đ</span>
@@ -83,13 +85,9 @@
             <% for(int i = 0; i < items.size(); i++) { %>
             <div class="cart-item">
                 <div class="purchaseable">
-                    <div class="cart-item-container d-flex">
-                        <figure class="thumbnail">
-                            <a href="">
-                                <div class="asset-wrapper">
-                                    <img class="img-fluid" src="<%= products.get(i).getUrl() %>" alt="">
-                                </div>
-                            </a>
+                    <div class="cart-item-container d-flex" style="margin-bottom: 15px">
+                        <figure class="thumbnail d-flex justify-content-center align-items-center">
+                            <img class="img-fluid" src="<%= products.get(i).getUrl() %>" alt="" style="height: 100%;">
                         </figure>
                         <div class="product flex-grow-1 mt-2 ">
                             <section class="details">
@@ -133,17 +131,18 @@
                             </section>
                         </div>
                         <div class="price">
-                            <div class="select-for-checkout d-flex">
+                            <div class="select-for-checkout d-flex align-items-center" style="height: 35px;">
                                 <div class="select-for-checkout-content ml-auto">
                                     <input id="selected-for-checkout" type="checkbox">
                                     <label for="selected-for-checkout">Chọn</label>
                                 </div>
+                                <button type="submit"
+                                        class="btn btn-danger deleteCart remove-from-cart" style="margin-left: 10px"
+                                        data-product-id="<%= products.get(i).getId() %>">Xóa
+                                </button>
                             </div>
-                            <ul>
-                                <li class="final-price"><fmt:formatNumber value="<%= products.get(i).getPrice() %>" />đ</li>
-                                <a href="" class="remove-from-cart" data-testid="remove-from-cart"
-                                   gi-track="removeFromCart"
-                                   ng-click="removeFromCart($index)" title="Remove from cart">Xóa</a>
+                            <ul style="margin-top: 20px">
+                                <li class="final-price fw-semibold"><fmt:formatNumber value="<%= products.get(i).getPrice() %>" />đ</li>
                             </ul>
                         </div>
                     </div>
@@ -155,10 +154,17 @@
     </div>
 </div>
 
+<%--Notification--%>
+<div class="alert alert-success d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+    <i class="bi bi-check2-circle"></i><span></span>
+</div>
+<%--Notification--%>
+
 <jsp:include page="include/footer.jsp"/>
-
 <jsp:include page="include/scripts.jsp"/>
-
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -169,6 +175,43 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".remove-from-cart").click(function () {
+            let productId = $(this).data("product-id");
+            let parentElement = $(this).closest(".cart-item");
+            $.ajax({
+                url: "deleteFromCart?pid=" + productId,
+                method: "POST",
+                contentType: "application/json",
+                success: function (response) {
+                    $(".alert-success span").text("Xóa thành công!");
+                    $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(this).addClass("d-none");
+                    });
+
+                    var formattedTotal = numeral(response.total).format('0,0');
+                    $('#originalPrice').text(formattedTotal + 'đ');
+
+                    parentElement.fadeOut(function () {
+                        $(this).remove();
+                    });
+
+                    $("#nav .container a.cart span").text(response.cartLen);
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+                }
+            });
+        });
+    });
+</script>
+
+
+
 </body>
 
 </html>

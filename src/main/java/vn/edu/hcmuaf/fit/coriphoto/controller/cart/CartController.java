@@ -28,8 +28,22 @@ public class CartController extends HttpServlet {
         ProductService productService = new ProductService();
 
         User user = (User) session.getAttribute("auth");
-        int idTemp = (Integer) session.getAttribute("idCartNotLogin");
-        int uid = (user != null ) ? user.getUid() : idTemp;
+
+        int idTemp, uid;
+        if(session.getAttribute("idCartNotLogin") != null) {
+            idTemp = (Integer) session.getAttribute("idCartNotLogin");
+            uid = (user != null ) ? user.getUid() : idTemp;
+        } else {
+            if(user == null) {
+                request.setAttribute("cart", new Cart());
+                request.setAttribute("cartItems", new ArrayList<CartDetail>());
+                request.setAttribute("products", new ArrayList<Product>());
+                request.setAttribute("total", 0);
+
+                request.getRequestDispatcher("cart.jsp").forward(request, response);
+                return;
+            } else uid = user.getUid();
+        }
 
         Cart cart = cartService.getCart(uid);
         List<CartDetail> cartItems = cart.getCartItems();
