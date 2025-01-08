@@ -172,21 +172,17 @@
 <!-- evaluate -->
 
 <%-- notification --%>
-<div class="d-none">
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    </svg>
-    <div class="alert alert-primary d-flex align-items-center" role="alert" style="display: none;">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
-            <use xlink:href="#info-fill" />
-        </svg>
-        <div></div>
-    </div>
-    <div class="alert alert-success d-flex align-items-center" role="alert" style="display: none;">
-        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-            <use xlink:href="#check-circle-fill" />
-        </svg>
-        <div></div>
-    </div>
+<div class="alert alert-primary d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+    <i class="bi bi-exclamation-triangle"></i><span></span>
+</div>
+<div class="alert alert-success d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+    <i class="bi bi-check2-circle"></i><span></span>
 </div>
 <%-- notification --%>
 
@@ -252,17 +248,21 @@
         $(".addCart").click(function () {
             let productId = $(this).data("product-id");
             $.ajax({
-                url: "addToCart",
+                url: "addToCart?pid=" + productId,
                 method: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ pid: productId }),
                 success: function (response) {
-                    if (response.success) {
-                        var res = response.cartLen;
-                        alert("Sản phẩm đã được thêm vào giỏ hàng!");
-                        alert(res);
+                    if (response.addSuccess) {
+                        $(".alert-success span").text("Thêm thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                        $("#nav .container a.cart span").text(response.cartLen);
                     } else {
-                        alert("Sản phẩm đã có trong giỏ hàng!");
+                        $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
+                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
                     }
                 },
                 error: function () {

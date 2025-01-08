@@ -155,8 +155,7 @@
     margin-right: 10px;
 }
 
-#nav .container a.cart::before {
-    content: var(--cart-len, "0");
+#nav .container a.cart span {
     position: absolute;
     top: -5px; 
     right: -10px; 

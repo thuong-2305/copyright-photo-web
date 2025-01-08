@@ -10,6 +10,11 @@ import java.util.List;
 public class CartDAO {
     private static final Jdbi jdbi = new DBConnect().get();
 
+    public int getNumCart() {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT count(*) FROM cart")
+                .mapTo(Integer.class).one());
+    }
+
     public int getCartId(int uid) {
         String querySql = "SELECT cartId FROM cart WHERE uid = ? LIMIT 1";
         return jdbi.withHandle(handle ->

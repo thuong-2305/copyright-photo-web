@@ -6,6 +6,10 @@ import vn.edu.hcmuaf.fit.coriphoto.model.Cart;
 public class CartService {
     private final CartDAO cart = new CartDAO();
 
+    public int getNumCar() {
+        return cart.getNumCart();
+    }
+
     public boolean addToCart(int pid, int uid) {
         return cart.addCart(pid, uid);
     }
