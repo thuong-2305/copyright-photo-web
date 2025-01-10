@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
+import vn.edu.hcmuaf.fit.coriphoto.model.Order;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 
 import java.util.List;
@@ -52,6 +53,44 @@ public class OrderDAO {
         }
     }
 
+
+    public double getTotalPriceById(int oid) {
+        String query = """
+        SELECT o.totalPrice
+        FROM orders o
+        WHERE o.orderId = :oid
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("oid", oid)
+                        .mapTo(Double.class)
+                        .findOne()
+                        .orElse(0.0) // Trả về 0.0 nếu không tìm thấy chiết khấu
+        );
+    }
+
+
+    public List<Integer> getImgSelledByOrder(int orderId, int sellerId) {
+        String query = """
+        SELECT od.productId
+        FROM order_details od
+        JOIN orders o ON o.orderId = od.orderId
+        JOIN products p ON p.id = od.productId
+        WHERE o.orderId = :orderId AND p.uid = :sellerId
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("orderId", orderId)
+                        .bind("sellerId", sellerId)
+                        .mapTo(Integer.class)  // Map result to Integer (productId)
+                        .list()  // Return the result as a List<Integer>
+        );
+    }
+
+
+
     // Hàm tạo đơn hàng và thêm chi tiết đơn hàng
     public boolean createOrder(int uid, int pmid, int promotionId, int licenseId, double totalPrice, List<Product> products) {
         // Bước 1: Tạo đơn hàng và lấy orderId
@@ -78,4 +117,10 @@ public class OrderDAO {
         // Nếu tất cả các bước đều thành công, trả về true
         return true;
     }
+
+    public static void main(String[] args) {
+        OrderDAO orderDAO = new OrderDAO();
+        System.out.println(orderDAO.getTotalPriceById(17));
+    }
+
 }

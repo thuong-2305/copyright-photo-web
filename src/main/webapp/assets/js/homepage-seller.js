@@ -9,3 +9,12 @@ document.addEventListener("DOMContentLoaded", function() {
         new bootstrap.Tooltip(infoIcon);
     }
 });
+
+function selectCategory(categoryName) {
+    // Set giá trị danh mục đã chọn vào input ẩn
+    document.getElementById('categoryInput').value = categoryName;
+    // Gửi form để cập nhật sản phẩm
+    document.getElementById('categoryForm').submit();
+
+    console.log(categoryName);
+}

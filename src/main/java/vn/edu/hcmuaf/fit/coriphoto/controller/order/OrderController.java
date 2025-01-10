@@ -72,6 +72,8 @@ public class OrderController extends HttpServlet {
         double totalAfterDiscount = Double.parseDouble(request.getParameter("totalAfterDiscount"));
         int licenseId = Integer.parseInt(request.getParameter("licenseId"));
 
+        double totalBeforeDiscount = Double.parseDouble(request.getParameter("totalBeforeDiscount"));
+
 
         // Lấy thông tin sản phẩm
         String[] productIds = request.getParameterValues("productIds");
@@ -122,7 +124,7 @@ public class OrderController extends HttpServlet {
         OrderService orderService = new OrderService();
 
         if (!pmid.isEmpty()) {
-            orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalAfterDiscount, products);
+            orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalBeforeDiscount, products);
         }
         else {
             int getPmId = -1;
@@ -132,13 +134,13 @@ public class OrderController extends HttpServlet {
                 LocalDate cardExpiryLD = FormatDateTime.format(cardExpiry);
                 System.out.println("Add card: " + userService.addPaymentMethodCard(uid, cardName, cardNumber, Integer.parseInt(paymentTypeId), cardBank, cardExpiryLD , Integer.parseInt(cardCVC)));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, cardNumber);
-                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalAfterDiscount, products);
+                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
             }
             else if (Integer.parseInt(paymentTypeId) == 2) {
                 LocalDate bankExpiryLD = FormatDateTime.format(bankExpiry);
                 System.out.println("Add bank: " +  userService.addPaymentMethodBank(uid, bankAccountHolder, bankAccountNumber, Integer.parseInt(paymentTypeId), bankName, bankExpiryLD));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
-                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalAfterDiscount, products);
+                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
             }
         }
         response.sendRedirect("/");

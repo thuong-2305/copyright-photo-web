@@ -20,9 +20,28 @@ public class PromotionDAO {
         );
     }
 
+    public double getDiscountByOrderId(int oid) {
+        String query = """
+        SELECT p.percentage 
+        FROM orders o
+        JOIN promotions p ON o.promotionId = p.promotionId
+        WHERE o.orderId = :oid
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("oid", oid)
+                        .mapTo(Double.class)
+                        .findOne()
+                        .orElse(0.0)
+        );
+    }
+
     public static void main(String[] args) {
         PromotionDAO promotionDAO = new PromotionDAO();
-        System.out.println(promotionDAO.getDiscountByPromotionID(2));
+
+
+
     }
 
 }

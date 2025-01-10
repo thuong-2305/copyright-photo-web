@@ -370,6 +370,7 @@
                         <form id="paymentForm" action="OrderController" method="POST">
                             <input type="hidden" name="promotionId" value="${promotionId}">
                             <input type="hidden" name="totalAfterDiscount" value="${totalAfterDiscount}">
+                            <input type="hidden" name="totalBeforeDiscount" value="${totalBeforeDiscount}">
                             <input type="hidden" name="licenseId" value="${licenseId}">
                             <input type="hidden" name="products" value="${products}">
 
