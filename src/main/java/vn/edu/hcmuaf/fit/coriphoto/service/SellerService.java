@@ -37,10 +37,26 @@ public class SellerService {
         return sellerDAO.getProductStatsBySellerId(uid);
     }
 
+    public List<Map<String, Object>> getProductStatsBySellerIdWithPagination(int uid, int start, int length) {
+        return sellerDAO.getProductStatsBySellerIdWithPagination(uid, start, length);
+    }
+
+    public int getTotalRecords(int uid) {
+        return sellerDAO.getTotalRecords(uid);
+    }
+
+
     public List<Map<String, Object>> getProductStatsByCategory(int uid, String categoryParentName) {
         return sellerDAO.getProductStatsByCategory(uid, categoryParentName);
     }
 
+    public List<Map<String, Object>> getProductStatsByCategoryWithPagination(int uid, String categoryParentName, int start, int length) {
+        return sellerDAO.getProductStatsByCategoryWithPagination(uid, categoryParentName, start, length);
+    }
+
+    public int getTotalRecordsByCategory(int uid, String categoryParentName) {
+        return sellerDAO.getTotalRecordsByCategory(uid, categoryParentName);
+    }
 
 
 }

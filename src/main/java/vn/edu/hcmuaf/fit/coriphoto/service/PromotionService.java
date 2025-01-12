@@ -8,4 +8,8 @@ public class PromotionService {
     public double getDiscountByPromotionID(int id) {
         return promotionDao.getDiscountByPromotionID(id);
     }
+
+    public double getDiscountByOrderId(int oid) {
+        return promotionDao.getDiscountByOrderId(oid);
+    }
 }

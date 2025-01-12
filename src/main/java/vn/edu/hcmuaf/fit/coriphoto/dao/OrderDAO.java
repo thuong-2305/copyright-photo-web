@@ -30,6 +30,41 @@ public class OrderDAO {
         });
     }
 
+    public List<Integer> getAllOrdersId() {
+        String sql = "SELECT orderId FROM orders";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .list()
+        );
+    }
+
+    public List<Integer> getAllOrdersIdMonthYear(int month, int year) {
+        String sql = """
+            SELECT orderId
+            FROM orders
+            WHERE MONTH(orderDate) = :month AND YEAR(orderDate) = :year
+            """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("month", month)
+                        .bind("year", year)
+                        .mapTo(Integer.class)
+                        .list()
+        );
+    }
+
+
+    public int totalOrders() {
+        String sql = "SELECT COUNT(*) FROM orders";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+
     // Hàm thêm chi tiết đơn hàng
     public boolean addOrderDetails(int orderId, int productId, int licenseId, double price) {
         // Truy vấn để thêm chi tiết đơn hàng vào bảng order_details

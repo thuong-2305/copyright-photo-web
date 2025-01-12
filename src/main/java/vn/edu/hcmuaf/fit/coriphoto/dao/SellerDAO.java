@@ -125,6 +125,51 @@ public class SellerDAO {
         );
     }
 
+    public List<Map<String, Object>> getProductStatsBySellerIdWithPagination(int uid, int start, int length) {
+        String query = """
+        SELECT  
+            p.url,
+            p.id,
+            p.name,
+            COUNT(od.productId) AS buyCount,
+            AVG(od.price) * 0.5 AS averagePrice,
+            SUM(od.price) * 0.5 AS totalPrice
+        FROM orders o
+        JOIN order_details od ON o.orderId = od.orderId
+        JOIN products p ON od.productId = p.id
+        WHERE p.uid = :uid AND o.status = 'Completed'
+        GROUP BY p.id, p.name, p.url
+        LIMIT :start, :length
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("uid", uid)
+                        .bind("start", start)
+                        .bind("length", length)
+                        .mapToMap()
+                        .list()
+        );
+    }
+
+    public int getTotalRecords(int uid) {
+        String query = """
+        SELECT COUNT(DISTINCT p.id) 
+        FROM orders o
+        JOIN order_details od ON o.orderId = od.orderId
+        JOIN products p ON od.productId = p.id
+        WHERE p.uid = :uid AND o.status = 'Completed'
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("uid", uid)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+
     public List<Map<String, Object>> getProductStatsByCategory(int uid, String categoryParentName) {
         String query = """
         SELECT  
@@ -152,6 +197,61 @@ public class SellerDAO {
         );
     }
 
+    public List<Map<String, Object>> getProductStatsByCategoryWithPagination(int uid, String categoryParentName, int start, int length) {
+        String query = """
+        SELECT  
+            p.url,
+            p.id, 
+            p.name,
+            COUNT(od.productId) AS buyCount,
+            AVG(od.price) * 0.5 AS averagePrice,
+            SUM(od.price) * 0.5 AS totalPrice
+        FROM orders o
+        JOIN order_details od ON o.orderId = od.orderId
+        JOIN products p ON od.productId = p.id
+        JOIN categories c ON c.cid = p.cid
+        JOIN categories_parent cp ON cp.cpid = c.cpid
+        WHERE p.uid = :uid AND o.status = 'Completed' AND cp.name = :categoryParentName
+        GROUP BY p.id, p.name, p.url
+        LIMIT :start, :length
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("uid", uid)
+                        .bind("categoryParentName", categoryParentName)
+                        .bind("start", start)
+                        .bind("length", length)
+                        .mapToMap()
+                        .list()
+        );
+    }
+
+    public int getTotalRecordsByCategory(int uid, String categoryParentName) {
+        String query = """
+        SELECT COUNT(DISTINCT p.id) 
+        FROM orders o
+        JOIN order_details od ON o.orderId = od.orderId
+        JOIN products p ON od.productId = p.id
+        JOIN categories c ON c.cid = p.cid
+        JOIN categories_parent cp ON cp.cpid = c.cpid
+        WHERE p.uid = :uid AND o.status = 'Completed' AND cp.name = :categoryParentName
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("uid", uid)
+                        .bind("categoryParentName", categoryParentName)
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
+
+
+
+
+
 
 
 
@@ -162,14 +262,16 @@ public class SellerDAO {
 
 //        System.out.println(sellerDAO.getOrdersIdCompletedById(35));
 
-        System.out.println(sellerDAO.getTotalImgSelled(35));
+//        System.out.println(sellerDAO.getTotalImgSelled(35));
 
 
 //        System.out.println(sellerDAO.getTotalIncome(35));
 //
 //        System.out.println(sellerDAO.getProductStatsBySellerId(35));
-        System.out.println(sellerDAO.getProductStatsByCategory(35, "ai"));
+//        System.out.println(sellerDAO.getProductStatsByCategory(35, "ai"));
 
+        System.out.println(sellerDAO.getProductStatsByCategoryWithPagination(35, "ai", 0, 7));
+        System.out.println(sellerDAO.getProductStatsBySellerIdWithPagination(35,0,5));
 
     }
 
