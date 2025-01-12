@@ -16,6 +16,7 @@ public class LicenseDAO {
                 .mapTo(int.class)  // Ánh xạ kết quả thành kiểu int
                 .findOne()  // Lấy kết quả đầu tiên (nếu có)
                 .orElse(null));
+    }
 
     public String getName(int licenseId) {
         String query = "SELECT licenseName FROM licenses WHERE licenseId = ?";
