@@ -267,11 +267,9 @@ public class SellerDAO {
 
 //        System.out.println(sellerDAO.getTotalIncome(35));
 //
-//        System.out.println(sellerDAO.getProductStatsBySellerId(35));
-//        System.out.println(sellerDAO.getProductStatsByCategory(35, "ai"));
+        System.out.println(sellerDAO.getProductStatsBySellerId(35));
+        System.out.println(sellerDAO.getProductStatsByCategory(35, "ai"));
 
-        System.out.println(sellerDAO.getProductStatsByCategoryWithPagination(35, "ai", 0, 7));
-        System.out.println(sellerDAO.getProductStatsBySellerIdWithPagination(35,0,5));
 
     }
 

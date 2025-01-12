@@ -1,5 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 
 <!doctype html>
 <html lang="en">
@@ -203,7 +206,7 @@
                                         <i class="fa fa-pencil-square" aria-hidden="true"></i>
                                     </div>
                                     <div class="profile-name">
-                                        Zupiter
+                                        ${username}
                                     </div>
                                 </div>
                                 <ul class="menu-link stl-none mt-3">
@@ -262,8 +265,8 @@
                                                     Tổng thu nhập
                                                 </div>
                                                 <div class="earning-total font-weight-bold">
-                                                    ${totalIncome}
-                                                </div>
+                                                    <fmt:formatNumber value="${totalIncome}" pattern="#,##0" />
+                                                    <span> VNĐ</span>                                                </div>
                                             </div>
 
                                         </div>
@@ -301,7 +304,7 @@
                             <!-- Combobox danh mục -->
                             <div class="dropdown mt-5 mb-3">
                                 <button class="btn dropdown-toggle border" type="button" id="categoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    ${categoryParentName != null ? categoryParentName : "Tất cả"}
+                                    Tất cả
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="categoryDropdown">
                                     <a class="dropdown-item" href="#" onclick="selectCategory('all')">Tất cả</a>
@@ -311,10 +314,13 @@
                                 </div>
                             </div>
 
+
                             <!-- Bảng thống kê sản phẩm -->
                             <table id="productsTable" class="display table admin-table table-statistics">
                                 <thead>
                                 <tr>
+                                    <th class="product-id text-style-col">ID</th>
+                                    <th class="product-name text-style-col">Tên sản phẩm</th>
                                     <th class="product-image text-style-col">Ảnh</th>
                                     <th class="product-purchases text-style-col">Số lượt mua</th>
                                     <th class="product-average text-style-col">Trung bình</th>
@@ -325,6 +331,7 @@
                                 <!-- DataTables sẽ tự động điền dữ liệu vào đây -->
                                 </tbody>
                             </table>
+
 
                             <!-- Input ẩn để lưu giá trị danh mục -->
                             <input type="hidden" name="categoryParentName" id="categoryInput" />

@@ -34,4 +34,13 @@ public class AdminService {
     public int getTotalSellerByMonthYear(int month, int year) {
         return adminDao.getTotalSellerByMonthYear(month, year);
     }
-}
+
+    public int[] getCustomersDataByMonthYear(int year) {
+        return adminDao.getCustomersDataByMonthYear(year);
+    }
+
+    public int[] getSellersDataByMonthYear(int year) {
+        return adminDao.getSellersDataByMonthYear(year);
+    }
+
+    }

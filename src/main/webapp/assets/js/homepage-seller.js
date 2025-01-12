@@ -11,62 +11,98 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-$(document).ready(function() {
-    $('#productsTable').DataTable({
-        "processing": true,  // Hiển thị thông báo đang xử lý dữ liệu
-        "serverSide": true,  // Kích hoạt chế độ server-side processing
-        "ajax": {
-            "url": "/ShowStatistic",  // URL của servlet hoặc API trả về dữ liệu
-            "type": "GET",  // Sử dụng GET request
-            "data": function(d) {
-                // Thêm các tham số phân trang từ DataTables
-                d.draw = d.draw || 1;  // Đảm bảo tham số 'draw' không bị null
-                d.start = d.start || 0;  // Đảm bảo tham số 'start' không bị null
-                d.length = d.length || 5;  // Đảm bảo tham số 'length' không bị null
-                d.categoryParentName = $('#categoryInput').val();  // Thêm tham số lọc danh mục
-            },
-            "dataSrc": function(json) {
-                console.log("Received JSON: ", json);  // Kiểm tra JSON nhận được
-                // Trả về dữ liệu từ trường "data" trong JSON
-                return json.data;
-            },
-            "error": function(xhr, error, thrown) {
-                console.error("Error loading data: ", error);  // Ghi log khi có lỗi
-            }
+
+
+
+// Định nghĩa hàm loadData ra ngoài $(document).ready
+function loadData(categoryParentName) {
+    $.ajax({
+        url: "/ShowStatistic",
+        type: "GET",
+        data: { categoryParentName: categoryParentName }, // Thêm tham số lọc
+        success: function (data) {
+            console.log("Received Data: ", data); // Kiểm tra dữ liệu nhận được
+
+            $('#productsTable').DataTable({
+                "destroy": true,    // Hủy bảng cũ trước khi khởi tạo lại
+                "processing": true, // Hiển thị thông báo đang xử lý dữ liệu
+                "data": data,       // Dữ liệu nhận từ server
+                "columns": [
+                    {
+                        "data": "id", // Dữ liệu ID
+                        "render": function (data) {
+                            return '<span class="product-id">' + data + '</span>';
+                        },
+                    },
+                    {
+                        "data": "name", // Dữ liệu tên sản phẩm
+                        "render": function (data) {
+                            return '<span class="product-name">' + data + '</span>';
+                        },
+                    },
+                    {
+                        "data": "url", // Dữ liệu ảnh
+                        "render": function (data, type, row) {
+                            // 'data' là URL ảnh, 'row' chứa toàn bộ đối tượng JSON (bao gồm id)
+                            return (
+                                '<a href="product-detail?pid=' +
+                                row.id +
+                                '">' +
+                                '<img src="' +
+                                data +
+                                '" class="img-thumbnail" width="50" height="50">' +
+                                '</a>'
+                            ); // Tạo ảnh có liên kết
+                        },
+                    },
+                    {
+                        "data": "buycount", // Dữ liệu số lượt mua
+                        "render": function (data) {
+                            return data; // Hiển thị số lượt mua
+                        },
+                    },
+                    {
+                        "data": "averageprice", // Dữ liệu giá trung bình
+                        "render": function (data) {
+                            return data.toLocaleString("vi-VN") + " VNĐ"; // Định dạng số
+                        },
+                    },
+                    {
+                        "data": "totalprice", // Dữ liệu tổng tiền
+                        "render": function (data) {
+                            return data.toLocaleString("vi-VN") + " VNĐ"; // Định dạng số
+                        },
+                    },
+                ],
+            });
         },
-        "columns": [
-            {
-                "data": "url",  // Dữ liệu ảnh
-                "render": function(data) {
-                    return '<img src="' + data + '" class="img-thumbnail" width="50" height="50">';  // Hiển thị ảnh
-                }
-            },
-            {
-                "data": "buycount",  // Dữ liệu số lượt mua
-                "render": function(data) {
-                    return data;  // Hiển thị số lượt mua
-                }
-            },
-            {
-                "data": "averageprice",  // Dữ liệu giá trung bình
-                "render": function(data) {
-                    return data;  // Hiển thị giá trung bình
-                }
-            },
-            {
-                "data": "totalprice",  // Dữ liệu tổng tiền
-                "render": function(data) {
-                    return data;  // Hiển thị tổng tiền
-                }
-            }
-        ]
+        error: function (xhr, error, thrown) {
+            console.error("Error loading data: ", error); // Ghi log khi có lỗi
+        },
+    });
+}
+
+$(document).ready(function () {
+    // Load dữ liệu mặc định với tất cả sản phẩm
+    loadData("all");
+
+    // Khi chọn danh mục, gửi yêu cầu lọc
+    $('.category-filter').on('click', function () {
+        const category = $(this).data('category'); // Lấy giá trị danh mục từ button
+        console.log("Category selected: ", category);
+        loadData(category); // Gọi lại loadData với category mới
     });
 });
 
-function selectCategory(category) {
-    $('#categoryInput').val(category);  // Cập nhật giá trị category
-    $('#productsTable').DataTable().ajax.reload();  // Tải lại bảng với category mới
+function selectCategory(categoryParentName) {
+    $('#categoryInput').val(categoryParentName);
+    $('#categoryDropdown').text(categoryParentName === "all" ? "Tất cả" : categoryParentName);
+
+    // Gọi hàm loadData để tải dữ liệu
+    loadData(categoryParentName);
 }
+
+
 
 
 

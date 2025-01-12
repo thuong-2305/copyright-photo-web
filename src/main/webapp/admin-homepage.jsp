@@ -92,7 +92,8 @@
                         <div class="card stats-card rounded" id="sales-card">
                             <div class="card-body text-center py-3">
                                 <i class="fas fa-dollar-sign fa-2x text-success mb-3"></i>
-                                <h3 class="text-success">${totalIncome}VNĐ</h3>
+                                <h3 class="text-success"><fmt:formatNumber value="${totalIncome}" pattern="#,##0" />
+                                    <span> VNĐ</span></h3>
                                 <p class="card-title">Tổng doanh thu</p>
                             </div>
                         </div>
@@ -133,21 +134,21 @@
                                     <button class="btn btn-outline-primary btn-sm me-2" id="prev-month">
                                         <i class="fas fa-chevron-left"></i>
                                     </button>
-                                    <span id="current-month" class="text-secondary fw-bold">Tháng 11</span>
+                                    <span id="current-month" class="text-secondary fw-bold">Tháng 1</span>
                                     <button class="btn btn-outline-primary btn-sm ms-2" id="next-month">
                                         <i class="fas fa-chevron-right"></i>
                                     </button>
                                 </div>
                                 <div class="my-2">
                                     <select id="year-selector" class="form-select form-select-sm w-auto mx-auto">
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024" selected>2024</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
                                     </select>
                                 </div>
                                 <h3 class="text-primary" id="monthly-income-placeholder">--- VNĐ</h3>
                             </div>
                         </div>
+
 
 
                         <!-- Người dùng trực tuyến -->
@@ -170,6 +171,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="assets/js/admin.js"></script>
 <script src="assets/js/admin-dashboard.js"></script>
+<script src="assets/js/admin-dashboard-chart.js"></script>
+
 <script src="assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -77,6 +77,28 @@ public class AdminDAO {
         );
     }
 
+    public int[] getSellersDataByMonthYear(int year) {
+        // Tạo mảng chứa dữ liệu cho 12 tháng
+        int[] sellersData = new int[12];
+        for (int i = 0; i < 12; i++) {
+            sellersData[i] = getTotalSellerByMonthYear(i+1, year);
+        }
+        return sellersData;
+    }
+
+    public int[] getCustomersDataByMonthYear(int year) {
+        // Tạo mảng chứa dữ liệu cho 12 tháng
+        int[] customersData = new int[12];
+
+        // Lặp qua 12 tháng để giả lập dữ liệu
+        for (int i = 0; i < 12; i++) {
+            // Giả sử mỗi tháng có số lượng khách hàng tăng dần
+            customersData[i] = getTotalCustomerByMonthYear(i+1, year);
+        }
+        return customersData;
+    }
+
+
     public static void main(String[] args) {
         AdminDAO adminDAO = new AdminDAO();
         System.out.println(adminDAO.getTotalUsers());
