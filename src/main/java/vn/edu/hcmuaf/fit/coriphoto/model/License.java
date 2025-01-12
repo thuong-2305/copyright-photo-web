@@ -11,6 +11,8 @@ public class License {
         this.description = description;
     }
 
+    public License() {}
+
     public int getLicenseId() {
         return licenseId;
     }
@@ -33,5 +35,10 @@ public class License {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return licenseId + "\t" + licenseName + "\t" + description;
     }
 }

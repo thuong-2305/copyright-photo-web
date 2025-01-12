@@ -220,7 +220,7 @@
                     var htmlContent = '';
                     $.each(products, function(index, item) {
                         htmlContent += '<div class="box">';
-                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
+                        htmlContent += '<a href="#"><img src="' + item.url + '" alt=""></a>';
                         htmlContent += '<div class="info">';
                         htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                         htmlContent += '<div class="hover-options">';

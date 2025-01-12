@@ -6,6 +6,10 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 public class AuthService {
     private final UserDAO users = new UserDAO();
 
+    public boolean checkEmail(String email) {
+        return users.findByEmail(email) != null;
+    }
+
     public User checkLogin(String email, String password) {
         return users.findByEmail(email, password);
     }
@@ -24,19 +28,9 @@ public class AuthService {
         return users.createUser(email, password, username);
     }
 
-//    public boolean checkLogin(String email, String password) {
-//        UserDAO userDao = new UserDAO();
-//        User user = userDao.findByEmail(email);
-//
-//        if (user == null) {
-//            return false;
-//        }
-//
-//        // Băm mật khẩu nhập vào và so sánh với mật khẩu trong cơ sở dữ liệu
-//        String hashedPassword = userDao.hashPasswordMD5(password);
-//        assert hashedPassword != null;
-//        return hashedPassword.equals(user.getPassword());
-//    }
+    public boolean registerSeller(User seller) {
+        return users.createSeller(seller);
+    }
 
     public User getUserByEmail(String email) {
         return users.findByEmail(email);

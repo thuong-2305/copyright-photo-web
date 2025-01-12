@@ -169,7 +169,7 @@
             <div class="product-price mt-16">
                 <p><fmt:formatNumber value="${ product.getPrice() }"/> VND</p>
             </div>
-            <button onclick="window.location.href='checkout.html'" class="btn-right btn-buy mt-16">Mua ngay</button>
+            <button onclick="redirectToCheckout()" class="btn-right btn-buy mt-16">Mua ngay</button>
             <button class="btn-right btn-add-cart mt-16 addCart2" data-product-id=${ product.getId() }>Thêm
                 vào giỏ hàng
             </button>
@@ -264,46 +264,12 @@
 
 <%--</c:if>--%>
 <!-- End: Categories image -->
+<script src="assets/js/redirect-to-checkout-on-product-detail.js"></script>
+
 
 <jsp:include page="include/footer.jsp"/>
 
 <jsp:include page="include/scripts.jsp"/>
-
-<script>
-    $(document).ready(function () {
-        $(".addCart, .addCart2").click(function (event) {
-            let productId = $(this).data("product-id");
-            let isAddCart2 = $(this).hasClass("addCart2");
-            let selectedCondition = isAddCart2 ? $('input[name="condition"]:checked').val() : 1;
-            event.preventDefault();
-            $.ajax({
-                url: "addToCart?pid=" + productId,
-                method: "POST",
-                contentType: "application/json",
-                data: JSON.stringify({
-                    "licenseId": selectedCondition
-                }),
-                success: function (response) {
-                    if (response.addSuccess) {
-                        $(".alert-success span").text("Thêm thành công!");
-                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
-                            $(this).addClass("d-none");
-                        });
-                        $("#nav .container a.cart span").text(response.cartLen);
-                    } else {
-                        $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
-                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
-                            $(this).addClass("d-none");
-                        });
-                    }
-                },
-                error: function () {
-                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
-                }
-            });
-        });
-    });
-</script>
 
 </body>
 

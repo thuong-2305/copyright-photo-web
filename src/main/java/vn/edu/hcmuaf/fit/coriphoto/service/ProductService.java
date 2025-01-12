@@ -17,6 +17,8 @@ public class ProductService {
         return products.getById(id);
     }
 
+
+
     public List<TrendProducts> getTopTrend() {
         return products.getTrendProducts();
     }
@@ -40,6 +42,8 @@ public class ProductService {
     public List<Product> getProductsRelated(int cid, int id) {
         return products.getProductsRelated(cid, id);
     }
+
+
 
     public static void main(String[] args) {
         List<Product> res = new ProductService().sortProductsLatest(23);

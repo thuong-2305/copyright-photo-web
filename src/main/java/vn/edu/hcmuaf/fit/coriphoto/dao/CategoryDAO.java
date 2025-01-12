@@ -44,5 +44,11 @@ public class CategoryDAO {
     }
 
     public static void main(String[] args) {
+//        CategoryDAO categoryDAO = new CategoryDAO();
+//        System.out.println(categoryDAO.getAll());
+
+        UserDAO userDAO = new UserDAO();
+        System.out.println(userDAO.findByEmail("cust1@gmail.com"));
+
     }
 }

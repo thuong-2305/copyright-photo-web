@@ -74,6 +74,8 @@ public class ProductDAO {
                 .mapToBean(Product.class).list());
     }
 
+
+
     public static void main(String[] args) {
         System.out.println(new ProductDAO().getProductLatest(5));
 //        new ProductDAO().getTrendProducts();

@@ -32,8 +32,16 @@ function togglePaymentMethod(method) {
     if (method === 'saved-cards') {
         savedCardsSection.classList.remove('d-none');
         newPaymentSection.classList.add('d-none');
+        savedCardsSection.checked = true;
+        newPaymentSection.checked = false;
     } else if (method === 'new-payment') {
         savedCardsSection.classList.add('d-none');
         newPaymentSection.classList.remove('d-none');
+        savedCardsSection.checked = false;
+        newPaymentSection.checked = true;
     }
 }
+
+
+
+
