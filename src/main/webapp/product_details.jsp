@@ -119,7 +119,7 @@
                     <div>
                         <div>
                                 <span>
-                                    <input type="radio" name="condition" id="condition1" value="standard" checked>
+                                    <input type="radio" name="condition" id="condition1" value="1" checked>
                                 </span>
                         </div>
                         <div>
@@ -133,7 +133,7 @@
                     <div>
                         <div>
                                 <span>
-                                    <input type="radio" name="condition" id="condition1" value="advanced">
+                                    <input type="radio" name="condition" id="condition2" value="2">
                                 </span>
                         </div>
                         <div>
@@ -170,7 +170,7 @@
                 <p><fmt:formatNumber value="${ product.getPrice() }"/> VND</p>
             </div>
             <button onclick="window.location.href='checkout.html'" class="btn-right btn-buy mt-16">Mua ngay</button>
-            <button onclick="window.location.href='cart.html'" class="btn-right btn-add-cart mt-16">Thêm
+            <button class="btn-right btn-add-cart mt-16 addCart2" data-product-id=${ product.getId() }>Thêm
                 vào giỏ hàng
             </button>
         </div>
@@ -223,7 +223,7 @@
                 <img src="<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
                     <button><i class="fa-regular fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                    <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i></button>
                 </div>
             </div>
         </a>
@@ -239,19 +239,71 @@
                 <img src="<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
                     <button><i class="fa-regular fa-heart"></i></button>
-                    <button><i class="fa-solid fa-cart-plus"></i></button>
+                    <button class="addCart" data-product-id=${ item.getId() }><i class="fa-solid fa-cart-plus"></i></button>
                 </div>
             </div>
         </a>
         <% } %>
     </div>
 </div>
+
+<%-- notification --%>
+<div class="alert alert-primary d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+    <i class="bi bi-exclamation-triangle"></i><span></span>
+</div>
+<div class="alert alert-success d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+    <i class="bi bi-check2-circle"></i><span></span>
+</div>
+<%-- notification --%>
+
 <%--</c:if>--%>
 <!-- End: Categories image -->
 
 <jsp:include page="include/footer.jsp"/>
 
 <jsp:include page="include/scripts.jsp"/>
+
+<script>
+    $(document).ready(function () {
+        $(".addCart, .addCart2").click(function (event) {
+            let productId = $(this).data("product-id");
+            let isAddCart2 = $(this).hasClass("addCart2");
+            let selectedCondition = isAddCart2 ? $('input[name="condition"]:checked').val() : 1;
+            event.preventDefault();
+            $.ajax({
+                url: "addToCart?pid=" + productId,
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    "licenseId": selectedCondition
+                }),
+                success: function (response) {
+                    if (response.addSuccess) {
+                        $(".alert-success span").text("Thêm thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                        $("#nav .container a.cart span").text(response.cartLen);
+                    } else {
+                        $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
+                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 

@@ -22,7 +22,23 @@ public class CartService {
         cart.deleteItem(uid, pid);
     }
 
+    public void updateChecked(int cartId, int value, int pid) {
+        cart.updateChecked(cartId, value, pid);
+    }
+
+    public int getNumChecked(int cartId) {
+        return cart.getNumChecked(cartId);
+    }
+
+    public void updatePriceOfCartDetail(int cartId, int pid, int licenseId) {
+        cart.updatePriceOfCartDetail(cartId, pid, licenseId);
+    }
+
     public double getCartTotal(int uid) {
         return cart.getCartTotal(uid);
+    }
+
+    public double getCartTotalWithCartId(int cartId) {
+        return cart.getCartTotalWithCartId(cartId);
     }
 }

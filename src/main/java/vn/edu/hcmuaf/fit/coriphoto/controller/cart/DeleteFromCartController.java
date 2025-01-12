@@ -38,6 +38,7 @@ public class DeleteFromCartController extends HttpServlet {
         Cart cart = cartService.getCart(uid);
         int cartLen = cart != null ? cart.getNumItems() : 0;
         double total = cartService.getCartTotal(uid);
+        int numChecked = cart != null ? cartService.getNumChecked(cart.getCartId()) : 0;
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -46,9 +47,10 @@ public class DeleteFromCartController extends HttpServlet {
         JSONObject jsonResponse = new JSONObject();
         jsonResponse.put("cartLen", cartLen);
         jsonResponse.put("total", total);
+        jsonResponse.put("numChecked", numChecked);
 
         out.print(jsonResponse.toString());
         out.flush();
-
+        out.close();
     }
 }

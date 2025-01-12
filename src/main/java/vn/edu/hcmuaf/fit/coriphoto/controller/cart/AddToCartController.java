@@ -1,5 +1,7 @@
 package vn.edu.hcmuaf.fit.coriphoto.controller.cart;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 @WebServlet(name = "AddToCartController", value = "/addToCart")
@@ -30,7 +33,7 @@ public class AddToCartController extends HttpServlet {
         HttpSession session = request.getSession();
         CartService cartService = new CartService();
 
-        if(session.getAttribute("idCartNotLogin") == null) {
+        if (session.getAttribute("idCartNotLogin") == null) {
             int idCartNotLogin = cartService.getNumCar() * -1;
             session.setAttribute("idCartNotLogin", idCartNotLogin);
         }
@@ -46,6 +49,15 @@ public class AddToCartController extends HttpServlet {
         cart = cartService.getCart(uid);
         cartLen = cart != null ? cart.getNumItems() : 0;
 
+        try {
+            Gson gson = new Gson();
+            JsonObject data = gson.fromJson(new InputStreamReader(request.getInputStream()), JsonObject.class);
+            int licenseId = data.get("licenseId").getAsInt();
+            System.out.println(licenseId);
+            if (licenseId == 2 && cart != null)
+                cartService.updatePriceOfCartDetail(cart.getCartId(), pid, licenseId);
+        } catch (Exception _) {}
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
@@ -56,6 +68,6 @@ public class AddToCartController extends HttpServlet {
 
         out.print(jsonResponse.toString());
         out.flush();
-
+        out.close();
     }
 }

@@ -2,9 +2,10 @@
 <%@ page import="java.util.List" %>
 <%@ page import="vn.edu.hcmuaf.fit.coriphoto.model.Product" %>
 <%@ page import="vn.edu.hcmuaf.fit.coriphoto.service.CategoryService" %>
-<%@ page import="vn.edu.hcmuaf.fit.coriphoto.service.LisenseService" %>
+<%@ page import="vn.edu.hcmuaf.fit.coriphoto.service.LicenseService" %>
 <%@ page import="vn.edu.hcmuaf.fit.coriphoto.service.UserService" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 
@@ -37,22 +38,22 @@
             <div class="cart-info mb-4">
                 <div class="mt-2 d-flex justify-content-between align-items-center">
                     <div class="selected-count fw-bold">
-                        <span>Số lượng sản phẩm đang chọn: <span class="ng-binding">0</span></span>
+                        <span>Số lượng sản phẩm đang chọn: <span class="badge text-bg-success ng-binding">${ numChecked }</span></span>
                     </div>
                     <div class="subtotal text-right fw-bold">
                         <!-- Hiển thị giá gốc và giá sau khi giảm -->
                         <label class="d-block">
                             <!-- Giá gốc -->
-                            <span class="text-decoration-line-through me-2"  id="originalPrice">
+                            <span class="fw-semibold me-2" id="originalPrice">
                                 <fmt:formatNumber value="${total}"/>đ
                             </span>
 
                             <!-- Giá sau giảm -->
-                            <span>1.350.000đ</span>
+                            <span class="total_final fw-semibold" id="totalFinal"></span>
 
                             <!-- Thông tin tổng cộng -->
-                            <small class="text-danger d-block mt-1">
-                                (Giảm giá: 150.000đ)
+                            <small class="text-danger d-block mt-1" id="gift">
+
                             </small>
                         </label>
                     </div>
@@ -119,7 +120,7 @@
                                         <dt class="font-weight-normal">Loại giấy phép:</dt>
                                         <dd>
                                             <div class="d-flex align-items-center">
-                                                <%= new LisenseService().getLisenseName(items.get(i).getLisenseId()) %>
+                                                <%= new LicenseService().getLicenseName(items.get(i).getLicenseId()) %>
                                             </div>
                                         </dd>
                                     </div>
@@ -133,7 +134,12 @@
                         <div class="price">
                             <div class="select-for-checkout d-flex align-items-center" style="height: 35px;">
                                 <div class="select-for-checkout-content ml-auto">
-                                    <input id="selected-for-checkout" type="checkbox">
+                                    <input id="selected-for-checkout"
+                                           type="checkbox"
+                                           class="selectBuy"
+                                           data-cart-id="<%= items.get(i).getCartId() %>"
+                                           data-product-id="<%= products.get(i).getId() %>"
+                                            <% if(items.get(i).getChecked() == 1) { %> checked <% } %> />
                                     <label for="selected-for-checkout">Chọn</label>
                                 </div>
                                 <button type="submit"
@@ -142,7 +148,7 @@
                                 </button>
                             </div>
                             <ul style="margin-top: 20px">
-                                <li class="final-price fw-semibold"><fmt:formatNumber value="<%= products.get(i).getPrice() %>" />đ</li>
+                                <li class="final-price fw-semibold"><fmt:formatNumber value="<%= items.get(i).getPrice() %>" />đ</li>
                             </ul>
                         </div>
                     </div>
@@ -201,6 +207,8 @@
                     });
 
                     $("#nav .container a.cart span").text(response.cartLen);
+
+                    $('.ng-binding').text(response.numChecked);
                 },
                 error: function () {
                     alert("Có lỗi xảy ra, vui lòng thử lại sau.");
@@ -210,7 +218,50 @@
     });
 </script>
 
+<script>
+    $(document).ready(function () {
+        $(".selectBuy").on("change", function () {
+            // Lấy trạng thái của checkbox
+            let isChecked = $(this).is(":checked");
 
+            // Lấy dữ liệu từ thuộc tính data-*
+            let cartId = $(this).data("cart-id");
+
+            let pid = $(this).data("product-id");
+
+            // Gửi dữ liệu qua AJAX
+            $.ajax({
+                url: "updatePrice",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    cartId: cartId,
+                    checked: isChecked,
+                    pid: pid
+                }),
+                success: function (response) {
+                    var formattedTotal = numeral(response.total).format('0,0');
+                    var formattedTotalFinal = numeral(response.totalFinal).format('0,0');
+
+                    if(response.gift !== "") {
+                        $('#totalFinal').text(formattedTotalFinal + 'đ');
+                        $('#gift').text(response.gift);
+                        $('#originalPrice').addClass('del small')
+                    } else {
+                        $('#originalPrice').removeClass('del small').text(formattedTotal + 'đ');
+                        $('#totalFinal').text('');
+                        $('#gift').text('');
+                    }
+
+                    $('.ng-binding').text(response.numChecked);
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 

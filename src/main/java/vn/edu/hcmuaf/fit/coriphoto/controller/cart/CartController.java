@@ -54,11 +54,13 @@ public class CartController extends HttpServlet {
         for(CartDetail item : cartItems) {
             products.add(productService.getById(item.getPid()));
         }
+        int numChecked = cartService.getNumChecked(cart.getCartId());
 
         request.setAttribute("cart", cart);
         request.setAttribute("cartItems", cartItems);
         request.setAttribute("products", products);
         request.setAttribute("total", total);
+        request.setAttribute("numChecked", numChecked);
 
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }

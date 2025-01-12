@@ -3,14 +3,18 @@ package vn.edu.hcmuaf.fit.coriphoto.model;
 public class CartDetail {
     private int cartId;
     private int pid;
-    private int lisenseId;
+    private int licenseId;
+    private int checked;
+    private double price;
 
     public CartDetail() { }
 
-    public CartDetail(int cartId, int pid, int lisenseId) {
+    public CartDetail(int cartId, int pid, int licenseId, int checked, double price) {
         this.cartId = cartId;
         this.pid = pid;
-        this.lisenseId = lisenseId;
+        this.licenseId = licenseId;
+        this.checked = checked;
+        this.price = price;
     }
 
     public int getCartId() {
@@ -29,12 +33,28 @@ public class CartDetail {
         this.pid = pid;
     }
 
-    public int getLisenseId() {
-        return lisenseId;
+    public int getLicenseId() {
+        return licenseId;
     }
 
-    public void setLisenseId(int lisenseId) {
-        this.lisenseId = lisenseId;
+    public void setLicenseId(int licenseId) {
+        this.licenseId = licenseId;
+    }
+
+    public int getChecked() {
+        return checked;
+    }
+
+    public void setChecked(int checked) {
+        this.checked = checked;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
@@ -42,7 +62,7 @@ public class CartDetail {
         return "CartDetail{" +
                 "cartId=" + cartId +
                 ", pid=" + pid +
-                ", lisenseId=" + lisenseId +
+                ", licenseId =" + licenseId +
                 '}';
     }
 }
