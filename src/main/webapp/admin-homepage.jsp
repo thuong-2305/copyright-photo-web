@@ -27,7 +27,7 @@
                     <a href="./admin-homepage.html"><i class="fa-solid fa-house"></i>Trang chủ</a>
                 </li>
                 <li>
-                    <a href="admin-products.html"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
+                    <a href="/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
                 </li>
                 <li>
                     <a href="admin-category.html"><i class="bi bi-list-task"></i>Danh mục</a>
