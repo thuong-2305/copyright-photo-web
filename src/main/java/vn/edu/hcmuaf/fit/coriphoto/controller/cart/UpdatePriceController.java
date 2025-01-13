@@ -46,9 +46,6 @@ public class UpdatePriceController extends HttpServlet {
         double total = cartService.getCartTotalWithCartId(cartId);
         double totalFinal = 0;
 
-        System.out.println(totalFinal);
-        System.out.println(total);
-
         if(numChecked < 5) {
             gift = "";
             totalFinal = 0;

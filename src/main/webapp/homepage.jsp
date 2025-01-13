@@ -116,8 +116,7 @@
                             <div class="hover-options">
                                 <button class="option-button"><i class="fa-regular fa-heart"></i></button>
                                 <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                                <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                            </div>
+                                <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
                             <div class="image-text">
                                 <p><%= product.getName() %></p>
                             </div>
@@ -137,8 +136,7 @@
                             <div class="hover-options">
                                 <button class="option-button"><i class="fa-regular fa-heart"></i></button>
                                 <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                                <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                            </div>
+                                <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
                             <div class="image-text">
                                 <p><%= product.getName() %></p>
                             </div>
@@ -158,8 +156,7 @@
                             <div class="hover-options">
                                 <button class="option-button"><i class="fa-regular fa-heart"></i></button>
                                 <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                                <button class="option-button"><i class="fa-solid fa-cart-shopping"></i></button>
-                            </div>
+                                <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
                             <div class="image-text">
                                 <p><%= product.getName() %></p>
                             </div>
@@ -178,7 +175,52 @@
     </section>
     <!-- section raw images -->
 
+    <%-- notification --%>
+    <div class="alert alert-primary d-none align-items-center position-fixed"
+         role="alert"
+         style="display: none; width: 25%; top: 15%; right: 0%"
+    >
+        <i class="bi bi-exclamation-triangle"></i><span></span>
+    </div>
+    <div class="alert alert-success d-none align-items-center position-fixed"
+         role="alert"
+         style="display: none; width: 25%; top: 15%; right: 0%"
+    >
+        <i class="bi bi-check2-circle"></i><span></span>
+    </div>
+    <%-- notification --%>
+
     <jsp:include page="include/footer.jsp"/>
     <jsp:include page="include/scripts.jsp"/>
+    <script>
+        $(document).ready(function () {
+            $(".addCart").click(function (event) {
+                let productId = $(this).data("product-id");
+                event.preventDefault();
+                $.ajax({
+                    url: "addToCart?pid=" + productId,
+                    method: "POST",
+                    contentType: "application/json",
+                    success: function (response) {
+                        if (response.addSuccess) {
+                            $(".alert-success span").text("Thêm thành công!");
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                                $(this).addClass("d-none");
+                            });
+                            $("#nav .container a.cart span").text(response.cartLen);
+                        } else {
+                            $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
+                            $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                                $(this).addClass("d-none");
+                            });
+                        }
+                    },
+                    error: function () {
+                        alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

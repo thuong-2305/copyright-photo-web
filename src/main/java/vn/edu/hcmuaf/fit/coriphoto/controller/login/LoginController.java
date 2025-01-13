@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
                     service.registerUser(account.getEmail(), "", account.getName());
                     user = service.getUserByEmail(account.getEmail());
                 }
-                HttpSession session = request.getSession();
+                HttpSession session = request.getSession(true);
                 session.setAttribute("auth", user);
                 session.setAttribute("loggedInUser", user);
                 isLoginGoogle = true;

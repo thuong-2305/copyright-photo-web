@@ -220,15 +220,14 @@
                     var htmlContent = '';
                     $.each(products, function(index, item) {
                         htmlContent += '<div class="box">';
-                        htmlContent += '<a href="#"><img src="' + item.url + '" alt=""></a>';
+                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
                         htmlContent += '<div class="info">';
                         htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                         htmlContent += '<div class="hover-options">';
                         htmlContent += '<button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>';
-                        htmlContent += '<button class="option-button buy fw-bold"><i class="fa-solid fa-down-long pe-2"></i> <a href="product_details.html">Tải ảnh</a></button>';
+                        htmlContent += '<button class="option-button buy fw-bold addCart" data-product-id="'+ item.id +'"><i class="bi bi-bag-check-fill"></i>Thêm giỏ hàng</button>';
                         htmlContent += '</div></div></div>';
                     });
-
                     // Cập nhật nội dung của photo-products với HTML mới
                     $(".photo-products").html(htmlContent);
                 },
@@ -244,9 +243,10 @@
 </script>
 
 <script>
-    $(document).ready(function () {
-        $(".addCart").click(function () {
-            let productId = $(this).data("product-id");
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('addCart')) {
+            const productId = e.target.getAttribute('data-product-id');
+            e.preventDefault();
             $.ajax({
                 url: "addToCart?pid=" + productId,
                 method: "POST",
@@ -254,13 +254,13 @@
                 success: function (response) {
                     if (response.addSuccess) {
                         $(".alert-success span").text("Thêm thành công!");
-                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
                             $(this).addClass("d-none");
                         });
                         $("#nav .container a.cart span").text(response.cartLen);
                     } else {
                         $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
-                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
                             $(this).addClass("d-none");
                         });
                     }
@@ -269,7 +269,7 @@
                     alert("Có lỗi xảy ra, vui lòng thử lại sau.");
                 }
             });
-        });
+        }
     });
 </script>
 

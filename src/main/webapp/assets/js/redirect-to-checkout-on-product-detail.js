@@ -15,7 +15,6 @@ function redirectToCheckout() {
     //     productIds = [98, 99, 100];  // Ví dụ: Mảng chứa pid của các sản phẩm trong gói (có thể thay đổi)
     // }
 
-    // Chuyển mảng pid thành chuỗi phân cách bằng dấu phẩy
     let productIdsParam = productIds.join(",");
 
     // Tạo URL gửi thông tin tới servlet

@@ -49,11 +49,13 @@
                             </span>
 
                             <!-- Giá sau giảm -->
-                            <span class="total_final fw-semibold" id="totalFinal"></span>
+                            <span class="total_final fw-semibold" id="totalFinal">
+                                ${ gift }
+                            </span>
 
                             <!-- Thông tin tổng cộng -->
                             <small class="text-danger d-block mt-1" id="gift">
-
+                                <c:if test="${totalFinal != 0}">${totalFinal}</c:if>
                             </small>
                         </label>
                     </div>
@@ -246,9 +248,9 @@
                     if(response.gift !== "") {
                         $('#totalFinal').text(formattedTotalFinal + 'đ');
                         $('#gift').text(response.gift);
-                        $('#originalPrice').addClass('del small')
+                        $('#originalPrice').addClass('text-decoration-line-through small')
                     } else {
-                        $('#originalPrice').removeClass('del small').text(formattedTotal + 'đ');
+                        $('#originalPrice').removeClass('text-decoration-line-through small').text(formattedTotal + 'đ');
                         $('#totalFinal').text('');
                         $('#gift').text('');
                     }

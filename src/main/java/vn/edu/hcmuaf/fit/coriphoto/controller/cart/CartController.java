@@ -56,11 +56,32 @@ public class CartController extends HttpServlet {
         }
         int numChecked = cartService.getNumChecked(cart.getCartId());
 
+        String gift = "";
+        double totalFinal = 0;
+
+        if(numChecked < 5) {
+            gift = "";
+            totalFinal = 0;
+        }
+        else if(numChecked < 11) {
+            gift = "Nhận ưu đãi gỉảm 10%";
+            totalFinal = total - total * 0.1;
+        }
+        else if(numChecked < 21) {
+            gift = "Nhân ưu đãi giảm 20%";
+            totalFinal = total - total * 0.2;
+        } else {
+            gift = "Nhân ưu đãi giảm 30%";
+            totalFinal = total - total * 0.3;
+        }
+
         request.setAttribute("cart", cart);
         request.setAttribute("cartItems", cartItems);
         request.setAttribute("products", products);
         request.setAttribute("total", total);
         request.setAttribute("numChecked", numChecked);
+        request.setAttribute("gift", gift);
+        request.setAttribute("totalFinal", totalFinal);
 
         request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
