@@ -188,6 +188,14 @@
     >
         <i class="bi bi-check2-circle"></i><span></span>
     </div>
+    <c:if test="${notification != null}">
+        <div id="alertMessage" class="alert alert-danger align-items-center position-fixed"
+             role="alert"
+             style="display: none; width: 25%; top: 15%; right: 0%;">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>${notification}</span>
+        </div>
+    </c:if>
     <%-- notification --%>
 
     <jsp:include page="include/footer.jsp"/>
@@ -220,6 +228,15 @@
                     }
                 });
             });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const alertMessage = document.getElementById("alertMessage");
+            if (alertMessage) {
+                alertMessage.style.display = "block";
+                setTimeout(() => {
+                    alertMessage.style.display = "none";
+                }, 2000);
+            }
         });
     </script>
 </body>

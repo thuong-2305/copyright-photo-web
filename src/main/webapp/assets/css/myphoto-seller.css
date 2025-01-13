@@ -104,10 +104,6 @@ section#nav {
 
 }
 
-
-
-
-
 #navbar-side .profile-avatar-content img {
     max-width: 70px;
     max-height: 70px;
@@ -149,10 +145,6 @@ section#nav {
     background-color: rgba(248, 243, 243, 0.788);
 
 }
-
-
-
-
 
 #navbar-side .profile-avatar-content img {
     max-width: 70px;
@@ -248,9 +240,6 @@ section#nav {
 #main-content .body-content .filter .sort-text {
     color: var(--secondary-text-color);
 }
-
-
-
 
 #main-content .body-content .upload-your-photo i {
     font-size: 24px;

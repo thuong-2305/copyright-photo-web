@@ -8,6 +8,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.Category;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
 import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
+import vn.edu.hcmuaf.fit.coriphoto.service.SellerService;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,14 +19,16 @@ public class NavbarFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
+        SellerService sellerService = new SellerService();
         CategoryService categoryService = new CategoryService();
         List<Category> categories = categoryService.getAll();
         httpRequest.setAttribute("categories", categories);
-
         CartService cartService = new CartService();
 
         User user = (User) httpRequest.getSession().getAttribute("auth");
         int uid = (user != null) ? user.getUid() : -1;
+        boolean isSignupSell = (uid > -1) && sellerService.isSignupSell(uid);
+
         int cartLen;
         if(uid > -1) {
             Cart cart = cartService.getCart(uid);
@@ -40,7 +43,7 @@ public class NavbarFilter implements Filter {
                 cartLen = 0;
             }
         }
-
+        httpRequest.getSession().setAttribute("isSignupSell", isSignupSell);
         httpRequest.setAttribute("cartLength", cartLen);
 
         chain.doFilter(request, response);

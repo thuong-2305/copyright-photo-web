@@ -78,10 +78,18 @@
                 </div>
                 <div class="d-flex align-items-center pt-1">
                     <div class="sell">
-                        <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i class="fa-solid fa-angle-down px-2"></i></a>
-                        <div class="link-hover">
-                            <a href="register-contributor">Đăng ký thành người phân phối</a>
-                        </div>
+                        <% boolean isSignupSell = (Boolean) request.getSession().getAttribute("isSignupSell"); %>
+                        <% if (isSignupSell) { %>
+                        <a href="ShowStatistic" class="sell mx-lg-2 fw-semibold">
+                            <i class="bi bi-hexagon-half"></i>
+                            Quản lý phân phối
+                        </a>
+                        <% } else { %>
+                        <a href="register-contributor" class="sell mx-lg-2 fw-semibold">
+                            <i class="bi bi-hexagon-half"></i>
+                            Đăng ký thành người phân phối
+                        </a>
+                        <% } %>
                     </div>
                     <div class="line-separate mx-lg-1"></div>
                     <a href="pages/like.html" class="love"><i class="fa-regular fa-heart"></i></a>

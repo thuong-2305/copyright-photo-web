@@ -19,9 +19,14 @@ public class RegisterContributorController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
+        if (user == null || user.getEmail() == null) {
+            session.setAttribute("notification", "Vui lòng đăng kí tài khoản trước.");
+            response.sendRedirect("/");
+            return;
+        }
+
         request.setAttribute("email", user.getEmail());
         request.setAttribute("uname", user.getUsername());
-
         request.getRequestDispatcher("register-contributor.jsp").forward(request, response);
     }
 
@@ -37,10 +42,11 @@ public class RegisterContributorController extends HttpServlet {
         //Ktra tt user nếu có thay đổi email/username để cập nhật lại
         user.setEmail(email);
         user.setUsername(username);
-        user.setRole(1);//role người bán
+        user.setRole(1);
         boolean successRegisSeller = service.registerSeller(user);
+        request.getSession().setAttribute("isSignupSell", successRegisSeller);
 
         request.setAttribute("successRegisSeller", successRegisSeller);
-        request.getRequestDispatcher("register-contributor.jsp").forward(request, response);
+        response.sendRedirect("homepage-seller.jsp");
     }
 }

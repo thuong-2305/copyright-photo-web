@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Order;
+import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 
 import java.util.*;
 
@@ -22,7 +23,6 @@ public class SellerDAO {
         JOIN sellers s ON s.uid = p.uid
         WHERE s.uid = :uid AND o.status = 'Completed'
     """;
-
         return jdbi.withHandle(handle ->
                 handle.createQuery(query)
                         .bind("uid", uid)
@@ -44,9 +44,6 @@ public class SellerDAO {
         result = productsSold.size();
         return result;
     }
-
-
-
 
     // Tổng số lượt mua ảnh
     public int getBuyTotalsById(int uid) {
@@ -98,8 +95,6 @@ public class SellerDAO {
                         .one() // Nếu luôn đảm bảo có kết quả
         );
     }
-
-
 
     public List<Map<String, Object>> getProductStatsBySellerId(int uid) {
         String query = """
@@ -160,7 +155,6 @@ public class SellerDAO {
         JOIN products p ON od.productId = p.id
         WHERE p.uid = :uid AND o.status = 'Completed'
     """;
-
         return jdbi.withHandle(handle ->
                 handle.createQuery(query)
                         .bind("uid", uid)
@@ -237,7 +231,6 @@ public class SellerDAO {
         JOIN categories_parent cp ON cp.cpid = c.cpid
         WHERE p.uid = :uid AND o.status = 'Completed' AND cp.name = :categoryParentName
     """;
-
         return jdbi.withHandle(handle ->
                 handle.createQuery(query)
                         .bind("uid", uid)
@@ -247,30 +240,19 @@ public class SellerDAO {
         );
     }
 
+    public boolean isSignupSell(int uid) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT count(*) FROM sellers WHERE uid = ?")
+                .bind(0, uid).mapTo(Integer.class).one()) > 0;
+    }
 
-
-
-
-
-
-
+    public List<Product> getAllProducts(int uid, String status) {
+        String querySql = "SELECT * FROM products WHERE uid = ? and status = ?";
+        return jdbi.withHandle(handle -> handle.createQuery(querySql)
+                .bind(0, uid).bind(1, status).mapToBean(Product.class).list());
+    }
 
     public static void main(String[] args) {
-        SellerDAO sellerDAO = new SellerDAO();
-//        System.out.println(sellerDAO.getBuyTotalsById(35));
-//        System.out.println(sellerDAO.getBalance(35));
-
-//        System.out.println(sellerDAO.getOrdersIdCompletedById(35));
-
-//        System.out.println(sellerDAO.getTotalImgSelled(35));
-
-
-//        System.out.println(sellerDAO.getTotalIncome(35));
-//
-        System.out.println(sellerDAO.getProductStatsBySellerId(35));
-        System.out.println(sellerDAO.getProductStatsByCategory(35, "ai"));
-
-
+        System.out.println(new SellerDAO().getAllProducts(37, "accepted"));
     }
 
 }

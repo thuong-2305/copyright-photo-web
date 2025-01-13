@@ -194,6 +194,7 @@
         filterPanel.classList.toggle("active");
     }
 </script>
+
 <script>
     $(document).ready(function() {
         // Lắng nghe sự kiện click trên các mục trong dropdown
