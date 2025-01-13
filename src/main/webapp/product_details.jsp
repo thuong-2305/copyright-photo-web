@@ -118,9 +118,9 @@
                 <li class="condition">
                     <div>
                         <div>
-                            <span>
-                                <input type="radio" name="condition" id="condition1" value="standard" checked>
-                            </span>
+                    <span>
+                        <input type="radio" name="condition" id="condition1" value="standard" checked>
+                    </span>
                         </div>
                         <div>
                             <label for="condition1">Giấy phép tiêu chuẩn</label>
@@ -132,14 +132,14 @@
                 <li class="condition">
                     <div>
                         <div>
-                                <span>
-                                    <input type="radio" name="condition" id="condition2" value="advance">
-                                </span>
+                    <span>
+                        <input type="radio" name="condition" id="condition2" value="advance">
+                    </span>
                         </div>
                         <div>
-                            <label for="condition1">Giấy phép nâng cao</label>
-                            <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân
-                                phối web không giới hạn.</p>
+                            <label for="condition2">Giấy phép nâng cao</label>
+                            <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân phối
+                                web không giới hạn.</p>
                         </div>
                     </div>
                 </li>
@@ -149,29 +149,29 @@
                 <div class="title">
                     <p>2. </p>
                     <p>Hãy thêm ảnh vào giỏ hàng để nhận ưu đãi. Khi bạn chọn mua nhiều hình ảnh trong giỏ hàng để thanh
-                        toán chúng tôi sẽ giảm giá cho bạn. </p>
+                        toán chúng tôi sẽ giảm giá cho bạn.</p>
                 </div>
                 <div class="grid-btn">
                     <button class="btn--packageimg active" data-label="Hình ảnh đơn" data-discount="1">
                         <span>Hình ảnh đơn</span><span></span>
                     </button>
-                    <button class="btn--packageimg " data-label="Gói 5" data-discount="0.9">
+                    <button class="btn--packageimg" data-label="Gói 5" data-discount="0.9">
                         <span>Mua >= 5 ảnh</span><span style="color: green; font-size: 12px;">(-10%)</span>
                     </button>
-                    <button class="btn--packageimg " data-label="Gói 10" data-discount="0.8">
+                    <button class="btn--packageimg" data-label="Gói 10" data-discount="0.8">
                         <span>Mua >= 10 ảnh</span><span style="color: green; font-size: 12px;">(-20%)</span>
                     </button>
-                    <button class="btn--packageimg " data-label="Gói 25" data-discount="0.7">
+                    <button class="btn--packageimg" data-label="Gói 25" data-discount="0.7">
                         <span>Mua >= 25 ảnh</span><span style="color: green; font-size: 12px;">(-30%)</span>
                     </button>
                 </div>
             </div>
             <div class="product-price mt-16">
-                <p><fmt:formatNumber value="${ product.getPrice() }"/> VND</p>
+                <p id="product-price"><fmt:formatNumber value="${product.getPrice()}"/> VND</p>
             </div>
             <button onclick="redirectToCheckout()" class="btn-right btn-buy mt-16">Mua ngay</button>
-            <button class="btn-right btn-add-cart mt-16 addCart2" data-product-id=${ product.getId() }>Thêm
-                vào giỏ hàng
+            <button class="btn-right btn-add-cart mt-16 addCart2" data-product-id="${product.getId()}">Thêm vào giỏ
+                hàng
             </button>
         </div>
     </div>
@@ -215,7 +215,7 @@
     </div>
     <div class="categories-image">
         <%
-            for(int i = 0; i < 5; i++) {
+            for (int i = 0; i < 5; i++) {
                 Product item = products.get(i);
         %>
         <a href="product-detail?pid=<%= item.getId() %>">
@@ -223,7 +223,8 @@
                 <img src="<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
                     <button><i class="fa-regular fa-heart"></i></button>
-                    <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i></button>
+                    <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i>
+                    </button>
                 </div>
             </div>
         </a>
@@ -239,7 +240,8 @@
                 <img src="<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
                     <button><i class="fa-regular fa-heart"></i></button>
-                    <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i></button>
+                    <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i>
+                    </button>
                 </div>
             </div>
         </a>
@@ -290,13 +292,13 @@
                 success: function (response) {
                     if (response.addSuccess) {
                         $(".alert-success span").text("Thêm thành công!");
-                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
                             $(this).addClass("d-none");
                         });
                         $("#nav .container a.cart span").text(response.cartLen);
                     } else {
                         $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
-                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
                             $(this).addClass("d-none");
                         });
                     }

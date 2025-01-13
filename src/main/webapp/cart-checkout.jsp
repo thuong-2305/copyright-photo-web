@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 
 <!doctype html>
 <html lang="en">
@@ -111,7 +113,7 @@
                     </div>
                     <div class="line-separate mx-lg-1"></div>
                     <a href="like.html" class="love"><i class="fa-regular fa-heart"></i></a>
-                    <a href="cart.html" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="cart" class="cart"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
@@ -367,12 +369,17 @@
                                 </li>
                             </ul>
                         </div>
-                        <form id="paymentForm" action="OrderController" method="POST">
+                        <form id="paymentForm" action="CartOrderController" method="POST">
                             <input type="hidden" name="promotionId" value="${promotionId}">
                             <input type="hidden" name="totalAfterDiscount" value="${totalAfterDiscount}">
                             <input type="hidden" name="totalBeforeDiscount" value="${totalBeforeDiscount}">
-                            <input type="hidden" name="licenseId" value="${licenseId}">
+                            <input type="hidden" name="licenseIds" value="${licenseIds}">
                             <input type="hidden" name="products" value="${products}">
+
+                            <c:forEach var="licenseId" items="${licenseIds}">
+                                <input type="hidden" name="licenseIds" value="${licenseId}">
+                            </c:forEach>
+
 
                             <c:forEach var="product" items="${products}">
                                 <input type="hidden" name="productIds" value="${product.id}">
@@ -411,6 +418,7 @@
                                         <button type="button" class="btn btn-primary" data-dismiss="modal"
                                                 onclick="submitFormAfterModal()">
                                             Hoàn tất
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -425,14 +433,12 @@
                         <div class="purchase-details">
                             <div class="purchase-details-header d-flex mb-3">
                                 <span class="heading-title mr-2">Chi tiết hóa đơn</span>
-                                <span class="select-items">(1 sản phẩm)</span>
+                                <span class="select-items">(${numChecked} sản phẩm)</span>
                                 <a class="edit-cart txt-deco-none ml-auto" href="cart">Chỉnh sửa giỏ hàng</a>
                             </div>
                             <div class="purchase-details-body">
-
                                 <div id="cart-summary-content">
-
-                                    <c:forEach var="product" items="${products}">
+                                    <c:forEach var="product" items="${products}" varStatus="status">
                                         <section class="pb-4 rounded item mb-2">
                                             <figure>
                                                 <img class="maxh-100 rounded" style="max-height: 100px"
@@ -441,12 +447,12 @@
                                             </figure>
                                             <ul class="lst-property list-unstyled flex-grow-1">
                                                 <li class="text-right">Ảnh#: ${product.id}</li>
-                                                <li class="text-right">Giấy phép: ${license}</li>
+                                                <li class="text-right">${licenseNames[status.index]}</li>
                                                 <li class="text-right">Kích thước: ${product.size}</li>
                                                 <li class="text-right">
                                                     Giá:
                                                     <c:choose>
-                                                        <c:when test="${license == 'advance'}">
+                                                        <c:when test="${licenseIds[status.index] == 2}">
                                                             <fmt:formatNumber value="${product.price * 2}" pattern="#,##0" />
                                                         </c:when>
                                                         <c:otherwise>
@@ -459,6 +465,7 @@
                                     </c:forEach>
 
                                 </div>
+
 
 
                                 <!-- <div class="show-full-purchase pb-3 pt-2">

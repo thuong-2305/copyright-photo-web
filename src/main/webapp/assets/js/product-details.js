@@ -80,5 +80,31 @@ buttons.forEach((button) => {
   });
 });
 
+let productPriceElement = document.getElementById('product-price');
+let originalPrice = parseFloat(productPriceElement.innerText.replace(' VND', '').replace(',', ''));
+
+// Lắng nghe sự thay đổi của lựa chọn giấy phép
+document.querySelectorAll('input[name="condition"]').forEach(input => {
+  input.addEventListener('change', function() {
+    updatePrice();
+  });
+});
+
+// Cập nhật giá khi lựa chọn giấy phép thay đổi
+function updatePrice() {
+  let selectedLicense = document.querySelector('input[name="condition"]:checked').value;
+
+  let newPrice = originalPrice;
+
+  // Kiểm tra giấy phép và điều chỉnh giá
+  if (selectedLicense === 'advance') {
+    newPrice *= 2; // Nhân đôi giá nếu chọn giấy phép nâng cao
+  }
+
+  // Cập nhật giá hiển thị với định dạng số VND
+  productPriceElement.innerText = newPrice.toLocaleString('vi-VN') + ' VND';
+}
+
+
 
 

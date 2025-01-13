@@ -38,33 +38,31 @@
             <div class="cart-info mb-4">
                 <div class="mt-2 d-flex justify-content-between align-items-center">
                     <div class="selected-count fw-bold">
-                        <span>Số lượng sản phẩm đang chọn: <span class="badge text-bg-success ng-binding">${ numChecked }</span></span>
+                        <span>Số lượng sản phẩm đang chọn: <span class="badge text-bg-success ng-binding" id="numChecked">${numChecked}</span></span>
                     </div>
                     <div class="subtotal text-right fw-bold">
-                        <!-- Hiển thị giá gốc và giá sau khi giảm -->
                         <label class="d-block">
-                            <!-- Giá gốc -->
-                            <span class="fw-semibold me-2" id="originalPrice">
-                                <fmt:formatNumber value="${total}"/>đ
-                            </span>
-
-                            <!-- Giá sau giảm -->
-                            <span class="total_final fw-semibold" id="totalFinal">
-                                ${ gift }
-                            </span>
-
-                            <!-- Thông tin tổng cộng -->
+                            <span class="fw-semibold me-2" id="originalPrice"><fmt:formatNumber value="${total}"/>đ</span>
+                            <span class="total_final fw-semibold" id="totalFinal">${gift}</span>
                             <small class="text-danger d-block mt-1" id="gift">
-                                <c:if test="${totalFinal != 0}">${totalFinal}</c:if>
+                                <c:if test="${totalFinal != 0}">
+                                    <fmt:formatNumber value="${totalFinal}" pattern="#,###" />
+                                </c:if>
                             </small>
                         </label>
                     </div>
                 </div>
+
+                <!-- Các trường ẩn sẽ được dùng để lưu trữ các giá trị cần thiết -->
+                <input type="hidden" id="hiddenNumChecked" value="${numChecked}">
+                <input type="hidden" id="hiddenTotal" value="${total}">
+                <input type="hidden" id="hiddenGift" value="${gift}">
+                <input type="hidden" id="hiddenTotalFinal" value="${totalFinal}">
+
                 <div class="continue-with-purchase text-right mt-2">
-                    <a href="checkout.html" class="btn btn-success shadow-sm">Tiếp tục thanh toán</a>
+                    <button class="btn btn-success shadow-sm" id="checkoutButton">Tiếp tục thanh toán</button>
                 </div>
             </div>
-
 
             <!-- List control -->
             <div class="list-control">
@@ -121,7 +119,7 @@
                                     <div class="d-flex align-items-start">
                                         <dt class="font-weight-normal">Loại giấy phép:</dt>
                                         <dd>
-                                            <div class="d-flex align-items-center">
+                                            <div class="license-field d-flex align-items-center">
                                                 <%= new LicenseService().getLicenseName(items.get(i).getLicenseId()) %>
                                             </div>
                                         </dd>
@@ -141,6 +139,7 @@
                                            class="selectBuy"
                                            data-cart-id="<%= items.get(i).getCartId() %>"
                                            data-product-id="<%= products.get(i).getId() %>"
+                                           data-license-id="<%= items.get(i).getLicenseId() %>"
                                             <% if(items.get(i).getChecked() == 1) { %> checked <% } %> />
                                     <label for="selected-for-checkout">Chọn</label>
                                 </div>
@@ -246,11 +245,11 @@
                     var formattedTotalFinal = numeral(response.totalFinal).format('0,0');
 
                     if(response.gift !== "") {
-                        $('#totalFinal').text(formattedTotalFinal + 'đ');
+                        $('#totalFinal').text(formattedTotalFinal + ' VND');
                         $('#gift').text(response.gift);
                         $('#originalPrice').addClass('text-decoration-line-through small')
                     } else {
-                        $('#originalPrice').removeClass('text-decoration-line-through small').text(formattedTotal + 'đ');
+                        $('#originalPrice').removeClass('text-decoration-line-through small').text(formattedTotal + ' VND');
                         $('#totalFinal').text('');
                         $('#gift').text('');
                     }
@@ -264,6 +263,10 @@
         });
     });
 </script>
+
+
+<script src="assets/js/redirect-cart-to-checkout.js"></script>
+
 
 </body>
 
