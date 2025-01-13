@@ -118,9 +118,9 @@
                 <li class="condition">
                     <div>
                         <div>
-                                <span>
-                                    <input type="radio" name="condition" id="condition1" value="standard" checked>
-                                </span>
+                            <span>
+                                <input type="radio" name="condition" id="condition1" value="standard" checked>
+                            </span>
                         </div>
                         <div>
                             <label for="condition1">Giấy phép tiêu chuẩn</label>
@@ -231,7 +231,7 @@
     </div>
     <div class="categories-image">
         <%
-            for(int i = 5; i < 10; i++) {
+            for (int i = 5; i < Math.min(10, products.size()); i++) {
                 Product item = products.get(i);
         %>
         <a href="product-detail?pid=<%= item.getId() %>">
@@ -308,7 +308,6 @@
         });
     });
 </script>
-
 
 </body>
 

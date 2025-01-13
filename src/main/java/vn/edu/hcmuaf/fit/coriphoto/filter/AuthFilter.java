@@ -14,7 +14,7 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws
             ServletException, IOException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpSession session = httpRequest.getSession(true);
+        HttpSession session = httpRequest.getSession();
 
         User auth = null;
         if (session != null) {

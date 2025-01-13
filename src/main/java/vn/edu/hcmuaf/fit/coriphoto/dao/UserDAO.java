@@ -22,18 +22,13 @@ public class UserDAO {
 
     public User findByEmail(String email, String password) {
         String hashPassword = hashPasswordMD5(password);//Mã hóa pass để so sánh với db
-        User user = null;
-        try {
-            String query = "SELECT * FROM users WHERE email = ? and password = ?";
-            user = jdbi.withHandle(handle ->
-                    handle.createQuery(query)
-                            .bind(0, email)
-                            .bind(1, hashPassword)
-                            .mapToBean(User.class).findFirst()
-                            .orElse(null)
-            );
-        } catch (Exception _) { }
-        return user;
+        String query = "SELECT * FROM users WHERE email = ? and password = ?";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                    .bind(0, email)
+                    .bind(1, hashPassword)
+                    .mapToBean(User.class).findFirst()
+                    .orElse(null));
     }
 
     public User findByEmail(String email) {

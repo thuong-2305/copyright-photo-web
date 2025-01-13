@@ -34,12 +34,8 @@ public class RedirectToCheckout extends HttpServlet {
         String productIdsParam = request.getParameter("productIds");
         String[] productIds = productIdsParam.split(",");
 
-
-        LicenseService licenseService = new LicenseService();
         String license = request.getParameter("condition");
-        System.out.println(license);
-        int licenseId = licenseService.getIdLicenseByName(license);
-
+        int licenseId = (license.equals("standard")) ? 1 : 2;
 
         ProductService productService = new ProductService();
         List<Product> products = new ArrayList<>();
@@ -53,7 +49,6 @@ public class RedirectToCheckout extends HttpServlet {
             totalBeforeDiscount += productPrice;
             products.add(p);
         }
-
 
         PromotionService promotionService = new PromotionService();
         int totalProducts = products.size();
@@ -98,8 +93,6 @@ public class RedirectToCheckout extends HttpServlet {
         System.out.println("Products: " + products);
         System.out.println("Payment Methods: " + paymentMethods);
 
-
-//        response.sendRedirect("checkout.jsp");
         request.getRequestDispatcher("checkout.jsp").forward(request, response);
 
     }

@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.Cart;
 import vn.edu.hcmuaf.fit.coriphoto.model.CartDetail;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartDAO {
@@ -65,6 +66,12 @@ public class CartDAO {
         String querySql2 = "SELECT * FROM cart WHERE uid = ?";
         Cart res = jdbi.withHandle(handle -> handle.createQuery(querySql2)
                 .bind(0, uid).mapToBean(Cart.class).findFirst().orElse(null));
+        if (res == null) {
+            System.out.println("Cart not found for uid: " + uid);
+            res = new Cart();
+            res.setUid(uid);
+            res.setCartItems(new ArrayList<>());
+        }
         res.setCartItems(items);
         return res;
     }

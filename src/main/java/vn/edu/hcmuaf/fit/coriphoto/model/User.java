@@ -88,4 +88,16 @@ public class User {
         this.createDate = createDate;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", role=" + role +
+                ", fullName='" + fullName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
