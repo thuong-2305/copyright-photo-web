@@ -163,7 +163,8 @@
                             <i class="bi bi-cloud-arrow-up-fill fs-5"></i>
                             <div class="text-upload" style="width: 100px">Tải những bức ảnh của bạn</div>
                             <button class="pl-5 pr-5 pt-1 pb-1 btn btn-primary btn-upload mt-3"
-                                    id="btn-upload1">Tải ảnh
+                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Tải ảnh
                             </button>
                         </div>
                     </div>
@@ -173,9 +174,55 @@
     </div>
 </div>
 
+<%--section upload 2--%>
+<!-- Modal -->
+<%--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">--%>
+<%--    <div class="modal-dialog modal-dialog-scrollable">--%>
+<%--        <div class="modal-content">--%>
+<%--            <div class="modal-header">--%>
+<%--                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>--%>
+<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
+<%--            </div>--%>
+<%--            <div class="modal-body">--%>
+<%--                <form action="uploadImage" method="post" enctype="multipart/form-data">--%>
+<%--                    <label for="file">Chọn file:</label>--%>
+<%--                    <input type="file" name="file" id="file" required><br>--%>
+
+<%--                    <label for="title">Tên:</label>--%>
+<%--                    <input type="text" name="title" id="title" required><br>--%>
+
+<%--                    <label for="description">Mô tả:</label>--%>
+<%--                    <textarea name="description" id="description" required></textarea><br>--%>
+
+<%--                    <label for="dimension">Kích thước:</label>--%>
+<%--                    <input type="text" name="dimension" id="dimension" required><br>--%>
+
+<%--                    <label for="file-size">Dung lượng:</label>--%>
+<%--                    <input type="text" name="file-size" id="file-size" required><br>--%>
+
+<%--                    <label for="category">Danh mục:</label>--%>
+<%--                    <select id="category" name="category" required style="background: white !important;">--%>
+<%--                        <option value="">Chọn danh mục</option>--%>
+<%--                        <c:forEach var="item" items="${categories}">--%>
+<%--                            <option value="${ item.cid }">${ item.name }</option>--%>
+<%--                        </c:forEach>--%>
+<%--                    </select><br>--%>
+
+<%--                    <label for="price">Giá muốn bán:</label>--%>
+<%--                    <input type="number" name="price" id="price" step="0.01" min="0" required><br>--%>
+
+<%--                    <button type="submit">Upload</button>--%>
+<%--                </form>--%>
+<%--            </div>--%>
+<%--            <div class="modal-footer">--%>
+<%--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
 <!-- section upload -->
 <div class="overlay2"></div>
-<form action="ImageUpload" method="post" enctype="multipart/form-data">
 <section class="upload bg-white" style="z-index: 9999;">
     <div class="container">
         <!-- title -->
@@ -281,7 +328,8 @@
     </div>
     <button class="btn-close btn-close-black close-upload"></button>
 </section>
-</form>
+
+
 <%-- Notification --%>
 <div class="alert alert-danger d-none align-items-center position-fixed"
      role="alert"
