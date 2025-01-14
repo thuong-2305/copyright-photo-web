@@ -24,10 +24,10 @@
             <p class="fs-5 fw-semibold m-0 text-center mt-2"><span class="text-logo fw-bold">CoRiPhoto</span> Admin</p>
             <ul class="list-unstyled">
                 <li class="active">
-                    <a href="./admin-homepage.html"><i class="fa-solid fa-house"></i>Trang chủ</a>
+                    <a href="${pageContext.request.contextPath}/ShowDashBoard"><i class="fa-solid fa-house"></i>Trang chủ</a>
                 </li>
                 <li>
-                    <a href="/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
+                    <a href="${pageContext.request.contextPath}/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
                 </li>
                 <li>
                     <a href="admin-category.html"><i class="bi bi-list-task"></i>Danh mục</a>
@@ -36,7 +36,7 @@
                     <a href="admin-order.html"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
                 </li>
                 <li>
-                    <a href="admin-customer.html"><i class="fa-solid fa-user"></i>Khách hàng</a>
+                    <a href="${pageContext.request.contextPath}/admin-customer"><i class="fa-solid fa-user"></i>Khách hàng</a>
                 </li>
                 <li>
                     <a href="admin-contributor.html"><i class="bi bi-coin"></i>Người phân phối</a>
@@ -46,7 +46,7 @@
                     <a href="admin-aproved.html"><i class="fa-solid fa-bell"></i>Ảnh đang chờ</a>
                 </li>
                 <li>
-                    <a href="../homepage.html"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
+                    <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
                 </li>
             </ul>
         </div>

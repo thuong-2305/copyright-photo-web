@@ -18,6 +18,16 @@ public class ProductService {
         return products.getById(id);
     }
 
+    public boolean addProduct(Product product) {
+        return products.addProduct(product);
+    }
+    public boolean deleteProductById(int id) {
+        return products.deleteProductById(id);
+    }
+    public boolean updateProduct(Product product) {
+        return products.updateProduct(product);
+    }
+
     public List<TrendProducts> getTopTrend() {
         return products.getTrendProducts();
     }

@@ -61,4 +61,6 @@ public class UserService {
     public boolean addPaymentMethodBank(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate) {
         return userDao.addPaymentMethodBank(uid, accountName,accountNumber,2,provider,expiryDate);
     }
+
+    public List<User> getAllCustomers() {return userDao.getAllCustomers();}
 }

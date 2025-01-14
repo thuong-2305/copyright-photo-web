@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
+import java.time.LocalDate;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -103,5 +104,46 @@ public class ProductDAO {
     public static void main(String[] args) {
         System.out.println(new ProductDAO().getProductLatest(5));
 //        new ProductDAO().getTrendProducts();
+    }
+
+    public boolean addProduct(Product p) {
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO products (cid, uid, name, description, url, price, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                p.getCid(), p.getUid(), p.getName(), p.getDescription(), p.getUrl(), p.getPrice(), p.getStatus()
+        ));
+        return true;
+    }
+
+    public boolean deleteProductById(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM products WHERE id = :id")
+                        .bind("id", id)
+                        .execute() > 0
+        );
+    }
+
+    public boolean updateProduct(Product product) {
+        String sql = """
+            UPDATE products
+            SET name = :name,
+                description = :description,
+                cid = :cid,
+                price = :price,
+                uid = :uid,
+                status = :status
+            WHERE id = :id
+        """;
+
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("id", product.getId())
+                        .bind("name", product.getName())
+                        .bind("description", product.getDescription())
+                        .bind("cid", product.getCid())
+                        .bind("price", product.getPrice())
+                        .bind("uid", product.getUid())
+                        .bind("status", product.getStatus())
+                        .execute() > 0
+        );
     }
 }

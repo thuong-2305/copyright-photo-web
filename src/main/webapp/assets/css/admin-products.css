@@ -182,6 +182,10 @@ main {
   background-color: #7a879486;
   border-color: #73818f;
 }
+#productsTable .btn{
+  padding: 5px 10px;
+  margin: 10px 3px 10px 0;
+}
 
 /* ================== Những table thêm sửa sẽ có dạng overlay -> mặc định ẩn  ====================== */
 .overlay {
@@ -203,8 +207,9 @@ main {
   background-color: #23282c;
 }
 
-.overlayTable td:first-child {
-  text-align: right;
+/* Đảm bảo DataTables không áp dụng cho bảng không liên quan */
+#khungThemSanPhamTable {
+  display: table; /* Đặt hiển thị mặc định */
 }
 
 .overlayTable input {
