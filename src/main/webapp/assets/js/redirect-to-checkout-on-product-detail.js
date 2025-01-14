@@ -9,12 +9,6 @@ function redirectToCheckout() {
     // Lấy danh sách tất cả các sản phẩm pid mà người dùng đã chọn
     let productIds = [pid]; // Bắt đầu với pid hiện tại (ảnh đơn)
 
-    // Nếu người dùng chọn gói ảnh, thêm các pid vào danh sách
-    // if (packageLabel.toLowerCase().includes("gói")) {
-    //     // Đây là danh sách các pid của các sản phẩm trong gói ảnh
-    //     productIds = [98, 99, 100];  // Ví dụ: Mảng chứa pid của các sản phẩm trong gói (có thể thay đổi)
-    // }
-
     let productIdsParam = productIds.join(",");
 
     // Tạo URL gửi thông tin tới servlet

@@ -77,7 +77,7 @@
                 </button>
             </form>
             <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
-            &redirect_uri=http://localhost:8080/CoRiPhoto/login&response_type=code
+            &redirect_uri=http://localhost:8080/login&response_type=code
 &client_id=347849780193-j9q68d1s2iu8g598kc2tsgqcdd2r4ved.apps.googleusercontent.com" class="btn btn-google">
                 <i class="fa-brands fa-google"></i>Tiếp tục với Google
             </a>
