@@ -230,4 +230,29 @@ public class UserDAO {
         return jdbi.withHandle(handle -> handle.createQuery("select * from users where role = :role").bind("role",2)
                 .mapToBean(User.class).list());
     }
+
+    public User findById(int id) {
+        String query = "SELECT * FROM users WHERE uid = :uid";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("uid", id) // Gắn giá trị tham số email
+                        .map((rs, ctx) -> new User(
+                                rs.getInt("uid"),             // Mapping cột "uid"
+                                rs.getInt("role"),            // Mapping cột "role"
+                                rs.getString("fullName"),     // Mapping cột "fullName"
+                                rs.getString("username"),     // Mapping cột "username"
+                                rs.getString("password"),     // Mapping cột "password"
+                                rs.getString("email"),        // Mapping cột "email"
+                                rs.getObject("createDate", LocalDate.class) // Mapping cột "createDate"
+                        ))
+                        .findOne()
+                        .orElse(null) // Trả về null nếu không tìm thấy
+        );
+    }
+
+    public boolean deleteUserById(int userId) {
+        return jdbi.withHandle(handle ->
+                handle.execute("DELETE FROM users WHERE uid = ?", userId) > 0
+        );
+    }
 }
