@@ -54,10 +54,11 @@
                 </div>
 
                 <!-- Các trường ẩn sẽ được dùng để lưu trữ các giá trị cần thiết -->
-                <input type="hidden" id="hiddenNumChecked" value="${numChecked}">
-                <input type="hidden" id="hiddenTotal" value="${total}">
-                <input type="hidden" id="hiddenGift" value="${gift}">
-                <input type="hidden" id="hiddenTotalFinal" value="${totalFinal}">
+                <input type="hidden" id="hiddenNumChecked" name="numChecked" value="${numChecked}">
+                <input type="hidden" id="hiddenTotal" name="total" value="${total}">
+                <input type="hidden" id="hiddenGift" name="gift" value="${gift}">
+                <input type="hidden" id="hiddenTotalFinal" name="totalFinal" value="${totalFinal}">
+
 
                 <div class="continue-with-purchase text-right mt-2">
                     <button class="btn btn-success shadow-sm" id="checkoutButton">Tiếp tục thanh toán</button>

@@ -375,6 +375,10 @@
                             <input type="hidden" name="totalBeforeDiscount" value="${totalBeforeDiscount}">
                             <input type="hidden" name="licenseIds" value="${licenseIds}">
                             <input type="hidden" name="products" value="${products}">
+                            <input type="hidden" name="numChecked" value="${numChecked}">
+
+
+
 
                             <c:forEach var="licenseId" items="${licenseIds}">
                                 <input type="hidden" name="licenseIds" value="${licenseId}">

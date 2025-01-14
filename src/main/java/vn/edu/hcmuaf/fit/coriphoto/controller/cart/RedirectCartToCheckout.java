@@ -1,5 +1,4 @@
 package vn.edu.hcmuaf.fit.coriphoto.controller.cart;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -14,23 +13,18 @@ import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
 import vn.edu.hcmuaf.fit.coriphoto.service.LicenseService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 @WebServlet(name = "RedirectCartToCheckout", value = "/RedirectCartToCheckout")
 public class RedirectCartToCheckout extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // Kiểm tra xem người dùng đã đăng nhập hay chưa
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("loggedInUser");
@@ -47,6 +41,21 @@ public class RedirectCartToCheckout extends HttpServlet {
         int numChecked = Integer.parseInt(request.getParameter("numChecked"));
         double total = Double.parseDouble(request.getParameter("total"));
         double totalFinal = Double.parseDouble(request.getParameter("totalFinal"));
+        double discountAmount = 0;
+
+        if (totalFinal == 0) {
+            totalFinal = total;
+            discountAmount = 0;
+        }
+        else {
+            discountAmount = total - totalFinal;
+
+        }
+
+        System.out.println("numChecked: " + numChecked);
+        System.out.println("total: " + total);
+        System.out.println("totalFinal: " + totalFinal);
+
 
         // Xác định promotionId
         int promotionId;
@@ -55,29 +64,44 @@ public class RedirectCartToCheckout extends HttpServlet {
         else if (numChecked < 25) promotionId = 3;
         else promotionId = 4;
 
+
         // Parse JSON của selectedProducts
         JsonArray selectedProducts = JsonParser.parseString(selectedProductsJson).getAsJsonArray();
-
         List<Product> selectedProductList = new ArrayList<>();
         ProductService productService = new ProductService();
         List<String> licenseNames = new ArrayList<>();
         List<Integer> licenseIds = new ArrayList<>();
+
 
         for (JsonElement element : selectedProducts) {
             JsonObject productObject = element.getAsJsonObject();
             int cartId = productObject.get("cartId").getAsInt();
             int productId = productObject.get("productId").getAsInt();
             int licenseId = productObject.get("licenseId").getAsInt();
-
             String licenseName = new LicenseService().getLicenseName(licenseId);
             Product product = productService.getById(productId);
-
             selectedProductList.add(product);
             licenseNames.add(licenseName);
             licenseIds.add(licenseId);
         }
+//
+//        double total1 = 0;
+//        for (int i = 0; i < selectedProductList.size(); i++) {
+//            if (licenseIds.get(i) == 2) {
+//                total1 += selectedProductList.get(i).getPrice() * 2;
+//            }
+//            else total1 += selectedProductList.get(i).getPrice();
+//        }
+//        int cntProducts = selectedProducts.size();
+//        if (cntProducts < 5) promotionId = 1;
+//        else if (cntProducts < 10) promotionId = 2;
+//        else if (cntProducts < 25) promotionId = 3;
+//        else promotionId = 4;    
 
-        double discountAmount = total - totalFinal;
+
+
+
+
 
         System.out.println("licenseIds: " + licenseIds);
         System.out.println("promotionId: " + promotionId);
@@ -103,5 +127,4 @@ public class RedirectCartToCheckout extends HttpServlet {
         // Forward tới trang JSP
         request.getRequestDispatcher("cart-checkout.jsp").forward(request, response);
     }
-
 }

@@ -78,7 +78,7 @@
                 </div>
                 <div class="d-flex align-items-center pt-1">
                     <div class="sell">
-                        <a href="#" class="sell mx-lg-2 fw-semibold">Người phân phối<i class="fa-solid fa-angle-down px-2"></i></a>
+                        <a href="ShowStatistic" class="sell mx-lg-2 fw-semibold">Người phân phối<i class="fa-solid fa-angle-down px-2"></i></a>
                         <div class="link-hover">
                             <a href="register-contributor">Đăng ký thành người phân phối</a>
                         </div>

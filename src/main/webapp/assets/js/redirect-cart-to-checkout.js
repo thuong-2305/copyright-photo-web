@@ -1,7 +1,7 @@
 document.getElementById('checkoutButton').addEventListener('click', function (event) {
     event.preventDefault(); // Ngăn chặn hành động mặc định
-
     // Danh sách các sản phẩm được chọn
+
     const selectedProducts = [];
     document.querySelectorAll('.selectBuy:checked').forEach((checkbox) => {
         selectedProducts.push({
@@ -10,6 +10,9 @@ document.getElementById('checkoutButton').addEventListener('click', function (ev
             licenseId: checkbox.getAttribute('data-license-id'),
         });
     });
+
+
+
 
     // Lấy thông tin từ các trường hidden
     const numChecked = document.getElementById('hiddenNumChecked').value;
