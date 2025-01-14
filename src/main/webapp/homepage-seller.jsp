@@ -143,8 +143,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <!-- Các nút danh mục -->
                             <!-- Combobox danh mục -->
                             <div class="dropdown mt-5 mb-3">

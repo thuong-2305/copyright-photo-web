@@ -91,10 +91,10 @@
                         <% } %>
                     </div>
                     <div class="line-separate mx-lg-1"></div>
-                    <a href="#" class="love"><i class="fa-regular fa-heart"></i></a>
+<%--                    <a href="#" class="love"><i class="fa-regular fa-heart"></i></a>--%>
                     <a href="cart" class="cart"><i class="fa-solid fa-cart-shopping"></i><span>${ cartLength }</span></a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                <button class="navbar-toggler me-3" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                         aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -103,10 +103,17 @@
                     <a href="login" class="login-button fw-semibold">Đăng nhập</a>
                 </c:if>
                 <c:if test="${auth != null}">
-                    <div class="d-flex align-items-center user-icon" id="user">
+                    <div class="d-flex align-items-center user-icon me-2" id="user">
                         <img class="avatar position-relative" src="../assets/images/avart-default.png" />
                         <i class="fa fa-caret-down ms-2"></i>
                     </div>
+
+                    <c:if test="${auth.getRole() == 0}">
+                        <a href="ShowDashBoard" class="text-decoration-none"><div class="d-flex align-items-center user-icon btn btn-outline-success" id="user">
+                            <i class="bi bi-person-lock me-2"></i>Admin
+                            <i class="fa fa-caret-down ms-2"></i>
+                        </div></a>
+                    </c:if>
                 </c:if>
             </div>
         </nav>

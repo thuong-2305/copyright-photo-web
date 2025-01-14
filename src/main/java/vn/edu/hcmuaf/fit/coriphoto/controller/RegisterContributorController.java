@@ -42,7 +42,7 @@ public class RegisterContributorController extends HttpServlet {
         //Ktra tt user nếu có thay đổi email/username để cập nhật lại
         user.setEmail(email);
         user.setUsername(username);
-        user.setRole(1);
+        if(user.getRole() == 2) user.setRole(1);
         boolean successRegisSeller = service.registerSeller(user);
         request.getSession().setAttribute("isSignupSell", successRegisSeller);
 
