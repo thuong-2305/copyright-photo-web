@@ -114,27 +114,6 @@
         </c:forEach>
         </tbody>
       </table>
-
-
-      <nav>
-        <ul class="pagination justify-content-end">
-          <li class="page-item">
-            <a class="page-link fw-semibold" href="#"><i class="bi bi-arrow-left-short"></i>Trước</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">1</a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link fw-semibold" href="#">Sau<i class="bi bi-arrow-right-short"></i></a>
-          </li>
-        </ul>
-      </nav>
     </div>
     <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
       <div class="modal-dialog">
