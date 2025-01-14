@@ -11,15 +11,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/admin-1.css" />
-    <link rel="stylesheet" href="././assets/css/admin-dashboard.css" />
-    <link rel="stylesheet" href="./assets/css/admin-homepage.css" />
-    <link rel="stylesheet" href="./assets/css/admin-products.css" />
-    <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/admin-1.css"/>
+    <link rel="stylesheet" href="././assets/css/admin-dashboard.css"/>
+    <link rel="stylesheet" href="./assets/css/admin-homepage.css"/>
+    <link rel="stylesheet" href="./assets/css/admin-products.css"/>
+    <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css"/>
+    <link rel="stylesheet" href="./assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <title>Admin</title>
 </head>
@@ -35,10 +35,11 @@
             </p>
             <ul class="list-unstyled">
                 <li>
-                    <a href="${pageContext.request.contextPath}/ShowDashBoard"><i class="fa-solid fa-house"></i>Trang chủ</a>
+                    <a href="${pageContext.request.contextPath}/ShowDashBoard"><i class="fa-solid fa-house"></i>Trang
+                        chủ</a>
                 </li>
                 <li class="active">
-                    <a href="./admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
+                    <a href="${pageContext.request.contextPath}/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
                 </li>
                 <li>
                     <a href="admin-category.html"><i class="bi bi-list-task"></i>Danh mục</a>
@@ -47,7 +48,8 @@
                     <a href="admin-order.html"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
                 </li>
                 <li>
-                    <a href="admin-customer.html"><i class="fa-solid fa-user"></i>Khách hàng</a>
+                    <a href="${pageContext.request.contextPath}/admin-customer"><i class="fa-solid fa-user"></i>Khách
+                        hàng</a>
                 </li>
                 <li>
                     <a href="admin-contributor.html"><i class="bi bi-coin"></i>Người phân phối</a>
@@ -57,13 +59,13 @@
                     <a href="admin-aproved.html"><i class="fa-solid fa-bell"></i>Ảnh đang chờ</a>
                 </li>
                 <li>
-                    <a href="./homepage.html"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
+                    <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
                 </li>
             </ul>
         </div>
         <div class="avatar bottom-left d-flex justify-content-between align-items-center mx-2 mb-4">
             <div class="d-flex justify-content-center align-items-center">
-                <img src="./assets/images/avart-default.png" alt="" />
+                <img src="./assets/images/avart-default.png" alt=""/>
                 <p class="ms-2 m-0">Thanh Thương</p>
             </div>
             <i class="bi bi-three-dots"></i>
@@ -137,10 +139,8 @@
 
 
                             <div class="add-category d-flex align-items-center">
-                                <i class="fa-solid fa-print"></i>
-                                <i class="bi bi-arrow-bar-down mx-3"></i>
                                 <button class="btn btn-primary"
-                                        onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)'; autoMaSanPham()">
+                                        onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)';">
                                     <i class="fa fa-plus-square"></i>
                                     Thêm sản phẩm
                                 </button>
@@ -153,13 +153,13 @@
                             <tr>
                                 <th>ID</th>
                                 <th>User ID</th>
-<%--                                <th>Category ID</th>--%>
+                                <%--                                <th>Category ID</th>--%>
                                 <th>Tên</th>
                                 <th>Mô tả</th>
-<%--                                <th>Kích thước</th>--%>
-<%--                                <th>Kích thước (Dài x Rộng)</th>--%>
-<%--                                <th>Ngày tải lên</th>--%>
-<%--                                <th>URL</th>--%>
+                                <%--                                <th>Kích thước</th>--%>
+                                <%--                                <th>Kích thước (Dài x Rộng)</th>--%>
+                                <%--                                <th>Ngày tải lên</th>--%>
+                                <%--                                <th>URL</th>--%>
                                 <th>Giá</th>
                                 <th>Trạng thái</th>
                                 <th>Hành động</th> <!-- Cột Hành động -->
@@ -171,13 +171,13 @@
                                 <tr>
                                     <td>${product.id}</td>
                                     <td>${product.uid}</td>
-<%--                                    <td>${product.cid}</td>--%>
+                                        <%--                                    <td>${product.cid}</td>--%>
                                     <td>${product.name}</td>
                                     <td>${product.description}</td>
-<%--                                    <td>${product.size}</td>--%>
-<%--                                    <td>${product.dimension}</td>--%>
-<%--                                    <td>${product.dateUpload}</td>--%>
-<%--                                    <td>${product.url}</td>--%>
+                                        <%--                                    <td>${product.size}</td>--%>
+                                        <%--                                    <td>${product.dimension}</td>--%>
+                                        <%--                                    <td>${product.dateUpload}</td>--%>
+                                        <%--                                    <td>${product.url}</td>--%>
                                     <td>${product.price}</td>
                                     <td>${product.status}</td>
                                     <td>
@@ -190,63 +190,68 @@
                         </table>
 
                         <div id="khungThemSanPham" class="overlay">
-                            <span class="close" onclick="this.parentElement.style.transform = 'scale(0)';">&times;</span>
-                            <table class="overlayTable table-outline table-content table-header">
-                                <tr>
-                                    <th colspan="2">Thêm hình ảnh</th>
-                                </tr>
-                                <tr>
-                                    <td>Hình:</td>
-                                    <td>
-                                        <img class="hinhDaiDien" id="anhDaiDienSanPhamThem" src=""  alt=""/>
-                                        <input type="file" accept="image/*"
-                                               onchange="capNhatAnhSanPham(this.files, 'anhDaiDienSanPhamThem')" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">Thông số kĩ thuật</th>
-                                </tr>
-                                <tr>
-                                    <td>Tên hình ảnh:</td>
-                                    <td><input type="text" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Mô tả:</td>
-                                    <td><input type="text" /></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Loại hình ảnh:</td>
-                                    <td><input type="text" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Giá</td>
-                                    <td><input type="text" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Ngươi đóng góp:</td>
-                                    <td><input type="text" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Dung lượng ảnh:</td>
-                                    <td><input type="text" placeholder="" /></td>
-                                </tr>
-
-                                <tr>
-                                    <td>Ngày chụp:</td>
-                                    <td><input type="text" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Giá:</td>
-                                    <td><input type="text" /></td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="2" class="table-footer">
-                                        <button onclick="themSanPham()">THÊM</button>
-                                    </td>
-                                </tr>
-                            </table>
+                            <span class="close"
+                                  onclick="this.parentElement.style.transform = 'scale(0)';">&times;</span>
+                            <form action="${pageContext.request.contextPath}/admin-products" method="POST">
+                                <table id="khungThemSanPhamTable" class="overlayTable table-outline table-content table-header">
+                                    <tr>
+                                        <th colspan="2">Thêm hình ảnh</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Hình:</td>
+                                        <td>
+                                            <input type="file" name="image" accept="image/*" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Thông số kĩ thuật</th>
+                                    </tr>
+                                    <tr style="display: none">
+                                        <td><label>
+                                            <input type="text" name="loi"/>
+                                        </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tên hình ảnh:</td>
+                                        <td><label>
+                                            <input type="text" name="nameProduct" required />
+                                        </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mô tả:</td>
+                                        <td><input type="text" name="description" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loại hình ảnh:</td>
+                                        <td><input type="text" name="category" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Giá:</td>
+                                        <td><input type="number" name="price" step="1000" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Người đóng góp:</td>
+                                        <td><input type="text" name="contributor" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trạng thái:</td>
+                                        <td><label>
+                                            <select name="status">
+                                                <option value="accepted">
+                                                    Đã chấp nhận
+                                                </option>
+                                                <option value="waiting">Chờ đợi</option>
+                                                <option value="rejected">Từ chối</option>
+                                            </select>
+                                        </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="table-footer">
+                                            <button type="submit">THÊM</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
                         </div>
                         <div id="khungSuaSanPham" class="overlay"></div>
                     </div>
@@ -278,11 +283,15 @@
                     next: "Tiếp"       // Tùy chỉnh "Next"
                 }
             },
-            scrollX: true // Kích hoạt cuộn ngang nếu tổng độ rộng vượt khung
+            scrollX: true, // Kích hoạt cuộn ngang nếu tổng độ rộng vượt khung
+            // scrollY: true, // Kích hoạt cuộn ngang nếu tổng độ rộng vượt khung
+            // columnDefs: [
+            //     { width: "200px", targets: 3 }// Tên: 100px
+            // ]
         });
         var table = $('#productsTable').DataTable();
         // Thay đổi placeholder của khung tìm kiếm
-        var search=$('.dataTables_filter input');
+        var search = $('.dataTables_filter input');
         search.attr('text', 'Tìm kiếm');
         search.attr('placeholder', 'Tìm kiếm sản phẩm ...');
     });

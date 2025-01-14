@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -79,5 +80,13 @@ public class ProductDAO {
     public static void main(String[] args) {
         System.out.println(new ProductDAO().getProductLatest(5));
 //        new ProductDAO().getTrendProducts();
+    }
+
+    public boolean addProduct(Product p) {
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO products (cid, uid, name, description, url, price, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                p.getCid(), p.getUid(), p.getName(), p.getDescription(), p.getUrl(), p.getPrice(), p.getStatus()
+        ));
+        return true;
     }
 }

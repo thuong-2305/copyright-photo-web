@@ -17,7 +17,9 @@ public class ProductService {
         return products.getById(id);
     }
 
-
+    public boolean addProduct(Product product) {
+        return products.addProduct(product);
+    }
 
     public List<TrendProducts> getTopTrend() {
         return products.getTrendProducts();

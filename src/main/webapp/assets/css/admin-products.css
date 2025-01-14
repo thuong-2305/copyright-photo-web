@@ -203,8 +203,9 @@ main {
   background-color: #23282c;
 }
 
-.overlayTable td:first-child {
-  text-align: right;
+/* Đảm bảo DataTables không áp dụng cho bảng không liên quan */
+#khungThemSanPhamTable {
+  display: table; /* Đặt hiển thị mặc định */
 }
 
 .overlayTable input {

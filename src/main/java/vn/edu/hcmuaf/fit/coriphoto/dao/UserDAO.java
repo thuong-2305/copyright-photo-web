@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.PaymentMethod;
+import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
 import java.security.MessageDigest;
@@ -225,4 +226,8 @@ public class UserDAO {
         }
     }
 
+    public List<User> getAllCustomers() {
+        return jdbi.withHandle(handle -> handle.createQuery("select * from users where role = :role").bind("role",2)
+                .mapToBean(User.class).list());
+    }
 }
