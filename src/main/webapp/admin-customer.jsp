@@ -40,7 +40,7 @@
           <a href="${pageContext.request.contextPath}/admin-category"><i class="bi bi-list-task"></i>Danh mục</a>
         </li>
         <li>
-          <a href="${pageContext.request.contextPath}/aadmin-order"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
+          <a href="${pageContext.request.contextPath}/admin-order"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
         </li>
         <li>
           <a href="${pageContext.request.contextPath}/admin-products"><i class="fa-solid fa-user"></i>Khách hàng</a>
