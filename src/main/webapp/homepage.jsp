@@ -42,7 +42,7 @@
                     <input type="text" id="search-input" placeholder="Tìm kiếm tất cả ảnh">
                     <span class="clear-btn">&#10005;</span>
                 </div>
-                <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2 fw-bold">Tìm kiếm</span></button>
+                <button class="search-button" onclick="submitSearch()"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2 fw-bold">Tìm kiếm</span></button>
             </div>
         </div>
     </section>
@@ -89,7 +89,7 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-        <a href="pages/category-details.html" class="btn btn-outline-success rounded-pill fs-5 d-none see-more">Xem nhiều hơn</a>
+        <a href="categories" class="btn btn-outline-success rounded-pill fs-5 d-none see-more">Xem nhiều hơn</a>
     </section>
     <!--section category -->
 
@@ -174,7 +174,7 @@
         </div>
         <div class="see-more">
             <button class="see-more-button">
-                <a href="#" class="text-success text-decoration-none">Xem nhiều hơn</a>
+                <a href="categories" class="text-success text-decoration-none">Xem nhiều hơn</a>
             </button>
         </div>
         </div>
@@ -194,6 +194,14 @@
     >
         <i class="bi bi-check2-circle"></i><span></span>
     </div>
+    <c:if test="${notification != null}">
+        <div id="alertMessage" class="alert alert-danger align-items-center position-fixed"
+             role="alert"
+             style="display: none; width: 25%; top: 15%; right: 0%;">
+            <i class="bi bi-exclamation-triangle"></i>
+            <span>${notification}</span>
+        </div>
+    </c:if>
     <%-- notification --%>
 
     <jsp:include page="include/footer.jsp"/>
@@ -226,6 +234,15 @@
                     }
                 });
             });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const alertMessage = document.getElementById("alertMessage");
+            if (alertMessage) {
+                alertMessage.style.display = "block";
+                setTimeout(() => {
+                    alertMessage.style.display = "none";
+                }, 2000);
+            }
         });
     </script>
 </body>

@@ -34,6 +34,7 @@ public class DeleteFromCartController extends HttpServlet {
         int uidTemp = (Integer) session.getAttribute("idCartNotLogin");
         int uid = (user != null) ? user.getUid() : uidTemp;
 
+        System.out.println("Tests delete cart:" + uid);
         cartService.deleteItem(uid, pid);
         Cart cart = cartService.getCart(uid);
         int cartLen = cart != null ? cart.getNumItems() : 0;

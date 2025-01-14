@@ -31,7 +31,6 @@ public class UpdatePriceController extends HttpServlet {
         boolean isChecked = data.get("checked").getAsBoolean();
         int cartId = data.get("cartId").getAsInt();
         int pid = data.get("pid").getAsInt();
-        System.out.println(isChecked + " " + cartId + " " + pid);
 
         CartService cartService = new CartService();
         if(isChecked) {
@@ -40,7 +39,6 @@ public class UpdatePriceController extends HttpServlet {
             cartService.updateChecked(cartId, 0, pid);
         }
         int numChecked = cartService.getNumChecked(cartId);
-        System.out.println(numChecked);
 
         String gift = "";
         double total = cartService.getCartTotalWithCartId(cartId);

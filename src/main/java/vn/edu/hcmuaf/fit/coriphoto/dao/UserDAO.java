@@ -215,22 +215,10 @@ public class UserDAO {
         );
     }
 
-    // Test lấy data từ database
-    public static void main(String[] args) {
-        UserDAO userDao = new UserDAO();
-        User user = userDao.getUserByCredentials("customer1", "customer1");
-        if (user != null) {
-            System.out.print(user.getEmail() + " " + user.getUsername());
-        } else {
-            System.out.print("Không tim thấy User");
-        }
-    }
-
     public List<User> getAllCustomers() {
         return jdbi.withHandle(handle -> handle.createQuery("select * from users where role = :role").bind("role",2)
                 .mapToBean(User.class).list());
     }
-
     public User findById(int id) {
         String query = "SELECT * FROM users WHERE uid = :uid";
         return jdbi.withHandle(handle ->

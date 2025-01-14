@@ -23,6 +23,34 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="./assets/js/admin-products.js"></script>
     <title>Admin</title>
+
+    <style>
+        .table-dark {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .edit-btn {
+            margin-right: 5px;
+        }
+        .dashboard-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .dashboard-info .info-box {
+            flex: 1;
+            margin: 0 10px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        .dashboard-info .info-box h3 {
+            margin: 10px 0;
+            font-size: 24px;
+        }
+    </style>
 </head>
 
 <body>
@@ -137,8 +165,6 @@
                             <h2>Quản lý sản phẩm</h2>
                         </div>
                         <div class="d-flex mb-3 align-items-center justify-content-between search px-3 py-2">
-
-
                             <div class="add-category d-flex align-items-center">
                                 <button class="btn btn-primary"
                                         onclick="document.getElementById('khungThemSanPham').style.transform = 'scale(1)';">
@@ -148,50 +174,48 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sanpham w-100">
-                        <table id="productsTable" class="display table table-bordered table-striped">
-                            <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>User ID</th>
-                                <%--                                <th>Category ID</th>--%>
-                                <th>Tên</th>
-<%--                                <th>Hình ảnh</th>--%>
-                                <th>Mô tả</th>
-                            <%--                                <th>Kích thước</th>--%>
-                            <%--                                <th>Kích thước (Dài x Rộng)</th>--%>
-                            <%--                                <th>Ngày tải lên</th>--%>
-                                <th>Giá</th>
-                                <th>Trạng thái</th>
-                                <th>Hành động</th> <!-- Cột Hành động -->
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <!-- Vòng lặp hiển thị danh sách sản phẩm -->
-                            <c:forEach var="product" items="${products}">
+                    <div class="card">
+                        <div class="card-body">
+                            <table id="productsTable" class="table table-bordered table-striped">
+                                <colgroup>
+                                    <col style="width: 5%;">
+                                    <col style="width: 15%;">
+                                    <col style="width: 30%;">
+                                    <col style="width: 20%;">
+                                    <col style="width: 15%;">
+                                    <col style="width: 20%;">
+                                </colgroup>
+                                <thead class="table-dark">
                                 <tr>
-                                    <td>${product.id}</td>
-                                    <td>${product.uid}</td>
-                                        <%--                                    <td>${product.cid}</td>--%>
-                                    <td>${product.name}</td>
-<%--                                    <td><img src="${product.url}" alt="${product.name}" width="30" height="50"></td>--%>
-                                    <td>${product.description}</td>
-                                <%--                                    <td>${product.size}</td>--%>
-                                <%--                                    <td>${product.dimension}</td>--%>
-                                <%--                                    <td>${product.dateUpload}</td>--%>
-                                    <td>${product.price}</td>
-                                    <td>${product.status}</td>
-                                    <td>
-                                        <button class="btn edit-btn btn-warning" data-id="${product.id}"
-<%--                                                onclick="document.getElementById('khungSuaSanPham').style.transform = 'scale(1)';"--%>
-                                        >Sửa</button>
-                                        <button class="btn delete-btn btn-danger" data-id="${product.id}">Xóa</button>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>User ID</th>
+                                    <th>Tên</th>
+                                    <th>Giá</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hành động</th>
                                 </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-
+                                </thead>
+                                <tbody>
+                                <!-- Ví dụ -->
+                                <c:forEach var="product" items="${products}">
+                                    <tr>
+                                        <td>${product.id}</td>
+                                        <td>${product.uid}</td>
+                                        <td>${product.name}</td>
+                                        <td>${product.price}</td>
+                                        <td>${product.status}</td>
+                                        <td>
+                                            <button class="btn edit-btn btn-warning" data-id="${product.id}"
+                                                <%--                                                onclick="document.getElementById('khungSuaSanPham').style.transform = 'scale(1)';"--%>
+                                            >Sửa</button>
+                                            <button class="btn delete-btn btn-danger" data-id="${product.id}">Xóa</button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                         <div id="khungThemSanPham" class="overlay">
                             <span class="close"
                                   onclick="this.parentElement.style.transform = 'scale(0)';">&times;</span>
@@ -207,7 +231,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th colspan="2">Thông số kĩ thuật</th>
+                                        <th colspan="2">Thông tin hình ảnh</th>
                                     </tr>
                                     <tr style="display: none">
                                         <td><label>
@@ -233,7 +257,7 @@
                                         <td><input type="number" name="price" step="1000" required /></td>
                                     </tr>
                                     <tr>
-                                        <td>Người đóng góp:</td>
+                                        <td>ID người đăng:</td>
                                         <td><input type="text" name="contributor" required /></td>
                                     </tr>
                                     <tr>

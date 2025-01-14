@@ -163,15 +163,13 @@ p {
 
 .container-main .right-category .search {
     background-color: white;
-    width: 95%;
+    width: 100%;
     margin: 0 auto;
     border-radius: 5px;
 }
 
-.container-main .right-category .search .input-search {
-    border-radius: 5px;
-    border: 1px solid var(--line-seperate);
-    padding-right: 5px;
+.dataTables_length {
+    margin-bottom: 20px;
 }
 
 .container-main .right-category .search .input-search input {

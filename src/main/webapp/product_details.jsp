@@ -123,7 +123,7 @@
                     </span>
                         </div>
                         <div>
-                            <label for="condition1">Giấy phép tiêu chuẩn</label>
+                            <label for="condition1" class="fw-semibold" style="font-size: 16px;">Giấy phép tiêu chuẩn</label>
                             <p>Sử dụng không giới hạn trong in ấn, quảng cáo và đóng gói. Phân phối web không giới
                                 hạn.</p>
                         </div>
@@ -137,7 +137,7 @@
                     </span>
                         </div>
                         <div>
-                            <label for="condition2">Giấy phép nâng cao</label>
+                            <label for="condition2" class="fw-semibold" style="font-size: 16px;">Giấy phép nâng cao</label>
                             <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân phối
                                 web không giới hạn.</p>
                         </div>
@@ -147,9 +147,8 @@
 
             <div class="promotion">
                 <div class="title">
-                    <p>2. </p>
-                    <p>Hãy thêm ảnh vào giỏ hàng để nhận ưu đãi. Khi bạn chọn mua nhiều hình ảnh trong giỏ hàng để thanh
-                        toán chúng tôi sẽ giảm giá cho bạn.</p>
+                    <p><i class="bi bi-calendar-event"></i></p>
+                    <p>Ưu đãi khuyến mãi dành cho bạn!!.</p>
                 </div>
                 <div class="grid-btn">
                     <button class="btn--packageimg active" data-label="Hình ảnh đơn" data-discount="1">
@@ -166,10 +165,11 @@
                     </button>
                 </div>
             </div>
-            <div class="product-price mt-16">
-                <p id="product-price"><fmt:formatNumber value="${product.getPrice()}"/> VND</p>
+            <div class="product-price mt-16 d-flex justify-content-lg-end">
+                <p id="product-price" class="text-success fw-bold fs-4 my-3"><fmt:formatNumber value="${product.getPrice()}"/> VND</p>
             </div>
             <button onclick="redirectToCheckout()" class="btn-right btn-buy mt-16">Mua ngay</button>
+            <div style="height: 15px;"></div>
             <button class="btn-right btn-add-cart mt-16 addCart2" data-product-id="${product.getId()}">Thêm vào giỏ
                 hàng
             </button>

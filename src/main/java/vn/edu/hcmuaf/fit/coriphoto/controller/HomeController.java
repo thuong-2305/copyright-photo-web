@@ -28,8 +28,16 @@ public class HomeController extends HttpServlet {
         CategoryService categoryService = new CategoryService();
         List<Category> trendCategories = categoryService.getTrendCategory();
         request.setAttribute("trendsCategories", trendCategories);
+
         List<CategoryParent> categoriesParent = categoryService.getTypeImages();
         request.setAttribute("categoriesParent", categoriesParent);
+
+        String notification = (String) request.getSession().getAttribute("notification");
+        if (notification != null) {
+            request.setAttribute("notification", notification);
+            request.getSession().removeAttribute("notification");
+        }
+        System.out.println(notification);
         request.getRequestDispatcher("homepage.jsp").forward(request, response);
     }
 

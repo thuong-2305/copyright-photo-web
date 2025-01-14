@@ -7,4 +7,12 @@
         <servlet-name>default</servlet-name>
         <url-pattern>/assets/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ImageUpload</servlet-name>
+        <servlet-class>vn.edu.hcmuaf.fit.coriphoto.controller.seller.ImageUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImageUpload</servlet-name>
+        <url-pattern>/ImageUpload</url-pattern>
+    </servlet-mapping>
 </web-app>

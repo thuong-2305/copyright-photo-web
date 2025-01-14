@@ -93,8 +93,8 @@
                                     <i class="fa-solid fa-angle-down px-2"></i>
                                 </a>
                                 <div class="link-hover">
-                                    <a href="license-basic.html">Giấy phép ảnh tiêu chuẩn</a>
-                                    <a href="license-basic.html">Giấy phép miễn phí bản quyền</a>
+                                    <a href="license.jsp">Giấy phép ảnh tiêu chuẩn</a>
+                                    <a href="license.jsp">Giấy phép miễn phí bản quyền</a>
                                 </div>
                             </li>
                             <!-- <li class="nav-item">

@@ -17,6 +17,7 @@ const succes = document.querySelector(".success");
 uploadButton.addEventListener('click', () => {
     windowUpload.classList.add("active");
     overlay2.style.display = 'block';
+    document.body.classList.add('no-scroll');
 })
 
 closeWindow.addEventListener('click', () => {
@@ -24,18 +25,28 @@ closeWindow.addEventListener('click', () => {
     overlay2.style.display = 'none';
     paneShow.classList.remove("curr");
     optionContent.classList.remove("pass");
+    document.body.classList.remove('no-scroll');
 })
 
 inputAdd.addEventListener('click', (e) => {
     e.preventDefault();
     optionContent.classList.add("pass");
-    console.log(optionContent.classList)
     paneShow.classList.add("curr");
-    console.log(paneShow.classList)
 })
 
 next.addEventListener('click', (e) => {
     e.preventDefault();
+    const title = document.getElementById('title').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const dimension = document.getElementById('dimension').value.trim();
+    const fileSize = document.getElementById('file-size').value.trim();
+    const category = document.getElementById('category').value.trim();
+    const price = document.getElementById('price').value;
+    console.log(title, description, dimension, fileSize, category);
+    if (!title || !description || !dimension || !fileSize || !category || !price) {
+        $(".text-danger span").text("Vui lòng điền đủ thông tin về ảnh!");
+        return;
+    }
     step2.classList.add("complete");
     step2.classList.remove("active");
     step3.classList.add("active");

@@ -6,6 +6,8 @@ import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
 import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -75,7 +77,29 @@ public class ProductDAO {
                 .mapToBean(Product.class).list());
     }
 
+    public void addProduct(int uid, int cid, String name, String description, String size,
+                           String dimension, LocalDateTime dateUpload, String url, double price) {
+        String sqlQuery = "INSERT INTO products (uid, cid, name, description, size, dimension, dateUpload, url, price) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        jdbi.useHandle(handle -> handle.createUpdate(sqlQuery)
+                .bind(0, uid)
+                .bind(1, cid)
+                .bind(2, name)
+                .bind(3, description)
+                .bind(4, size)
+                .bind(5, dimension)
+                .bind(6,dateUpload)
+                .bind(7, url)
+                .bind(8, price)
+                .execute());
+    }
+
+    public List<Product> searchGetProducts(String content) {
+        String sqlQuery = "SELECT * FROM products WHERE name LIKE ? AND description LIKE ?";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .bind(0, "%" + content+  "%").bind(1, "%" + content+  "%").mapToBean(Product.class).list());
+    }
 
     public static void main(String[] args) {
         System.out.println(new ProductDAO().getProductLatest(5));
