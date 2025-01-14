@@ -58,14 +58,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
                 ><i class="bi bi-wallet-fill"></i>Đơn hàng</a
               >
             </li>
-            <li>
+            <li class="active">
               <a href="${pageContext.request.contextPath}/admin-customer"
                 ><i class="fa-solid fa-user"></i>Khách hàng</a
-              >
-            </li>
-            <li class="active">
-              <a href="${pageContext.request.contextPath}/admin-contributor"
-                ><i class="bi bi-coin"></i>Người phân phối</a
               >
             </li>
             <hr />

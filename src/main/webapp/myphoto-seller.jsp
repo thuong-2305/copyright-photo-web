@@ -162,8 +162,7 @@
                         <div class="upload-your-photo mr-3 d-flex flex-column text-center align-items-center justify-content-center">
                             <i class="bi bi-cloud-arrow-up-fill fs-5"></i>
                             <div class="text-upload" style="width: 100px">Tải những bức ảnh của bạn</div>
-                            <button class="pl-5 pr-5 pt-1 pb-1 btn btn-primary btn-upload mt-3"
-                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <button id="btn-upload1" class="pl-5 pr-5 pt-1 pb-1 btn btn-primary btn-upload mt-3">
                                 Tải ảnh
                             </button>
                         </div>

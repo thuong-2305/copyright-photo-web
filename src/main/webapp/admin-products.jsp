@@ -98,59 +98,6 @@
 
     <!-- RIGHT MAIN -->
     <section class="right-category">
-        <div class="frame">
-            <div class="frame__container">
-                <h2 class="frame__title">Doanh số bán hàng hôm nay</h2>
-                <p class="frame__desc">Tóm tắt doanh số bán hàng</p>
-                <div class="frame__content">
-                    <!-- 1. Thong ke so luong ban hang -->
-                    <div class="statistic statistic--increase">
-                        <div class="statistic__container">
-                            <i class="fa-solid fa-chart-simple"></i>
-                            <div class="statistic-bot">
-                                <h2 class="statistic-bot__price">5.000.000 VND</h2>
-                                <p class="statistic-bot__name">Tổng doanh thu bán hàng</p>
-                                <p class="statistic-bot__compare">+10% so với hôm qua</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2. Thong ke so luong san pham -->
-                    <div class="statistic statistic--increase">
-                        <div class="statistic__container">
-                            <i class="fa-solid fa-bag-shopping"></i>
-                            <div class="statistic-bot">
-                                <h2 class="statistic-bot__price">425</h2>
-                                <p class="statistic-bot__name">Sản phẩm đã bán</p>
-                                <p class="statistic-bot__compare">+30% so với hôm qua</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3. Thong ke so luong san pham -->
-                    <div class="statistic statistic--increase">
-                        <div class="statistic__container">
-                            <i class="fa-solid fa-user-plus"></i>
-                            <div class="statistic-bot">
-                                <h2 class="statistic-bot__price">30</h2>
-                                <p class="statistic-bot__name">Sản phẩm mới</p>
-                                <p class="statistic-bot__compare">+10% so với hôm qua</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 4. Thong ke so luong san pham -->
-                    <div class="statistic statistic--decrease">
-                        <div class="statistic__container">
-                            <i class="fa-regular fa-eye"></i>
-                            <div class="statistic-bot">
-                                <h2 class="statistic-bot__price">3000</h2>
-                                <p class="statistic-bot__name">Lượt xem sản phẩm</p>
-                                <p class="statistic-bot__compare">-15% so với hôm qua</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <main>
             <div class="frame">
                 <div class="frame__container">
@@ -447,7 +394,6 @@
         }
         $('#deleteModal').modal('hide');
     });
-
 
     $('.edit-btn').on('click', function () {
         const productId = $(this).data('id');

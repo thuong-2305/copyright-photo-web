@@ -20,7 +20,7 @@ public class ShowStatistic extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         User currentUser = (User) session.getAttribute("loggedInUser");
-        if (currentUser != null && currentUser.getRole() == 1) {
+        if (currentUser != null && currentUser.getRole() <= 1 ) {
             request.setAttribute("user", currentUser); // Truyền thông tin người dùng vào request
             String username = currentUser.getUsername();
             request.setAttribute("username", username);
