@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.edu.hcmuaf.fit.coriphoto.datetime.LocalDateTimeTypeAdapter;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.LocalDateTypeAdapter;
 import vn.edu.hcmuaf.fit.coriphoto.model.Category;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
@@ -15,6 +16,7 @@ import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import com.google.gson.Gson;
 
@@ -60,6 +62,7 @@ public class ProductControll extends HttpServlet {
         // Trả về danh sách sản phẩm đã sắp xếp dưới dạng JSON
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+                .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter())
                 .create();
         String json = gson.toJson(productSorted);
         if ("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {

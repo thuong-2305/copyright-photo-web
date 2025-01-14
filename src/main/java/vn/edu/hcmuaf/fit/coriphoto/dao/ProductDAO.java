@@ -94,7 +94,11 @@ public class ProductDAO {
                 .execute());
     }
 
-
+    public List<Product> searchGetProducts(String content) {
+        String sqlQuery = "SELECT * FROM products WHERE name LIKE ? AND description LIKE ?";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .bind(0, "%" + content+  "%").bind(1, "%" + content+  "%").mapToBean(Product.class).list());
+    }
 
     public static void main(String[] args) {
         System.out.println(new ProductDAO().getProductLatest(5));

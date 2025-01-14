@@ -42,12 +42,19 @@
                     </div>
                     <div class="subtotal text-right fw-bold">
                         <label class="d-block">
-                            <span class="fw-semibold me-2" id="originalPrice"><fmt:formatNumber value="${total}"/>đ</span>
-                            <span class="total_final fw-semibold" id="totalFinal">${gift}</span>
-                            <small class="text-danger d-block mt-1" id="gift">
-                                <c:if test="${totalFinal != 0}">
-                                    <fmt:formatNumber value="${totalFinal}" pattern="#,###" />
+                            <c:if test="${totalFinal > 0}">
+                                <small><span class="fw-semibold me-2 text-decoration-line-through" id="originalPrice"><fmt:formatNumber value="${total}"/> đ</span></small>
+                            </c:if>
+                            <c:if test="${totalFinal < 1}">
+                                <span class="fw-semibold me-2" id="originalPrice"><fmt:formatNumber value="${total}"/> đ</span>
+                            </c:if>
+                                <span class="total_final fw-semibold" id="totalFinal">
+                                <c:if test="${totalFinal > 0}">
+                                    <fmt:formatNumber value="${totalFinal}" pattern="#,### đ" />
                                 </c:if>
+                            </span>
+                            <small class="text-danger d-block mt-1" id="gift">
+                                ${gift}
                             </small>
                         </label>
                     </div>
@@ -64,34 +71,18 @@
                     <button class="btn btn-success shadow-sm" id="checkoutButton">Tiếp tục thanh toán</button>
                 </div>
             </div>
-
-<%--            <!-- List control -->--%>
-<%--            <div class="list-control">--%>
-<%--                <div class="d-flex justify-content-between align-items-center mb-3">--%>
-<%--                    <div class="d-flex align-items-center justify-content-between">--%>
-<%--                        <div class="select-all d-flex align-items-center mr-3">--%>
-<%--                            <input type="checkbox" class="mr-2">--%>
-<%--                            <label class="mb-0">Chọn Tất Cả</label>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                    <div class=" continue-buy align-items-center">--%>
-<%--                        <a href="/">Tiếp tục mua sắm</a>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
         </div>
         <div id="cart-item-list">
             <% List<CartDetail> items = (List<CartDetail>) request.getAttribute("cartItems"); %>
             <% List<Product> products = (List<Product>) request.getAttribute("products"); %>
-            <% for(int i = 0; i < items.size(); i++) { %>
-            <div class="cart-item">
+            <% for (int i = items.size() - 1; i >= 0; i--) { %>
+            <div class="cart-item" data-item-index="<%= i %>" style="cursor:pointer;">
                 <div class="purchaseable">
-                    <div class="cart-item-container d-flex" style="margin-bottom: 15px">
+                    <div class="cart-item-container d-flex" style="margin-bottom: 15px;">
                         <figure class="thumbnail d-flex justify-content-center align-items-center">
                             <img class="img-fluid" src="<%= products.get(i).getUrl() %>" alt="" style="height: 100%;">
                         </figure>
-                        <div class="product flex-grow-1 mt-2 ">
+                        <div class="product flex-grow-1 mt-2">
                             <section class="details">
                                 <dl class="mb-3">
                                     <div class="d-flex align-items-start">
@@ -112,11 +103,10 @@
                                         <dd class="size-content">
                                             <ul class="style-none pl-0">
                                                 <li><%= products.get(i).getDimension() %></li>
-                                                <li>Kích cỡ tệp <%= products.get(i).getSize() %></li>
+                                                <li>Kích cỡ tệp: <%= products.get(i).getSize() %></li>
                                             </ul>
                                         </dd>
                                     </div>
-
                                     <div class="d-flex align-items-start">
                                         <dt class="font-weight-normal">Loại giấy phép:</dt>
                                         <dd>
@@ -127,7 +117,9 @@
                                     </div>
                                     <div class="d-flex align-items-start">
                                         <dt class="font-weight-normal">Tác giả:</dt>
-                                        <dd><a href=""><%= new UserService().getFullName( products.get(i).getUid()) %></a></dd>
+                                        <dd>
+                                            <a href=""><%= new UserService().getFullName(products.get(i).getUid()) %></a>
+                                        </dd>
                                     </div>
                                 </dl>
                             </section>
@@ -135,22 +127,24 @@
                         <div class="price">
                             <div class="select-for-checkout d-flex align-items-center" style="height: 35px;">
                                 <div class="select-for-checkout-content ml-auto">
-                                    <input id="selected-for-checkout"
+                                    <input id="selected-for-checkout-<%= i %>"
                                            type="checkbox"
                                            class="selectBuy"
                                            data-cart-id="<%= items.get(i).getCartId() %>"
                                            data-product-id="<%= products.get(i).getId() %>"
                                            data-license-id="<%= items.get(i).getLicenseId() %>"
-                                            <% if(items.get(i).getChecked() == 1) { %> checked <% } %> />
-                                    <label for="selected-for-checkout">Chọn</label>
+                                            <% if (items.get(i).getChecked() == 1) { %> checked <% } %> />
+                                    <label for="selected-for-checkout-<%= i %>">Chọn</label>
                                 </div>
                                 <button type="submit"
-                                        class="btn btn-danger deleteCart remove-from-cart" style="margin-left: 10px"
-                                        data-product-id="<%= products.get(i).getId() %>">Xóa
-                                </button>
+                                        class="btn btn-danger deleteCart remove-from-cart"
+                                        style="margin-left: 10px;"
+                                        data-product-id="<%= products.get(i).getId() %>">Xóa</button>
                             </div>
-                            <ul style="margin-top: 20px">
-                                <li class="final-price fw-semibold"><fmt:formatNumber value="<%= items.get(i).getPrice() %>" />đ</li>
+                            <ul style="margin-top: 20px;">
+                                <li class="final-price fw-semibold">
+                                    <fmt:formatNumber value="<%= items.get(i).getPrice() %>" />đ
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -185,6 +179,23 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartItems = document.querySelectorAll('.cart-item');
+        cartItems.forEach(item => {
+            item.addEventListener('click', event => {
+                if (event.target.tagName === 'INPUT' || event.target.tagName === 'BUTTON') return;
+
+                const checkbox = item.querySelector('.selectBuy');
+                if (checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    $(checkbox).trigger('change');
+                }
+            });
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function () {
@@ -242,12 +253,13 @@
                     var formattedTotalFinal = numeral(response.totalFinal).format('0,0');
 
                     // Cập nhật các phần tử UI
+                    $('#originalPrice').text(formattedTotal + ' đ');
                     if(response.gift !== "") {
-                        $('#totalFinal').text(formattedTotalFinal + ' VND');
+                        $('#totalFinal').text(formattedTotalFinal + ' đ');
                         $('#gift').text(response.gift);
                         $('#originalPrice').addClass('text-decoration-line-through small');
                     } else {
-                        $('#originalPrice').removeClass('text-decoration-line-through small').text(formattedTotal + ' VND');
+                        $('#originalPrice').removeClass('text-decoration-line-through small').text(formattedTotal + ' đ');
                         $('#totalFinal').text('');
                         $('#gift').text('');
                     }

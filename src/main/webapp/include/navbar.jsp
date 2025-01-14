@@ -27,14 +27,14 @@
                                     <i class="fa-solid fa-angle-down px-2"></i>
                                 </a>
                                 <div class="link-hover">
-                                    <a href="pages/type-images.html">Ảnh chụp</a>
-                                    <a href="pages/type-images.html">Ảnh vectors</a>
-                                    <a href="pages/type-images.html">Ảnh AI</a>
+                                    <a href="#">Ảnh chụp</a>
+                                    <a href="#">Ảnh vectors</a>
+                                    <a href="#">Ảnh AI</a>
                                 </div>
                             </li>
                             <% List<Category> categories = (List<Category>) request.getAttribute("categories"); %>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-3" href="pages/category-details.html">
+                                <a class="nav-link mx-lg-3" href="categories">
                                     <span class="fw-semibold">Danh mục</span>
                                     <i class="fa-solid fa-angle-down px-2"></i>
                                 </a>
@@ -64,13 +64,12 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-3" href="#">
-                                    <span class="fw-semibold">Giấy phép</span>
-                                    <i class="fa-solid fa-angle-down px-2"></i>
+                                <a class="nav-link mx-lg-3" href="license">
+                                    <span class="fw-semibold"><i class="bi bi-x-diamond me-2"></i>Giấy phép</span>
                                 </a>
                                 <div class="link-hover">
-                                    <a href="pages/license-basic.html">Giấy phép ảnh tiêu chuẩn</a>
-                                    <a href="pages/license-basic.html">Giấy phép miễn phí bản quyền</a>
+                                    <a href="license">Giấy phép ảnh tiêu chuẩn</a>
+                                    <a href="license">Giấy phép miễn phí bản quyền</a>
                                 </div>
                             </li>
                         </ul>
@@ -92,7 +91,7 @@
                         <% } %>
                     </div>
                     <div class="line-separate mx-lg-1"></div>
-                    <a href="pages/like.html" class="love"><i class="fa-regular fa-heart"></i></a>
+                    <a href="#" class="love"><i class="fa-regular fa-heart"></i></a>
                     <a href="cart" class="cart"><i class="fa-solid fa-cart-shopping"></i><span>${ cartLength }</span></a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"

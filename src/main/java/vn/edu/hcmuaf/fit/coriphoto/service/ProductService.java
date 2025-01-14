@@ -47,6 +47,10 @@ public class ProductService {
         products.addProduct(uid, cid, name, description, size, dimension, dateUpload, url, price);
     }
 
+    public List<Product> searchGetProducts(String content) {
+        return products.searchGetProducts(content);
+    }
+
     public static void main(String[] args) {
         List<Product> res = new ProductService().sortProductsLatest(23);
         res.forEach(e -> System.out.println(e));

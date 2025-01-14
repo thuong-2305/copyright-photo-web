@@ -53,7 +53,6 @@ public class AddToCartController extends HttpServlet {
             Gson gson = new Gson();
             JsonObject data = gson.fromJson(new InputStreamReader(request.getInputStream()), JsonObject.class);
             int licenseId = data.get("licenseId").getAsInt();
-            System.out.println(licenseId);
             if (licenseId == 2 && cart != null)
                 cartService.updatePriceOfCartDetail(cart.getCartId(), pid, licenseId);
         } catch (Exception _) {}

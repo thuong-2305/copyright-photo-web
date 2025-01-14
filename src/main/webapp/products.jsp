@@ -72,7 +72,7 @@
         <div class="show-products">
             <div class="content-products">
                 <p class="fs-3 fw-bold">Ảnh <%= path %> có giấy phép bản quyền</p>
-                <p class="text-secondary">1231 dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ
+                <p class="text-secondary">Nhiều dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ
                     CoRiPhoto.</p>
                 <div class="tool d-flex justify-content-between">
                     <button class="btn border-secondary" onclick="toggleFilter()"><i
