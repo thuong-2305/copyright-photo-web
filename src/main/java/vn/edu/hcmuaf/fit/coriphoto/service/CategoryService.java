@@ -25,6 +25,25 @@ public class CategoryService {
         return categories.getById(cid);
     }
 
+    public boolean deleteCategory(int cid) {
+        return categories.deleteCategory(cid);
+    }
+
+    public boolean updateCategory(int cid, String name) {
+        return categories.updateCategory(cid, name);
+    }
+
+    public boolean addCategory(String name, int cpid) {
+        return categories.addCategory(name, cpid);
+    }
+
+    public int getCategoryIdByName(String name) {
+        return categories.getCategoryIdByName(name);
+    }
+
+
+
+
     public static void main(String[] args) {
         System.out.println(new CategoryService().getAll());
     }
