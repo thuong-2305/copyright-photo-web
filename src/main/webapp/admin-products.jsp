@@ -43,21 +43,21 @@
                     <a href="${pageContext.request.contextPath}/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
                 </li>
                 <li>
-                    <a href="admin-category.html"><i class="bi bi-list-task"></i>Danh mục</a>
+                    <a href="${pageContext.request.contextPath}/admin-category"><i class="bi bi-list-task"></i>Danh mục</a>
                 </li>
                 <li>
-                    <a href="admin-order.html"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
+                    <a href="${pageContext.request.contextPath}/admin-order"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/admin-customer"><i class="fa-solid fa-user"></i>Khách
                         hàng</a>
                 </li>
                 <li>
-                    <a href="admin-contributor.html"><i class="bi bi-coin"></i>Người phân phối</a>
+                    <a href="${pageContext.request.contextPath}/admin-contributor"><i class="bi bi-coin"></i>Người phân phối</a>
                 </li>
                 <hr>
                 <li>
-                    <a href="admin-aproved.html"><i class="fa-solid fa-bell"></i>Ảnh đang chờ</a>
+                    <a href="${pageContext.request.contextPath}/admin-aproved"><i class="fa-solid fa-bell"></i>Ảnh đang chờ</a>
                 </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
