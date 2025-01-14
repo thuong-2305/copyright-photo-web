@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.coriphoto.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Product {
     private int id;
@@ -10,14 +11,14 @@ public class Product {
     private String description;
     private String size;
     private String dimension;
-    private LocalDate dateUpload;
+    private LocalDateTime dateUpload;
     private String url;
     private double price;
     private String status;
 
     public Product() { }
 
-    public Product(int id, int uid, int cid, String name, String description, String size, String dimension, LocalDate dateUpload, String url, double price, String status) {
+    public Product(int id, int uid, int cid, String name, String description, String size, String dimension, LocalDateTime dateUpload, String url, double price, String status) {
         this.id = id;
         this.uid = uid;
         this.cid = cid;
@@ -87,11 +88,11 @@ public class Product {
         this.dimension = dimension;
     }
 
-    public LocalDate getDateUpload() {
+    public LocalDateTime getDateUpload() {
         return dateUpload;
     }
 
-    public void setDateUpload(LocalDate dateUpload) {
+    public void setDateUpload(LocalDateTime dateUpload) {
         this.dateUpload = dateUpload;
     }
 
@@ -118,4 +119,23 @@ public class Product {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                id +
+                ", " + uid +
+                ", " + cid +
+                ", '" + name +
+                ", " + description +
+                ", " + size +
+                ", " + dimension +
+                ", " + dateUpload +
+                ", " + url +
+                ", " + price +
+                ", " + status +
+                '}';
+    }
+
+
 }

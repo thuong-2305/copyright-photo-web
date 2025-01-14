@@ -143,6 +143,22 @@
     object-fit: cover;    
     margin-right: 20px;
     padding: 2px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.add-img label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Đặt icon trong div cha */
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.add-img input[type="file"] {
+    opacity: 0;
 }
 
 .show-pane .pane-left .image-text.active img{
@@ -266,8 +282,8 @@ ul.nav-list {
     margin: 50px auto 100px;
 }
 
-form input[type="text"],
-form textarea {
+.formLeft input[type="text"],
+.formLeft textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -277,7 +293,7 @@ form textarea {
     margin-bottom: 20px;
 }
 
-form select {
+.formLeft select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -290,12 +306,12 @@ form select {
     outline: none;
 }
 
-form label {
+.formLeft label {
     display: block;
     margin-bottom: 5px;
 }
 
-form button {
+.formLeft button {
     background-color: var(--primary-color);
     color: white;
     padding: 10px 20px;
@@ -330,4 +346,18 @@ form button {
     position: absolute;
     right: 0;
     bottom: -10%;
+}
+
+#preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#preview-container img {
+    max-width: 150px;
+    max-height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    object-fit: cover;
 }

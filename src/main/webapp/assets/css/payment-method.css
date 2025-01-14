@@ -15,7 +15,7 @@
 
     --color-content-interactive: #1a4200;
     --transition-duration-short: 150ms;
-    --transition-easing-ease-in-out: cubic-bezier(0.42,0.58,1);
+    --transition-easing-ease-in-out: cubic-bezier(0.42, 0.58, 1);
 
     --primary-color: #009970;
     --primary-hover-color: #00b383;
@@ -28,12 +28,12 @@
     --footer-border-color: #e0e0e0;
     --footer-text-color: #777;
     --line-seperate: #e0e0e0;
-}   
+}
 
 
 a:hover {
     text-decoration: none;
-    
+
 }
 
 * {
@@ -56,7 +56,6 @@ html {
 }
 
 
-
 .dp-flex {
     display: flex;
 }
@@ -65,7 +64,6 @@ html {
 .stl-none {
     list-style-type: none;
 }
-
 
 
 #payment-method .payment-method-container {
@@ -77,13 +75,13 @@ section#nav {
     padding: 5px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
+
 /* Avatar */
 #account-menu-container .profile-image > img {
     max-width: 60px;
     border-radius: 50%;
     cursor: pointer;
 }
-
 
 
 /* Navigate link */
@@ -108,7 +106,7 @@ section#nav {
     margin: 0 120px;
 }
 
-#payment-method .credit-card-method .credit-card-header{
+#payment-method .credit-card-method .credit-card-header {
     border-bottom: 1px solid #ced4da;
 }
 
@@ -117,16 +115,14 @@ section#nav {
 }
 
 #payment-method .credit-card-method .button-add-credit-card button,
-#payment-method .bank-method .button-add-bank button
-{
+#payment-method .bank-method .button-add-bank button {
     color: var(--color-surface-primary);
     background-color: var(--primary-color);
     border: 0
 }
 
 #payment-method .credit-card-method .button-add-credit-card button:hover,
-#payment-method .bank-method .button-add-bank button:hover
-{
+#payment-method .bank-method .button-add-bank button:hover {
     background-color: var(--primary-hover-color);
 }
 
@@ -136,8 +132,7 @@ section#nav {
 }
 
 #payment-method .credit-card-method .title-credit-card > span,
-#payment-method .bank-method .title-bank-method > span
-{
+#payment-method .bank-method .title-bank-method > span {
     font-weight: 500;
     font-size: 20px;
 }
@@ -146,7 +141,7 @@ section#nav {
 /* Card */
 
 #payment-method .ba-card .ba-card-brief .ba-card-account-status {
-    color:#949494;
+    color: #949494;
     opacity: 0.7;
 }
 
@@ -162,7 +157,7 @@ section#nav {
 }
 
 #payment-method .ba-card .ba-card-branch-label {
-    color:#949494;
+    color: #949494;
     opacity: 0.7;
 }
 
@@ -174,12 +169,12 @@ section#nav {
 }
 
 
-#payment-method .ba-card .ba-card-buttons .ba-btn-delete  {
+#payment-method .ba-card .ba-card-buttons .ba-btn-delete {
     border: none;
     text-decoration: underline;
 }
 
-#payment-method .ba-card .ba-card-buttons .ba-btn-set-default:hover  {
+#payment-method .ba-card .ba-card-buttons .ba-btn-set-default:hover {
     cursor: not-allowed;
 }
 
