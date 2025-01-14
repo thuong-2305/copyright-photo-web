@@ -65,20 +65,20 @@
                 </div>
             </div>
 
-            <!-- List control -->
-            <div class="list-control">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div class="select-all d-flex align-items-center mr-3">
-                            <input type="checkbox" class="mr-2">
-                            <label class="mb-0">Chọn Tất Cả</label>
-                        </div>
-                    </div>
-                    <div class=" continue-buy align-items-center">
-                        <a href="/">Tiếp tục mua sắm</a>
-                    </div>
-                </div>
-            </div>
+<%--            <!-- List control -->--%>
+<%--            <div class="list-control">--%>
+<%--                <div class="d-flex justify-content-between align-items-center mb-3">--%>
+<%--                    <div class="d-flex align-items-center justify-content-between">--%>
+<%--                        <div class="select-all d-flex align-items-center mr-3">--%>
+<%--                            <input type="checkbox" class="mr-2">--%>
+<%--                            <label class="mb-0">Chọn Tất Cả</label>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class=" continue-buy align-items-center">--%>
+<%--                        <a href="/">Tiếp tục mua sắm</a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
         </div>
         <div id="cart-item-list">
@@ -223,15 +223,11 @@
 <script>
     $(document).ready(function () {
         $(".selectBuy").on("change", function () {
-            // Lấy trạng thái của checkbox
             let isChecked = $(this).is(":checked");
-
-            // Lấy dữ liệu từ thuộc tính data-*
             let cartId = $(this).data("cart-id");
-
             let pid = $(this).data("product-id");
 
-            // Gửi dữ liệu qua AJAX
+            // Gửi dữ liệu qua AJAX để cập nhật giá trị
             $.ajax({
                 url: "updatePrice",
                 method: "POST",
@@ -245,17 +241,25 @@
                     var formattedTotal = numeral(response.total).format('0,0');
                     var formattedTotalFinal = numeral(response.totalFinal).format('0,0');
 
+                    // Cập nhật các phần tử UI
                     if(response.gift !== "") {
                         $('#totalFinal').text(formattedTotalFinal + ' VND');
                         $('#gift').text(response.gift);
-                        $('#originalPrice').addClass('text-decoration-line-through small')
+                        $('#originalPrice').addClass('text-decoration-line-through small');
                     } else {
                         $('#originalPrice').removeClass('text-decoration-line-through small').text(formattedTotal + ' VND');
                         $('#totalFinal').text('');
                         $('#gift').text('');
                     }
 
+                    // Cập nhật số lượng sản phẩm đã chọn
                     $('.ng-binding').text(response.numChecked);
+
+                    // Cập nhật các trường ẩn
+                    $('#hiddenNumChecked').val(response.numChecked);
+                    $('#hiddenTotal').val(response.total);
+                    $('#hiddenTotalFinal').val(response.totalFinal);
+
                 },
                 error: function () {
                     alert("Có lỗi xảy ra, vui lòng thử lại sau.");
@@ -263,6 +267,7 @@
             });
         });
     });
+
 </script>
 
 

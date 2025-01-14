@@ -67,10 +67,20 @@ public class RedirectCartToCheckout extends HttpServlet {
 
         // Parse JSON của selectedProducts
         JsonArray selectedProducts = JsonParser.parseString(selectedProductsJson).getAsJsonArray();
+        if (selectedProducts.isEmpty()) {
+            // Thiết lập thông báo lỗi
+            request.setAttribute("noProduct", "Không có sản phẩm nào để thanh toán.");
+            response.sendRedirect(request.getContextPath() + "/");
+            return;
+        }
+
+
         List<Product> selectedProductList = new ArrayList<>();
         ProductService productService = new ProductService();
         List<String> licenseNames = new ArrayList<>();
         List<Integer> licenseIds = new ArrayList<>();
+
+
 
 
         for (JsonElement element : selectedProducts) {
@@ -96,7 +106,7 @@ public class RedirectCartToCheckout extends HttpServlet {
 //        if (cntProducts < 5) promotionId = 1;
 //        else if (cntProducts < 10) promotionId = 2;
 //        else if (cntProducts < 25) promotionId = 3;
-//        else promotionId = 4;    
+//        else promotionId = 4;
 
 
 

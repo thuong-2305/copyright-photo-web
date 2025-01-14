@@ -10,6 +10,12 @@
 </head>
 <body>
     <jsp:include page="include/navbar.jsp"/>
+
+    <% if (request.getAttribute("noProduct") != null) { %>
+    <div class="alert alert-danger">
+        <%= request.getAttribute("noProduct") %>
+    </div>
+    <% } %>
     <!--section banner -->
     <section class="banner">
         <div class="banner-home d-flex justify-content-center align-items-center flex-column">
