@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css"/>
     <link rel="stylesheet" href="./assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css"/>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="./assets/js/admin-products.js"></script>
     <title>Admin</title>
 </head>
 
@@ -328,6 +329,29 @@
                 </div>
             </div>
             <!-- End: Table SAN PHAM -->
+            <!-- Begin: Modal xóa sản phẩm -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xóa sản phẩm này?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="button" id="confirmDelete" class="btn btn-danger">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End: Modal xóa sản phẩm -->
+            <!-- Toast message xóa sản phẩm -->
+
         </main>
     </section>
     <!-- RIGHT MAIN -->
@@ -369,9 +393,15 @@
     });
 </script>
 <script>
+    let productIdToDelete = null;
+
     $('.delete-btn').on('click', function () {
-        const productId = $(this).data('id');
-        if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+        productIdToDelete = $(this).data('id');
+        $('#deleteModal').modal('show');
+    });
+
+    $('#confirmDelete').on('click', function () {
+        if (productIdToDelete) {
             $.ajax({
                 url: '/admin-products',
                 type: 'POST',
@@ -380,14 +410,16 @@
                 },
                 data: {
                     action: 'delete',
-                    product_id: productId
+                    product_id: productIdToDelete
                 },
                 success: function (response) {
                     if (response.success) {
-                        alert('Sản phẩm đã được xóa!');
+                        alert('Xóa thành công');
+                        // showSuccessToast();
                         location.reload();
                     } else {
-                        alert('Xóa sản phẩm thất bại!');
+                        alert('Xóa thất bại!');
+                        // showErrorToast();
                     }
                 },
                 error: function () {
@@ -395,7 +427,9 @@
                 }
             });
         }
+        $('#deleteModal').modal('hide');
     });
+
 
     $('.edit-btn').on('click', function () {
         const productId = $(this).data('id');
@@ -424,5 +458,6 @@
     });
 
 </script>
+
 </body>
 </html>
