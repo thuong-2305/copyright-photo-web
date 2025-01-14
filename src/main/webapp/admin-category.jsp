@@ -148,12 +148,6 @@
 
     <script>
         // Hiển thị modal khi nhấn nút "Thêm danh mục mới"
-        document.getElementById("addCategoryBtn").addEventListener("click", function() {
-            // Mở modal
-            $('#categoryModal').modal('show');
-        });
-
-        // Lưu danh mục mới khi nhấn "Save"
         document.getElementById("saveCategoryBtn").addEventListener("click", function() {
             const categoryName = document.getElementById("categoryName1").value;
 
@@ -172,20 +166,22 @@
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data); // Kiểm tra dữ liệu nhận được
+
                     if (data.success) {
                         alert('Danh mục đã được thêm thành công!');
                         $('#categoryModal').modal('hide'); // Đóng modal
 
-                        // Cập nhật lại bảng với dữ liệu mới (có thể cần bổ sung dòng mới vào bảng)
-                        $('#categoryTable').DataTable().ajax.reload();  // Đảm bảo bảng tải lại dữ liệu
-
-                        // Nếu muốn thêm một dòng mới vào bảng ngay lập tức
-                        $('#categoryTable').DataTable().row.add([
-                            data.categoryId,
-                            data.categoryName
+                        // Cập nhật lại bảng với dữ liệu mới (thêm dòng mới vào bảng)
+                        var table = $('#categoryTable').DataTable();
+                        table.row.add([
+                            data.categoryId,       // Cột 1: Mã danh mục (ID)
+                            data.categoryName,     // Cột 2: Tên danh mục
+                            '<button class="btn edit-btn btn-warning" onclick="updateCategory(' + data.categoryId + ')">Sửa</button>' +
+                            '<button class="btn delete-btn btn-danger" onclick="deleteCategory(' + data.categoryId + ')">Xóa</button>'  // Cột 3: Hành động
                         ]).draw();
                     } else {
-                        alert('Lỗi khi thêm danh mục! Chi tiết: ' + data.message);  // Thêm thông báo chi tiết lỗi
+                        alert('Lỗi khi thêm danh mục! Chi tiết: ' + data.message);
                     }
                 })
                 .catch(error => {
@@ -193,6 +189,9 @@
                     alert('Có lỗi xảy ra. Vui lòng thử lại!');
                 });
         });
+
+
+
     </script>
 
 
@@ -242,26 +241,28 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('#categoryTable').DataTable({
-                language: {
-                    search: "Nhập từ khóa:",
-                    lengthMenu: "Hiển thị _MENU_ mục",
-                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục", // Tùy chỉnh "Showing 1 to 10 of 53 entries"
-                    infoEmpty: "Không có dữ liệu để hiển thị",          // Khi không có bản ghi
-                    infoFiltered: "(lọc từ _MAX_ mục)",                // Thông báo khi có lọc dữ liệu
-                    paginate: {
-                        previous: "Trước", // Tùy chỉnh "Previous"
-                        next: "Tiếp"       // Tùy chỉnh "Next"
-                    }
-                },
+            var table = $('#categoryTable');
+            if (table.length > 0) {
+                table.DataTable({
+                    language: {
+                        search: "Nhập từ khóa:",
+                        lengthMenu: "Hiển thị _MENU_ mục",
+                        info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                        infoEmpty: "Không có dữ liệu để hiển thị",
+                        infoFiltered: "(lọc từ _MAX_ mục)",
+                        paginate: {
+                            previous: "Trước",
+                            next: "Tiếp"
+                        }
+                    },
+                });
 
-            });
-            var table = $('#categoryTable').DataTable();
-            // Thay đổi placeholder của khung tìm kiếm
-            var search = $('.dataTables_filter input');
-            search.attr('text', 'Tìm kiếm');
-            search.attr('placeholder', 'Tìm kiếm danh mục ...');
+                // Thay đổi placeholder của khung tìm kiếm
+                var search = $('.dataTables_filter input');
+                search.attr('placeholder', 'Tìm kiếm danh mục ...');
+            }
         });
+
     </script>
     <script src="assets/js/admin.js"></script>
     <script src="assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>

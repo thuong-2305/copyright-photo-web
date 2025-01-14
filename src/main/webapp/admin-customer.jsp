@@ -88,18 +88,16 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
       </section>
       <!-- LEFT MAIN -->
 
-      <!-- RIGHT MAIN -->
-      <section class="right-category">
-        <div class="mt-4">
-          <div
-            class="container header d-flex justify-content-between align-items-center mb-3 py-2"
-          >
-            <div class="add-category">
-              <button class="btn btn-primary" id="openModalBtn">
-                + Thêm khách hàng mới
-              </button>
-            </div>
-          </div>
+  <!-- RIGHT MAIN -->
+  <section class="right-category">
+    <div class="mt-4">
+      <div class="container header d-flex justify-content-between align-items-center mb-3 py-2">
+        <div class="add-category">
+          <button class="btn btn-primary" id="openModalBtn">
+            + Thêm khách hàng mới
+          </button>
+        </div>
+      </div>
 
           <h1>Danh sách người dùng</h1>
           <table

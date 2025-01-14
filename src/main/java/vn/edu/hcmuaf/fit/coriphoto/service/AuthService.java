@@ -35,4 +35,8 @@ public class AuthService {
     public User getUserByEmail(String email) {
         return users.findByEmail(email);
     }
+
+    public User getUserById(int id) {
+        return users.findById(id);
+    }
 }

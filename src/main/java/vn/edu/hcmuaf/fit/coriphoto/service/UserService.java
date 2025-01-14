@@ -63,4 +63,12 @@ public class UserService {
     }
 
     public List<User> getAllCustomers() {return userDao.getAllCustomers();}
+
+    public boolean deleteUserById(int userId) {
+        return userDao.deleteUserById(userId);
+    }
+
+    public boolean updateUser(User user) {
+        return userDao.updateUser(user);
+    }
 }
