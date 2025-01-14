@@ -149,17 +149,17 @@
                     </div>
                     <div class="sanpham w-100">
                         <table id="productsTable" class="display table table-bordered table-striped">
-                            <thead>
+                            <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
                                 <th>User ID</th>
                                 <%--                                <th>Category ID</th>--%>
                                 <th>Tên</th>
+<%--                                <th>Hình ảnh</th>--%>
                                 <th>Mô tả</th>
-                                <%--                                <th>Kích thước</th>--%>
-                                <%--                                <th>Kích thước (Dài x Rộng)</th>--%>
-                                <%--                                <th>Ngày tải lên</th>--%>
-                                <%--                                <th>URL</th>--%>
+                            <%--                                <th>Kích thước</th>--%>
+                            <%--                                <th>Kích thước (Dài x Rộng)</th>--%>
+                            <%--                                <th>Ngày tải lên</th>--%>
                                 <th>Giá</th>
                                 <th>Trạng thái</th>
                                 <th>Hành động</th> <!-- Cột Hành động -->
@@ -173,15 +173,17 @@
                                     <td>${product.uid}</td>
                                         <%--                                    <td>${product.cid}</td>--%>
                                     <td>${product.name}</td>
+<%--                                    <td><img src="${product.url}" alt="${product.name}" width="30" height="50"></td>--%>
                                     <td>${product.description}</td>
-                                        <%--                                    <td>${product.size}</td>--%>
-                                        <%--                                    <td>${product.dimension}</td>--%>
-                                        <%--                                    <td>${product.dateUpload}</td>--%>
-                                        <%--                                    <td>${product.url}</td>--%>
+                                <%--                                    <td>${product.size}</td>--%>
+                                <%--                                    <td>${product.dimension}</td>--%>
+                                <%--                                    <td>${product.dateUpload}</td>--%>
                                     <td>${product.price}</td>
                                     <td>${product.status}</td>
                                     <td>
-                                        <button class="btn edit-btn btn-warning" data-id="${product.id}">Sửa</button>
+                                        <button class="btn edit-btn btn-warning" data-id="${product.id}"
+<%--                                                onclick="document.getElementById('khungSuaSanPham').style.transform = 'scale(1)';"--%>
+                                        >Sửa</button>
                                         <button class="btn delete-btn btn-danger" data-id="${product.id}">Xóa</button>
                                     </td>
                                 </tr>
@@ -253,7 +255,75 @@
                                 </table>
                             </form>
                         </div>
-                        <div id="khungSuaSanPham" class="overlay"></div>
+                        <div id="khungSuaSanPham" class="overlay">
+                            <span class="close"
+                                  onclick="this.parentElement.style.transform = 'scale(0)';">&times;</span>
+                            <form action="${pageContext.request.contextPath}/admin-products" method="POST">
+                                <table id="khungSuaSanPhamTable" class="overlayTable table-outline table-content table-header">
+                                    <tr>
+                                        <th colspan="2">Thêm hình ảnh</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Hình:</td>
+                                        <td>
+                                            <input type="file" name="image" accept="image/*" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">Thông số kĩ thuật</th>
+                                    </tr>
+                                    <tr style="display: none">
+                                        <td><label>
+                                            <input type="text" name="defineForm" value="formEdit"/>
+                                        </label></td>
+                                    </tr>
+                                    <tr style="display: none">
+                                        <td><label>
+                                            <input type="text" name="idProduct"/>
+                                        </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tên hình ảnh:</td>
+                                        <td><label>
+                                            <input type="text" name="nameProduct" required />
+                                        </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mô tả:</td>
+                                        <td><input type="text" name="description" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Loại hình ảnh:</td>
+                                        <td><input type="text" name="category" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Giá:</td>
+                                        <td><input type="number" name="price" step="1000" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Người đóng góp:</td>
+                                        <td><input type="text" name="contributor" required /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Trạng thái:</td>
+                                        <td><label>
+                                            <select name="status">
+                                                <option value="accepted">
+                                                    Đã chấp nhận
+                                                </option>
+                                                <option value="waiting">Chờ đợi</option>
+                                                <option value="rejected">Từ chối</option>
+                                            </select>
+                                        </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="table-footer">
+                                            <button type="submit">Cập nhật</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -271,7 +341,8 @@
 <script src="./assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
-        $('#productsTable').DataTable({
+        var table = $('#productsTable').DataTable({
+            buttons:['copy', 'excel', 'print', 'excel', 'csv'],
             language: {
                 search: "Nhập từ khóa:",
                 lengthMenu: "Hiển thị _MENU_ mục",
@@ -283,18 +354,75 @@
                     next: "Tiếp"       // Tùy chỉnh "Next"
                 }
             },
-            scrollX: true, // Kích hoạt cuộn ngang nếu tổng độ rộng vượt khung
+            scrollX: true // Kích hoạt cuộn ngang nếu tổng độ rộng vượt khung
             // scrollY: true, // Kích hoạt cuộn ngang nếu tổng độ rộng vượt khung
             // columnDefs: [
             //     { width: "200px", targets: 3 }// Tên: 100px
             // ]
+
         });
-        var table = $('#productsTable').DataTable();
+        table.buttons().container().appendTo('#productsTable_wapper .col-md-6:eq(0)');
         // Thay đổi placeholder của khung tìm kiếm
         var search = $('.dataTables_filter input');
         search.attr('text', 'Tìm kiếm');
         search.attr('placeholder', 'Tìm kiếm sản phẩm ...');
     });
+</script>
+<script>
+    $('.delete-btn').on('click', function () {
+        const productId = $(this).data('id');
+        if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
+            $.ajax({
+                url: '/admin-products',
+                type: 'POST',
+                headers: {
+                    'X-Requested-By': 'AJAX'
+                },
+                data: {
+                    action: 'delete',
+                    product_id: productId
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Sản phẩm đã được xóa!');
+                        location.reload();
+                    } else {
+                        alert('Xóa sản phẩm thất bại!');
+                    }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi!');
+                }
+            });
+        }
+    });
+
+    $('.edit-btn').on('click', function () {
+        const productId = $(this).data('id');
+        fetch(`/admin-products?id=`+productId)
+            .then(response =>{
+                console.log('Response received:', response);  // In ra response để kiểm tra
+                return response.json()})
+            .then(product => {
+                // Hiển thị dữ liệu sản phẩm lên form
+                document.querySelector('#khungSuaSanPhamTable input[name="idProduct"]').value = productId;
+
+                document.querySelector('#khungSuaSanPhamTable input[name="nameProduct"]').value = product.name;
+                document.querySelector('#khungSuaSanPhamTable input[name="description"]').value = product.description;
+                document.querySelector('#khungSuaSanPhamTable input[name="category"]').value = product.cid;
+                document.querySelector('#khungSuaSanPhamTable input[name="price"]').value = product.price;
+                document.querySelector('#khungSuaSanPhamTable input[name="contributor"]').value = product.uid;
+                document.querySelector('#khungSuaSanPhamTable select[name="status"]').value = product.status;
+
+                // Hiển thị form sửa
+                document.getElementById('khungSuaSanPham').style.transform = 'scale(1)';
+            })
+            .catch(error => {
+                console.error('Lỗi khi lấy thông tin sản phẩm:', error);
+                alert('Không thể lấy thông tin sản phẩm!');
+            });
+    });
+
 </script>
 </body>
 </html>
