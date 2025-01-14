@@ -5,6 +5,8 @@ import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -72,6 +74,24 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
                 .bind(0, cid).bind(1, id)
                 .mapToBean(Product.class).list());
+    }
+
+    public void addProduct(int uid, int cid, String name, String description, String size,
+                           String dimension, LocalDateTime dateUpload, String url, double price) {
+        String sqlQuery = "INSERT INTO products (uid, cid, name, description, size, dimension, dateUpload, url, price) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        jdbi.useHandle(handle -> handle.createUpdate(sqlQuery)
+                .bind(0, uid)
+                .bind(1, cid)
+                .bind(2, name)
+                .bind(3, description)
+                .bind(4, size)
+                .bind(5, dimension)
+                .bind(6,dateUpload)
+                .bind(7, url)
+                .bind(8, price)
+                .execute());
     }
 
 

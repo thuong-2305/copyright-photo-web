@@ -11,6 +11,7 @@
     <jsp:include page="include/head.jsp"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
     <style>
         #nav {
             position: fixed !important;
@@ -20,6 +21,26 @@
 
         .modal {
             z-index: 9999;
+        }
+    </style>
+    <style>
+        .image-text {
+            position: relative;
+            margin: 10px;
+        }
+        .image-text img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+        }
+        .delete-img {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -47,20 +68,20 @@
                                     <div class="profile-name">
                                         ${ auth.username }
                                     </div>
-                                </div>
-                                <ul class="menu-link stl-none mt-3">
-                                    <li class="dashboard d-flex text-center align-items-center justify-content-center">
-                                        <a href="ShowStatistic" class="text-dark">
-                                            <i class="fa fa-chart-simple"></i>Thống Kê
-                                        </a>
-                                    </li>
-                                    <li class="my-photos d-flex text-center align-items-center justify-content-center">
-                                        <a href="#" class="text-dark">
-                                            <i class="fas fa-image"></i> Ảnh Của Tôi
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                                    </div>
+                                        <ul class="menu-link stl-none mt-3">
+                                            <li class="dashboard d-flex text-center align-items-center justify-content-center">
+                                                <a href="ShowStatistic" class="text-dark">
+                                                    <i class="fa fa-chart-simple"></i>Thống Kê
+                                                </a>
+                                            </li>
+                                            <li class="my-photos d-flex text-center align-items-center justify-content-center">
+                                                <a href="#" class="text-dark">
+                                                    <i class="fas fa-image"></i> Ảnh Của Tôi
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
                         </div>
                     </div>
                     <!-- Main content -->
@@ -82,14 +103,14 @@
                                     <div>
                                         <label class="sort-text mr-2 fw-semibold">Ảnh hỉển thị</label>
                                         <div class="dropdown">
-                                            <button class="btn dropdown-toggle border" type="button" id="timeDropdown"
+                                            <button class="btn dropdown-toggle border px-4" type="button" id="timeDropdown"
                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Công bán
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="timeDropdown">
-                                                <button class="dropdown-item" onclick="fetchList('accepts')">Công bán</button>
-                                                <button class="dropdown-item" onclick="fetchList('waits')">Chờ duyệt</button>
-                                                <button class="dropdown-item" onclick="fetchList('rejects')">Từ chối</button>
+                                                <button class="dropdown-item" onclick="fetchList('accepts')">Hiện bán</button>
+                                                <button class="dropdown-item" onclick="fetchList('waits')">Đang xác nhận</button>
+                                                <button class="dropdown-item" onclick="fetchList('rejects')">Đã bị từ chối</button>
                                             </div>
                                         </div>
                                     </div>
@@ -135,6 +156,8 @@
 
                         </div>
                     </div>
+
+                    <%-- Button upload --%>
                     <div class="col-1" style="position:fixed; top: 45%; right: 2%;">
                         <div class="upload-your-photo mr-3 d-flex flex-column text-center align-items-center justify-content-center">
                             <i class="bi bi-cloud-arrow-up-fill fs-5"></i>
@@ -145,7 +168,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -153,7 +175,8 @@
 
 <!-- section upload -->
 <div class="overlay2"></div>
-<section class="upload bg-white">
+<form action="ImageUpload" method="post" enctype="multipart/form-data">
+<section class="upload bg-white" style="z-index: 9999;">
     <div class="container">
         <!-- title -->
         <div class="top d-flex align-items-center header">
@@ -179,12 +202,16 @@
             <div class="pane-left">
                 <span class="d-block mb-3 fw-bold"><i class="fa-solid fa-paperclip me-2"></i>Tổng quan ảnh</span>
                 <div class="box-imgs d-flex flex-wrap">
-                    <div class="image-text active">
-                        <img src="../assets/images/Animals/3.jpg" alt="">
-                        <i class="fa-solid fa-trash"></i>
+                    <!-- Khu vực hiển thị ảnh -->
+                    <div id="preview-container" class="d-flex flex-wrap"></div>
+
+                    <!-- Nút upload thêm ảnh -->
+                    <div class="bg-white d-flex justify-content-center align-items-center add-img">
+                        <label for="fileUpload" class="d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-plus"></i>
+                        </label>
+                        <input type="file" id="fileUpload" accept="image/*" style="opacity: 0;" enctype="multipart/form-data" />
                     </div>
-                    <div class="bg-white d-flex justify-content-center align-items-center add-img"><i
-                            class="fa-solid fa-plus"></i></div>
                 </div>
             </div>
 
@@ -205,51 +232,37 @@
                 <div class="content-2">
                     <p>Thêm và xác nhận thông tin ảnh của bạn. Để giúp dễ dàng tìm kiếm và đạt
                         được bởi người dùng đối với ảnh của bạn.</p>
-                    <form>
+
+                    <div class="formLeft">
                         <label for="title">Tên:</label>
                         <input type="text" id="title" name="title" placeholder="Nhập tên" required>
 
                         <label for="description">Mô tả:</label>
                         <textarea id="description" name="description" placeholder="Nhập mô tả" required></textarea>
 
-                        <label for="dimension">Tên:</label>
+                        <label for="dimension" class="mt-2">Kích thước :</label>
                         <input type="text" id="dimension" name="dimension" placeholder="Nhập kích thước ảnh" required>
 
-                        <label for="file-size">Tên:</label>
+                        <label for="file-size">Dung lượng:</label>
                         <input type="text" id="file-size" name="file-size" placeholder="Nhập dung lượng ảnh" required>
 
                         <label for="category">Danh mục:</label>
-                        <select id="category" name="category" required>
+                        <select id="category" name="category" required style="background: white !important;">
                             <option value="">Chọn danh mục</option>
-                            <option value="category1">Trừu tượng</option>
-                            <option value="category2">Phong cảnh</option>
-                            <option value="category3">Con người</option>
-                            <option value="category4">Công nghệ</option>
-                            <option value="category5">Tự nhiên</option>
-                            <option value="category6">Thành phố</option>
-                            <option value="category7">AI</option>
-                            <option value="category8">Thức ăn</option>
-                            <option value="category9">Nghệ thuật</option>
-                            <option value="category10">Khác</option>
+                            <c:forEach var="item" items="${categories}">
+                                <option value="${ item.cid }">${ item.name }</option>
+                            </c:forEach>
                         </select>
 
-                        <label for="tags">Thẻ:</label>
-                        <select id="tags" name="tags[]" multiple required>
-                            <option value="abstract">Trừu tượng</option>
-                            <option value="landscape">Phong cảnh</option>
-                            <option value="people">Con người</option>
-                            <option value="technology">Công nghệ</option>
-                            <option value="nature">Tự nhiên</option>
-                            <option value="city">Thành phố</option>
-                            <option value="ai">AI</option>
-                            <option value="food">Thức ăn</option>
-                            <option value="art">Nghệ thuật</option>
-                            <option value="other">Khác</option>
-                        </select>
-                        <small>Nhấn Ctrl (hoặc Cmd trên Mac) để chọn nhiều thẻ</small>
-                        <button type="submit" class="next">Tiếp theo</button>
-                    </form>
+                        <label for="price">Giá muốn bán:</label>
+                        <input type="number" id="price" name="price" placeholder="Nhập giá cho ảnh" step="0.01" min="0" required>
+
+                        <div class="text-danger"><span></span></div>
+                        <button id="submitInfo" class="next">Tiếp theo</button>
+                    </div>
                 </div>
+
+                <%-- Xác nhận chính sách--%>
                 <div class="content-3">
                     <h5 class="text-center">Cấp phép độc quyền truyền thông qua CoriPhoto</h5>
                     <span>Cấp phép ảnh của bạn độc quyền đến chúng tôi và các đối tác phân phối
@@ -258,8 +271,8 @@
                         Nội dung độc quyền của chúng tôi được ưu tiên, có khả năng tìm kiếm và khám phá tốt hơn,
                         đồng thời cũng có xu hướng với mọi người.</span>
                     <div class="accept my-2">
-                        <input type="checkbox" id="confirm" value="Đồng ý">
-                        <label for="confirm">Đồng ý</label>
+                        <input type="checkbox" id="confirm" value="Đồng ý" required>
+                        <label for="confirm" class="fw-semibild">Đồng ý</label>
                     </div>
                     <button type="submit" class="success btn btn-success rounded-pill">Hoàn tất</button>
                 </div>
@@ -268,6 +281,14 @@
     </div>
     <button class="btn-close btn-close-black close-upload"></button>
 </section>
+</form>
+<%-- Notification --%>
+<div class="alert alert-danger d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%">
+    <i class="bi bi-exclamation-triangle"></i><span></span>
+</div>
+<%-- Notification --%>
 
 <script src="./assets/js/myphoto-seller.js"></script>
 <script src="./assets/js/upload.js"></script>
@@ -281,9 +302,9 @@
 
     function fetchList(type) {
         const dropdownButton = document.getElementById('timeDropdown');
-        if(type === "accepts") dropdownButton.textContent = "Công bán";
-        if(type === "waits") dropdownButton.textContent = "Từ chối";
-        if(type === "rejects") dropdownButton.textContent = "Công bán";
+        if(type === "accepts") dropdownButton.textContent = "Hiện bán";
+        if(type === "waits") dropdownButton.textContent = "Đang xác nhận";
+        if(type === "rejects") dropdownButton.textContent = "Đã bị từ chối";
         fetch("getProducts?type=" + type)
             .then(response => {
                 if (!response.ok) {
@@ -305,21 +326,31 @@
             });
     }
 
-    // Hàm cập nhật danh sách ảnh
     function updatePhotoList(data) {
         const photoList = document.getElementById('photoList');
-        photoList.innerHTML = ''; // Xóa nội dung cũ
+        if (!photoList) {
+            console.error('Element #photoList not found.');
+            return;
+        }
 
+        console.log('Data received:', data);
+        if (!data.products || !Array.isArray(data.products)) {
+            console.error('Invalid data.products:', data.products);
+            return;
+        }
+
+        photoList.innerHTML = ''; // Xóa nội dung cũ
         if (data.products.length === 0) {
             photoList.innerHTML = '<p>Không có sản phẩm nào.</p>';
             return;
         }
-        data.products.forEach(product => {
-            console.log(product.name);
-        });
 
-        // Duyệt qua danh sách sản phẩm và tạo HTML
         data.products.forEach(item => {
+            if (!item.url || !item.name) {
+                console.error('Invalid item data:', item);
+                return;
+            }
+
             const photoHtml =
                 '<div class="photo shadow-effect mr-3 mb-1">' +
                 '<div class="photo-image position-relative">' +
@@ -346,10 +377,44 @@
                 '<div class="photo-text-privacy pr-2">Công khai</div>' +
                 '</div>' +
                 '</div>';
-
             photoList.innerHTML += photoHtml;
         });
     }
+</script>
+
+<%-- HIển thị ảnh khi thêm --%>
+<script>
+    document.getElementById('fileUpload').addEventListener('change', function (event) {
+        const previewContainer = document.getElementById('preview-container');
+        const files = event.target.files;
+
+        previewContainer.innerHTML = '';
+
+        Array.from(files).forEach(file => {
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+
+                // Khi FileReader đọc xong
+                reader.onload = function (e) {
+                    // Tạo phần tử ảnh
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = file.name;
+                    img.style.maxHeight = '200px';
+                    img.style.maxWidth = '200px';
+                    img.style.marginLeft = '5px';
+                    img.style.border = '1px solid #ccc';
+                    img.style.borderRadius = '5px';
+
+                    previewContainer.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                alert('Tệp không phải ảnh: ' + file.name);
+            }
+        });
+    });
 </script>
 
 
@@ -364,6 +429,25 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
+
+<%--<script>--%>
+<%--    document.addEventListener('DOMContentLoaded', () => {--%>
+<%--        ClassicEditor--%>
+<%--            .create(document.querySelector('#description'), {--%>
+<%--                ckfinder: {--%>
+<%--                    uploadUrl: './assets/images' // API upload của servlet--%>
+<%--                },--%>
+<%--                toolbar: [--%>
+<%--                    'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|',--%>
+<%--                    'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|', 'undo', 'redo', 'imageUpload'--%>
+<%--                ]--%>
+<%--            })--%>
+<%--            .catch(error => {--%>
+<%--                console.error('Lỗi khi khởi tạo CKEditor:', error);--%>
+<%--            });--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 
 </html>

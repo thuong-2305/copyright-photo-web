@@ -4,6 +4,7 @@ import vn.edu.hcmuaf.fit.coriphoto.dao.ProductDAO;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProductService {
@@ -16,8 +17,6 @@ public class ProductService {
     public Product getById(int id) {
         return products.getById(id);
     }
-
-
 
     public List<TrendProducts> getTopTrend() {
         return products.getTrendProducts();
@@ -43,7 +42,10 @@ public class ProductService {
         return products.getProductsRelated(cid, id);
     }
 
-
+    public void addProduct(int uid, int cid, String name, String description, String size,
+                           String dimension, LocalDateTime dateUpload, String url, double price) {
+        products.addProduct(uid, cid, name, description, size, dimension, dateUpload, url, price);
+    }
 
     public static void main(String[] args) {
         List<Product> res = new ProductService().sortProductsLatest(23);
