@@ -1,6 +1,9 @@
 package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import vn.edu.hcmuaf.fit.coriphoto.dao.AdminDAO;
+import vn.edu.hcmuaf.fit.coriphoto.model.OrderDTO;
+
+import java.util.List;
 
 public class AdminService {
     private static final AdminDAO adminDao = new AdminDAO();
@@ -43,4 +46,7 @@ public class AdminService {
         return adminDao.getSellersDataByMonthYear(year);
     }
 
+    public List<OrderDTO> getOrders() {
+        return adminDao.getOrders();
     }
+}

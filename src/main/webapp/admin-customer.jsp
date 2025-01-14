@@ -54,12 +54,12 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               >
             </li>
             <li>
-              <a href="${pageContext.request.contextPath}/aadmin-order"
+              <a href="${pageContext.request.contextPath}/admin-order"
                 ><i class="bi bi-wallet-fill"></i>Đơn hàng</a
               >
             </li>
             <li>
-              <a href="${pageContext.request.contextPath}/admin-products"
+              <a href="${pageContext.request.contextPath}/admin-customer"
                 ><i class="fa-solid fa-user"></i>Khách hàng</a
               >
             </li>
@@ -69,11 +69,6 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
               >
             </li>
             <hr />
-            <li>
-              <a href="${pageContext.request.contextPath}/admin-aproved"
-                ><i class="fa-solid fa-bell"></i>Ảnh đang chờ</a
-              >
-            </li>
             <li>
               <a href="${pageContext.request.contextPath}/homepage"
                 ><i class="bi bi-box-arrow-right"></i>Đăng xuất</a

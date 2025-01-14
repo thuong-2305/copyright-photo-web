@@ -39,13 +39,7 @@
                 <li>
                     <a href="${pageContext.request.contextPath}/admin-products"><i class="fa-solid fa-user"></i>Khách hàng</a>
                 </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-contributor"><i class="bi bi-coin"></i>Người phân phối</a>
-                </li>
                 <hr>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-aproved"><i class="fa-solid fa-bell"></i>Ảnh đang chờ</a>
-                </li>
                 <li>
                     <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
                 </li>

@@ -3,6 +3,7 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Order;
+import vn.edu.hcmuaf.fit.coriphoto.model.OrderDTO;
 import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
 import vn.edu.hcmuaf.fit.coriphoto.service.PromotionService;
 
@@ -12,8 +13,6 @@ public class AdminDAO {
     OrderService orderService = new OrderService();
     PromotionService promotionService = new PromotionService();
     private static final Jdbi jdbi = new DBConnect().get();
-
-
 
     public int getTotalUsers() {
         String sql = "SELECT COUNT(*) FROM users WHERE role != '0'";
@@ -98,15 +97,33 @@ public class AdminDAO {
         return customersData;
     }
 
+    public List<OrderDTO> getOrders() {
+        String sqlQuery = "SELECT " +
+                "o.orderId AS orderId, " +
+                "u.fullname AS customerName, " +
+                "o.status AS status, " +
+                "GROUP_CONCAT(p.url SEPARATOR ', ') AS productUrls, " +
+                "o.totalPrice AS totalPrice, " +
+                "o.orderDate AS orderDate " +
+                "FROM " +
+                "orders o " +
+                "JOIN " +
+                "users u ON o.uid = u.uid " +
+                "JOIN " +
+                "order_details od ON o.orderId = od.orderId " +
+                "JOIN " +
+                "products p ON od.productId = p.id " +
+                "GROUP BY " +
+                "o.orderId, u.fullname, o.status, o.totalPrice, o.orderDate;";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sqlQuery)
+                        .mapToBean(OrderDTO.class)
+                        .list());
+    }
+
 
     public static void main(String[] args) {
-        AdminDAO adminDAO = new AdminDAO();
-        System.out.println(adminDAO.getTotalUsers());
-        System.out.println(adminDAO.getTotalIncome());
-        System.out.println(adminDAO.getTotalIncomeByMonthYear(2,2025));
-
-        System.out.println(adminDAO.getTotalCustomerByMonthYear(5, 2024));
-        System.out.println(adminDAO.getTotalSellerByMonthYear(5,2024));
+        System.out.println(new AdminDAO().getOrders());
 
     }
 
