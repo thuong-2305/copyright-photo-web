@@ -21,15 +21,16 @@ public class NavbarFilter implements Filter {
 
         SellerService sellerService = new SellerService();
         CategoryService categoryService = new CategoryService();
+        CartService cartService = new CartService();
+
         List<Category> categories = categoryService.getAll();
         httpRequest.setAttribute("categories", categories);
-        CartService cartService = new CartService();
 
         User user = (User) httpRequest.getSession().getAttribute("auth");
         int uid = (user != null) ? user.getUid() : -1;
         boolean isSignupSell = (uid > -1) && sellerService.isSignupSell(uid);
-
         int cartLen;
+
         if(uid > -1) {
             Cart cart = cartService.getCart(uid);
             cartLen = cart.getNumItems();

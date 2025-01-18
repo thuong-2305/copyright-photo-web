@@ -10,6 +10,7 @@ import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,12 @@ public class AdminProductsController extends HttpServlet {
                             .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
                                 @Override
                                 public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
+                                    return new JsonPrimitive(src.toString());
+                                }
+                            })
+                            .registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
+                                @Override
+                                public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
                                     return new JsonPrimitive(src.toString());
                                 }
                             })
