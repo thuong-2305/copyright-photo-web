@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "AdminOrderController", value = "/admin-order")
-public class AdminOrderController extends HttpServlet {
+    public class AdminOrderController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,7 +22,6 @@ public class AdminOrderController extends HttpServlet {
         request.setAttribute("orders", orders);
         System.out.println("OK");
         request.getRequestDispatcher("admin-order.jsp").forward(request, response);
-
     }
 
     @Override

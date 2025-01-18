@@ -37,7 +37,6 @@ public class HomeController extends HttpServlet {
             request.setAttribute("notification", notification);
             request.getSession().removeAttribute("notification");
         }
-        System.out.println(notification);
         request.getRequestDispatcher("homepage.jsp").forward(request, response);
     }
 
