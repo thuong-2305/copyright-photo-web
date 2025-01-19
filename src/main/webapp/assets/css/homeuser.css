@@ -29,7 +29,7 @@
 
 .user-account .close-user {
     position: absolute;
-    right: 7%;
+    right: 10% !important;
     top: 3%;
 }
 
@@ -51,13 +51,12 @@
 }
 
 .user-account .container .top .info .name span {
-    font-size: 17px;
+    font-size: 20px;
     margin-bottom: 0;
 }
 
 .user-account .container .top .info .name p {
     color: var(--footer-text-color);
-    margin-bottom: 0;
     margin-top: -5px;
     margin-bottom: 10px;
 }

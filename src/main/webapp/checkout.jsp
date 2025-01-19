@@ -21,7 +21,31 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        #nav:not(.scrolled) .title-logo {
+            color: black;
+        }
 
+        #nav:not(.scrolled) .title-item {
+            color: black !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover {
+            color: #009970;
+        }
+
+        #nav:not(.scrolled) .title-item:hover {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .title-item:hover i {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover .title-item {
+            color: #009970 !important;
+        }
+    </style>
 </head>
 
 <body>

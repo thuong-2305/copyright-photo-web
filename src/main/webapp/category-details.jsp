@@ -16,60 +16,6 @@
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<!-- section user account -->
-<section class="user-account bg-white">
-    <div class="container">
-        <div class="top d-flex mt-5 align-items-center">
-            <img class="avatar position-relative" src="assets/images/avart-default.png" />
-            <div class="info">
-                <div class="name">
-                    <span>Hi, Test</span>
-                    <p>test@gmail.com</p>
-                </div>
-                <a href="pages/editprofile.html" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
-            </div>
-        </div>
-        <div class="line-seperate"></div>
-        <div class="option">
-            <ul class="">
-                <li class="item">
-                    <a href="pages/homeprofile.html">
-                        <i class="fas fa-user-cog me-2"></i>
-                        <p>Chi tiết tài khoản</p>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="pages/like.html">
-                        <i class="fas fa-heart me-2"></i>
-                        <p>Yêu thích</p>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="pages/cart.html">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <p>Giỏ hàng</p>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="pages/history-order.html">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        <p>Lịch sử mua hàng</p>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="homepage.html">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                        <p class="mb-0">Đăng xuất</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <button class="btn-close btn-close-black close-user"></button>
-    </div>
-</section>
-<div class="overlay"></div>
-<!-- section user account -->
-
 <!--section banner -->
 <section class="banner d-flex flex-column justify-content-center align-items-center">
     <div class="banner-home">

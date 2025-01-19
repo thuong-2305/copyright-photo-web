@@ -10,6 +10,31 @@
     <title>Product Detail</title>
     <jsp:include page="include/head.jsp"/>
     <link rel="stylesheet" href="./assets/css/product-details.css">
+    <style>
+        #nav:not(.scrolled) .title-logo {
+            color: black;
+        }
+
+        #nav:not(.scrolled) .title-item {
+            color: black !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover {
+            color: #009970;
+        }
+
+        #nav:not(.scrolled) .title-item:hover {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .title-item:hover i {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover .title-item {
+            color: #009970 !important;
+        }
+    </style>
 </head>
 
 <body>
