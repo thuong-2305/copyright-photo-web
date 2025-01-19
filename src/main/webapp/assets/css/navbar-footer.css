@@ -89,6 +89,24 @@
     position: relative;
 }
 
+#nav:not(.scrolled) .container .feature-admin div {
+    border-color: #ceced2 !important;
+    color: #ceced2 !important;
+}
+
+#nav:not(.scrolled) .container .feature-admin div i {
+    color: #ceced2 !important;
+}
+
+#nav:not(.scrolled) .container .feature-admin div:hover {
+    border-color: transparent !important;
+    color: white !important;
+}
+
+#nav:not(.scrolled) .container .feature-admin div:hover i {
+    color: white !important;
+}
+
 #nav .container .nav-item:not(.nav-item:nth-child(2)):hover .link-hover {
     position: absolute;
     display: flex;

@@ -22,7 +22,7 @@
 <section class="banner">
     <div class="banner-home d-flex justify-content-center align-items-center flex-column">
         <div class="main-title d-flex justify-content-center flex-column align-items-center">
-            <h1 class="fw-900 m-2">CoRiPhoTo</h1>
+            <h1 class="fw-900 m-2">CoRiPhoTo, Kho ảnh bản quyền đẹp dành cho bạn</h1>
             <p>Thêm điều kỳ diệu vào câu chuyện của bạn với hơn 1 ngàn ảnh, vectơ
                 , hình minh họa và hình ảnh biên tập.</p>
         </div>
@@ -71,7 +71,6 @@
 <section class="category-home">
     <div class="container title align-items-center">
         <p>Các danh mục phổ biến</p>
-        <a href="#" class="btn btn-outline-success rounded-pill fs-5">Xem nhiều hơn</a>
     </div>
 
     <!-- photos -->

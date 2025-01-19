@@ -132,7 +132,7 @@
                     </div>
 
                     <c:if test="${ auth.role == 0 }">
-                        <a href="ShowDashBoard" class="text-decoration-none">
+                        <a href="ShowDashBoard" class="text-decoration-none feature-admin">
                             <div class="d-flex align-items-center user-icon btn btn-outline-success">
                                 <i class="bi bi-person-lock me-2"></i>Admin
                                 <i class="fa fa-caret-down ms-2"></i>
@@ -149,20 +149,18 @@
 <section class="user-account bg-white">
     <div class="container">
         <div class="top d-flex mt-5 align-items-center">
-            <img class="avatar position-relative" src="../assets/images/avart-default.png"  alt=""/>
             <div class="info">
                 <div class="name">
-                    <span>Hi, ${ auth.username }</span>
-                    <p>${ auth.email }</p>
+                    <span class="fw-bold text-success text-decoration-underline">Hi, ${ auth.username }</span>
+                    <p class="mt-1">${ auth.email }</p>
                 </div>
-                <a href="ShowProfileInformation" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
             </div>
         </div>
         <div class="line-seperate"></div>
         <div class="option">
             <ul class="">
                 <li class="item">
-                    <a href="#">
+                    <a href="ShowProfileInformation">
                         <i class="fas fa-user-cog me-2"></i>
                         <p>Chi tiết tài khoản</p>
                     </a>
@@ -185,6 +183,7 @@
                         <p>Lịch sử mua hàng</p>
                     </a>
                 </li>
+                <hr>
                 <li class="item">
                     <a href="logout">
                         <i class="fa-solid fa-arrow-right-from-bracket"></i>

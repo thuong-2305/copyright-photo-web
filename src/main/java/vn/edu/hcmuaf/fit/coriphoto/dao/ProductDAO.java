@@ -33,7 +33,7 @@ public class ProductDAO {
                 "WHERE p.status = 'accepted' " +
                 "GROUP BY p.id, p.name, p.url " +
                 "ORDER BY view DESC " +
-                "LIMIT 15;";
+                "LIMIT 25;";
         return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
                 .mapToBean(TrendProducts.class).list());
     }

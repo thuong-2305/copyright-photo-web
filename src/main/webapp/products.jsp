@@ -9,6 +9,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jsp:include page="include/head.jsp"/>
     <title>Products</title>
+
+    <style>
+        #nav:not(.scrolled) .title-logo {
+            color: black;
+        }
+
+        #nav:not(.scrolled) .title-item {
+            color: black !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover {
+            color: #009970;
+        }
+
+        #nav:not(.scrolled) .title-item:hover {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .title-item:hover i {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover .title-item {
+            color: #009970 !important;
+        }
+    </style>
 </head>
 
 <body>

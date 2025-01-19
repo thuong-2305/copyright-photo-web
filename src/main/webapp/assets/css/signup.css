@@ -10,17 +10,15 @@
 }
 
 .frame-signup {
-  min-height: 600px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  -webkit-box-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
   align-items: center;
-  height: 100vh;
+  overflow-y: auto;
   background-color: var(--swatch_1);
-  flex: 1;
 }
+
 .signup-container {
   word-break: break-word;
   padding: 24px;
@@ -45,35 +43,45 @@
   position: relative;
 }
 
-.btn i {
+.signup-container .btn svg {
   position: absolute;
   left: 25px;
   font-size: 20px;
 }
 
-.btn:hover {
+.signup-container .btn-signup:hover {
   opacity: 0.8;
-  --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #fb7d7d;
+  background: #57cc99;
 }
 
-.btn-signup {
-  background-color: var(--primary-color);
+.signup-container .btn-signup {
+  color: white !important;
+  background: var(--swatch_4) !important;
 }
 
-.btn-google {
+.signup-container .btn-google {
   background-color: #fff;
-  border: 1px solid #626161;
+  border: 1px solid #dee2e6;
   color: #676767;
+}
+
+.signup-container .btn-google:hover {
+  border-color: #343a40;
 }
 
 .content {
   display: flex;
-  flex-direction: row;
+  height: 100vh;
+}
+
+.image-about {
+  flex: 1;
+  position: sticky;
+  top: 0;
 }
 
 .image-about img {
-  width: 50vw;
+  width: 100%;
   height: 100vh;
   object-fit: cover;
 }

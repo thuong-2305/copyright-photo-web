@@ -22,8 +22,8 @@
 <section class="banner">
     <div class="banner-home d-flex justify-content-center align-items-center flex-column">
         <div class="main-title d-flex justify-content-center flex-column align-items-center">
-            <h1 class="fw-900 m-2">CoRiPhoTo</h1>
-            <p>Thêm điều kỳ diệu vào câu chuyện của bạn với hơn 1 ngàn ảnh, vectơ
+            <h1 class="fw-900 m-2">CoRiPhoTo, Kho ảnh bản quyền đẹp dành cho bạn</h1>
+            <p style="color: #ceced2">Thêm điều kỳ diệu vào câu chuyện của bạn với hơn 1 ngàn ảnh, vector
                 , hình minh họa và hình ảnh biên tập.</p>
         </div>
         <div class="search-container">
@@ -71,7 +71,6 @@
 <section class="category-home">
     <div class="container title align-items-center">
         <p>Các danh mục phổ biến</p>
-        <a href="#" class="btn btn-outline-success rounded-pill fs-5">Xem nhiều hơn</a>
     </div>
 
     <!-- photos -->
@@ -126,9 +125,19 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="">
                         <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
+                            <button class="option-button">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
+                            </button>
+                            <button class="option-button">
+                                <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
+                            </button>
+                            <button class="option-button addCart" data-product-id=<%= product.getId() %>>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
+                            </button>
+                        </div>
                         <div class="image-text">
                             <p><%= product.getName() %></p>
                         </div>
@@ -146,9 +155,19 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
-                            <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
-                            <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
+                            <button class="option-button">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
+                            </button>
+                            <button class="option-button">
+                                <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
+                            </button>
+                            <button class="option-button addCart" data-product-id=<%= product.getId() %>>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
+                            </button>
+                        </div>
                         <div class="image-text">
                             <p><%= product.getName() %></p>
                         </div>
@@ -168,12 +187,45 @@
                         <div class="hover-options">
                             <button class="option-button">
                                 <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
                             </button>
                             <button class="option-button">
                                 <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
                             </button>
                             <button class="option-button addCart" data-product-id=<%= product.getId() %>>
                                 <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
+                            </button>
+                        </div>
+                        <div class="image-text">
+                            <p><%= product.getName() %></p>
+                        </div>
+                    </div>
+                </a>
+                <% } %>
+            </div>
+
+            <div class="dream">
+                <%
+                    for (int i = 15; i < 20; i++) {
+                        TrendProducts product = trendsProducts.get(i);
+                %>
+                <a href="product-detail?pid=<%= product.getId() %>">
+                    <div class="pic">
+                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <div class="hover-options">
+                            <button class="option-button">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
+                            </button>
+                            <button class="option-button">
+                                <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
+                            </button>
+                            <button class="option-button addCart" data-product-id=<%= product.getId() %>>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
                             </button>
                         </div>
                         <div class="image-text">
@@ -210,45 +262,6 @@
 <jsp:include page="include/footer.jsp"/>
 <jsp:include page="include/scripts.jsp"/>
 
-<script>
-    $(document).ready(function () {
-        $(".addCart").click(function (event) {
-            let productId = $(this).data("product-id");
-            event.preventDefault();
-            $.ajax({
-                url: "addToCart?pid=" + productId,
-                method: "POST",
-                contentType: "application/json",
-                success: function (response) {
-                    if (response.addSuccess) {
-                        $(".alert-success span").text("Thêm thành công!");
-                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
-                            $(this).addClass("d-none");
-                        });
-                        $("#nav .container a.cart span").text(response.cartLen);
-                    } else {
-                        $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
-                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
-                            $(this).addClass("d-none");
-                        });
-                    }
-                },
-                error: function () {
-                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
-                }
-            });
-        });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-        const alertMessage = document.getElementById("alertMessage");
-        if (alertMessage) {
-            alertMessage.style.display = "block";
-            setTimeout(() => {
-                alertMessage.style.display = "none";
-            }, 2000);
-        }
-    });
-</script>
 <script>
     $(document).ready(function () {
         $(".addCart").click(function (event) {
