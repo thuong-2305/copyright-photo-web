@@ -86,7 +86,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-3" href="license">
+                                <a class="nav-link mx-lg-3" href="${pageContext.request.contextPath}/license">
                                     <span class="fw-semibold title-item">
                                         <i class="bi bi-x-diamond me-2 title-item"></i>Giấy phép
                                     </span>

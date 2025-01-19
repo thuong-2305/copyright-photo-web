@@ -22,6 +22,7 @@ public class SignupController extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
         String username = request.getParameter("username");
+        String name = request.getParameter("name");
 
         // So sánh mật khẩu và xác nhận mật khẩu
         if (!password.equals(confirmPassword)) {
@@ -40,7 +41,7 @@ public class SignupController extends HttpServlet {
         } else {
             // Nếu email chưa tồn tại, tạo tài khoản mới
 
-            boolean isCreated = authService.registerUser(email, password, username);
+            boolean isCreated = authService.registerUser(email, password, username, name);
             if (isCreated) {
                 // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
                 response.sendRedirect("login.jsp");
