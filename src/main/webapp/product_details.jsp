@@ -34,6 +34,13 @@
         #nav:not(.scrolled) .nav-item:hover .title-item {
             color: #009970 !important;
         }
+
+        #nav:not(.scrolled) .container .login-button {
+            background-color: transparent;
+            color: black;
+            padding: 7px 19px;
+            border: 1px solid black;
+        }
     </style>
 </head>
 
