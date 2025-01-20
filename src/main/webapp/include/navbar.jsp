@@ -86,7 +86,7 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-3" href="${pageContext.request.contextPath}/license">
+                                <a class="nav-link mx-lg-3" href="/license">
                                     <span class="fw-semibold title-item">
                                         <i class="bi bi-x-diamond me-2 title-item"></i>Giấy phép
                                     </span>
@@ -191,6 +191,12 @@
                     </a>
                 </li>
             </ul>
+        </div>
+        <div class="icon-greeting">
+            <img src="../assets/images/icons-greeting.png" alt=""/>
+        </div>
+        <div class="title-logo-user fw-bold">
+            <span class="text-success">C</span>o<span class="text-success">R</span>iPhoto
         </div>
         <button class="btn-close btn-close-black close-user"></button>
     </div>

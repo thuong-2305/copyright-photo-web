@@ -34,13 +34,20 @@
         #nav:not(.scrolled) .nav-item:hover .title-item {
             color: #009970 !important;
         }
+
+        #nav:not(.scrolled) .container .login-button {
+            background-color: transparent;
+            color: black;
+            padding: 7px 19px;
+            border: 1px solid black;
+        }
     </style>
 </head>
 
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<section class="search pt-5 mt-3" style="margin-top: 15px">
+<section class="search pt-5 mt-4" style="margin-top: 15px">
     <div class="search-container">
         <div class="dropdown">
             <button class="text-secondary" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả

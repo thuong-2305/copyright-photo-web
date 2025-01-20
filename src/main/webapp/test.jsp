@@ -99,16 +99,6 @@
 <section class="container raw-images">
     <div class="heading mb-2">
         <h3>Những gì đang có <span>xu hướng</span> trong tuần</h3>
-        <div class="button-container">
-            <button class="custom-button"><i class="fa fa-search"></i> Tự nhiên</button>
-            <button class="custom-button"><i class="fa fa-search"></i> Athlete</button>
-            <button class="custom-button"><i class="fa fa-search"></i> Gia đình</button>
-            <button class="custom-button"><i class="fa fa-search"></i> Thác nước</button>
-            <button class="custom-button"><i class="fa fa-search"></i> Sự sống</button>
-            <button class="custom-button"><i class="fa fa-search"></i> Portrait</button>
-            <button class="custom-button"><i class="fa fa-search"></i> Thành phố</button>
-            <button class="custom-button"><i class="fa fa-search"></i> Du lịch</button>
-        </div>
     </div>
     <div class="new-events mt-5">
         <div class="box">
@@ -138,9 +128,9 @@
                                 <span class="text-click-hover">Thêm giỏ hàng</span>
                             </button>
                         </div>
-                        <div class="image-text">
-                            <p><%= product.getName() %></p>
-                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
                     </div>
                 </a>
                 <% } %>
@@ -168,9 +158,9 @@
                                 <span class="text-click-hover">Thêm giỏ hàng</span>
                             </button>
                         </div>
-                        <div class="image-text">
-                            <p><%= product.getName() %></p>
-                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
                     </div>
                 </a>
                 <% } %>
@@ -198,9 +188,9 @@
                                 <span class="text-click-hover">Thêm giỏ hàng</span>
                             </button>
                         </div>
-                        <div class="image-text">
-                            <p><%= product.getName() %></p>
-                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
                     </div>
                 </a>
                 <% } %>
@@ -228,42 +218,61 @@
                                 <span class="text-click-hover">Thêm giỏ hàng</span>
                             </button>
                         </div>
-                        <div class="image-text">
-                            <p><%= product.getName() %></p>
-                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
                     </div>
                 </a>
                 <% } %>
             </div>
         </div>
     </div>
-    <div class="see-more">
-        <button class="see-more-button">
-            <a href="categories" class="text-success text-decoration-none">Xem nhiều hơn</a>
-        </button>
+    <div class="fade-out">
+        <div class="see-more">
+            <button class="see-more-button">
+                <a href="categories" class="text-decoration-none fw-semibold">Xem nhiều hơn</a>
+            </button>
+        </div>
     </div>
 </section>
 <!-- section raw images -->
+
+<%-- text final --%>
+<div class="info-box">
+    <div class="icon">
+        <i class="fa fa-heart-circle-check"></i>
+    </div>
+    <div class="content">
+        <h3>Bản quyền hình ảnh an toàn và hợp pháp</h3>
+        <p>
+            Chúng tôi cung cấp kho ảnh chất lượng cao với bản quyền đầy đủ, giúp bạn sử dụng cho các dự án cá nhân hoặc thương mại một cách an toàn.
+            Tất cả các hình ảnh đều được cấp phép, đảm bảo tính pháp lý và không cần lo lắng về vi phạm bản quyền.
+        </p>
+        <a href="/license" class="learn-more">Xem nhiều hơn về chính sách của chúng tôi</a>
+    </div>
+</div>
+<%-- text final --%>
+
 
 <%-- notification --%>
 <div class="alert alert-primary d-none align-items-center position-fixed"
      role="alert"
      style="display: none; width: 25%; top: 15%; right: 0"
 >
-    <i class="bi bi-exclamation-triangle"></i><span></span>
+    <i class="bi bi-exclamation-triangle me-2"></i><span></span>
 </div>
 <div class="alert alert-success d-none align-items-center position-fixed"
      role="alert"
      style="display: none; width: 25%; top: 15%; right: 0"
 >
-    <i class="bi bi-check2-circle"></i><span></span>
+    <i class="bi bi-check2-circle me-2"></i><span></span>
 </div>
 
 <c:if test="${ notification != null }">
     <div id="alertMessage" class="alert alert-danger align-items-center position-fixed"
          role="alert"
          style="display: none; width: 25%; top: 15%; right: 0;">
-        <i class="bi bi-exclamation-triangle"></i>
+        <i class="bi bi-exclamation-triangle me-2"></i>
         <span>${ notification }</span>
     </div>
 </c:if>
