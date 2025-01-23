@@ -24,11 +24,13 @@
                            required value="${email != null ? email : ''}" autocomplete="off"/>
                 </div>
                 <p class="text-danger">${ errorEmail }</p>
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     <label for="password" class="form-label d-flex justify-content-between">
                         Mật khẩu:<a href="forgot-pass.jsp" class="text-decoration-none">Quên mật khẩu?</a>
                     </label>
                     <input name="password" type="password" class="form-control" id="password" placeholder="Nhập password" required />
+                    <i class="fa fa-eye position-absolute" id="togglePassword"
+                       style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
                 <p class="text-danger">${ errorPassword }</p>
                 <button type="submit" class="btn btn-login w-100 mb-3">
@@ -55,5 +57,17 @@
 </div>
 
 <jsp:include page="include/scripts.jsp"/>
+
+<script>
+    document.getElementById('togglePassword').addEventListener('click', function () {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.type === 'password' ? 'text' : 'password';
+        passwordInput.type = type;
+
+        // Thay đổi icon
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
 </body>
 </html>

@@ -3,14 +3,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
     <title>Category Details</title>
-    <link rel="stylesheet" href="./assets/css/navbar-footer.css">
-    <link rel="stylesheet" href="./assets/css/homeuser.css">
+    <jsp:include page="include/head.jsp" />
     <link rel="stylesheet" href="./assets/css/category-details.css">
-    <link rel="stylesheet" href="./assets/css/search.css">
-    <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
 </head>
 
 <body>
@@ -34,12 +29,14 @@
 <section class="category">
     <div class="container list-category">
         <jsp:useBean id="categories" scope="request" type="java.util.List"/>
-        <c:forEach var="item" items="${ categories }">
-        <div class="box">
-            <img src="${ item.getUrl() }" alt="" class="image">
-            <p class="text-white fw-bolder fs-4">${ item.getName() }</p>
-            <a href="products?cid=${ item.getCid() }" class="text-white">Xem</a>
-        </div>
+        <c:forEach var="item" items="${categories}">
+            <a href="products?cid=${item.getCid()}" class="box-link">
+                <div class="box">
+                    <img src="${item.getUrl()}" alt="" class="image">
+                    <p class="text-white fw-semibold fs-4">${item.getName()}</p>
+                    <i class="bi bi-back"></i>
+                </div>
+            </a>
         </c:forEach>
     </div>
 </section>
@@ -76,7 +73,7 @@
                         miễn phí bản quyền. Tải xuống tác phẩm đã chỉnh sửa của bạn và chia sẻ.
                     </li>
                 </ul>
-                <img src="../assets/images/People/9.jpg" alt="" class="float-end w-50 my-3">
+                <img src="./assets/images/People/9.jpg" alt="" class="float-end w-50 my-3">
             </div>
 
             <div class="container content-text marketing">
@@ -92,7 +89,7 @@
                         miễn phí về những người có vẻ ngoài tự nhiên. Bằng cách sử dụng các tùy chọn bộ lọc của CoRiPhoto, bạn
                         có thể chỉ định độ tuổi, giới tính, dân tộc và số lượng người trong hình ảnh của mình.</li>
                 </ul>
-                <img src="../assets/images/Commercial/2.jpg" alt="" class="float-end w-50 my-3">
+                <img src="./assets/images/Commercial/2.jpg" alt="" class="float-end w-50 my-3">
             </div>
 
             <div class="container content-text design">
@@ -112,7 +109,7 @@
                         cho nhau. Điều này sẽ giúp mang lại cho trang web của bạn một cái nhìn gắn kết, chuyên nghiệp.
                     </li>
                 </ul>
-                <img src="../assets/images/Technology/Data/7.webp" alt="" class="float-end w-50 my-3">
+                <img src="./assets/images/technology/data/7.webp" alt="" class="float-end w-50 my-3">
             </div>
 
             <div class="container content-text creative">
@@ -126,7 +123,7 @@
                         mời đám cưới, ảnh bìa Facebook cho đến câu chuyện trên Instagram, v.v. Hãy bắt đầu ngay hôm nay.
                     </li>
                 </ul>
-                <img src="../assets/images/HandScenery/007.jpg" alt="" class="float-end w-50 my-3">
+                <img src="./assets/images/HandScenery/007.jpg" alt="" class="float-end w-50 my-3">
             </div>
         </div>
     </div>
