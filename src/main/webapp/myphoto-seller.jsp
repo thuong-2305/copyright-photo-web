@@ -22,8 +22,38 @@
         .modal {
             z-index: 9999;
         }
-    </style>
-    <style>
+
+        #nav:not(.scrolled) .title-logo {
+            color: black;
+        }
+
+        #nav:not(.scrolled) .title-item {
+            color: black !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover {
+            color: #009970;
+        }
+
+        #nav:not(.scrolled) .title-item:hover {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .title-item:hover i {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover .title-item {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .container .login-button {
+            background-color: transparent;
+            color: black;
+            padding: 7px 19px;
+            border: 1px solid black;
+        }
+
         .image-text {
             position: relative;
             margin: 10px;
@@ -173,55 +203,9 @@
     </div>
 </div>
 
-<%--section upload 2--%>
-<!-- Modal -->
-<%--<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">--%>
-<%--    <div class="modal-dialog modal-dialog-scrollable">--%>
-<%--        <div class="modal-content">--%>
-<%--            <div class="modal-header">--%>
-<%--                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>--%>
-<%--                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--%>
-<%--            </div>--%>
-<%--            <div class="modal-body">--%>
-<%--                <form action="uploadImage" method="post" enctype="multipart/form-data">--%>
-<%--                    <label for="file">Chọn file:</label>--%>
-<%--                    <input type="file" name="file" id="file" required><br>--%>
-
-<%--                    <label for="title">Tên:</label>--%>
-<%--                    <input type="text" name="title" id="title" required><br>--%>
-
-<%--                    <label for="description">Mô tả:</label>--%>
-<%--                    <textarea name="description" id="description" required></textarea><br>--%>
-
-<%--                    <label for="dimension">Kích thước:</label>--%>
-<%--                    <input type="text" name="dimension" id="dimension" required><br>--%>
-
-<%--                    <label for="file-size">Dung lượng:</label>--%>
-<%--                    <input type="text" name="file-size" id="file-size" required><br>--%>
-
-<%--                    <label for="category">Danh mục:</label>--%>
-<%--                    <select id="category" name="category" required style="background: white !important;">--%>
-<%--                        <option value="">Chọn danh mục</option>--%>
-<%--                        <c:forEach var="item" items="${categories}">--%>
-<%--                            <option value="${ item.cid }">${ item.name }</option>--%>
-<%--                        </c:forEach>--%>
-<%--                    </select><br>--%>
-
-<%--                    <label for="price">Giá muốn bán:</label>--%>
-<%--                    <input type="number" name="price" id="price" step="0.01" min="0" required><br>--%>
-
-<%--                    <button type="submit">Upload</button>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--            <div class="modal-footer">--%>
-<%--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
 <!-- section upload -->
 <div class="overlay2"></div>
+<form action="uploadImage" method="post" enctype="multipart/form-data" >
 <section class="upload bg-white" style="z-index: 9999;">
     <div class="container">
         <!-- title -->
@@ -256,7 +240,7 @@
                         <label for="fileUpload" class="d-flex align-items-center justify-content-center">
                             <i class="fa-solid fa-plus"></i>
                         </label>
-                        <input type="file" id="fileUpload" accept="image/*" style="opacity: 0;" enctype="multipart/form-data" />
+                        <input type="file" id="fileUpload" name="file" accept="image/*" style="opacity: 0;" enctype="multipart/form-data" />
                     </div>
                 </div>
             </div>
@@ -327,7 +311,7 @@
     </div>
     <button class="btn-close btn-close-black close-upload"></button>
 </section>
-
+</form>
 
 <%-- Notification --%>
 <div class="alert alert-danger d-none align-items-center position-fixed"
@@ -335,6 +319,16 @@
      style="display: none; width: 25%; top: 15%; right: 0%">
     <i class="bi bi-exclamation-triangle"></i><span></span>
 </div>
+
+<c:if test="${ msgUpload != null }">
+<div class="alert alert-success d-none align-items-center position-fixed"
+     role="alert"
+     id="alertMessage"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+    <i class="bi bi-check2-circle"></i><span>${ msgUpload }</span>
+</div>
+</c:if>
 <%-- Notification --%>
 
 <script src="./assets/js/myphoto-seller.js"></script>
@@ -343,7 +337,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Tải danh sách mặc định (accepts) khi load trang
         fetchList('accepts');
     });
 
@@ -366,7 +359,7 @@
                     alert('Lỗi: ' + data.error); // Hiển thị thông báo lỗi
                     return;
                 }
-                updatePhotoList(data);  // Chuyển dữ liệu vào hàm updatePhotoList
+                updatePhotoList(data);
             })
             .catch(error => {
                 console.error('Lỗi khi tải danh sách:', error);
@@ -462,8 +455,17 @@
             }
         });
     });
-</script>
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const alertMessage = document.getElementById("alertMessage");
+        if (alertMessage) {
+            alertMessage.style.display = "block";
+            setTimeout(() => {
+                alertMessage.style.display = "none";
+            }, 2000);
+        }
+    });
+</script>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -477,24 +479,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-
-<%--<script>--%>
-<%--    document.addEventListener('DOMContentLoaded', () => {--%>
-<%--        ClassicEditor--%>
-<%--            .create(document.querySelector('#description'), {--%>
-<%--                ckfinder: {--%>
-<%--                    uploadUrl: './assets/images' // API upload của servlet--%>
-<%--                },--%>
-<%--                toolbar: [--%>
-<%--                    'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', '|',--%>
-<%--                    'insertTable', 'tableColumn', 'tableRow', 'mergeTableCells', '|', 'undo', 'redo', 'imageUpload'--%>
-<%--                ]--%>
-<%--            })--%>
-<%--            .catch(error => {--%>
-<%--                console.error('Lỗi khi khởi tạo CKEditor:', error);--%>
-<%--            });--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
 
 </html>

@@ -49,4 +49,8 @@ public class SellerService {
         return sellerDAO.getAllProducts(uid, status);
     }
 
+    public void uploadProduct(Product product) {
+        sellerDAO.uploadProduct(product);
+    }
+
 }
