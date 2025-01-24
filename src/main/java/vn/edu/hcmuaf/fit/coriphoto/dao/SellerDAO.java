@@ -251,6 +251,27 @@ public class SellerDAO {
                 .bind(0, uid).bind(1, status).mapToBean(Product.class).list());
     }
 
+    public void uploadProduct(Product product) {
+        String query = """
+                    INSERT INTO products (uid, cid, name, description, size, dimension, dateUpload, url, price)
+                    VALUES (:uid, :cid, :name, :description, :size, :dimension, :dateUpload, :url, :price)
+                """;
+
+        jdbi.useHandle(handle ->
+                handle.createUpdate(query)
+                        .bind("uid", product.getUid())
+                        .bind("cid", product.getCid())
+                        .bind("name", product.getName())
+                        .bind("description", product.getDescription())
+                        .bind("size", product.getSize())
+                        .bind("dimension", product.getDimension())
+                        .bind("dateUpload", product.getDateUpload())
+                        .bind("url", product.getUrl())
+                        .bind("price", product.getPrice())
+                        .execute()
+        );
+    }
+
     public static void main(String[] args) {
         System.out.println(new SellerDAO().getAllProducts(37, "accepted"));
     }
