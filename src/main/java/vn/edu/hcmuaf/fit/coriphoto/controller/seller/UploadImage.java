@@ -75,6 +75,5 @@ public class UploadImage extends HttpServlet {
 
         request.setAttribute("msgUpload", "Upload ảnh thành công!");
         request.getRequestDispatcher("myphoto-seller.jsp").forward(request, response);
-
     }
 }

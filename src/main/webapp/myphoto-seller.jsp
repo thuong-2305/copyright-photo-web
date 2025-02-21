@@ -216,7 +216,7 @@
         <!-- end title -->
 
         <!-- content start -->
-        <div class="option v2" id="option">
+        <div class="option v2" id="option" style="display: none">
             <div class="box d-flex flex-column align-items-center justify-content-center h-100">
                 <i class="fa-solid fa-upload fs-2 fw-0"></i>
                 <span class="fs-5 fw-bold my-4">Kéo thả các file để tải lên</span>
@@ -321,10 +321,10 @@
 </div>
 
 <c:if test="${ msgUpload != null }">
-<div class="alert alert-success d-none align-items-center position-fixed"
+<div class="alert alert-success align-items-center position-fixed"
      role="alert"
      id="alertMessage"
-     style="display: none; width: 25%; top: 15%; right: 0%"
+     style="display: none; width: 25%; top: 15%; right: 0"
 >
     <i class="bi bi-check2-circle"></i><span>${ msgUpload }</span>
 </div>
@@ -334,6 +334,18 @@
 <script src="./assets/js/myphoto-seller.js"></script>
 <script src="./assets/js/upload.js"></script>
 <jsp:include page="include/scripts.jsp"/>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const alertMessage = document.getElementById("alertMessage");
+        if (alertMessage) {
+            alertMessage.style.display = "block";
+            setTimeout(() => {
+                alertMessage.style.display = "none";
+            }, 2000);
+        }
+    });
+</script>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -454,16 +466,6 @@
                 alert('Tệp không phải ảnh: ' + file.name);
             }
         });
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const alertMessage = document.getElementById("alertMessage");
-        if (alertMessage) {
-            alertMessage.style.display = "block";
-            setTimeout(() => {
-                alertMessage.style.display = "none";
-            }, 2000);
-        }
     });
 </script>
 
