@@ -41,6 +41,9 @@
                 </li>
                 <hr>
                 <li>
+                    <a href="${pageContext.request.contextPath}/admin-notification"><i class="bi bi-bell-fill"></i>Thông báo</a>
+                </li>
+                <li>
                     <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
                 </li>
             </ul>
