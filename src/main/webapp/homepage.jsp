@@ -125,7 +125,7 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="">
                         <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
+                            <a href="Favourite"><button class="option-button"><i class="fa-regular fa-heart"></i></button></a>
                             <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
                             <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
                         <div class="image-text">
