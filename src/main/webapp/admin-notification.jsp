@@ -149,8 +149,12 @@
                     <td><img src="<%= product.getUrl() %>" alt="" style="width:60px; height: 60px; border-radius: 5px;"></td>
                     <td><%= product.getDateUpload() %></td>
                     <td>
-                      <button class="btn accept-btn btn-primary" data-id="<%=product.getId() %>">Accept</button>
-                      <button class="btn reject-btn btn-danger" data-id="<%=product.getId() %>">Reject</button>
+                      <button class="btn accept-btn btn-primary">
+                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "accepted" %>">Accept</a>
+                      </button>
+                      <button class="btn reject-btn btn-danger" data-id="<%=product.getId() %>">
+                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "rejected" %>">Reject</a>
+                      </button>
                     </td>
                   </tr>
                 <% } %>

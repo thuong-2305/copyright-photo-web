@@ -142,6 +142,19 @@ public class ProductDAO {
         );
     }
 
+    public boolean updateStatus(String action, int id) {
+        String querySql = """
+            UPDATE products
+            SET status = :status
+            WHERE id = :id
+        """;
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(querySql)
+                        .bind("status", action)
+                        .bind("id", id)
+                        .execute() > 0);
+    }
+
     public List<Product> getAllProductsWaiting() {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where status = ? order by dateUpload desc")
                 .bind(0, "waiting").mapToBean(Product.class).list());
