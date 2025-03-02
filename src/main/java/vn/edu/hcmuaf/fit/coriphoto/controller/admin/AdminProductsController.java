@@ -27,7 +27,6 @@ public class AdminProductsController extends HttpServlet {
                 int productId = Integer.parseInt(id);
                 ProductService productService = new ProductService();
                 Product product = productService.getById(productId);
-                System.out.println(product);
                 if (product != null) {
                     response.setContentType("application/json");
                     Gson gson = new GsonBuilder()
