@@ -125,7 +125,9 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="">
                         <div class="hover-options">
-                            <a href="Favourite"><button class="option-button"><i class="fa-regular fa-heart"></i></button></a>
+                            <button class="favorite-btn" data-product-id="${product.productId}" onclick="toggleFavorite(${product.productId})">
+                                <i class="fa ${isFavorite ? 'fa-heart' : 'fa-heart-o'}"></i>
+                            </button>
                             <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
                             <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
                         <div class="image-text">
@@ -145,7 +147,10 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>
+                            <button class="favorite-btn" data-product-id="${product.productId}" onclick="toggleFavorite(${product.productId})">
+                                <i class="fa ${isFavorite ? 'fa-heart' : 'fa-heart-o'}"></i>
+                            </button>
+<%--                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>--%>
                             <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
                             <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
                         <div class="image-text">
@@ -165,8 +170,8 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="option-button">
-                                <i class="fa-regular fa-heart"></i>
+                            <button class="favorite-btn" data-product-id="${product.productId}" onclick="toggleFavorite(${product.productId})">
+                                <i class="fa ${isFavorite ? 'fa-heart' : 'fa-heart-o'}"></i>
                             </button>
                             <button class="option-button">
                                 <i class="fa-solid fa-down-long"></i>
