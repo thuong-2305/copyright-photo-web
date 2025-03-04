@@ -241,7 +241,9 @@
             <div class="image">
                 <img src="<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
-                    <button><i class="fa-regular fa-heart"></i></button>
+                    <button class="favorite-btn" data-product-id="<%= item.getId() %>">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
                     <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -258,7 +260,9 @@
             <div class="image">
                 <img src="<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
-                    <button><i class="fa-regular fa-heart"></i></button>
+                    <button class="favorite-btn" data-product-id="<%= item.getId() %>">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
                     <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -329,7 +333,46 @@
         });
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.getAttribute('data-product-id');
+                alert(productId);
+                // Kiểm tra nếu productId bị rỗng
+                if (!productId || productId === '') {
+                    alert("Không thể thêm vào danh sách yêu thích. ID sản phẩm không hợp lệ." + productId);
+                    return;
+                }
+
+                // Gửi yêu cầu AJAX đến Servlet
+                fetch('AddFavourite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `action=add&productId=`+productId
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.querySelector('i').classList.remove('fa-regular');
+                            this.querySelector('i').classList.add('fa-solid');
+                            alert(data.message);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi thêm vào danh sách yêu thích.');
+                    });
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

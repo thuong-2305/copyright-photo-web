@@ -48,84 +48,30 @@
     </div>
 
     <div class="image-gallery">
-      <!-- Hình ảnh 1 -->
-      <div class="image-card selected">
-        <div class="image-container">
-          <img
-                  src="./assets/images/Animal/1.jpg"
-                  alt="Apple in Pie Crust wrapped in leaves"
-          />
-          <button class="remove-btn">&times;</button>
-        </div>
-        <div class="image-info">
-          <div class="image-id">
-            <span class="badge">RF</span>
-            <span>Image ID: 2M709YH</span>
+      <!-- Sử dụng JSTL để lặp qua danh sách sản phẩm yêu thích -->
+      <c:forEach var="product" items="${favoriteProducts}">
+        <div class="image-card">
+          <div class="image-container">
+            <!-- Hiển thị hình ảnh -->
+            <img src="${product.url}" alt="${product.name}">
+            <!-- Nút xóa yêu thích -->
+            <button class="remove-btn" onclick="toggleFavorite(${product.id})">&times;</button>
           </div>
-          <h3 class="image-title">Apple in Pie Crust wrapped in leaves</h3>
-          <p class="image-credit">
-            Credit: The Picture Pantry / Alamy Stock Photo
-          </p>
-          <div class="image-actions">
-
-            <button class="select-btn selected">
-              <i class="fas fa-check"></i>
-            </button>
+          <div class="image-info">
+            <!-- Hiển thị thông tin sản phẩm -->
+            <div class="image-id">
+              <span class="badge">RF</span>
+              <span>Image ID: ${product.id}</span>
+            </div>
+            <h3 class="image-title">${product.name}</h3>
+            <p class="image-credit">Credit: ${product.description}</p>
+            <div class="image-actions">
+              <button class="comment-btn"><i class="far fa-comment"></i></button>
+              <button class="select-btn"><i class="fas fa-check"></i></button>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Hình ảnh 2 -->
-      <div class="image-card">
-        <div class="image-container">
-          <img
-                  src="./assets/images/Animal/2.jpg"
-                  alt="Man in dark green winter sweater eating soup"
-          />
-        </div>
-        <div class="image-info">
-          <div class="image-id">
-            <span class="badge">RF</span>
-            <span>Image ID: PWPMJ1</span>
-          </div>
-          <h3 class="image-title">
-            Man in dark green winter sweater eating soup
-          </h3>
-          <p class="image-credit">
-            Credit: The Picture Pantry / Alamy Stock Photo
-          </p>
-          <div class="image-actions">
-
-            <button class="select-btn"><i class="fas fa-check"></i></button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hình ảnh 3 -->
-      <div class="image-card">
-        <div class="image-container">
-          <img
-                  src="./assets/images/Animal/3.jpg"
-                  alt="Autumn Thanksgiving, Friendsgiving, feast table"
-          />
-        </div>
-        <div class="image-info">
-          <div class="image-id">
-            <span class="badge">RF</span>
-            <span>Image ID: 2DW7ACE</span>
-          </div>
-          <h3 class="image-title">
-            Autumn Thanksgiving, Friendsgiving, feast table
-          </h3>
-          <p class="image-credit">
-            Credit: The Picture Pantry / Alamy Stock Photo
-          </p>
-          <div class="image-actions">
-
-            <button class="select-btn"><i class="fas fa-check"></i></button>
-          </div>
-        </div>
-      </div>
+      </c:forEach>
     </div>
   </div>
 </section>
@@ -137,6 +83,28 @@
 <script src="assets/js/homepage.js"></script>
 <script src="assets/js/navbar.js"></script>
 <script src="assets/js/homeuser.js"></script>
+<script>
+  // Hàm xử lý yêu thích
+  function toggleFavorite(productId) {
+    if (confirm("Bạn có chắc muốn xóa sản phẩm này khỏi danh sách yêu thích?")) {
+      // Gửi yêu cầu AJAX để xóa sản phẩm khỏi danh sách yêu thích
+      fetch(`FavoriteServlet?action=remove&productId=${productId}`, {
+        method: 'POST'
+      }).then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  alert(data.message);
+                  location.reload(); // Tải lại trang sau khi xóa thành công
+                } else {
+                  alert("Có lỗi xảy ra: " + data.message);
+                }
+              }).catch(error => {
+        console.error("Error:", error);
+        alert("Có lỗi xảy ra khi xóa sản phẩm.");
+      });
+    }
+  }
+</script>
 </body>
 
 </html>
