@@ -18,6 +18,7 @@ public class AuthService {
         return users.getUserByCredentials(username, password);
     }
 
+
     public boolean isEmailExist(String email) {
         // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu chưa
         return users.findByEmail(email) != null;
@@ -38,4 +39,7 @@ public class AuthService {
     public User getUserById(int id) {
         return users.findById(id);
     }
+
 }
+
+

@@ -18,80 +18,60 @@
         <h1 class="fw-bold mb-5" style="color: #57cc99; margin-top: 250px !important;">CoriPhoto</h1>
         <div class="signup-container mb-2">
             <h2 class="text-center fw-semibold mb-4">Đăng ký</h2>
-            <form action="signup" method="post">
-                <p class="text-danger">${ error }</p>
+            <form id="signup-form" method="post">
+                <p class="text-danger" id="error-message"></p>
+
                 <div class="mb-3">
                     <label for="name" class="form-label">Họ Tên:</label>
-                    <input
-                            name="name"
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            placeholder="Nhập họ tên"
-                            required
-                    />
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Nhập họ tên" required/>
                 </div>
+
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input
-                            name="email"
-                            type="email"
-                            class="form-control"
-                            id="email"
-                            placeholder="Nhập email"
-                            required
-                    />
+                    <input name="email" type="email" class="form-control" id="email" placeholder="Nhập email" required/>
                 </div>
+
                 <div class="mb-3">
-                    <label for="username" class="form-label">Username: </label>
-                    <input
-                            name="username"
-                            type="text"
-                            class="form-control"
-                            id="username"
-                            placeholder="Nhập username"
-                            required
-                    />
+                    <label for="username" class="form-label">Username:</label>
+                    <input name="username" type="text" class="form-control" id="username" placeholder="Nhập username" required/>
                 </div>
+
                 <div class="mb-3 position-relative">
-                    <label
-                            for="password"
-                            class="form-label d-flex justify-content-between"
-                    >
-                        Mật khẩu:
-                    </label>
-                    <input
-                            name = "password"
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            placeholder="Nhập mật khẩu của bạn"
-                            required
-                    />
-                    <i class="fa fa-eye position-absolute togglePassword"
-                       style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
+                    <label for="password" class="form-label d-flex justify-content-between">Mật khẩu:</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Nhập mật khẩu của bạn" required/>
+                    <i class="fa fa-eye position-absolute togglePassword" style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
+
                 <div class="mb-3 position-relative">
-                    <label
-                            for="password"
-                            class="form-label d-flex justify-content-between"
-                    >
-                        Nhập lại mật khẩu:
-                    </label>
-                    <input
-                            name="confirmPassword"
-                            type="password"
-                            class="form-control"
-                            placeholder="Nhập lại mật khẩu"
-                            required
-                    />
-                    <i class="fa fa-eye position-absolute togglePassword"
-                       style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
+                    <label for="confirmPassword" class="form-label d-flex justify-content-between">Nhập lại mật khẩu:</label>
+                    <input name="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Nhập lại mật khẩu" required/>
+                    <i class="fa fa-eye position-absolute togglePassword" style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
-                <button type="submit" class="btn btn-signup w-100 mb-3">
-                    Đăng ký
-                </button>
+
+                <button type="button" id="check-email-btn" class="btn btn-signup w-100 mb-3">Đăng ký</button>
             </form>
+
+            <!-- Modal OTP -->
+            <div class="modal fade" id="otp-modal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="otpModalLabel">Xác nhận OTP</h5>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p class="mb-3">Nhập mã OTP đã gửi đến email của bạn</p>
+                            <input type="text" id="otp-input" class="form-control text-center otp-input"
+                                   placeholder="Nhập OTP" maxlength="6" autocomplete="off" />
+                            <small class="form-text text-muted mt-2">OTP có hiệu lực trong 5 phút.</small>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-primary" id="verify-otp-btn">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid
             &redirect_uri=http://localhost:8080/login&response_type=code
 &client_id=347849780193-j9q68d1s2iu8g598kc2tsgqcdd2r4ved.apps.googleusercontent.com" class="btn btn-google">
@@ -108,6 +88,7 @@
             </div>
         </div>
     </div>
+
 </div>
 <jsp:include page="include/scripts.jsp"/>
 
@@ -123,6 +104,10 @@
         });
     });
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./assets/js/register-verify-email.js"></script>
+<script src="./assets/js/register-verify-otp.js"></script>
 
 </body>
 </html>

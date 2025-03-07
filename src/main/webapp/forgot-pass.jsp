@@ -15,18 +15,45 @@
             Nhập địa chỉ email của bạn và chúng tôi sẽ gửi cho bạn hướng dẫn để
             đặt lại mật khẩu.
         </p>
-        <form>
+
+        <form id="forgotPasswordForm">
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
                 <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn" required />
             </div>
-            <button type="submit" class="btn btn-send w-100 mb-3">
-                Gửi email
-            </button>
+            <button type="submit" class="btn btn-send w-100 mb-3">Gửi email</button>
         </form>
         <a href="login" class="btn btn-back">Quay trở lại đăng nhập</a>
+
+
+        <!-- Modal Nhập OTP -->
+        <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="otpModalLabel">Nhập mã OTP</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Vui lòng nhập mã OTP đã gửi đến email của bạn.</p>
+                        <input type="text" id="otpInput" class="form-control" placeholder="Nhập mã OTP" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn-primary" id="verifyOtpBtn">Xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 <jsp:include page="include/scripts.jsp"/>
+
+<script src="./assets/js/forgot-password.js"></script>
+<script src="./assets/js/verify-otp.js"></script>
+<script src="./assets/js/reset-password.js"></script>
+
 </body>
 </html>
