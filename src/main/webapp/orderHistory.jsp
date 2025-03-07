@@ -1,13 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%--
-  Created by IntelliJ IDEA.
-  User: Windows
-  Date: 1/15/2025
-  Time: 8:57 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +15,69 @@
   <link rel="stylesheet" href="assets/libraries/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
   <title>CoRiPhoto</title>
+  <style>
+    #nav {
+      position: fixed !important;
+      background: white;
+      margin-bottom: 20px;
+    }
+
+    .modal {
+      z-index: 9999;
+    }
+
+    #nav:not(.scrolled) .title-logo {
+      color: black;
+    }
+
+    #nav:not(.scrolled) .title-item {
+      color: black !important;
+    }
+
+    #nav:not(.scrolled) .nav-item:hover {
+      color: #009970;
+    }
+
+    #nav:not(.scrolled) .title-item:hover {
+      color: #009970 !important;
+    }
+
+    #nav:not(.scrolled) .title-item:hover i {
+      color: #009970 !important;
+    }
+
+    #nav:not(.scrolled) .nav-item:hover .title-item {
+      color: #009970 !important;
+    }
+
+    #nav:not(.scrolled) .container .login-button {
+      background-color: transparent;
+      color: black;
+      padding: 7px 19px;
+      border: 1px solid black;
+    }
+
+    .image-text {
+      position: relative;
+      margin: 10px;
+    }
+
+    .image-text img {
+      max-width: 100px;
+      max-height: 100px;
+      border-radius: 8px;
+    }
+
+    .delete-img {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      padding: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
