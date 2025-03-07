@@ -3,12 +3,19 @@ package vn.edu.hcmuaf.fit.coriphoto.service;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class EmailUtils {
     // Thông tin cấu hình SMTP (Gmail trong ví dụ này)
     private static final String host = "smtp.gmail.com";
     private static final String user = "coriphototpk@gmail.com";
     private static final String password = "nhcvjdilsplrztps";
+    private static final String EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@gmail\\.com$";
+
+    public static boolean isValidEmail(String email) {
+        return Pattern.matches(EMAIL_REGEX, email);
+    }
+
     // Hàm gửi email
     public static boolean sendEmail(String to, String subject, String body) {
 

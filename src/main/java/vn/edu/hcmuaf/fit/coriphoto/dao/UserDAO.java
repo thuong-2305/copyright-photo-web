@@ -21,6 +21,17 @@ public class UserDAO {
                 .bind(0, uid).mapTo(String.class).one());
     }
 
+    public boolean isExistEmail(String email) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT COUNT(*) FROM users WHERE email = ?")
+                        .bind(0, email)
+                        .mapTo(Integer.class)
+                        .one() > 0
+        );
+    }
+
+
+
     public String getEmail(int uid) {
         return jdbi.withHandle(handle -> handle.createQuery("SELECT email FROM users WHERE uid = ?")
                 .bind(0, uid).mapTo(String.class).one());
@@ -76,17 +87,7 @@ public class UserDAO {
         );
     }
 
-    public boolean createUser(String email, String password, String username, String name) {
-        String hashedPassword = hashPasswordMD5(password);
-        if (hashedPassword == null) return false;
 
-        jdbi.useHandle(handle -> handle.execute(
-                "INSERT INTO users (role, fullname, username, email, password, createDate) VALUES (?, ?, ?, ?, ?, ?)",
-                2, name, username, email, hashedPassword, LocalDate.now()
-        ));
-
-        return true;
-    }
 
     public String hashPasswordMD5(String password) {
         try {
@@ -192,14 +193,37 @@ public class UserDAO {
         return currentPassword != null && currentPassword.equals(oldPassword);
     }
 
+    public boolean createUser(String email, String password, String username, String name) {
+        String hashedPassword = hashPasswordMD5(password);
+        if (hashedPassword == null) return false;
+
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO users (role, fullname, username, email, password, createDate) VALUES (?, ?, ?, ?, ?, ?)",
+                2, name, username, email, hashedPassword, LocalDate.now()
+        ));
+
+        return true;
+    }
+
     public boolean changePassword(int uid, String newPassword) {
+        String hashedPassword = hashPasswordMD5(newPassword);
         int updated = jdbi.withHandle(handle ->
             handle.createUpdate("UPDATE users SET password = :newPassword WHERE uid = :uid")
-                .bind("newPassword", newPassword)
+                .bind("newPassword", hashedPassword)
                 .bind("uid", uid)
                 .execute()
         );
         return updated > 0;
+    }
+
+    public int getUidByEmail(String email) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT uid FROM users WHERE email = :email")
+                        .bind("email", email)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(-1) // Trả về -1 nếu không tìm thấy
+        );
     }
 
     public void updateProfileName(int uid, String fullname) {
