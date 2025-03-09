@@ -57,46 +57,7 @@
 <!-- MAIN -->
 <section class="container-main">
     <!-- LEFT MAIN -->
-    <section class="left d-flex flex-column justify-content-between">
-        <div class="top-left">
-            <p class="fs-5 fw-semibold m-0 text-center mt-2">
-                <span class="text-logo fw-bold">CoRiPhoto</span> Admin
-            </p>
-            <ul class="list-unstyled">
-                <li>
-                    <a href="${pageContext.request.contextPath}/ShowDashBoard"><i class="fa-solid fa-house"></i>Trang
-                        chủ</a>
-                </li>
-                <li class="active">
-                    <a href="${pageContext.request.contextPath}/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-category"><i class="bi bi-list-task"></i>Danh mục</a>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-order"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-customer"><i class="fa-solid fa-user"></i>Khách
-                        hàng</a>
-                </li>
-                <hr>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-notification"><i class="bi bi-bell-fill"></i>Thông báo</a>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
-                </li>
-            </ul>
-        </div>
-        <div class="avatar bottom-left d-flex justify-content-between align-items-center mx-2 mb-4">
-            <div class="d-flex justify-content-center align-items-center">
-                <img src="./assets/images/avart-default.png" alt=""/>
-                <p class="ms-2 m-0">Thanh Thương</p>
-            </div>
-            <i class="bi bi-three-dots"></i>
-        </div>
-    </section>
+    <jsp:include page="include/sidebar.jsp" />
     <!-- LEFT MAIN -->
 
     <!-- RIGHT MAIN -->
