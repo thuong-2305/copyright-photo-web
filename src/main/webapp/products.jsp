@@ -174,8 +174,10 @@
                     <div class="info">
                         <p class="fw-semibold">${ item.getName() }</p>
                         <div class="hover-options">
-                            <button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i>
-                                Thích</button>
+                            <button class="favorite-btn heart option-button fw-bold" data-product-id=${ item.getId() }>
+                                <i class="fa-regular fa-heart pe-2"></i>
+                                Thích
+                            </button>
                             <button class="option-button buy fw-bold addCart" data-product-id=${ item.getId() }>
                                 <i class="bi bi-bag-check-fill"></i>
                                 Thêm giỏ hàng
@@ -258,7 +260,7 @@
                         htmlContent += '<div class="info">';
                         htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                         htmlContent += '<div class="hover-options">';
-                        htmlContent += '<button class="option-button heart fw-bold"><i class="fa-regular fa-heart pe-2"></i> Thích</button>';
+                        htmlContent += '<button class="favorite-btn heart option-button fw-bold" data-product-id="' + item.id+'"> <i class="fa-regular fa-heart pe-2"></i>Thích </button>';
                         htmlContent += '<button class="option-button buy fw-bold addCart" data-product-id="'+ item.id +'"><i class="bi bi-bag-check-fill"></i>Thêm giỏ hàng</button>';
                         htmlContent += '</div></div></div>';
                     });
@@ -306,7 +308,48 @@
         }
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const productId = this.getAttribute('data-product-id');
+                alert(productId);
+                // Kiểm tra nếu productId bị rỗng
+                if (!productId || productId === '') {
+                    alert("Không thể thêm vào danh sách yêu thích. ID sản phẩm không hợp lệ." + productId);
+                    return;
+                }
+
+                // Gửi yêu cầu AJAX đến Servlet
+                fetch('AddFavourite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `action=add&productId=`+productId
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.querySelector('i').classList.remove('fa-regular');
+                            this.querySelector('i').classList.add('fa-solid');
+                            alert(data.message);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi thêm vào danh sách yêu thích.');
+                    });
+            });
+        });
+    });
+</script>
 
 </body>
 
