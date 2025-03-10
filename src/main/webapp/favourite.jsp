@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/homeuser.css">
   <link rel="stylesheet" href="assets/libraries/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+  <script src="assets/libraries/jquery/jquery-3.7.1.min.js"></script>
   <title>CoRiPhoto</title>
 </head>
 
@@ -30,19 +31,16 @@
       <button class="tool-btn" title="Chọn nhiều">
         <i class="far fa-copy"></i>
       </button>
-      <button class="tool-btn" title="In">
-        <i class="fas fa-print"></i>
-      </button>
       <button class="tool-btn" title="Xóa">
         <i class="fas fa-trash"></i>
       </button>
-      <button class="clear-btn">Bỏ lựa chọn</button>
+      <button class="clear-btn"><i class="fas fa-clear"></i> Bỏ lựa chọn</button>
     </div>
 
     <div class="image-gallery">
       <!-- Sử dụng JSTL để lặp qua danh sách sản phẩm yêu thích -->
       <c:forEach var="product" items="${favoriteProducts}">
-        <div class="image-card">
+        <div class="image-card" data-product-id="${product.id}">
           <div class="image-container">
             <!-- Hiển thị hình ảnh -->
             <img src="${product.url}" alt="${product.name}">
@@ -66,7 +64,20 @@
     </div>
   </div>
 </section>
-
+<%-- notification --%>
+<div class="alert alert-primary d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+  <i class="bi bi-exclamation-triangle"></i><span></span>
+</div>
+<div class="alert alert-success d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0%"
+>
+  <i class="bi bi-check2-circle"></i><span></span>
+</div>
+<%-- notification --%>
 <jsp:include page="include/footer.jsp"/>
 
 <script src="assets/js/favourite.js"></script>
@@ -78,10 +89,11 @@
   // Hàm xử lý yêu thích
   function toggleFavorite(productId) {
     if (confirm("Bạn có chắc muốn xóa sản phẩm này khỏi danh sách yêu thích?")) {
-      // Gửi yêu cầu AJAX để xóa sản phẩm khỏi danh sách yêu thích
-      fetch(`FavoriteServlet?action=remove&productId=${productId}`, {
+      // Gửi yêu cầu AJAX để xóa sản phẩm
+      fetch(`RemoveFavourite?action=remove&productId=`+productId, {
         method: 'POST'
-      }).then(response => response.json())
+      })
+              .then(response => response.json())
               .then(data => {
                 if (data.success) {
                   alert(data.message);
@@ -89,10 +101,12 @@
                 } else {
                   alert("Có lỗi xảy ra: " + data.message);
                 }
-              }).catch(error => {
-        console.error("Error:", error);
-        alert("Có lỗi xảy ra khi xóa sản phẩm.");
-      });
+              })
+              .catch(error => {
+                alert(productId);
+                console.error("Error:", error);
+                alert("Có lỗi xảy ra khi xóa sản phẩm.");
+              });
     }
   }
 </script>
