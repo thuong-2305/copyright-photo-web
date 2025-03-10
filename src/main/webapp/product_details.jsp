@@ -338,7 +338,9 @@
         const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
         favoriteButtons.forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
                 const productId = this.getAttribute('data-product-id');
                 alert(productId);
                 // Kiểm tra nếu productId bị rỗng

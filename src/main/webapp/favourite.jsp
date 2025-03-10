@@ -66,7 +66,6 @@
             <h3 class="image-title">${product.name}</h3>
             <p class="image-credit">Credit: ${product.description}</p>
             <div class="image-actions">
-              <button class="comment-btn"><i class="far fa-comment"></i></button>
               <button class="select-btn"><i class="fas fa-check"></i></button>
             </div>
           </div>

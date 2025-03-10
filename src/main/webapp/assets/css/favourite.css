@@ -148,6 +148,8 @@
 
 .image-info {
     padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .image-id {
