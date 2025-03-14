@@ -7,12 +7,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.dao.PaymentMethodDAO;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.FormatDateTime;
+import vn.edu.hcmuaf.fit.coriphoto.model.License;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
-import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
-import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
-import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
-import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
+import vn.edu.hcmuaf.fit.coriphoto.service.*;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,6 +29,7 @@ public class CartOrderController extends HttpServlet {
             return;
         }
         int uid = currentUser.getUid();
+        String userEmail = currentUser.getEmail();
         String paymentTypeId = request.getParameter("paymentTypeId");
         String pmid = request.getParameter("pmid");
         String[] productIds = request.getParameterValues("productIds");
@@ -116,6 +116,44 @@ public class CartOrderController extends HttpServlet {
         // Sửa
         boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseIdsArray, totalBeforeDiscount, products);
         if (isOrderCreated) {
+            // gửi thông tin ảnh về email của người dùng
+            List<String> imageNames = new ArrayList<>();
+            List<Integer> licenses = new ArrayList<>();
+            List<String> imagePaths = new ArrayList<>();
+
+            for (int i = 0; i < products.size(); i++) {
+                imageNames.add(products.get(i).getName());  // Lấy tên ảnh
+                String imageUrl = products.get(i).getUrl();
+                if (imageUrl.startsWith("../")) {
+                    imageUrl = imageUrl.substring(3);
+                }
+                String absolutePath = request.getServletContext().getRealPath(imageUrl);
+                imagePaths.add(absolutePath);
+
+                System.out.println("IMG URL" + imageUrl);
+                System.out.println("PATH" + absolutePath);
+
+                licenses.add(licenseIdsArray[i]); // Lấy license tương ứng (1: Tiêu chuẩn, 2: Nâng cao)
+            }
+
+            // Gửi email với danh sách ảnh và license
+            EmailUtils.sendEmailWithAttachments(userEmail, "Thông tin đơn hàng",
+                    "Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!\n\n" +
+                            "===== THÔNG TIN ĐƠN HÀNG =====\n" +
+                            "- Số tiền thanh toán: " + totalAfterDiscount + " VND\n" +
+                            "- Ngày mua hàng: " + FormatDateTime.format(LocalDate.now().toString()) + "\n\n" +
+                            "Vui lòng kiểm tra file license đính kèm để biết thêm chi tiết về sản phẩm của bạn.\n\n" +
+                            "Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
+                            "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
+                            "Trân trọng,\n"
+                    , imagePaths, imageNames, licenses);
+
+
+
+
+
+
+            // xóa tất cả những sản phẩm đã mua trong giỏ hàng
             for (String productId : productIds) {
                 cartService.deleteItem(uid, Integer.parseInt(productId));
             }
