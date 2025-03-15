@@ -1,38 +1,121 @@
 :root {
-
-
-    --swatch_1: #f0f4f9;
-    --swatch_2: #b5d2e1;
-    --swatch_3: #a2a9b6;
-    --swatch_4: #03d1a8;
-    --swatch_5: #3f4759;
-    --swatch_6: #49bbae;
-    --swatch_7: #696dbf;
+    --primary-color: #00cea4;
+    --dark-right: #171717;
+    --dark-bg-right: #09090b;
 }
 
-.shadow-bottom {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.account-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #dad5e6;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0 10px 25px;
 }
 
-a {
+.status-text {
+    flex: 1;
+}
+
+.status-text h2 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.status-content {
+    display: flex;
+    gap: 15px;
+}
+
+.status-card {
+    background: #dfcdae;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    min-width: 160px;
+    position: relative;
+}
+
+.spending {
+    background: #9bb6b7;
+}
+
+.status-card h2 {
+    margin: 5px 0;
+    color: #333;
+}
+
+.status-card a {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: none;   
+.status-image img {
+    width: 180px;
+    height: auto;
 }
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+.card {
+    border: none !important;
 }
 
-html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.card-header h5 {
+    color: #000000 !important;
 }
 
-.right-category .card-header {
-    background: var(--swatch_4) !important;
+/* Dark mode */
+.dark-mode .status-text h2 {
+    color: white;
 }
+
+.dark-mode .status-text p {
+    color: lightgrey;
+}
+
+.dark-mode .account-status {
+    background: #2c293d;
+}
+
+.dark-mode .card {
+    background: var(--dark-bg-right) !important;
+    color: white;
+}
+
+.dark-mode .card-body {
+    color: white;
+    background: var(--dark-bg-right);
+    border-radius: 10px;
+}
+
+.dark-mode .card-body select {
+    background: var(--dark-right);
+    color: white;
+}
+
+.dark-mode .card.stats-card {
+    border: none;
+    border-radius: 10px;
+    background: var(--dark-bg-right);
+}
+
+.dark-mode .right-category .card-header {
+    background: var(--dark-bg-right) !important;
+}
+
+.dark-mode .status-card {
+    background: #614f30;
+}
+
+.dark-mode .spending {
+    background: #274143;
+}
+
+
 

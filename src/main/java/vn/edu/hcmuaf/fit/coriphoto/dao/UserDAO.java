@@ -299,4 +299,9 @@ public class UserDAO {
         String test = userDAO.getPaymentTypeNameByPmid(10);
         System.out.println(test);
     }
+
+    public String getEmailById(int uid) {
+        String query = "SELECT email FROM users WHERE uid = ?";
+        return jdbi.withHandle(handle -> handle.createQuery(query).bind(0, uid).mapTo(String.class).one());
+    }
 }
