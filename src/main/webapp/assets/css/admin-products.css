@@ -1,5 +1,4 @@
 :root {
-
   --swatch_1: #f0f4f9;
   --swatch_2: #b5d2e1;
   --swatch_3: #a2a9b6;
@@ -9,19 +8,11 @@
   --swatch_7: #696dbf;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  height: 100%;
-  background-color: var(--swatch_1);
-}
-
-/* ---------------------------------------------------Begin: San pham------------------------------------*/
 .frame_manager {
   background-color: transparent !important;
   padding: 0 !important;
 }
+
 .table-outline {
   width: 100%;
   border: 1px solid white;
@@ -234,12 +225,18 @@ main {
   border-radius: 50%;
 }
 /* -----------------------------------------------End: San pham */
+
+
+
+
+
+
+
 /* -----------------------------------------------Begin: Thong ke------------------------------------------------ */
 .frame__container {
   display: flex;
   flex-direction: column;
   background: var(--swatch_1);
-  margin: 20px 30px 10px;
 }
 
 .frame__content {
