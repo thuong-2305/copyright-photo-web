@@ -1,7 +1,10 @@
 package vn.edu.hcmuaf.fit.coriphoto.model;
 
-import java.time.LocalDate;
+import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
+import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Product {
     private int id;
@@ -118,6 +121,25 @@ public class Product {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getFormatDateUpload() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return dateUpload.format(formatter);
+    }
+
+    public String getUsername() {
+        return new UserService().getUsername(this.uid);
+    }
+
+    public String getCategory() {
+        return new CategoryService().getNameCategoryById(this.cid);
+    }
+
+    public static void main(String[] args) {
+        CategoryService tes = new CategoryService();
+        String tmp = tes.getNameCategoryById(4);
+        System.out.println(tmp);
     }
 
     @Override

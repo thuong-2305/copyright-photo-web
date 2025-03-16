@@ -37,6 +37,8 @@ public class UserService {
         return userDao.getEmailById(uid);
     }
 
+    public String getUsername(int uid) { return userDao.getUsername(uid); }
+
     public User getUserByCredentials(String username, String password) {
         return userDao.getUserByCredentials(username, password);
     }
