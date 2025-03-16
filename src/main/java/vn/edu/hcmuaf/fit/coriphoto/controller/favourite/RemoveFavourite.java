@@ -35,9 +35,32 @@ public class RemoveFavourite extends HttpServlet {
             String action = request.getParameter("action");
             int userId = currentUser.getUid();
 
+            String productIdParam = request.getParameter("productId");
+
             if ("remove".equals(action)) {
-                // Xử lý xóa 1 sản phẩm (code cũ)
+
+                // Kiểm tra productId
+                if (productIdParam == null || productIdParam.isEmpty()) {
+                    jsonResponse.put("success", false);
+                    jsonResponse.put("message", "ID sản phẩm không hợp lệ.");
+                    out.print(jsonResponse.toString());
+                    return;
+                }
+
+                int productId = Integer.parseInt(productIdParam);
+
+                // Gọi DAO để xóa sản phẩm khỏi danh sách yêu thích
+                boolean removed = favouriteDAO.removeFavourite(userId, productId);
+                if (removed) {
+                    jsonResponse.put("success", true);
+                    jsonResponse.put("message", "Đã xóa thành công sản phẩm khỏi danh sách yêu thích.");
+                } else {
+                    jsonResponse.put("success", false);
+                    jsonResponse.put("message", "Sản phẩm không tồn tại trong danh sách yêu thích hoặc đã bị xóa trước đó.");
+                }
+
             }
+
             else if ("bulkRemove".equals(action)) {
                 // Xử lý xóa nhiều sản phẩm
                 String productIdsParam = request.getParameter("productIds"); // JSON Array String
@@ -64,8 +87,7 @@ public class RemoveFavourite extends HttpServlet {
                     jsonResponse.put("success", false);
                     jsonResponse.put("message", "Không có sản phẩm nào được xóa.");
                 }
-            }
-            else {
+            } else {
                 jsonResponse.put("success", false);
                 jsonResponse.put("message", "Hành động không hợp lệ.");
             }
