@@ -72,6 +72,7 @@ public class AdminProductsController extends HttpServlet {
         String requestedBy = request.getHeader("X-Requested-By");
         ProductService service = new ProductService();
 
+        // Xóa sản phẩm dựa vào id
         if ("AJAX".equals(requestedBy)) {
             int productId =Integer.parseInt(request.getParameter("product_id"));
             String action = request.getParameter("action");
@@ -95,7 +96,8 @@ public class AdminProductsController extends HttpServlet {
                     response.getWriter().write(jsonResponse);
                 }
             }
-        }else{
+        }
+        else {
             String form = request.getParameter("defineForm");
 //            System.out.println(form);
             // Nhận dữ liệu từ form

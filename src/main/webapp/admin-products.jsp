@@ -116,6 +116,7 @@
                     </div>
 
                     <!-- Xem sản phẩm -->
+                    <div class="overlay" id="overlay"></div>
                     <div class="view-product d-none" id="productDetail" >
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <h5 class="fs-3 fw-semibold"></h5>
@@ -141,11 +142,33 @@
                         </div>
                     </div>
 
-                    <!-- Them sản phẩm -->
+                    <!-- Thêm sản phẩm -->
                     <div id="khungThemSanPham" class="overlay"></div>
 
-                    <!-- Xóa sản phẩm -->
+                    <!-- Sửa sản phẩm -->
                     <div id="khungSuaSanPham" class="overlay"></div>
+
+                    <!-- Xác nhận xóa sản phẩm -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title user-select-none" id="deleteModalLabel">
+                                        <i class="bi bi-exclamation-triangle-fill me-1" style="color: #fa2e2e;"></i>
+                                        Xác nhận xóa
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc chắn muốn xóa sản phẩm này?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                    <button type="button" id="confirmDelete" class="btn btn-danger">Xóa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -156,6 +179,21 @@
     <!-- RIGHT MAIN -->
 </section>
 <!-- MAIN -->
+
+<!-- Notification -->
+<div class="alert alert-danger d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0"
+>
+    <i class="bi bi-exclamation-triangle me-2"></i><span></span>
+</div>
+<div class="alert alert-success d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0"
+>
+    <i class="bi bi-check2-circle me-2"></i><span></span>
+</div>
+<!-- Notification -->
 
 <!-- DataTables -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -214,12 +252,66 @@
 </script>
 
 <script>
+    $("#deleteModal .btn-secondary").on("click", function () {
+        $("#deleteModal").modal("hide");
+    });
+</script>
+
+<script>
+    let productIdToDelete = null;
+    let parentElement = null;
+
+    $('.delete-btn').on('click', function () {
+        productIdToDelete = $(this).data('id');
+        parentElement = $(this).closest("tr");
+        $('#deleteModal').modal('show');
+    });
+
+    $('#confirmDelete').on('click', function () {
+        if (productIdToDelete) {
+            $.ajax({
+                url: '/admin-products',
+                type: 'POST',
+                headers: {
+                    'X-Requested-By': 'AJAX'
+                },
+                data: {
+                    action: 'delete',
+                    product_id: productIdToDelete
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $(".alert-success span").text("Xóa thành công thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                        parentElement.fadeOut(function () {
+                            $(this).remove();
+                        });
+                    } else {
+                        $(".alert-danger span").text("Xóa thất bại!");
+                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi!');
+                }
+            });
+        }
+        $('#deleteModal').modal('hide');
+    });
+</script>
+
+<script>
     $('.view-btn').on('click', function () {
         const productId = $(this).data('id');
         fetch(`/admin-products?id=`+productId)
             .then(response =>{
                 console.log('Response received:', response);
-                return response.json()})
+                return response.json()
+            })
             .then(product => {
                 if (product) {
                     // Hiển thị thông tin sản phẩm
@@ -246,14 +338,14 @@
                     toggleProductDetail();
                 } else { alert('Lỗi sản phẩm!'); }
             })
-            .catch(error => {
-                alert('Lỗi sản phẩm!');
-            });
+            .catch(error => { alert('Lỗi sản phẩm!'); });
     });
 
     function toggleProductDetail() {
         const productDetail = document.getElementById('productDetail');
         productDetail.classList.toggle('d-none');
+        const overlay = document.getElementById("overlay");
+        overlay.classList.toggle('show');
     }
 
 </script>
