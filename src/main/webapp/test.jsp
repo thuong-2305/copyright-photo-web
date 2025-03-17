@@ -115,7 +115,7 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="">
                         <div class="hover-options">
-                            <button class="option-button">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
                             </button>
@@ -145,7 +145,7 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="option-button">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
                             </button>
@@ -175,7 +175,7 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="option-button">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
                             </button>
@@ -205,7 +205,7 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="option-button">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
                             </button>
@@ -320,6 +320,52 @@
         }
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const productId = this.getAttribute('data-product-id');
+                // Kiểm tra nếu productId bị rỗng
+                if (!productId || productId === '') {
+                    alert("Không thể thêm vào danh sách yêu thích. ID sản phẩm không hợp lệ." + productId);
+                    return;
+                }
+
+                // Gửi yêu cầu AJAX đến Servlet
+                fetch('AddFavourite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `action=add&productId=`+productId
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.querySelector('i').classList.remove('fa-regular');
+                            this.querySelector('i').classList.add('fa-solid');
+                            $(".alert-success span").text(data.message);
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                                $(this).addClass("d-none");
+                            });
+                        } else {
+                            $(".alert-success span").text(data.message);
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                                $(this).addClass("d-none");
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi thêm vào danh sách yêu thích.');
+                    });
+            });
+        });
+    });
+</script>
 </body>
 </html>

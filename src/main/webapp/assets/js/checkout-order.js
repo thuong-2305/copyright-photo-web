@@ -95,10 +95,7 @@ function submitPaymentForm() {
     // Hiển thị modal thanh toán
     $('#paymentSuccessModal').modal('show');
 
-    // Submit form sau khi modal hiển thị
-    setTimeout(() => {
-        paymentForm.submit();
-    }, 1000); // Chờ 1 giây
+    paymentForm.submit();
 }
 
 // Hàm thêm input ẩn vào form

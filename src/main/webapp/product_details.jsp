@@ -338,9 +338,10 @@
         const favoriteButtons = document.querySelectorAll('.favorite-btn');
 
         favoriteButtons.forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
                 const productId = this.getAttribute('data-product-id');
-                alert(productId);
                 // Kiểm tra nếu productId bị rỗng
                 if (!productId || productId === '') {
                     alert("Không thể thêm vào danh sách yêu thích. ID sản phẩm không hợp lệ." + productId);
@@ -360,9 +361,15 @@
                         if (data.success) {
                             this.querySelector('i').classList.remove('fa-regular');
                             this.querySelector('i').classList.add('fa-solid');
-                            alert(data.message);
+                            $(".alert-success span").text(data.message);
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                                $(this).addClass("d-none");
+                            });
                         } else {
-                            alert(data.message);
+                            $(".alert-success span").text(data.message);
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                                $(this).addClass("d-none");
+                            });
                         }
                     })
                     .catch(error => {
