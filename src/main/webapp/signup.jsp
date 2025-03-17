@@ -62,7 +62,7 @@
                             <p class="mb-3">Nhập mã OTP đã gửi đến email của bạn</p>
                             <input type="text" id="otp-input" class="form-control text-center otp-input"
                                    placeholder="Nhập OTP" maxlength="6" autocomplete="off" />
-                            <small class="form-text text-muted mt-2">OTP có hiệu lực trong 5 phút.</small>
+                            <small class="form-text text-muted mt-2">OTP có hiệu lực trong 2 phút.</small>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
