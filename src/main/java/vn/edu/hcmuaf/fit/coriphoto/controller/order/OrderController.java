@@ -53,7 +53,6 @@ public class OrderController extends HttpServlet {
         int promotionId = Integer.parseInt(request.getParameter("promotionId"));
         double totalAfterDiscount = Double.parseDouble(request.getParameter("totalAfterDiscount"));
         int licenseId = Integer.parseInt(request.getParameter("licenseId"));
-
         double totalBeforeDiscount = Double.parseDouble(request.getParameter("totalBeforeDiscount"));
 
 

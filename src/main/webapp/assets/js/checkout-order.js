@@ -92,11 +92,20 @@ function submitPaymentForm() {
         return;
     }
 
+    paymentForm.submit();
     // Hiển thị modal thanh toán
     $('#paymentSuccessModal').modal('show');
 
-    paymentForm.submit();
+    setTimeout(function () {
+        $('#paymentSuccessModal').modal('hide');
+        window.location.href = "/";
+    }, 4000);
 }
+
+function submitFormAfterModal() {
+    window.location.href = "/";
+}
+
 
 // Hàm thêm input ẩn vào form
 function addHiddenInput(form, name, value) {

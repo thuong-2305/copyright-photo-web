@@ -36,7 +36,7 @@ public class CartOrderController extends HttpServlet {
         String[] productPrices = request.getParameterValues("productPrices");
         String[] licenseIds = request.getParameterValues("licenseIds");
         // Chuyển đổi chuỗi licenseIds thành mảng int
-        int[] licenseIdsArray = convertStringToIntArray(licenseIds[0]);
+        int[] licenseIdsArray = OrderService.convertStringToIntArray(licenseIds[0]);
         // Lấy thông tin giảm giá và tổng tiền
 
         int promotionId = Integer.parseInt(request.getParameter("promotionId"));
@@ -159,16 +159,5 @@ public class CartOrderController extends HttpServlet {
     }
 
 
-    // Hàm chuyển đổi chuỗi có dấu ngoặc vuông và số phân tách dấu phẩy thành mảng int
-    private static int[] convertStringToIntArray(String str) {
-        // Loại bỏ dấu ngoặc vuông và khoảng trắng, sau đó tách các số theo dấu phẩy
-        str = str.replaceAll("[\\[\\]\\s]", "");
-        String[] stringNumbers = str.split(",");
-        // Chuyển đổi mảng chuỗi thành mảng int
-        int[] intArray = new int[stringNumbers.length];
-        for (int i = 0; i < stringNumbers.length; i++) {
-            intArray[i] = Integer.parseInt(stringNumbers[i]);
-        }
-        return intArray;
-    }
+
 }

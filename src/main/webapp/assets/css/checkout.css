@@ -82,12 +82,12 @@ html {
 }
 
 /* Áp dụng riêng cho tab */
-#credit-card-tab, #bank-account-tab, #paypal-tab {
+#credit-card-tab, #bank-account-tab, #vnpay-tab {
     color: #343a40; /* Màu chữ mặc định (đen) khi chưa active */
     background-color: #f8f9fa; /* Nền mặc định */
 }
 
-#credit-card-tab.active, #bank-account-tab.active, #paypal-tab.active {
+#credit-card-tab.active, #bank-account-tab.active, #vnpay-tab.active {
     color: #fff !important; /* Chữ trắng */
     background-color: #343a40 !important; /* Nền đen */
     box-shadow: none !important; /* Xóa ánh sáng mặc định */

@@ -20,18 +20,18 @@ public class OrderDAO {
                 "VALUES (:uid, :pmid, :promotionId, CURDATE(), :totalPrice, 'Completed')";
 
         // Dùng getGeneratedKeys để lấy orderId của đơn hàng mới
-        return jdbi.withHandle(handle -> {
-            // Insert và lấy generated key
-            return handle.createUpdate(sql)
-                    .bind("uid", uid)
-                    .bind("pmid", pmid)
-                    .bind("promotionId", promotionId)
-                    .bind("totalPrice", totalPrice)
-                    .executeAndReturnGeneratedKeys("orderId") // Lấy generated key (orderId)
-                    .mapTo(int.class)
-                    .one();
-        });
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("uid", uid)
+                        .bind("pmid", pmid == -1 ? null : pmid)
+                        .bind("promotionId", promotionId)
+                        .bind("totalPrice", totalPrice)
+                        .executeAndReturnGeneratedKeys("orderId") // Lấy generated key (orderId)
+                        .mapTo(int.class)
+                        .one()
+        );
     }
+
 
     public List<Integer> getAllOrdersId() {
         String sql = "SELECT orderId FROM orders";
@@ -167,6 +167,15 @@ public class OrderDAO {
         return true;
     }
 
+    public int getLastOrderId() {
+        String sql = "SELECT orderId FROM orders ORDER BY orderId DESC LIMIT 1";
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElse(0) // Nếu không có đơn hàng nào, trả về 0
+        );
+    }
 
     public List<Order> getOrdersHistory(int uid) {
         String sql = """
