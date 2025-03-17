@@ -5,6 +5,7 @@ import com.google.gson.annotations.JsonAdapter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.ProductSerializer;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
@@ -22,29 +23,32 @@ public class AdminProductsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+        System.out.println(id);
         if (id != null) {
             try {
                 int productId = Integer.parseInt(id);
                 ProductService productService = new ProductService();
                 Product product = productService.getById(productId);
-                System.out.println(product);
                 if (product != null) {
+                    System.out.println(product);
                     response.setContentType("application/json");
                     Gson gson = new GsonBuilder()
-                            .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
-                                @Override
-                                public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
-                                    return new JsonPrimitive(src.toString());
-                                }
-                            })
-                            .registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
-                                @Override
-                                public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
-                                    return new JsonPrimitive(src.toString());
-                                }
-                            })
-                            .create();
+                        .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
+                            @Override
+                            public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
+                                return new JsonPrimitive(src.toString());
+                            }
+                        })
+                        .registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
+                            @Override
+                            public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
+                                return new JsonPrimitive(src.toString());
+                            }
+                        })
+                        .registerTypeAdapter(Product.class, new ProductSerializer())
+                        .create();
                     String jsonResponse = gson.toJson(product);
+                    System.out.println(jsonResponse);
                     response.getWriter().write(jsonResponse);
                 } else {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Sản phẩm không tồn tại");
@@ -67,8 +71,8 @@ public class AdminProductsController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestedBy = request.getHeader("X-Requested-By");
         ProductService service = new ProductService();
-//        System.out.println(requestedBy);
 
+        // Xóa sản phẩm dựa vào id
         if ("AJAX".equals(requestedBy)) {
             int productId =Integer.parseInt(request.getParameter("product_id"));
             String action = request.getParameter("action");
@@ -92,7 +96,8 @@ public class AdminProductsController extends HttpServlet {
                     response.getWriter().write(jsonResponse);
                 }
             }
-        }else{
+        }
+        else {
             String form = request.getParameter("defineForm");
 //            System.out.println(form);
             // Nhận dữ liệu từ form

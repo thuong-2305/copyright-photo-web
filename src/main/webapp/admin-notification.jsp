@@ -1,11 +1,5 @@
 <%@ page import="vn.edu.hcmuaf.fit.coriphoto.model.Product" %>
-<%@ page import="java.util.List" %><%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 1/13/2025
-  Time: 5:49 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
@@ -58,51 +52,16 @@
 <!-- MAIN -->
 <section class="container-main">
   <!-- LEFT MAIN -->
-  <section class="left d-flex flex-column justify-content-between">
-    <div class="top-left">
-      <p class="fs-5 fw-semibold m-0 text-center mt-2">
-        <span class="text-logo fw-bold">CoRiPhoto</span> Admin
-      </p>
-      <ul class="list-unstyled">
-        <li>
-          <a href="${pageContext.request.contextPath}/ShowDashBoard"><i class="fa-solid fa-house"></i>Trang
-            chủ</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/admin-category"><i class="bi bi-list-task"></i>Danh mục</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/admin-order"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/admin-customer"><i class="fa-solid fa-user"></i>Khách
-            hàng</a>
-        </li>
-        <hr>
-        <li class="active">
-          <a href="${pageContext.request.contextPath}/admin-notification"><i class="bi bi-bell-fill"></i>Thông báo</a>
-        </li>
-        <li>
-          <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
-        </li>
-      </ul>
-    </div>
-    <div class="avatar bottom-left d-flex justify-content-between align-items-center mx-2 mb-4">
-      <div class="d-flex justify-content-center align-items-center">
-        <img src="./assets/images/avart-default.png" alt=""/>
-        <p class="ms-2 m-0">Thanh Thương</p>
-      </div>
-      <i class="bi bi-three-dots"></i>
-    </div>
-  </section>
+  <jsp:include page="include/sidebar.jsp" />
   <!-- LEFT MAIN -->
 
   <!-- RIGHT MAIN -->
   <section class="right-category">
-    <main>
+    <!-- navbar admin -->
+    <jsp:include page="include/nav-admin.jsp"/>
+
+    <!-- Content main -->
+    <main class="mt-4">
       <div class="frame">
         <div class="frame__container">
           <div class="mt-4">
@@ -150,10 +109,10 @@
                     <td><%= product.getDateUpload() %></td>
                     <td>
                       <button class="btn accept-btn btn-primary">
-                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "accepted" %>">Accept</a>
+                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "accepted" %>&uid=<%= product.getUid()%>">Accept</a>
                       </button>
                       <button class="btn reject-btn btn-danger" data-id="<%=product.getId() %>">
-                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "rejected" %>">Reject</a>
+                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "rejected" %>&uid=<%= product.getUid()%>">Reject</a>
                       </button>
                     </td>
                   </tr>

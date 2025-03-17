@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
+        #nav {
+            position: fixed !important;
+            background: white;
+            margin-bottom: 20px;
+        }
+
+        .modal {
+            z-index: 9999;
+        }
+
         #nav:not(.scrolled) .title-logo {
             color: black;
         }
@@ -34,13 +44,41 @@
         #nav:not(.scrolled) .nav-item:hover .title-item {
             color: #009970 !important;
         }
+
+        #nav:not(.scrolled) .container .login-button {
+            background-color: transparent;
+            color: black;
+            padding: 7px 19px;
+            border: 1px solid black;
+        }
+
+        .image-text {
+            position: relative;
+            margin: 10px;
+        }
+
+        .image-text img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+        }
+
+        .delete-img {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<div id="account-details">
+<div id="account-details" class="my-5 py-5">
     <div class="container-fluid">
         <div class="account-details-container">
             <!-- Khi người dùng không điền thông tin -->

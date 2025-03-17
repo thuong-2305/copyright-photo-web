@@ -1,21 +1,10 @@
 /* Chung */
 :root {
+    --swatch_2: #b5d2e1;
+    --text: #6c757d;
     --primary-text-color: #0870D1;
     --secondary-text-color: rgb(109, 115, 120);
-
     --background-hover-color: rgb(237, 246, 254);
-}   
-
-.shadow-bottom {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Chỉ có bóng ở dưới */
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;   
 }
 
 * {
@@ -26,5 +15,151 @@ a:hover {
 
 html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
 }
+
+.shadow-bottom {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.right-category .card-header {
+    background: var(--swatch_4) !important;
+}
+
+#admin-dashboard-graph {
+    margin-top: 100px;
+}
+
+/* Table */
+#productsTable {
+    width: 100% !important;
+}
+
+#productsTable td {
+    border-top: 1px solid #ddd !important;
+    text-align: left !important;
+    padding: 8px 10px !important;
+    color: var(--text) !important;
+}
+
+#productsTable td i {
+    color: var(--text) !important;
+}
+
+#productsTable td:nth-child(1) {
+    text-align: center !important;
+}
+
+#productsTable th {
+    text-align: left !important;
+}
+
+.dataTables-controls {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px dashed #ccd2d8;
+}
+
+.dataTables-controls label {
+    color: var(--text) !important;
+}
+
+.dataTables-controls label input {
+    margin-left: 10px !important;
+    color: #212529 !important;
+    border-color: #ccd2d8 !important;
+}
+
+/* thead */
+.table-dark tr th{
+    background: #f0f4f9 !important;
+    color: #3f4759 !important;
+}
+
+.table > :not(caption) > * > * {
+    border-bottom-width: 0 !important;
+}
+
+.table-bordered > :not(caption) > * > * {
+    border-width: 0 !important;
+}
+
+table.dataTable > thead > tr > th {
+    border-bottom: none;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* Chỉ mục */
+#productsTable_paginate {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+    color: var(--text) !important;
+}
+
+#productsTable_wrapper .paginate_button:hover {
+    background: transparent !important;
+    border-color: var(--swatch_4) !important;
+    border-radius: 5px;
+    color: var(--text) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 5px 15px !important;
+}
+
+#productsTable_wrapper .paginate_button.current {
+    color: #fff !important;
+    background-color: var(--swatch_4) !important;
+    font-weight: bolder !important;
+    border: none !important;
+    border-radius: 5px;
+}
+
+#productsTable_info {
+    display: none;
+}
+
+/* Nút chức năng */
+.dt-button {
+    background: white !important;
+    border-radius: 5px !important;
+    border-color: #ccd2d8 !important;
+}
+
+.dt-button i {
+    font-size: 15px !important;
+    color: #3f4759 !important;
+}
+
+.dt-button:hover {
+    border-color: #1f1f1f !important;
+}
+
+.button-add {
+    background: #fa6374 !important;
+    margin-left: 7px !important;
+    color: white !important;
+}
+
+.button-add:hover {
+    background: #e15968 !important;
+}
+
+
+
 

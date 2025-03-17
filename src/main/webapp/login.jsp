@@ -28,7 +28,7 @@
         %>
         <div class="login-container">
             <h2 class="text-center fw-semibold mb-4">Đăng nhập</h2>
-            <form action="login" method="post" class="mb-0">
+            <form action="login" method="post" class="mb-0" id="login-form">
                 <div class="mb-3">
                     <label for="email" class="form-label">Username hoặc email:</label>
                     <input name="email" type="text" class="form-control" id="email"
@@ -46,7 +46,11 @@
                        style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
                 <p class="text-danger">${ errorPassword }</p>
-                <button type="submit" class="btn btn-login w-100 mb-3">
+                <%--                Xac thuc captcha--%>
+                <div class="g-recaptcha" data-sitekey="6LcalvMqAAAAAIPMHNMM3bTb4GNDzWfWGPb_0jbw"></div>
+                <div id="error-captcha" style="color: red"></div>
+<%--                End captcha--%>
+                <button type="button" onclick="checkcaptcha('login')" class="btn btn-login w-100 mb-3">
                     Đăng nhập
                 </button>
             </form>
@@ -89,5 +93,7 @@
         this.classList.toggle('fa-eye-slash');
     });
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="assets/js/verify-captcha.js"></script>
 </body>
 </html>

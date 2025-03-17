@@ -21,6 +21,11 @@ public class UserDAO {
                 .bind(0, uid).mapTo(String.class).one());
     }
 
+    public String getUsername(int uid) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT username FROM users WHERE uid = ?")
+                .bind(0, uid).mapTo(String.class).one());
+    }
+
     public boolean isExistEmail(String email) {
         return jdbi.withHandle(handle ->
                 handle.createQuery("SELECT COUNT(*) FROM users WHERE email = ?")
@@ -298,5 +303,10 @@ public class UserDAO {
 
         String test = userDAO.getPaymentTypeNameByPmid(10);
         System.out.println(test);
+    }
+
+    public String getEmailById(int uid) {
+        String query = "SELECT email FROM users WHERE uid = ?";
+        return jdbi.withHandle(handle -> handle.createQuery(query).bind(0, uid).mapTo(String.class).one());
     }
 }
