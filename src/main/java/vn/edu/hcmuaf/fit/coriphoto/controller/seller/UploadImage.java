@@ -71,7 +71,7 @@ public class UploadImage extends HttpServlet {
         product.setPrice(Double.parseDouble(price));
 
         SellerService sellerService = new SellerService();
-        sellerService.uploadProduct(product);
+        sellerService.uploadProduct(product, "waiting");
 
         request.setAttribute("msgUpload", "Upload ảnh thành công!");
         request.getRequestDispatcher("myphoto-seller.jsp").forward(request, response);
