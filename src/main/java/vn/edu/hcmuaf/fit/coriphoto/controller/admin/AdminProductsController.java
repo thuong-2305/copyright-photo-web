@@ -6,7 +6,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.ProductSerializer;
+import vn.edu.hcmuaf.fit.coriphoto.model.Category;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
+import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import java.io.IOException;
@@ -23,12 +26,14 @@ public class AdminProductsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+        System.out.println(id);
         if (id != null) {
             try {
                 int productId = Integer.parseInt(id);
                 ProductService productService = new ProductService();
                 Product product = productService.getById(productId);
                 if (product != null) {
+                    System.out.println(product);
                     response.setContentType("application/json");
                     Gson gson = new GsonBuilder()
                         .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
@@ -46,19 +51,24 @@ public class AdminProductsController extends HttpServlet {
                         .registerTypeAdapter(Product.class, new ProductSerializer())
                         .create();
                     String jsonResponse = gson.toJson(product);
+                    System.out.println(jsonResponse);
                     response.getWriter().write(jsonResponse);
                 } else {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Sản phẩm không tồn tại");
                 }
             } catch (NumberFormatException e) {
+                System.out.println(e.getMessage());
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID không hợp lệ");
             }
         } else {
             ProductService service = new ProductService();
-            // Lấy danh sách sp từ service
             List<Product> products = service.getAll();
-            // Gửi danh sách sp tới JSP
+
+            CategoryService categoryService = new CategoryService();
+            List<Category> categories = categoryService.getAll();
+
             request.setAttribute("products", products);
+            request.setAttribute("categories", categories);
             request.getRequestDispatcher("admin-products.jsp").forward(request, response);
         }
     }
@@ -87,38 +97,11 @@ public class AdminProductsController extends HttpServlet {
                     responseData.put("success", true);
                     // Chuyển đối tượng Map thành JSON
                     String jsonResponse = gson.toJson(responseData);
+                    System.out.println("jsonResponse " + jsonResponse);
                     // Gửi dữ liệu JSON về client
                     response.getWriter().write(jsonResponse);
                 }
             }
-        }
-        else {
-            String form = request.getParameter("defineForm");
-            // Nhận dữ liệu từ form
-            String name = request.getParameter("nameProduct");
-            String description = request.getParameter("description");
-            String category = request.getParameter("category");
-            double price = Double.parseDouble(request.getParameter("price"));
-            String contributor = request.getParameter("contributor");
-            String status = request.getParameter("status");
-
-            // Tạo đối tượng Product
-            Product product = new Product();
-            product.setName(name);
-            product.setDescription(description);
-            product.setCid(Integer.parseInt(category));
-            product.setPrice(price);
-            product.setUid(Integer.parseInt(contributor));
-            product.setStatus(status);
-
-            if ("formEdit".equals(form)) {
-                product.setId(Integer.parseInt(request.getParameter("idProduct")));
-                service.updateProduct(product);
-            }else {
-                service.addProduct(product);
-            }
-
-            response.sendRedirect("admin-products");
         }
     }
 }
