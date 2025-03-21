@@ -45,8 +45,8 @@
 </head>
 
 <body>
+<!--Đây là trang products details-->
 <jsp:include page="include/navbar.jsp"/>
-
 <!--search -->
 <section class="search" style="margin-top: 80px; margin-bottom: 20px;">
     <div class="search-container">
