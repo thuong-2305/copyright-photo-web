@@ -24,9 +24,7 @@ public class UserService {
     }
 
 
-
-
-        public boolean isExistEmail(String email) {
+    public boolean isExistEmail(String email) {
         return userDao.isExistEmail(email);
     }
 
@@ -48,7 +46,9 @@ public class UserService {
         return userDao.getEmailById(uid);
     }
 
-    public String getUsername(int uid) { return userDao.getUsername(uid); }
+    public String getUsername(int uid) {
+        return userDao.getUsername(uid);
+    }
 
     public User getUserByCredentials(String username, String password) {
         return userDao.getUserByCredentials(username, password);
@@ -87,17 +87,21 @@ public class UserService {
     }
 
     public boolean addPaymentMethodCard(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate, int cvc) {
-        return userDao.addPaymentMethodCard(uid, accountName,accountNumber,1,provider,expiryDate,cvc);
+        return userDao.addPaymentMethodCard(uid, accountName, accountNumber, 1, provider, expiryDate, cvc);
     }
 
     public boolean addPaymentMethodBank(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate) {
-        return userDao.addPaymentMethodBank(uid, accountName,accountNumber,2,provider,expiryDate);
+        return userDao.addPaymentMethodBank(uid, accountName, accountNumber, 2, provider, expiryDate);
     }
 
-    public List<User> getAllCustomers() {return userDao.getAllCustomers();}
+    public List<User> getAllCustomers() {
+        return userDao.getAllCustomers();
+    }
+
     public String getEmail(int uid) {
         return userDao.getEmail(uid);
     }
+
     public String getPaymentTypeNameByPmid(int pmid) {
         return userDao.getPaymentTypeNameByPmid(pmid);
     }
