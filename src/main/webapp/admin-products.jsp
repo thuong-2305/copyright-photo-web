@@ -67,7 +67,7 @@
                             <c:forEach var="product" items="${products}">
                                 <tr>
                                     <!-- Mã -->
-                                    <td>#${product.id}</td>
+                                    <td>${product.id}</td>
                                     <!-- Tên -->
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -355,7 +355,6 @@
 <!-- JS -->
 <jsp:include page="include/admin-libraries.jsp" />
 
-
 <!-- Chức năng của dataTable -->
 <script>
     $(document).ready(function () {
@@ -502,6 +501,7 @@
         productDetail.classList.toggle('d-none');
         const overlay = document.getElementById("overlay");
         overlay.classList.toggle('show');
+        document.body.classList.toggle('no-scroll');
     }
 
 </script>
@@ -780,7 +780,7 @@
 
                 if(response.message === "Success") {
 
-                    // $("#loadingScreen").removeClass("d-none");
+                    $("#loadingScreen").removeClass("d-none");
 
                     $('.view-products-main').toggleClass("d-none");
                     $('.view-product-add').toggleClass("d-none");
