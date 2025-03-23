@@ -72,25 +72,6 @@
 <section class="products">
     <div class="container d-flex flex-column">
         <div class="heading">
-<%--            <div class="related-search d-flex align-items-center my-4">--%>
-<%--                <span class="fw-bold me-3">Thẻ phổ biến:</span>--%>
-<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
-<%--                    <i class="fa fa-search"></i>--%>
-<%--                    <p>Tự nhiên</p>--%>
-<%--                </div>--%>
-<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
-<%--                    <i class="fa fa-search"></i>--%>
-<%--                    <p>Phong cảnh</p>--%>
-<%--                </div>--%>
-<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
-<%--                    <i class="fa fa-search"></i>--%>
-<%--                    <p>Hoa cỏ</p>--%>
-<%--                </div>--%>
-<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
-<%--                    <i class="fa fa-search"></i>--%>
-<%--                    <p>Nhà</p>--%>
-<%--                </div>--%>
-<%--            </div>--%>
             <div class="path">
                 <p class="text-primary">
                     Danh mục
@@ -102,7 +83,6 @@
                 </p>
             </div>
         </div>
-
         <div class="hero-section">
             <div class="container">
                 <h2>Thư Viện Hình Ảnh Chất Lượng Cao</h2>
@@ -131,41 +111,45 @@
 
                     <div class="filter-section">
                         <h3>Chọn tiêu chí lọc</h3>
+                        <form id="filter-form">
+                            <!-- Thêm input hidden để giữ giá trị cid -->
+                            <input type="hidden" name="cid" value="${cid}">
 
-                        <div class="filter-group">
-                            <h4>Dung lượng ảnh tối thiểu</h4>
-                            <select class="form-control">
-                                <option>Tất cả kích thước</option>
-                                <option>Nhỏ (≤ 1MP)</option>
-                                <option>Trung bình (1-5MP)</option>
-                                <option>Lớn (5-10MP)</option>
-                                <option>Rất lớn (≥ 10MP)</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group">
-                            <h4>Ngày đăng ảnh</h4>
-                            <select class="form-control">
-                                <option>Mọi thời gian</option>
-                                <option>24 giờ qua</option>
-                                <option>Tuần này</option>
-                                <option>Tháng này</option>
-                                <option>Năm nay</option>
-                            </select>
-                        </div>
-
-                        <div class="filter-group">
-                            <h4>Định dạng</h4>
-                            <div class="checkbox-group">
-                                <label><input type="checkbox"/> JPG</label>
-                                <label><input type="checkbox"/> PNG</label>
-                                <label><input type="checkbox"/> SVG</label>
-                                <label><input type="checkbox"/> WEBP</label>
+                            <div class="filter-group">
+                                <h4>Dung lượng ảnh tối thiểu</h4>
+                                <select class="form-control" name="size" id="size-filter">
+                                    <option value="all">Tất cả kích thước</option>
+                                    <option value="small">Nhỏ (≤ 1MP)</option>
+                                    <option value="medium">Trung bình (1-5MP)</option>
+                                    <option value="large">Lớn (5-10MP)</option>
+                                    <option value="very-large">Rất lớn (≥ 10MP)</option>
+                                </select>
                             </div>
-                        </div>
 
-                        <button class="btn btn-primary btn-block">Áp dụng bộ lọc</button>
-                        <button class="btn btn-outline btn-block">Đặt lại</button>
+                            <div class="filter-group">
+                                <h4>Ngày đăng ảnh</h4>
+                                <select class="form-control" name="date" id="date-filter">
+                                    <option value="any">Mọi thời gian</option>
+                                    <option value="last-24h">24 giờ qua</option>
+                                    <option value="last-week">Tuần này</option>
+                                    <option value="last-month">Tháng này</option>
+                                    <option value="last-year">Năm nay</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <h4>Định dạng</h4>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="formats" value="jpg" class="format-checkbox"/> JPG</label>
+                                    <label><input type="checkbox" name="formats" value="png" class="format-checkbox"/> PNG</label>
+                                    <label><input type="checkbox" name="formats" value="svg" class="format-checkbox"/> SVG</label>
+                                    <label><input type="checkbox" name="formats" value="webp" class="format-checkbox"/> WEBP</label>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-primary btn-block" id="apply-filters">Áp dụng bộ lọc</button>
+                            <button type="button" class="btn btn-outline btn-block" id="reset-filters">Đặt lại</button>
+                        </form>
                     </div>
                 </aside>
 
@@ -229,17 +213,17 @@
 
                     </div>
 
-                    <div class="feedback-card">
-                        <h3>Những kết quả này có phù hợp với kết quả của bạn không?</h3>
-                        <div class="feedback-actions">
-                            <button class="btn btn-feedback">
-                                <i class="fas fa-thumbs-up"></i> Có
-                            </button>
-                            <button class="btn btn-feedback">
-                                <i class="fas fa-thumbs-down"></i> Không
-                            </button>
-                        </div>
-                    </div>
+<%--                    <div class="feedback-card">--%>
+<%--                        <h3>Những kết quả này có phù hợp với kết quả của bạn không?</h3>--%>
+<%--                        <div class="feedback-actions">--%>
+<%--                            <button class="btn btn-feedback">--%>
+<%--                                <i class="fas fa-thumbs-up"></i> Có--%>
+<%--                            </button>--%>
+<%--                            <button class="btn btn-feedback">--%>
+<%--                                <i class="fas fa-thumbs-down"></i> Không--%>
+<%--                            </button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </main>
@@ -253,8 +237,12 @@
         <div class="ques">
             <p class="fw-bold fs-5">Những kết quả này có phù hợp với kết quả của bạn không?
             <div class="icon text-center">
-                <i class="fs-3 fa-regular fa-face-laugh-beam"></i>
-                <i class="fs-3 fa-regular fa-face-frown-open"></i>
+                <button class="btn btn-feedback">
+                    <i class="fas fa-thumbs-up"></i> Có
+                </button>
+                <button class="btn btn-feedback">
+                    <i class="fas fa-thumbs-down"></i> Không
+                </button>
             </div>
         </div>
     </div>
@@ -278,6 +266,148 @@
 
 <jsp:include page="include/footer.jsp"/>
 <jsp:include page="include/scripts.jsp"/>
+<script>
+    $(document).ready(function () {
+        // Lắng nghe sự kiện click trên nút "Áp dụng bộ lọc"
+        $("#apply-filters").on("click", function () {
+            applyFilters();
+        });
+
+        // Lắng nghe sự kiện click trên nút "Đặt lại"
+        $("#reset-filters").on("click", function () {
+            // Đặt lại các giá trị trong form về mặc định
+            $("#size-filter").val("all");
+            $("#date-filter").val("any");
+            $(".format-checkbox").prop("checked", false);
+
+            // Áp dụng lọc sau khi đặt lại
+            applyFilters();
+        });
+
+        // Lắng nghe sự kiện click trên các mục trong phân trang
+        $(".pagination a").on("click", function (e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
+
+            // Kiểm tra nếu nút bị vô hiệu hóa
+            if ($(this).hasClass("disabled")) {
+                return; // Không làm gì nếu nút bị vô hiệu hóa
+            }
+
+            // Lấy giá trị của data-value
+            var page = $(this).data('value');
+
+            // Lưu trang hiện tại vào dữ liệu lọc và áp dụng lọc
+            currentPage = page;
+            applyFilters();
+        });
+
+        // Biến lưu trạng thái trang hiện tại
+        var currentPage = 1;
+
+        // Hàm áp dụng các bộ lọc
+        function applyFilters() {
+            // Thu thập dữ liệu từ form
+            var formData = new FormData();
+            formData.append('cid', ${cid});
+            formData.append('size', $("#size-filter").val());
+            formData.append('date', $("#date-filter").val());
+            formData.append('page', currentPage);
+
+            // Thu thập các định dạng đã chọn
+            var selectedFormats = [];
+            $(".format-checkbox:checked").each(function() {
+                selectedFormats.push($(this).val());
+                formData.append('formats', $(this).val());
+            });
+
+            // Hiển thị hiệu ứng loading (tùy chọn)
+            $(".photo-products").html('<div class="loading">Đang tải...</div>');
+
+            // Gửi yêu cầu AJAX để lọc sản phẩm
+            $.ajax({
+                url: "products",
+                method: "POST",
+                data: new URLSearchParams(formData),
+                processData: false,
+                contentType: 'application/x-www-form-urlencoded',
+                success: function (response) {
+                    // Cập nhật phần hiển thị sản phẩm
+                    updateProductDisplay(response.products);
+
+                    // Cập nhật phân trang
+                    updatePagination(response.pagination);
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: ", error);
+                    $(".photo-products").html('<div class="error">Có lỗi xảy ra khi tải dữ liệu.</div>');
+                }
+            });
+        }
+
+        // Hàm cập nhật hiển thị sản phẩm
+        function updateProductDisplay(products) {
+            var htmlContent = '';
+
+            if (products.length === 0) {
+                htmlContent = '<div class="no-results">Không có sản phẩm nào phù hợp với tiêu chí lọc.</div>';
+            } else {
+                $.each(products, function(index, item) {
+                    htmlContent += '<div class="box">';
+                    htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
+                    htmlContent += '<div class="info">';
+                    htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
+                    htmlContent += '<div class="hover-options">';
+                    htmlContent += '<button class="favorite-btn heart option-button fw-bold" data-product-id="' + item.id + '"> <i class="fa-regular fa-heart pe-2"></i>Thích </button>';
+                    htmlContent += '<button class="option-button buy fw-bold addCart" data-product-id="' + item.id + '"><i class="bi bi-bag-check-fill"></i>Thêm giỏ hàng</button>';
+                    htmlContent += '</div></div></div>';
+                });
+            }
+
+            // Cập nhật nội dung của photo-products với HTML mới
+            $(".photo-products").html(htmlContent);
+        }
+
+        // Hàm cập nhật hiển thị phân trang
+        function updatePagination(pagination) {
+            var htmlContent = '';
+
+            // Nút Previous
+            htmlContent += '<a href="#" class="prev' + (pagination.currentPage == 1 ? ' disabled' : '') +
+                '" data-value="' + (pagination.currentPage - 1) + '"><i class="fas fa-chevron-left"></i></a>';
+
+            // Các nút số trang
+            for (var i = 1; i <= pagination.totalPages; i++) {
+                if (i === pagination.currentPage) {
+                    htmlContent += '<a href="#" class="active" data-value="' + i + '">' + i + '</a>';
+                } else {
+                    htmlContent += '<a href="#" data-value="' + i + '">' + i + '</a>';
+                }
+            }
+
+            // Thêm "..." nếu có nhiều trang
+            if (pagination.totalPages > 10) {
+                htmlContent = htmlContent.replace(/<a href="#" data-value="4".*?<a href="#" data-value="' + pagination.totalPages + '"/,
+                    '<a href="#" data-value="4">4</a><span>...</span><a href="#" data-value="' + pagination.totalPages + '"');
+            }
+
+            // Nút Next
+            htmlContent += '<a href="#" class="next' + (pagination.currentPage == pagination.totalPages ? ' disabled' : '') +
+                '" data-value="' + (pagination.currentPage + 1) + '"><i class="fas fa-chevron-right"></i></a>';
+
+            // Cập nhật phân trang
+            $(".pagination").html(htmlContent);
+
+            // Tái kết nối sự kiện click cho các nút phân trang mới
+            $(".pagination a").on("click", function (e) {
+                e.preventDefault();
+                if (!$(this).hasClass("disabled")) {
+                    currentPage = $(this).data('value');
+                    applyFilters();
+                }
+            });
+        }
+    });
+</script>
 <script>
     function toggleFilter() {
         const filterPanel = document.querySelector(".filter-panel");
@@ -389,8 +519,7 @@
             $(".sort-options .sort-item").removeClass("active");
             $(this).addClass("active");
 
-            var content = $(this).text().trim();
-            var sortValue = $(this).data("value");
+            const sortValue = $(this).data("value");
 
             $.ajax({
                 url: "products?cid=${ cid }",
