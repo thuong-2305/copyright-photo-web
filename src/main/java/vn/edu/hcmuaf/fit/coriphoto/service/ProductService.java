@@ -24,8 +24,9 @@ public class ProductService {
     public boolean deleteProductById(int id) {
         return products.deleteProductById(id);
     }
-    public boolean updateProduct(Product product) {
-        return products.updateProduct(product);
+
+    public void updateProduct(Product product) {
+        products.updateProduct(product);
     }
 
     public List<TrendProducts> getTopTrend() {
