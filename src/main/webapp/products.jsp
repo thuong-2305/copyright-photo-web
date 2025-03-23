@@ -72,25 +72,25 @@
 <section class="products">
     <div class="container d-flex flex-column">
         <div class="heading">
-            <div class="related-search d-flex align-items-center my-4">
-                <span class="fw-bold me-3">Thẻ phổ biến:</span>
-                <div class="data1 d-flex justify-content-center align-items-center">
-                    <i class="fa fa-search"></i>
-                    <p>Tự nhiên</p>
-                </div>
-                <div class="data1 d-flex justify-content-center align-items-center">
-                    <i class="fa fa-search"></i>
-                    <p>Phong cảnh</p>
-                </div>
-                <div class="data1 d-flex justify-content-center align-items-center">
-                    <i class="fa fa-search"></i>
-                    <p>Hoa cỏ</p>
-                </div>
-                <div class="data1 d-flex justify-content-center align-items-center">
-                    <i class="fa fa-search"></i>
-                    <p>Nhà</p>
-                </div>
-            </div>
+<%--            <div class="related-search d-flex align-items-center my-4">--%>
+<%--                <span class="fw-bold me-3">Thẻ phổ biến:</span>--%>
+<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
+<%--                    <i class="fa fa-search"></i>--%>
+<%--                    <p>Tự nhiên</p>--%>
+<%--                </div>--%>
+<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
+<%--                    <i class="fa fa-search"></i>--%>
+<%--                    <p>Phong cảnh</p>--%>
+<%--                </div>--%>
+<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
+<%--                    <i class="fa fa-search"></i>--%>
+<%--                    <p>Hoa cỏ</p>--%>
+<%--                </div>--%>
+<%--                <div class="data1 d-flex justify-content-center align-items-center">--%>
+<%--                    <i class="fa fa-search"></i>--%>
+<%--                    <p>Nhà</p>--%>
+<%--                </div>--%>
+<%--            </div>--%>
             <div class="path">
                 <p class="text-primary">
                     Danh mục
@@ -314,15 +314,7 @@
                     </div>
 
                     <div class="pagination">
-                        <a href="#" class="prev disabled"
-                        ><i class="fas fa-chevron-left"></i
-                        ></a>
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <span>...</span>
-                        <a href="#">10</a>
-                        <a href="#" class="next"><i class="fas fa-chevron-right"></i></a>
+
                     </div>
 
                     <div class="feedback-card">
@@ -379,6 +371,103 @@
         const filterPanel = document.querySelector(".filter-panel");
         filterPanel.classList.toggle("active");
     }
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Lấy totalPages từ request
+        var totalPages = <%= request.getAttribute("totalPages") %>;
+        var currentPage = 1; // Mặc định là trang 1
+
+        // Hàm tạo phân trang
+        function createPagination() {
+            var paginationHtml = '';
+
+            // Nút Previous
+            if (currentPage > 1) {
+                paginationHtml += '<a href="#" class="prev" data-value="' + (currentPage - 1) + '"><i class="fas fa-chevron-left"></i></a>';
+            } else {
+                paginationHtml += '<a href="#" class="prev disabled"><i class="fas fa-chevron-left"></i></a>';
+            }
+
+            // Các số trang
+            for (var i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    paginationHtml += '<a href="#" class="active" data-value="' + i + '">' + i + '</a>';
+                } else {
+                    paginationHtml += '<a href="#" data-value="' + i + '">' + i + '</a>';
+                }
+            }
+
+            // Nút Next
+            if (currentPage < totalPages) {
+                paginationHtml += '<a href="#" class="next" data-value="' + (currentPage + 1) + '"><i class="fas fa-chevron-right"></i></a>';
+            } else {
+                paginationHtml += '<a href="#" class="next disabled"><i class="fas fa-chevron-right"></i></a>';
+            }
+
+            $('.pagination').html(paginationHtml);
+        }
+
+        // Gọi hàm tạo phân trang khi trang được tải
+        createPagination();
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Lắng nghe sự kiện click trên các mục trong phân trang
+        $(".pagination a").on("click", function (e) {
+            e.preventDefault();
+
+            // Lấy giá trị của data-value
+            var page = $(this).data('value');
+            // alert("Bạn đã nhấn vào trang: " + page);
+            $(".pagination a").removeClass("active"); // Xóa lớp active khỏi tất cả các liên kết
+            $(this).addClass("active"); // Thêm lớp active cho liên kết được nhấn
+            // Gọi hàm tải sản phẩm với trang đã chọn
+            loadProducts(page);
+        });
+
+        // Hàm tải sản phẩm qua AJAX
+        function loadProducts(page) {
+            $.ajax({
+                url: "products?cid=${cid}",
+                method: "GET",
+                dataType: "json",
+                data: {
+                    page: page
+                },
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                success: function (response) {
+                    // Giả sử dữ liệu trả về là JSON (danh sách sản phẩm đã sắp xếp)
+                    var products = response; // Nếu server trả về JSON
+                    // Cập nhật lại phần tử .photo-products bằng HTML mới
+                    var htmlContent = '';
+                    $.each(products, function (index, item) {
+                        htmlContent += '<div class="box">';
+                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
+                        htmlContent += '<div class="info">';
+                        htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
+                        htmlContent += '<div class="hover-options">';
+                        htmlContent += '<button class="favorite-btn heart option-button fw-bold" data-product-id="' + item.id + '"> <i class="fa-regular fa-heart pe-2"></i>Thích </button>';
+                        htmlContent += '<button class="option-button buy fw-bold addCart" data-product-id="' + item.id + '"><i class="bi bi-bag-check-fill"></i>Thêm giỏ hàng</button>';
+                        htmlContent += '</div></div></div>';
+                    });
+                    // Cập nhật nội dung của photo-products với HTML mới
+                    $(".photo-products").html(htmlContent);
+                    // Cập nhật phân trang
+                    updatePagination(response.pagination);
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: ", error);
+                    alert("Có lỗi xảy ra khi tải dữ liệu.");
+                }
+            });
+        }
+    });
 </script>
 
 <script>

@@ -58,7 +58,29 @@ public class ProductControll extends HttpServlet {
                     productSorted = productService.getProductLatest(cid);
                 } }
         } catch (Exception _) { }
+// Thêm logic phân trang
+        int page = 1; // Trang mặc định
+        int productsPerPage = 9; // Mỗi trang hiển thị 9 sản phẩm
+        try {
+            String pageParam = request.getParameter("page");
+            if (pageParam != null && !pageParam.isEmpty()) {
+                page = Integer.parseInt(pageParam);
+                if (page < 1) page = 1;
+            }
+        } catch (NumberFormatException e) {
+            page = 1;
+        }
 
+        // Tính toán phân trang
+        int totalProducts = productSorted.size();
+        int totalPages = (int) Math.ceil((double) totalProducts / productsPerPage);
+
+
+        // Lấy danh sách sản phẩm cho trang hiện tại
+        int startIndex = (page - 1) * productsPerPage;
+        int endIndex = Math.min(startIndex + productsPerPage, totalProducts);
+        System.out.println(startIndex+" "+endIndex);
+        productSorted = productSorted.subList(startIndex, endIndex);
         // Trả về danh sách sản phẩm đã sắp xếp dưới dạng JSON
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
@@ -74,7 +96,8 @@ public class ProductControll extends HttpServlet {
         }
 
         request.setAttribute("productSorted", productSorted);
-
+        request.setAttribute("totalPages", totalPages);
+        request.setAttribute("currentPage", page);
         request.getRequestDispatcher("products.jsp").forward(request, response);
     }
 
