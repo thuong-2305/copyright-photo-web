@@ -125,6 +125,10 @@
     margin: 0 auto;
 }
 
+.path{
+    margin-top: 16px;
+}
+
 .products .heading {
     width: 100%;
 }
@@ -638,6 +642,70 @@ ul {
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+/* Filter styles */
+.filter-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* Loading và error messages */
+.loading, .error, .no-results {
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    color: #666;
+}
+
+.loading {
+    background: url('../images/loading.gif') no-repeat center;
+    height: 100px;
+}
+
+.error {
+    color: #d9534f;
+}
+
+.no-results {
+    font-style: italic;
 }
 
 /* Responsive Styles */
