@@ -8,7 +8,6 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.ProductSerializer;
 import vn.edu.hcmuaf.fit.coriphoto.model.Category;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
-import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
 import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 

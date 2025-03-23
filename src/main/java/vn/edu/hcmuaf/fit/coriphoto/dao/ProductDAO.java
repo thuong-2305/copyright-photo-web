@@ -4,14 +4,11 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
+import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
-import java.time.LocalDate;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductDAO {
     private static final Jdbi jdbi = new DBConnect().get();
@@ -117,29 +114,29 @@ public class ProductDAO {
         );
     }
 
-    public boolean updateProduct(Product product) {
+    public void updateProduct(Product product) {
         String sql = """
             UPDATE products
             SET name = :name,
                 description = :description,
                 cid = :cid,
+                url = :url,
                 price = :price,
                 uid = :uid,
                 status = :status
             WHERE id = :id
         """;
 
-        return jdbi.withHandle(handle ->
-                handle.createUpdate(sql)
-                        .bind("id", product.getId())
-                        .bind("name", product.getName())
-                        .bind("description", product.getDescription())
-                        .bind("cid", product.getCid())
-                        .bind("price", product.getPrice())
-                        .bind("uid", product.getUid())
-                        .bind("status", product.getStatus())
-                        .execute() > 0
-        );
+        jdbi.useHandle(handle -> {handle.createUpdate(sql)
+                    .bind("name", product.getName())
+                    .bind("description", product.getDescription())
+                    .bind("cid", product.getCid())
+                    .bind("url", product.getUrl())
+                    .bind("price", product.getPrice())
+                    .bind("uid", product.getUid())
+                    .bind("status", product.getStatus())
+                    .bind("id", product.getId()).execute();
+        });
     }
 
     public boolean updateStatus(String action, int id) {
@@ -168,4 +165,13 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where status = ? order by dateUpload desc")
                 .bind(0, "waiting").mapToBean(Product.class).list());
     }
+
+    public static void main(String[] args) {
+        Product product = new ProductService().getById(996);
+        System.out.println(product);
+        product.setName("Muôn thú rừng núi");
+        new ProductService().updateProduct(product);
+        System.out.println(product);
+    }
 }
+
