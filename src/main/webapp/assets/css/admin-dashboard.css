@@ -192,6 +192,101 @@ table.dataTable > thead > tr > th {
     100% { transform: rotate(360deg); }
 }
 
+/* dark mode */
+.dark-mode .button-back,
+.dark-mode .button-edit-product {
+    color: #ffffff !important;
+}
+
+.dark-mode .button-back:hover {
+    border-color: #ffffff !important;
+}
+
+.dark-mode .add-product .card {
+    background-color: var(--dark-bg-right) !important;
+    color: #fff !important;
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select{
+    background-color: transparent !important;
+}
+
+.dark-mode .text-secondary {
+    color: #ffffff !important;
+}
+
+.dark-mode .image-upload-box {
+    background: var(--dark-bg-right) !important;
+}
+
+.dark-mode .dt-button {
+    color: #fff !important;
+    background: var(--dark-bg-right) !important;
+    border-color: #fff !important;
+}
+
+.dark-mode .dt-button i {
+    color: #fff !important;
+}
+
+.dark-mode .dataTables-controls {
+    background: var(--dark-bg-right) !important;
+}
+
+.dark-mode .dataTables-controls label {
+    color: #fff !important;
+}
+
+.dark-mode .dataTables_wrapper .dataTables_filter {
+    color: #fff !important;
+}
+
+.dark-mode .dataTables_wrapper .dataTables_filter input {
+    background-color: var(--dark-right);
+    color: #fff !important;
+}
+
+.dark-mode #productsTable th {
+    text-align: left !important;
+    background: var(--dark-right) !important;
+    color: #fff !important;
+}
+
+.dark-mode .table > :not(caption) > * > *  {
+    background-color: var(--dark-bg-right) !important;
+}
+
+/*.dark-mode #productsTable td,*/
+/*.dark-mode #productsTable td i {*/
+/*    color: #fff !important;*/
+/*}*/
+
+.dark-mode .view-product {
+    background: var(--dark-right) !important;
+}
+
+.dark-mode .overlay {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.dark-mode .view-product .show-content .title-info {
+    color: #fff !important;
+}
+
+.dark-mode p {
+    color: #fff !important;
+}
+
+.dark-mode .btn-close {
+    --bs-btn-close-color: #fff !important;
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
+}
+
+.dark-mode .modal-content {
+    background-color: var(--dark-right) !important;
+}
+
 
 
 
