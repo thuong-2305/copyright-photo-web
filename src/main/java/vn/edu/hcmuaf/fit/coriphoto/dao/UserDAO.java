@@ -216,7 +216,20 @@ public class UserDAO {
                         .findOne()
                         .orElse(null)
         );
-        return currentPassword != null && currentPassword.equals(oldPassword);
+        String hashedOldPassword = hashPasswordMD5(oldPassword);
+        return currentPassword != null && currentPassword.equals(hashedOldPassword);
+    }
+
+
+    public boolean changePassword(int uid, String newPassword) {
+        String hashedPassword = hashPasswordMD5(newPassword);
+        int updated = jdbi.withHandle(handle ->
+                handle.createUpdate("UPDATE users SET password = :newPassword WHERE uid = :uid")
+                        .bind("newPassword", hashedPassword)
+                        .bind("uid", uid)
+                        .execute()
+        );
+        return updated > 0;
     }
 
     public boolean createUser(String email, String password, String username, String name) {
@@ -231,16 +244,6 @@ public class UserDAO {
         return true;
     }
 
-    public boolean changePassword(int uid, String newPassword) {
-        String hashedPassword = hashPasswordMD5(newPassword);
-        int updated = jdbi.withHandle(handle ->
-                handle.createUpdate("UPDATE users SET password = :newPassword WHERE uid = :uid")
-                        .bind("newPassword", hashedPassword)
-                        .bind("uid", uid)
-                        .execute()
-        );
-        return updated > 0;
-    }
 
     public int getUidByEmail(String email) {
         return jdbi.withHandle(handle ->

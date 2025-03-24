@@ -1,14 +1,18 @@
+import { isPasswordStrong } from './check-strong-password.js';
+
 document.getElementById("resetPasswordForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
     let newPassword = document.getElementById("newPassword").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (newPassword.length < 6) {
-        alert("Mật khẩu phải có ít nhất 6 ký tự.");
+    // Kiểm tra độ mạnh mật khẩu bằng hàm isPasswordStrong
+    if (!isPasswordStrong(newPassword)) {
+        alert("Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ cái in hoa, 1 số và 1 ký tự đặc biệt!");
         return;
     }
 
+    // Kiểm tra xác nhận mật khẩu
     if (newPassword !== confirmPassword) {
         alert("Mật khẩu xác nhận không khớp.");
         return;
@@ -18,7 +22,7 @@ document.getElementById("resetPasswordForm").addEventListener("submit", async fu
         let response = await fetch("ResetPassword", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ newPassword: newPassword, confirmPassword: confirmPassword }) // Gửi cả 2 giá trị
+            body: JSON.stringify({ newPassword: newPassword, confirmPassword: confirmPassword })
         });
 
         let data = await response.json();

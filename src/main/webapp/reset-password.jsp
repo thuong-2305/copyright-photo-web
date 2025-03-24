@@ -29,7 +29,7 @@
 
 <jsp:include page="include/scripts.jsp"/>
 
-<script src="./assets/js/reset-password.js"></script>
+<script type="module" src="./assets/js/reset-password.js"></script>
 
 </body>
 </html>
