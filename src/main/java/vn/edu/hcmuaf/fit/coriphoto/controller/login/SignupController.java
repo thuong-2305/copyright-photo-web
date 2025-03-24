@@ -32,6 +32,8 @@ public class SignupController extends HttpServlet {
         }
          */
 
+
+
         AuthService authService = new AuthService();
         boolean isCreated = authService.registerUser(email, password, username, name);
 

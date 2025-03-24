@@ -73,7 +73,6 @@
 
 <script src="./assets/js/forgot-password.js"></script>
 <script src="./assets/js/verify-otp.js"></script>
-<script src="./assets/js/reset-password.js"></script>
 
 </body>
 </html>

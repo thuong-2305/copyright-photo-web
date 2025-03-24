@@ -49,13 +49,16 @@
                     <i class="fa fa-eye position-absolute togglePassword" style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
 
-<%--                Xac thuc captcha--%>
                 <div class="g-recaptcha" data-sitekey="6LcalvMqAAAAAIPMHNMM3bTb4GNDzWfWGPb_0jbw"></div>
                 <div id="error-captcha" style="color: red"></div>
-<%--                End captcha--%>
+
                 <button type="button" onclick="checkcaptcha('signup')" id="check-email-btn" class="btn btn-signup w-100 mb-3">Đăng ký</button>
             </form>
 
+            <!-- Include các file JS -->
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <script src="assets/js/checkcaptcha.js"></script>
+            <script type="module" src="assets/js/signup.js"></script>
 
 
             <!-- Modal OTP -->
@@ -131,7 +134,7 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="./assets/js/register-verify-email.js"></script>
+<script type="module" src="./assets/js/register-verify-email.js"></script>
 <script src="./assets/js/register-verify-otp.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="assets/js/verify-captcha.js"></script>
