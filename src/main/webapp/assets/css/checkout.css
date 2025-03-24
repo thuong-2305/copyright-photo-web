@@ -193,13 +193,13 @@ html {
     font-size: 12px;
     font-weight: 400;
     line-height: 32px;
-} 
+}
 
 .checkout-content .purchase-details-container .purchase-details-header .edit-cart {
     font-size: 14px;
     font-weight: 400;
     line-height: 32px;
-}    
+}
 
 /* Body */
 
@@ -243,6 +243,17 @@ html {
     letter-spacing: -1px;
 }
 
+.cart-items-container {
+    max-height: 480px; /* Chiều cao tối đa cho 4 ảnh (4 * 120px) */
+    overflow-y: auto; /* Thêm thanh cuộn dọc */
+}
+
+/* Đảm bảo mỗi mục ảnh có chiều cao cố định */
+.cart-items-container .item {
+    height: 120px; /* Chiều cao cố định cho mỗi mục ảnh */
+    display: flex;
+    align-items: center;
+}
 
 
 
