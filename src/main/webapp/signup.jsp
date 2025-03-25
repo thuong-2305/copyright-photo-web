@@ -17,6 +17,7 @@
     <div class="frame-signup">
         <h1 class="fw-bold mb-5" style="color: #57cc99; margin-top: 250px !important;">CoriPhoto</h1>
         <div class="signup-container mb-2">
+
             <h2 class="text-center fw-semibold mb-4">Đăng ký</h2>
             <form id="signup-form" method="post">
                 <p class="text-danger" id="error-message"></p>
@@ -48,12 +49,17 @@
                     <i class="fa fa-eye position-absolute togglePassword" style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
 
-<%--                Xac thuc captcha--%>
                 <div class="g-recaptcha" data-sitekey="6LcalvMqAAAAAIPMHNMM3bTb4GNDzWfWGPb_0jbw"></div>
                 <div id="error-captcha" style="color: red"></div>
-<%--                End captcha--%>
+
                 <button type="button" onclick="checkcaptcha('signup')" id="check-email-btn" class="btn btn-signup w-100 mb-3">Đăng ký</button>
             </form>
+
+            <!-- Include các file JS -->
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <script src="assets/js/checkcaptcha.js"></script>
+            <script type="module" src="assets/js/signup.js"></script>
+
 
             <!-- Modal OTP -->
             <div class="modal fade" id="otp-modal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel" aria-hidden="true">
@@ -66,11 +72,29 @@
                             <p class="mb-3">Nhập mã OTP đã gửi đến email của bạn</p>
                             <input type="text" id="otp-input" class="form-control text-center otp-input"
                                    placeholder="Nhập OTP" maxlength="6" autocomplete="off" />
-                            <small class="form-text text-muted mt-2">OTP có hiệu lực trong 5 phút.</small>
+                            <small class="form-text text-muted mt-2">OTP có hiệu lực trong 2 phút.</small>
                         </div>
                         <div class="modal-footer d-flex justify-content-between">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                             <button type="button" class="btn btn-primary" id="verify-otp-btn">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal thông báo lỗi -->
+            <div class="modal fade" id="otp-error-modal" tabindex="-1" role="dialog" aria-labelledby="otpErrorModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="otpErrorModalLabel">Thông báo</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <p>Bạn đã nhập sai OTP quá 5 lần. Vui lòng thử lại sau 10 phút hoặc yêu cầu mã mới sau thời gian này!</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                         </div>
                     </div>
                 </div>
@@ -110,7 +134,7 @@
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<%--<script src="./assets/js/register-verify-email.js"></script>--%>
+<script type="module" src="./assets/js/register-verify-email.js"></script>
 <script src="./assets/js/register-verify-otp.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="assets/js/verify-captcha.js"></script>

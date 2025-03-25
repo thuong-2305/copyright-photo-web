@@ -23,6 +23,10 @@ public class OrderService {
         return orderDAO.createOrder(uid, pmid, promotionId, licenseId, totalPrice, products);
     }
 
+    public int getLastOrderId() {
+        return orderDAO.getLastOrderId();
+    }
+
     public boolean createOrder(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
         // Bước 1: Tạo đơn hàng và lấy orderId
         int orderId = addOrderAndGetId(uid, pmid, promotionId, totalPrice);
@@ -82,5 +86,18 @@ public class OrderService {
 
     public int getPmIdByOrderId(int oid) {
         return orderDAO.getPmIdByOrderId(oid);
+    }
+
+    // Hàm chuyển đổi chuỗi có dấu ngoặc vuông và số phân tách dấu phẩy thành mảng int
+    public static int[] convertStringToIntArray(String str) {
+        // Loại bỏ dấu ngoặc vuông và khoảng trắng, sau đó tách các số theo dấu phẩy
+        str = str.replaceAll("[\\[\\]\\s]", "");
+        String[] stringNumbers = str.split(",");
+        // Chuyển đổi mảng chuỗi thành mảng int
+        int[] intArray = new int[stringNumbers.length];
+        for (int i = 0; i < stringNumbers.length; i++) {
+            intArray[i] = Integer.parseInt(stringNumbers[i]);
+        }
+        return intArray;
     }
 }

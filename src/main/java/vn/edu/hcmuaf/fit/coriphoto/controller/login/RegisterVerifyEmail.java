@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.coriphoto.controller.login;
 
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,14 +12,13 @@ import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @WebServlet(name = "RegisterVerifyEmail", value = "/RegisterVerifyEmail")
 public class RegisterVerifyEmail extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+    // Tạo một thread pool với tối đa 10 thread
+    private static final ExecutorService executorService = Executors.newFixedThreadPool(10);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,19 +29,41 @@ public class RegisterVerifyEmail extends HttpServlet {
         PrintWriter out = response.getWriter();
         JSONObject jsonResponse = new JSONObject();
 
+        // Kiểm tra email có hợp lệ không
         if (authService.isEmailExist(email) || !EmailUtils.isValidEmail(email)) {
             jsonResponse.put("valid", false);
         } else {
+            // Lấy session và thiết lập các thuộc tính trước khi trả response
             int otp = EmailUtils.generateOTP();
             HttpSession session = request.getSession();
             session.setAttribute("otp_" + email, otp);
-            session.setAttribute("otp_expiry_" + email, System.currentTimeMillis() + 5 * 60 * 1000);
-            EmailUtils.sendEmail(email, "Mã OTP", "Mã OTP của bạn là: " + otp);
+            session.setAttribute("otp_expiry_" + email, System.currentTimeMillis() + 2 * 60 * 1000);
+
+            // Trả phản hồi ngay lập tức
             jsonResponse.put("valid", true);
+            out.print(jsonResponse.toString());
+            out.flush();
+
+            // Gửi email trong background sử dụng ExecutorService
+            executorService.submit(() -> {
+                try {
+                    EmailUtils.sendEmail(email, "Mã OTP", "Mã OTP của bạn là: " + otp);
+                } catch (Exception e) {
+                    System.err.println("Failed to send OTP to " + email + ": " + e.getMessage());
+                }
+            });
+
+            return;
         }
 
         out.print(jsonResponse.toString());
         out.flush();
     }
 
+    // Đóng ExecutorService khi servlet bị hủy
+    @Override
+    public void destroy() {
+        executorService.shutdown();
+        super.destroy();
+    }
 }

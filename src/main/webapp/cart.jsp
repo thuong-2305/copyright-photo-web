@@ -51,6 +51,10 @@
         <!-- Header Cart -->
         <div class="cart-header w-100">
             <h1 class="mt-3 fw-semibold fs-2">Giỏ hàng</h1>
+            <% String noProduct = (String) session.getAttribute("noProduct");
+                if (noProduct != null) { %>
+            <div class="alert alert-warning"><%= noProduct %></div>
+            <% session.removeAttribute("noProduct"); } %>
             <!-- Cart info -->
             <div class="cart-info mb-4">
                 <div class="mt-2 d-flex justify-content-between align-items-center">

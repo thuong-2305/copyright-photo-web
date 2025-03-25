@@ -39,7 +39,7 @@
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<div id="change-password">
+<div id="change-password" class="my-5 py-5">
     <div class="container-fluid">
         <div class="change-password-container">
             <div class="row">
@@ -137,6 +137,8 @@
 <jsp:include page="include/scripts.jsp"/>
 
 <script src="assets/js/editprofile.js"></script>
+<script type="module" src="assets/js/change-password.js"></script>
+
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
