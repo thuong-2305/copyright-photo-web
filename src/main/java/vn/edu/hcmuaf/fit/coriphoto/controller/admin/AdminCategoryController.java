@@ -30,45 +30,34 @@ public class AdminCategoryController extends HttpServlet {
         String action = request.getParameter("action");
         CategoryService categoryService = new CategoryService();
 
+        boolean success;
+
         if ("delete".equals(action)) {
             int categoryId = Integer.parseInt(request.getParameter("category_id"));
-            boolean success = categoryService.deleteCategory(categoryId);
-            if (success) {
-                // Trả về dữ liệu JSON cho AJAX
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-
-                // Tạo đối tượng Gson
-                Gson gson = new Gson();
-
-                Map<String, Object> responseData = new HashMap<>();
-                responseData.put("success", true);
-                // Chuyển đối tượng Map thành JSON
-                String jsonResponse = gson.toJson(responseData);
-                System.out.println("jsonResponse " + jsonResponse);
-                // Gửi dữ liệu JSON về client
-                response.getWriter().write(jsonResponse);
-            }
+            success = categoryService.deleteCategory(categoryId);
+        }
+        else if ("edit".equals(action)) {
+            int categoryId = Integer.parseInt(request.getParameter("category_id"));
+            String categoryName = request.getParameter("category_name");
+            success = categoryService.updateCategory(categoryId, categoryName);
         }
         else {
             String categoryName = request.getParameter("category_name");
-            boolean success = categoryService.addCategory(categoryName, 0);
-            if (success) {
-                // Trả về dữ liệu JSON cho AJAX
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
+            success = categoryService.addCategory(categoryName, 0);
+        }
 
-                // Tạo đối tượng Gson
-                Gson gson = new Gson();
+        if (success) {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
 
-                Map<String, Object> responseData = new HashMap<>();
-                responseData.put("success", true);
-                // Chuyển đối tượng Map thành JSON
-                String jsonResponse = gson.toJson(responseData);
-                System.out.println("jsonResponse " + jsonResponse);
-                // Gửi dữ liệu JSON về client
-                response.getWriter().write(jsonResponse);
-            }
+            Gson gson = new Gson();
+
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("success", true);
+
+            String jsonResponse = gson.toJson(responseData);
+
+            response.getWriter().write(jsonResponse);
         }
     }
 }
