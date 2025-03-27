@@ -18,14 +18,14 @@ public class AuthService {
         return users.getUserByCredentials(username, password);
     }
 
+
     public boolean isEmailExist(String email) {
         // Kiểm tra xem email đã tồn tại trong cơ sở dữ liệu chưa
         return users.findByEmail(email) != null;
     }
 
-    public boolean registerUser(String email, String password, String username) {
-        // Tạo tài khoản mới
-        return users.createUser(email, password, username);
+    public boolean registerUser(String email, String password, String username, String name) {
+        return users.createUser(email, password, username, name);
     }
 
     public boolean registerSeller(User seller) {
@@ -39,4 +39,7 @@ public class AuthService {
     public User getUserById(int id) {
         return users.findById(id);
     }
+
 }
+
+

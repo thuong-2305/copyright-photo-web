@@ -1,0 +1,142 @@
+.nav-blur-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 15px;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(5px);
+    z-index: 998;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.popup-content {
+    padding: 10px;
+}
+
+.popup-header p {
+    margin: 0;
+    padding: 5px 10px 5px 0;
+}
+
+.popup-body ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 !important;
+}
+
+.popup-body ul li {
+    padding: 10px 20px 10px 10px;
+    border-bottom: 1px solid #eee;
+    margin: 0 !important;
+    color: #000 !important;
+}
+
+.popup-body ul li:last-child {
+    border-bottom: none;
+}
+
+.popup-body ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.popup-body ul li a:hover {
+    color: #007bff;
+}
+
+/* Popup trong chế độ Dark Mode */
+.dark-mode .popup-content {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .popup {
+    top: 60px;
+    border-radius: 0;
+    border-color: #fff;
+}
+
+.dark-mode .popup-header p {
+    color: #ffffff;
+}
+
+.dark-mode .popup-body ul li {
+    border-radius: 0;
+}
+
+.dark-mode .popup-body ul li a {
+    color: #ffffff;
+}
+
+.dark-mode .popup-body ul li a:hover {
+    color: #007bff;
+}
+
+.dark-mode .popup-body ul li a i {
+    color: #ffffff;
+}
+
+.dark-mode .popup-body ul li a:hover i {
+    color: #007bff;
+}
+
+.dark-mode .name-admin {
+    color: #ffffff !important;
+}
+
+/* Footer */
+.footer {
+    background: #ffffff;
+    color: #000000;
+    width: 97%;
+    padding: 20px 20px;
+    margin: 30px auto 10px;
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    max-width: 1200px;
+}
+
+.footer a {
+    color: #9ca3af;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+    color: #007bff;
+}
+
+/* Dark mode footer */
+.dark-mode .footer {
+    background: var(--dark-bg-right);
+}
+
+.dark-mode .footer span {
+    color: white;
+}
+
+.dark-mode .footer span a {
+    color: rgba(0, 100, 255, 0.5);
+}

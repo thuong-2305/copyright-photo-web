@@ -1,197 +1,371 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 1/15/2025
-  Time: 3:20 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"
-    />
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f5;
-        }
-
-        .btn {
-            /* Fix nếu btn là tag div */
-            display: inline-block;
-            /* Fix nếu btn là tag a */
-            text-decoration: none;
-            /* Fix nếu btn là tag button */
-            background-color: transparent;
-            border: none;
-            outline: none;
-            /* Chung */
-            padding: 12px 48px;
-            min-width: 120px;
-            color: #fff;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
-
-        .btn:hover {
-            opacity: 0.8;
-        }
-
-        .btn--success {
-            background-color: #05f745;
-        }
-        .btn--warm {
-            background-color: #0c64e8;
-        }
-        .btn--danger {
-            background-color: #e01010;
-        }
-
-        .btn + .btn {
-            margin-left: 16px;
-        }
-
-        .btn--small {
-            padding: 8px 24px;
-            min-width: 80px;
-        }
-
-        .btn--large {
-            padding: 16px 64px;
-            min-width: 160px;
-        }
-
-        .btn--block {
-            display: block;
-            width: 100%;
-        }
-
-        .btn--disabled,
-        .btn[disabled] {
-            opacity: 0.5 !important;
-            pointer-events: none;
-        }
-
-        #toast {
-            position: fixed;
-            top: 32px;
-            right: 32px;
-            z-index: 9999;
-        }
-
-        .toast {
-            padding: 20px 0;
-            min-width: 400px;
-            max-width: 460px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            border-left: 4px solid #ccc;
-            border-radius: 4px;
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        @keyframes SlideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(calc(100% + 32px));
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-            }
-        }
-        .toast + .toast {
-            margin-top: 24px;
-        }
-
-        .toast__icon,
-        .toast__close {
-            padding: 0 20px;
-        }
-
-        .toast__icon {
-            font-size: 24px;
-            color: #ccc;
-        }
-
-        .toast__close {
-            font-size: 20px;
-            color: rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-        }
-
-        .toast__body {
-            flex: 1;
-        }
-
-        .toast__title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .toast__message {
-            font-size: 14px;
-            color: #666;
-            margin-top: 4px;
-        }
-
-        .toast--success {
-            border-left-color: #05f745;
-        }
-
-        .toast--success .toast__icon {
-            color: #05f745;
-        }
-
-        .toast--info {
-            border-left-color: #0c64e8;
-        }
-
-        .toast--info .toast__icon {
-            color: #0c64e8;
-        }
-        .toast--warning {
-            border-left-color: #e01010;
-        }
-
-        .toast--warning .toast__icon {
-            color: #e01010;
-        }
-    </style>
+    <title>Welcome to CoriPhoto</title>
+    <jsp:include page="include/head.jsp"/>
 </head>
 <body>
-<div id="toast"></div>
 
-<div onclick="showSuccessToast()" class="btn btn--success">Success</div>
-<div onclick="showErrorToast()" class="btn btn--warm">Warning</div>
+<jsp:include page="include/navbar.jsp"/>
 
-<script src="./assets/js/admin-products.js"></script>
+<% if (request.getAttribute("noProduct") != null) { %>
+<div class="alert alert-danger">
+    <%= request.getAttribute("noProduct") %>
+</div>
+<% } %>
+
+<!--section banner -->
+<section class="banner">
+    <div class="banner-home d-flex justify-content-center align-items-center flex-column">
+        <div class="main-title d-flex justify-content-center flex-column align-items-center">
+            <h1 class="fw-900 m-2">CoRiPhoTo, Kho ảnh bản quyền đẹp dành cho bạn</h1>
+            <p style="color: #ceced2">Thêm điều kỳ diệu vào câu chuyện của bạn với hơn 1 ngàn ảnh, vector
+                , hình minh họa và hình ảnh biên tập.</p>
+        </div>
+        <div class="search-container">
+            <div class="dropdown">
+                <button class="fw-medium" id="type-search">
+                    <i class="fa-solid fa-image px-2"></i>
+                    <span>Tất cả ảnh</span>
+                    <i class="fa-solid fa-caret-down px-2"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" class="active" data-icon="fa-image"><i class="fa-solid fa-image pe-3"></i>Tất cả ảnh</a>
+                    <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
+                    <a href="#" data-icon="fa-vector-square"><i class="fa-solid fa-vector-square px-3"></i>Vectors</a>
+                    <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
+                </div>
+            </div>
+            <div class="search-bar">
+                <label for="search-input"></label>
+                <input type="text" id="search-input" placeholder="Tìm kiếm tất cả ảnh">
+                <span class="clear-btn">&#10005;</span>
+            </div>
+            <button class="search-button" onclick="submitSearch()"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2 fw-bold">Tìm kiếm</span></button>
+        </div>
+    </div>
+</section>
+<!--section banner -->
+
+<!--section type-images -->
+<section class="type-images">
+    <div class="container d-flex justify-content-between detail">
+        <jsp:useBean id="categoriesParent" scope="request" type="java.util.List"/>
+        <c:forEach var="item" items="${ categoriesParent }">
+            <a href="type-images" class="text-decoration-none text-dark">
+                <div class="category-item">
+                    <img src="assets/images/TypeImages/${ item.getName() }.jpg" alt="">
+                    <p>${ item.getName() }</p>
+                </div>
+            </a>
+        </c:forEach>
+    </div>
+</section>
+<!--section type-images -->
+
+<!--section category -->
+<section class="category-home">
+    <div class="container title align-items-center">
+        <p>Các danh mục phổ biến</p>
+    </div>
+
+    <!-- photos -->
+    <div class="swiper-container category-home">
+        <div class="swiper-wrapper container photos">
+            <jsp:useBean id="trendsCategories" scope="request" type="java.util.List"/>
+            <c:forEach var="item" items="${ trendsCategories }">
+                <div class="swiper-slide">
+                    <a href="products?cid=${ item.getCid() }">
+                        <div class="category">
+                            <img src="${ item.getUrl() }" alt="">
+                            <span>${ item.getName() }</span>
+                        </div>
+                    </a>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    <a href="categories" class="btn btn-outline-success rounded-pill fs-5 d-none see-more">Xem nhiều hơn</a>
+</section>
+<!--section category -->
+
+<!-- section raw images -->
+<section class="container raw-images">
+    <div class="heading mb-2">
+        <h3>Những gì đang có <span>xu hướng</span> trong tuần</h3>
+    </div>
+    <div class="new-events mt-5">
+        <div class="box">
+            <%
+                @SuppressWarnings("unchecked")
+                List<TrendProducts> trendsProducts = (List<TrendProducts>) request.getAttribute("trendsProducts");
+            %>
+            <div class="dream">
+                <%
+                    for (int i = 0; i < 5; i++) {
+                        TrendProducts product = trendsProducts.get(i);
+                %>
+                <a href="product-detail?pid=<%= product.getId() %>">
+                    <div class="pic">
+                        <img src="<%= product.getUrl() %>" alt="">
+                        <div class="hover-options">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
+                            </button>
+                            <button class="option-button">
+                                <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
+                            </button>
+                            <button class="option-button addCart" data-product-id=<%= product.getId() %>>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
+                            </button>
+                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
+                    </div>
+                </a>
+                <% } %>
+            </div>
+
+            <div class="dream">
+                <%
+                    for (int i = 5; i < 10; i++) {
+                        TrendProducts product = trendsProducts.get(i);
+                %>
+                <a href="product-detail?pid=<%= product.getId() %>">
+                    <div class="pic">
+                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <div class="hover-options">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
+                            </button>
+                            <button class="option-button">
+                                <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
+                            </button>
+                            <button class="option-button addCart" data-product-id=<%= product.getId() %>>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
+                            </button>
+                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
+                    </div>
+                </a>
+                <% } %>
+            </div>
+
+            <div class="dream">
+                <%
+                    for (int i = 10; i < 15; i++) {
+                        TrendProducts product = trendsProducts.get(i);
+                %>
+                <a href="product-detail?pid=<%= product.getId() %>">
+                    <div class="pic">
+                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <div class="hover-options">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
+                            </button>
+                            <button class="option-button">
+                                <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
+                            </button>
+                            <button class="option-button addCart" data-product-id=<%= product.getId() %>>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
+                            </button>
+                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
+                    </div>
+                </a>
+                <% } %>
+            </div>
+
+            <div class="dream">
+                <%
+                    for (int i = 15; i < 20; i++) {
+                        TrendProducts product = trendsProducts.get(i);
+                %>
+                <a href="product-detail?pid=<%= product.getId() %>">
+                    <div class="pic">
+                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <div class="hover-options">
+                            <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
+                                <i class="fa-regular fa-heart"></i>
+                                <span class="text-click-hover">Thích</span>
+                            </button>
+                            <button class="option-button">
+                                <i class="fa-solid fa-down-long"></i>
+                                <span class="text-click-hover">Tải về</span>
+                            </button>
+                            <button class="option-button addCart" data-product-id=<%= product.getId() %>>
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span class="text-click-hover">Thêm giỏ hàng</span>
+                            </button>
+                        </div>
+<%--                        <div class="image-text">--%>
+<%--                            <p><%= product.getName() %></p>--%>
+<%--                        </div>--%>
+                    </div>
+                </a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="fade-out">
+        <div class="see-more">
+            <button class="see-more-button">
+                <a href="categories" class="text-decoration-none fw-semibold">Xem nhiều hơn</a>
+            </button>
+        </div>
+    </div>
+</section>
+<!-- section raw images -->
+
+<%-- text final --%>
+<div class="info-box">
+    <div class="icon">
+        <i class="fa fa-heart-circle-check"></i>
+    </div>
+    <div class="content">
+        <h3>Bản quyền hình ảnh an toàn và hợp pháp</h3>
+        <p>
+            Chúng tôi cung cấp kho ảnh chất lượng cao với bản quyền đầy đủ, giúp bạn sử dụng cho các dự án cá nhân hoặc thương mại một cách an toàn.
+            Tất cả các hình ảnh đều được cấp phép, đảm bảo tính pháp lý và không cần lo lắng về vi phạm bản quyền.
+        </p>
+        <a href="/license" class="learn-more">Xem nhiều hơn về chính sách của chúng tôi</a>
+    </div>
+</div>
+<%-- text final --%>
+
+
+<%-- notification --%>
+<div class="alert alert-primary d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0"
+>
+    <i class="bi bi-exclamation-triangle me-2"></i><span></span>
+</div>
+<div class="alert alert-success d-none align-items-center position-fixed"
+     role="alert"
+     style="display: none; width: 25%; top: 15%; right: 0"
+>
+    <i class="bi bi-check2-circle me-2"></i><span></span>
+</div>
+
+<c:if test="${ notification != null }">
+    <div id="alertMessage" class="alert alert-danger align-items-center position-fixed"
+         role="alert"
+         style="display: none; width: 25%; top: 15%; right: 0;">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        <span>${ notification }</span>
+    </div>
+</c:if>
+<%-- notification --%>
+
+<jsp:include page="include/footer.jsp"/>
+<jsp:include page="include/scripts.jsp"/>
+
+<script>
+    $(document).ready(function () {
+        $(".addCart").click(function (event) {
+            let productId = $(this).data("product-id");
+            event.preventDefault();
+            $.ajax({
+                url: "addToCart?pid=" + productId,
+                method: "POST",
+                contentType: "application/json",
+                success: function (response) {
+                    if (response.addSuccess) {
+                        $(".alert-success span").text("Thêm thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                        $("#nav .container a.cart span").text(response.cartLen);
+                    } else {
+                        $(".alert-primary span").text("Sản phẩm đã có trong giỏ hàng!");
+                        $(".alert-primary").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra, vui lòng thử lại sau.");
+                }
+            });
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        const alertMessage = document.getElementById("alertMessage");
+        if (alertMessage) {
+            alertMessage.style.display = "block";
+            setTimeout(() => {
+                alertMessage.style.display = "none";
+            }, 2000);
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const favoriteButtons = document.querySelectorAll('.favorite-btn');
+
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                const productId = this.getAttribute('data-product-id');
+                // Kiểm tra nếu productId bị rỗng
+                if (!productId || productId === '') {
+                    alert("Không thể thêm vào danh sách yêu thích. ID sản phẩm không hợp lệ." + productId);
+                    return;
+                }
+
+                // Gửi yêu cầu AJAX đến Servlet
+                fetch('AddFavourite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `action=add&productId=`+productId
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.querySelector('i').classList.remove('fa-regular');
+                            this.querySelector('i').classList.add('fa-solid');
+                            $(".alert-success span").text(data.message);
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                                $(this).addClass("d-none");
+                            });
+                        } else {
+                            $(".alert-success span").text(data.message);
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                                $(this).addClass("d-none");
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi thêm vào danh sách yêu thích.');
+                    });
+            });
+        });
+    });
+</script>
 </body>
 </html>
-

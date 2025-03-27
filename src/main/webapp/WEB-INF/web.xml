@@ -3,13 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>vn.edu.hcmuaf.fit.coriphoto.controller.HomeController</servlet-class>
+    </servlet>
+
+    <!-- Ánh xạ URL -->
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/homepage</url-pattern>
+    </servlet-mapping>
+
+    <!-- Cấu hình trang mặc định trỏ đến Servlet -->
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+    </welcome-file-list>
+
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/assets/*</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>ImageUpload</servlet-name>
-        <servlet-class>vn.edu.hcmuaf.fit.coriphoto.controller.seller.ImageUpload</servlet-class>
+        <servlet-class>vn.edu.hcmuaf.fit.coriphoto.controller.seller.UploadImage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ImageUpload</servlet-name>

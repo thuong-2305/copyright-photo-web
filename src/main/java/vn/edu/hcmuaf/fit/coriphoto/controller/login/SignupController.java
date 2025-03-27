@@ -4,6 +4,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.service.AuthService;
+import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
 
 import java.io.IOException;
 
@@ -17,37 +18,31 @@ public class SignupController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Lấy thông tin từ form đăng ký
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String confirmPassword = request.getParameter("confirmPassword");
         String username = request.getParameter("username");
+        String name = request.getParameter("name");
 
-        // So sánh mật khẩu và xác nhận mật khẩu
+        /* không cần kiểm tra vì đã kiểm tra trước khi hiện otp modal đăng kí (register-verify-email.js)
+        String confirmPassword = request.getParameter("confirmPassword");
         if (!password.equals(confirmPassword)) {
-            request.setAttribute("error", "Mật khẩu và Nhập lại mật khẩu không khớp!");
+            request.setAttribute("error", "Mật khẩu không khớp!");
             request.getRequestDispatcher("signup.jsp").forward(request, response);
             return;
         }
+         */
+
+
 
         AuthService authService = new AuthService();
+        boolean isCreated = authService.registerUser(email, password, username, name);
 
-        // Kiểm tra xem email đã tồn tại chưa
-        if (authService.isEmailExist(email)) {
-            // Nếu email đã tồn tại, gửi lại thông báo lỗi
-            request.setAttribute("error", "Email đã được sử dụng!");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
+        if (isCreated) {
+            request.getSession().setAttribute("signupMessage", "Đăng ký thành công! Vui lòng đăng nhập.");
+            response.sendRedirect("login.jsp");
         } else {
-            // Nếu email chưa tồn tại, tạo tài khoản mới
-
-            boolean isCreated = authService.registerUser(email, password, username);
-            if (isCreated) {
-                // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
-                response.sendRedirect("login.jsp");
-            } else {
-                request.setAttribute("error", "Đăng ký không thành công, vui lòng thử lại!");
-                request.getRequestDispatcher("signup.jsp").forward(request, response);
-            }
+            request.setAttribute("error", "Đăng ký thất bại!");
+            request.getRequestDispatcher("signup.jsp").forward(request, response);
         }
     }
 }

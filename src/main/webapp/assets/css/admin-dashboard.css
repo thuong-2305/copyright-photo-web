@@ -1,21 +1,11 @@
 /* Chung */
 :root {
+    --swatch_2: #b5d2e1;
+    --swatch_4: #03d1a8;
+    --text: #6c757d;
     --primary-text-color: #0870D1;
     --secondary-text-color: rgb(109, 115, 120);
-
     --background-hover-color: rgb(237, 246, 254);
-}   
-
-.shadow-bottom {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Chỉ có bóng ở dưới */
-}
-
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;   
 }
 
 * {
@@ -26,5 +16,279 @@ a:hover {
 
 html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
 }
+
+.shadow-bottom {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.right-category .card-header {
+    background: var(--swatch_4) !important;
+}
+
+#admin-dashboard-graph {
+    margin-top: 100px;
+}
+
+/* Table */
+#productsTable {
+    width: 100% !important;
+}
+
+#productsTable td {
+    border-top: 1px solid #ddd !important;
+    text-align: left !important;
+    padding: 8px 10px !important;
+    color: var(--text) !important;
+}
+
+#productsTable td i {
+    color: var(--text) !important;
+}
+
+#productsTable td:nth-child(1) {
+    text-align: center !important;
+}
+
+#productsTable th {
+    text-align: left !important;
+}
+
+.dataTables-controls {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom: 1px dashed #ccd2d8;
+}
+
+.dataTables-controls label {
+    color: var(--text) !important;
+}
+
+.dataTables-controls label input {
+    margin-left: 10px !important;
+    color: #212529 !important;
+    border-color: #ccd2d8 !important;
+}
+
+/* thead */
+.table-dark tr th{
+    background: #f0f4f9 !important;
+    color: #3f4759 !important;
+}
+
+.table > :not(caption) > * > * {
+    border-bottom-width: 0 !important;
+}
+
+.table-bordered > :not(caption) > * > * {
+    border-width: 0 !important;
+}
+
+table.dataTable > thead > tr > th {
+    border-bottom: none;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
+/* Chỉ mục */
+#productsTable_paginate {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+    color: var(--text) !important;
+}
+
+#productsTable_wrapper .paginate_button:hover {
+    background: transparent !important;
+    border-color: var(--swatch_4) !important;
+    border-radius: 5px;
+    color: var(--text) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 5px 15px !important;
+}
+
+#productsTable_wrapper .paginate_button.current {
+    color: #fff !important;
+    background-color: var(--swatch_4) !important;
+    font-weight: bolder !important;
+    border: none !important;
+    border-radius: 5px;
+}
+
+#productsTable_info {
+    display: none;
+}
+
+/* Nút chức năng */
+.dt-button {
+    background: white !important;
+    border-radius: 5px !important;
+    border-color: #ccd2d8 !important;
+}
+
+.dt-button i {
+    font-size: 15px !important;
+    color: #3f4759 !important;
+}
+
+.dt-button:hover {
+    border-color: #1f1f1f !important;
+}
+
+.button-add {
+    background: #fa6374 !important;
+    margin-left: 7px !important;
+    color: white !important;
+}
+
+.button-add:hover {
+    background: #e15968 !important;
+}
+
+/* Loading screen */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* dark mode */
+.dark-mode .button-back,
+.dark-mode .button-edit-product {
+    color: #ffffff !important;
+}
+
+.dark-mode .button-back:hover {
+    border-color: #ffffff !important;
+}
+
+.dark-mode .add-product .card {
+    background-color: var(--dark-bg-right) !important;
+    color: #fff !important;
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select{
+    background-color: transparent !important;
+}
+
+.dark-mode .text-secondary {
+    color: #ffffff !important;
+}
+
+.dark-mode .image-upload-box {
+    background: var(--dark-bg-right) !important;
+}
+
+.dark-mode .dt-button {
+    color: #fff !important;
+    background: var(--dark-bg-right) !important;
+    border-color: #fff !important;
+}
+
+.dark-mode .dt-button i {
+    color: #fff !important;
+}
+
+.dark-mode .dataTables-controls {
+    background: var(--dark-bg-right) !important;
+}
+
+.dark-mode .dataTables-controls label {
+    color: #fff !important;
+}
+
+.dark-mode .dataTables_wrapper .dataTables_filter {
+    color: #fff !important;
+}
+
+.dark-mode .dataTables_wrapper .dataTables_filter input {
+    background-color: var(--dark-right);
+    color: #fff !important;
+}
+
+.dark-mode #productsTable th {
+    text-align: left !important;
+    background: var(--dark-right) !important;
+    color: #fff !important;
+}
+
+.dark-mode .table > :not(caption) > * > *  {
+    background-color: var(--dark-bg-right) !important;
+}
+
+/*.dark-mode #productsTable td,*/
+/*.dark-mode #productsTable td i {*/
+/*    color: #fff !important;*/
+/*}*/
+
+.dark-mode .view-product {
+    background: var(--dark-right) !important;
+}
+
+.dark-mode .overlay {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.dark-mode .view-product .show-content .title-info {
+    color: #fff !important;
+}
+
+.dark-mode p {
+    color: #fff !important;
+}
+
+.dark-mode .btn-close {
+    --bs-btn-close-color: #fff !important;
+    --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") !important;
+}
+
+.dark-mode .modal-content {
+    background-color: var(--dark-right) !important;
+}
+
+
+
+
 

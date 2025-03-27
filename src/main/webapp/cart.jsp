@@ -16,11 +16,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-        #nav {
-            position: relative;
+        #nav:not(.scrolled) .title-logo {
+            color: black;
         }
-        .modal {
-            z-index: 9999;
+
+        #nav:not(.scrolled) .title-item {
+            color: black !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover {
+            color: #009970;
+        }
+
+        #nav:not(.scrolled) .title-item:hover {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .title-item:hover i {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover .title-item {
+            color: #009970 !important;
         }
     </style>
 </head>
@@ -34,6 +51,10 @@
         <!-- Header Cart -->
         <div class="cart-header w-100">
             <h1 class="mt-3 fw-semibold fs-2">Giỏ hàng</h1>
+            <% String noProduct = (String) session.getAttribute("noProduct");
+                if (noProduct != null) { %>
+            <div class="alert alert-warning"><%= noProduct %></div>
+            <% session.removeAttribute("noProduct"); } %>
             <!-- Cart info -->
             <div class="cart-info mb-4">
                 <div class="mt-2 d-flex justify-content-between align-items-center">

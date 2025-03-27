@@ -27,6 +27,7 @@ a:hover {
 
 #cart {
     padding: 0 160px;
+    margin-top: 80px;
 }
 
 .cart-info .selected-count {

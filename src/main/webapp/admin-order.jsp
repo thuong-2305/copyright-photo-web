@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 1/13/2025
-  Time: 5:49 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -14,14 +7,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/admin-products.css"/>
     <link rel="stylesheet" href="./assets/css/admin-1.css"/>
     <link rel="stylesheet" href="././assets/css/admin-dashboard.css"/>
-    <link rel="stylesheet" href="./assets/css/admin-homepage.css"/>
-    <link rel="stylesheet" href="./assets/css/admin-products.css"/>
-    <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css"/>
-    <link rel="stylesheet" href="./assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css"/>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="./assets/js/admin-products.js"></script>
     <title>Admin</title>
 
@@ -66,49 +54,16 @@
 <!-- MAIN -->
 <section class="container-main">
     <!-- LEFT MAIN -->
-    <section class="left d-flex flex-column justify-content-between">
-        <div class="top-left">
-            <p class="fs-5 fw-semibold m-0 text-center mt-2">
-                <span class="text-logo fw-bold">CoRiPhoto</span> Admin
-            </p>
-            <ul class="list-unstyled">
-                <li>
-                    <a href="${pageContext.request.contextPath}/ShowDashBoard"><i class="fa-solid fa-house"></i>Trang
-                        chủ</a>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-products"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-category"><i class="bi bi-list-task"></i>Danh mục</a>
-                </li>
-                <li class="active">
-                    <a href="${pageContext.request.contextPath}/admin-order"><i class="bi bi-wallet-fill"></i>Đơn
-                        hàng</a>
-                </li>
-                <li>
-                    <a href="${pageContext.request.contextPath}/admin-customer"><i class="fa-solid fa-user"></i>Khách
-                        hàng</a>
-                </li>
-                <hr>
-                <li>
-                    <a href="${pageContext.request.contextPath}/homepage"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
-                </li>
-            </ul>
-        </div>
-        <div class="avatar bottom-left d-flex justify-content-between align-items-center mx-2 mb-4">
-            <div class="d-flex justify-content-center align-items-center">
-                <img src="./assets/images/avart-default.png" alt=""/>
-                <p class="ms-2 m-0">Thanh Thương</p>
-            </div>
-            <i class="bi bi-three-dots"></i>
-        </div>
-    </section>
+    <jsp:include page="include/sidebar.jsp" />
     <!-- LEFT MAIN -->
 
     <!-- RIGHT MAIN -->
     <section class="right-category">
-        <main>
+        <!-- navbar admin -->
+        <jsp:include page="include/nav-admin.jsp"/>
+
+        <!-- Content main -->
+        <main class="mt-4">
             <div class="frame">
                 <div class="frame__container">
                     <div class="mt-4">

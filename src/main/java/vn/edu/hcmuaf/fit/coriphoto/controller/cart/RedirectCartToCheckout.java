@@ -59,18 +59,20 @@ public class RedirectCartToCheckout extends HttpServlet {
 
         // Xác định promotionId
         int promotionId;
+
         if (numChecked < 5) promotionId = 1;
         else if (numChecked < 10) promotionId = 2;
         else if (numChecked < 25) promotionId = 3;
         else promotionId = 4;
 
 
+
         // Parse JSON của selectedProducts
         JsonArray selectedProducts = JsonParser.parseString(selectedProductsJson).getAsJsonArray();
         if (selectedProducts.isEmpty()) {
             // Thiết lập thông báo lỗi
-            request.setAttribute("noProduct", "Không có sản phẩm nào để thanh toán.");
-            response.sendRedirect(request.getContextPath() + "/");
+            request.getSession().setAttribute("noProduct", "Vui lòng lựa chọn sản phẩm để thanh toán!");
+            response.sendRedirect(request.getContextPath() + "/cart");
             return;
         }
 

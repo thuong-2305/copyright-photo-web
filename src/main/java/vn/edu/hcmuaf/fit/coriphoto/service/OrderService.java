@@ -1,9 +1,12 @@
 package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import vn.edu.hcmuaf.fit.coriphoto.dao.OrderDAO;
+import vn.edu.hcmuaf.fit.coriphoto.model.Order;
+import vn.edu.hcmuaf.fit.coriphoto.model.OrderDetail;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public class OrderService {
     private final OrderDAO orderDAO = new OrderDAO();
@@ -18,6 +21,37 @@ public class OrderService {
 
     public boolean createOrder(int uid, int pmid, int promotionId, int licenseId, double totalPrice, List<Product> products) {
         return orderDAO.createOrder(uid, pmid, promotionId, licenseId, totalPrice, products);
+    }
+
+    public int getLastOrderId() {
+        return orderDAO.getLastOrderId();
+    }
+
+    public boolean createOrder(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
+        // Bước 1: Tạo đơn hàng và lấy orderId
+        int orderId = addOrderAndGetId(uid, pmid, promotionId, totalPrice);
+        System.out.println("Đơn vừa thêm: " + orderId);
+
+        // Nếu không thể lấy được orderId, trả về false
+        if (orderId <= 0) {
+            return false;
+        }
+
+        // Bước 2: Thêm chi tiết đơn hàng vào bảng order_details
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
+            int licenseId = licenseIds[i]; // Lấy licenseId tương ứng với từng sản phẩm
+
+            double price = (licenseId == 2) ? product.getPrice() * 2 : product.getPrice();
+            boolean orderDetailsCreated = addOrderDetails(orderId, product.getId(), licenseId, price);
+
+            if (!orderDetailsCreated) {
+                System.out.println("Lỗi khi thêm chi tiết đơn hàng cho sản phẩm ID: " + product.getId());
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public List<Integer> getAllOrdersId() {
@@ -36,5 +70,34 @@ public class OrderService {
         return orderDAO.getAllOrdersIdMonthYear(month,year);
     }
 
-
+    public List<Order> getOrdersHistory(int uid) {
+        return orderDAO.getOrdersHistory(uid);
     }
+
+    public List<OrderDetail> getOrderDetailsHistory(int oid) {
+
+        return orderDAO.getOrderDetailsHistory(oid);
+    }
+
+    public Map<Integer, List<OrderDetail>> getOrdersWithDetails(int uid) {
+        return orderDAO.getOrdersWithDetails(uid);
+    }
+
+
+    public int getPmIdByOrderId(int oid) {
+        return orderDAO.getPmIdByOrderId(oid);
+    }
+
+    // Hàm chuyển đổi chuỗi có dấu ngoặc vuông và số phân tách dấu phẩy thành mảng int
+    public static int[] convertStringToIntArray(String str) {
+        // Loại bỏ dấu ngoặc vuông và khoảng trắng, sau đó tách các số theo dấu phẩy
+        str = str.replaceAll("[\\[\\]\\s]", "");
+        String[] stringNumbers = str.split(",");
+        // Chuyển đổi mảng chuỗi thành mảng int
+        int[] intArray = new int[stringNumbers.length];
+        for (int i = 0; i < stringNumbers.length; i++) {
+            intArray[i] = Integer.parseInt(stringNumbers[i]);
+        }
+        return intArray;
+    }
+}
