@@ -98,12 +98,12 @@ function submitPaymentForm() {
 
     setTimeout(function () {
         $('#paymentSuccessModal').modal('hide');
-        window.location.href = "/";
+        window.location.href = "order-success.jsp";
     }, 4000);
 }
 
 function submitFormAfterModal() {
-    window.location.href = "/";
+    window.location.href = "order-success.jsp";
 }
 
 

@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import vn.edu.hcmuaf.fit.coriphoto.dao.CartDAO;
 import vn.edu.hcmuaf.fit.coriphoto.model.Cart;
+import vn.edu.hcmuaf.fit.coriphoto.model.CartDetail;
 
 public class CartService {
     private final CartDAO cart = new CartDAO();
@@ -34,7 +35,17 @@ public class CartService {
         cart.updatePriceOfCartDetail(cartId, pid, licenseId);
     }
 
-    public double getCartTotal(int uid) {
+    public double getUpdatedPrice(int cartId, int pid) {
+        return cart.getUpdatedPrice(cartId, pid);
+    }
+
+
+        public CartDetail getCartDetail(int cartId, int pid) {
+        return cart.getCartDetail(cartId, pid);
+    }
+
+
+        public double getCartTotal(int uid) {
         return cart.getCartTotal(uid);
     }
 
