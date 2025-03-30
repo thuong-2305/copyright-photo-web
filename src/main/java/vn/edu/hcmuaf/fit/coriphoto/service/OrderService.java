@@ -83,10 +83,15 @@ public class OrderService {
         return orderDAO.getOrdersWithDetails(uid);
     }
 
+    public List<Order> getAllOrders() { return orderDAO.getAllOrders(); }
 
     public int getPmIdByOrderId(int oid) {
         return orderDAO.getPmIdByOrderId(oid);
     }
+
+    public String getNamePaymentMethod(int pmid) { return orderDAO.getNamePaymentMethod(pmid); }
+
+    public Order getOrder(int oid) { return orderDAO.getOrder(oid); }
 
     // Hàm chuyển đổi chuỗi có dấu ngoặc vuông và số phân tách dấu phẩy thành mảng int
     public static int[] convertStringToIntArray(String str) {
