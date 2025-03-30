@@ -1,23 +1,28 @@
 package vn.edu.hcmuaf.fit.coriphoto.model;
 
-import java.time.LocalDate;
+import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
+import vn.edu.hcmuaf.fit.coriphoto.service.PromotionService;
+import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Order {
     private int orderId;
     private int uid;
-    private int paymentMethodId;
+    private int pmid;
     private int promotionId;
-    private LocalDate orderDate;
+    private LocalDateTime orderDate;
     private double totalPrice;
     private String status;
 
-    public Order(int orderId, String status, double totalPrice, LocalDate orderDate, int promotionId, int paymentMethodId, int uid) {
+    public Order(int orderId, String status, double totalPrice, LocalDateTime orderDate, int promotionId, int pmid, int uid) {
         this.orderId = orderId;
         this.status = status;
         this.totalPrice = totalPrice;
         this.orderDate = orderDate;
         this.promotionId = promotionId;
-        this.paymentMethodId = paymentMethodId;
+        this.pmid = pmid;
         this.uid = uid;
     }
 
@@ -35,16 +40,28 @@ public class Order {
         return uid;
     }
 
+    public String getFulleName() {
+        return new UserService().getFullName(this.uid);
+    }
+
+    public String getEmail() {
+        return new UserService().getEmail(this.uid);
+    }
+
     public void setUid(int uid) {
         this.uid = uid;
     }
 
-    public int getPaymentMethodId() {
-        return paymentMethodId;
+    public int getPmid() {
+        return pmid;
     }
 
-    public void setPaymentMethodId(int paymentMethodId) {
-        this.paymentMethodId = paymentMethodId;
+    public void setPmid(int pmid) {
+        this.pmid = pmid;
+    }
+
+    public double getPromotionPercent() {
+        return new PromotionService().getDiscountByPromotionID(this.promotionId);
     }
 
     public int getPromotionId() {
@@ -55,16 +72,21 @@ public class Order {
         this.promotionId = promotionId;
     }
 
-    public LocalDate getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
+    public void setOrderDate(LocalDateTime orderDate) {
         this.orderDate = orderDate;
     }
 
     public double getTotalPrice() {
         return totalPrice;
+    }
+    
+    public String getFormatOrderDateTime() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm a dd/MM/yyyy");
+        return dateTimeFormatter.format(this.orderDate);
     }
 
     public void setTotalPrice(double totalPrice) {
@@ -79,8 +101,19 @@ public class Order {
         this.status = status;
     }
 
+    public String getCustomerName() {
+        return new UserService().getFullName(this.uid);
+    }
+
+    public String getPaymentTypeName() {
+        return new OrderService().getNamePaymentMethod(this.pmid);
+    }
+
     @Override
     public String toString() {
-        return orderId + "\t" + uid + "\t" + paymentMethodId + "\t" + promotionId + "\t" + orderDate + "\t" + totalPrice + "\t" + status;
+        return orderId + ", " + uid + ", " + pmid + ", " + promotionId + ", " + getFormatOrderDateTime() + ", "
+                + totalPrice + ", " + status + ", " + this.getPaymentTypeName() + ", " + this.getCustomerName() + "\n";
     }
+
+
 }

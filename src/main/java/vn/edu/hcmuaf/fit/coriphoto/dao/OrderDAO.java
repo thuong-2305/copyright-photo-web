@@ -57,7 +57,6 @@ public class OrderDAO {
         );
     }
 
-
     public int totalOrders() {
         String sql = "SELECT COUNT(*) FROM orders";
         return jdbi.withHandle(handle ->
@@ -207,6 +206,21 @@ public class OrderDAO {
         );
     }
 
+    public Order getOrder(int oid) {
+        String sql = """
+        SELECT *
+        FROM orders
+        WHERE orderId = :oid
+        """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("oid", oid)
+                        .mapToBean(Order.class)
+                        .first()
+        );
+    }
+
     public Map<Integer, List<OrderDetail>> getOrdersWithDetails(int userId) {
         // Lấy danh sách đơn hàng
         List<Order> orders = getOrdersHistory(userId);
@@ -221,13 +235,42 @@ public class OrderDAO {
         return orderDetailsMap;
     }
 
+    public String getNamePaymentMethod(int pmid) {
+        String sql = """
+        SELECT pt.pmTypeName
+        FROM orders o
+        JOIN payment_method pm ON o.pmid = pm.pmid
+        JOIN payment_type pt ON pm.pmTypeId = pt.pmTypeId
+        WHERE o.pmid = :pmid;
+        """;
 
+        return jdbi.withHandle(handle -> handle.createQuery(sql)
+                .bind("pmid", pmid)
+                .mapTo(String.class)
+                .first());
+    }
 
+    public List<Order> getAllOrders() {
+        String sql = """
+            SELECT *
+            FROM orders
+            """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .mapToBean(Order.class)
+                        .list()
+        );
+    }
 
 
     public static void main(String[] args) {
         OrderDAO orderDAO = new OrderDAO();
-        System.out.println(orderDAO.getTotalPriceById(17));
+//        System.out.println(orderDAO.getNamePaymentMethod(6));
+//        List<Order> orders = orderDAO.getAllOrders();
+//        for(Order i : orders) {
+//            System.out.println(i);
+//        }
+        System.out.println(orderDAO.getOrder(9));
     }
 
 }
