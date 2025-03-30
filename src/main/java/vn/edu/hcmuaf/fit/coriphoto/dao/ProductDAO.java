@@ -5,10 +5,13 @@ import org.jdbi.v3.core.statement.Query;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
+import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import java.time.LocalDate;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,35 +26,6 @@ public class ProductDAO {
     public Product getById(int id) {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where id = ?")
                 .bind(0, id).mapToBean(Product.class).findFirst().orElse(null));
-    }
-
-    public List<Product> getProductsByCategory(int cid, int numbers) {
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM products WHERE cid = ? ORDER BY RAND() LIMIT ?")
-                .bind(0, cid)
-                .bind(1, numbers)
-                .mapToBean(Product.class)
-                .list());
-    }
-
-    public List<Product> getProductsByCategoryNotIn(int cid, Set<Integer> excludedProductIds, int limit) {
-        StringBuilder query = new StringBuilder("SELECT * FROM products WHERE cid = ?");
-        if (!excludedProductIds.isEmpty()) {
-            query.append(" AND id NOT IN (");
-            query.append(String.join(",", Collections.nCopies(excludedProductIds.size(), "?")));
-            query.append(")");
-        }
-        query.append(" ORDER BY RAND() LIMIT ?");
-
-        return jdbi.withHandle(handle -> {
-            Query queryObj = handle.createQuery(query.toString());
-            queryObj.bind(0, cid);
-            int index = 1;
-            for (Integer excludedId : excludedProductIds) {
-                queryObj.bind(index++, excludedId);
-            }
-            queryObj.bind(index, limit);
-            return queryObj.mapToBean(Product.class).list();
-        });
     }
 
     public List<TrendProducts> getTrendProducts() {

@@ -34,8 +34,9 @@ public class ProductService {
     public boolean deleteProductById(int id) {
         return products.deleteProductById(id);
     }
-    public boolean updateProduct(Product product) {
-        return products.updateProduct(product);
+
+    public void updateProduct(Product product) {
+        products.updateProduct(product);
     }
 
     public List<TrendProducts> getTopTrend() {
@@ -75,8 +76,9 @@ public class ProductService {
 
     public boolean updateStatus(String action, int id) { return products.updateStatus(action, id); }
 
+    public int getInNextProduct() { return products.getInNextProduct(); }
+
     public static void main(String[] args) {
-        List<Product> res = new ProductService().sortProductsLatest(23);
-        res.forEach(e -> System.out.println(e));
+        System.out.println(new ProductService().getInNextProduct());
     }
 }

@@ -29,7 +29,7 @@
         <jsp:include page="include/nav-admin.jsp"/>
 
         <!-- Content main -->
-        <div id="admin-dashboard-graph">
+        <div id="admin-dashboard-graph" class="view-products-main">
             <div class="mt-4 content-view">
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
                     <h5 class="fw-semibold">Các sản phẩm</h5>
@@ -52,22 +52,22 @@
                                 <col style="width: 20%;">
                             </colgroup>
                             <thead class="table-dark">
-                            <tr>
-                                <th>Mã</th>
-                                <th>Tên</th>
-                                <th>Username</th>
-                                <th>Ngày thêm</th>
-                                <th>Giá</th>
-                                <th>Trạng thái</th>
-                                <th>Hành động</th>
-                            </tr>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Tên</th>
+                                    <th>Username</th>
+                                    <th>Ngày thêm</th>
+                                    <th>Giá</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hành động</th>
+                                </tr>
                             </thead>
                             <tbody>
                             <!-- Nội dung hiên thị -->
                             <c:forEach var="product" items="${products}">
                                 <tr>
                                     <!-- Mã -->
-                                    <td>#${product.id}</td>
+                                    <td>${product.id}</td>
                                     <!-- Tên -->
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -154,16 +154,16 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title user-select-none" id="deleteModalLabel">
-                                        <i class="bi bi-exclamation-triangle-fill me-1" style="color: #fa2e2e;"></i>
-                                        Xác nhận xóa
+                                        <i class="bi bi-exclamation-triangle-fill" style="color: #fa2e2e;"></i>
+                                        Xóa sản phẩm
                                     </h5>
                                 </div>
                                 <div class="modal-body">
                                     Bạn có chắc chắn muốn xóa sản phẩm này?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                    <button type="button" id="confirmDelete" class="btn btn-danger">Xóa</button>
+                                    <button type="button" class="btn btn-secondary rounded-pill fw-semibold" data-dismiss="modal">Hủy</button>
+                                    <button type="button" id="confirmDelete" class="btn btn-danger rounded-pill fw-semibold">Xóa</button>
                                 </div>
                             </div>
                         </div>
@@ -173,12 +173,159 @@
             </div>
         </div>
 
+        <!-- Content add product -->
+        <div id="admin-dashboard-graph" class="view-product-add d-none">
+            <div class="mt-4 content-view">
+                <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
+                    <h5 class="fw-semibold name-function">Thêm sản phẩm</h5>
+                    <div id="returnButton">
+                        <button class="btn button-back fw-semibold">
+                            <i class="bi bi-arrow-return-left me-2"></i>Trở lại
+                        </button>
+                    </div>
+                </div>
+
+                <div class="frame__container px-2">
+                    <div class="row add-product">
+                        <!-- Details Section -->
+                        <div class="col-md-6">
+                            <div class="card position-relative">
+                                <div class="line-dashed"></div>
+                                <h6 class="fw-semibold">Chi tiết</h6>
+                                <small>Tiêu đề, mô tả, hình ảnh...</small>
+                                <div class="mt-3">
+                                    <label>Tên sản phẩm</label>
+                                    <input type="text" class="form-control" placeholder="Tên sản phẩm" id="nameProduct">
+                                </div>
+                                <div class="mt-3">
+                                    <label>Mô tả</label>
+                                    <input type="text" class="form-control" placeholder="Mô tả" id="desciptProduct">
+                                </div>
+
+                                <div class="mt-3 mb-3">
+                                    <h5 class="fw-semibold text-secondary d-flex justify-content-between align-items-center position-relative">
+                                        <span>Hình ảnh</span>
+                                        <div class="btn-box d-none position-absolute" style="right: 0">
+                                            <button class="btn-replace btn"  title="Thay thế ảnh">
+                                                <i class="fa-solid fa-retweet"></i>
+                                            </button>
+                                            <button class="btn-cancel btn" title="Xóa ảnh">
+                                                <i class="bi bi-x-square"></i>
+                                            </button>
+                                        </div>
+                                    </h5>
+                                    <div class="image-upload-box" id="uploadBox">
+                                        <input type="file" id="fileInput" hidden accept="image/*">
+                                        <label for="fileInput" class="upload-area">
+                                            <i class="fa fa-cloud-upload"></i>
+                                            <p>Kéo và thả tệp vào đây hoặc nhấp vào</p>
+                                        </label>
+                                    </div>
+                                    <div class="image-upload-box d-none" id="visibleImage"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Properties Section -->
+                        <div class="col-md-6">
+                            <div class="card position-relative">
+                                <div class="line-dashed"></div>
+                                <h6 class="fw-semibold">Thông tin</h6>
+                                <small>Thêm tính năng và thuộc tính...</small>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label>Mã sản phẩm</label>
+                                        <input type="text" class="form-control" id="idProduct">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Mã người bán</label>
+                                        <input type="text" class="form-control" id="idSeller">
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
+                                        <label>Chất lượng</label>
+                                        <input type="text" class="form-control isExist" id="imageSize" readonly>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Kích thước</label>
+                                        <input type="text" class="form-control isExist" id="fileSize" readonly>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <label>Danh mục</label>
+                                    <select class="form-select">
+                                        <option value="">Chọn danh mục</option>
+                                        <c:forEach var="item" items="${categories}">
+                                            <option value="${ item.cid }">${ item.name }</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="mt-3">
+                                    <label>Tags <small style="font-size: 12px;">(Tùy chọn)</small></label>
+                                    <select class="form-select">
+                                        <option>Chọn tags</option>
+                                    </select>
+                                </div>
+                                <!-- Trạng thái sản phẩm -->
+                                <div class="mt-3">
+                                    <label>Trạng thái</label>
+                                    <div class="d-flex gap-3">
+                                        <div>
+                                            <input type="radio" id="accepted" name="status" checked>
+                                            <label for="accepted">Accepted</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="waiting" name="status">
+                                            <label for="waiting">Waiting</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" id="rejected" name="status">
+                                            <label for="rejected">Rejected</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Giá -->
+                            <div class="card p-3 mt-4 position-relative">
+                                <div class="line-dashed"></div>
+                                <h6 class="fw-semibold">Giá</h6>
+                                <small>Giá cho sản phẩm</small>
+                                <div class="mt-3">
+                                    <label>Giá gốc</label>
+                                    <input type="text" class="form-control" placeholder="đ 0.00" id="priceProduct">
+                                </div>
+                                <div class="mt-3">
+                                    <label>Giá giảm <small style="font-size: 12px">(tùy chọn)</small></label>
+                                    <input type="text" class="form-control" placeholder="đ 0.00">
+                                </div>
+                            </div>
+
+                            <div class="text-end mt-3 button-function">
+                                <button class="btn btn-add-product fw-semibold" style="font-size: 15px">Thêm sản phẩm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <!-- footer-admin -->
         <jsp:include page="include/admin-footer.jsp" />
     </section>
     <!-- RIGHT MAIN -->
 </section>
 <!-- MAIN -->
+
+<!-- Loading screen -->
+<div id="loadingScreen" class="loading-overlay d-none">
+    <div class="spinner"></div>
+    <p>Đang xử lý, vui lòng chờ...</p>
+</div>
+<!-- Loading screen -->
 
 <!-- Notification -->
 <div class="alert alert-danger d-none align-items-center position-fixed"
@@ -208,6 +355,7 @@
 <!-- JS -->
 <jsp:include page="include/admin-libraries.jsp" />
 
+<!-- Chức năng của dataTable -->
 <script>
     $(document).ready(function () {
         const table = $('#productsTable').DataTable({
@@ -251,12 +399,14 @@
     });
 </script>
 
+<!-- Chức năng ẩn hiển xóa sản phẩm -->
 <script>
     $("#deleteModal .btn-secondary").on("click", function () {
         $("#deleteModal").modal("hide");
     });
 </script>
 
+<!-- Xử lý xóa sản phẩm -->
 <script>
     let productIdToDelete = null;
     let parentElement = null;
@@ -264,9 +414,13 @@
     $('.delete-btn').on('click', function () {
         productIdToDelete = $(this).data('id');
         parentElement = $(this).closest("tr");
+        // Lây nội dung ảnh hiển thị
+        var imageName = parentElement.find("td").eq(1).text().trim();
+        $('#deleteModal .modal-body').html("Bạn có chắc chắn muốn xóa <strong>" + imageName + "</strong>.");
         $('#deleteModal').modal('show');
     });
 
+    // Xử lý sau khi nhấn xóa
     $('#confirmDelete').on('click', function () {
         if (productIdToDelete) {
             $.ajax({
@@ -281,7 +435,7 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        $(".alert-success span").text("Xóa thành công thành công!");
+                        $(".alert-success span").text("Xóa thành công!");
                         $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
                             $(this).addClass("d-none");
                         });
@@ -304,6 +458,7 @@
     });
 </script>
 
+<!-- Chức năng xem sản phẩm -->
 <script>
     $('.view-btn').on('click', function () {
         const productId = $(this).data('id');
@@ -346,8 +501,315 @@
         productDetail.classList.toggle('d-none');
         const overlay = document.getElementById("overlay");
         overlay.classList.toggle('show');
+        document.body.classList.toggle('no-scroll');
     }
 
+</script>
+
+<!-- Chức năng ẩn hiện thêm sản phẩm -->
+<script>
+    $('.button-add').on("click", function() {
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
+
+        $('.name-function').text("Thêm sản phẩm");
+        $('.button-function').html("<button class=\"btn btn-add-product fw-semibold\" style=\"font-size: 15px\">Thêm sản phẩm</button>")
+    });
+
+    $('.button-back').on("click", function() {
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
+    });
+</script>
+
+<!-- Xử lý chức năng thêm hình ảnh upload -->
+<script>
+    $(document).ready(function () {
+        let $fileSize = $("#fileSize");
+        let $imageSize = $("#imageSize");
+        let $idProduct = $("#idProduct");
+
+        // Reset giá trị input khi load lại trang
+        $fileSize.val("");
+        $imageSize.val("");
+        $idProduct.val("");
+
+        let $uploadBox = $('#uploadBox');
+        let $fileInput = $('#fileInput');
+        let $visibleImage = $('#visibleImage');
+        let $btnBox = $('.btn-box');
+        let $btnCancel = $('.btn-cancel');
+        let $btnReplace = $('.btn-replace');
+
+        // Hiển hình ảnh khi chọn upload
+        $fileInput.on('change', function (event) {
+            let file = event.target.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    $btnBox.removeClass("d-none");
+                    $visibleImage.removeClass("d-none");
+                    $visibleImage.height("auto");
+                    $visibleImage.html(
+                        '<img id="preview-img" src="' + e.target.result + '" style="max-width: 100%; height: auto; border-radius: 5px;" alt="image-upload">'
+                    );
+                    $uploadBox.addClass("d-none");
+                };
+                reader.readAsDataURL(file);
+            }
+            handleFileImage(file);
+
+        });
+
+        // Hủy upload ảnh
+        $btnCancel.on('click', function () {
+            $visibleImage.html('');
+            $visibleImage.addClass("d-none");
+            $visibleImage.height("250px");
+            $btnBox.addClass("d-none");
+            $uploadBox.removeClass("d-none");
+            $fileInput.val('');
+            $fileSize.val('');
+            $imageSize.val('');
+            $idProduct.val('');
+        });
+
+        // Thay thế ảnh đã upload
+        $btnReplace.on('click', function () {
+            $fileInput.click();
+        });
+
+        // Ngăn chặn focus nếu chưa upload ảnh
+        $fileSize.add($imageSize).add($idProduct).on("click", function (event) {
+            if (!isImageUploaded()) {
+                event.preventDefault();
+                $(".alert-danger span").text("Hãy upload ảnh trước");
+                $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                    $(this).addClass("d-none");
+                });
+            }
+        });
+
+        // Kiểm tra ảnh đã upload chưa
+        function isImageUploaded() {
+            return $visibleImage.find("img").length > 0;
+        }
+
+        // Hàm xử lý ảnh khi thêm
+        function handleFileImage(file) {
+            let formData = new FormData();
+            formData.append('file', file);
+
+            $.ajax({
+                url: "/AdminHandleAddImage",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    $("#fileSize").val(response.fileSize);
+                    $("#imageSize").val(response.imageSize);
+                    $("#idProduct").val(response.id);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+
+</script>
+
+<!-- Xử lý chức năng thêm sản phẩm mới -->
+<script>
+    $(document).ready(function () {
+        $(".btn-add-product").on("click", function () {
+            let formData = new FormData();
+
+            // Lấy dữ liệu từ các input
+            formData.append("nameProduct", $("#nameProduct").val());
+            formData.append("desciptProduct", $("#desciptProduct").val());
+            formData.append("idProduct", $("#idProduct").val());
+            formData.append("idSeller", $("#idSeller").val());
+            formData.append("imageSize", $("#imageSize").val());
+            formData.append("fileSize", $("#fileSize").val());
+            formData.append("priceProduct", $("#priceProduct").val());
+
+            // Lấy file ảnh đã chọn
+            let fileInput = $("#fileInput")[0].files[0];
+            if (fileInput) {
+                formData.append("file", fileInput);
+            }
+
+            // Lấy danh mục
+            formData.append("category", $(".form-select").val());
+
+            // Lấy trạng thái sản phẩm
+            let status = $("input[name='status']:checked").attr("id");
+            formData.append("status", status);
+
+            $.ajax({
+                url: "/AdminHandleAddProduct",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if(response.message === "Success") {
+                        location.reload();
+                        $('.view-products-main').toggleClass("d-none");
+                        $('.view-product-add').toggleClass("d-none");
+
+                        $("#nameProduct").val("");
+                        $("#desciptProduct").val("");
+                        $("#idProduct").val("");
+                        $("#idSeller").val("");
+                        $("#imageSize").val("");
+                        $("#fileSize").val("");
+                        $("#priceProduct").val("");
+                        $("#fileInput").val("");
+                        $(".form-select").prop("selectedIndex", 0);
+                        $("input[name='status']").prop("checked", false);
+
+                        $("#uploadBox").removeClass("d-none");
+                        $("#visibleImage").addClass("d-none").html("");
+
+                        $(".alert-success span").text("Thêm sản phẩm mới thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    } else {
+                        $("#idSeller").addClass("is-invalid");
+                        $("#idSeller").after('<div class="invalid-feedback">ID Seller không đúng!</div>');
+
+                        $(".alert-danger span").text("Lỗi ID người bán");
+                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Lỗi:", error);
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Xử lý chức năng sửa sản phẩm -->
+<script>
+    let productIdToEdit = null;
+    let $uploadBox = $('#uploadBox');
+    let $visibleImage = $('#visibleImage');
+    let $btnBox = $('.btn-box');
+
+    $('.edit-btn').on('click', function () {
+        productIdToEdit = $(this).data('id');
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
+
+        $.ajax({
+            url: "/AdminHandleEditProduct",
+            type: "GET",
+            data: { product_id: productIdToEdit },
+            success: function (response) {
+                $("#nameProduct").val(response.name);
+                $("#desciptProduct").val(response.description);
+                $("#idProduct").val(response.id);
+                $("#idSeller").val(response.uid);
+                $("#imageSize").val(response.dimension);
+                $("#fileSize").val(response.size);
+                $("#priceProduct").val(response.price);
+
+                $btnBox.removeClass("d-none");
+                $visibleImage.removeClass("d-none");
+                $visibleImage.height("auto");
+                $visibleImage.html(
+                    '<img id="preview-img" src="' + response.url + '" style="max-width: 100%; height: auto; border-radius: 5px;" alt="image-upload">'
+                );
+                $uploadBox.addClass("d-none");
+
+                $(".form-select").prop("selectedIndex", response.cid);
+                $("input[name='status']").prop("checked", false);
+                $("input[name='status'][id='" + response.status + "']").prop("checked", true);
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi:", error);
+            }
+        });
+
+        $('.name-function').text("Sửa sản phẩm");
+        $('.button-function').html("<button class=\"btn btn-edit-product fw-semibold\" style=\"font-size: 15px\">Chỉnh sửa sản phẩm</button>")
+    });
+
+    $(document).on("click", ".btn-edit-product", function () {
+        let formData = new FormData();
+
+        // Lấy dữ liệu từ các input
+        formData.append("nameProduct", $("#nameProduct").val());
+        formData.append("desciptProduct", $("#desciptProduct").val());
+        formData.append("idProduct", $("#idProduct").val());
+        formData.append("idSeller", $("#idSeller").val());
+        formData.append("imageSize", $("#imageSize").val());
+        formData.append("fileSize", $("#fileSize").val());
+        formData.append("priceProduct", $("#priceProduct").val());
+
+        // Lấy file ảnh đã chọn
+        let fileInput = $("#fileInput")[0].files[0];
+        if (fileInput) {
+            formData.append("file", fileInput);
+        }
+        formData.append("url", $("#preview-img").attr("src"));
+
+        // Lấy danh mục
+        formData.append("category", $(".form-select").val());
+
+        // Lấy trạng thái sản phẩm
+        let status = $("input[name='status']:checked").attr("id");
+        formData.append("status", status);
+
+        $.ajax({
+            url: "/AdminHandleEditProduct",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+
+                console.log(response.message)
+
+                if(response.message === "Success") {
+
+                    $("#loadingScreen").removeClass("d-none");
+
+                    $('.view-products-main').toggleClass("d-none");
+                    $('.view-product-add').toggleClass("d-none");
+
+                    $("#nameProduct").val("");
+                    $("#desciptProduct").val("");
+                    $("#idProduct").val("");
+                    $("#idSeller").val("");
+                    $("#imageSize").val("");
+                    $("#fileSize").val("");
+                    $("#priceProduct").val("");
+                    $("#fileInput").val("");
+                    $(".form-select").prop("selectedIndex", 0);
+                    $("input[name='status']").prop("checked", false);
+
+                    $("#uploadBox").removeClass("d-none");
+                    $("#visibleImage").addClass("d-none").html("");
+
+                    $(".alert-success span").text("Chỉnh sửa sản phẩm mới thành công!");
+                    $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(this).addClass("d-none");
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi:", error);
+            }
+        });
+    });
 </script>
 </body>
 </html>
