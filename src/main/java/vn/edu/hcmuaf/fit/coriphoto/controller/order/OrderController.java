@@ -126,8 +126,12 @@ public class OrderController extends HttpServlet {
                                     "Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
                                     "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
                                     "Trân trọng,\n"
-                            , absolutePath, imageName, licenseId);                 }
+                            , absolutePath, imageName, licenseId);
+                    response.sendRedirect("order-success.jsp");
+                }
+                // XỬ LÍ RESPONSE KHI ĐƠN HÀNG không thành công
                 else {
+                    response.sendRedirect("order-fail.jsp");
                 }
             }
             else if (Integer.parseInt(paymentTypeId) == 2) {
@@ -152,10 +156,15 @@ public class OrderController extends HttpServlet {
                                     "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
                                     "Trân trọng,\n"
                             , absolutePath, imageName, licenseId);
+                    response.sendRedirect("order-success.jsp");
+                }
+                // XỬ LÍ RESPONSE KHI ĐƠN HÀNG không thành công
+                else {
+                    response.sendRedirect("order-fail.jsp");
                 }
             }
         }
-        response.sendRedirect("/");
+        response.sendRedirect("order-fail.jsp");
 
     }
 }

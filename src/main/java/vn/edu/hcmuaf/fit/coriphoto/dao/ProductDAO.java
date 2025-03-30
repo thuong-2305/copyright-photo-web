@@ -1,14 +1,16 @@
 package vn.edu.hcmuaf.fit.coriphoto.dao;
 
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.statement.Query;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
-import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
+import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductDAO {
     private static final Jdbi jdbi = new DBConnect().get();
@@ -21,6 +23,35 @@ public class ProductDAO {
     public Product getById(int id) {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where id = ?")
                 .bind(0, id).mapToBean(Product.class).findFirst().orElse(null));
+    }
+
+    public List<Product> getProductsByCategory(int cid, int numbers) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM products WHERE cid = ? ORDER BY RAND() LIMIT ?")
+                .bind(0, cid)
+                .bind(1, numbers)
+                .mapToBean(Product.class)
+                .list());
+    }
+
+    public List<Product> getProductsByCategoryNotIn(int cid, Set<Integer> excludedProductIds, int limit) {
+        StringBuilder query = new StringBuilder("SELECT * FROM products WHERE cid = ?");
+        if (!excludedProductIds.isEmpty()) {
+            query.append(" AND id NOT IN (");
+            query.append(String.join(",", Collections.nCopies(excludedProductIds.size(), "?")));
+            query.append(")");
+        }
+        query.append(" ORDER BY RAND() LIMIT ?");
+
+        return jdbi.withHandle(handle -> {
+            Query queryObj = handle.createQuery(query.toString());
+            queryObj.bind(0, cid);
+            int index = 1;
+            for (Integer excludedId : excludedProductIds) {
+                queryObj.bind(index++, excludedId);
+            }
+            queryObj.bind(index, limit);
+            return queryObj.mapToBean(Product.class).list();
+        });
     }
 
     public List<TrendProducts> getTrendProducts() {
@@ -114,29 +145,29 @@ public class ProductDAO {
         );
     }
 
-    public void updateProduct(Product product) {
+    public boolean updateProduct(Product product) {
         String sql = """
             UPDATE products
             SET name = :name,
                 description = :description,
                 cid = :cid,
-                url = :url,
                 price = :price,
                 uid = :uid,
                 status = :status
             WHERE id = :id
         """;
 
-        jdbi.useHandle(handle -> {handle.createUpdate(sql)
-                    .bind("name", product.getName())
-                    .bind("description", product.getDescription())
-                    .bind("cid", product.getCid())
-                    .bind("url", product.getUrl())
-                    .bind("price", product.getPrice())
-                    .bind("uid", product.getUid())
-                    .bind("status", product.getStatus())
-                    .bind("id", product.getId()).execute();
-        });
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("id", product.getId())
+                        .bind("name", product.getName())
+                        .bind("description", product.getDescription())
+                        .bind("cid", product.getCid())
+                        .bind("price", product.getPrice())
+                        .bind("uid", product.getUid())
+                        .bind("status", product.getStatus())
+                        .execute() > 0
+        );
     }
 
     public boolean updateStatus(String action, int id) {
@@ -152,19 +183,8 @@ public class ProductDAO {
                         .execute() > 0);
     }
 
-    public int getInNextProduct() {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products' LIMIT 1")
-                        .mapTo(Integer.class)
-                        .findOne()
-                        .orElseThrow(() -> new RuntimeException("Không thể lấy ID tiếp theo"))
-        );
-    }
-
     public List<Product> getAllProductsWaiting() {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where status = ? order by dateUpload desc")
                 .bind(0, "waiting").mapToBean(Product.class).list());
     }
-
 }
-

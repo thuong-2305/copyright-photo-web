@@ -1,0 +1,58 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.notification-container {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Thu nhỏ kích thước */
+    margin: 0 auto;
+    border: 1px solid #009970; /* Viền xanh cho trạng thái thành công */
+}
+
+.icon-success i {
+    color: #009970; /* Màu xanh lá cây giống yêu cầu */
+}
+
+h1.display-4 {
+    font-size: 2.2rem; /* Thu nhỏ tiêu đề */
+    font-weight: 700;
+    color: #333; /* Tiêu đề màu đen để đồng bộ với navbar */
+}
+
+p.lead {
+    font-size: 1rem; /* Thu nhỏ chữ */
+    color: #555;
+    line-height: 1.5;
+}
+
+.text-muted {
+    font-size: 0.85rem; /* Thu nhỏ chữ ngày giao dịch */
+    color: #6c757d;
+}
+
+.btn-custom {
+    background-color: #009970; /* Màu xanh lá cây giống yêu cầu */
+    color: #fff;
+    border: none;
+    padding: 10px 25px; /* Thu nhỏ nút */
+    font-size: 0.95rem; /* Thu nhỏ chữ trên nút */
+    font-weight: 600;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-custom:hover {
+    background-color: #007a57; /* Màu xanh đậm hơn khi hover */
+    color: #fff;
+    transform: translateY(-2px); /* Hiệu ứng nâng nhẹ khi hover */
+}
