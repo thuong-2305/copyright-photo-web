@@ -23,7 +23,39 @@ public class ProductDAO {
                 .mapToBean(Product.class).list());
     }
 
-    public Product getById(int id) {
+    public List<Product> getProductsByCategory(int cid, int numbers) {
+        return null;
+    }
+
+    public List<Product> getProductsByCategoryNotIn(int cid, Set<Integer> excludedProductIds, int limit) {
+        StringBuilder query = new StringBuilder("SELECT * FROM products WHERE cid = ?");
+        if (!excludedProductIds.isEmpty()) {
+            query.append(" AND id NOT IN (");
+            query.append(String.join(",", Collections.nCopies(excludedProductIds.size(), "?")));
+            query.append(")");
+        }
+        query.append(" ORDER BY RAND() LIMIT ?");
+
+        return jdbi.withHandle(handle -> {
+            Query queryObj = handle.createQuery(query.toString());
+            queryObj.bind(0, cid);
+            int index = 1;
+            for (Integer execludeId : excludedProductIds) {
+                queryObj.bind(index++, execludeId);
+            }
+            queryObj.bind(index, limit);
+            return queryObj.mapToBean(Product.class).list();
+        });
+    }
+
+
+    public List<Product> getByCategoryId(int cid) {
+        String sqlQuery = "SELECT * FROM products WHERE cid = ?";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .bind(0, cid).mapToBean(Product.class).list());
+    }
+
+        public Product getById(int id) {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where id = ?")
                 .bind(0, id).mapToBean(Product.class).findFirst().orElse(null));
     }
@@ -39,12 +71,10 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
                 .mapToBean(TrendProducts.class).list());
     }
+    
+    
 
-    public List<Product> getByCategoryId(int cid) {
-        String sqlQuery = "SELECT * FROM products WHERE cid = ?";
-        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
-                .bind(0, cid).mapToBean(Product.class).list());
-    }
+
 
     public List<Product> getProductPopular(int cid) {
         String sqlQuery = "SELECT p.id ,p.name, p.url, COUNT(v.id) AS view_count " +
@@ -160,5 +190,11 @@ public class ProductDAO {
     public List<Product> getAllProductsWaiting() {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where status = ? order by dateUpload desc")
                 .bind(0, "waiting").mapToBean(Product.class).list());
+    }
+
+    public int getInNextProduct() {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products' LIMIT 1")
+                .mapTo(Integer.class).findOne().orElseThrow(() -> new RuntimeException("Khong thể lấy ID tiếp theo"))
+        );
     }
 }
