@@ -1,5 +1,8 @@
 package vn.edu.hcmuaf.fit.coriphoto.model;
 
+import vn.edu.hcmuaf.fit.coriphoto.service.LicenseService;
+import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
+
 public class OrderDetail {
     private int orderId;
     private int productId;
@@ -46,6 +49,14 @@ public class OrderDetail {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getNameLicense() {
+        return new LicenseService().getLicenseName(this.licenseId);
+    }
+
+    public Product getProduct() {
+        return new ProductService().getById(this.productId);
     }
 
     @Override

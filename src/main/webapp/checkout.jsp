@@ -210,7 +210,7 @@
                                             </div>
 
                                             <!-- Tab: VNPay -->
-                                            <form id="vnPayOrder" action="vnpayOrder" method="POST">
+                                            <form id="vnPayOrder" action="payment" method="POST" class="Testaaaaa">
                                                 <div id="vnpay" class="payment-tab d-none text-center" name="vnpay">
                                                     <div class="alert alert-info text-center" role="alert">
                                                         <i class="fas fa-lock"></i> Mọi thông tin đều được mã hóa, bảo mật và bảo vệ toàn diện.

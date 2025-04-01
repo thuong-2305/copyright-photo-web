@@ -62,7 +62,7 @@ public class OrderHistory extends HttpServlet {
 
                 // Lấy tên phương thức thanh toán
                 int pmid = orderService.getPmIdByOrderId(order.getOrderId());
-                order.setPaymentMethodId(pmid);
+                order.setPmid(pmid);
                 paymentTypes.put(pmid, userService.getPaymentTypeNameByPmid(pmid));
 
 

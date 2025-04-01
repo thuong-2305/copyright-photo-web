@@ -15,6 +15,10 @@ public class OrderService {
         return orderDAO.addOrderAndGetId(uid, pmid, promotionId, totalPrice);
     }
 
+    public void updateOrderStatus(int orderId, String newStatus) {
+        orderDAO.updateStatusOrder(orderId, newStatus);
+    }
+
     public boolean addOrderDetails(int orderId, int productId, int licenseId, double price) {
         return orderDAO.addOrderDetails(orderId, productId, licenseId, price);
     }
@@ -83,10 +87,15 @@ public class OrderService {
         return orderDAO.getOrdersWithDetails(uid);
     }
 
+    public List<Order> getAllOrders() { return orderDAO.getAllOrders(); }
 
     public int getPmIdByOrderId(int oid) {
         return orderDAO.getPmIdByOrderId(oid);
     }
+
+    public String getNamePaymentMethod(int pmid) { return orderDAO.getNamePaymentMethod(pmid); }
+
+    public Order getOrder(int oid) { return orderDAO.getOrder(oid); }
 
     // Hàm chuyển đổi chuỗi có dấu ngoặc vuông và số phân tách dấu phẩy thành mảng int
     public static int[] convertStringToIntArray(String str) {
@@ -99,5 +108,11 @@ public class OrderService {
             intArray[i] = Integer.parseInt(stringNumbers[i]);
         }
         return intArray;
+    }
+
+    public static void main(String[] args) {
+        OrderService orderService = new OrderService();
+        orderService.updateOrderStatus(17, "Completed");
+        System.out.println(orderService.getOrder(17));
     }
 }

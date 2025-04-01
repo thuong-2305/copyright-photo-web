@@ -1,134 +1,124 @@
-.image-stack {
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
+.right-category {
+    min-height: 100vh;
 }
 
-.image-stack img {
-    width: 30px !important;
-    height: 30px !important;
-    border: 2px solid #fff;
-    border-radius: 5px !important;
+p {
+    margin-bottom: 5px !important;
 }
 
-/* Hiển thị số lượng còn lại */
-.more-images {
-    width: 30px !important;
-    height: 30px !important;
-    border-radius: 5px !important;
-    background: #ccc;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    border: 2px solid #fff;
-}
-
-
-.table-hover tbody tr.selected {
-    background-color: #ddd !important;
-    /* Làm tối dòng được chọn */
-}
-
-.table-hover tbody tr {
-    position: relative;
-    cursor: pointer;
-}
-
-/* Thẻ chi tiết (ẩn mặc định) */
-.details {
-    display: none;
-    padding: 10px;
-    background: #f8f9fa;
-    border: 1px solid #ddd;
-    margin-top: 10px;
-    border-radius: 5px;
+/* Thêm sản phẩm mới */
+.line-dashed {
+    height: 4px;
+    width: calc(100% + 40px);
+    border-bottom: 1px solid #ccd2d8;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
+    top: 0;
+    left: -20px;
+    z-index: 1;
 }
 
-.details.active {
-    display: block;
-}
-
-.details .container {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-.order-details {
-    width: 400px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.add-product .card {
+    background-color: #fff;
+    border: none;
     padding: 20px;
+    color: var(--text);
 }
 
-.order-details h5 {
-    font-size: 18px;
+.add-product .card small {
+    font-size: 14px;
+    margin-bottom: 1.5rem;
+}
+
+.add-product .card label {
+    margin-bottom: 5px;
+}
+
+.add-product .form-control, .form-select {
+    background-color: #fff;
+    color: var(--text) !important;
+    border: 1px solid #ccd2d8;
+}
+
+.add-product .form-control::placeholder {
+    color: var(--text);
+}
+
+.add-product .form-control:focus, .form-select:focus {
+    border: 1px solid #ccd2d8 !important;
+    box-shadow: none !important;
+}
+
+.add-product .d-flex.gap-3 input[type="radio"] {
+    margin-right: 5px;
+}
+
+.add-product .detail-price {
+    width: 50%;
+    margin: auto 0 auto auto;
+}
+
+/* Hiệu ứng chạy đường kẻ */
+@keyframes movingLines {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 60px 0;
+    }
+}
+
+/* Lịch sử chi tiết đơn hàng */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    bottom: 30px;
+    width: 2px;
+    background: #6f42c1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: #6f42c1; /* Màu tím */
+    border-radius: 50%;
+}
+
+.timeline-item h6 {
+    margin-bottom: 5px;
     font-weight: bold;
-    margin-bottom: 15px;
 }
 
-.order-details .tabs {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 15px;
+.timeline-item p {
+    margin: 0;
+    color: #666;
 }
 
-.order-details .tab {
-    display: inline-block;
-    margin-right: 15px;
-    cursor: pointer;
-    padding: 5px 0;
-}
-
-.order-details .tab.active {
-    font-weight: bold;
-    border-bottom: 2px solid #007bff;
-}
-
-.order-details .content {
-    display: none;
-}
-
-.order-details .content .container-box {
-    overflow: hidden;
-    max-height: 250px;
-    overflow-y: scroll;
-}
-
-.order-details .content .box {
-    display: flex;
-    margin-bottom: 10px;
-    list-style-type: none;
-}
-
-.order-details .content .box .content-detail {
-    margin-left: 10px;
-    margin-top: 0;
-    padding-top: 0;;
-    display: flex;
-    flex-direction: column;
-}
-
-.order-details .content .box img {
-    width: 40px;
-    height: 40px;
+.details-box {
+    border: 1px solid #ddd;
+    padding: 15px;
     border-radius: 5px;
 }
 
-.order-details .content.active {
-    display: block;
+.details-box p {
+    margin: 5px 0;
 }
 
-.order-details .footer {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+.details-box strong {
+    color: #333;
 }

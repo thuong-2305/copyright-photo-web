@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vn.edu.hcmuaf.fit.coriphoto.controller.vnpay.common;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import java.io.IOException;import java.net.URLEncoder;
+import java.io.IOException;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,7 +17,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
@@ -33,72 +26,50 @@ import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
  *
  * @author CTT VNPAY
  */
-@WebServlet(name = "vnpayCartOrder", value = "/vnpayCartOrder")
-
-public class vnpayCartOrder extends HttpServlet {
+@WebServlet(name = "ajaxServlet", value = "/payment")
+public class ajaxServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        String bankCode = req.getParameter("bankCode");
+        double totalBeforeDiscount = Double.parseDouble(req.getParameter("totalBeforeDiscount"));
 
-        String vnp_Version = "2.1.0";
-        String vnp_Command = "pay";
-        String orderType = "other";
-        String bankCode = request.getParameter("bankCode");
+//        double amountDouble = Double.parseDouble(req.getParameter("totalBill"));
 
-        // lấy thông tin user
-        HttpSession session = request.getSession();
-        User currentUser = (User) session.getAttribute("loggedInUser");
-        if (currentUser == null) {
-            response.sendRedirect("/");
-            return;
-        }
+        // Xử lý lưu và tạo đơn hàng khi thanh toán
+        OrderService orderService = new OrderService();
 
+        User auth = (User) req.getSession().getAttribute("auth");
 
-        int uid = currentUser.getUid();
-        String[] productIds = request.getParameterValues("productIds");
-        String[] productPrices = request.getParameterValues("productPrices");
-        String[] licenseIds = request.getParameterValues("licenseIds");
-        // Chuyển đổi chuỗi licenseIds thành mảng int
-        int[] licenseIdsArray = OrderService.convertStringToIntArray(licenseIds[0]);
-        // Lấy thông tin giảm giá và tổng tiền
+        int promotionId = Integer.parseInt(req.getParameter("promotionId"));
 
-        int promotionId = Integer.parseInt(request.getParameter("promotionId"));
-        long totalBeforeDiscount = Math.round(Double.parseDouble(request.getParameter("totalBeforeDiscount")) * 100);
-        long totalAfterDiscount = Math.round(Double.parseDouble(request.getParameter("totalAfterDiscount")) * 100);
-        double discountAmount = 0;
+        String[] licenseIds = req.getParameterValues("licenseIds");
+        String[] productIds = req.getParameterValues("productIds");
 
-        if (totalAfterDiscount == 0) {
-            totalAfterDiscount = totalBeforeDiscount;
-            discountAmount = 0;
-        }
-        else {
-            discountAmount = totalBeforeDiscount - totalAfterDiscount;
-        }
-
-        for (int i = 0; i < productPrices.length; i++) {
-            if (licenseIdsArray[i] == 2) { // Nếu licenseId là 2, tăng giá gấp đôi
-                double price = Double.parseDouble(productPrices[i]);
-                productPrices[i] = String.valueOf(price * 2);
-            }
-        }
+        int orderId = orderService.addOrderAndGetId(auth.getUid(), -1, promotionId, totalBeforeDiscount);
 
         ProductService productService = new ProductService();
         List<Product> products = new ArrayList<>();
         for (String ele : productIds) {
             products.add(productService.getById(Integer.parseInt(ele)));
         }
-
-        // thanh toán VNPay không cần pmid
-        OrderService orderService = new OrderService();
-        int orderId = -1;
-        boolean isOrderCreated = orderService.createOrder(uid, -1, promotionId, licenseIdsArray, totalBeforeDiscount, products);
-        if (isOrderCreated) {
-            orderId = orderService.getLastOrderId();
+        for(int i = 0; i < products.size(); i++) {
+            Product p = products.get(i);
+            System.out.println(licenseIds[i]);
+            int licenseId = Integer.parseInt((licenseIds[i]));
+            double price = licenseId == 2 ? p.getPrice() * 2 : p.getPrice();
+            orderService.addOrderDetails(orderId, p.getId(), licenseId, price);
         }
+        // Xử lý lưu và tạo đơn hàng khi thanh toán
 
+        String vnp_Version = "2.1.0";
+        String vnp_Command = "pay";
+        String orderType = "other";
 
-        String vnp_TxnRef = orderId + "";
-        String vnp_IpAddr = Config.getIpAddress(request);
+        long amount = (long) (totalBeforeDiscount * 100);
+        String vnp_TxnRef = orderId+"";
+        String vnp_IpAddr = Config.getIpAddress(req);
 
         String vnp_TmnCode = Config.vnp_TmnCode;
 
@@ -106,7 +77,7 @@ public class vnpayCartOrder extends HttpServlet {
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
-        vnp_Params.put("vnp_Amount", String.valueOf(totalAfterDiscount));
+        vnp_Params.put("vnp_Amount", String.valueOf(amount));
         vnp_Params.put("vnp_CurrCode", "VND");
 
         if (bankCode != null && !bankCode.isEmpty()) {
@@ -116,7 +87,7 @@ public class vnpayCartOrder extends HttpServlet {
         vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
         vnp_Params.put("vnp_OrderType", orderType);
 
-        String locate = request.getParameter("language");
+        String locate = req.getParameter("language");
         if (locate != null && !locate.isEmpty()) {
             vnp_Params.put("vnp_Locale", locate);
         } else {
@@ -161,18 +132,8 @@ public class vnpayCartOrder extends HttpServlet {
         String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
-
-
-        com.google.gson.JsonObject job = new JsonObject();
-        job.addProperty("code", "00");
-        job.addProperty("message", "success");
-        job.addProperty("data", paymentUrl);
-        Gson gson = new Gson();
-        response.getWriter().write(gson.toJson(job));
-        System.out.println("vnp_params: " + vnp_Params);
-
-        response.sendRedirect(paymentUrl);
-
+        System.out.println(paymentUrl);
+        resp.sendRedirect(paymentUrl);
     }
-
 }
+

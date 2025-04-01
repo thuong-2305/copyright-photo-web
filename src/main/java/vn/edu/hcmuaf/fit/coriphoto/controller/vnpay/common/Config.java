@@ -1,4 +1,3 @@
-
 package vn.edu.hcmuaf.fit.coriphoto.controller.vnpay.common;
 
 import java.io.UnsupportedEncodingException;
@@ -14,6 +13,7 @@ import java.util.Random;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import jakarta.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author CTT VNPAY
@@ -21,9 +21,9 @@ import jakarta.servlet.http.HttpServletRequest;
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    public static String vnp_ReturnUrl = "http://localhost:8080/vnpay_jsp/vnpay_return.jsp";
-    public static String vnp_TmnCode = "";
-    public static String secretKey = "";
+    public static String vnp_ReturnUrl = "http://localhost:8080/vnpayReturn";
+    public static String vnp_TmnCode = "TY27VZBH";
+    public static String secretKey = "EEUPPVB5CNX4J8OGFBZMFO8926O3KSC4";
     public static String vnp_ApiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
 
     public static String md5(String message) {
@@ -82,7 +82,7 @@ public class Config {
         }
         return hmacSHA512(secretKey,sb.toString());
     }
-    
+
     public static String hmacSHA512(final String key, final String data) {
         try {
 
@@ -105,7 +105,7 @@ public class Config {
             return "";
         }
     }
-    
+
     public static String getIpAddress(HttpServletRequest request) {
         String ipAdress;
         try {
