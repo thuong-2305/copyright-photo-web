@@ -17,7 +17,7 @@ public class OrderDAO {
     public int addOrderAndGetId(int uid, int pmid, int promotionId, double totalPrice) {
         // Truy vấn để thêm đơn hàng vào bảng orders
         String sql = "INSERT INTO orders (uid, pmid, promotionId, orderDate, totalPrice, status) " +
-                "VALUES (:uid, :pmid, :promotionId, CURDATE(), :totalPrice, 'Completed')";
+                "VALUES (:uid, :pmid, :promotionId, NOW(), :totalPrice, 'Waiting payment')";
 
         // Dùng getGeneratedKeys để lấy orderId của đơn hàng mới
         return jdbi.withHandle(handle ->
@@ -32,6 +32,14 @@ public class OrderDAO {
         );
     }
 
+    public void updateStatusOrder(int orderId, String status) {
+        String sql = "UPDATE orders SET status = :status, orderPaymentDate = NOW() WHERE orderId = :orderId";
+        jdbi.withHandle(handle ->
+                handle.createUpdate(sql)
+                        .bind("orderId", orderId)
+                        .bind("status", status)
+                        .execute());
+    }
 
     public List<Integer> getAllOrdersId() {
         String sql = "SELECT orderId FROM orders";
@@ -247,7 +255,9 @@ public class OrderDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sql)
                 .bind("pmid", pmid)
                 .mapTo(String.class)
-                .first());
+                .findFirst()
+                .orElse("Unknown")
+        );
     }
 
     public List<Order> getAllOrders() {
@@ -270,7 +280,7 @@ public class OrderDAO {
 //        for(Order i : orders) {
 //            System.out.println(i);
 //        }
-        System.out.println(orderDAO.getOrder(9));
+        System.out.println(orderDAO.getOrder(17));
     }
 
 }

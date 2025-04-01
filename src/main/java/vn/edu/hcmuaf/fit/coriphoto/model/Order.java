@@ -15,6 +15,7 @@ public class Order {
     private LocalDateTime orderDate;
     private double totalPrice;
     private String status;
+    private LocalDateTime orderPaymentDate;
 
     public Order(int orderId, String status, double totalPrice, LocalDateTime orderDate, int promotionId, int pmid, int uid) {
         this.orderId = orderId;
@@ -24,6 +25,14 @@ public class Order {
         this.promotionId = promotionId;
         this.pmid = pmid;
         this.uid = uid;
+    }
+
+    public LocalDateTime getOrderPaymentDate() {
+        return orderPaymentDate;
+    }
+
+    public void setOrderPaymentDate(LocalDateTime orderPaymentDate) {
+        this.orderPaymentDate = orderPaymentDate;
     }
 
     public Order() {}

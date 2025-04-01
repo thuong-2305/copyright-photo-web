@@ -219,7 +219,7 @@
                                             </div>
 
                                             <!-- Tab: VNPay -->
-                                            <form id="vnPayOrder" action="vnpayCartOrder" method="POST">
+                                            <form id="vnPayOrder" action="payment" method="POST">
                                                 <div id="vnpay" class="payment-tab d-none text-center" name="vnpay">
                                                     <div class="alert alert-info text-center" role="alert">
                                                         <i class="fas fa-lock"></i> Mọi thông tin đều được mã hóa, bảo mật
@@ -234,7 +234,7 @@
                                                 <input type="hidden" name="promotionId" value="${promotionId}">
                                                 <input type="hidden" name="totalAfterDiscount" value="${totalAfterDiscount}">
                                                 <input type="hidden" name="totalBeforeDiscount" value="${totalBeforeDiscount}">
-                                                <input type="hidden" name="licenseIds" value="${licenseIds}">
+<%--                                                <input type="hidden" name="licenseIds" value="${licenseIds}">--%>
                                                 <input type="hidden" name="products" value="${products}">
 
                                                 <c:forEach var="licenseId" items="${licenseIds}">
