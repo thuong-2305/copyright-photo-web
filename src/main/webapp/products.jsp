@@ -187,7 +187,7 @@
                             <c:forEach var="item" items="${ productSorted }">
                                 <div class="box">
                                     <a href="product-detail?pid=${ item.getId() }">
-                                        <img src="${ item.getUrl() }" alt="">
+                                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=${item.getUrl()}" alt="">
                                     </a>
                                     <div class="info">
                                         <p class="fw-semibold">${ item.getName() }</p>
