@@ -103,6 +103,28 @@ public class CartDAO {
                 .execute());
     }
 
+    public double getUpdatedPrice(int cartId, int pid) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT price FROM cart_detail WHERE cartId = ? AND pid = ?")
+                        .bind(0, cartId)
+                        .bind(1, pid)
+                        .mapTo(Double.class)
+                        .findFirst()
+                        .orElse(0.0) // Nếu không tìm thấy, trả về 0.0
+        );
+    }
+
+    public CartDetail getCartDetail(int cartId, int pid) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM cart_detail WHERE cartId = ? AND pid = ?")
+                        .bind(0, cartId)
+                        .bind(1, pid)
+                        .mapToBean(CartDetail.class)
+                        .findFirst()
+                        .orElse(null)
+        );
+    }
+
     public int getNumChecked(int cartId) {
         String querySql = "SELECT COUNT(*) FROM cart_detail WHERE checked = ? AND cartId = ?";
         return jdbi.withHandle(handle -> handle.createQuery(querySql)

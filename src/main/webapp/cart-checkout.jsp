@@ -75,15 +75,16 @@
                                     <div class="form-group mb-4">
                                         <h3 class="mb-4">Phương thức thanh toán</h3>
                                         <div class="d-flex flex-column mb-3">
-                                            <!-- Phương thức thanh toán: Thẻ đã lưu hoặc Thanh toán mới -->
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" type="radio" name="payment-method"
-                                                       id="saved-cards-radio" value="saved-cards" checked
-                                                       onclick="togglePaymentMethod('saved-cards')">
-                                                <label class="form-check-label" for="saved-cards-radio">
-                                                    Sử dụng thẻ đã lưu
-                                                </label>
-                                            </div>
+                                            <c:if test="${not empty paymentMethods}">
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="radio" name="payment-method"
+                                                           id="saved-cards-radio" value="saved-cards" checked
+                                                           onclick="togglePaymentMethod('saved-cards')">
+                                                    <label class="form-check-label" for="saved-cards-radio">
+                                                        Sử dụng thẻ đã lưu
+                                                    </label>
+                                                </div>
+                                            </c:if>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="payment-method"
                                                        id="new-payment-radio" value="new-payment"
@@ -94,7 +95,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <!-- Phần thẻ đã lưu -->
                                     <div id="saved-cards-section" class="payment-method-content">
                                         <h4 class="mb-3">Thẻ đã lưu</h4>
@@ -112,6 +112,7 @@
                                             </c:forEach>
                                         </div>
                                     </div>
+
 
                                     <!-- Phần thẻ mới -->
                                     <div id="new-payment-section" class="payment-method-content d-none">

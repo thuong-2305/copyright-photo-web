@@ -152,10 +152,20 @@ public class CartOrderController extends HttpServlet {
             for (String productId : productIds) {
                 cartService.deleteItem(uid, Integer.parseInt(productId));
             }
+            response.sendRedirect("order-success.jsp");
         }
+        response.sendRedirect("order-fail.jsp");
+
+        /*
+        for (int i = 0; i < productIds.length; i++) {
+            int licenseId = licenseIdsArray[i];
+            // Gọi service để tạo đơn hàng
+            orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+            cartService.deleteItem(uid, Integer.parseInt(productIds[i]));
+        }
+        */
 
         // Chuyển hướng sau khi hoàn thành
-        response.sendRedirect("/");
     }
 
 
