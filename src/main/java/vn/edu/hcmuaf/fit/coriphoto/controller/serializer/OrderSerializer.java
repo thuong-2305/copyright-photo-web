@@ -21,8 +21,8 @@ public class OrderSerializer implements JsonSerializer<Order> {
         jsonObject.addProperty("orderDate", order.getOrderDate().toString());
         jsonObject.addProperty("totalPrice", order.getTotalPrice());
         jsonObject.addProperty("status", order.getStatus());
-        jsonObject.addProperty("orderPaymentDate", order.getOrderPaymentDate().toString());
         jsonObject.addProperty("fullName", order.getFulleName());
+        jsonObject.addProperty("formatOrderPaymentDateTime", order.getFormatOrderPaymentDateTime());
         jsonObject.addProperty("email", order.getEmail());
         jsonObject.addProperty("customerName", order.getCustomerName());
         jsonObject.addProperty("formatDateTime", order.getFormatOrderDateTime());

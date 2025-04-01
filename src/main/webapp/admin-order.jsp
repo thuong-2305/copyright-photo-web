@@ -180,25 +180,21 @@
                                     <div class="col-md-6">
                                         <div class="timeline mt-3">
                                             <div class="timeline-item">
-                                                <small class="fw-semibold">Giao hàng thành công</small>
-                                                <p>03 Sep 2023 3:33 PM</p>
-                                            </div>
-                                            <div class="timeline-item">
-                                                <small class="fw-semibold">Gửi đi</small>
-                                                <p>03 Sep 2023 3:34 PM</p>
+                                                <small class="fw-semibold">Thanh toán thành công</small>
+                                                <p class="payment-success">03 Sep 2023 3:33 PM</p>
                                             </div>
                                             <div class="timeline-item">
                                                     <small class="fw-semibold">Đơn hàng được tạo</small>
-                                                <p>03 Sep 2023 3:36 PM</p>
+                                                <p class="time-create">03 Sep 2023 3:36 PM</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="details-box">
-                                            <p><small class="fw-semibold">Thời gian đặt hàng</small><br>03 Sep 2023 3:33 PM</p>
-                                            <p><small class="fw-semibold">Thời gian thanh toán</small><br>03 Sep 2023 3:34 PM</p>
-                                            <p><small class="fw-semibold">Thời gian gửi hàng</small><br>04 Sep 2023 3:35 PM</p>
-                                            <p><small class="fw-semibold">Thời gian hoàn thành</small><br>03 Sep 2023 3:36 PM</p>
+                                            <p><small class="fw-semibold">Thời gian đặt hàng</small><br><span class="time-create">03 Sep 2023 3:33 PM</span></p>
+                                            <p><small class="fw-semibold">Thời gian thanh toán</small><br><psan class="payment-success">03 Sep 2023 3:34 PM</psan></p>
+<%--                                            <p><small class="fw-semibold">Thời gian gửi hàng</small><br>04 Sep 2023 3:35 PM</p>--%>
+<%--                                            <p><small class="fw-semibold">Thời gian hoàn thành</small><br>03 Sep 2023 3:36 PM</p>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -309,7 +305,7 @@
     });
 </script>
 
-<!-- Chức năng ẩn hiện thêm sản phẩm -->
+<!-- Chức năng ẩn hiện chi tiết đơn hàng -->
 <script>
     $(document).ready(function () {
         $(".view-btn").on("click", function () {
@@ -327,13 +323,16 @@
                     order_id: orderId
                 },
                 success: function(response) {
+                    console.log(response.order)
                     // Xóa nội dung cũ nếu có
                     $('.card-first').empty();
                     $('.fullName').text(response.order.fullName);
                     $('.email').text(response.order.email);
                     $('.id-order').text(response.order.orderId)
                     $('.type-payment').text(response.order.paymentTypeName)
-                    $('.received-date').text(response.order.formatDateTime)
+                    $('.received-date').text(response.order.formatOrderPaymentDateTime)
+                    $('.time-create').text(response.order.formatDateTime)
+                    $('.payment-success').text(response.order.formatOrderPaymentDateTime)
 
                     // Tạo HTML mới từ dữ liệu response
                     let html = '<div class="title-details d-flex justify-content-between align-items-center">' +

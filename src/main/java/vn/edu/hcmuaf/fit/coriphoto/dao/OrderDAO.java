@@ -272,4 +272,15 @@ public class OrderDAO {
         );
     }
 
+
+    public static void main(String[] args) {
+        OrderDAO orderDAO = new OrderDAO();
+//        System.out.println(orderDAO.getNamePaymentMethod(6));
+//        List<Order> orders = orderDAO.getAllOrders();
+//        for(Order i : orders) {
+//            System.out.println(i);
+//        }
+        System.out.println(orderDAO.getOrder(17));
+    }
+
 }
