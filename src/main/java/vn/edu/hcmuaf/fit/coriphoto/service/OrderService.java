@@ -15,6 +15,10 @@ public class OrderService {
         return orderDAO.addOrderAndGetId(uid, pmid, promotionId, totalPrice);
     }
 
+    public void updateOrderStatus(int orderId, String newStatus) {
+        orderDAO.updateStatusOrder(orderId, newStatus);
+    }
+
     public boolean addOrderDetails(int orderId, int productId, int licenseId, double price) {
         return orderDAO.addOrderDetails(orderId, productId, licenseId, price);
     }
@@ -101,5 +105,11 @@ public class OrderService {
             intArray[i] = Integer.parseInt(stringNumbers[i]);
         }
         return intArray;
+    }
+
+    public static void main(String[] args) {
+        OrderService orderService = new OrderService();
+        orderService.updateOrderStatus(17, "Completed");
+        System.out.println(orderService.getOrder(17));
     }
 }
