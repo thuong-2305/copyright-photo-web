@@ -280,7 +280,7 @@ public class OrderDAO {
 //        for(Order i : orders) {
 //            System.out.println(i);
 //        }
-        System.out.println(orderDAO.getOrder(17));
+        System.out.println(orderDAO.getOrder(1));
     }
 
 }

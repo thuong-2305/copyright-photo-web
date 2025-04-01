@@ -27,15 +27,11 @@ public class Order {
         this.uid = uid;
     }
 
-    public LocalDateTime getOrderPaymentDate() {
-        return orderPaymentDate;
-    }
+    public Order() {}
 
     public void setOrderPaymentDate(LocalDateTime orderPaymentDate) {
         this.orderPaymentDate = orderPaymentDate;
     }
-
-    public Order() {}
 
     public int getOrderId() {
         return orderId;
@@ -94,8 +90,16 @@ public class Order {
     }
     
     public String getFormatOrderDateTime() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm a dd/MM/yyyy");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss, dd/MM/yyyy");
         return dateTimeFormatter.format(this.orderDate);
+    }
+
+    public String getFormatOrderPaymentDateTime() {
+        if (this.orderPaymentDate == null) {
+            return "Chưa thanh toán";
+        }
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss, dd/MM/yyyy");
+        return dateTimeFormatter.format(this.orderPaymentDate);
     }
 
     public void setTotalPrice(double totalPrice) {
@@ -121,7 +125,8 @@ public class Order {
     @Override
     public String toString() {
         return orderId + ", " + uid + ", " + pmid + ", " + promotionId + ", " + getFormatOrderDateTime() + ", "
-                + totalPrice + ", " + status + ", " + this.getPaymentTypeName() + ", " + this.getCustomerName() + "\n";
+                + totalPrice + ", " + status + ", " + this.getPaymentTypeName()
+                + ", " + this.getCustomerName() + ", " + this.getFormatOrderPaymentDateTime() + "\n";
     }
 
 
