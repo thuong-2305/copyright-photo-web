@@ -4,8 +4,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vn.edu.hcmuaf.fit.coriphoto.model.Product;
-import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -23,6 +21,7 @@ public class WatermarkedImageServlet extends HttpServlet {
         String url = req.getParameter("url");
 
         // Xác định đường dẫn tuyệt đối tới file ảnh dựa trên thuộc tính url của Product
+        // Lưu ý: Chúng ta giả định 'url' bắt đầu bằng "./" nên dùng substring(2) để bỏ "./"
         String imagePath = getServletContext().getRealPath("/") + url.substring(2);
 
         File imageFile = new File(imagePath);
@@ -31,8 +30,29 @@ public class WatermarkedImageServlet extends HttpServlet {
             return;
         }
 
+        // ------------------- THÊM CACHE HEADERS -------------------
+        // Thiết lập Cache-Control và Expires để trình duyệt cache ảnh trong 1 ngày (86400 giây)
+        resp.setHeader("Cache-Control", "max-age=86400, public");
+        resp.setDateHeader("Expires", System.currentTimeMillis() + 86400000L); // 86400000 ms = 1 ngày
+
+        // Tạo ETag dựa trên hash của URL kết hợp với thời gian chỉnh sửa của file ảnh.
+        String etag = "W/\"" + url.hashCode() + "-" + imageFile.lastModified() + "\"";
+        resp.setHeader("ETag", etag);
+
+        // Cũng thiết lập Last-Modified dựa trên thời điểm file được thay đổi
+        resp.setDateHeader("Last-Modified", imageFile.lastModified());
+
+        // Kiểm tra header If-None-Match từ trình duyệt để trả về 304 nếu ảnh chưa thay đổi
+        String ifNoneMatch = req.getHeader("If-None-Match");
+        if (etag.equals(ifNoneMatch)) {
+            resp.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
+            return;
+        }
+        // ---------------- END CACHE HEADERS -----------------------
+
+        // Tiếp tục xử lý ảnh: đọc file, thêm watermark và trả kết quả cho trình duyệt
         BufferedImage originalImage = ImageIO.read(imageFile);
-//        BufferedImage watermarkedImage = applyWatermark(originalImage);
+        // Chọn kiểu watermark động theo đường chéo
         BufferedImage watermarkedImage = applyDiagonalWatermark(originalImage);
 
         // Định dạng ảnh đầu ra là PNG
@@ -42,7 +62,7 @@ public class WatermarkedImageServlet extends HttpServlet {
         os.close();
     }
 
-    //Watermark nằm chéo
+    // Watermark nằm chéo: vẽ watermark theo mẫu chéo lặp lại trên toàn bộ ảnh
     private BufferedImage applyDiagonalWatermark(BufferedImage original) {
         int width = original.getWidth();
         int height = original.getHeight();
@@ -74,7 +94,6 @@ public class WatermarkedImageServlet extends HttpServlet {
         int textHeight = fontMetrics.getHeight();
 
         // Vòng lặp để vẽ watermark theo mẫu chéo (tile pattern)
-        // Giá trị bước nhảy có thể được điều chỉnh tùy theo độ dày của watermark mong muốn
         int step = 100;
         for (int x = -width; x < width * 2; x += textWidth + step) {
             for (int y = -height; y < height * 2; y += textHeight + step) {
@@ -85,8 +104,9 @@ public class WatermarkedImageServlet extends HttpServlet {
         g2d.dispose();
         return watermarked;
     }
+
     /**
-     * Phương thức áp dụng watermark cho ảnh gốc.
+     * Phương thức áp dụng watermark khác cho ảnh gốc (nếu cần sử dụng kiểu watermark khác).
      */
     private BufferedImage applyWatermark(BufferedImage original) throws IOException {
         int width = original.getWidth();
@@ -103,7 +123,6 @@ public class WatermarkedImageServlet extends HttpServlet {
         String watermarkText = "Bản quyền © YourCompany";
         Font font = new Font("Arial", Font.BOLD, 48);
         g2d.setFont(font);
-        // Màu xanh lam với độ mờ 0.3
         g2d.setColor(new Color(30, 144, 255));
         AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f);
         g2d.setComposite(alphaChannel);
@@ -116,14 +135,11 @@ public class WatermarkedImageServlet extends HttpServlet {
         g2d.drawString(watermarkText, xText, yText);
 
         // --- Áp dụng watermark logo ---
-        // Đường dẫn tới logo được lưu trong thư mục WEB-INF/resources (không truy cập trực tiếp qua URL)
         String logoPath = getServletContext().getRealPath("/") + "WEB-INF/resources/logo.png";
         File logoFile = new File(logoPath);
         if (logoFile.exists()) {
             BufferedImage logo = ImageIO.read(logoFile);
-            // Đặt lại composite để logo có độ mờ 0.3
             g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
-            // Vẽ logo tại góc trên bên trái với khoảng cách 20px từ mép
             g2d.drawImage(logo, 20, 20, null);
         }
 
