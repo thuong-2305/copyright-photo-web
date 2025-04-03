@@ -1,6 +1,4 @@
 :root {
-
-
   --swatch_1: #f0f4f9;
   --swatch_2: #b5d2e1;
   --swatch_3: #a2a9b6;
@@ -8,6 +6,10 @@
   --swatch_5: #3f4759;
   --swatch_6: #49bbae;
   --swatch_7: #696dbf;
+  --primary-color: #00cea4;
+  --primary-hover-color: #00b383;
+  --dark-right: #171717;
+  --dark-bg-right: #09090b;
 }
 
 /* Reset CSS */

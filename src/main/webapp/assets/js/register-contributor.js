@@ -50,4 +50,4 @@ function hideInfoUser(event) {
     navItem[2].classList.add("active");
 }
 
-// btnSave.addEventListener("click", hideInfoUser);
+btnSave.addEventListener("click", hideInfoUser);

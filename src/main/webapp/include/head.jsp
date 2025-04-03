@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
 <link rel="stylesheet" href="../assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css">
 
-<link rel="stylesheet" href="../assets/css/products.css">
+<link rel="stylesheet" href="../assets/css/products.css?11">
 <link rel="stylesheet" href="../assets/css/homeuser.css">
 <link rel="stylesheet" href="../assets/css/search.css">
 
