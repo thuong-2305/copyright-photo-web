@@ -7,11 +7,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
+import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.AuthService;
 import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -38,6 +42,15 @@ public class RegisterVerifyEmail extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("otp_" + email, otp);
             session.setAttribute("otp_expiry_" + email, System.currentTimeMillis() + 2 * 60 * 1000);
+
+            // Ghi log đăng nhập
+            User user = (User) session.getAttribute("auth");
+
+            ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
+                    user.getUsername(), LocalDateTime.now(),
+                    user.getUsername() + " đã đăng nhập");
+            new LogService().insertLog(loginLog);
+            // ----------------
 
             // Trả phản hồi ngay lập tức
             jsonResponse.put("valid", true);
