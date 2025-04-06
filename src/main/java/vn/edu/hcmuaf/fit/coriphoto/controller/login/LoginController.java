@@ -8,10 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.controller.login.constant.GoogleAccount;
 import vn.edu.hcmuaf.fit.coriphoto.controller.login.constant.LoginGoogle;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.AuthService;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
@@ -57,9 +62,15 @@ public class LoginController extends HttpServlet {
         User user = service.checkLogin(email, password);
 
         if(user != null) {
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
             session.setAttribute("auth", user);
             session.setAttribute("loggedInUser", user);
+            // Ghi log đăng nhập
+            ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
+                    user.getUsername(), LocalDateTime.now(),
+                    user.getUsername() + " đã đăng nhập");
+            new LogService().insertLog(loginLog);
+
             response.sendRedirect("homepage");
         }else{
             if (service.checkEmail(email)) {
