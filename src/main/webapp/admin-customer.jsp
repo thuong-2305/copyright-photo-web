@@ -2,221 +2,141 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/admin-1.css">
     <link rel="stylesheet" href="assets/css/admin-nav.css">
+    <link rel="stylesheet" href="assets/css/admin-dashboard.css"/>
     <jsp:include page="include/head-libraries.jsp"/>
     <title>Admin</title>
-  </head>
-  <body>
-    <!-- MAIN -->
-  <section class="container-main">
+</head>
+<body>
+<!-- MAIN -->
+<section class="container-main">
     <!-- LEFT MAIN -->
-    <jsp:include page="include/sidebar.jsp" />
+    <jsp:include page="include/sidebar.jsp"/>
     <!-- LEFT MAIN -->
 
     <!-- RIGHT MAIN -->
     <section class="right-category">
-      <!-- navbar admin -->
-      <jsp:include page="include/nav-admin.jsp"/>
+        <!-- navbar admin -->
+        <jsp:include page="include/nav-admin.jsp"/>
 
-      <!-- Content main -->
-      <div class="mt-4">
-      <div class="container header d-flex justify-content-between align-items-center mb-3 py-2">
-        <div class="add-category">
-          <button class="btn btn-primary" id="openModalBtn">
-            + Thêm khách hàng mới
-          </button>
-        </div>
-      </div>
-          <h1>Danh sách người dùng</h1>
-          <table
-            id="userTable"
-            class="display table table-bordered table-striped"
-          >
-            <thead class="table-dark">
-              <tr>
-                <th>UID</th>
-                <%--
-                <th>Role</th>
-                --%>
-                <th>Full Name</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Create Date</th>
-                <th>Hành động</th>
-                <!-- Cột Hành động -->
-              </tr>
-            </thead>
-            <tbody>
-              <c:forEach var="user" items="${users}">
-                <tr>
-                  <td>${user.uid}</td>
-                  <%--
-                  <td>${user.role}</td>
-                  --%>
-                  <td>${user.fullName}</td>
-                  <td>${user.username}</td>
-                  <td>${user.email}</td>
-                  <td>${user.createDate}</td>
-                  <td>
-                    <button
-                      class="btn edit-btn btn-warning"
-                      data-id="${user.uid}"
-                    >
-                      Sửa
-                    </button>
-                    <button
-                      class="btn delete-btn btn-danger"
-                      data-id="${user.uid}"
-                    >
-                      Xóa
-                    </button>
-                  </td>
-                </tr>
-              </c:forEach>
-            </tbody>
-          </table>
-        </div>
-        <div
-          class="modal fade"
-          id="categoryModal"
-          tabindex="-1"
-          aria-labelledby="categoryModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <form
-                id="categoryForm"
-                action="${pageContext.request.contextPath}/admin-customer"
-                method="POST"
-              >
-                <div class="modal-header">
-                  <h5 class="modal-title" id="categoryModalLabel">
-                    Thêm người dùng
-                  </h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
+        <!-- Content main -->
+        <div id="admin-dashboard-graph" class="view-products-main">
+            <div class="mt-4 content-view">
+                <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
+                    <h5 class="fw-semibold">Danh sách sản phẩm</h5>
+                    <div id="exportButtons">
+                        <button class="btn button-add fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm sản phẩm</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <div class="mb-3" style="display: none">
-                    <label for="define" class="form-label">Họ tên</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="define"
-                      name="defineForm"
-                      value="formAdd"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="categoryName" class="form-label">Họ tên</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="categoryName"
-                      name="username"
-                      required
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="categoryEmail" class="form-label">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="categoryEmail"
-                      name="email"
-                      required
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label for="categoryProducts" class="form-label"
-                      >Mật khẩu</label
-                    >
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="categoryProducts"
-                      name="password"
-                      required
-                    />
-                  </div>
+
+                <!-- Bảng user -->
+                <div class="frame__container px-2">
+                    <div class="card-body">
+                        <table id="productsTable" class="table table-bordered">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>Mã user</th>
+                                <th>Họ và tên</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Ngày tạo</th>
+                                <th>Quyền hạn</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="user" items="${users}">
+                                <tr>
+                                    <td>${user.uid}</td>
+                                    <td>${user.fullName}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.email}</td>
+                                    <td>${user.createDate}</td>
+                                    <td>${user.role}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-start">
+                                            <button class="btn view-btn" data-id="${user.uid}"><i class="bi bi-eye-fill"></i></button>
+                                            <button class="btn edit-btn" data-id="${user.uid}"><i class="bi bi-pencil-square"></i></button>
+                                            <button class="btn delete-btn" data-id="${user.uid}"><i class="fa-solid fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Thoát
-                  </button>
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                    id="saveCategory"
-                  >
-                    Lưu
-                  </button>
-                </div>
-              </form>
             </div>
-          </div>
         </div>
-      </section>
+        <!-- footer-admin -->
+        <jsp:include page="include/admin-footer.jsp" />
+    </section>
     <!-- RIGHT MAIN -->
-  </section>
-  <!-- MAIN -->
-  <script src="./assets/js/admin.js"></script>
-  <script src="assets/js/admin-nav.js"></script>
-  <script src="./assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+</section>
+<!-- MAIN -->
 
-  <script>
+<!-- DataTables -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<!-- DataTables Buttons JS -->
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+<!-- JS -->
+<jsp:include page="include/admin-libraries.jsp" />
+
+<!-- Chức năng của dataTable -->
+<script>
     $(document).ready(function () {
-      $("#userTable").DataTable({
-        language: {
-          search: "Nhập từ khóa:",
-          lengthMenu: "Hiển thị _MENU_ mục",
-          info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
-          infoEmpty: "Không có dữ liệu để hiển thị",
-          infoFiltered: "(lọc từ _MAX_ mục)",
-          paginate: {
-            previous: "Trước",
-            next: "Tiếp",
-          },
-        },
-      });
-      var table = $("#userTable").DataTable();
-      // Thay đổi placeholder của khung tìm kiếm
-      var search = $(".dataTables_filter input");
-      search.attr("text", "Tìm kiếm");
-      search.attr("placeholder", "Tìm kiếm người dùng ...");
+        const table = $('#productsTable').DataTable({
+            deferRender: true,
+            buttons:[
+                {
+                    extend: 'copy',
+                    text: 'Sao chép'
+                },
+                {
+                    extend: 'excel',
+                    text: 'Xuất Excel'
+                },
+                {
+                    extend: 'print',
+                    text: 'In'
+                }
+            ],
+            language: {
+                search: "Nhập từ khóa:",
+                lengthMenu: "Hiển thị _MENU_ mục",
+                info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                infoEmpty: "Không có dữ liệu để hiển thị",
+                infoFiltered: "(lọc từ _MAX_ mục)",
+                paginate: { previous: "←", next: "→" }
+            },
+            scrollX: false
+        });
+        table.buttons().container().appendTo('#exportButtons');
+
+        $(".buttons-copy span").html("<i class=\"bi bi-copy\"></i> Copy");
+        $(".buttons-excel span").html("<i class=\"bi bi-file-earmark-excel\"></i> Excel");
+        $(".buttons-print span").html("<i class=\"bi bi-printer\"></i> Print");
+
+        $('.dataTables_filter input').attr('placeholder', 'Tìm kiếm sản phẩm ...');
     });
-  </script>
-  <script>
-    document
-      .getElementById("openModalBtn")
-      .addEventListener("click", function () {
-        const myModal = new bootstrap.Modal(
-          document.getElementById("categoryModal")
-        );
-        myModal.show();
-      });
-    document
-      .getElementById("saveCategory")
-      .addEventListener("click", function () {
-        const modal = bootstrap.Modal.getInstance(
-          document.getElementById("categoryModal")
-        );
-        modal.hide();
-      });
-  </script>
-  </body>
+
+    $(document).ready(function () {
+        const controlsWrapper = $("<div class='dataTables-controls'></div>");
+        $("#productsTable_filter, #productsTable_length").wrapAll(controlsWrapper);
+    });
+</script>
+
+
+</body>
 </html>
