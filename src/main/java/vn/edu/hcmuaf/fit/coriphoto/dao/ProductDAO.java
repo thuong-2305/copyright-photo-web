@@ -57,51 +57,6 @@ public class ProductDAO {
                 .bind(0, id).mapToBean(Product.class).findFirst().orElse(null));
     }
 
-    public List<Product> getProductsByCategory(int cid, int numbers) {
-        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM products WHERE cid = ? ORDER BY RAND() LIMIT ?")
-                .bind(0, cid)
-                .bind(1, numbers)
-                .mapToBean(Product.class)
-                .list());
-    }
-
-    public List<Product> getProductsByCategoryNotIn(int cid, Set<Integer> excludedProductIds, int limit) {
-        StringBuilder query = new StringBuilder("SELECT * FROM products WHERE cid = ?");
-        if (!excludedProductIds.isEmpty()) {
-            query.append(" AND id NOT IN (");
-            query.append(String.join(",", Collections.nCopies(excludedProductIds.size(), "?")));
-            query.append(")");
-        }
-        query.append(" ORDER BY RAND() LIMIT ?");
-
-        return jdbi.withHandle(handle -> {
-            Query queryObj = handle.createQuery(query.toString());
-            queryObj.bind(0, cid);
-            int index = 1;
-            for (Integer excludedId : excludedProductIds) {
-                queryObj.bind(index++, excludedId);
-            }
-            queryObj.bind(index, limit);
-            return queryObj.mapToBean(Product.class).list();
-        });
-    }
-
-    public List<TrendProducts> getTrendProducts() {
-        String sqlQuery = "SELECT p.id, p.name, p.url, COUNT(v.pid) AS view " +
-                "FROM Views v " +
-                "JOIN Products p ON p.id = v.pid " +
-                "WHERE p.status = 'accepted' " +
-                "GROUP BY p.id, p.name, p.url " +
-                "ORDER BY view DESC " +
-                "LIMIT 25;";
-        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
-                .mapToBean(TrendProducts.class).list());
-    }
-    
-    
-
-
-
     public List<Product> getProductPopular(int cid) {
         String sqlQuery = "SELECT p.id ,p.name, p.url, COUNT(v.id) AS view_count " +
                 "FROM products p " +
@@ -112,6 +67,14 @@ public class ProductDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
                 .bind(0, cid).mapToBean(Product.class).list());
     }
+
+    public List<TrendProducts> getTrendProducts() {
+        String sqlQuery = "SELECT p.id, p.name, p.url, COALESCE(SUM(v.view_count), 0) AS view "
+                + "FROM views v " + "JOIN products p ON p.id = v.pid " + "WHERE p.status = 'accepted' "
+                + "GROUP BY p.id, p.name, p.url " + "ORDER BY view DESC " + "LIMIT 25;";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery).mapToBean(TrendProducts.class).list() );
+    }
+
 
     public List<Product> getProductLatest(int cid) {
         String sqlQuery = "SELECT * FROM products " +
