@@ -30,7 +30,7 @@
             </li>
             <li class="<%= currentURL.contains("/admin-customer") ? "active" : "" %>">
                 <a href="${pageContext.request.contextPath}/admin-customer">
-                    <i class="fa-solid fa-user"></i><span>Khách hàng</span>
+                    <i class="fa-solid fa-user"></i><span>Tài khoản</span>
                 </a>
             </li>
             <hr>

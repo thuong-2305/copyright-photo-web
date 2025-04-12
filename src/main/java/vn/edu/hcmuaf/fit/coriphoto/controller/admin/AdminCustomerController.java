@@ -76,29 +76,6 @@ public class AdminCustomerController extends HttpServlet {
                     response.getWriter().write(jsonResponse);
                 }
             }
-        }else{
-            String form = request.getParameter("defineForm");
-            String username = request.getParameter("username");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String fullname = request.getParameter("fullname");
-
-            AuthService authService = new AuthService();
-
-
-            if ("formAdd".equals(form)) {
-                authService.registerUser(email,password,username, fullname);
-            }else {
-                User user = new User();
-                user.setEmail(email);
-                user.setPassword(password);
-                user.setUsername(username);
-
-                user.setUid(Integer.parseInt(request.getParameter("idUser")));
-                service.updateUser(user);
-            }
-
-            response.sendRedirect("admin-customer");
         }
     }
 }
