@@ -28,6 +28,7 @@ public class UserService {
         return userDao.isExistEmail(email);
     }
 
+    public User getUser(int uid) { return userDao.getUser(uid); }
 
     public String hashPasswordMD5(String password) {
         return userDao.hashPasswordMD5(password);
@@ -115,6 +116,6 @@ public class UserService {
     }
 
     public static void main(String[] args) {
-        System.out.println(new UserService().deleteUserById(92));
+        System.out.println(new UserService().getUser(5));
     }
 }

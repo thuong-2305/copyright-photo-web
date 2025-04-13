@@ -22,6 +22,11 @@ public class UserDAO {
                 .bind(0, uid).mapTo(String.class).one());
     }
 
+    public User getUser(int uid) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM users WHERE uid = ?")
+                .bind(0, uid).mapToBean(User.class).first());
+    }
+
 
     public boolean updateAvatarPath(int uid, String avatarPath) {
         int rowsAffected = jdbi.withHandle(handle ->
@@ -326,7 +331,7 @@ public class UserDAO {
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAO();
 
-        String test = userDAO.getPaymentTypeNameByPmid(10);
+        User test = userDAO.getUser(10);
         System.out.println(test);
     }
 
