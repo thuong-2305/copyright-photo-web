@@ -17,6 +17,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
@@ -54,6 +55,15 @@ public class ajaxServlet extends HttpServlet {
         for (String ele : productIds) {
             products.add(productService.getById(Integer.parseInt(ele)));
         }
+
+        HttpSession session = req.getSession();
+        session.setAttribute("uid", auth.getUid());
+        session.setAttribute("products", products);
+        session.setAttribute("licenseIds", licenseIds);
+        session.setAttribute("userEmail", auth.getEmail());
+        session.setAttribute("orderId", orderId);
+        session.setAttribute("totalBeforeDiscount", totalBeforeDiscount);
+
         for(int i = 0; i < products.size(); i++) {
             Product p = products.get(i);
             System.out.println(licenseIds[i]);
