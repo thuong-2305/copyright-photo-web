@@ -78,7 +78,7 @@
                         </table>
                     </div>
 
-                    <!-- Xác nhận xóa sản phẩm -->
+                    <!-- Xác nhận xóa tài khoản -->
                     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -96,6 +96,28 @@
                                     <button type="button" id="confirmDelete" class="btn btn-danger rounded-pill fw-semibold">Xóa</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Chỉnh sửa thông tin user -->
+                    <div class="overlay" id="overlay"></div>
+                    <div class="view-modal d-none" id="userItem" >
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="fs-3 fw-semibold title-category-view">Chỉnh sửa thông tin:</h5>
+                            <button class="btn-close" onclick="toggleUserDetail()"></button>
+                        </div>
+                        <hr>
+                        <div class="product-info mt-2">
+                            <h5 class="fw-semibold"><i class="bi bi-list-nested me-2"></i>Thông tin các sản phẩm </h5>
+                            <div class="show-content">
+                                <p class="id-user"><span class="title-info fw-semibold">Mã tài khoản:</span> </p>
+                                <p class="full-name"><span class="title-info fw-semibold">Họ và tên:</span> </p>
+                                <p class="username"><span class="title-info fw-semibold">Username:</span> </p>
+                                <p class="password"><span class="title-info fw-semibold">Mật khẩu:</span> </p>
+                                <p class="email"><span class="title-info fw-semibold">Email:</span> </p>
+                                <p class="date-create"><span class="title-info fw-semibold">Ngày tạo:</span> </p>
+                            </div>
+                            <button id="update-user-btn" class="btn btn-outline-dark">Cật nhật</button>
                         </div>
                     </div>
                 </div>
@@ -239,6 +261,113 @@
     });
 </script>
 
+<!-- Chỉnh sửa thông tin user -->
+<script>
+    $(document).on("click", ".edit-btn", function() {
+        const userIdToEdit = $(this).data('id');
+        parentElement = $(this).closest("tr");
+        $.ajax({
+            url: '/admin-customer',
+            type: 'POST',
+            headers: {
+                'X-Requested-By': 'AJAX'
+            },
+            data: {
+                action: 'edit',
+                user_id: userIdToEdit
+            },
+            success: function (response) {
+                const user = response.user;
+                if (user) {
+                    // Hiển thị thông tin user
+                    $('#userItem .id-user').html(
+                        "<span class=\"title-info fw-semibold\">Mã tài khoản:</span>" +
+                        "<br><input class=\"form-control\" name=\"uid\" value=\"" + user.uid + "\" disabled>"
+                    );
+                    $('#userItem .full-name').html(
+                        "<span class=\"title-info fw-semibold\">Họ và tên:</span><br>" +
+                        "<input class=\"form-control\" name=\"fullName\" value=\"" + user.fullName + "\">"
+                    );
+                    $('#userItem .username').html(
+                        "<span class=\"title-info fw-semibold\">Username:</span><br>" +
+                        "<input class=\"form-control\" name=\"username\" value=\"" + user.username + "\">"
+                    );
+
+                    $('#userItem .password').html(
+                        "<span class=\"title-info fw-semibold\">Password:</span><br>" +
+                        "<input class=\"form-control\" name=\"password\" type=\"password\" value=\"" + user.password + "\" disabled>"
+                    );
+
+                    $('#userItem .email').html(
+                        "<span class=\"title-info fw-semibold\">Email:</span><br>" +
+                        "<input class=\"form-control\" name=\"email\" type=\"email\" value=\"" + user.email + "\" disabled>"
+                    );
+
+                    $('#userItem .date-create').html(
+                        "<span class=\"title-info fw-semibold\">Ngày tạo:</span><br>" +
+                        "<input class=\"form-control\" name=\"createDate\" type=\"date\" value=\"" + user.createDate + "\" disabled>"
+                    );
+                    toggleUserDetail();
+                } else {
+                    alert('Lỗi tài khoản!');
+                }
+            },
+            error: function () {
+                alert('Đã xảy ra lỗi!');
+            }
+        })
+    })
+
+    function toggleUserDetail() {
+        const userItem = document.getElementById('userItem');
+        userItem.classList.toggle('d-none');
+        const overlay = document.getElementById("overlay");
+        overlay.classList.toggle('show');
+        document.body.classList.toggle('no-scroll');
+    }
+
+    // Xử lý khi nhấp cập nhật
+    $(document).on("click", "#update-user-btn", function () {
+        alert("click update");
+        const uid = $('input[name="uid"]').val();
+        const fullName = $('input[name="fullName"]').val();
+        const username = $('input[name="username"]').val();
+        console.log(uid);
+        $.ajax({
+            url: '/admin-customer',
+            type: 'POST',
+            headers: {
+                'X-Requested-By': 'AJAX'
+            },
+            data: {
+                action: 'update',
+                user_id: uid,
+                fullName: fullName,
+                username: username
+            },
+            success: function (response) {
+                if (response.success) {
+                    $(".alert-success span").text("Cập nhật thành công!");
+                    $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(this).addClass("d-none");
+                    });
+
+                    parentElement.find("td").eq(1).text(fullName);
+                    parentElement.find("td").eq(2).text(username);
+                } else {
+                    $(".alert-danger span").text("Cập nhật thất bại!");
+                    $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(this).addClass("d-none");
+                    });
+                }
+                toggleUserDetail();
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi!");
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
