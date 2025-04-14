@@ -53,7 +53,7 @@
                                         <img src="assets/images/avart-default.png" alt="">
                                     </div>
                                     <div class="font-weight-bold ml-2 dp-ib profile-name">
-                                        Zupiter
+                                        ${user.fullName}
                                     </div>
                                 </div>
                             </div>

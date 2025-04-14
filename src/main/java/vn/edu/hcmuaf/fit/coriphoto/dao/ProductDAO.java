@@ -48,6 +48,52 @@ public class ProductDAO {
         });
     }
 
+    public List<Product> getProductsFromRandomCategoryNotIn(List<Integer> excludeCategoryIds, Set<Integer> excludeProductIds, int limit) {
+        // Truy vấn để lấy danh mục ngẫu nhiên, loại trừ các danh mục trong excludeCategoryIds
+        StringBuilder categoryQuery = new StringBuilder("SELECT cid FROM categories");
+        if (!excludeCategoryIds.isEmpty()) {
+            categoryQuery.append(" WHERE cid NOT IN (");
+            categoryQuery.append(String.join(",", Collections.nCopies(excludeCategoryIds.size(), "?")));
+            categoryQuery.append(")");
+        }
+        categoryQuery.append(" ORDER BY RAND() LIMIT 1");
+
+        return jdbi.withHandle(handle -> {
+            // Lấy ID danh mục ngẫu nhiên
+            Query categoryQueryObj = handle.createQuery(categoryQuery.toString());
+            int index = 0;
+            for (Integer excludeCid : excludeCategoryIds) {
+                categoryQueryObj.bind(index++, excludeCid);
+            }
+            Integer randomCategoryId = categoryQueryObj.mapTo(Integer.class).findFirst().orElse(null);
+
+            // Nếu không tìm thấy danh mục nào, trả về danh sách rỗng
+            if (randomCategoryId == null) {
+                return new ArrayList<>();
+            }
+
+            // Truy vấn để lấy sản phẩm từ danh mục ngẫu nhiên
+            StringBuilder productQuery = new StringBuilder("SELECT * FROM products WHERE cid = ?");
+            if (!excludeProductIds.isEmpty()) {
+                productQuery.append(" AND id NOT IN (");
+                productQuery.append(String.join(",", Collections.nCopies(excludeProductIds.size(), "?")));
+                productQuery.append(")");
+            }
+            productQuery.append(" ORDER BY RAND() LIMIT ?");
+
+            // Thực hiện truy vấn sản phẩm
+            Query productQueryObj = handle.createQuery(productQuery.toString());
+            productQueryObj.bind(0, randomCategoryId);
+            index = 1;
+            for (Integer excludeId : excludeProductIds) {
+                productQueryObj.bind(index++, excludeId);
+            }
+            productQueryObj.bind(index, limit);
+
+            return productQueryObj.mapToBean(Product.class).list();
+        });
+    }
+
 
     public List<Product> getByCategoryId(int cid) {
         String sqlQuery = "SELECT * FROM products WHERE cid = ?";

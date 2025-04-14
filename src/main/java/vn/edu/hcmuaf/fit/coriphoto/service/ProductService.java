@@ -27,6 +27,11 @@ public class ProductService {
         return  products.getProductsByCategoryNotIn(cid, excludedProductIds, limit);
     }
 
+    public List<Product> getProductsFromRandomCategoryNotIn(List<Integer> excludeCategoryIds, Set<Integer> excludeProductIds, int limit) {
+        return products.getProductsFromRandomCategoryNotIn(excludeCategoryIds, excludeProductIds, limit);
+    }
+
+
 
         public boolean addProduct(Product product) {
         return products.addProduct(product);
