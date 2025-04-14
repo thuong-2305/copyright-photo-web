@@ -184,7 +184,8 @@
                                 <button class="favorite-btn" data-product-id="<%= item.getId() %>">
                                     <i class="fa-regular fa-heart"></i>
                                 </button>
-                                <button class="addCart" data-product-id=<%= item.getId() %>><i class="fa-solid fa-cart-plus"></i>
+                                <button class="addCart" data-product-id="<%= item.getId() %>">
+                                    <i class="fa-solid fa-cart-plus"></i>
                                 </button>
                             </div>
                         </div>

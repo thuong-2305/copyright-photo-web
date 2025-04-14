@@ -2,6 +2,9 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
+import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+
+import java.util.List;
 
 public class ViewDAO {
     private static final Jdbi jdbi = new DBConnect().get();
@@ -27,5 +30,20 @@ public class ViewDAO {
                             .execute()
             );
         }
+    }
+
+    // lấy ra các sản phẩm có view nhiều nhất theo số lượng limit
+    public List<Product> getTopViewedProducts(int limit) {
+        String query = "SELECT DISTINCT p.* FROM products p " +
+                "INNER JOIN views v ON p.id = v.pid " +
+                "ORDER BY v.view_count DESC " +
+                "LIMIT :limit";
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(query)
+                        .bind("limit", limit)
+                        .mapToBean(Product.class)
+                        .list()
+        );
     }
 }

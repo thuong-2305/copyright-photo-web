@@ -2,7 +2,10 @@ package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.dao.ViewDAO;
+import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
+
+import java.util.List;
 
 public class ViewService {
     private ViewDAO viewDao;
@@ -24,5 +27,9 @@ public class ViewService {
             viewDao.incrementView(pid, uid, sessionId);
             session.setAttribute(sessionKey, true);
         }
+    }
+
+    public List<Product> getTopViewedProducts(int limit) {
+        return viewDao.getTopViewedProducts(limit);
     }
 }
