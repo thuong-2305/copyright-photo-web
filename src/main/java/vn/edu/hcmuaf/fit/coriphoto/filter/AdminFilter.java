@@ -9,7 +9,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "AdminFilter" , urlPatterns = {"/ShowDashBoard", "/admin-products", "/admin-customer", "/admin-category"})
+@WebFilter(filterName = "AdminFilter" , urlPatterns = {"/ShowDashBoard", "/admin-products", "/admin-customer", "/admin-category", "/AdminhandleViewProductsCategory"})
 public class AdminFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws
