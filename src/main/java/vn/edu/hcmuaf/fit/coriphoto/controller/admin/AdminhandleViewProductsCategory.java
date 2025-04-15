@@ -23,12 +23,11 @@ public class AdminhandleViewProductsCategory extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idCategory = Integer.parseInt(request.getParameter("id"));
-        System.out.println(idCategory);
 
         ProductService productService = new ProductService();
         List<Product> productList = productService.getByCategoryId(idCategory);
 
-        response.setContentType("application/json");
+        // Chuyển dữ liêu object sang json
         Gson gson = new GsonBuilder()
             .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
                 @Override
@@ -46,7 +45,6 @@ public class AdminhandleViewProductsCategory extends HttpServlet {
             .create();
 
         String jsonResponse = gson.toJson(productList);
-        System.out.println(jsonResponse);
 
         response.getWriter().write(jsonResponse);
     }
