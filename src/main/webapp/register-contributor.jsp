@@ -116,6 +116,7 @@
                 <i class="fa-solid fa-check"></i>Tôi chấp nhận các điều khoản và
                 điều kiện
             </button>
+            <a class="info-terms" href="terms-contributor.jsp">Xem chi tiết điều khoản</a>
         </div>
         <!-- End: Content frame-->
         <!-- Begin: Content condition -->

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<jsp:include page="include/navbar.jsp" />
+<jsp:include page="include/navbar.jsp"/>
 
 <!--section banner -->
 <section class="banner">
@@ -119,6 +119,59 @@
         </ol>
 
         <hr class="my-5">
+        <strong class="fs-4">HẠN CHẾ KHI SỬ DỤNG NỘI DUNG HÌNH ẢNH BẠN KHÔNG ĐƯỢC:</strong>
+        <ol>
+            <li>
+                Sử dụng Nội dung hình ảnh khác với những gì được quy định rõ ràng theo giấy phép đã mua liên quan đến
+                Nội dung hình ảnh đó.
+            </li>
+            <li>Thể hiện bất kỳ người nào được mô tả trong Nội dung hình ảnh ("Người mẫu") theo cách mà một người thông
+                thường thấy bị xúc phạm, bao gồm nhưng không giới hạn ở việc mô tả Người mẫu: a) có liên quan đến nội
+                dung khiêu dâm, "video người lớn", địa điểm giải trí dành cho người lớn, dịch vụ mại dâm, dịch vụ hẹn hò
+                hoặc tương tự; b) liên quan đến việc quảng cáo hoặc khuyến mại các sản phẩm thuốc lá; c) trong bối cảnh
+                chính trị, ví dụ quảng bá, quảng cáo hoặc ủng hộ một đảng phái, ứng viên hoặc quan chức được bầu cử nào,
+                hoặc liên quan đến một chính sách hay quan điểm chính trị nào; d) đang bị hoặc đang điều trị bệnh về thể
+                chất hoặc tinh thần; hoặc e) tham gia vào các hoạt động trái đạo đức hoặc phạm tội.
+            </li>
+            <li>
+                ử dụng bất kỳ Nội dung hình ảnh nào trong ngữ cảnh khiêu dâm, phỉ báng hoặc lừa đảo, hoặc theo cách có
+                thể bị coi là phỉ báng, tục tĩu hoặc bất hợp pháp.
+            </li>
+            <li>
+                Sửa đổi Nội dung hình ảnh được chỉ định "Chỉ sử dụng cho mục đích báo chí" theo cách làm thay đổi ngữ
+                cảnh của những gì được mô tả.
+            </li>
+            <li>
+                Sử dụng Nội dung hình ảnh được chỉ định "Chỉ sử dụng cho mục đích báo chí" (bao gồm nhưng không giới hạn
+                ở nội dung Báo chí) cho mục đích thương mại, bao gồm để tham khảo, trong mọi bối cảnh quảng cáo, hàng
+                hóa hoặc không phải biên tập nào khác.
+            </li>
+            <li>
+                Bán lại, phân phối lại, cung cấp quyền truy cập, chia sẻ hoặc chuyển bất kỳ Nội dung hình ảnh nào ngoại
+                trừ được quy định cụ thể ở đây. Để ví dụ và không phải theo cách giới hạn, điều nói trên cấm hiển thị
+                Nội dung dưới dạng "thư viện" nội dung hoặc một phần của nó mà qua đó các bên thứ ba có thể tìm kiếm và
+                lựa chọn từ nội dung.
+            </li>
+            <li>
+                Sử dụng Nội dung hình ảnh theo cách vi phạm thương hiệu hoặc tài sản trí tuệ khác của bất kỳ bên thứ ba
+                nào, hoặc sẽ làm phát sinh khiếu nại về quảng cáo lừa đảo hay cạnh tranh không lành mạnh.
+            </li>
+            <li>ử dụng bất kỳ Nội dung hình ảnh nào (toàn bộ hoặc một phần) làm thương hiệu, nhãn hiệu dịch vụ, logo hay
+                chỉ dẫn xuất xứ khác, hoặc như một phần trong đó.
+            </li>
+            <li>
+                Tuyên bố sai sự thật, một cách rõ ràng hoặc ngụ ý hợp lý, rằng một Nội dung hình ảnh do bạn hoặc một
+                người không phải là (những) người giữ bản quyền của Nội dung hình ảnh đó tạo ra.
+            </li>
+            <li>
+                Sử dụng bất kỳ Nội dung hình ảnh nào làm dữ liệu đào tạo cho bất kỳ hệ thống, công cụ, quy trình hoặc
+                tập dữ liệu trí tuệ nhân tạo, học máy hoặc AI kiến tạo nào. Điều này không ngăn cản việc sử dụng các
+                tính năng AI của phần mềm để chỉnh sửa hoặc đăng tải Tác phẩm có tích hợp Nội dung hình ảnh của Khách
+                hàng, miễn là phần mềm đó không sử dụng Nội dung hình ảnh hoặc Tác phẩm của Khách hàng để huấn luyện.
+            </li>
+        </ol>
+
+        <hr class="my-5">
         <strong class="fs-4">CORIPHOTO BẢO ĐẢM VÀ TUYÊN BỐ VỀ:</strong>
         <p class="mt-4">Những người đóng góp của CoRiPhoto đã cấp cho CoRiPhoto mọi quyền cần thiết trong và đối với
             Nội dung để cấp các quyền
@@ -144,12 +197,65 @@
             bồi thường cho Coriphoto mọi chi phí và khoản phí mà Coriphoto phải chịu trong trường hợp bạn vi phạm
             bất kỳ điều
             khoản nào của thỏa thuận này hoặc bất kỳ thỏa thuận nào khác với Coriphoto.</p>
-        <p>NGÀY CÓ HIỆU LỰC: 17 Tháng 11 2024</p>
+        <hr class="my-5">
+        <strong class="fs-4">CÁC ĐIỀU KHOẢN KHÁC</strong>
+        <ol>
+            <li>
+                Trừ khi luật pháp yêu cầu, CoRiPhoto sẽ không có nghĩa vụ hoàn lại tiền trong bất kỳ trường hợp nào. Tất
+                cả các khoản phí đều không được hoàn lại, ngay cả khi gói đăng ký của bạn bị chấm dứt trước khi hết hạn.
+                Nếu hủy trước khi kết thúc thời hạn 12 tháng thì bạn sẽ phải trả 50% theo nghĩa vụ hợp đồng còn lại, trừ
+                khi pháp luật địa phương quy định khác. Bạn sẽ tiếp tục sử dụng gói đăng ký cho đến hết số tháng đã
+                thanh toán bằng phí hủy gói đăng ký hằng năm. Bạn ủy quyền cho CoRiPhoto thu tất cả các khoản phí của
+                gói đăng ký trong thời hạn đã thỏa thuận tại thời điểm mua. Trong trường hợp CoRiPhoto xác định rằng bạn
+                được hoàn lại toàn bộ hoặc một phần phí đã thanh toán, số tiền đó sẽ được hoàn lại bằng phương thức
+                thanh toán ban đầu mà bạn dùng để mua hàng. Nếu bạn ở Việt Nam và hủy tài khoản của mình trong vòng mười
+                bốn (14) ngày kể từ ngày thanh toán cho CoRiPhoto, với điều kiện là bạn chưa tải xuống hoặc cấp phép cho
+                bất kỳ Nội dung hình ảnh nào, CoRiPhoto sẽ hoàn lại khoản thanh toán mà bạn đã thực hiện liên quan đến
+                tài khoản bị hủy đó. Để hủy tài khoản, vui lòng liên hệ với bộ phận Dịch vụ khách hàng.
+            </li>
+
+            <li>
+                Các khoản phí do CoRiPhoto thu không bao gồm thuế và tất cả các khoản thuế đó bất kể trực thu hay gián
+                thu đều sẽ được thêm vào mọi khoản phí liên quan đến sản phẩm bạn đang mua. Nếu CoRiPhoto được yêu cầu
+                thu thuế gián thu và/hoặc thuế giao dịch (ví dụ: thuế bán hàng, thuế giá trị gia tăng, thuế hàng hóa và
+                dịch vụ, v.v.) theo luật của tiểu bang hoặc quốc gia nơi bạn cư trú, bạn sẽ phải chịu trách nhiệm thanh
+                toán các khoản thuế gián thu đó. Trường hợp CoRiPhoto hoặc bạn được yêu cầu thu hoặc nộp thuế trực thu
+                hoặc gián thu, bạn có thể phải tự định mức thuế trên theo luật pháp hiện hành của quốc gia nơi bạn cư
+                trú.
+            </li>
+            <li>
+                "Không thể chuyển nhượng" được sử dụng ở đây nghĩa là ngoại trừ được quy định cụ thể trong TOS (Điều
+                khoản dịch vụ) này, bạn không được bán, cho thuê, tải, tặng, cấp phép thứ cấp hoặc chuyển giao Nội dung
+                hay quyền sử dụng Nội dung cho bất kỳ ai. Tuy nhiên, bạn có thể chuyển giao một lần Nội dung cho bên thứ
+                ba với mục đích duy nhất là để bên thứ ba đó in và/hoặc sản xuất hàng hóa có kết hợp Nội dung theo các
+                điều khoản và điều kiện trong thỏa thuận này. Nếu bạn biết có bất kỳ trang web truyền thông xã hội nào
+                sử dụng bất cứ Nội dung nào vượt ngoài giấy phép của bạn theo thỏa thuận này, bạn đồng ý xóa tất cả tác
+                phẩm phái sinh có sử dụng Nội dung khỏi Trang truyền thông xã hội đó và thông báo ngay cho CoRiPhoto về
+                việc sử dụng của từng trang web truyền thông xã hội như vậy. Bạn đồng ý thực hiện các bước hợp lý về mặt
+                thương mại để ngăn bên thứ ba sao chép bất cứ Nội dung nào. Nếu bạn biết có bất kỳ Nội dung nào bị sao
+                chép trái phép, vui lòng liên hệ Dịch vụ khách hàng.
+            </li>
+            <li>
+                Khi nhận được thông báo từ CoRiPhoto hoặc nếu bạn biết có bất kỳ Nội dung nào bị đe dọa hoặc thực sự bị
+                khiếu nại là vi phạm bản quyền, vi phạm quyền khác hay bất kỳ khiếu nại nào mà CoRiPhoto có thể phải
+                chịu trách nhiệm, hoặc nếu CoRiPhoto xóa bất kỳ Nội dung nào do nhận thấy rủi ro kinh doanh được xác
+                định theo quyết định hợp lý của CoRiPhoto và thông báo cho bạn về việc xóa bỏ đó, bạn phải xóa Nội dung
+                này khỏi hệ thống máy tính và thiết bị lưu trữ của mình (điện tử hoặc vật lý) và nếu có thể, ngừng sử
+                dụng Nội dung đã xóa trong tương lai bằng chi phí của riêng bạn. CoRiPhoto sẽ cung cấp miễn phí cho bạn
+                Nội dung tương đương (sự tương đương sẽ do CoRiPhoto xác định theo phán đoán thương mại hợp lý của
+                mình), nhưng tuân theo các điều khoản và điều kiện của Điều khoản dịch vụ này.
+            </li>
+            <li>
+                Nếu bạn sử dụng một Nội dung dưới dạng một phần của tác phẩm được tạo hoặc được giao cho khách hàng, bạn
+                sẽ tiết lộ danh tính của khách hàng đó cho CoRiPhoto theo yêu cầu hợp lý của CoRiPhoto.
+            </li>
+        </ol>
+        <p>NGÀY CÓ HIỆU LỰC: 18 Tháng 4 2025</p>
     </div>
 </section>
 <!--section licence basic-->
 
-<jsp:include page="include/footer.jsp" />
+<jsp:include page="include/footer.jsp"/>
 <jsp:include page="include/scripts.jsp"/>
 </body>
 </html>
