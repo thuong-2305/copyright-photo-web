@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserService {
-    private UserDAO userDao;
+    private final UserDAO userDao;
 
     public UserService() {
         this.userDao = new UserDAO();
@@ -86,6 +86,8 @@ public class UserService {
         }
         return false;
     }
+
+    public boolean createUser(User user) { return userDao.createUser(user); }
 
     public boolean addPaymentMethodCard(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate, int cvc) {
         return userDao.addPaymentMethodCard(uid, accountName, accountNumber, 1, provider, expiryDate, cvc);

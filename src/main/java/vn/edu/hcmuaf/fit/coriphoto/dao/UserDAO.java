@@ -106,16 +106,16 @@ public class UserDAO {
                 handle.createQuery(query)
                         .bind("email", email) // Gắn giá trị tham số email
                         .map((rs, ctx) -> new User(
-                                rs.getInt("uid"),             // Mapping cột "uid"
-                                rs.getInt("role"),            // Mapping cột "role"
-                                rs.getString("fullName"),     // Mapping cột "fullName"
-                                rs.getString("username"),     // Mapping cột "username"
-                                rs.getString("password"),     // Mapping cột "password"
-                                rs.getString("email"),        // Mapping cột "email"
-                                rs.getObject("createDate", LocalDate.class) // Mapping cột "createDate"
+                                rs.getInt("uid"),
+                                rs.getInt("role"),
+                                rs.getString("fullName"),
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getString("email"),
+                                rs.getObject("createDate", LocalDate.class)
                         ))
-                        .findOne()
-                        .orElse(null) // Trả về null nếu không tìm thấy
+                        .findFirst()
+                        .orElse(null)
         );
     }
 
@@ -246,6 +246,16 @@ public class UserDAO {
                 2, name, username, email, hashedPassword, LocalDate.now()
         ));
 
+        return true;
+    }
+
+    public boolean createUser(User user) {
+        String hashedPassword = hashPasswordMD5(user.getPassword());
+        if (hashedPassword == null) return false;
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO users (role, fullname, username, email, password, createDate) VALUES (?, ?, ?, ?, ?, ?)",
+                user.getRole(), user.getFullName(), user.getUsername(), user.getEmail(), hashedPassword, LocalDate.now()
+        ));
         return true;
     }
 

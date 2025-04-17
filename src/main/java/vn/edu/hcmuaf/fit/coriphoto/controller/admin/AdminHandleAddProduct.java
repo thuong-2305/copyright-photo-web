@@ -31,10 +31,6 @@ public class AdminHandleAddProduct extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
         String nameProduct = request.getParameter("nameProduct");
         String desciptProduct = request.getParameter("desciptProduct");
         int idProduct = Integer.parseInt(request.getParameter("idProduct"));
@@ -46,19 +42,6 @@ public class AdminHandleAddProduct extends HttpServlet {
         String status = request.getParameter("status");
 
         boolean checkIdSeller = new SellerService().checkExistSeller(idSeller);
-
-        System.out.print("{"
-                + "\"message\": \"Sản phẩm đã được thêm thành công!\","
-                + "\"nameProduct\": \"" + nameProduct + "\","
-                + "\"desciptProduct\": \"" + desciptProduct + "\","
-                + "\"idProduct\": \"" + idProduct + "\","
-                + "\"idSeller\": \"" + idSeller + "\","
-                + "\"imageSize\": \"" + imageSize + "\","
-                + "\"fileSize\": \"" + fileSize + "\","
-                + "\"priceProduct\": \"" + priceProduct + "\","
-                + "\"category\": \"" + IdCategory + "\","
-                + "\"status\": \"" + status + "\"" + checkIdSeller
-                + "}");
 
         if(!checkIdSeller) {
             response.getWriter().write("{\"message\": \"ID người bán không đúng!\"}");

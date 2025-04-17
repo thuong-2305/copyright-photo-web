@@ -30,7 +30,8 @@
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
                     <h5 class="fw-semibold">Tài khoản người dùng</h5>
                     <div id="exportButtons">
-                        <button class="btn button-add fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm sản phẩm</button>
+                        <button class="btn add-btn btn-outline-primary fw-semibold ms-2"><i class="bi bi-person-plus">Thêm người dùng</i></button>
+                        <button class="btn button-add fw-semibold"><i class="bi bi-plus-circle me-2"></i>Phân quyền người dùng</button>
                     </div>
                 </div>
 
@@ -67,7 +68,6 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-start">
-                                            <button class="btn view-btn" data-id="${user.uid}"><i class="bi bi-person-plus"></i></button>
                                             <button class="btn edit-btn" data-id="${user.uid}"><i class="bi bi-pencil-square"></i></button>
                                             <button class="btn delete-btn" data-id="${user.uid}"><i class="fa-solid fa-trash"></i></button>
                                         </div>
@@ -108,7 +108,7 @@
                         </div>
                         <hr>
                         <div class="product-info mt-2">
-                            <h5 class="fw-semibold"><i class="bi bi-list-nested me-2"></i>Thông tin các sản phẩm </h5>
+                            <h5 class="fw-semibold"><i class="bi bi-list-nested me-2"></i>Chi tiết tài khoản</h5>
                             <div class="show-content">
                                 <p class="id-user"><span class="title-info fw-semibold">Mã tài khoản:</span> </p>
                                 <p class="full-name"><span class="title-info fw-semibold">Họ và tên:</span> </p>
@@ -116,8 +116,10 @@
                                 <p class="password"><span class="title-info fw-semibold">Mật khẩu:</span> </p>
                                 <p class="email"><span class="title-info fw-semibold">Email:</span> </p>
                                 <p class="date-create"><span class="title-info fw-semibold">Ngày tạo:</span> </p>
+                                <p class="role"><span class="title-info fw-semibold">Quyền hạn:</span> </p>
                             </div>
-                            <button id="update-user-btn" class="btn btn-outline-dark">Cật nhật</button>
+                            <button id="update-user-btn" class="btn btn-outline-dark d-none">Cật nhật</button>
+                            <button id="add-user-btn" class="btn btn-outline-success d-none">Thêm tài khoản</button>
                         </div>
                     </div>
                 </div>
@@ -193,7 +195,7 @@
         $(".buttons-excel span").html("<i class=\"bi bi-file-earmark-excel\"></i> Excel");
         $(".buttons-print span").html("<i class=\"bi bi-printer\"></i> Print");
 
-        $('.dataTables_filter input').attr('placeholder', 'Tìm kiếm sản phẩm ...');
+        $('.dataTables_filter input').attr('placeholder', 'Tìm kiếm ...');
     });
 
     $(document).ready(function () {
@@ -266,6 +268,8 @@
     $(document).on("click", ".edit-btn", function() {
         const userIdToEdit = $(this).data('id');
         parentElement = $(this).closest("tr");
+        $('#userItem #add-user-btn').addClass("d-none");
+        $('#userItem #update-user-btn').removeClass("d-none");
         $.ajax({
             url: '/admin-customer',
             type: 'POST',
@@ -273,7 +277,7 @@
                 'X-Requested-By': 'AJAX'
             },
             data: {
-                action: 'edit',
+                action: 'view',
                 user_id: userIdToEdit
             },
             success: function (response) {
@@ -293,20 +297,22 @@
                         "<input class=\"form-control\" name=\"username\" value=\"" + user.username + "\">"
                     );
 
-                    $('#userItem .password').html(
-                        "<span class=\"title-info fw-semibold\">Password:</span><br>" +
-                        "<input class=\"form-control\" name=\"password\" type=\"password\" value=\"" + user.password + "\" disabled>"
-                    );
-
                     $('#userItem .email').html(
                         "<span class=\"title-info fw-semibold\">Email:</span><br>" +
                         "<input class=\"form-control\" name=\"email\" type=\"email\" value=\"" + user.email + "\" disabled>"
+                    );
+
+                    $('#userItem .password').html(
+                        "<span class=\"title-info fw-semibold\">Password:</span><br>" +
+                        "<input class=\"form-control\" name=\"password\" type=\"password\" value=\"" + user.password + "\" disabled>"
                     );
 
                     $('#userItem .date-create').html(
                         "<span class=\"title-info fw-semibold\">Ngày tạo:</span><br>" +
                         "<input class=\"form-control\" name=\"createDate\" type=\"date\" value=\"" + user.createDate + "\" disabled>"
                     );
+
+                    $('#userItem .role').html("")
                     toggleUserDetail();
                 } else {
                     alert('Lỗi tài khoản!');
@@ -328,7 +334,6 @@
 
     // Xử lý khi nhấp cập nhật
     $(document).on("click", "#update-user-btn", function () {
-        alert("click update");
         const uid = $('input[name="uid"]').val();
         const fullName = $('input[name="fullName"]').val();
         const username = $('input[name="username"]').val();
@@ -369,5 +374,88 @@
     });
 </script>
 
+<!-- Thêm thông tin user -->
+<script>
+    $(document).on("click", ".add-btn", function() {
+        // Hiển thị thêm thông tin
+        $('#userItem .id-user').html("");
+        $('#userItem .full-name').html(
+            "<span class=\"title-info fw-semibold\">Họ và tên:</span><br>" +
+            "<input class=\"form-control\" name=\"fullName\">"
+        );
+        $('#userItem .username').html(
+            "<span class=\"title-info fw-semibold\">Username:</span><br>" +
+            "<input class=\"form-control\" name=\"username\" >"
+        );
+
+        $('#userItem .email').html(
+            "<span class=\"title-info fw-semibold\">Email:</span><br>" +
+            "<input class=\"form-control\" name=\"email\" type=\"email\">"
+        );
+
+        $('#userItem .password').html(
+            "<span class=\"title-info fw-semibold\">Password:</span><br>" +
+            "<input class=\"form-control\" name=\"password\" type=\"password\">"
+        );
+
+        $('#userItem .date-create').html("");
+
+        $('#userItem .role').html(
+            "<span class=\"title-info fw-semibold\">Quyen han:</span><br>" +
+            "<select class=\"form-control\" name=\"role\" required>" +
+            "<option value=\"\" disabled selected>-- Chọn vai trò --</option>" +
+            "<option value=\"2\">Cấp 1 (Khách hàng)</option>" +
+            "<option value=\"1\">Cấp 2 (Nhà cung cấp)</option>" +
+            "<option value=\"0\">Cấp 3 (Quản trị viên)</option>");
+
+        $('#userItem #add-user-btn').removeClass("d-none");
+        $('#userItem #update-user-btn').addClass("d-none");
+        toggleUserDetail();
+    })
+
+    // Xử lý khi chọn thêm
+    $(document).on("click", "#add-user-btn", function () {
+
+        const fullName = $('input[name="fullName"]').val();
+        const username = $('input[name="username"]').val();
+        const email = $('input[name="email"]').val();
+        const pass = $('input[name="password"]').val();
+        const role = $('select[name="role"]').val();
+
+        $.ajax({
+            url: '/admin-customer',
+            type: 'POST',
+            headers: {
+                'X-Requested-By': 'AJAX'
+            },
+            data: {
+                action: "add",
+                fullName: fullName,
+                username: username,
+                email: email,
+                pass: pass,
+                role: role
+            },
+            success: function (response) {
+                if (response.success) {
+                    $(".alert-success span").text("Thêm user thành công!");
+                    $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(this).addClass("d-none");
+                    });
+                    location.reload();
+                } else {
+                    $(".alert-danger span").text("Cập nhật thất bại!");
+                    $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(this).addClass("d-none");
+                    });
+                }
+                toggleUserDetail();
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi!");
+            }
+        });
+    });
+</script>
 </body>
 </html>
