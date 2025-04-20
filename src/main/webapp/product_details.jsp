@@ -86,7 +86,8 @@
         <div class="product-left col col-half">
             <div class="product">
                 <div class="div-img">
-                    <img src="${ product.getUrl() }" alt="" class="product-img">
+<%--                    <img src="${ product.getUrl() }" alt="" class="product-img">--%>
+                    <img src="${pageContext.request.contextPath}/watermarkedImage?url=${product.getUrl()}" alt="" class="product-img">
                 </div>
             </div>
 
@@ -239,7 +240,7 @@
         %>
         <a href="product-detail?pid=<%= item.getId() %>">
             <div class="image">
-                <img src="<%= item.getUrl() %>" alt=""/>
+                <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
                     <button class="favorite-btn" data-product-id="<%= item.getId() %>">
                         <i class="fa-regular fa-heart"></i>
@@ -258,7 +259,7 @@
         %>
         <a href="product-detail?pid=<%= item.getId() %>">
             <div class="image">
-                <img src="<%= item.getUrl() %>" alt=""/>
+                <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= item.getUrl() %>" alt=""/>
                 <div class="btn-in-image">
                     <button class="favorite-btn" data-product-id="<%= item.getId() %>">
                         <i class="fa-regular fa-heart"></i>

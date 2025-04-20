@@ -9,7 +9,7 @@
     <jsp:include page="include/head.jsp"/>
 </head>
 <body>
-
+<!-- Day la file test.html -->
 <jsp:include page="include/navbar.jsp"/>
 
 <% if (request.getAttribute("noProduct") != null) { %>
@@ -113,7 +113,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
@@ -143,7 +143,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
@@ -173,7 +173,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
@@ -203,7 +203,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
