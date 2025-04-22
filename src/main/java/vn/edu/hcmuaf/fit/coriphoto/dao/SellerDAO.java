@@ -31,16 +31,6 @@ public class SellerDAO {
         );
     }
 
-    public boolean checkExistSeller(int uid) {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT COUNT(*) FROM sellers WHERE uid = :uid")
-                    .bind("uid", uid)
-                    .mapTo(Integer.class)
-                    .findOne()
-                    .orElse(0) > 0
-        );
-    }
-
 
     // lấy số ảnh mà đã bán được (không phải số lượng ảnh)
     public int getTotalImgSelled(int uid) {
@@ -259,28 +249,6 @@ public class SellerDAO {
         String querySql = "SELECT * FROM products WHERE uid = ? and status = ?";
         return jdbi.withHandle(handle -> handle.createQuery(querySql)
                 .bind(0, uid).bind(1, status).mapToBean(Product.class).list());
-    }
-
-    public void uploadProduct(Product product, String status) {
-        String query = """
-                    INSERT INTO products (uid, cid, name, description, size, dimension, dateUpload, url, price, status)
-                    VALUES (:uid, :cid, :name, :description, :size, :dimension, :dateUpload, :url, :price, :status)
-                """;
-
-        jdbi.useHandle(handle ->
-                handle.createUpdate(query)
-                        .bind("uid", product.getUid())
-                        .bind("cid", product.getCid())
-                        .bind("name", product.getName())
-                        .bind("description", product.getDescription())
-                        .bind("size", product.getSize())
-                        .bind("dimension", product.getDimension())
-                        .bind("dateUpload", product.getDateUpload())
-                        .bind("url", product.getUrl())
-                        .bind("price", product.getPrice())
-                        .bind("status", status)
-                        .execute()
-        );
     }
 
     public static void main(String[] args) {

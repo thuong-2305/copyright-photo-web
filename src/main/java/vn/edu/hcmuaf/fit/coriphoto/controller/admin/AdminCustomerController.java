@@ -81,13 +81,12 @@ public class AdminCustomerController extends HttpServlet {
             String username = request.getParameter("username");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            String fullname = request.getParameter("fullname");
 
             AuthService authService = new AuthService();
 
 
             if ("formAdd".equals(form)) {
-                authService.registerUser(email,password,username, fullname);
+                authService.registerUser(email,password,username);
             }else {
                 User user = new User();
                 user.setEmail(email);

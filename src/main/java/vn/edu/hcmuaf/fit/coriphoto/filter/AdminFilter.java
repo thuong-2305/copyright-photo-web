@@ -23,8 +23,6 @@ public class AdminFilter implements Filter {
             if(user.getRole() != 0)
                 return;
         } else return;
-
-        httpRequest.setAttribute("username", user.getUsername());
         chain.doFilter(request, response);
     }
 }

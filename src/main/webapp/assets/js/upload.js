@@ -17,12 +17,10 @@ const succes = document.querySelector(".success");
 uploadButton.addEventListener('click', () => {
     windowUpload.classList.add("active");
     overlay2.style.display = 'block';
-    optionContent.style.display = 'block';
     document.body.classList.add('no-scroll');
 })
 
-closeWindow.addEventListener('click', (e) => {
-    e.preventDefault();
+closeWindow.addEventListener('click', () => {
     windowUpload.classList.remove("active");
     overlay2.style.display = 'none';
     paneShow.classList.remove("curr");
@@ -32,7 +30,7 @@ closeWindow.addEventListener('click', (e) => {
 
 inputAdd.addEventListener('click', (e) => {
     e.preventDefault();
-    optionContent.style.display = 'none';
+    optionContent.classList.add("pass");
     paneShow.classList.add("curr");
 })
 

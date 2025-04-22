@@ -6,7 +6,6 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
     private UserDAO userDao;
@@ -15,39 +14,8 @@ public class UserService {
         this.userDao = new UserDAO();
     }
 
-    public boolean updateAvatarPath(int uid, String avatarPath) {
-        return userDao.updateAvatarPath(uid, avatarPath);
-    }
-
-    public String getAvatarPath(int uid) {
-        return userDao.getAvatarPath(uid);
-    }
-
-
-    public boolean isExistEmail(String email) {
-        return userDao.isExistEmail(email);
-    }
-
-
-    public String hashPasswordMD5(String password) {
-        return userDao.hashPasswordMD5(password);
-    }
-
-    public int getUidByEmail(String email) {
-        return userDao.getUidByEmail(email);
-    }
-
-
     public String getFullName(int uid) {
         return userDao.getFullName(uid);
-    }
-
-    public String getEmailById(int uid) {
-        return userDao.getEmailById(uid);
-    }
-
-    public String getUsername(int uid) {
-        return userDao.getUsername(uid);
     }
 
     public User getUserByCredentials(String username, String password) {
@@ -87,24 +55,14 @@ public class UserService {
     }
 
     public boolean addPaymentMethodCard(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate, int cvc) {
-        return userDao.addPaymentMethodCard(uid, accountName, accountNumber, 1, provider, expiryDate, cvc);
+        return userDao.addPaymentMethodCard(uid, accountName,accountNumber,1,provider,expiryDate,cvc);
     }
 
     public boolean addPaymentMethodBank(int uid, String accountName, String accountNumber, int pmTypeId, String provider, LocalDate expiryDate) {
-        return userDao.addPaymentMethodBank(uid, accountName, accountNumber, 2, provider, expiryDate);
+        return userDao.addPaymentMethodBank(uid, accountName,accountNumber,2,provider,expiryDate);
     }
 
-    public List<User> getAllCustomers() {
-        return userDao.getAllCustomers();
-    }
-
-    public String getEmail(int uid) {
-        return userDao.getEmail(uid);
-    }
-
-    public String getPaymentTypeNameByPmid(int pmid) {
-        return userDao.getPaymentTypeNameByPmid(pmid);
-    }
+    public List<User> getAllCustomers() {return userDao.getAllCustomers();}
 
     public boolean deleteUserById(int userId) {
         return userDao.deleteUserById(userId);
