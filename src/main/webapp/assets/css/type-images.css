@@ -1,16 +1,4 @@
-:root {
-  --primary-color: #009970;
-  --primary-hover-color: #00b383;
-  --text-color: #666777;
-  --text-hover-color: #000;
-  --footer-bg-color: #f9f9f9;
-  --footer-link-color: #333;
-  --input-border-color: #ccc;
-  --button-hover-color: #4a84d9;
-  --footer-border-color: #e0e0e0;
-  --footer-text-color: #777;
-  --line-seperate: #e0e0e0;
-}
+
 
 /* Global styles for the custom slider */
 ::-webkit-scrollbar {

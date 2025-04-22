@@ -4,17 +4,6 @@
 
     --background-hover-color: rgb(237, 246, 254);
 
-    --primary-color: #009970;
-    --primary-hover-color: #00b383;
-    --text-color: #666777;
-    --text-hover-color: #000;
-    --footer-bg-color: #f9f9f9;
-    --footer-link-color: #333;
-    --input-border-color: #ccc;
-    --button-hover-color: #4a84d9;
-    --footer-border-color: #e0e0e0;
-    --footer-text-color: #777;
-    --line-seperate: #e0e0e0;
 
     --swatch_1: #f0f4f9;
     --swatch_2: #b5d2e1;
@@ -24,8 +13,6 @@
     --swatch_6: #49bbae;
     --swatch_7: #696dbf;
 
-    --secondary-text-color: rgb(109, 115, 120);
-    --background-hover-color: rgb(237, 246, 254);
 }   
 
 .shadow-bottom {
