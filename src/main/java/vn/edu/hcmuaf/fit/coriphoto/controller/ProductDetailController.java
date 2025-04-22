@@ -19,7 +19,6 @@ public class ProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int pid = Integer.parseInt(request.getParameter("pid"));
-        System.out.println(pid);
         ProductService productService = new ProductService();
         Product product = productService.getById(pid);
         List<Product> products = productService.getProductsRelated(product.getCid(), pid);

@@ -23,17 +23,18 @@ public class UserDAO {
 
     public User findByEmail(String email, String password) {
         String hashPassword = hashPasswordMD5(password);//Mã hóa pass để so sánh với db
-        String query = "SELECT * FROM users WHERE email = ? and password = ?";
+        String query = "SELECT * FROM users WHERE (email = ? OR username = ?) and password = ?";
         return jdbi.withHandle(handle ->
                 handle.createQuery(query)
                     .bind(0, email)
-                    .bind(1, hashPassword)
+                    .bind(1, email)
+                    .bind(2, hashPassword)
                     .mapToBean(User.class).findFirst()
                     .orElse(null));
     }
 
     public User findByEmail(String email) {
-        String query = "SELECT * FROM users WHERE email = :email";
+        String query = "SELECT * FROM users WHERE email = :email OR username = :email";
         return jdbi.withHandle(handle ->
             handle.createQuery(query)
                 .bind("email", email) // Gắn giá trị tham số email
@@ -51,13 +52,13 @@ public class UserDAO {
         );
     }
 
-    public boolean createUser(String email, String password, String username) {
+    public boolean createUser(String email, String password, String username, String name) {
         String hashedPassword = hashPasswordMD5(password);
         if (hashedPassword == null) return false;
 
         jdbi.useHandle(handle -> handle.execute(
-                "INSERT INTO users (role, username, email, password, createDate) VALUES (?, ?, ?, ?, ?)",
-                2, username, email, hashedPassword, LocalDate.now()
+                "INSERT INTO users (role, fullname, username, email, password, createDate) VALUES (?, ?, ?, ?, ?, ?)",
+                2, name, username, email, hashedPassword, LocalDate.now()
         ));
 
         return true;

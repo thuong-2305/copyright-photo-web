@@ -23,9 +23,8 @@ public class AuthService {
         return users.findByEmail(email) != null;
     }
 
-    public boolean registerUser(String email, String password, String username) {
-        // Tạo tài khoản mới
-        return users.createUser(email, password, username);
+    public boolean registerUser(String email, String password, String username, String name) {
+        return users.createUser(email, password, username, name);
     }
 
     public boolean registerSeller(User seller) {
