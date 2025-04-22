@@ -1,6 +1,4 @@
 :root {
-
-
   --swatch_1: #f0f4f9;
   --swatch_2: #b5d2e1;
   --swatch_3: #a2a9b6;
@@ -33,7 +31,7 @@
   border: 1px solid rgb(238, 239, 242);
 }
 
-.btn {
+.login-container .btn {
   width: 100%;
   margin-top: 10px;
   color: #fff;
@@ -47,26 +45,30 @@
   position: relative;
 }
 
-.btn i {
+.login-container .btn svg {
   position: absolute;
   left: 25px;
   font-size: 20px;
 }
 
-.btn:hover {
+.login-container .btn-login:hover {
   opacity: 0.8;
-  --bs-btn-hover-color: #000;
-  --bs-btn-hover-bg: #fb7d7d;
+  background: #57cc99;
 }
 
-.btn-login {
-  background-color: var(--primary-color);
+.login-container .btn-login {
+  color: white !important;
+  background: var(--swatch_4) !important;
 }
 
-.btn-google {
+.login-container .btn-google {
   background-color: #fff;
-  border: 1px solid #626161;
+  border: 1px solid #dee2e6;
   color: #676767;
+}
+
+.login-container .btn-google:hover {
+  border-color: #343a40;
 }
 
 .content {
@@ -74,8 +76,12 @@
   flex-direction: row;
 }
 
+.image-about {
+  width: 50%;
+}
+
 .image-about img {
-  width: 50vw;
+  width: 100%;
   height: 100vh;
   object-fit: cover;
 }
