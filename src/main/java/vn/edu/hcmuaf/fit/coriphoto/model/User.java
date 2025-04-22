@@ -11,7 +11,7 @@ public class User {
     private String email;
     private LocalDate createDate;
 
-    public User() {}
+    public User() { }
 
     public User(int uid, int role, String fullName, String username, String password, String email, LocalDate createDate) {
         this.uid = uid;
@@ -21,6 +21,15 @@ public class User {
         this.password = password;
         this.email = email;
         this.createDate = createDate;
+    }
+
+    public User(int uid, int role, String fullName, String username, String password, String email) {
+        this.uid = uid;
+        this.role = role;
+        this.fullName = fullName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
     }
 
     public int getUid() {
@@ -77,5 +86,18 @@ public class User {
 
     public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uid=" + uid +
+                ", role=" + role +
+                ", fullName='" + fullName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", createDate=" + createDate +
+                '}';
     }
 }

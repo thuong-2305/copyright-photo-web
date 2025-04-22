@@ -18,11 +18,6 @@
     margin: 0;
 }
 
-section#nav {
-    padding: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-}
-
 a,
 a:hover {
     text-decoration: none;
@@ -107,6 +102,12 @@ a:hover {
     max-height: 117.6px;
     width: 210px;
     position: relative;
+}
+
+#cart-item-list .cart-item .thumbnail img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
 }
 
 #cart-item-list .cart-item .thumbnail img:hover {

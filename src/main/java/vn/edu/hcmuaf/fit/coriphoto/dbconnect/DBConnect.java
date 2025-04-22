@@ -14,8 +14,10 @@ public class DBConnect {
 
     static Jdbi jdbi;
 
-    public static Jdbi get() throws SQLException {
-        if(jdbi == null) makeConnect();
+    public Jdbi get() {
+        try {
+            if (jdbi == null) makeConnect();
+        } catch(SQLException _) { }
         return jdbi;
     }
 
@@ -30,18 +32,4 @@ public class DBConnect {
         jdbi = Jdbi.create(src);
     }
 
-    public static void main(String[] args) throws SQLException {
-        Jdbi j = get();
-
-        jdbi.useHandle(handle -> {
-            List<Map<String, Object>> categories = handle.createQuery("select * from categories")
-                    .mapToMap()
-                    .list();
-
-            System.out.println("Dữ liệu trong bảng 'categories':");
-            for (Map<String, Object> row : categories) {
-                System.out.println(row);
-            }
-        });
-    }
 }

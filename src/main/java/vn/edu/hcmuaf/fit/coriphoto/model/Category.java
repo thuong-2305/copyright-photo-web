@@ -4,13 +4,15 @@ public class Category {
     private int cid;
     private int cpid;
     private String name;
+    private String url;
 
     public Category() { }
 
-    public Category(int cid, int cpid, String name) {
+    public Category(int cid, int cpid, String name, String url) {
         this.cid = cid;
         this.cpid = cpid;
         this.name = name;
+        this.url = url;
     }
 
     public int getCid() {
@@ -35,5 +37,18 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return cid + ", " + cpid + ", " + name + ", " + url;
     }
 }

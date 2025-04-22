@@ -33,49 +33,6 @@ modalImage.addEventListener("click", function (e) {
 const buttons = document.querySelectorAll(".grid-btn .btn--packageimg");
 const productPrice = document.querySelector(".product-price p");
 
-// Giá gốc của sản phẩm
-var basePrice = 45000;
-
-//---------------------------------------------- Sự kiện thay đổi giá trị của input radio ----------------------------------------------
-// Lấy tất cả các input radio
-// const conditionInputs = document.querySelectorAll('input[name="condition"]');
-const conditionItems = document.querySelectorAll(".condition");
-
-// Hàm reset trạng thái các nút giảm giá
-function resetButtons() {
-  buttons.forEach((button, index) => {
-    if (index === 0) {
-      button.classList.add("active");
-      return;
-    }
-    button.classList.remove("active");
-  });
-}
-
-// Duyệt qua từng thẻ <li>
-conditionItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    // Lấy input và label bên trong <li>
-    const input = item.querySelector('input[type="radio"]');
-    const label = item.querySelector("label").textContent.trim();
-
-    // Đặt input là checked
-    input.checked = true;
-
-    resetButtons(); // Reset trạng thái các nút giảm giá
-
-    // Cập nhật giá trị basePrice dựa trên giấy phép
-    if (label === "Giấy phép nâng cao") {
-      basePrice = 45000 * 2; // Gấp đôi giá gốc
-    } else {
-      basePrice = 45000; // Giá gốc ban đầu
-    }
-
-    // Cập nhật giá hiển thị trên giao diện
-    productPrice.textContent = `${basePrice.toLocaleString("vi-VN")} VND`;
-  });
-});
-
 //---------------------------------------------- Sự kiện click vào button ----------------------------------------------
 // Thêm sự kiện click cho mỗi button
 buttons.forEach((button) => {
@@ -122,3 +79,32 @@ buttons.forEach((button) => {
     )} VND`;
   });
 });
+
+let productPriceElement = document.getElementById('product-price');
+let originalPrice = parseFloat(productPriceElement.innerText.replace(' VND', '').replace(',', ''));
+
+// Lắng nghe sự thay đổi của lựa chọn giấy phép
+document.querySelectorAll('input[name="condition"]').forEach(input => {
+  input.addEventListener('change', function() {
+    updatePrice();
+  });
+});
+
+// Cập nhật giá khi lựa chọn giấy phép thay đổi
+function updatePrice() {
+  let selectedLicense = document.querySelector('input[name="condition"]:checked').value;
+
+  let newPrice = originalPrice;
+
+  // Kiểm tra giấy phép và điều chỉnh giá
+  if (selectedLicense === 'advance') {
+    newPrice *= 2; // Nhân đôi giá nếu chọn giấy phép nâng cao
+  }
+
+  // Cập nhật giá hiển thị với định dạng số VND
+  productPriceElement.innerText = newPrice.toLocaleString('vi-VN') + ' VND';
+}
+
+
+
+

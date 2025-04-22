@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Braah+One&display=swap');
+
 :root {
     --primary-color: #009970;
     --primary-hover-color: #00b383;
@@ -10,9 +12,25 @@
     --footer-border-color: #e0e0e0;
     --footer-text-color: #777;
     --line-seperate: #e0e0e0;
+    --cart-len: "0";
 }
 
 /* navbar */
+#nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: background-color 0.3s ease-in-out;
+    background-color: transparent;
+}
+
+#nav.scrolled {
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 #nav .container {
     padding: 0;
     margin: 5px auto;
@@ -137,8 +155,7 @@
     margin-right: 10px;
 }
 
-#nav .container a.cart::before {
-    content: "3"; 
+#nav .container a.cart span {
     position: absolute;
     top: -5px; 
     right: -10px; 
@@ -181,8 +198,9 @@
 }
 
 #nav .container .title-logo {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 25px;
+    font-family: "Braah One", serif;
+    font-style: normal;
 }
 
 #nav .container button.navbar-toggler {
