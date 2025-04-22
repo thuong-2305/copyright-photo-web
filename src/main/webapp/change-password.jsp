@@ -10,28 +10,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
-        #nav:not(.scrolled) .title-logo {
-            color: black;
+        #nav {
+            position: relative;
         }
-
-        #nav:not(.scrolled) .title-item {
-            color: black !important;
-        }
-
-        #nav:not(.scrolled) .nav-item:hover {
-            color: #009970;
-        }
-
-        #nav:not(.scrolled) .title-item:hover {
-            color: #009970 !important;
-        }
-
-        #nav:not(.scrolled) .title-item:hover i {
-            color: #009970 !important;
-        }
-
-        #nav:not(.scrolled) .nav-item:hover .title-item {
-            color: #009970 !important;
+        .modal {
+            z-index: 9999;
         }
     </style>
 </head>
@@ -39,7 +22,7 @@
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<div id="change-password" class="my-5 py-5">
+<div id="change-password">
     <div class="container-fluid">
         <div class="change-password-container">
             <div class="row">
@@ -137,8 +120,6 @@
 <jsp:include page="include/scripts.jsp"/>
 
 <script src="assets/js/editprofile.js"></script>
-<script type="module" src="assets/js/change-password.js"></script>
-
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

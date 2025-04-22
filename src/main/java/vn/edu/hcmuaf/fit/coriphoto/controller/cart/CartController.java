@@ -40,9 +40,7 @@ public class CartController extends HttpServlet {
                 request.setAttribute("products", new ArrayList<Product>());
                 request.setAttribute("total", 0);
 
-//                request.getRequestDispatcher("cart.jsp").forward(request, response);
-
-                request.getRequestDispatcher("new-cart.jsp").forward(request,response);
+                request.getRequestDispatcher("cart.jsp").forward(request, response);
                 return;
             } else uid = user.getUid();
         }
@@ -66,14 +64,14 @@ public class CartController extends HttpServlet {
             totalFinal = 0;
         }
         else if(numChecked < 11) {
-            gift = "Chúc mừng bạn đã nhận được ưu đãi gỉảm 10%";
+            gift = "Nhận ưu đãi gỉảm 10%";
             totalFinal = total - total * 0.1;
         }
         else if(numChecked < 21) {
-            gift = "Chúc mừng bạn đã nhận được ưu đãi gỉảm 20%";
+            gift = "Nhân ưu đãi giảm 20%";
             totalFinal = total - total * 0.2;
         } else {
-            gift = "Chúc mừng bạn đã nhận được ưu đãi gỉảm 30%";
+            gift = "Nhân ưu đãi giảm 30%";
             totalFinal = total - total * 0.3;
         }
 
@@ -85,9 +83,7 @@ public class CartController extends HttpServlet {
         request.setAttribute("gift", gift);
         request.setAttribute("totalFinal", totalFinal);
 
-//        request.getRequestDispatcher("cart.jsp").forward(request, response);
-        request.getRequestDispatcher("new-cart.jsp").forward(request, response);
-
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
     @Override

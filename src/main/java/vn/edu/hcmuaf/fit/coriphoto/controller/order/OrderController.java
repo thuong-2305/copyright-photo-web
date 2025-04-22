@@ -9,7 +9,6 @@ import vn.edu.hcmuaf.fit.coriphoto.dao.UserDAO;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.FormatDateTime;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
-import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
 import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
@@ -33,7 +32,6 @@ public class OrderController extends HttpServlet {
         }
 
         int uid = currentUser.getUid();
-        String userEmail = currentUser.getEmail();
 
 
         String paymentTypeId = request.getParameter("paymentTypeId");
@@ -73,6 +71,7 @@ public class OrderController extends HttpServlet {
         int promotionId = Integer.parseInt(request.getParameter("promotionId"));
         double totalAfterDiscount = Double.parseDouble(request.getParameter("totalAfterDiscount"));
         int licenseId = Integer.parseInt(request.getParameter("licenseId"));
+
         double totalBeforeDiscount = Double.parseDouble(request.getParameter("totalBeforeDiscount"));
 
 
@@ -124,32 +123,9 @@ public class OrderController extends HttpServlet {
 
         OrderService orderService = new OrderService();
 
-        // thanh toán bằng thẻ có sẵn lưu trong tài khoản
         if (!pmid.isEmpty()) {
-            boolean isOrderCreated = orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalBeforeDiscount, products);
-            System.out.println("Tạo đơn thành công: " + isOrderCreated);
-            if (isOrderCreated) {
-                Product product = products.get(0);
-                String imageName = product.getName();
-                String imageUrl = product.getUrl();
-                if (imageUrl.startsWith("../")) {
-                    imageUrl = imageUrl.substring(3);
-                }
-                String absolutePath = request.getServletContext().getRealPath(imageUrl);
-                EmailUtils.sendEmailWithAttachment(userEmail, "Thông tin đơn hàng",
-                        "Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!\n\n" +
-                                "===== THÔNG TIN ĐƠN HÀNG =====\n" +
-                                "- Số tiền thanh toán: " + totalAfterDiscount + " VND\n" +
-                                "- Ngày mua hàng: " + FormatDateTime.format(LocalDate.now().toString()) + "\n\n" +
-                                "Vui lòng kiểm tra file license đính kèm để biết thêm chi tiết về sản phẩm của bạn.\n\n" +
-                                "Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
-                                "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
-                                "Trân trọng,\n"
-                        , absolutePath, imageName, licenseId);
-            }
+            orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalBeforeDiscount, products);
         }
-
-        // thanh toán bằng các phương thức
         else {
             int getPmId = -1;
             PaymentMethodDAO paymentMethodDAO = new PaymentMethodDAO();
@@ -158,55 +134,13 @@ public class OrderController extends HttpServlet {
                 LocalDate cardExpiryLD = FormatDateTime.format(cardExpiry);
                 System.out.println("Add card: " + userService.addPaymentMethodCard(uid, cardName, cardNumber, Integer.parseInt(paymentTypeId), cardBank, cardExpiryLD , Integer.parseInt(cardCVC)));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, cardNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
-                System.out.println("Tạo đơn thành công: " + isOrderCreated);
-                if (isOrderCreated) {
-                    Product product = products.get(0);
-                    String imageName = product.getName();
-                    String imageUrl = product.getUrl();
-                    if (imageUrl.startsWith("../")) {
-                        imageUrl = imageUrl.substring(3);
-                    }
-                    String absolutePath = request.getServletContext().getRealPath(imageUrl);
-                    EmailUtils.sendEmailWithAttachment(userEmail, "Thông tin đơn hàng",
-                            "Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!\n\n" +
-                                    "===== THÔNG TIN ĐƠN HÀNG =====\n" +
-                                    "- Số tiền thanh toán: " + totalAfterDiscount + " VND\n" +
-                                    "- Ngày mua hàng: " + FormatDateTime.format(LocalDate.now().toString()) + "\n\n" +
-                                    "Vui lòng kiểm tra file license đính kèm để biết thêm chi tiết về sản phẩm của bạn.\n\n" +
-                                    "Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
-                                    "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
-                                    "Trân trọng,\n"
-                            , absolutePath, imageName, licenseId);                 }
-                else {
-                }
+                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
             }
             else if (Integer.parseInt(paymentTypeId) == 2) {
                 LocalDate bankExpiryLD = FormatDateTime.format(bankExpiry);
                 System.out.println("Add bank: " +  userService.addPaymentMethodBank(uid, bankAccountHolder, bankAccountNumber, Integer.parseInt(paymentTypeId), bankName, bankExpiryLD));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
-                System.out.println("Tạo đơn thành công: " + isOrderCreated);
-
-                if (isOrderCreated) {
-                    Product product = products.get(0);
-                    String imageName = product.getName();
-                    String imageUrl = product.getUrl();
-                    if (imageUrl.startsWith("../")) {
-                        imageUrl = imageUrl.substring(3);
-                    }
-                    String absolutePath = request.getServletContext().getRealPath(imageUrl);
-                    EmailUtils.sendEmailWithAttachment(userEmail, "Thông tin đơn hàng",
-                            "Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!\n\n" +
-                                    "===== THÔNG TIN ĐƠN HÀNG =====\n" +
-                                    "- Số tiền thanh toán: " + totalAfterDiscount + " VND\n" +
-                                    "- Ngày mua hàng: " + FormatDateTime.format(LocalDate.now().toString()) + "\n\n" +
-                                    "Vui lòng kiểm tra file license đính kèm để biết thêm chi tiết về sản phẩm của bạn.\n\n" +
-                                    "Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
-                                    "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
-                                    "Trân trọng,\n"
-                            , absolutePath, imageName, licenseId);
-                }
+                orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
             }
         }
         response.sendRedirect("/");

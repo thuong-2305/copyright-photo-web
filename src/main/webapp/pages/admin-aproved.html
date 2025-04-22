@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/admin-1.css">
+    <link rel="stylesheet" href="../assets/css/admin-aproved.css">
+    <link rel="stylesheet" href="../assets/libraries/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
+    <link rel="stylesheet" href="../assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css">
+    <title>Admin</title>
+</head>
+<body>
+    <!-- MAIN -->
+    <section class="container-main">
+        <!-- LEFT MAIN -->
+        <section class="left d-flex flex-column justify-content-between">
+            <div class="top-left">
+            <p class="fs-5 fw-semibold m-0 text-center mt-2"><span class="text-logo fw-bold">CoRiPhoto</span> Admin</p>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="admin-homepage.html"><i class="fa-solid fa-house"></i>Trang chủ</a>
+                </li>
+                <li>
+                    <a href="admin-products.html"><i class="bi bi-grid-fill"></i>Sản phẩm</a>
+                </li>
+                <li>
+                    <a href="admin-category.html"><i class="bi bi-list-task"></i>Danh mục</a>
+                </li>
+                <li>
+                    <a href="admin-order.html"><i class="bi bi-wallet-fill"></i>Đơn hàng</a>
+                </li>
+                <li>
+                    <a href="admin-customer.html"><i class="fa-solid fa-user"></i>Khách hàng</a>
+                </li>
+                <li>
+                    <a href="admin-contributor.html"><i class="bi bi-coin"></i>Người phân phối</a>
+                </li>
+                <hr>
+                <li class="active">
+                    <a href="./admin-aproved.html"><i class="fa-solid fa-bell"></i>Ảnh đang chờ</a>
+                </li>
+                <li>
+                    <a href="../homepage.html"><i class="bi bi-box-arrow-right"></i>Đăng xuất</a>
+                </li>
+            </ul>
+            </div>
+            <div class="avatar bottom-left d-flex justify-content-between align-items-center mx-2 mb-4">
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="../assets/images/avart-default.png" alt="">
+                    <p class="ms-2 m-0">Thanh Thương</p>
+                </div>
+                <i class="bi bi-three-dots"></i>
+            </div>
+        </section>
+        <!-- LEFT MAIN -->
+         
+        <!-- RIGHT MAIN -->
+        <section class="right-category">
+            <div class="mt-4">
+                <div class="container header d-flex justify-content-between align-items-center mb-3 py-2">
+                    <h3>Ảnh đang chờ chấp nhận</h3>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã hình ảnh</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá</th>
+                            <th>Người đăng ảnh</th>
+                            <th>Danh mục</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>123</td>
+                            <td><img src="../assets/images/Vietnam/10.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_abc87</td>
+                            <td>việt nam</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>452</td>
+                            <td><img src="../assets/images/Vietnam/11.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_44</td>
+                            <td>việt nam</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>111</td>
+                            <td><img src="../assets/images/Vietnam/07.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_9</td>
+                            <td>việt nam</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>634</td>
+                            <td><img src="../assets/images/Transportation/3.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_5</td>
+                            <td>việt nam</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>633</td>
+                            <td><img src="../assets/images/Technology/Data/2.jpeg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_1</td>
+                            <td>Data</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>223</td>
+                            <td><img src="../assets/images/Transportation/8.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>test12</td>
+                            <td>Phương tiện</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>654</td>
+                            <td><img src="../assets/images/Transportation/3.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_32</td>
+                            <td>Phương tiện</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>112</td>
+                            <td><img src="../assets/images/Vietnam/10.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_33</td>
+                            <td>việt nam</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>677</td>
+                            <td><img src="../assets/images/Vietnam/10.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>user_12</td>
+                            <td>việt nam</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>777</td>
+                            <td><img src="../assets/images/Abstract/3.jpg" alt="" class="rounded"></td>
+                            <td>42.000 vnđ</td>
+                            <td>test_11</td>
+                            <td>Trừ tượng</td>
+                            <td>
+                                <button class="btn btn-sm btn-primary fw-semibold">Chấp nhận</button>
+                                <button class="btn btn-sm btn-danger fw-semibold">Từ chối</button>
+                            </td>
+                        </tr>                        
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+                <div class="overlay" id="overlay"></div>
+                <div class="detail-box" id="detailBox">
+                    <h5 class="d-flex justify-content-between">Thông tin chi tiết<i class="fa-solid fa-xmark"></i></h5>
+                    <hr>
+                    <p><strong>Mã hình ảnh:</strong> <span id="imageCode"></span></p>
+                    <p><strong>Tên hình ảnh:</strong> Cậu cưỡi trâu thồi sáo</p>
+                    <p><img id="imagePreview" src="" alt="Preview" class="img-thumbnail"></p>
+                    <p><strong>Mô tả:</strong> Hai cậu bé chăn trâu giữa cánh đồng lúa xanh mướt cưới trâu thổi sáo.</p>
+                    <p><strong>Kích thước:</strong> 200x150</p>
+                    <p><strong>Dung lượng:</strong> 14MB</p>
+                    <p><strong>Ngày đăng ảnh:</strong> 8:23PM, 28-11-2024</p>
+                    <p><strong>Giá:</strong> <span id="imagePrice"></span></p>
+                    <p><strong>Người đăng ảnh:</strong> <span id="uploader"></span></p>
+                    <p><strong>Danh mục:</strong> <span id="category"></span></p>
+                </div>
+                <nav>
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                            <a class="page-link fw-semibold" href="#"><i class="bi bi-arrow-left-short"></i>Trước</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link fw-semibold" href="#">Sau<i class="bi bi-arrow-right-short"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="categoryModalLabel">Chỉnh sửa danh mục</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="categoryForm">
+                                <div class="mb-3">
+                                    <label for="categoryName" class="form-label">Tên danh mục</label>
+                                    <input type="text" class="form-control" id="categoryName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoryProducts" class="form-label">Số lượng ảnh</label>
+                                    <input type="number" class="form-control" id="categoryProducts" min="0" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="categoryStatus" class="form-label">Trạng thái</label>
+                                    <select id="categoryStatus" class="form-select">
+                                        <option value="Active">Hoạt động</option>
+                                        <option value="Inactive">Không hoạt động</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="saveCategory">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- RIGHT MAIN -->
+    </section>
+    <!-- MAIN -->
+    <script src="../assets/js/admin.js"></script>
+    <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/admin-aproved.js"></script>
+
+
+</body>
+</html>

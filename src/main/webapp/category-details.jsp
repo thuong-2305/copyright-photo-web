@@ -3,13 +3,72 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <title>Category Details</title>
-    <jsp:include page="include/head.jsp" />
+    <link rel="stylesheet" href="./assets/css/navbar-footer.css">
+    <link rel="stylesheet" href="./assets/css/homeuser.css">
     <link rel="stylesheet" href="./assets/css/category-details.css">
+    <link rel="stylesheet" href="./assets/css/search.css">
+    <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
 </head>
 
 <body>
 <jsp:include page="include/navbar.jsp"/>
+
+<!-- section user account -->
+<section class="user-account bg-white">
+    <div class="container">
+        <div class="top d-flex mt-5 align-items-center">
+            <img class="avatar position-relative" src="assets/images/avart-default.png" />
+            <div class="info">
+                <div class="name">
+                    <span>Hi, Test</span>
+                    <p>test@gmail.com</p>
+                </div>
+                <a href="pages/editprofile.html" class="text-decoration-none">Chỉnh sửa hồ sơ</a>
+            </div>
+        </div>
+        <div class="line-seperate"></div>
+        <div class="option">
+            <ul class="">
+                <li class="item">
+                    <a href="pages/homeprofile.html">
+                        <i class="fas fa-user-cog me-2"></i>
+                        <p>Chi tiết tài khoản</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="pages/like.html">
+                        <i class="fas fa-heart me-2"></i>
+                        <p>Yêu thích</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="pages/cart.html">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Giỏ hàng</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="pages/history-order.html">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <p>Lịch sử mua hàng</p>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="homepage.html">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <p class="mb-0">Đăng xuất</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <button class="btn-close btn-close-black close-user"></button>
+    </div>
+</section>
+<div class="overlay"></div>
+<!-- section user account -->
 
 <!--section banner -->
 <section class="banner d-flex flex-column justify-content-center align-items-center">
@@ -29,14 +88,12 @@
 <section class="category">
     <div class="container list-category">
         <jsp:useBean id="categories" scope="request" type="java.util.List"/>
-        <c:forEach var="item" items="${categories}">
-            <a href="products?cid=${item.getCid()}" class="box-link">
-                <div class="box">
-                    <img src="${item.getUrl()}" alt="" class="image">
-                    <p class="text-white fw-semibold fs-4">${item.getName()}</p>
-                    <i class="bi bi-back"></i>
-                </div>
-            </a>
+        <c:forEach var="item" items="${ categories }">
+        <div class="box">
+            <img src="${ item.getUrl() }" alt="" class="image">
+            <p class="text-white fw-bolder fs-4">${ item.getName() }</p>
+            <a href="products?cid=${ item.getCid() }" class="text-white">Xem</a>
+        </div>
         </c:forEach>
     </div>
 </section>
@@ -73,7 +130,7 @@
                         miễn phí bản quyền. Tải xuống tác phẩm đã chỉnh sửa của bạn và chia sẻ.
                     </li>
                 </ul>
-                <img src="./assets/images/People/9.jpg" alt="" class="float-end w-50 my-3">
+                <img src="../assets/images/People/9.jpg" alt="" class="float-end w-50 my-3">
             </div>
 
             <div class="container content-text marketing">
@@ -89,7 +146,7 @@
                         miễn phí về những người có vẻ ngoài tự nhiên. Bằng cách sử dụng các tùy chọn bộ lọc của CoRiPhoto, bạn
                         có thể chỉ định độ tuổi, giới tính, dân tộc và số lượng người trong hình ảnh của mình.</li>
                 </ul>
-                <img src="./assets/images/Commercial/2.jpg" alt="" class="float-end w-50 my-3">
+                <img src="../assets/images/Commercial/2.jpg" alt="" class="float-end w-50 my-3">
             </div>
 
             <div class="container content-text design">
@@ -109,7 +166,7 @@
                         cho nhau. Điều này sẽ giúp mang lại cho trang web của bạn một cái nhìn gắn kết, chuyên nghiệp.
                     </li>
                 </ul>
-                <img src="./assets/images/technology/data/7.webp" alt="" class="float-end w-50 my-3">
+                <img src="../assets/images/Technology/Data/7.webp" alt="" class="float-end w-50 my-3">
             </div>
 
             <div class="container content-text creative">
@@ -123,7 +180,7 @@
                         mời đám cưới, ảnh bìa Facebook cho đến câu chuyện trên Instagram, v.v. Hãy bắt đầu ngay hôm nay.
                     </li>
                 </ul>
-                <img src="./assets/images/HandScenery/007.jpg" alt="" class="float-end w-50 my-3">
+                <img src="../assets/images/HandScenery/007.jpg" alt="" class="float-end w-50 my-3">
             </div>
         </div>
     </div>

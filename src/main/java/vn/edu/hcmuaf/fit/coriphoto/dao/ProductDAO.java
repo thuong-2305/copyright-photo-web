@@ -4,11 +4,14 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
-import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
+import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductDAO {
     private static final Jdbi jdbi = new DBConnect().get();
@@ -30,7 +33,7 @@ public class ProductDAO {
                 "WHERE p.status = 'accepted' " +
                 "GROUP BY p.id, p.name, p.url " +
                 "ORDER BY view DESC " +
-                "LIMIT 25;";
+                "LIMIT 15;";
         return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
                 .mapToBean(TrendProducts.class).list());
     }
@@ -98,6 +101,11 @@ public class ProductDAO {
                 .bind(0, "%" + content+  "%").bind(1, "%" + content+  "%").mapToBean(Product.class).list());
     }
 
+    public static void main(String[] args) {
+        System.out.println(new ProductDAO().getProductLatest(5));
+//        new ProductDAO().getTrendProducts();
+    }
+
     public boolean addProduct(Product p) {
         jdbi.useHandle(handle -> handle.execute(
                 "INSERT INTO products (cid, uid, name, description, url, price, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -114,64 +122,28 @@ public class ProductDAO {
         );
     }
 
-    public void updateProduct(Product product) {
+    public boolean updateProduct(Product product) {
         String sql = """
             UPDATE products
             SET name = :name,
                 description = :description,
                 cid = :cid,
-                url = :url,
                 price = :price,
                 uid = :uid,
                 status = :status
             WHERE id = :id
         """;
 
-        jdbi.useHandle(handle -> {handle.createUpdate(sql)
-                    .bind("name", product.getName())
-                    .bind("description", product.getDescription())
-                    .bind("cid", product.getCid())
-                    .bind("url", product.getUrl())
-                    .bind("price", product.getPrice())
-                    .bind("uid", product.getUid())
-                    .bind("status", product.getStatus())
-                    .bind("id", product.getId()).execute();
-        });
-    }
-
-    public boolean updateStatus(String action, int id) {
-        String querySql = """
-            UPDATE products
-            SET status = :status
-            WHERE id = :id
-        """;
         return jdbi.withHandle(handle ->
-                handle.createUpdate(querySql)
-                        .bind("status", action)
-                        .bind("id", id)
-                        .execute() > 0);
-    }
-
-    public int getInNextProduct() {
-        return jdbi.withHandle(handle ->
-                handle.createQuery("SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products' LIMIT 1")
-                        .mapTo(Integer.class)
-                        .findOne()
-                        .orElseThrow(() -> new RuntimeException("Không thể lấy ID tiếp theo"))
+                handle.createUpdate(sql)
+                        .bind("id", product.getId())
+                        .bind("name", product.getName())
+                        .bind("description", product.getDescription())
+                        .bind("cid", product.getCid())
+                        .bind("price", product.getPrice())
+                        .bind("uid", product.getUid())
+                        .bind("status", product.getStatus())
+                        .execute() > 0
         );
     }
-
-    public List<Product> getAllProductsWaiting() {
-        return jdbi.withHandle(handle -> handle.createQuery("select * from products where status = ? order by dateUpload desc")
-                .bind(0, "waiting").mapToBean(Product.class).list());
-    }
-
-    public static void main(String[] args) {
-        Product product = new ProductService().getById(996);
-        System.out.println(product);
-        product.setName("Muôn thú rừng núi");
-        new ProductService().updateProduct(product);
-        System.out.println(product);
-    }
 }
-

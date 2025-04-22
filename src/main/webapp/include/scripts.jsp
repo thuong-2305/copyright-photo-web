@@ -7,12 +7,9 @@
 <script src="../assets/js/products.js"></script>
 <script src="../assets/js/product-details.js"></script>
 <script src="../assets/js/cart.js"></script>
-
-
-<%-- Search --%>
 <script>
     function submitSearch() {
-        var query = document.getElementById('search-input').value.trim();
+        var query = document.getElementById('search-input').value.trim(); // Lấy giá trị input
         if (query) {
             window.location.href = "search?content=" + encodeURIComponent(query);
         }

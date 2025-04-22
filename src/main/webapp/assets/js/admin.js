@@ -33,3 +33,4 @@ document.querySelector('input[type="text"].customer').addEventListener('input', 
 document.querySelector(".btn.btn-primary").addEventListener("click", () => {
     new bootstrap.Modal(document.getElementById("categoryModal")).show();
 });
+

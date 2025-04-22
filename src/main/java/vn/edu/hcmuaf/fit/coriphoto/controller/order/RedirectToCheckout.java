@@ -56,15 +56,18 @@ public class RedirectToCheckout extends HttpServlet {
         int promotionId = 0;
         if (totalProducts < 5) {
             promotionId = 1;
+            percentage = promotionService.getDiscountByPromotionID(promotionId);
         } else if (totalProducts < 10) {
             promotionId = 2;
+            percentage = promotionService.getDiscountByPromotionID(promotionId);
         } else if (totalProducts < 25) {
             promotionId = 3;
+            percentage = promotionService.getDiscountByPromotionID(promotionId);
         } else {
             promotionId = 4;
-        }
-        percentage = promotionService.getDiscountByPromotionID(promotionId);
+            percentage = promotionService.getDiscountByPromotionID(promotionId);
 
+        }
 
         double discountAmount = totalBeforeDiscount * percentage;
         double totalAfterDiscount = totalBeforeDiscount - discountAmount;

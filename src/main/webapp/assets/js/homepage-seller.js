@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+
+
+
+
 // Định nghĩa hàm loadData ra ngoài $(document).ready
 function loadData(categoryParentName) {
     $.ajax({

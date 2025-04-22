@@ -1,7 +1,5 @@
 package vn.edu.hcmuaf.fit.coriphoto.model;
 
-import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
-
 public class Category {
     private int cid;
     private int cpid;
@@ -47,10 +45,6 @@ public class Category {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public int getNumberOfType() {
-        return new CategoryService().getNumberOfType(this.cid);
     }
 
     @Override

@@ -3,12 +3,9 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.Order;
-import vn.edu.hcmuaf.fit.coriphoto.model.OrderDetail;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class OrderDAO {
     private static final Jdbi jdbi = new DBConnect().get();
@@ -20,18 +17,18 @@ public class OrderDAO {
                 "VALUES (:uid, :pmid, :promotionId, CURDATE(), :totalPrice, 'Completed')";
 
         // Dùng getGeneratedKeys để lấy orderId của đơn hàng mới
-        return jdbi.withHandle(handle ->
-                handle.createUpdate(sql)
-                        .bind("uid", uid)
-                        .bind("pmid", pmid == -1 ? null : pmid)
-                        .bind("promotionId", promotionId)
-                        .bind("totalPrice", totalPrice)
-                        .executeAndReturnGeneratedKeys("orderId") // Lấy generated key (orderId)
-                        .mapTo(int.class)
-                        .one()
-        );
+        return jdbi.withHandle(handle -> {
+            // Insert và lấy generated key
+            return handle.createUpdate(sql)
+                    .bind("uid", uid)
+                    .bind("pmid", pmid)
+                    .bind("promotionId", promotionId)
+                    .bind("totalPrice", totalPrice)
+                    .executeAndReturnGeneratedKeys("orderId") // Lấy generated key (orderId)
+                    .mapTo(int.class)
+                    .one();
+        });
     }
-
 
     public List<Integer> getAllOrdersId() {
         String sql = "SELECT orderId FROM orders";
@@ -127,20 +124,9 @@ public class OrderDAO {
         );
     }
 
-    public int getPmIdByOrderId(int oid) {
-        String sql = "SELECT pmid FROM orders WHERE orderId = :oid";
-
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("oid", oid)
-                        .mapTo(Integer.class)
-                        .findOne() // Trả về Optional<Integer>
-                        .orElse(-1) // Nếu không tìm thấy, trả về -1
-        );
-    }
 
 
-        // Hàm tạo đơn hàng và thêm chi tiết đơn hàng
+    // Hàm tạo đơn hàng và thêm chi tiết đơn hàng
     public boolean createOrder(int uid, int pmid, int promotionId, int licenseId, double totalPrice, List<Product> products) {
         // Bước 1: Tạo đơn hàng và lấy orderId
         int orderId = addOrderAndGetId(uid, pmid, promotionId, totalPrice);
@@ -166,64 +152,6 @@ public class OrderDAO {
         // Nếu tất cả các bước đều thành công, trả về true
         return true;
     }
-
-    public int getLastOrderId() {
-        String sql = "SELECT orderId FROM orders ORDER BY orderId DESC LIMIT 1";
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .mapTo(Integer.class)
-                        .findOne()
-                        .orElse(0) // Nếu không có đơn hàng nào, trả về 0
-        );
-    }
-
-    public List<Order> getOrdersHistory(int uid) {
-        String sql = """
-        SELECT * 
-        FROM orders 
-        WHERE uid = :uid AND status = 'completed'
-        ORDER BY orderDate DESC, orderId DESC
-        """;
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("uid", uid)
-                        .mapToBean(Order.class)
-                        .list()
-        );
-    }
-
-    public List<OrderDetail> getOrderDetailsHistory(int oid) {
-        String sql = """
-        SELECT *
-        FROM order_details
-        WHERE orderId = :oid
-        """;
-
-        return jdbi.withHandle(handle ->
-                handle.createQuery(sql)
-                        .bind("oid", oid)
-                        .mapToBean(OrderDetail.class)
-                        .list()
-        );
-    }
-
-    public Map<Integer, List<OrderDetail>> getOrdersWithDetails(int userId) {
-        // Lấy danh sách đơn hàng
-        List<Order> orders = getOrdersHistory(userId);
-
-        // Tạo map để lưu danh sách OrderDetail theo orderId
-        Map<Integer, List<OrderDetail>> orderDetailsMap = new HashMap<>();
-
-        for (Order order : orders) {
-            List<OrderDetail> details = getOrderDetailsHistory(order.getOrderId());
-            orderDetailsMap.put(order.getOrderId(), details);
-        }
-        return orderDetailsMap;
-    }
-
-
-
-
 
     public static void main(String[] args) {
         OrderDAO orderDAO = new OrderDAO();

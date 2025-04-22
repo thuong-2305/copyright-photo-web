@@ -41,15 +41,8 @@ public class CategoryService {
         return categories.getCategoryIdByName(name);
     }
 
-    public String getNameCategoryById(int cid) { return categories.getNameCategoryById(cid); }
 
-    public int getNumberOfType(int cid) {
-        return categories.getNumberOfType(cid);
-    }
 
-    public List<Category> getAll_notImage() {
-        return categories.getAll_notImage();
-    }
 
     public static void main(String[] args) {
         System.out.println(new CategoryService().getAll());

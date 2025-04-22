@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
 
                 User user = service.getUserByEmail(account.getEmail());
                 if (user == null) {
-                    service.registerUser(account.getEmail(), "","", account.getName());
+                    service.registerUser(account.getEmail(), "", account.getName());
                     user = service.getUserByEmail(account.getEmail());
                 }
                 HttpSession session = request.getSession(true);
