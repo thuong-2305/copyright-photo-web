@@ -39,7 +39,7 @@ public class AddFavourite extends HttpServlet {
             }
 
             String productIdParam = request.getParameter("productId");
-            System.out.println("==="+productIdParam);
+
             if (productIdParam == null || productIdParam.isEmpty()) {
                 jsonResponse.put("success", false);
                 jsonResponse.put("message", "ID sản phẩm không hợp lệ.");

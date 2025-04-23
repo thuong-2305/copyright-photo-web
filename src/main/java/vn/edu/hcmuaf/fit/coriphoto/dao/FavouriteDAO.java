@@ -62,16 +62,4 @@ public class FavouriteDAO {
         return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
                 .bind(0, userId).mapToBean(Product.class).list());
     }
-
-//    public static void main(String[] args) {
-//        FavouriteDAO favouriteDAO = new FavouriteDAO();
-//        for (Product p : favouriteDAO.getFavouriteProducts(98)){
-//            System.out.println(p);
-//        }
-//        favouriteDAO.addFavourite(98,13);
-//        favouriteDAO.addFavourite(98,14);
-//        favouriteDAO.addFavourite(98,15);
-//        System.out.println(favouriteDAO.checkFavouriteExists(98,13));
-//        favouriteDAO.removeFavourite(98,13);
-//    }
 }
