@@ -91,15 +91,6 @@ public class OrderHistory extends HttpServlet {
                 productMap.put(product.getId(), product);
             }
 
-            System.out.println(orders);
-            System.out.println(orderDetailsMap);
-            System.out.println(productMap);
-            System.out.println(paymentTypes);
-            System.out.println(userEmails);
-            System.out.println(priceMap);
-
-
-
             request.setAttribute("orders", orders);
             request.setAttribute("orderDetailsMap", orderDetailsMap);
             request.setAttribute("productMap", productMap);

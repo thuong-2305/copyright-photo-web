@@ -24,16 +24,15 @@ public class OrderService {
     }
 
     public boolean createOrder(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
-        // Bước 1: Tạo đơn hàng và lấy orderId
+        // Tạo đơn hàng và lấy orderId
         int orderId = addOrderAndGetId(uid, pmid, promotionId, totalPrice);
-        System.out.println("Đơn vừa thêm: " + orderId);
 
         // Nếu không thể lấy được orderId, trả về false
         if (orderId <= 0) {
             return false;
         }
 
-        // Bước 2: Thêm chi tiết đơn hàng vào bảng order_details
+        // Thêm chi tiết đơn hàng vào bảng order_details
         for (int i = 0; i < products.size(); i++) {
             Product product = products.get(i);
             int licenseId = licenseIds[i]; // Lấy licenseId tương ứng với từng sản phẩm
@@ -42,7 +41,6 @@ public class OrderService {
             boolean orderDetailsCreated = addOrderDetails(orderId, product.getId(), licenseId, price);
 
             if (!orderDetailsCreated) {
-                System.out.println("Lỗi khi thêm chi tiết đơn hàng cho sản phẩm ID: " + product.getId());
                 return false;
             }
         }
@@ -71,7 +69,6 @@ public class OrderService {
     }
 
     public List<OrderDetail> getOrderDetailsHistory(int oid) {
-
         return orderDAO.getOrderDetailsHistory(oid);
     }
 

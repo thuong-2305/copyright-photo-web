@@ -269,10 +269,4 @@ public class UserDAO {
         );
     }
 
-    public static void main(String[] args) {
-        UserDAO userDAO = new UserDAO();
-
-        String test = userDAO.getPaymentTypeNameByPmid(10);
-        System.out.println(test);
-    }
 }
