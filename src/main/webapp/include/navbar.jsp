@@ -86,11 +86,18 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link mx-lg-3" href="/license">
+                                <a class="nav-link mx-lg-3" href="${pageContext.request.contextPath}/license">
                                     <span class="fw-semibold title-item">
                                         <i class="bi bi-x-diamond me-2 title-item"></i>Giấy phép
                                     </span>
                                 </a>
+                                <div class="link-hover">
+                                    <div class="dropdown-arrow"></div>
+                                    <a href="${pageContext.request.contextPath}/license" class="d-flex justify-content-between">
+                                        <span>Xem giấy phép</span>
+                                        <i class="bi bi-arrow-right d-none"></i>
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
