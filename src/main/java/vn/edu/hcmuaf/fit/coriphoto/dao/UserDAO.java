@@ -21,6 +21,30 @@ public class UserDAO {
                 .bind(0, uid).mapTo(String.class).one());
     }
 
+    public String getEmail(int uid) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT email FROM users WHERE uid = ?")
+                .bind(0, uid).mapTo(String.class).one());
+    }
+
+    public String getPaymentTypeNameByPmid(int pmid) {
+        String sql = """
+        SELECT pt.pmTypeName 
+        FROM payment_type pt
+        JOIN payment_method pm ON pm.pmTypeId = pt.pmTypeId
+        WHERE pm.pmid = :pmid
+    """;
+
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind("pmid", pmid)  // Dùng tham số đặt tên
+                        .mapTo(String.class)
+                        .findOne()
+                        .orElse("Khác")
+        );
+    }
+
+
+
     public User findByEmail(String email, String password) {
         String hashPassword = hashPasswordMD5(password);//Mã hóa pass để so sánh với db
         String query = "SELECT * FROM users WHERE (email = ? OR username = ?) and password = ?";
@@ -244,4 +268,5 @@ public class UserDAO {
                 handle.execute("DELETE FROM users WHERE uid = ?", userId) > 0
         );
     }
+
 }

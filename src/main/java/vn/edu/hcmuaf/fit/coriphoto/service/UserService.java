@@ -63,6 +63,12 @@ public class UserService {
     }
 
     public List<User> getAllCustomers() {return userDao.getAllCustomers();}
+    public String getEmail(int uid) {
+        return userDao.getEmail(uid);
+    }
+    public String getPaymentTypeNameByPmid(int pmid) {
+        return userDao.getPaymentTypeNameByPmid(pmid);
+    }
 
     public boolean deleteUserById(int userId) {
         return userDao.deleteUserById(userId);

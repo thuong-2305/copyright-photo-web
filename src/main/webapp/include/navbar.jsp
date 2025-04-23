@@ -178,7 +178,7 @@
                     </a>
                 </li>
                 <li class="item">
-                    <a href="#">
+                    <a href="OrderHistory">
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <p>Lịch sử mua hàng</p>
                     </a>

@@ -50,7 +50,6 @@ public class CartOrderController extends HttpServlet {
         }
         else {
             discountAmount = totalBeforeDiscount - totalAfterDiscount;
-
         }
 
         int numChecked = Integer.parseInt(request.getParameter("numChecked"));
@@ -65,6 +64,7 @@ public class CartOrderController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Không có sản phẩm nào để thanh toán.");
             return;
         }
+
         // Tính toán lại giá sản phẩm dựa trên licenseIds
         for (int i = 0; i < productPrices.length; i++) {
             if (licenseIdsArray[i] == 2) { // Nếu licenseId là 2, tăng giá gấp đôi
@@ -113,16 +113,19 @@ public class CartOrderController extends HttpServlet {
         // Tạo đơn hàng cho từng sản phẩm
         CartService cartService = new CartService();
 
-
-        for (int i = 0; i < productIds.length; i++) {
-            int licenseId = licenseIdsArray[i];
-            // Gọi service để tạo đơn hàng
-            orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
-            cartService.deleteItem(uid, Integer.parseInt(productIds[i]));
+        // Sửa
+        boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseIdsArray, totalBeforeDiscount, products);
+        if (isOrderCreated) {
+            for (String productId : productIds) {
+                cartService.deleteItem(uid, Integer.parseInt(productId));
+            }
         }
+
         // Chuyển hướng sau khi hoàn thành
         response.sendRedirect("/");
     }
+
+
     // Hàm chuyển đổi chuỗi có dấu ngoặc vuông và số phân tách dấu phẩy thành mảng int
     private static int[] convertStringToIntArray(String str) {
         // Loại bỏ dấu ngoặc vuông và khoảng trắng, sau đó tách các số theo dấu phẩy
