@@ -85,31 +85,6 @@
 <script src="assets/js/homepage.js"></script>
 <script src="assets/js/navbar.js"></script>
 <script src="assets/js/homeuser.js"></script>
-<script>
-  // Hàm xử lý yêu thích
-  function toggleFavorite(productId) {
-    if (confirm("Bạn có chắc muốn xóa sản phẩm này khỏi danh sách yêu thích?")) {
-      // Gửi yêu cầu AJAX để xóa sản phẩm
-      fetch(`RemoveFavourite?action=remove&productId=`+productId, {
-        method: 'POST'
-      })
-              .then(response => response.json())
-              .then(data => {
-                if (data.success) {
-                  alert(data.message);
-                  location.reload(); // Tải lại trang sau khi xóa thành công
-                } else {
-                  alert("Có lỗi xảy ra: " + data.message);
-                }
-              })
-              .catch(error => {
-                alert(productId);
-                console.error("Error:", error);
-                alert("Có lỗi xảy ra khi xóa sản phẩm.");
-              });
-    }
-  }
-</script>
 </body>
 
 </html>

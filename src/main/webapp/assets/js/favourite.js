@@ -1,3 +1,27 @@
+// Hàm xử lý yêu thích
+function toggleFavorite(productId) {
+    if (confirm("Bạn có chắc muốn xóa sản phẩm này khỏi danh sách yêu thích?")) {
+        // Gửi yêu cầu AJAX để xóa sản phẩm
+        fetch(`RemoveFavourite?action=remove&productId=`+productId, {
+            method: 'POST'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload(); // Tải lại trang sau khi xóa thành công
+                } else {
+                    alert("Có lỗi xảy ra: " + data.message);
+                }
+            })
+            .catch(error => {
+                alert(productId);
+                console.error("Error:", error);
+                alert("Có lỗi xảy ra khi xóa sản phẩm.");
+            });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     // 1. Xử lý sự kiện chọn/bỏ chọn ảnh trên từng ảnh (nút .select-btn)
 
