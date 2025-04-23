@@ -14,7 +14,22 @@ public class UserService {
         this.userDao = new UserDAO();
     }
 
-    public String getFullName(int uid) {
+
+    public boolean isExistEmail(String email) {
+        return userDao.isExistEmail(email);
+    }
+
+
+    public String hashPasswordMD5(String password) {
+        return userDao.hashPasswordMD5(password);
+    }
+
+    public int getUidByEmail(String email) {
+        return userDao.getUidByEmail(email);
+    }
+
+
+        public String getFullName(int uid) {
         return userDao.getFullName(uid);
     }
 

@@ -38,4 +38,5 @@ public class AuthService {
     public User getUserById(int id) {
         return users.findById(id);
     }
+
 }
