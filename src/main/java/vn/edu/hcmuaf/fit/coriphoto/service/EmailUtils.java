@@ -114,7 +114,6 @@ public class EmailUtils {
 
             // Gửi email
             Transport.send(message);
-            System.out.println("Email đã được gửi thành công với ảnh và file license.txt");
             return true;
         } catch (MessagingException | IOException mex) {
             mex.printStackTrace();
@@ -131,9 +130,6 @@ public class EmailUtils {
         }
         return content.toString();
     }
-
-
-
 
     public static boolean sendEmailWithAttachment(String to, String subject, String body, String imagePath, String imageName, int licenseId) {
         // Cấu hình các thuộc tính cho SMTP server
@@ -188,7 +184,6 @@ public class EmailUtils {
 
             // Gửi email
             Transport.send(message);
-            System.out.println("Email đã được gửi thành công với ảnh và tệp license.txt");
             return true;
         } catch (MessagingException | IOException mex) {
             mex.printStackTrace();

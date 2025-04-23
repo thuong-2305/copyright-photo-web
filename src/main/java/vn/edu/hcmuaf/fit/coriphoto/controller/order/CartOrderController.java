@@ -148,11 +148,6 @@ public class CartOrderController extends HttpServlet {
                             "Trân trọng,\n"
                     , imagePaths, imageNames, licenses);
 
-
-
-
-
-
             // xóa tất cả những sản phẩm đã mua trong giỏ hàng
             for (String productId : productIds) {
                 cartService.deleteItem(uid, Integer.parseInt(productId));
