@@ -1,6 +1,5 @@
 package vn.edu.hcmuaf.fit.coriphoto.controller.admin;
 
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -26,10 +25,5 @@ public class AdminHandleActNotify extends HttpServlet {
         request.setAttribute("products", products);
 
         request.getRequestDispatcher("admin-notification.jsp").forward(request,response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }
