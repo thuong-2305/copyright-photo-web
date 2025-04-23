@@ -44,12 +44,13 @@ public class FavouriteDAO {
     }
 
     // Xóa sản phẩm khỏi danh sách yêu thích
-    public void removeFavourite(int userId, int productId) {
-        jdbi.useHandle(handle -> {
-            handle.createUpdate("DELETE FROM favourite WHERE userId = :userId AND productId = :productId")
+    public boolean removeFavourite(int userId, int productId) {
+        return jdbi.withHandle(handle -> {
+            int rowsAffected = handle.createUpdate("DELETE FROM favourite WHERE userId = :userId AND productId = :productId")
                     .bind("userId", userId)
                     .bind("productId", productId)
                     .execute();
+            return rowsAffected > 0;
         });
     }
 

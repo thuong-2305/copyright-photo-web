@@ -10,15 +10,9 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "AddFavourite", value = "/AddFavourite")
-public class AddFavourite extends HttpServlet {
-    private final FavouriteDAO favoriteDAO = new FavouriteDAO();
-
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+@WebServlet(name = "RemoveFavourite", value = "/RemoveFavourite")
+public class RemoveFavourite extends HttpServlet {
+    private final FavouriteDAO favouriteDAO = new FavouriteDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,31 +32,40 @@ public class AddFavourite extends HttpServlet {
                 return;
             }
 
-            String productIdParam = request.getParameter("productId");
-
-            if (productIdParam == null || productIdParam.isEmpty()) {
-                jsonResponse.put("success", false);
-                jsonResponse.put("message", "ID sản phẩm không hợp lệ.");
-                out.print(jsonResponse.toString());
-                return;
-            }
-
-            int productId = Integer.parseInt(productIdParam);
-            int userId = currentUser.getUid();
             String action = request.getParameter("action");
+            int userId = currentUser.getUid();
 
-            if ("add".equals(action)) {
-                boolean isFavorite = favoriteDAO.checkFavouriteExists(userId, productId);
-
-                if (isFavorite) {
+            if ("remove".equals(action)) {
+                // Xử lý xóa 1 sản phẩm (code cũ)
+            }
+            else if ("bulkRemove".equals(action)) {
+                // Xử lý xóa nhiều sản phẩm
+                String productIdsParam = request.getParameter("productIds"); // JSON Array String
+                if (productIdsParam == null || productIdsParam.isEmpty()) {
                     jsonResponse.put("success", false);
-                    jsonResponse.put("message", "Sản phẩm đã có trong danh sách yêu thích.");
-                } else {
-                    favoriteDAO.addFavourite(userId, productId);
-                    jsonResponse.put("success", true);
-                    jsonResponse.put("message", "Đã thêm sản phẩm vào danh sách yêu thích.");
+                    jsonResponse.put("message", "Danh sách ID sản phẩm trống.");
+                    out.print(jsonResponse.toString());
+                    return;
                 }
-            } else {
+                // Chuyển chuỗi JSON -> mảng ID
+                org.json.JSONArray idsArray = new org.json.JSONArray(productIdsParam);
+
+                int countRemoved = 0;
+                for (int i = 0; i < idsArray.length(); i++) {
+                    int productId = idsArray.getInt(i);
+                    boolean removed = favouriteDAO.removeFavourite(userId, productId);
+                    if (removed) countRemoved++;
+                }
+
+                if (countRemoved > 0) {
+                    jsonResponse.put("success", true);
+                    jsonResponse.put("message", "Đã xóa " + countRemoved + " sản phẩm khỏi danh sách yêu thích.");
+                } else {
+                    jsonResponse.put("success", false);
+                    jsonResponse.put("message", "Không có sản phẩm nào được xóa.");
+                }
+            }
+            else {
                 jsonResponse.put("success", false);
                 jsonResponse.put("message", "Hành động không hợp lệ.");
             }
@@ -74,5 +77,4 @@ public class AddFavourite extends HttpServlet {
 
         out.print(jsonResponse.toString());
     }
-
 }

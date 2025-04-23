@@ -119,7 +119,7 @@
                     </div>
                     <div class="line-separate mx-lg-1"></div>
                     <%-- Wishlist --%>
-                    <a href="#" class="love">
+                    <a href="Favourite" class="love">
                         <i class="fa-regular fa-heart title-item"></i>
                     </a>
                     <%-- Cart --%>

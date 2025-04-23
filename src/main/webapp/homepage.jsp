@@ -125,8 +125,8 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="">
                         <div class="hover-options">
-                            <button class="favorite-btn" data-product-id="${product.productId}" onclick="toggleFavorite(${product.productId})">
-                                <i class="fa ${isFavorite ? 'fa-heart' : 'fa-heart-o'}"></i>
+                            <button class="favorite-btn" data-product-id="<%= product.getId() %>">
+                                <i class="fa-regular fa-heart"></i>
                             </button>
                             <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
                             <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
@@ -147,10 +147,9 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="favorite-btn" data-product-id="${product.productId}" onclick="toggleFavorite(${product.productId})">
-                                <i class="fa ${isFavorite ? 'fa-heart' : 'fa-heart-o'}"></i>
+                            <button class="favorite-btn" data-product-id="<%= product.getId() %>">
+                                <i class="fa-regular fa-heart"></i>
                             </button>
-<%--                            <button class="option-button"><i class="fa-regular fa-heart"></i></button>--%>
                             <button class="option-button"><i class="fa-solid fa-down-long"></i></button>
                             <button class="option-button addCart" data-product-id=<%= product.getId() %>><i class="fa-solid fa-cart-shopping"></i></button>                            </div>
                         <div class="image-text">
@@ -170,8 +169,8 @@
                     <div class="pic">
                         <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
-                            <button class="favorite-btn" data-product-id="${product.productId}" onclick="toggleFavorite(${product.productId})">
-                                <i class="fa ${isFavorite ? 'fa-heart' : 'fa-heart-o'}"></i>
+                            <button class="favorite-btn" data-product-id="<%= product.getId() %>">
+                                <i class="fa-regular fa-heart"></i>
                             </button>
                             <button class="option-button">
                                 <i class="fa-solid fa-down-long"></i>
@@ -262,6 +261,46 @@
                 alertMessage.style.display = "none";
             }, 2000);
         }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const favoriteButtons = document.querySelectorAll('.favorite-btn');
+
+        favoriteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.getAttribute('data-product-id');
+                alert(productId);
+                // Kiểm tra nếu productId bị rỗng
+                if (!productId || productId === '') {
+                    alert("Không thể thêm vào danh sách yêu thích. ID sản phẩm không hợp lệ." + productId);
+                    return;
+                }
+
+                // Gửi yêu cầu AJAX đến Servlet
+                fetch('AddFavourite', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `action=add&productId=`+productId
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            this.querySelector('i').classList.remove('fa-regular');
+                            this.querySelector('i').classList.add('fa-solid');
+                            alert(data.message);
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi thêm vào danh sách yêu thích.');
+                    });
+            });
+        });
     });
 </script>
 </body>
