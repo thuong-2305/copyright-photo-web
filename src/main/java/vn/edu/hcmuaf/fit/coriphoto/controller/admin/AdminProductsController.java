@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.coriphoto.controller.admin;
 
 import com.google.gson.*;
+import com.google.gson.annotations.JsonAdapter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -45,7 +46,6 @@ public class AdminProductsController extends HttpServlet {
                     String jsonResponse = gson.toJson(product);
                     response.getWriter().write(jsonResponse);
                 } else {
-
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Sản phẩm không tồn tại");
                 }
             } catch (NumberFormatException e) {

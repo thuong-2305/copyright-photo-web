@@ -149,9 +149,7 @@
                                         <td>${product.price}</td>
                                         <td>${product.status}</td>
                                         <td>
-                                            <button class="btn edit-btn btn-warning" data-id="${product.id}"
-                                                <%--                                                onclick="document.getElementById('khungSuaSanPham').style.transform = 'scale(1)';"--%>
-                                            >Sửa</button>
+                                            <button class="btn edit-btn btn-warning" data-id="${product.id}">Sửa</button>
                                             <button class="btn delete-btn btn-danger" data-id="${product.id}">Xóa</button>
                                         </td>
                                     </tr>
@@ -295,7 +293,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
             <!-- End: Table SAN PHAM -->
             <!-- Begin: Modal xóa sản phẩm -->
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -406,14 +404,17 @@
                 return response.json()})
             .then(product => {
                 // Hiển thị dữ liệu sản phẩm lên form
-                document.querySelector('#khungSuaSanPhamTable input[name="idProduct"]').value = productId;
-
-                document.querySelector('#khungSuaSanPhamTable input[name="nameProduct"]').value = product.name;
-                document.querySelector('#khungSuaSanPhamTable input[name="description"]').value = product.description;
-                document.querySelector('#khungSuaSanPhamTable input[name="category"]').value = product.cid;
-                document.querySelector('#khungSuaSanPhamTable input[name="price"]').value = product.price;
-                document.querySelector('#khungSuaSanPhamTable input[name="contributor"]').value = product.uid;
-                document.querySelector('#khungSuaSanPhamTable select[name="status"]').value = product.status;
+                if (product) {
+                    document.querySelector('#khungSuaSanPhamTable input[name="idProduct"]').value = productId || '';
+                    document.querySelector('#khungSuaSanPhamTable input[name="nameProduct"]').value = product.name || '';
+                    document.querySelector('#khungSuaSanPhamTable input[name="description"]').value = product.description || '';
+                    document.querySelector('#khungSuaSanPhamTable input[name="category"]').value = product.cid || '';
+                    document.querySelector('#khungSuaSanPhamTable input[name="price"]').value = product.price || '';
+                    document.querySelector('#khungSuaSanPhamTable input[name="contributor"]').value = product.uid || '';
+                    document.querySelector('#khungSuaSanPhamTable select[name="status"]').value = product.status || '';
+                } else {
+                    alert('Không tìm thấy thông tin sản phẩm!');
+                }
 
                 // Hiển thị form sửa
                 document.getElementById('khungSuaSanPham').style.transform = 'scale(1)';

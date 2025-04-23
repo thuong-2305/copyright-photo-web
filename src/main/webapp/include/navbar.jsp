@@ -166,7 +166,7 @@
                     </a>
                 </li>
                 <li class="item">
-                    <a href="#">
+                    <a href="Favourite">
                         <i class="fas fa-heart me-2"></i>
                         <p>Yêu thích</p>
                     </a>
