@@ -53,7 +53,7 @@
                             required
                     />
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     <label
                             for="password"
                             class="form-label d-flex justify-content-between"
@@ -68,8 +68,10 @@
                             placeholder="Nhập mật khẩu của bạn"
                             required
                     />
+                    <i class="fa fa-eye position-absolute togglePassword"
+                       style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 position-relative">
                     <label
                             for="password"
                             class="form-label d-flex justify-content-between"
@@ -83,6 +85,8 @@
                             placeholder="Nhập lại mật khẩu"
                             required
                     />
+                    <i class="fa fa-eye position-absolute togglePassword"
+                       style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
                 <button type="submit" class="btn btn-signup w-100 mb-3">
                     Đăng ký
@@ -106,6 +110,20 @@
     </div>
 </div>
 <jsp:include page="include/scripts.jsp"/>
+
+<script>
+    document.querySelectorAll('.togglePassword').forEach(function (toggleIcon) {
+        toggleIcon.addEventListener('click', function () {
+            const passwordInput = this.previousElementSibling;
+
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
+
 </body>
 </html>
 

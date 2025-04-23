@@ -59,7 +59,7 @@
 #nav .container {
     padding: 0;
     margin: 5px auto;
-    max-width: 90% !important;
+    max-width: 95% !important;
 }
 
 #nav .container .user-icon .avatar {
@@ -105,6 +105,18 @@
 
 #nav:not(.scrolled) .container .feature-admin div:hover i {
     color: white !important;
+}
+
+#nav:not(.scrolled) .container .login-button {
+    background-color: transparent;
+    color: #ceced2;
+    border: 1px solid #ceced2;
+}
+
+#nav:not(.scrolled) .container .login-button:hover {
+    color: white;
+    border-color: var(--primary-color);
+    background: var(--primary-color);
 }
 
 #nav .container .nav-item:not(.nav-item:nth-child(2)):hover .link-hover {
@@ -289,6 +301,11 @@
     padding: 40px 20px 10px;
     border-top: 1px solid var(--line-seperate);
     font-family: 'Arial', sans-serif;
+}
+
+.footer .fw-bold h3 {
+    font-family: "Braah One", serif;
+    font-style: normal;
 }
 
 .footer .footer-column {

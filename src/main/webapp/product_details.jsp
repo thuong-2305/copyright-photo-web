@@ -34,6 +34,13 @@
         #nav:not(.scrolled) .nav-item:hover .title-item {
             color: #009970 !important;
         }
+
+        #nav:not(.scrolled) .container .login-button {
+            background-color: transparent;
+            color: black;
+            padding: 7px 19px;
+            border: 1px solid black;
+        }
     </style>
 </head>
 
@@ -41,7 +48,7 @@
 <jsp:include page="include/navbar.jsp"/>
 
 <!--search -->
-<section class="search" style="margin-top: 80px;">
+<section class="search" style="margin-top: 80px; margin-bottom: 20px;">
     <div class="search-container">
         <div class="dropdown">
             <button class="text-secondary" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
@@ -75,47 +82,26 @@
 </div>
 <!-- Begin: Product detail -->
 <div class="product-container">
-    <div>
-        <h1 class="product-name">${ product.getName() }</h1>
-        <p class="product-desc">${ product.getDescription() }</p>
-    </div>
     <div class="row">
         <div class="product-left col col-half">
             <div class="product">
                 <div class="div-img">
                     <img src="${ product.getUrl() }" alt="" class="product-img">
-                    <button class="btn-enlarge">Phóng to<i class="fa-solid fa-search-plus"></i></button>
-                </div>
-                <div class="product-nav">
-                    <ul class="product-button">
-                        <li class="btn-left">
-                            <button class="btn-preview">Xem trước<i
-                                    class="fa-solid fa-download"></i></button>
-                        </li>
-                        <li class="btn-left">
-                            <button class="btn-save">Lưu<i
-                                    class="fa-solid fa-floppy-disk"></i></button>
-                        </li>
-                        <li class="btn-left">
-                            <button class="btn-share">Chia sẻ<i
-                                    class="fa-solid fa-share"></i></button>
-                        </li>
-                    </ul>
                 </div>
             </div>
 
-            <div class="product-details mt-16">
-                <h2>Chi tiết ảnh</h2>
+            <div class="product-details mt-5">
+                <h2 style="color: #03d1a8">Chi tiết ảnh</h2>
                 <div class="row">
                     <div class="col col-full">
                         <ul>
                             <li>
                                 <strong>ID - Hình ảnh: </strong>
-                                <p>#${ product.getId() }</p>
+                                <p class="fw-semibold">#${ product.getId() }</p>
                             </li>
                             <li>
                                 <strong>Ngươi đăng ảnh: </strong>
-                                <p>${ product.getUid() }</p>
+                                <p>${ fullName }</p>
                             </li>
                             <li>
                                 <strong>Kích thước tập tin: </strong>
@@ -129,26 +115,33 @@
                                 <strong>Ngày đăng ảnh: </strong>
                                 <p>${ product.getDateUpload() }</p>
                             </li>
+                        </ul>
                     </div>
                 </div>
-
-                </ul>
             </div>
         </div>
 
         <div class="product-right col col-half">
-            <h2 class="liscense mt-8 mb-4">1. Chọn giấy phép của bạn <a href="basic.html"><i
-                    class="fa-solid fa-circle-info"></i></a></h2>
+            <div>
+                <h1 class="product-name"><i class="bi bi-image me-2"></i>${ product.getName() }</h1>
+                <p class="product-desc">${ product.getDescription() }</p>
+            </div>
+            <h2 class="licence mt-8 mb-4">
+                <i class="bi bi-sign-railroad"> </i>
+                Chọn loại giấy phép cho ảnh
+                <a href="license"><i class="fa-solid fa-circle-info"></i></a>
+            </h2>
             <ul class="product-conditions mt-8">
                 <li class="condition">
                     <div>
                         <div>
-                    <span>
-                        <input type="radio" name="condition" id="condition1" value="standard" checked>
-                    </span>
+                            <span>
+                                <input type="radio" name="condition" id="condition1" value="standard" checked>
+                            </span>
                         </div>
                         <div>
-                            <label for="condition1" class="fw-semibold" style="font-size: 16px;">Giấy phép tiêu chuẩn</label>
+                            <label for="condition1" class="fw-semibold" style="font-size: 16px;">Giấy phép tiêu
+                                chuẩn</label>
                             <p>Sử dụng không giới hạn trong in ấn, quảng cáo và đóng gói. Phân phối web không giới
                                 hạn.</p>
                         </div>
@@ -157,41 +150,41 @@
                 <li class="condition">
                     <div>
                         <div>
-                    <span>
-                        <input type="radio" name="condition" id="condition2" value="advance">
-                    </span>
+                            <span>
+                                <input type="radio" name="condition" id="condition2" value="advance">
+                            </span>
                         </div>
                         <div>
-                            <label for="condition2" class="fw-semibold" style="font-size: 16px;">Giấy phép nâng cao</label>
+                            <label for="condition2" class="fw-semibold" style="font-size: 16px;">Giấy phép nâng
+                                cao</label>
                             <p>Sử dụng không giới hạn trong in ấn, quảng cáo, đóng gói và trưng bày hàng hóa. Phân phối
                                 web không giới hạn.</p>
                         </div>
                     </div>
                 </li>
             </ul>
-
-            <div class="promotion">
-                <div class="title">
-                    <p><i class="bi bi-calendar-event"></i></p>
-                    <p>Ưu đãi khuyến mãi dành cho bạn!!.</p>
-                </div>
-                <div class="grid-btn">
-                    <button class="btn--packageimg active" data-label="Hình ảnh đơn" data-discount="1">
-                        <span>Hình ảnh đơn</span><span></span>
-                    </button>
-                    <button class="btn--packageimg" data-label="Gói 5" data-discount="0.9">
-                        <span>Mua >= 5 ảnh</span><span style="color: green; font-size: 12px;">(-10%)</span>
-                    </button>
-                    <button class="btn--packageimg" data-label="Gói 10" data-discount="0.8">
-                        <span>Mua >= 10 ảnh</span><span style="color: green; font-size: 12px;">(-20%)</span>
-                    </button>
-                    <button class="btn--packageimg" data-label="Gói 25" data-discount="0.7">
-                        <span>Mua >= 25 ảnh</span><span style="color: green; font-size: 12px;">(-30%)</span>
-                    </button>
+            <div class="promotion-section">
+                <h2>🎉 Ưu đãi đặc biệt dành!</h2>
+                <p>Chỉ cần mua số lượng ảnh tương ứng để nhận ngay các mức giảm giá hấp dẫn:</p>
+                <div class="promotion-cards">
+                    <div class="card">
+                        <h3>Mua ≥ 5 ảnh</h3>
+                        <p class="discount">Giảm <span>-10%</span></p>
+                    </div>
+                    <div class="card">
+                        <h3>Mua ≥ 10 ảnh</h3>
+                        <p class="discount">Giảm <span>-20%</span></p>
+                    </div>
+                    <div class="card">
+                        <h3>Mua ≥ 25 ảnh</h3>
+                        <p class="discount">Giảm <span>-30%</span></p>
+                    </div>
                 </div>
             </div>
-            <div class="product-price mt-16 d-flex justify-content-lg-end">
-                <p id="product-price" class="text-success fw-bold fs-4 my-3"><fmt:formatNumber value="${product.getPrice()}"/> VND</p>
+            <div class="product-price mt-3 d-flex justify-content-end">
+                <p class="fw-semibold fs-4 my-3 pe-2 text-decoration-underline">Giá: </p>
+                <p id="product-price" class="text-success fw-bold fs-4 my-3">
+                    <fmt:formatNumber value="${product.getPrice()}"/> VND</p>
             </div>
             <button onclick="redirectToCheckout()" class="btn-right btn-buy mt-16">Mua ngay</button>
             <div style="height: 15px;"></div>
@@ -230,6 +223,7 @@
         </a>
     </div>
 </div>
+
 <!-- Begin: Categories image -->
 <% List<Product> products = (List<Product>) request.getAttribute("products"); %>
 <%--<c:if test="${ products.size() > 9}">--%>

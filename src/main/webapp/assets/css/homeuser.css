@@ -33,6 +33,26 @@
     top: 3%;
 }
 
+.user-account .icon-greeting {
+    position: absolute;
+    top: 2.5%;
+    width: 30px;
+    height: 30px;
+}
+
+.user-account .icon-greeting img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-account .title-logo-user {
+    position: absolute;
+    bottom: 0;
+    font-size: 25px;
+    font-family: "Braah One", serif;
+    font-style: normal;
+}
+
 .user-account .line-seperate {
     display: inline-block;
     height: 1px;
