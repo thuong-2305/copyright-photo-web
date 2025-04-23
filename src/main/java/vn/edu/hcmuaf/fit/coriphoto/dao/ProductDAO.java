@@ -101,11 +101,6 @@ public class ProductDAO {
                 .bind(0, "%" + content+  "%").bind(1, "%" + content+  "%").mapToBean(Product.class).list());
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ProductDAO().getProductLatest(5));
-//        new ProductDAO().getTrendProducts();
-    }
-
     public boolean addProduct(Product p) {
         jdbi.useHandle(handle -> handle.execute(
                 "INSERT INTO products (cid, uid, name, description, url, price, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -145,5 +140,23 @@ public class ProductDAO {
                         .bind("status", product.getStatus())
                         .execute() > 0
         );
+    }
+
+    public boolean updateStatus(String action, int id) {
+        String querySql = """
+            UPDATE products
+            SET status = :status
+            WHERE id = :id
+        """;
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(querySql)
+                        .bind("status", action)
+                        .bind("id", id)
+                        .execute() > 0);
+    }
+
+    public List<Product> getAllProductsWaiting() {
+        return jdbi.withHandle(handle -> handle.createQuery("select * from products where status = ? order by dateUpload desc")
+                .bind(0, "waiting").mapToBean(Product.class).list());
     }
 }
