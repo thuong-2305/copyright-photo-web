@@ -21,10 +21,65 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <style>
         #nav {
-            position: relative;
+            position: fixed !important;
+            background: white;
+            margin-bottom: 20px;
         }
+
         .modal {
             z-index: 9999;
+        }
+
+        #nav:not(.scrolled) .title-logo {
+            color: black;
+        }
+
+        #nav:not(.scrolled) .title-item {
+            color: black !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover {
+            color: #009970;
+        }
+
+        #nav:not(.scrolled) .title-item:hover {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .title-item:hover i {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover .title-item {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .container .login-button {
+            background-color: transparent;
+            color: black;
+            padding: 7px 19px;
+            border: 1px solid black;
+        }
+
+        .image-text {
+            position: relative;
+            margin: 10px;
+        }
+
+        .image-text img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+        }
+
+        .delete-img {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            padding: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -37,7 +92,7 @@
     <div class="container-fluid">
         <div class="homepage-seller-container">
             <div class="homepage-seller-content">
-                <div class="row">
+                <div class="row mt-5">
                     <!-- Sidebar -->
                     <div class="col-2 pl-0 pr-0">
                         <div id="navbar-side" class="shadow-sm">
