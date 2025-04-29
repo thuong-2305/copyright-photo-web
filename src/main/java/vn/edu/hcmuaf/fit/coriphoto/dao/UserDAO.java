@@ -30,8 +30,6 @@ public class UserDAO {
         );
     }
 
-
-
     public String getEmail(int uid) {
         return jdbi.withHandle(handle -> handle.createQuery("SELECT email FROM users WHERE uid = ?")
                 .bind(0, uid).mapTo(String.class).one());
@@ -39,25 +37,22 @@ public class UserDAO {
 
     public String getPaymentTypeNameByPmid(int pmid) {
         String sql = """
-        SELECT pt.pmTypeName 
-        FROM payment_type pt
-        JOIN payment_method pm ON pm.pmTypeId = pt.pmTypeId
-        WHERE pm.pmid = :pmid
-    """;
-
+            SELECT pt.pmTypeName 
+            FROM payment_type pt
+            JOIN payment_method pm ON pm.pmTypeId = pt.pmTypeId
+            WHERE pm.pmid = :pmid
+        """;
         return jdbi.withHandle(handle ->
                 handle.createQuery(sql)
-                        .bind("pmid", pmid)  // Dùng tham số đặt tên
+                        .bind("pmid", pmid)
                         .mapTo(String.class)
                         .findOne()
                         .orElse("Khác")
         );
     }
 
-
-
     public User findByEmail(String email, String password) {
-        String hashPassword = hashPasswordMD5(password);//Mã hóa pass để so sánh với db
+        String hashPassword = hashPasswordMD5(password);
         String query = "SELECT * FROM users WHERE (email = ? OR username = ?) and password = ?";
         return jdbi.withHandle(handle ->
                 handle.createQuery(query)
@@ -72,22 +67,20 @@ public class UserDAO {
         String query = "SELECT * FROM users WHERE email = :email OR username = :email";
         return jdbi.withHandle(handle ->
             handle.createQuery(query)
-                .bind("email", email) // Gắn giá trị tham số email
+                .bind("email", email)
                 .map((rs, ctx) -> new User(
-                    rs.getInt("uid"),             // Mapping cột "uid"
-                    rs.getInt("role"),            // Mapping cột "role"
-                    rs.getString("fullName"),     // Mapping cột "fullName"
-                    rs.getString("username"),     // Mapping cột "username"
-                    rs.getString("password"),     // Mapping cột "password"
-                    rs.getString("email"),        // Mapping cột "email"
-                    rs.getObject("createDate", LocalDate.class) // Mapping cột "createDate"
+                    rs.getInt("uid"),
+                    rs.getInt("role"),
+                    rs.getString("fullName"),
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    rs.getString("email"),
+                    rs.getObject("createDate", LocalDate.class)
                 ))
                 .findOne()
-                .orElse(null) // Trả về null nếu không tìm thấy
+                .orElse(null)
         );
     }
-
-
 
     public String hashPasswordMD5(String password) {
         try {
@@ -105,9 +98,7 @@ public class UserDAO {
     }
 
     public boolean createSeller(User seller) {
-        //cập nhật info user gồm role seller / nếu có thay đổi email/username
         updateUser(seller);
-        //Thêm info của seller
         jdbi.useHandle(handle -> handle.execute(
                 "INSERT INTO sellers (uid, registryDate, balance) VALUES (?, ?, ?)",
                 seller.getUid() ,LocalDate.now(), 0
@@ -127,7 +118,6 @@ public class UserDAO {
                     createDate = :createDate
                 WHERE uid = :uid
                 """;
-
         return jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("uid", user.getUid())
@@ -159,7 +149,6 @@ public class UserDAO {
     }
 
     public List<PaymentMethod> getAllPaymentMethods(int uid) {
-        System.out.println("Database connection established");
         return jdbi.withHandle(handle ->
             handle.createQuery("SELECT * FROM payment_method WHERE uid = :uid")
                 .bind("uid", uid)
@@ -268,22 +257,23 @@ public class UserDAO {
         return jdbi.withHandle(handle -> handle.createQuery("select * from users where role = :role").bind("role",2)
                 .mapToBean(User.class).list());
     }
+
     public User findById(int id) {
         String query = "SELECT * FROM users WHERE uid = :uid";
         return jdbi.withHandle(handle ->
                 handle.createQuery(query)
-                        .bind("uid", id) // Gắn giá trị tham số email
+                        .bind("uid", id)
                         .map((rs, ctx) -> new User(
-                                rs.getInt("uid"),             // Mapping cột "uid"
-                                rs.getInt("role"),            // Mapping cột "role"
-                                rs.getString("fullName"),     // Mapping cột "fullName"
-                                rs.getString("username"),     // Mapping cột "username"
-                                rs.getString("password"),     // Mapping cột "password"
-                                rs.getString("email"),        // Mapping cột "email"
-                                rs.getObject("createDate", LocalDate.class) // Mapping cột "createDate"
+                                rs.getInt("uid"),
+                                rs.getInt("role"),
+                                rs.getString("fullName"),
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getString("email"),
+                                rs.getObject("createDate", LocalDate.class)
                         ))
                         .findOne()
-                        .orElse(null) // Trả về null nếu không tìm thấy
+                        .orElse(null)
         );
     }
 
@@ -293,4 +283,8 @@ public class UserDAO {
         );
     }
 
+    public String getEmailById(int uid) {
+        String query = "SELECT email FROM users WHERE uid = ?";
+        return jdbi.withHandle(handle -> handle.createQuery(query).bind(0, uid).mapTo(String.class).one());
+    }
 }

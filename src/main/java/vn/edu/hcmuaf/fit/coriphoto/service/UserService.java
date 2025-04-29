@@ -29,8 +29,12 @@ public class UserService {
     }
 
 
-        public String getFullName(int uid) {
+    public String getFullName(int uid) {
         return userDao.getFullName(uid);
+    }
+
+    public String getEmailById(int uid) {
+        return userDao.getEmailById(uid);
     }
 
     public User getUserByCredentials(String username, String password) {
