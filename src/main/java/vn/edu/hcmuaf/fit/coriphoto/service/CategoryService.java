@@ -41,11 +41,6 @@ public class CategoryService {
         return categories.getCategoryIdByName(name);
     }
 
-
-
-
-    public static void main(String[] args) {
-        System.out.println(new CategoryService().getAll());
-    }
+    public String getNameCategoryById(int cid) { return categories.getNameCategoryById(cid); }
 
 }

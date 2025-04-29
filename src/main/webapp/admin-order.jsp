@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ADMIN
-  Date: 1/13/2025
-  Time: 5:49 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -14,14 +7,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="./assets/css/admin-products.css"/>
     <link rel="stylesheet" href="./assets/css/admin-1.css"/>
     <link rel="stylesheet" href="././assets/css/admin-dashboard.css"/>
-    <link rel="stylesheet" href="./assets/css/admin-homepage.css"/>
-    <link rel="stylesheet" href="./assets/css/admin-products.css"/>
-    <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css"/>
-    <link rel="stylesheet" href="./assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css"/>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script src="./assets/js/admin-products.js"></script>
     <title>Admin</title>
 

@@ -5,6 +5,7 @@ import com.google.gson.annotations.JsonAdapter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.ProductSerializer;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
@@ -30,26 +31,26 @@ public class AdminProductsController extends HttpServlet {
                 if (product != null) {
                     response.setContentType("application/json");
                     Gson gson = new GsonBuilder()
-                            .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
-                                @Override
-                                public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
-                                    return new JsonPrimitive(src.toString());
-                                }
-                            })
-                            .registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
-                                @Override
-                                public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
-                                    return new JsonPrimitive(src.toString());
-                                }
-                            })
-                            .create();
+                        .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
+                            @Override
+                            public JsonElement serialize(LocalDate src, Type typeOfSrc, JsonSerializationContext context) {
+                                return new JsonPrimitive(src.toString());
+                            }
+                        })
+                        .registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
+                            @Override
+                            public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
+                                return new JsonPrimitive(src.toString());
+                            }
+                        })
+                        .registerTypeAdapter(Product.class, new ProductSerializer())
+                        .create();
                     String jsonResponse = gson.toJson(product);
                     response.getWriter().write(jsonResponse);
                 } else {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Sản phẩm không tồn tại");
                 }
             } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID không hợp lệ");
             }
         } else {
@@ -66,7 +67,6 @@ public class AdminProductsController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestedBy = request.getHeader("X-Requested-By");
         ProductService service = new ProductService();
-//        System.out.println(requestedBy);
 
         if ("AJAX".equals(requestedBy)) {
             int productId =Integer.parseInt(request.getParameter("product_id"));
@@ -86,14 +86,12 @@ public class AdminProductsController extends HttpServlet {
                     responseData.put("success", true);
                     // Chuyển đối tượng Map thành JSON
                     String jsonResponse = gson.toJson(responseData);
-                    System.out.println("jsonResponse " + jsonResponse);
                     // Gửi dữ liệu JSON về client
                     response.getWriter().write(jsonResponse);
                 }
             }
         }else{
             String form = request.getParameter("defineForm");
-//            System.out.println(form);
             // Nhận dữ liệu từ form
             String name = request.getParameter("nameProduct");
             String description = request.getParameter("description");
@@ -106,21 +104,18 @@ public class AdminProductsController extends HttpServlet {
             Product product = new Product();
             product.setName(name);
             product.setDescription(description);
-            product.setCid(Integer.parseInt(category)); // Lưu ý: Loại ảnh (Category ID)
+            product.setCid(Integer.parseInt(category));
             product.setPrice(price);
-            product.setUid(Integer.parseInt(contributor)); // Người đóng góp (User ID)
+            product.setUid(Integer.parseInt(contributor));
             product.setStatus(status);
 
             if ("formEdit".equals(form)) {
                 product.setId(Integer.parseInt(request.getParameter("idProduct")));
                 service.updateProduct(product);
             }else {
-                // Lưu sản phẩm vào database thông qua ProductService
                 service.addProduct(product);
             }
 
-//            System.out.println(product);
-            // Chuyển hướng lại trang quản lý sản phẩm
             response.sendRedirect("admin-products");
         }
     }

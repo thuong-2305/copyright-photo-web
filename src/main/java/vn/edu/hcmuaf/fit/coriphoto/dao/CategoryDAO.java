@@ -79,6 +79,15 @@ public class CategoryDAO {
         );
     }
 
+    public String getNameCategoryById(int cid) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT name FROM categories WHERE cid = ?")
+                        .bind(0, cid)
+                        .mapTo(String.class)
+                        .one()
+        );
+    }
+
     public static void main(String[] args) {
 //        CategoryDAO categoryDAO = new CategoryDAO();
 //        System.out.println(categoryDAO.getAll());
