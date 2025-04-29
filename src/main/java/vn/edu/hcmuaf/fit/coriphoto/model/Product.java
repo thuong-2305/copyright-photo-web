@@ -139,7 +139,6 @@ public class Product {
     public static void main(String[] args) {
         CategoryService tes = new CategoryService();
         String tmp = tes.getNameCategoryById(4);
-        System.out.println(tmp);
     }
 
     @Override
