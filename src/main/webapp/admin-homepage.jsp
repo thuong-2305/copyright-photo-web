@@ -7,12 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/admin-1.css">
-    <link rel="stylesheet" href="assets/css/admin-dashboard.css">
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/admin-homepage.css">
-    <link rel="stylesheet" href="assets/libraries/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
-    <link rel="stylesheet" href="assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="assets/css/admin-1.css">
+    <link rel="stylesheet" href="assets/css/admin-nav.css">
+    <link rel="stylesheet" href="assets/css/admin-dashboard.css">
+    <jsp:include page="include/head-libraries.jsp" />
     <title>Admin</title>
 </head>
 <body>
@@ -24,14 +24,42 @@
 
     <!-- RIGHT MAIN -->
     <section class="right-category">
+        <!-- navbar admin -->
+        <jsp:include page="include/nav-admin.jsp"/>
+
+        <!-- Content main -->
         <div id="admin-dashboard-graph">
-            <div class="mt-4">
-                <div class="container header d-flex justify-content-between align-items-center mb-3 py-2">
-                    <h3>Trang chủ</h3>
+            <div class="mt-4 content-view">
+                <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
+                    <h5 class="fw-semibold">Trang chủ</h5>
+                </div>
+
+                <!-- Banner dashboard -->
+                <div class="account-status">
+                    <div class="status-text">
+                        <h2>Kiểm tra trạng thái tài khoản</h2>
+                        <p>Trạng thái và hoạt động tài khoản của bạn.</p>
+
+                        <div class="status-content">
+                            <div class="status-card balance">
+                                <img src="assets/images/money-box.png" alt="money-box">
+                                <a href="#"><i class="bi bi-box-arrow-up-right"></i></a>
+                            </div>
+
+                            <div class="status-card spending">
+                                <img src="assets/images/payment-history.png" alt="money-box">
+                                <a href="#"><i class="bi bi-box-arrow-up-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="status-image">
+                        <img src="assets/images/hero-dashboard-1915640c.png" alt="admin">
+                    </div>
                 </div>
 
                 <!-- Stat Cards -->
-                <div class="container row stats-section mx-auto">
+                <div class="row stats-section mx-auto px-2">
                     <div class="col-md-3 ps-0">
                         <div class="card stats-card rounded" id="visitors-card">
                             <div class="card-body text-center py-3">
@@ -54,7 +82,8 @@
                         <div class="card stats-card rounded" id="sales-card">
                             <div class="card-body text-center py-3">
                                 <i class="fas fa-dollar-sign fa-2x text-success mb-3"></i>
-                                <h3 class="text-success"><fmt:formatNumber value="${totalIncome}" pattern="#,##0" />
+                                <h3 class="text-success">
+                                    <fmt:formatNumber value="${totalIncome}" pattern="#,##0" />
                                     <span> VNĐ</span></h3>
                                 <p class="card-title">Tổng doanh thu</p>
                             </div>
@@ -72,7 +101,7 @@
                 </div>
 
                 <!-- Thống kê người dùng + Doanh thu hàng ngày + Người dùng trực tuyến -->
-                <div class="container d-flex flex-row mt-4 stats-overview">
+                <div class="d-flex flex-row mt-4 stats-overview px-2">
                     <!-- Thống kê người dùng -->
                     <div class="col-8 user-statistics-section pl-0">
                         <div class="card rounded" id="user-statistics-card">
@@ -111,8 +140,6 @@
                             </div>
                         </div>
 
-
-
                         <!-- Người dùng trực tuyến -->
                         <div class="card stats-card rounded d-flex flex-column justify-content-center align-items-center"
                              id="users-online-card" style="min-height: 200px;">
@@ -126,15 +153,17 @@
                 </div>
             </div>
         </div>
+
+        <!-- footer-admin -->
+        <jsp:include page="include/admin-footer.jsp" />
     </section>
     <!-- RIGHT MAIN -->
 </section>
 <!-- MAIN -->
+
+<jsp:include page="include/admin-libraries.jsp" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="assets/js/admin.js"></script>
-<script src="assets/js/admin-dashboard.js"></script>
 <script src="assets/js/admin-dashboard-chart.js"></script>
 
-<script src="assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

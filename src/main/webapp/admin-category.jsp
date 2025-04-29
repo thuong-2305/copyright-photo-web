@@ -7,13 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/admin-1.css">
-    <link rel="stylesheet" href="assets/libraries/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
-    <link rel="stylesheet" href="assets/libraries/bootstrap-icons/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="assets/css/admin-nav.css">
+    <jsp:include page="include/head-libraries.jsp" />
     <title>Admin</title>
 </head>
 <body>
@@ -25,6 +22,10 @@
          
         <!-- RIGHT MAIN -->
         <section class="right-category">
+            <!-- navbar admin -->
+            <jsp:include page="include/nav-admin.jsp"/>
+
+            <!-- Content main -->
             <div class="mt-4">
                 <div class="container header d-flex justify-content-between align-items-center mb-3 py-2">
                     <h3>Các danh mục</h3>
@@ -233,6 +234,7 @@
 
     </script>
     <script src="assets/js/admin.js"></script>
+    <script src="assets/js/admin-nav.js"></script>
     <script src="assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
@@ -241,5 +243,6 @@
             new bootstrap.Modal(document.getElementById("categoryModal")).show();
         });
     </script>
+
 </body>
 </html>

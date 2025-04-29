@@ -57,7 +57,11 @@
 
   <!-- RIGHT MAIN -->
   <section class="right-category">
-    <main>
+    <!-- navbar admin -->
+    <jsp:include page="include/nav-admin.jsp"/>
+
+    <!-- Content main -->
+    <main class="mt-4">
       <div class="frame">
         <div class="frame__container">
           <div class="mt-4">
@@ -105,10 +109,10 @@
                     <td><%= product.getDateUpload() %></td>
                     <td>
                       <button class="btn accept-btn btn-primary">
-                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "accepted" %>">Accept</a>
+                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "accepted" %>&uid=<%= product.getUid()%>">Accept</a>
                       </button>
                       <button class="btn reject-btn btn-danger" data-id="<%=product.getId() %>">
-                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "rejected" %>">Reject</a>
+                          <a class="text-light text-decoration-none" href="/AdminHandleActNotify?id=<%= product.getId() %>&act=<%= "rejected" %>&uid=<%= product.getUid()%>">Reject</a>
                       </button>
                     </td>
                   </tr>

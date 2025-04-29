@@ -2,12 +2,23 @@
 :root {
     --primary-text-color: #0870D1;
     --secondary-text-color: rgb(109, 115, 120);
-
     --background-hover-color: rgb(237, 246, 254);
-}   
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
 
 .shadow-bottom {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Chỉ có bóng ở dưới */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 a {
@@ -18,13 +29,12 @@ a:hover {
     text-decoration: none;   
 }
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+.right-category .card-header {
+    background: var(--swatch_4) !important;
 }
 
-html {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+#admin-dashboard-graph {
+    margin-top: 100px;
 }
+
 

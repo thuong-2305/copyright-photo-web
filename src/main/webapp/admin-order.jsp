@@ -71,7 +71,11 @@
 
     <!-- RIGHT MAIN -->
     <section class="right-category">
-        <main>
+        <!-- navbar admin -->
+        <jsp:include page="include/nav-admin.jsp"/>
+
+        <!-- Content main -->
+        <main class="mt-4">
             <div class="frame">
                 <div class="frame__container">
                     <div class="mt-4">
