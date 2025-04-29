@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vn.edu.hcmuaf.fit.coriphoto.controller.vnpay.common;
 
 import com.google.gson.JsonObject;
@@ -74,9 +69,7 @@ public class vnpayQuery extends HttpServlet {
         wr.flush();
         wr.close();
         int responseCode = con.getResponseCode();
-        System.out.println("nSending 'POST' request to URL : " + url);
-        System.out.println("Post Data : " + vnp_Params);
-        System.out.println("Response Code : " + responseCode);
+
         BufferedReader in = new BufferedReader(
         new InputStreamReader(con.getInputStream()));
         String output;
@@ -85,6 +78,5 @@ public class vnpayQuery extends HttpServlet {
         response.append(output);
         }
         in.close();
-        System.out.println(response.toString());
     }
 }

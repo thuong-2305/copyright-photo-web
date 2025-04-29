@@ -1,9 +1,4 @@
-    /*
-     * To change this license header, choose License Headers in Project Properties.
-     * To change this template file, choose Tools | Templates
-     * and open the template in the editor.
-     */
-    package vn.edu.hcmuaf.fit.coriphoto.controller.vnpay.common;
+ package vn.edu.hcmuaf.fit.coriphoto.controller.vnpay.common;
 
     import com.google.gson.Gson;
     import com.google.gson.JsonObject;
@@ -158,8 +153,6 @@
             job.addProperty("data", paymentUrl);
             Gson gson = new Gson();
             response.getWriter().write(gson.toJson(job));
-
-            System.out.println("vnp_params: " + vnp_Params);
 
             response.sendRedirect(paymentUrl);
 
