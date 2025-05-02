@@ -7,6 +7,7 @@
 <head>
     <title>Welcome to CoriPhoto</title>
     <jsp:include page="include/head.jsp"/>
+    <link rel="stylesheet" href="./assets/css/categories-list-home.css">
 </head>
 <body>
 <!-- Day la file test.html -->
@@ -21,6 +22,10 @@
 <!--section banner -->
 <section class="banner">
     <div class="banner-home d-flex justify-content-center align-items-center flex-column">
+        <video autoplay muted loop class="background-video">
+            <source src="./assets/audio/video-banner.mp4" type="video/mp4">
+        </video>
+        <div class="overlay-banner"></div>
         <div class="main-title d-flex justify-content-center flex-column align-items-center">
             <h1 class="fw-900 m-2">CoRiPhoTo, Kho ảnh bản quyền đẹp dành cho bạn</h1>
             <p style="color: #ceced2">Thêm điều kỳ diệu vào câu chuyện của bạn với hơn 1 ngàn ảnh, vector
@@ -69,30 +74,39 @@
 
 <!--section category -->
 <section class="category-home">
-    <div class="container title align-items-center">
-        <p>Các danh mục phổ biến</p>
+    <div class="container title align-items-center section-title" style="margin: 0 auto; padding: 0 15px">
+        <p><span><i class="fas fa-fire-alt halim-trending-icon"></i> Danh mục thịnh hành</span></p>
     </div>
-
-    <!-- photos -->
-    <div class="swiper-container category-home">
-        <div class="swiper-wrapper container photos">
-            <jsp:useBean id="trendsCategories" scope="request" type="java.util.List"/>
-            <c:forEach var="item" items="${ trendsCategories }">
-                <div class="swiper-slide">
-                    <a href="products?cid=${ item.getCid() }">
-                        <div class="category">
-                            <img src="${ item.getUrl() }" alt="">
-                            <span>${ item.getName() }</span>
-                        </div>
-                    </a>
-                </div>
-            </c:forEach>
+    <div class="halim-trending-slider">
+        <div class="halim-trending-container">
+            <div class="halim-trending-track"
+                 style="transform: translateZ(0px); backface-visibility: hidden; scroll-behavior: smooth;">
+                <jsp:useBean id="trendsCategories" scope="request" type="java.util.List" />
+                <c:forEach var="item" items="${trendsCategories}" varStatus="status">
+                    <c:set var="clipClass" value="${(status.index % 2 == 0) ? 'halim-trending-clip-path-even' : 'halim-trending-clip-path-odd'}" />
+                    <div class="halim-trending-card">
+                        <a href="products?cid=${item.getCid()}" class="halim-trending-link">
+                            <div class="halim-trending-poster-container ${clipClass}">
+                                <div class="halim-trending-poster-mask ${clipClass}"></div>
+                                <img src="${item.getUrl()}" alt="${item.getName()}" class="halim-trending-poster-image">
+                            </div>
+                            <div class="halim-trending-info">
+                                <div class="halim-trending-number">${status.index + 1}</div>
+                                <div class="halim-trending-details">
+                                    <h3 class="halim-trending-title-text text-black">${item.getName()}</h3>
+                                    <p class="halim-trending-original-title">${item.getName()}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </c:forEach>
+            </div>
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
     </div>
     <a href="categories" class="btn btn-outline-success rounded-pill fs-5 d-none see-more">Xem nhiều hơn</a>
 </section>
+
+
 <!--section category -->
 
 <!-- section raw images -->
@@ -113,7 +127,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="">
+                        <img src="<%= product.getUrl() %>" alt="">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
@@ -143,7 +157,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
@@ -173,7 +187,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
@@ -203,7 +217,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">
+                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
                         <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
