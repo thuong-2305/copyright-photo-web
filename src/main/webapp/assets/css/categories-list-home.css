@@ -1,0 +1,444 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@400;500&display=swap');
+
+body {
+    margin: 0;
+    overflow-x: hidden
+}
+
+a {
+    background-color: transparent
+}
+
+a:active,a:hover {
+    outline: 0
+}
+
+img {
+    border: 0
+}
+
+button {
+    color: inherit;
+    font: inherit;
+    margin: 0
+}
+
+button {
+    overflow: visible
+}
+
+button {
+    text-transform: none
+}
+
+button {
+    -webkit-appearance: button;
+    cursor: pointer
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+*:before,*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit
+}
+
+a:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px
+}
+
+img {
+    vertical-align: middle
+}
+
+h3 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 24px
+}
+
+p {
+    margin: 0 0 10px
+}
+
+.clearfix:before,.clearfix:after {
+    content: " ";
+    display: table
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: var(--fa-display,inline-block);
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900
+}
+
+.fa-chevron-left:before {
+    content: "\f053"
+}
+
+.fa-chevron-right:before {
+    content: "\f054"
+}
+
+.fa-fire-alt:before {
+    content: "\f7e4"
+}
+
+.fa-sr-only-focusable:not(:focus),.sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0
+}
+
+*,:after,:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle
+}
+
+img:hover {
+    filter: brightness(1);
+    -webkit-filter: brightness(1)
+}
+
+a:hover {
+    transition: color .2s ease;
+    -webkit-transition: color .2s ease;
+    -moz-transition: color .2s ease
+}
+
+button {
+    outline: 0
+}
+
+.section-bar {
+    position: relative;
+    margin: 15px 0
+}
+
+.section-title {
+    position: relative
+}
+
+.section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 700
+}
+
+.section-title span {
+    float: left;
+    color: #a5cbef;
+    background: -webkit-gradient(linear,left top,right top,from(#43ff69),to(#1bdaca));
+    background: linear-gradient(to right,#43ff69,#1bdaca);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.section-title span:after {
+    content: ''
+}
+
+.section-title {
+    font-size: 16px;
+    line-height: 11px;
+    margin: 0;
+    position: relative;
+    text-transform: uppercase;
+    display: flow-root
+}
+
+:root {
+    --dark: #1a1a1a;
+    --light: #1a1a1a;
+    --text: rgba(255,255,255,.9);
+    --success: #0abf30;
+    --error: #e24d4c;
+    --warning: #e9bd0c;
+    --info: #3498db;
+    --random: #eb43ff
+}
+
+.notifications :where(.toast,.column) {
+    display: flex;
+    align-items: center
+}
+
+.halim-trending-slider {
+    width: 100%;
+    padding: 5px;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: block
+}
+
+.halim-trending-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 15px;
+    margin-left: 25px;
+}
+
+.halim-trending-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: #1a1d24;
+    border: none;
+    width: 40px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all .3s ease;
+    opacity: .8
+}
+
+.halim-trending-nav-button:hover {
+    opacity: 1;
+    color: #fff
+}
+
+.halim-trending-prev-button {
+    left: -40px;
+    border-radius: 0 4px 4px 0
+}
+
+.halim-trending-next-button {
+    right: -40px;
+    border-radius: 4px 0 0 4px
+}
+
+@media (max-width: 768px) {
+    .halim-trending-nav-button {
+        display:none
+    }
+}
+
+.halim-trending-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    cursor: grab;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    user-select: none;
+    will-change: transform,scroll-position
+}
+
+.halim-trending-track::-webkit-scrollbar {
+    display: none
+}
+
+.halim-trending-card {
+    flex: 0 0 auto;
+    width: 224px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 0;
+    display: block
+}
+
+.halim-trending-link {
+    text-decoration: none;
+    color: inherit;
+    display: block
+}
+
+.halim-trending-poster-container {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    display: block
+}
+
+.halim-trending-clip-path-odd {
+    border-radius: 0;
+    -webkit-clip-path: polygon(94.239% 100%,5.761% 100%,5.761% 100%,4.826% 99.95%,3.94% 99.803%,3.113% 99.569%,2.358% 99.256%,1.687% 98.87%,1.111% 98.421%,.643% 97.915%,.294% 97.362%,.075% 96.768%,0 96.142%,0 3.858%,0 3.858%,.087% 3.185%,.338% 2.552%,.737% 1.968%,1.269% 1.442%,1.92% .984%,2.672% .602%,3.512% .306%,4.423% .105%,5.391% .008%,6.4% .024%,94.879% 6.625%,94.879% 6.625%,95.731% 6.732%,96.532% 6.919%,97.272% 7.178%,97.942% 7.503%,98.533% 7.887%,99.038% 8.323%,99.445% 8.805%,99.747% 9.326%,99.935% 9.88%,100% 10.459%,100% 96.142%,100% 96.142%,99.925% 96.768%,99.706% 97.362%,99.357% 97.915%,98.889% 98.421%,98.313% 98.87%,97.642% 99.256%,96.887% 99.569%,96.06% 99.803%,95.174% 99.95%,94.239% 100%);
+    clip-path: polygon(94.239% 100%,5.761% 100%,5.761% 100%,4.826% 99.95%,3.94% 99.803%,3.113% 99.569%,2.358% 99.256%,1.687% 98.87%,1.111% 98.421%,.643% 97.915%,.294% 97.362%,.075% 96.768%,0 96.142%,0 3.858%,0 3.858%,.087% 3.185%,.338% 2.552%,.737% 1.968%,1.269% 1.442%,1.92% .984%,2.672% .602%,3.512% .306%,4.423% .105%,5.391% .008%,6.4% .024%,94.879% 6.625%,94.879% 6.625%,95.731% 6.732%,96.532% 6.919%,97.272% 7.178%,97.942% 7.503%,98.533% 7.887%,99.038% 8.323%,99.445% 8.805%,99.747% 9.326%,99.935% 9.88%,100% 10.459%,100% 96.142%,100% 96.142%,99.925% 96.768%,99.706% 97.362%,99.357% 97.915%,98.889% 98.421%,98.313% 98.87%,97.642% 99.256%,96.887% 99.569%,96.06% 99.803%,95.174% 99.95%,94.239% 100%)
+}
+
+.halim-trending-clip-path-even {
+    border-radius: 0;
+    -webkit-clip-path: polygon(5.761% 100%,94.239% 100%,94.239% 100%,95.174% 99.95%,96.06% 99.803%,96.887% 99.569%,97.642% 99.256%,98.313% 98.87%,98.889% 98.421%,99.357% 97.915%,99.706% 97.362%,99.925% 96.768%,100% 96.142%,100% 3.858%,100% 3.858%,99.913% 3.185%,99.662% 2.552%,99.263% 1.968%,98.731% 1.442%,98.08% .984%,97.328% .602%,96.488% .306%,95.577% .105%,94.609% .008%,93.6% .024%,5.121% 6.625%,5.121% 6.625%,4.269% 6.732%,3.468% 6.919%,2.728% 7.178%,2.058% 7.503%,1.467% 7.887%,.962% 8.323%,.555% 8.805%,.253% 9.326%,.065% 9.88%,0 10.459%,0 96.142%,0 96.142%,.075% 96.768%,.294% 97.362%,.643% 97.915%,1.111% 98.421%,1.687% 98.87%,2.358% 99.256%,3.113% 99.569%,3.94% 99.803%,4.826% 99.95%,5.761% 100%);
+    clip-path: polygon(5.761% 100%,94.239% 100%,94.239% 100%,95.174% 99.95%,96.06% 99.803%,96.887% 99.569%,97.642% 99.256%,98.313% 98.87%,98.889% 98.421%,99.357% 97.915%,99.706% 97.362%,99.925% 96.768%,100% 96.142%,100% 3.858%,100% 3.858%,99.913% 3.185%,99.662% 2.552%,99.263% 1.968%,98.731% 1.442%,98.08% .984%,97.328% .602%,96.488% .306%,95.577% .105%,94.609% .008%,93.6% .024%,5.121% 6.625%,5.121% 6.625%,4.269% 6.732%,3.468% 6.919%,2.728% 7.178%,2.058% 7.503%,1.467% 7.887%,.962% 8.323%,.555% 8.805%,.253% 9.326%,.065% 9.88%,0 10.459%,0 96.142%,0 96.142%,.075% 96.768%,.294% 97.362%,.643% 97.915%,1.111% 98.421%,1.687% 98.87%,2.358% 99.256%,3.113% 99.569%,3.94% 99.803%,4.826% 99.95%,5.761% 100%)
+}
+
+.halim-trending-poster-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+    display: block
+}
+
+.halim-trending-poster-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: hsl(0 0% 100%/.05);
+    z-index: 1;
+    transition: background-color .3s ease
+}
+
+.halim-trending-poster-container:hover .halim-trending-poster-mask,.halim-trending-poster-container.hover-active .halim-trending-poster-mask {
+    background-color: rgb(255 193 7/.1)
+}
+
+.halim-trending-poster-container:hover .halim-trending-poster-image,.halim-trending-poster-container.hover-active .halim-trending-poster-image {
+    transform: scale(1.05)
+}
+
+.halim-trending-info {
+    margin-top: 1rem;
+    display: flex;
+    height: 70px;
+    overflow: hidden;
+    align-items: center
+}
+
+.halim-trending-number {
+    line-height: 1;
+    font-size: 3.5em;
+    font-weight: 800;
+    font-style: italic;
+    background: linear-gradient(39deg,#fecf59,#fff1cc);
+    -webkit-background-clip: text!important;
+    background-clip: text!important;
+    -webkit-text-fill-color: transparent!important;
+    color: #fff0;
+    margin-right: .5rem;
+    flex-shrink: 0;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.halim-trending-details {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+    justify-content: center
+}
+
+.halim-trending-title-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: .25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #ddd;
+    margin-top: 0;
+    display: block
+}
+
+.halim-trending-original-title {
+    color: #9ca3af;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: .25rem;
+    display: block
+}
+
+@media (max-width: 768px) {
+
+    .halim-trending-card {
+        width: 220px
+    }
+
+    .halim-trending-number {
+        font-size: 3.5em;
+        width: 45px
+    }
+
+    .halim-trending-title-text {
+        font-size: 1.2rem
+    }
+
+    .halim-trending-original-title {
+        font-size: 1rem
+    }
+
+    .halim-trending-info {
+        height: 60px
+    }
+}
+
+@media (max-width: 480px) {
+    .halim-trending-card {
+        width:180px
+    }
+
+    .halim-trending-number {
+        font-size: 3.5em;
+        width: 40px
+    }
+
+    .halim-trending-title-text {
+        font-size: 1.2rem
+    }
+
+    .halim-trending-info {
+        height: 50px
+    }
+}
