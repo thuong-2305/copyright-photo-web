@@ -54,7 +54,7 @@
 <jsp:include page="include/navbar.jsp"/>
 
 <!-- Empty Cart Section -->
-<div class="empty-cart-container my-5 pt-5">
+<div class="empty-cart-container mt-5 pt-5">
   <div class="empty-cart-content">
     <i class="bi bi-cart-x"></i>
     <h2>Giỏ hàng của bạn đang trống</h2>

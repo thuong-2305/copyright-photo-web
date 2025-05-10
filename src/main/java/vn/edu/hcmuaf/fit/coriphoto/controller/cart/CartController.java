@@ -84,7 +84,6 @@ public class CartController extends HttpServlet {
         }
 
         // Lấy 10 sản phẩm gợi ý
-        // Lấy 10 sản phẩm gợi ý
         List<Product> suggestedProducts = new ArrayList<>();
         int remainingProducts = 10; // Số sản phẩm cần lấy
 
@@ -95,7 +94,6 @@ public class CartController extends HttpServlet {
             suggestedProducts.addAll(productsFromMostPopular);
             remainingProducts -= productsFromMostPopular.size();
         }
-
         // Nếu chưa đủ 10 sản phẩm, lấy từ danh mục phổ biến thứ hai (nếu có)
         if (remainingProducts > 0 && sortedCategories.size() > 1) {
             int secondMostPopularCategoryId = sortedCategories.get(1).getKey();
@@ -103,17 +101,12 @@ public class CartController extends HttpServlet {
             suggestedProducts.addAll(productsFromSecondPopular);
             remainingProducts -= productsFromSecondPopular.size();
         }
-
         // Nếu vẫn chưa đủ 10 sản phẩm, lấy từ danh mục ngẫu nhiên
         if (remainingProducts > 0) {
             List<Integer> excludeCategoryIds = new ArrayList<>();
             // Loại trừ danh mục phổ biến nhất và thứ hai (nếu có)
-            if (!sortedCategories.isEmpty()) {
-                excludeCategoryIds.add(sortedCategories.get(0).getKey());
-            }
-            if (sortedCategories.size() > 1) {
-                excludeCategoryIds.add(sortedCategories.get(1).getKey());
-            }
+            if (!sortedCategories.isEmpty()) excludeCategoryIds.add(sortedCategories.get(0).getKey());
+            if (sortedCategories.size() > 1) excludeCategoryIds.add(sortedCategories.get(1).getKey());
             List<Product> productsFromRandomCategory = productService.getProductsFromRandomCategoryNotIn(excludeCategoryIds, productIdsInCart, remainingProducts);
             suggestedProducts.addAll(productsFromRandomCategory);
         }

@@ -39,10 +39,15 @@ body {
     border-radius: 4px;
     font-size: 12px;
     color: #fff;
+    font-weight: 600;
 }
 
 .order-status.paid {
     background-color: #28a745;
+}
+
+.order-status.pending {
+    background-color: #ffc107;
 }
 
 .order-price {
@@ -153,64 +158,31 @@ body {
     font-weight: bold;
 }
 
-#nav {
-    position: fixed !important;
-    background: white;
-    margin-bottom: 20px;
-}
-
-.modal {
-    z-index: 9999;
-}
-
-#nav:not(.scrolled) .title-logo {
-    color: black;
-}
-
-#nav:not(.scrolled) .title-item {
-    color: black !important;
-}
-
-#nav:not(.scrolled) .nav-item:hover {
-    color: #009970;
-}
-
-#nav:not(.scrolled) .title-item:hover {
-    color: #009970 !important;
-}
-
-#nav:not(.scrolled) .title-item:hover i {
-    color: #009970 !important;
-}
-
-#nav:not(.scrolled) .nav-item:hover .title-item {
-    color: #009970 !important;
-}
-
-#nav:not(.scrolled) .container .login-button {
-    background-color: transparent;
-    color: black;
-    padding: 7px 19px;
-    border: 1px solid black;
-}
-
-.image-text {
-    position: relative;
-    margin: 10px;
-}
-
-.image-text img {
-    max-width: 100px;
-    max-height: 100px;
+.no-history {
+    background-color: #f8f9fa; /* Màu nền nhạt, phù hợp với Bootstrap */
     border-radius: 8px;
+    padding: 3rem;
+    margin: 2rem 0;
 }
 
-.delete-img {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
+.no-history img {
+    opacity: 0.8;
 }
+
+.no-history h4 {
+    color: #343a40;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.no-history p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.no-history .btn-success {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+

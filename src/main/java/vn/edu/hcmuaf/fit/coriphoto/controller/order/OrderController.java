@@ -50,6 +50,26 @@ public class OrderController extends HttpServlet {
         String cardCVC = request.getParameter("cardCVC");
         String cardBank = request.getParameter("cardBank");
 
+        System.out.println("paymentTypeId" + paymentTypeId);
+        System.out.println("pmid" + pmid);
+
+
+        System.out.println("Thanh toán bằng thẻ tín dụng:");
+        System.out.println("Tên trên thẻ: " + cardName);
+        System.out.println("Số thẻ: " + cardNumber);
+        System.out.println("Card Bank: " + cardBank);
+        System.out.println("Ngày hết hạn: " + cardExpiry);
+        System.out.println("CVC: " + cardCVC);
+
+
+        // Xử lý logic liên quan đến tài khoản ngân hàng
+        System.out.println("Thanh toán bằng tài khoản ngân hàng:");
+        System.out.println("Chủ tài khoản: " + bankAccountHolder);
+        System.out.println("Số tài khoản: " + bankAccountNumber);
+        System.out.println("Tên ngân hàng: " + bankName);
+        System.out.println("Ngày hết hạn: " + bankExpiry);
+
+
         int promotionId = Integer.parseInt(request.getParameter("promotionId"));
         double totalAfterDiscount = Double.parseDouble(request.getParameter("totalAfterDiscount"));
         int licenseId = Integer.parseInt(request.getParameter("licenseId"));
@@ -74,11 +94,42 @@ public class OrderController extends HttpServlet {
             products.add(productService.getById(Integer.parseInt(ele)));
         }
 
+        // In các giá trị đã lấy từ request
+        System.out.println("Products: " + products);
+        System.out.println("Promotion ID: " + promotionId);
+        System.out.println("Total After Discount: " + totalAfterDiscount);
+        System.out.println("License ID: " + licenseId);
+
+        // In thông tin sản phẩm
+        if (productIds != null) {
+            System.out.println("Product IDs: ");
+            for (String productId : productIds) {
+                System.out.println(productId);
+            }
+        }
+
+        if (productNames != null) {
+            System.out.println("Product Names: ");
+            for (String productName : productNames) {
+                System.out.println(productName);
+            }
+        }
+
+        if (productPrices != null) {
+            System.out.println("Product Prices: ");
+            for (String productPrice : productPrices) {
+                System.out.println(productPrice);
+            }
+        }
+
         OrderService orderService = new OrderService();
+        int[] licenseIds = new int[1];
+        licenseIds[0] = licenseId;
 
         // thanh toán bằng thẻ có sẵn lưu trong tài khoản
         if (!pmid.isEmpty()) {
-            boolean isOrderCreated = orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalBeforeDiscount, products);
+            boolean isOrderCreated = orderService.createOrderCompleted(uid, Integer.parseInt(pmid), promotionId, licenseIds, totalBeforeDiscount, products);
+            System.out.println("Tạo đơn thành công: " + isOrderCreated);
             if (isOrderCreated) {
                 Product product = products.get(0);
                 String imageName = product.getName();
@@ -107,8 +158,10 @@ public class OrderController extends HttpServlet {
             UserService userService = new UserService();
             if (Integer.parseInt(paymentTypeId) == 1) {
                 LocalDate cardExpiryLD = FormatDateTime.format(cardExpiry);
+                System.out.println("Add card: " + userService.addPaymentMethodCard(uid, cardName, cardNumber, Integer.parseInt(paymentTypeId), cardBank, cardExpiryLD , Integer.parseInt(cardCVC)));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, cardNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
+                System.out.println("Tạo đơn thành công: " + isOrderCreated);
                 if (isOrderCreated) {
                     Product product = products.get(0);
                     String imageName = product.getName();
@@ -136,8 +189,11 @@ public class OrderController extends HttpServlet {
             }
             else if (Integer.parseInt(paymentTypeId) == 2) {
                 LocalDate bankExpiryLD = FormatDateTime.format(bankExpiry);
+                System.out.println("Add bank: " +  userService.addPaymentMethodBank(uid, bankAccountHolder, bankAccountNumber, Integer.parseInt(paymentTypeId), bankName, bankExpiryLD));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
+                System.out.println("Tạo đơn thành công: " + isOrderCreated);
+
                 if (isOrderCreated) {
                     Product product = products.get(0);
                     String imageName = product.getName();

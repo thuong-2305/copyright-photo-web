@@ -17,8 +17,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 @WebServlet(name = "CartOrderController", value = "/CartOrderController")
 public class CartOrderController extends HttpServlet {
+    private static final ExecutorService executor = Executors.newFixedThreadPool(5);
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Kiểm tra người dùng đã đăng nhập
@@ -114,7 +119,7 @@ public class CartOrderController extends HttpServlet {
         CartService cartService = new CartService();
 
         // Sửa
-        boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseIdsArray, totalBeforeDiscount, products);
+        boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIdsArray, totalBeforeDiscount, products);
         if (isOrderCreated) {
             // gửi thông tin ảnh về email của người dùng
             List<String> imageNames = new ArrayList<>();
@@ -130,27 +135,49 @@ public class CartOrderController extends HttpServlet {
                 String absolutePath = request.getServletContext().getRealPath(imageUrl);
                 imagePaths.add(absolutePath);
 
+                System.out.println("IMG URL" + imageUrl);
+                System.out.println("PATH" + absolutePath);
+
                 licenses.add(licenseIdsArray[i]); // Lấy license tương ứng (1: Tiêu chuẩn, 2: Nâng cao)
             }
 
             // Gửi email với danh sách ảnh và license
-            EmailUtils.sendEmailWithAttachments(userEmail, "Thông tin đơn hàng",
-                    "Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!\n\n" +
-                            "===== THÔNG TIN ĐƠN HÀNG =====\n" +
-                            "- Số tiền thanh toán: " + totalAfterDiscount + " VND\n" +
-                            "- Ngày mua hàng: " + FormatDateTime.format(LocalDate.now().toString()) + "\n\n" +
-                            "Vui lòng kiểm tra file license đính kèm để biết thêm chi tiết về sản phẩm của bạn.\n\n" +
-                            "Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
-                            "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
-                            "Trân trọng,\n"
-                    , imagePaths, imageNames, licenses);
+            double finalTotalAfterDiscount = totalAfterDiscount;
+            executor.submit(() -> {
+                EmailUtils.sendEmailWithAttachments(userEmail, "Thông tin đơn hàng",
+                        "Cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!\n\n" +
+                                "===== THÔNG TIN ĐƠN HÀNG =====\n" +
+                                "- Số tiền thanh toán: " + finalTotalAfterDiscount + " VND\n" +
+                                "- Ngày mua hàng: " + FormatDateTime.format(LocalDate.now().toString()) + "\n\n" +
+                                "Vui lòng kiểm tra file license đính kèm để biết thêm chi tiết về sản phẩm của bạn.\n\n" +
+                                "Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ với chúng tôi.\n\n" +
+                                "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
+                                "Trân trọng,\n"
+                        , imagePaths, imageNames, licenses);
+            });
+
 
             // xóa tất cả những sản phẩm đã mua trong giỏ hàng
             for (String productId : productIds) {
                 cartService.deleteItem(uid, Integer.parseInt(productId));
             }
+            response.sendRedirect("order-success.jsp");
+            return;
         }
+        response.sendRedirect("order-fail.jsp");
+        return;
+        /*
+        for (int i = 0; i < productIds.length; i++) {
+            int licenseId = licenseIdsArray[i];
+            // Gọi service để tạo đơn hàng
+            orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+            cartService.deleteItem(uid, Integer.parseInt(productIds[i]));
+        }
+        */
+
         // Chuyển hướng sau khi hoàn thành
-        response.sendRedirect("/");
     }
+
+
+
 }

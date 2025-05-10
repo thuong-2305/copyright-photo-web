@@ -46,7 +46,7 @@
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<div class="container notification-container my-4">
+<div class="container notification-container mt-4">
     <div class="card my-5 p-4 text-center">
         <div class="icon-success mb-3">
             <i class="fas fa-shield-alt fa-3x"></i>
