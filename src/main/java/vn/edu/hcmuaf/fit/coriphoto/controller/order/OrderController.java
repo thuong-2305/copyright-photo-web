@@ -123,10 +123,12 @@ public class OrderController extends HttpServlet {
         }
 
         OrderService orderService = new OrderService();
+        int[] licenseIds = new int[1];
+        licenseIds[0] = licenseId;
 
         // thanh toán bằng thẻ có sẵn lưu trong tài khoản
         if (!pmid.isEmpty()) {
-            boolean isOrderCreated = orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalBeforeDiscount, products);
+            boolean isOrderCreated = orderService.createOrderCompleted(uid, Integer.parseInt(pmid), promotionId, licenseIds, totalBeforeDiscount, products);
             System.out.println("Tạo đơn thành công: " + isOrderCreated);
             if (isOrderCreated) {
                 Product product = products.get(0);
@@ -158,7 +160,7 @@ public class OrderController extends HttpServlet {
                 LocalDate cardExpiryLD = FormatDateTime.format(cardExpiry);
                 System.out.println("Add card: " + userService.addPaymentMethodCard(uid, cardName, cardNumber, Integer.parseInt(paymentTypeId), cardBank, cardExpiryLD , Integer.parseInt(cardCVC)));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, cardNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
                 System.out.println("Tạo đơn thành công: " + isOrderCreated);
                 if (isOrderCreated) {
                     Product product = products.get(0);
@@ -189,7 +191,7 @@ public class OrderController extends HttpServlet {
                 LocalDate bankExpiryLD = FormatDateTime.format(bankExpiry);
                 System.out.println("Add bank: " +  userService.addPaymentMethodBank(uid, bankAccountHolder, bankAccountNumber, Integer.parseInt(paymentTypeId), bankName, bankExpiryLD));
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
                 System.out.println("Tạo đơn thành công: " + isOrderCreated);
 
                 if (isOrderCreated) {
