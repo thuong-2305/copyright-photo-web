@@ -65,7 +65,6 @@ public class OrderHistory extends HttpServlet {
                 order.setPmid(pmid);
                 paymentTypes.put(pmid, userService.getPaymentTypeNameByPmid(pmid));
 
-
                 // Lấy danh sách OrderDetail
                 List<OrderDetail> orderDetails = orderService.getOrderDetailsHistory(order.getOrderId());
                 orderDetailsMap.put(order.getOrderId(), orderDetails);
@@ -91,12 +90,12 @@ public class OrderHistory extends HttpServlet {
                 productMap.put(product.getId(), product);
             }
 
-            System.out.println(orders);
-            System.out.println(orderDetailsMap);
-            System.out.println(productMap);
-            System.out.println(paymentTypes);
-            System.out.println(userEmails);
-            System.out.println(priceMap);
+            System.out.println("Orders: " + orders);
+            System.out.println("OrderDetailsMap:" + orderDetailsMap);
+            System.out.println("productMap: " + productMap);
+            System.out.println("paymentTypes: " + paymentTypes);
+            System.out.println("userEmail: " + userEmails);
+            System.out.println("priceMap: " + priceMap);
 
 
 
@@ -108,7 +107,7 @@ public class OrderHistory extends HttpServlet {
             request.setAttribute("priceMap", priceMap);
         }
 
-        request.getRequestDispatcher("orderHistory.jsp").forward(request, response);
+        request.getRequestDispatcher("order-history.jsp").forward(request, response);
     }
 
 
