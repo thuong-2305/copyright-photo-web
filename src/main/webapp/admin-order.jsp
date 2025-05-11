@@ -78,12 +78,12 @@
                         <table id="productsTable" class="table table-bordered">
                             <colgroup>
                                 <col style="width: 13%;">
-                                <col style="width: 15%;">
+                                <col style="width: 10%;">
                                 <col style="width: 15%;">
                                 <col style="width: 15%;">
                                 <col style="width: 20%">
                                 <col style="width: 10%;">
-                                <col style="width: 10%">
+                                <col style="width: 15%">
                             </colgroup>
                             <thead class="table-dark">
                             <tr>
@@ -121,6 +121,8 @@
                                     </td>
                                     <td>
                                         <button class="btn view-btn" data-id="${order.orderId}"><i class="bi bi-eye-fill"></i></button>
+                                        <button class="btn edit-btn" data-id="${order.orderId}"><i class="bi bi-pencil-square"></i></button>
+                                        <button class="btn delete-btn" data-id="${order.orderId}"><i class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </c:forEach>

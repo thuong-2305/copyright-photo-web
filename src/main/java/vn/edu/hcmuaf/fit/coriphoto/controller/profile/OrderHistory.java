@@ -107,7 +107,7 @@ public class OrderHistory extends HttpServlet {
             request.setAttribute("priceMap", priceMap);
         }
 
-        request.getRequestDispatcher("order-history.jsp").forward(request, response);
+        request.getRequestDispatcher("orderHistory.jsp").forward(request, response);
     }
 
 
