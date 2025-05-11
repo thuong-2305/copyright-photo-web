@@ -4,8 +4,10 @@ import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.LocalDateTimeTypeAdapter;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
 import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
+import vn.edu.hcmuaf.fit.coriphoto.model.Category;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class LogDAO {
     private static final Jdbi jdbi = new DBConnect().get();
@@ -19,6 +21,12 @@ public class LogDAO {
                 .bind("eventDate", log.getEventDate())
                 .bind("message", log.getMessage())
                 .execute());
+    }
+
+    public List<ActivityLog> getLogs() {
+        String sqlQuery = "SELECT * FROM activity_log";
+        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
+                .mapToBean(ActivityLog.class).list());
     }
 
     public static void main(String[] args) {
