@@ -33,6 +33,11 @@
                     <i class="fa-solid fa-user"></i><span>Tài khoản</span>
                 </a>
             </li>
+            <li class="<%= currentURL.contains("/admin-log") ? "active" : "" %>">
+                <a href="${pageContext.request.contextPath}/admin-log">
+                    <i class="fa-solid fa-user"></i><span>Tài khoản</span>
+                </a>
+            </li>
             <hr>
             <li class="<%= currentURL.contains("/admin-notification") ? "active" : "" %>">
                 <a href="${pageContext.request.contextPath}/admin-notification">
