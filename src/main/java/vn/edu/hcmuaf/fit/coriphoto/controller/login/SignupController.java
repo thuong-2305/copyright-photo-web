@@ -20,15 +20,8 @@ public class SignupController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String confirmPassword = request.getParameter("confirmPassword");
         String username = request.getParameter("username");
         String name = request.getParameter("name");
-
-        if (!password.equals(confirmPassword)) {
-            request.setAttribute("error", "Mật khẩu không khớp!");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-            return;
-        }
 
         AuthService authService = new AuthService();
         boolean isCreated = authService.registerUser(email, password, username, name);

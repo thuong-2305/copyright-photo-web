@@ -2,12 +2,12 @@ function showTab(tabId) {
     // Ẩn tất cả các tab nội dung
     document.getElementById('credit-card').classList.add('d-none');
     document.getElementById('bank-account').classList.add('d-none');
-    document.getElementById('paypal').classList.add('d-none');
+    document.getElementById('vnpay').classList.add('d-none');
 
     // Xóa lớp active khỏi tất cả các tab
     document.getElementById('credit-card-tab').classList.remove('active', 'btn-dark', 'text-white');
     document.getElementById('bank-account-tab').classList.remove('active', 'btn-dark', 'text-white');
-    document.getElementById('paypal-tab').classList.remove('active', 'btn-dark', 'text-white');
+    document.getElementById('vnpay-tab').classList.remove('active', 'btn-dark', 'text-white');
 
     // Hiển thị tab được chọn và thêm lớp active
     if (tabId === 'credit-card') {
@@ -16,9 +16,9 @@ function showTab(tabId) {
     } else if (tabId === 'bank-account') {
         document.getElementById('bank-account').classList.remove('d-none');
         document.getElementById('bank-account-tab').classList.add('active', 'btn-dark', 'text-white');
-    } else if (tabId === 'paypal') {
-        document.getElementById('paypal').classList.remove('d-none');
-        document.getElementById('paypal-tab').classList.add('active', 'btn-dark', 'text-white');
+    } else if (tabId === 'vnpay') {
+        document.getElementById('vnpay').classList.remove('d-none');
+        document.getElementById('vnpay-tab').classList.add('active', 'btn-dark', 'text-white');
     }
 }
 

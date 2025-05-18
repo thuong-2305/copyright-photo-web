@@ -272,9 +272,9 @@
                                                         onclick="showTab('bank-account')">
                                                     TÀI KHOẢN NGÂN HÀNG
                                                 </button>
-                                                <button id="paypal-tab" class="btn btn-light text-dark"
-                                                        onclick="showTab('paypal')">
-                                                    <i class="fab fa-paypal"></i> PayPal
+                                                <button id="vnpay-tab" class="btn btn-light text-dark"
+                                                        onclick="showTab('vnpay')">
+                                                    VNPay
                                                 </button>
                                             </div>
                                         </div>
@@ -353,18 +353,33 @@
                                                 </form>
                                             </div>
 
-                                            <!-- Tab: PayPal -->
-                                            <div id="paypal" class="payment-tab d-none text-center">
-                                                <div class="alert alert-info text-center" role="alert">
-                                                    <i class="fas fa-lock"></i> Mọi thông tin đều được mã hóa, bảo mật
-                                                    và bảo vệ toàn diện.
-                                                    <a href="#">Tìm hiểu thêm</a>
+                                            <!-- Tab: VNPay -->
+                                            <form id="vnPayOrder" action="vnpayOrder" method="POST">
+                                                <div id="vnpay" class="payment-tab d-none text-center" name="vnpay">
+                                                    <div class="alert alert-info text-center" role="alert">
+                                                        <i class="fas fa-lock"></i> Mọi thông tin đều được mã hóa, bảo mật
+                                                        và bảo vệ toàn diện.
+                                                        <a href="#">Tìm hiểu thêm</a>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-danger btn-lg text-light">
+                                                        <i class="fas fa-credit-card"></i> Thanh toán với VNPay
+                                                    </button>
+                                                    <p class="mt-3">Phương thức thanh toán nhanh chóng và tiện lợi</p>
                                                 </div>
-                                                <button class="btn btn-warning btn-lg text-dark">
-                                                    <i class="fab fa-paypal"></i> Thanh toán với PayPal
-                                                </button>
-                                                <p class="mt-3">Phương thức thanh toán an toàn và dễ dàng hơn</p>
-                                            </div>
+                                                <input type="hidden" name="promotionId" value="${promotionId}">
+                                                <input type="hidden" name="totalAfterDiscount" value="${totalAfterDiscount}">
+                                                <input type="hidden" name="totalBeforeDiscount" value="${totalBeforeDiscount}">
+                                                <input type="hidden" name="licenseId" value="${licenseId}">
+                                                <input type="hidden" name="products" value="${products}">
+
+                                                <c:forEach var="product" items="${products}">
+                                                    <input type="hidden" name="productIds" value="${product.id}">
+                                                    <input type="hidden" name="productNames" value="${product.name}">
+                                                    <input type="hidden" name="productPrices" value="${product.price}">
+                                                </c:forEach>
+                                            </form>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -421,15 +436,11 @@
                                 <div class="modal-content">
                                     <div class="modal-header bg-success text-white">
                                         <h5 class="modal-title" id="paymentSuccessModalLabel">Thanh toán thành công</h5>
-                                        <button type="button" class="close text-white" data-dismiss="modal"
-                                                aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
                                     </div>
                                     <div class="modal-body text-center">
                                         <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
                                         <h4>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!</h4>
-                                        <p>Đơn hàng của bạn đã được thanh toán thành công.</p>
+                                        <p>Đơn hàng của bạn đã được thanh toán thành công. Vui lòng kiểm tra email để nhận thông tin chi tiết về đơn hàng.</p>
                                     </div>
                                     <div class="modal-footer justify-content-center">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal"
