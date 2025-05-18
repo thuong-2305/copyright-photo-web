@@ -84,7 +84,6 @@ public class ProductControll extends HttpServlet {
         // Lấy danh sách sản phẩm cho trang hiện tại
         int startIndex = (page - 1) * productsPerPage;
         int endIndex = Math.min(startIndex + productsPerPage, totalProducts);
-        System.out.println(startIndex+" "+endIndex);
         productSorted = productSorted.subList(startIndex, endIndex);
         // Trả về danh sách sản phẩm đã sắp xếp dưới dạng JSON
         Gson gson = new GsonBuilder()
@@ -235,8 +234,7 @@ public class ProductControll extends HttpServlet {
         String jsonResponse = gson.toJson(responseData);
 
         // Trả về kết quả dưới dạng JSON
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+
         response.getWriter().write(jsonResponse);
     }
 
