@@ -20,19 +20,8 @@ public class SignupController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String username = request.getParameter("username");
+        String username = request.getParameter("username"   );
         String name = request.getParameter("name");
-
-        /* không cần kiểm tra vì đã kiểm tra trước khi hiện otp modal đăng kí (register-verify-email.js)
-        String confirmPassword = request.getParameter("confirmPassword");
-        if (!password.equals(confirmPassword)) {
-            request.setAttribute("error", "Mật khẩu không khớp!");
-            request.getRequestDispatcher("signup.jsp").forward(request, response);
-            return;
-        }
-         */
-
-
 
         AuthService authService = new AuthService();
         boolean isCreated = authService.registerUser(email, password, username, name);

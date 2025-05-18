@@ -79,7 +79,7 @@ public class LoginController extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
-        // Kiểm tra tài khoản có bị khóa vĩnh viễn không
+        // Kiểm tra tài khoản có bị khóa không
         LocalDateTime lockUntil = service.getLockUntil(user.getUid());
         if (lockUntil != null) {
             request.setAttribute("email", email);

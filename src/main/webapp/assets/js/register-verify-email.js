@@ -1,6 +1,5 @@
 // signup.js
 import { isPasswordStrong } from './check-strong-password.js';
-
 $(document).ready(function () {
     $("#check-email-btn").click(function (event) {
         event.preventDefault(); // Ngăn hành vi mặc định
