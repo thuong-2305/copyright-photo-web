@@ -88,35 +88,6 @@
                         <div class="nav" id="account-menu-container">
                             <div class="account-menu-content">
                                 <!-- Avatar -->
-<%--                                <div class="profile-avatar-container">--%>
-<%--                                    <div class="profile-avatar-content">--%>
-<%--                                        <!-- Container ảnh avatar -->--%>
-<%--                                        <div class="profile-image dp-ib"--%>
-<%--                                             onclick="document.getElementById('avatarInput').click()"--%>
-<%--                                             style="position: relative;">--%>
-<%--                                            <!-- Avatar -->--%>
-<%--                                            <img id="avatarPreview" src="GetAvatar?userId=${sessionScope.userId}&t=<%= System.currentTimeMillis() %>"--%>
-<%--                                                 alt="avatar"--%>
-<%--                                                 style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">--%>
-
-
-<%--                                            <!-- Icon camera -->--%>
-<%--                                            <div class="avatar-edit-icon">--%>
-<%--                                                <i class="fas fa-camera"></i>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
-
-<%--                                        <!-- Input file ẩn -->--%>
-<%--                                        <input type="file" id="avatarInput" accept="image/*" style="display: none;"--%>
-<%--                                               onchange="previewImage(event)">--%>
-
-<%--                                        <!-- Tên người dùng -->--%>
-<%--                                        <div class="font-weight-bold ml-2 dp-ib profile-name">--%>
-<%--                                            Zupiter--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-
                                 <div class="profile-avatar-container">
                                     <div class="profile-avatar-content">
                                         <div class="profile-image dp-ib">

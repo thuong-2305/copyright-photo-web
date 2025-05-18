@@ -1,19 +1,6 @@
 document.getElementById("submitNewEmail").addEventListener("click", function () {
     const newEmail = document.getElementById("newEmail").value.trim();
 
-    // if (!newEmail) {
-    //     alert("Vui lòng nhập email mới.");
-    //     return;
-    // }
-
-
-    // const userOtp = prompt("Vui lòng nhập mã OTP:");
-    //
-    // if (!userOtp) {
-    //     alert("Bạn chưa nhập mã OTP.");
-    //     return;
-    // }
-
     fetch("ChangeEmail", {
         method: "POST",
         headers: {
