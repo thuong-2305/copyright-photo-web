@@ -137,6 +137,8 @@
 <jsp:include page="include/scripts.jsp"/>
 
 <script src="assets/js/editprofile.js"></script>
+<script type="module" src="assets/js/change-password.js"></script>
+
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
