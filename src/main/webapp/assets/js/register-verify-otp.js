@@ -7,7 +7,15 @@ $(document).ready(function () {
             if (response.valid) {
                 $("#signup-form").attr("action", "signup").submit();
             } else {
-                alert("OTP không đúng!");
+                alert(response.message || "OTP không đúng!");
+
+                // Kiểm tra số lần nhập sai
+                if (response.attempts >= 5) {
+                    // Ẩn modal OTP
+                    $("#otp-modal").modal("hide");
+                    // Hiển thị modal lỗi
+                    $("#otp-error-modal").modal("show");
+                }
             }
         }, "json");
     });
