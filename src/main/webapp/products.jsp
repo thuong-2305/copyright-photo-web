@@ -3,7 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,8 +44,8 @@
 </head>
 
 <body>
+<!--Đây là trang products-->
 <jsp:include page="include/navbar.jsp"/>
-
 <section class="search pt-5 mt-4" style="margin-top: 15px">
     <div class="search-container">
         <div class="dropdown">
@@ -64,7 +63,8 @@
             <input type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
             <span class="clear-btn text-dark">&#10005;</span>
         </div>
-        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm kiếm</span></button>
+        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm kiếm</span>
+        </button>
     </div>
 </section>
 
@@ -102,92 +102,155 @@
                 </p>
             </div>
         </div>
-        <div class="show-products">
-            <div class="content-products">
-                <p class="fs-3 fw-bold">Ảnh <%= path %> có giấy phép bản quyền</p>
-                <p class="text-secondary">Nhiều dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ
-                    CoRiPhoto.</p>
-                <div class="tool d-flex justify-content-between">
-                    <button class="btn border-secondary" onclick="toggleFilter()"><i
-                            class="fa-solid fa-sliders"></i> Lọc
-                    </button>
-                    <div class="dropdown">
-                        <button
-                                class="btn-outline-secondary dropdown-toggle"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                id="dropdownButton-products"
-                        >
-                            Sắp xếp: Phổ biến nhất
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item active" data-value="popular" style="cursor: pointer;">
-                                Phổ biến nhất
-                            </li>
-                            <li class="dropdown-item" data-value="latest" style="cursor: pointer;">
-                                Mới nhất
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+
+        <div class="hero-section">
+            <div class="container">
+                <h2>Thư Viện Hình Ảnh Chất Lượng Cao</h2>
+                <p>
+                    Khám phá bộ sưu tập hình ảnh bản quyền phong phú cho dự án của bạn
+                </p>
             </div>
-            <div class="filter-panel">
-                <div class="filter-header">
-                    <span class="filter-title"><i class="fa-solid fa-sliders"></i> Chọn tiêu chí muốn lọc</span>
-                </div>
-                <hr>
-                <div class="filter-section">
-                    <h4>Dung lượng ảnh tối thiểu</h4>
-                    <div class="filter-options">
-                        <button class="filter-button">15 MB</button>
-                        <button class="filter-button">24 MB</button>
-                        <button class="filter-button">30 MB</button>
-                        <button class="filter-button">35 MB</button>
+        </div>
+
+        <main class="container main-content">
+            <div class="content-wrapper">
+                <aside class="sidebar">
+                    <div class="filter-section">
+                        <h3>Thẻ phổ biến</h3>
+                        <div class="popular-tags">
+                            <a href="#" class="tag">Tự nhiên</a>
+                            <a href="#" class="tag">Phong cảnh</a>
+                            <a href="#" class="tag">Hoa cỏ</a>
+                            <a href="#" class="tag">Nhà</a>
+                            <a href="#" class="tag">Biển</a>
+                            <a href="#" class="tag">Động vật</a>
+                            <a href="#" class="tag">Công nghệ</a>
+                            <a href="#" class="tag">Kinh doanh</a>
+                        </div>
                     </div>
-                </div>
 
-                <div class="filter-section">
-                    <h4>Ngày đăng ảnh</h4>
-                    <select class="filter-select">
-                        <option value="any">---</option>
-                        <option value="last-24h">24 giờ trước</option>
-                        <option value="last-week">Tuần trước</option>
-                        <option value="last-month">Tháng trước</option>
-                    </select>
-                </div>
+                    <div class="filter-section">
+                        <h3>Chọn tiêu chí lọc</h3>
 
-                <div class="filter-section">
-                    <div class="filter-options justify-content-end">
-                        <button class="filter-button-apply">Áp dụng</button>
+                        <div class="filter-group">
+                            <h4>Dung lượng ảnh tối thiểu</h4>
+                            <select class="form-control">
+                                <option>Tất cả kích thước</option>
+                                <option>Nhỏ (≤ 1MP)</option>
+                                <option>Trung bình (1-5MP)</option>
+                                <option>Lớn (5-10MP)</option>
+                                <option>Rất lớn (≥ 10MP)</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Ngày đăng ảnh</h4>
+                            <select class="form-control">
+                                <option>Mọi thời gian</option>
+                                <option>24 giờ qua</option>
+                                <option>Tuần này</option>
+                                <option>Tháng này</option>
+                                <option>Năm nay</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-group">
+                            <h4>Định dạng</h4>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox"/> JPG</label>
+                                <label><input type="checkbox"/> PNG</label>
+                                <label><input type="checkbox"/> SVG</label>
+                                <label><input type="checkbox"/> WEBP</label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block">Áp dụng bộ lọc</button>
+                        <button class="btn btn-outline btn-block">Đặt lại</button>
                     </div>
-                </div>
+                </aside>
 
-            </div>
-            <div class="photo-products">
-                <jsp:useBean id="productSorted" scope="request" type="java.util.List"/>
-                <c:forEach var="item" items="${ productSorted }">
-                <div class="box">
-                    <a href="product-detail?pid=${ item.getId() }">
-                        <img src="${ item.getUrl() }" alt="">
-                    </a>
-                    <div class="info">
-                        <p class="fw-semibold">${ item.getName() }</p>
-                        <div class="hover-options">
-                            <button class="favorite-btn heart option-button fw-bold" data-product-id=${ item.getId() }>
-                                <i class="fa-regular fa-heart pe-2"></i>
-                                Thích
+                <div class="content">
+                    <div class="gallery-header">
+                        <h2>Danh mục ảnh <%= path %> có giấy phép bản quyền</h2>
+                        <p>
+                            Nhiều dữ liệu ảnh, hãy Khám phá nhưng bức ảnh hàng đầu, nổi bật từ
+                            CoRiPhoto.
+                        </p>
+
+                        <div class="gallery-actions">
+                            <div class="sort-options">
+                                <span style="color: black">Sắp xếp theo:</span>
+                                <span class="sort-item active" data-value="popular" style="cursor: pointer;">Phổ
+                                    biến nhất
+                                </span>
+                                <span class="sort-item" data-value="latest" style="cursor: pointer;">Mới nhất
+                                </span>
+                            </div>
+
+                            <div class="view-options">
+                                <button class="btn-icon active">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="btn-icon"><i class="fas fa-th-list"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="image-gallery">
+                        <!-- Vị trí hiển thị hình ảnh - sẽ được điền bởi dữ liệu từ backend -->
+                        <div class="photo-products">
+                            <jsp:useBean id="productSorted" scope="request" type="java.util.List"/>
+                            <c:forEach var="item" items="${ productSorted }">
+                                <div class="box">
+                                    <a href="product-detail?pid=${ item.getId() }">
+                                        <img src="${ item.getUrl() }" alt="">
+                                    </a>
+                                    <div class="info">
+                                        <p class="fw-semibold">${ item.getName() }</p>
+                                        <div class="hover-options">
+                                            <button class="favorite-btn heart option-button fw-bold"
+                                                    data-product-id=${ item.getId() }>
+                                                <i class="fa-regular fa-heart pe-2"></i>
+                                                Thích
+                                            </button>
+                                            <button class="option-button buy fw-bold addCart"
+                                                    data-product-id=${ item.getId() }>
+                                                <i class="bi bi-bag-check-fill"></i>
+                                                Thêm giỏ hàng
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+
+                    <div class="pagination">
+                        <a href="#" class="prev disabled"
+                        ><i class="fas fa-chevron-left"></i
+                        ></a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <span>...</span>
+                        <a href="#">10</a>
+                        <a href="#" class="next"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+
+                    <div class="feedback-card">
+                        <h3>Những kết quả này có phù hợp với kết quả của bạn không?</h3>
+                        <div class="feedback-actions">
+                            <button class="btn btn-feedback">
+                                <i class="fas fa-thumbs-up"></i> Có
                             </button>
-                            <button class="option-button buy fw-bold addCart" data-product-id=${ item.getId() }>
-                                <i class="bi bi-bag-check-fill"></i>
-                                Thêm giỏ hàng
+                            <button class="btn btn-feedback">
+                                <i class="fas fa-thumbs-down"></i> Không
                             </button>
                         </div>
                     </div>
                 </div>
-                </c:forEach>
             </div>
-        </div>
+        </main>
     </div>
 </section>
 <!-- products -->
@@ -231,43 +294,42 @@
 </script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Lắng nghe sự kiện click trên các mục trong dropdown
-        $(".dropdown-menu .dropdown-item").on("click", function() {
-            $(".dropdown-menu .dropdown-item").removeClass("active");
+        $(".sort-options .sort-item").on("click", function () {
+            $(".sort-options .sort-item").removeClass("active");
             $(this).addClass("active");
 
             var content = $(this).text().trim();
             var sortValue = $(this).data("value");
 
-            $("#dropdownButton-products").text("Sắp xếp: " + content);
             $.ajax({
                 url: "products?cid=${ cid }",
                 method: "GET",
                 dataType: "json",
-                data: { sortType: sortValue },
+                data: {sortType: sortValue},
                 headers: {
                     "X-Requested-With": "XMLHttpRequest"
                 },
-                success: function(response) {
+                success: function (response) {
                     // Giả sử dữ liệu trả về là JSON (danh sách sản phẩm đã sắp xếp)
                     var products = response; // Nếu server trả về JSON
                     // Cập nhật lại phần tử .photo-products bằng HTML mới
                     var htmlContent = '';
-                    $.each(products, function(index, item) {
+                    $.each(products, function (index, item) {
                         htmlContent += '<div class="box">';
                         htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
                         htmlContent += '<div class="info">';
                         htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                         htmlContent += '<div class="hover-options">';
-                        htmlContent += '<button class="favorite-btn heart option-button fw-bold" data-product-id="' + item.id+'"> <i class="fa-regular fa-heart pe-2"></i>Thích </button>';
-                        htmlContent += '<button class="option-button buy fw-bold addCart" data-product-id="'+ item.id +'"><i class="bi bi-bag-check-fill"></i>Thêm giỏ hàng</button>';
+                        htmlContent += '<button class="favorite-btn heart option-button fw-bold" data-product-id="' + item.id + '"> <i class="fa-regular fa-heart pe-2"></i>Thích </button>';
+                        htmlContent += '<button class="option-button buy fw-bold addCart" data-product-id="' + item.id + '"><i class="bi bi-bag-check-fill"></i>Thêm giỏ hàng</button>';
                         htmlContent += '</div></div></div>';
                     });
                     // Cập nhật nội dung của photo-products với HTML mới
                     $(".photo-products").html(htmlContent);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error("AJAX Error: ", error);
                     console.error("Status: ", status);
                     console.error("Response Text: ", xhr.responseText);
@@ -279,7 +341,7 @@
 </script>
 
 <script>
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (e.target.classList.contains('addCart')) {
             const productId = e.target.getAttribute('data-product-id');
             e.preventDefault();
@@ -329,7 +391,7 @@
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    body: `action=add&productId=`+productId
+                    body: `action=add&productId=` + productId
                 })
                     .then(response => response.json())
                     .then(data => {

@@ -15,6 +15,38 @@
   <link rel="stylesheet" href="assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css">
   <script src="assets/libraries/jquery/jquery-3.7.1.min.js"></script>
   <title>CoRiPhoto</title>
+  <style>
+    #nav:not(.scrolled) .title-logo {
+      color: black;
+    }
+
+    #nav:not(.scrolled) .title-item {
+      color: black !important;
+    }
+
+    #nav:not(.scrolled) .nav-item:hover {
+      color: #009970;
+    }
+
+    #nav:not(.scrolled) .title-item:hover {
+      color: #009970 !important;
+    }
+
+    #nav:not(.scrolled) .title-item:hover i {
+      color: #009970 !important;
+    }
+
+    #nav:not(.scrolled) .nav-item:hover .title-item {
+      color: #009970 !important;
+    }
+
+    #nav:not(.scrolled) .container .login-button {
+      background-color: transparent;
+      color: black;
+      padding: 7px 19px;
+      border: 1px solid black;
+    }
+  </style>
 </head>
 
 <body>
