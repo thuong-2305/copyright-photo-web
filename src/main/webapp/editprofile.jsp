@@ -91,7 +91,7 @@
                                 <div class="profile-avatar-container">
                                     <div class="profile-avatar-content">
                                         <div class="profile-image dp-ib">
-                                            <img src="assets/images/avart-default.png" alt="avatar">
+                                            <img src="assets/images/avart-default.png" alt="">
                                         </div>
                                         <div class="font-weight-bold ml-2 dp-ib profile-name">
                                             Zupiter
@@ -141,7 +141,8 @@
                                         </label>
                                     </div>
                                     <div class="last-name-input">
-                                        <input class="w-100 form-control" type="text" name="fullname" value="${user.fullName}">
+                                        <input class="w-100 form-control" type="text" name="fullname"
+                                               value="${user.fullName}">
                                     </div>
                                 </div>
                             </div>
@@ -167,17 +168,45 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="otpModalLabel">Gửi OTP đến email</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
                                                 <p>Chúng tôi sẽ gửi OTP đến email của bạn để xác nhận thay đổi.</p>
-                                                <button type="button" id="sendOtpButton" class="btn btn-primary" data-dismiss="modal">Gửi OTP</button>
+                                                <button type="button" id="sendOtpButton" class="btn btn-primary"
+                                                        data-dismiss="modal">Gửi OTP
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="modal fade" id="confirmOTPModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="confirmOTPModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="confirmOTPModalLabel">Xác nhận OTP</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="otpCode">Nhập mã OTP:</label>
+                                                <input type="text" id="otpCode" class="form-control"
+                                                       placeholder="Nhập mã OTP">
+                                                <button type="button" id="submitOTP" class="btn btn-primary mt-3">Xác
+                                                    nhận
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <div class="modal fade" id="newEmailModal" tabindex="-1" role="dialog"
                                      aria-labelledby="newEmailModalLabel" aria-hidden="true">
@@ -185,7 +214,8 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="newEmailModalLabel">Nhập email mới</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
@@ -193,7 +223,8 @@
                                                 <label for="newEmail">Email mới:</label>
                                                 <input type="email" id="newEmail" class="form-control"
                                                        placeholder="Nhập email mới">
-                                                <button type="button" id="submitNewEmail" class="btn btn-primary mt-3">Thay đổi email
+                                                <button type="button" id="submitNewEmail" class="btn btn-primary mt-3">
+                                                    Thay đổi email
                                                 </button>
                                             </div>
                                         </div>
@@ -236,8 +267,11 @@
 
 <jsp:include page="include/scripts.jsp"/>
 
+<script src="assets/js/upload-avatar.js"></script>
 <script src="assets/js/change-email.js"></script>
 <script src="assets/js/send-otp.js"></script>
+<script src="assets/js/confirm-otp.js"></script>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

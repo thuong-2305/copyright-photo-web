@@ -39,7 +39,7 @@
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<div id="change-password">
+<div id="change-password" class="my-5 py-5">
     <div class="container-fluid">
         <div class="change-password-container">
             <div class="row">

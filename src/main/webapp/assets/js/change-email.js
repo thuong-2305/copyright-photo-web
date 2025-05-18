@@ -1,24 +1,12 @@
 document.getElementById("submitNewEmail").addEventListener("click", function () {
     const newEmail = document.getElementById("newEmail").value.trim();
 
-    if (!newEmail) {
-        alert("Vui lòng nhập email mới.");
-        return;
-    }
-
-    const userOtp = prompt("Vui lòng nhập mã OTP:");
-
-    if (!userOtp) {
-        alert("Bạn chưa nhập mã OTP.");
-        return;
-    }
-
     fetch("ChangeEmail", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `newEmail=${encodeURIComponent(newEmail)}&otp=${encodeURIComponent(userOtp)}`
+        body: `newEmail=${encodeURIComponent(newEmail)}`
     })
         .then(response => response.text())
         .then(result => {
@@ -33,9 +21,6 @@ document.getElementById("submitNewEmail").addEventListener("click", function () 
                     break;
                 case "invalidEmail":
                     alert("Email không hợp lệ. Vui lòng kiểm tra lại!");
-                    break;
-                case "invalidOtp":
-                    alert("OTP không chính xác. Vui lòng thử lại.");
                     break;
                 default:
                     alert("Có lỗi xảy ra. Vui lòng thử lại.");

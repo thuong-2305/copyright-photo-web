@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public class UserService {
     private UserDAO userDao;
@@ -14,8 +15,18 @@ public class UserService {
         this.userDao = new UserDAO();
     }
 
+    public boolean updateAvatarPath(int uid, String avatarPath) {
+        return userDao.updateAvatarPath(uid, avatarPath);
+    }
 
-    public boolean isExistEmail(String email) {
+    public String getAvatarPath(int uid) {
+        return userDao.getAvatarPath(uid);
+    }
+
+
+
+
+        public boolean isExistEmail(String email) {
         return userDao.isExistEmail(email);
     }
 

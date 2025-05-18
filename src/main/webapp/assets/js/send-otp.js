@@ -5,9 +5,8 @@ document.getElementById("sendOtpButton").addEventListener("click", function () {
         .then(response => response.text())
         .then(result => {
             if (result === "success") {
-                alert("OTP đã được gửi đến email của bạn!");
                 $('#otpModal').modal('hide');
-                $('#newEmailModal').modal('show');
+                $('#confirmOTPModal').modal('show');
             } else {
                 alert("Có lỗi xảy ra. Vui lòng thử lại.");
             }
