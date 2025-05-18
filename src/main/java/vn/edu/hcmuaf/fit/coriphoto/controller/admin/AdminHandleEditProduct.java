@@ -27,17 +27,13 @@ import java.time.LocalDateTime;
         maxRequestSize = 1024 * 1024 * 500
 )
 
-
 public class AdminHandleEditProduct extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("product_id"));
-//        System.out.println(id);
         Product product = new ProductService().getById(id);
 
-//        System.out.println(product);
-        response.setContentType("application/json");
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
                     @Override
@@ -54,7 +50,6 @@ public class AdminHandleEditProduct extends HttpServlet {
                 .registerTypeAdapter(Product.class, new ProductSerializer())
                 .create();
         String jsonResponse = gson.toJson(product);
-        System.out.println(jsonResponse);
         response.getWriter().write(jsonResponse);
     }
 
@@ -75,20 +70,6 @@ public class AdminHandleEditProduct extends HttpServlet {
         String url = request.getParameter("url");
 
         boolean checkIdSeller = new SellerService().checkExistSeller(idSeller);
-
-        System.out.print("{"
-                + "\"message\": \"Sản phẩm đã được thêm thành công!\","
-                + "\"nameProduct\": \"" + nameProduct + "\","
-                + "\"desciptProduct\": \"" + desciptProduct + "\","
-                + "\"idProduct\": \"" + idProduct + "\","
-                + "\"idSeller\": \"" + idSeller + "\","
-                + "\"imageSize\": \"" + imageSize + "\","
-                + "\"fileSize\": \"" + fileSize + "\","
-                + "\"priceProduct\": \"" + priceProduct + "\","
-                + "\"category\": \"" + IdCategory + "\","
-                + "\"url\": \"" + url + "\","
-                + "\"status\": \"" + status + "\"" + checkIdSeller
-                + "}");
 
         if(!checkIdSeller) {
             response.getWriter().write("{\"message\": \"ID người bán không đúng!\"}");

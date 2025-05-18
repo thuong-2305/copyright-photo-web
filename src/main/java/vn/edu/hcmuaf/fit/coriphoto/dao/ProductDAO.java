@@ -166,12 +166,5 @@ public class ProductDAO {
                 .bind(0, "waiting").mapToBean(Product.class).list());
     }
 
-    public static void main(String[] args) {
-        Product product = new ProductService().getById(996);
-        System.out.println(product);
-        product.setName("Muôn thú rừng núi");
-        new ProductService().updateProduct(product);
-        System.out.println(product);
-    }
 }
 
