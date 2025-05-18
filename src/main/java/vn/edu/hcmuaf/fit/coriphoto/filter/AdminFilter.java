@@ -9,7 +9,13 @@ import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "AdminFilter" , urlPatterns = {"/ShowDashBoard", "/admin-products", "/admin-customer", "/admin-category"})
+@WebFilter(filterName = "AdminFilter" , urlPatterns = {
+        "/ShowDashBoard",
+        "/admin-products",
+        "/admin-customer",
+        "/admin-category",
+        "/AdminHandleAddProduct"
+})
 public class AdminFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws
@@ -17,6 +23,9 @@ public class AdminFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(true);
+
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
 
         User user = (User) session.getAttribute("auth");
         if(user != null) {

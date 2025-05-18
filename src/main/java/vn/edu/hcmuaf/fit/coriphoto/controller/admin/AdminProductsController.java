@@ -26,15 +26,12 @@ public class AdminProductsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        System.out.println(id);
         if (id != null) {
             try {
                 int productId = Integer.parseInt(id);
                 ProductService productService = new ProductService();
                 Product product = productService.getById(productId);
                 if (product != null) {
-                    System.out.println(product);
-                    response.setContentType("application/json");
                     Gson gson = new GsonBuilder()
                         .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
                             @Override
@@ -51,13 +48,11 @@ public class AdminProductsController extends HttpServlet {
                         .registerTypeAdapter(Product.class, new ProductSerializer())
                         .create();
                     String jsonResponse = gson.toJson(product);
-                    System.out.println(jsonResponse);
                     response.getWriter().write(jsonResponse);
                 } else {
                     response.sendError(HttpServletResponse.SC_NOT_FOUND, "Sản phẩm không tồn tại");
                 }
             } catch (NumberFormatException e) {
-                System.out.println(e.getMessage());
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID không hợp lệ");
             }
         } else {
@@ -97,7 +92,6 @@ public class AdminProductsController extends HttpServlet {
                     responseData.put("success", true);
                     // Chuyển đối tượng Map thành JSON
                     String jsonResponse = gson.toJson(responseData);
-                    System.out.println("jsonResponse " + jsonResponse);
                     // Gửi dữ liệu JSON về client
                     response.getWriter().write(jsonResponse);
                 }

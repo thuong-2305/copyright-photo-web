@@ -58,7 +58,6 @@ public class AdminHandleAddImage extends HttpServlet {
 
         String fileUrl = "assets/images/uploads/" + sanitizedFileName;
 
-        System.out.println(fileUrl+ " " + fileSize+ " " +  imageSize + " " + lenProducts);
         response.setContentType("application/json");
         response.getWriter().write(
                 "{" +
