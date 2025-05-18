@@ -19,6 +19,11 @@ public class CategoryDAO {
                 .mapToBean(Category.class).list());
     }
 
+    public List<Category> getAll_notImage() {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM categories")
+                .mapToBean(Category.class).list());
+    }
+
     public Category getById(int cid) {
         return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM categories WHERE cid = ?")
                 .bind(0, cid).mapToBean(Category.class).findFirst().orElse(null));
@@ -88,6 +93,20 @@ public class CategoryDAO {
         );
     }
 
+    public int getNumberOfType(int cid) {
+        String sql = """
+            SELECT count(*) FROM products p
+            JOIN categories c ON p.cid = c.cid
+            WHERE c.cid = ?
+            """;
+        return jdbi.withHandle(handle ->
+                handle.createQuery(sql)
+                        .bind(0, cid)
+                        .mapTo(int.class)
+                        .one()
+        );
+    }
+
     public static void main(String[] args) {
 //        CategoryDAO categoryDAO = new CategoryDAO();
 //        System.out.println(categoryDAO.getAll());
@@ -96,7 +115,7 @@ public class CategoryDAO {
 //        System.out.println(userDAO.findByEmail("cust1@gmail.com"));
 
         CategoryDAO categoryDAO = new CategoryDAO();
-        System.out.println(categoryDAO.addCategory("faksitduk", 3));
+        System.out.println(categoryDAO.getNumberOfType(5));
 
     }
 

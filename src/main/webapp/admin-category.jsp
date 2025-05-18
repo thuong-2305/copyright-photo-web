@@ -10,6 +10,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/admin-1.css">
     <link rel="stylesheet" href="assets/css/admin-nav.css">
+    <link rel="stylesheet" href="assets/css/admin-dashboard.css"/>
     <jsp:include page="include/head-libraries.jsp" />
     <title>Admin</title>
 </head>
@@ -26,94 +27,175 @@
             <jsp:include page="include/nav-admin.jsp"/>
 
             <!-- Content main -->
-            <div class="mt-4">
-                <div class="container header d-flex justify-content-between align-items-center mb-3 py-2">
-                    <h3>Các danh mục</h3>
-                    <div class="add-category">
-                        <i class="fa-solid fa-print"></i>
-                        <i class="bi bi-arrow-bar-down mx-2"></i>
-                        <button class="btn btn-primary" id="addCategoryBtn">+ Thêm danh mục mới</button>
-                    </div>
-                </div>
-
-                <table id="categoryTable" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Mã danh mục</th>
-                            <th >Tên danh mục</th>
-                            <th>Hành động</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="category" items="${categories}">
-                        <tr>
-                            <td>${category.cid}</td>
-                            <td>${category.name}</td>
-                            <td>
-                                <button class="btn edit-btn btn-warning" onclick="updateCategory(${category.cid})">Sửa</button>
-                                <button class="btn delete-btn btn-danger" onclick="deleteCategory(${category.cid})">Xóa</button>
-                            </td>
-                        </tr>
-
-                    </c:forEach>
-
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editCategoryModalLabel">Chỉnh sửa danh mục</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+            <div id="admin-dashboard-graph" class="view-products-main">
+                <div class="mt-4 content-view">
+                    <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
+                        <h5 class="fw-semibold">Các danh mục</h5>
+                        <div id="exportButtons">
+                            <button class="btn button-add fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm danh mục</button>
                         </div>
-                        <div class="modal-body">
-                            <!-- Form chỉnh sửa -->
-                            <form id="editCategoryForm" action="/updateCategory" method="POST">
-                                <div class="form-group">
-                                    <label for="categoryName">Tên danh mục:</label>
-                                    <input type="text" class="form-control" id="categoryName" name="categoryName" required>
-                                    <input type="hidden" id="categoryId" name="categoryId">
+                    </div>
+
+                    <div class="frame__container px-2">
+                        <div class="card-body">
+                            <table id="productsTable" class="table table-bordered">
+                                <colgroup>
+                                    <col style="width: 15%;">
+                                    <col style="width: 50%;">
+                                    <col style="width: 20%;">
+                                    <col style="width: 15%;">
+                                </colgroup>
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Mã danh mục</th>
+                                        <th >Tên danh mục</th>
+                                        <th >Số lượng sản phẩm</th>
+                                        <th>Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="category" items="${categories}">
+                                    <tr>
+                                        <td>${category.cid}</td>
+                                        <td>${category.name}</td>
+                                        <td>${category.numberOfType}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-start">
+                                                <button class="btn edit-btn" data-id="${category.cid}"><i class="bi bi-pencil-square"></i></button>
+                                                <button class="btn delete-btn" data-id="${category.cid}"><i class="fa-solid fa-trash"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Xác nhận xóa sản phẩm -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title user-select-none" id="deleteModalLabel">
+                                            <i class="bi bi-exclamation-triangle-fill" style="color: #fa2e2e;"></i>
+                                            Xóa sản phẩm
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa sản phẩm này?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary rounded-pill fw-semibold" data-dismiss="modal">Hủy</button>
+                                        <button type="button" id="confirmDelete" class="btn btn-danger rounded-pill fw-semibold">Xóa</button>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <button type="submit" class="btn btn-primary" form="editCategoryForm">Lưu thay đổi</button>
+
+                        <!-- Thêm danh mục -->
+                        <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title user-select-none" id="addCategoryModalLabel">
+                                            <i class="bi bi-plus-circle-fill" style="color: #28a745;"></i>
+                                            Thêm danh mục mới
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="categoryName" class="form-label">Tên danh mục</label>
+                                        <input type="text" id="categoryName" class="form-control" placeholder="Nhập tên danh mục..." required>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="confirmCancel" class="btn btn-secondary rounded-pill fw-semibold" data-dismiss="modal">Hủy</button>
+                                        <button type="button" id="confirmAddCategory" class="btn btn-success rounded-pill fw-semibold">Thêm</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="categoryModalLabel">Thêm danh mục mới</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="categoryForm">
-                                <div class="mb-3">
-                                    <label for="categoryName" class="form-label">Tên danh mục</label>
-                                    <input type="text" class="form-control" id="categoryName1" required>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" id="saveCategoryBtn">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- footer-admin -->
+            <jsp:include page="include/admin-footer.jsp" />
         </section>
         <!-- RIGHT MAIN -->
     </section>
     <!-- MAIN -->
+
+    <!-- Notification -->
+    <div class="alert alert-danger d-none align-items-center position-fixed"
+         role="alert"
+         style="display: none; width: 25%; top: 15%; right: 0"
+    >
+        <i class="bi bi-exclamation-triangle me-2"></i><span></span>
+    </div>
+    <div class="alert alert-success d-none align-items-center position-fixed"
+         role="alert"
+         style="display: none; width: 25%; top: 15%; right: 0"
+    >
+        <i class="bi bi-check2-circle me-2"></i><span></span>
+    </div>
+    <!-- Notification -->
+
+    <!-- DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables Buttons JS -->
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+
+    <!-- JS -->
+    <jsp:include page="include/admin-libraries.jsp" />
+
+    <!-- Chức năng của dataTable -->
+    <script>
+        $(document).ready(function () {
+            const table = $('#productsTable').DataTable({
+                deferRender: true,
+                buttons:[
+                    {
+                        extend: 'copy',
+                        text: 'Sao chép'
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Xuất Excel'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'In'
+                    }
+                ],
+                language: {
+                    search: "Nhập từ khóa:",
+                    lengthMenu: "Hiển thị _MENU_ mục",
+                    info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
+                    infoEmpty: "Không có dữ liệu để hiển thị",
+                    infoFiltered: "(lọc từ _MAX_ mục)",
+                    paginate: { previous: "←", next: "→" }
+                },
+                scrollX: false
+            });
+            table.buttons().container().appendTo('#exportButtons');
+
+            $(".buttons-copy span").html("<i class=\"bi bi-copy\"></i> Copy");
+            $(".buttons-excel span").html("<i class=\"bi bi-file-earmark-excel\"></i> Excel");
+            $(".buttons-print span").html("<i class=\"bi bi-printer\"></i> Print");
+
+            $('.dataTables_filter input').attr('placeholder', 'Tìm kiếm sản phẩm ...');
+        });
+
+        $(document).ready(function () {
+            const controlsWrapper = $("<div class='dataTables-controls'></div>");
+            $("#productsTable_filter, #productsTable_length").wrapAll(controlsWrapper);
+        });
+    </script>
 
     <script>
         // Hiển thị modal khi nhấn nút "Thêm danh mục mới"
@@ -164,85 +246,109 @@
     </script>
 
 
+    <!-- Chức năng ẩn hiện thêm danh mục -->
     <script>
-        function updateCategory(cid) {
-            // Tắt bộ lọc tìm kiếm khi mở modal
-            var table = $('#categoryTable').DataTable();
-            table.search('').draw(); // Xóa bộ lọc
-
-            fetch("/getCategory?cid=" + cid)
-                .then(response => response.json())
-                .then(category => {
-                    // Điền dữ liệu vào form trong modal
-                    document.getElementById("categoryId").value = category.cid;
-                    document.getElementById("categoryName").value = category.name;
-
-                    // Hiển thị modal
-                    $('#editCategoryModal').modal('show');
-                })
-                .catch(error => {
-                    console.error("Lỗi khi tải dữ liệu:", error);
-                });
-        }
-
-        // Ngăn không cho ô nhập liệu trong modal ảnh hưởng đến DataTable
-        $('#editCategoryModal').on('shown.bs.modal', function () {
-            var table = $('#categoryTable').DataTable();
-            // Tạm thời vô hiệu hóa tìm kiếm của DataTable khi modal mở
-            table.search('').draw();
+        $('.button-add').on("click", function() {
+            $('#addCategoryModal').modal('show');
         });
 
-        // Sau khi đóng modal, cho phép tìm kiếm lại
-        $('#editCategoryModal').on('hidden.bs.modal', function () {
-            var table = $('#categoryTable').DataTable();
-            // Bật lại tìm kiếm nếu cần
-            table.search('').draw();
+        $('#confirmCancel').on("click", function() {
+            $('#addCategoryModal').modal('hide');
+        })
+
+        let categoryNameAdd = null;
+
+        // Xử lý sau khi nhấn xóa
+        $('#confirmAddCategory').on('click', function () {
+            categoryNameAdd = $('#categoryName').val();
+
+            $.ajax({
+                url: '/admin-category',
+                type: 'POST',
+                headers: {
+                    'X-Requested-By': 'AJAX'
+                },
+                data: {
+                    action: 'add',
+                    category_name: categoryNameAdd
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $(".alert-success span").text("Thêm thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+
+                        location.reload();
+
+                    } else {
+                        $(".alert-danger span").text("Thêm thất bại!");
+                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi!');
+                }
+            });
         });
+
 
     </script>
 
+    <!-- Xử lý xóa danh mục -->
     <script>
-        function deleteCategory(categoryId) {
-            if (confirm("Bạn có chắc chắn muốn xóa danh mục này?")) {
-                window.location.href = "/deleteCategory?cid=" + categoryId;
-            }
-        }
-    </script>
-    <script>
-        $(document).ready(function () {
-            var table = $('#categoryTable');
-            if (table.length > 0) {
-                table.DataTable({
-                    language: {
-                        search: "Nhập từ khóa:",
-                        lengthMenu: "Hiển thị _MENU_ mục",
-                        info: "Hiển thị _START_ đến _END_ của _TOTAL_ mục",
-                        infoEmpty: "Không có dữ liệu để hiển thị",
-                        infoFiltered: "(lọc từ _MAX_ mục)",
-                        paginate: {
-                            previous: "Trước",
-                            next: "Tiếp"
+        let categoryIdToDelete = null;
+        let parentElement = null;
+
+        $('.delete-btn').on('click', function () {
+            categoryIdToDelete = $(this).data('id');
+            parentElement = $(this).closest("tr");
+            // Lây nội dung ảnh hiển thị
+            var categoryName = parentElement.find("td").eq(1).text().trim();
+            $('#deleteModal .modal-body').html("Bạn có chắc chắn muốn xóa <strong>" + categoryName + "</strong>.");
+            $('#deleteModal').modal('show');
+        });
+
+        // Xử lý sau khi nhấn xóa
+        $('#confirmDelete').on('click', function () {
+            if (categoryIdToDelete) {
+                $.ajax({
+                    url: '/admin-category',
+                    type: 'POST',
+                    headers: {
+                        'X-Requested-By': 'AJAX'
+                    },
+                    data: {
+                        action: 'delete',
+                        category_id: categoryIdToDelete
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $(".alert-success span").text("Xóa thành công!");
+                            $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                                $(this).addClass("d-none");
+                            });
+                            parentElement.fadeOut(function () {
+                                $(this).remove();
+                            });
+                        } else {
+                            $(".alert-danger span").text("Xóa thất bại!");
+                            $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                                $(this).addClass("d-none");
+                            });
                         }
                     },
+                    error: function () {
+                        alert('Đã xảy ra lỗi!');
+                    }
                 });
-
-                // Thay đổi placeholder của khung tìm kiếm
-                var search = $('.dataTables_filter input');
-                search.attr('placeholder', 'Tìm kiếm danh mục ...');
             }
-        });
-
-    </script>
-    <script src="assets/js/admin.js"></script>
-    <script src="assets/js/admin-nav.js"></script>
-    <script src="assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-    <script>
-        document.querySelector(".btn.btn-primary").addEventListener("click", () => {
-            new bootstrap.Modal(document.getElementById("categoryModal")).show();
+            $('#deleteModal').modal('hide');
         });
     </script>
+
 
 </body>
 </html>
