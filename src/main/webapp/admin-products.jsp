@@ -52,22 +52,22 @@
                                 <col style="width: 20%;">
                             </colgroup>
                             <thead class="table-dark">
-                            <tr>
-                                <th>Mã</th>
-                                <th>Tên</th>
-                                <th>Username</th>
-                                <th>Ngày thêm</th>
-                                <th>Giá</th>
-                                <th>Trạng thái</th>
-                                <th>Hành động</th>
-                            </tr>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Tên</th>
+                                    <th>Username</th>
+                                    <th>Ngày thêm</th>
+                                    <th>Giá</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hành động</th>
+                                </tr>
                             </thead>
                             <tbody>
                             <!-- Nội dung hiên thị -->
                             <c:forEach var="product" items="${products}">
                                 <tr>
                                     <!-- Mã -->
-                                    <td>#${product.id}</td>
+                                    <td>${product.id}</td>
                                     <!-- Tên -->
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -177,7 +177,7 @@
         <div id="admin-dashboard-graph" class="view-product-add d-none">
             <div class="mt-4 content-view">
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
-                    <h5 class="fw-semibold">Thêm sản phẩm</h5>
+                    <h5 class="fw-semibold name-function">Thêm sản phẩm</h5>
                     <div id="returnButton">
                         <button class="btn button-back fw-semibold">
                             <i class="bi bi-arrow-return-left me-2"></i>Trở lại
@@ -303,7 +303,7 @@
                                 </div>
                             </div>
 
-                            <div class="text-end mt-3">
+                            <div class="text-end mt-3 button-function">
                                 <button class="btn btn-add-product fw-semibold" style="font-size: 15px">Thêm sản phẩm</button>
                             </div>
                         </div>
@@ -319,6 +319,13 @@
     <!-- RIGHT MAIN -->
 </section>
 <!-- MAIN -->
+
+<!-- Loading screen -->
+<div id="loadingScreen" class="loading-overlay d-none">
+    <div class="spinner"></div>
+    <p>Đang xử lý, vui lòng chờ...</p>
+</div>
+<!-- Loading screen -->
 
 <!-- Notification -->
 <div class="alert alert-danger d-none align-items-center position-fixed"
@@ -347,7 +354,6 @@
 
 <!-- JS -->
 <jsp:include page="include/admin-libraries.jsp" />
-
 
 <!-- Chức năng của dataTable -->
 <script>
@@ -495,6 +501,7 @@
         productDetail.classList.toggle('d-none');
         const overlay = document.getElementById("overlay");
         overlay.classList.toggle('show');
+        document.body.classList.toggle('no-scroll');
     }
 
 </script>
@@ -504,6 +511,9 @@
     $('.button-add').on("click", function() {
         $('.view-products-main').toggleClass("d-none");
         $('.view-product-add').toggleClass("d-none");
+
+        $('.name-function').text("Thêm sản phẩm");
+        $('.button-function').html("<button class=\"btn btn-add-product fw-semibold\" style=\"font-size: 15px\">Thêm sản phẩm</button>")
     });
 
     $('.button-back').on("click", function() {
@@ -682,6 +692,122 @@
                     console.error("Lỗi:", error);
                 }
             });
+        });
+    });
+</script>
+
+<!-- Xử lý chức năng sửa sản phẩm -->
+<script>
+    let productIdToEdit = null;
+    let $uploadBox = $('#uploadBox');
+    let $visibleImage = $('#visibleImage');
+    let $btnBox = $('.btn-box');
+
+    $('.edit-btn').on('click', function () {
+        productIdToEdit = $(this).data('id');
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
+
+        $.ajax({
+            url: "/AdminHandleEditProduct",
+            type: "GET",
+            data: { product_id: productIdToEdit },
+            success: function (response) {
+                $("#nameProduct").val(response.name);
+                $("#desciptProduct").val(response.description);
+                $("#idProduct").val(response.id);
+                $("#idSeller").val(response.uid);
+                $("#imageSize").val(response.dimension);
+                $("#fileSize").val(response.size);
+                $("#priceProduct").val(response.price);
+
+                $btnBox.removeClass("d-none");
+                $visibleImage.removeClass("d-none");
+                $visibleImage.height("auto");
+                $visibleImage.html(
+                    '<img id="preview-img" src="' + response.url + '" style="max-width: 100%; height: auto; border-radius: 5px;" alt="image-upload">'
+                );
+                $uploadBox.addClass("d-none");
+
+                $(".form-select").prop("selectedIndex", response.cid);
+                $("input[name='status']").prop("checked", false);
+                $("input[name='status'][id='" + response.status + "']").prop("checked", true);
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi:", error);
+            }
+        });
+
+        $('.name-function').text("Sửa sản phẩm");
+        $('.button-function').html("<button class=\"btn btn-edit-product fw-semibold\" style=\"font-size: 15px\">Chỉnh sửa sản phẩm</button>")
+    });
+
+    $(document).on("click", ".btn-edit-product", function () {
+        let formData = new FormData();
+
+        // Lấy dữ liệu từ các input
+        formData.append("nameProduct", $("#nameProduct").val());
+        formData.append("desciptProduct", $("#desciptProduct").val());
+        formData.append("idProduct", $("#idProduct").val());
+        formData.append("idSeller", $("#idSeller").val());
+        formData.append("imageSize", $("#imageSize").val());
+        formData.append("fileSize", $("#fileSize").val());
+        formData.append("priceProduct", $("#priceProduct").val());
+
+        // Lấy file ảnh đã chọn
+        let fileInput = $("#fileInput")[0].files[0];
+        if (fileInput) {
+            formData.append("file", fileInput);
+        }
+        formData.append("url", $("#preview-img").attr("src"));
+
+        // Lấy danh mục
+        formData.append("category", $(".form-select").val());
+
+        // Lấy trạng thái sản phẩm
+        let status = $("input[name='status']:checked").attr("id");
+        formData.append("status", status);
+
+        $.ajax({
+            url: "/AdminHandleEditProduct",
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+
+                console.log(response.message)
+
+                if(response.message === "Success") {
+
+                    $("#loadingScreen").removeClass("d-none");
+
+                    $('.view-products-main').toggleClass("d-none");
+                    $('.view-product-add').toggleClass("d-none");
+
+                    $("#nameProduct").val("");
+                    $("#desciptProduct").val("");
+                    $("#idProduct").val("");
+                    $("#idSeller").val("");
+                    $("#imageSize").val("");
+                    $("#fileSize").val("");
+                    $("#priceProduct").val("");
+                    $("#fileInput").val("");
+                    $(".form-select").prop("selectedIndex", 0);
+                    $("input[name='status']").prop("checked", false);
+
+                    $("#uploadBox").removeClass("d-none");
+                    $("#visibleImage").addClass("d-none").html("");
+
+                    $(".alert-success span").text("Chỉnh sửa sản phẩm mới thành công!");
+                    $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                        $(this).addClass("d-none");
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi:", error);
+            }
         });
     });
 </script>

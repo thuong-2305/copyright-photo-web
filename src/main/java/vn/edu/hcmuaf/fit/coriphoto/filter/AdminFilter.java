@@ -14,7 +14,8 @@ import java.io.IOException;
         "/admin-products",
         "/admin-customer",
         "/admin-category",
-        "/AdminHandleAddProduct"
+        "/AdminHandleAddProduct",
+        "/AdminHandleEditProduct"
 })
 public class AdminFilter implements Filter {
     @Override

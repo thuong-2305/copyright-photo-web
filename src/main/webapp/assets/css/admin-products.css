@@ -8,6 +8,10 @@
   --swatch_7: #696dbf;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 /* Xem sản phẩm */
 .view-product {
   width: 400px;
