@@ -6,7 +6,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.ProductSerializer;
+import vn.edu.hcmuaf.fit.coriphoto.model.Category;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
+import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import java.io.IOException;
@@ -29,7 +32,6 @@ public class AdminProductsController extends HttpServlet {
                 ProductService productService = new ProductService();
                 Product product = productService.getById(productId);
                 if (product != null) {
-                    response.setContentType("application/json");
                     Gson gson = new GsonBuilder()
                         .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
                             @Override
@@ -55,10 +57,13 @@ public class AdminProductsController extends HttpServlet {
             }
         } else {
             ProductService service = new ProductService();
-            // Lấy danh sách sp từ service
             List<Product> products = service.getAll();
-            // Gửi danh sách sp tới JSP
+
+            CategoryService categoryService = new CategoryService();
+            List<Category> categories = categoryService.getAll();
+
             request.setAttribute("products", products);
+            request.setAttribute("categories", categories);
             request.getRequestDispatcher("admin-products.jsp").forward(request, response);
         }
     }
@@ -68,6 +73,7 @@ public class AdminProductsController extends HttpServlet {
         String requestedBy = request.getHeader("X-Requested-By");
         ProductService service = new ProductService();
 
+        // Xóa sản phẩm dựa vào id
         if ("AJAX".equals(requestedBy)) {
             int productId =Integer.parseInt(request.getParameter("product_id"));
             String action = request.getParameter("action");
@@ -90,33 +96,6 @@ public class AdminProductsController extends HttpServlet {
                     response.getWriter().write(jsonResponse);
                 }
             }
-        }else{
-            String form = request.getParameter("defineForm");
-            // Nhận dữ liệu từ form
-            String name = request.getParameter("nameProduct");
-            String description = request.getParameter("description");
-            String category = request.getParameter("category");
-            double price = Double.parseDouble(request.getParameter("price"));
-            String contributor = request.getParameter("contributor");
-            String status = request.getParameter("status");
-
-            // Tạo đối tượng Product
-            Product product = new Product();
-            product.setName(name);
-            product.setDescription(description);
-            product.setCid(Integer.parseInt(category));
-            product.setPrice(price);
-            product.setUid(Integer.parseInt(contributor));
-            product.setStatus(status);
-
-            if ("formEdit".equals(form)) {
-                product.setId(Integer.parseInt(request.getParameter("idProduct")));
-                service.updateProduct(product);
-            }else {
-                service.addProduct(product);
-            }
-
-            response.sendRedirect("admin-products");
         }
     }
 }

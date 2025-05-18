@@ -155,6 +155,15 @@ public class ProductDAO {
                         .execute() > 0);
     }
 
+    public int getInNextProduct() {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'products' LIMIT 1")
+                        .mapTo(Integer.class)
+                        .findOne()
+                        .orElseThrow(() -> new RuntimeException("Không thể lấy ID tiếp theo"))
+        );
+    }
+
     public List<Product> getAllProductsWaiting() {
         return jdbi.withHandle(handle -> handle.createQuery("select * from products where status = ? order by dateUpload desc")
                 .bind(0, "waiting").mapToBean(Product.class).list());

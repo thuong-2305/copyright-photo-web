@@ -33,6 +33,8 @@ public class SellerService {
         return sellerDAO.getBalance(uid);
     }
 
+    public boolean checkExistSeller(int uid) { return sellerDAO.checkExistSeller(uid); }
+
     public List<Map<String, Object>> getProductStatsBySellerId(int uid) {
         return sellerDAO.getProductStatsBySellerId(uid);
     }
@@ -49,8 +51,8 @@ public class SellerService {
         return sellerDAO.getAllProducts(uid, status);
     }
 
-    public void uploadProduct(Product product) {
-        sellerDAO.uploadProduct(product);
+    public void uploadProduct(Product product, String status) {
+        sellerDAO.uploadProduct(product, status);
     }
 
 }
