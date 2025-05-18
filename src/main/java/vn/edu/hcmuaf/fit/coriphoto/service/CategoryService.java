@@ -51,8 +51,4 @@ public class CategoryService {
         return categories.getAll_notImage();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new CategoryService().getAll());
-    }
-
 }
