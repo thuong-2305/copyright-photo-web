@@ -38,7 +38,6 @@ import java.util.List;
         Order order = orderService.getOrder(orderId);
         List<OrderDetail> orderDetails = orderService.getOrderDetailsHistory(orderId);
         OrderDetailListDTO orderdetailList = new OrderDetailListDTO(order, orderDetails);
-        System.out.println(order);
         response.setContentType("application/json");
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
@@ -57,9 +56,7 @@ import java.util.List;
                 .registerTypeAdapter(OrderDetail.class, new OrderDetailSerializer())
                 .registerTypeAdapter(Product.class, new ProductSerializer())
                 .create();
-        System.out.println(order);
         String jsonResponse = gson.toJson(orderdetailList);
-        System.out.println(jsonResponse);
         response.getWriter().write(jsonResponse);
     }
 }

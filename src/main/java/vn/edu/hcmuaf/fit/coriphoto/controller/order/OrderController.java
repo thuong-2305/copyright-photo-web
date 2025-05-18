@@ -50,31 +50,10 @@ public class OrderController extends HttpServlet {
         String cardCVC = request.getParameter("cardCVC");
         String cardBank = request.getParameter("cardBank");
 
-        System.out.println("paymentTypeId" + paymentTypeId);
-        System.out.println("pmid" + pmid);
-
-
-        System.out.println("Thanh toán bằng thẻ tín dụng:");
-        System.out.println("Tên trên thẻ: " + cardName);
-        System.out.println("Số thẻ: " + cardNumber);
-        System.out.println("Card Bank: " + cardBank);
-        System.out.println("Ngày hết hạn: " + cardExpiry);
-        System.out.println("CVC: " + cardCVC);
-
-
-        // Xử lý logic liên quan đến tài khoản ngân hàng
-        System.out.println("Thanh toán bằng tài khoản ngân hàng:");
-        System.out.println("Chủ tài khoản: " + bankAccountHolder);
-        System.out.println("Số tài khoản: " + bankAccountNumber);
-        System.out.println("Tên ngân hàng: " + bankName);
-        System.out.println("Ngày hết hạn: " + bankExpiry);
-
-
         int promotionId = Integer.parseInt(request.getParameter("promotionId"));
         double totalAfterDiscount = Double.parseDouble(request.getParameter("totalAfterDiscount"));
         int licenseId = Integer.parseInt(request.getParameter("licenseId"));
         double totalBeforeDiscount = Double.parseDouble(request.getParameter("totalBeforeDiscount"));
-
 
         // Lấy thông tin sản phẩm
         String[] productIds = request.getParameterValues("productIds");
@@ -92,34 +71,6 @@ public class OrderController extends HttpServlet {
         List<Product> products = new ArrayList<>();
         for (String ele : productIds) {
             products.add(productService.getById(Integer.parseInt(ele)));
-        }
-
-        // In các giá trị đã lấy từ request
-        System.out.println("Products: " + products);
-        System.out.println("Promotion ID: " + promotionId);
-        System.out.println("Total After Discount: " + totalAfterDiscount);
-        System.out.println("License ID: " + licenseId);
-
-        // In thông tin sản phẩm
-        if (productIds != null) {
-            System.out.println("Product IDs: ");
-            for (String productId : productIds) {
-                System.out.println(productId);
-            }
-        }
-
-        if (productNames != null) {
-            System.out.println("Product Names: ");
-            for (String productName : productNames) {
-                System.out.println(productName);
-            }
-        }
-
-        if (productPrices != null) {
-            System.out.println("Product Prices: ");
-            for (String productPrice : productPrices) {
-                System.out.println(productPrice);
-            }
         }
 
         OrderService orderService = new OrderService();

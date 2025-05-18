@@ -229,8 +229,6 @@
                                 <!-- DataTables sẽ tự động điền dữ liệu vào đây -->
                                 </tbody>
                             </table>
-
-
                             <!-- Input ẩn để lưu giá trị danh mục -->
                             <input type="hidden" name="categoryParentName" id="categoryInput" />
                         </div>

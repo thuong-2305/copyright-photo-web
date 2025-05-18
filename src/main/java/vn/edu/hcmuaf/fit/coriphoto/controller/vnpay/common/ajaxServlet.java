@@ -36,8 +36,6 @@ public class ajaxServlet extends HttpServlet {
         String bankCode = req.getParameter("bankCode");
         double totalBeforeDiscount = Double.parseDouble(req.getParameter("totalBeforeDiscount"));
 
-//        double amountDouble = Double.parseDouble(req.getParameter("totalBill"));
-
         // Xử lý lưu và tạo đơn hàng khi thanh toán
         OrderService orderService = new OrderService();
 
@@ -66,7 +64,6 @@ public class ajaxServlet extends HttpServlet {
 
         for(int i = 0; i < products.size(); i++) {
             Product p = products.get(i);
-            System.out.println(licenseIds[i]);
             int licenseId = Integer.parseInt((licenseIds[i]));
             double price = licenseId == 2 ? p.getPrice() * 2 : p.getPrice();
             orderService.addOrderDetails(orderId, p.getId(), licenseId, price);

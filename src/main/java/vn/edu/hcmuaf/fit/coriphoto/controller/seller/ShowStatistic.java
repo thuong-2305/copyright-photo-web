@@ -50,7 +50,6 @@ public class ShowStatistic extends HttpServlet {
         int totalImgSelled = sellerService.getTotalImgSelled(idSeller);
         int totalRecords = productsStat.size();
 
-        System.out.println("Productstat: " + productsStat);
 
         // Kiểm tra yêu cầu Ajax
         String requestedWith = request.getHeader("X-Requested-With");
