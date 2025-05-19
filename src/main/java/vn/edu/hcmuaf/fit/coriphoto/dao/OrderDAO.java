@@ -13,9 +13,7 @@ import java.util.Map;
 public class OrderDAO {
     private static final Jdbi jdbi = new DBConnect().get();
 
-    // Hàm thêm đơn hàng và trả về orderId
     public int addOrderAndGetId(int uid, int pmid, int promotionId, double totalPrice) {
-        // Truy vấn để thêm đơn hàng vào bảng orders
         String sql = "INSERT INTO orders (uid, pmid, promotionId, orderDate, totalPrice, status) " +
                 "VALUES (:uid, :pmid, :promotionId, NOW(), :totalPrice, 'Waiting payment')";
 
@@ -74,15 +72,11 @@ public class OrderDAO {
         );
     }
 
-
-    // Hàm thêm chi tiết đơn hàng
     public boolean addOrderDetails(int orderId, int productId, int licenseId, double price) {
-        // Truy vấn để thêm chi tiết đơn hàng vào bảng order_details
         String sql = "INSERT INTO order_details (orderId, productId, licenseId, price) " +
                 "VALUES (:orderId, :productId, :licenseId, :price)";
 
         try {
-            // Thực thi câu lệnh insert cho mỗi sản phẩm
             jdbi.useHandle(handle -> {
                 handle.createUpdate(sql)
                         .bind("orderId", orderId)
@@ -147,30 +141,22 @@ public class OrderDAO {
     }
 
 
-        // Hàm tạo đơn hàng và thêm chi tiết đơn hàng
     public boolean createOrder(int uid, int pmid, int promotionId, int licenseId, double totalPrice, List<Product> products) {
-        // Bước 1: Tạo đơn hàng và lấy orderId
         int orderId = addOrderAndGetId(uid, pmid, promotionId, totalPrice);
-        System.out.println("Đơn vừa thêm: " + orderId);
 
-        // Nếu không thể lấy được orderId, trả về false
         if (orderId <= 0) {
             return false;
         }
 
-        // Bước 2: Thêm chi tiết đơn hàng vào bảng order_details
         for (Product product : products) {
-            // Thêm chi tiết cho mỗi sản phẩm
             double price = licenseId == 2 ? product.getPrice() * 2 : product.getPrice();
             boolean orderDetailsCreated = addOrderDetails(orderId, product.getId(), licenseId, price);
 
             if (!orderDetailsCreated) {
-                System.out.println("Order detail false");
-                return false; // Nếu không thể thêm chi tiết đơn hàng, trả về false
+                return false;
             }
         }
 
-        // Nếu tất cả các bước đều thành công, trả về true
         return true;
     }
 
@@ -230,10 +216,8 @@ public class OrderDAO {
     }
 
     public Map<Integer, List<OrderDetail>> getOrdersWithDetails(int userId) {
-        // Lấy danh sách đơn hàng
         List<Order> orders = getOrdersHistory(userId);
 
-        // Tạo map để lưu danh sách OrderDetail theo orderId
         Map<Integer, List<OrderDetail>> orderDetailsMap = new HashMap<>();
 
         for (Order order : orders) {
@@ -271,5 +255,4 @@ public class OrderDAO {
                         .list()
         );
     }
-
 }
