@@ -22,6 +22,11 @@ public class UserDAO {
                 .bind(0, uid).mapTo(String.class).one());
     }
 
+    public User getUser(int uid) {
+        return jdbi.withHandle(handle -> handle.createQuery("SELECT * FROM users WHERE uid = ?")
+                .bind(0, uid).mapToBean(User.class).first());
+    }
+
 
     public boolean updateAvatarPath(int uid, String avatarPath) {
         int rowsAffected = jdbi.withHandle(handle ->
@@ -101,16 +106,16 @@ public class UserDAO {
                 handle.createQuery(query)
                         .bind("email", email) // Gắn giá trị tham số email
                         .map((rs, ctx) -> new User(
-                                rs.getInt("uid"),             // Mapping cột "uid"
-                                rs.getInt("role"),            // Mapping cột "role"
-                                rs.getString("fullName"),     // Mapping cột "fullName"
-                                rs.getString("username"),     // Mapping cột "username"
-                                rs.getString("password"),     // Mapping cột "password"
-                                rs.getString("email"),        // Mapping cột "email"
-                                rs.getObject("createDate", LocalDate.class) // Mapping cột "createDate"
+                                rs.getInt("uid"),
+                                rs.getInt("role"),
+                                rs.getString("fullName"),
+                                rs.getString("username"),
+                                rs.getString("password"),
+                                rs.getString("email"),
+                                rs.getObject("createDate", LocalDate.class)
                         ))
-                        .findOne()
-                        .orElse(null) // Trả về null nếu không tìm thấy
+                        .findFirst()
+                        .orElse(null)
         );
     }
 
@@ -244,6 +249,16 @@ public class UserDAO {
         return true;
     }
 
+    public boolean createUser(User user) {
+        String hashedPassword = hashPasswordMD5(user.getPassword());
+        if (hashedPassword == null) return false;
+        jdbi.useHandle(handle -> handle.execute(
+                "INSERT INTO users (role, fullname, username, email, password, createDate) VALUES (?, ?, ?, ?, ?, ?)",
+                user.getRole(), user.getFullName(), user.getUsername(), user.getEmail(), hashedPassword, LocalDate.now()
+        ));
+        return true;
+    }
+
 
     public int getUidByEmail(String email) {
         return jdbi.withHandle(handle ->
@@ -326,7 +341,7 @@ public class UserDAO {
     public static void main(String[] args) {
         UserDAO userDAO = new UserDAO();
 
-        String test = userDAO.getPaymentTypeNameByPmid(10);
+        User test = userDAO.getUser(10);
         System.out.println(test);
     }
 
