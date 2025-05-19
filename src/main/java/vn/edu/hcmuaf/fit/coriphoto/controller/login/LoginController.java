@@ -107,7 +107,6 @@ public class LoginController extends HttpServlet {
 
             // Kiểm tra số lần đăng nhập sai trong 1 giờ
             int failedAttemptsInHour = service.countFailedLoginAttemptsInHour(uid);
-            System.out.println("Số lần đăng nhập sai trong 1h vừa rồi: " + failedAttemptsInHour);
             if (failedAttemptsInHour >= 200) {
                 service.lockAccount(uid);
                 request.setAttribute("email", email);

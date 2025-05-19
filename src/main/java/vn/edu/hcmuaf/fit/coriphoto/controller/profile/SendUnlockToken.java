@@ -42,7 +42,6 @@ public class SendUnlockToken extends HttpServlet {
             LocalDateTime expireTime = LocalDateTime.now().plusMinutes(10); // Token hết hạn sau 10 phút
             authService.insertUnlockToken(user.getUid(), token, expireTime);
             String unlockLink = "http://localhost:8080/unlock-login?token=" + token;
-            System.out.println("Gửi email với link: " + unlockLink);
             new Thread(() -> {
                 try {
                     EmailUtils.sendEmail(user.getEmail(), "Mở khóa đăng nhập", "Nhấn vào link để mở khoá: " + unlockLink);
