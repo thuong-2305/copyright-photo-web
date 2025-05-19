@@ -6,6 +6,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class ProductService {
     private final ProductDAO products = new ProductDAO();
@@ -18,7 +19,16 @@ public class ProductService {
         return products.getById(id);
     }
 
-    public boolean addProduct(Product product) {
+    public List<Product> getProductsByCategory(int cid, int numbers) {
+        return products.getProductsByCategory(cid, numbers);
+    }
+
+    public List<Product> getProductsByCategoryNotIn(int cid, Set<Integer> excludedProductIds, int limit) {
+        return  products.getProductsByCategoryNotIn(cid, excludedProductIds, limit);
+    }
+
+
+        public boolean addProduct(Product product) {
         return products.addProduct(product);
     }
     public boolean deleteProductById(int id) {

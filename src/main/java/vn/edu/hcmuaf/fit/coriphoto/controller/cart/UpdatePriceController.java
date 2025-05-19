@@ -48,15 +48,15 @@ public class UpdatePriceController extends HttpServlet {
             gift = "";
             totalFinal = 0;
         }
-        else if(numChecked < 11) {
-            gift = "Nhận ưu đãi gỉảm 10%";
+        else if(numChecked < 10) {
+            gift = "Chúc mừng bạn đã nhận được ưu đãi giảm 10%";
             totalFinal = total - total * 0.1;
         }
-        else if(numChecked < 21) {
-            gift = "Nhân ưu đãi giảm 20%";
+        else if(numChecked < 25) {
+            gift = "Chúc mừng bạn đã nhận được ưu đãi giảm 20%";
             totalFinal = total - total * 0.2;
         } else {
-            gift = "Nhân ưu đãi giảm 30%";
+            gift = "Chúc mừng bạn đã nhận được ưu đãi giảm 30%";
             totalFinal = total - total * 0.3;
         }
 

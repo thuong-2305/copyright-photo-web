@@ -42,6 +42,7 @@ function togglePaymentMethod(method) {
     }
 }
 
+
 // Định dạng số thẻ (Credit Card)
 document.getElementById('card-number').addEventListener('input', function (e) {
     let value = e.target.value.replace(/\D/g, ''); // Chỉ giữ lại số
