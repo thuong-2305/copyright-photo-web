@@ -187,7 +187,7 @@
                             <c:forEach var="item" items="${ productSorted }">
                                 <div class="box">
                                     <a href="product-detail?pid=${ item.getId() }">
-                                        <img src="${ item.getUrl() }" alt="">
+                                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=${item.getUrl()}" alt="">
                                     </a>
                                     <div class="info">
                                         <p class="fw-semibold">${ item.getName() }</p>
@@ -353,7 +353,7 @@
             } else {
                 $.each(products, function(index, item) {
                     htmlContent += '<div class="box">';
-                    htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
+                    htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + "/watermarkedImage?url=" + item.url + '" alt=""></a>';
                     htmlContent += '<div class="info">';
                     htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                     htmlContent += '<div class="hover-options">';
@@ -490,7 +490,7 @@
                     var htmlContent = '';
                     $.each(products, function (index, item) {
                         htmlContent += '<div class="box">';
-                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
+                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + "/watermarkedImage?url=" + item.url + '" alt=""></a>';
                         htmlContent += '<div class="info">';
                         htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                         htmlContent += '<div class="hover-options">';
@@ -536,7 +536,7 @@
                     var htmlContent = '';
                     $.each(products, function (index, item) {
                         htmlContent += '<div class="box">';
-                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + item.url + '" alt=""></a>';
+                        htmlContent += '<a href="product-detail?pid=' + item.id + '"><img src="' + "/watermarkedImage?url=" + item.url + '" alt=""></a>';
                         htmlContent += '<div class="info">';
                         htmlContent += '<p class="fw-semibold">' + item.name + '</p>';
                         htmlContent += '<div class="hover-options">';

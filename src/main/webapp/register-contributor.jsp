@@ -20,7 +20,7 @@
             href="./assets/libraries/bootstrap/css/bootstrap.min.css"
             rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/css/register-contributor.css" />
+    <link rel="stylesheet" href="./assets/css/register-contributor.css?1234" />
 </head>
 <body>
 <div class="container">
@@ -168,7 +168,7 @@
                     liên quan đến hệ thống Người đóng góp của chúng tôi.
                 </p>
             </div>
-            <a href="homepage-seller.html" class="text-decoration-none"
+            <a href="homepage-seller.jsp" class="text-decoration-none"
             ><button class="btn-upload">Bắt đầu tải lên</button></a
             >
         </div>
@@ -177,7 +177,7 @@
 </div>
 
 <!-- Hành động khi nhấn btn chấp nhận -->
-<script src="./assets/js/register-contributor.js?v=12345"></script>
+<script src="./assets/js/register-contributor.js?"></script>
 <script>
     // Truyền giá trị từ server vào JavaScript
     const successRegister = ${requestScope.successRegisSeller ? requestScope.successRegisSeller : false};
