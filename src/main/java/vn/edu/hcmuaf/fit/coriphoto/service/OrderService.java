@@ -15,6 +15,10 @@ public class OrderService {
         return orderDAO.addOrderAndGetId(uid, pmid, promotionId, totalPrice);
     }
 
+    public void updateOrderStatus(int orderId, String newStatus) {
+        orderDAO.updateStatusOrder(orderId, newStatus);
+    }
+
     public boolean addOrderDetails(int orderId, int productId, int licenseId, double price) {
         return orderDAO.addOrderDetails(orderId, productId, licenseId, price);
     }
@@ -102,4 +106,5 @@ public class OrderService {
         }
         return intArray;
     }
+
 }
