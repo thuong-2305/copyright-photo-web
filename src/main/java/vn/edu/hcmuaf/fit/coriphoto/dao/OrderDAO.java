@@ -185,7 +185,6 @@ public class OrderDAO {
             boolean orderDetailsCreated = addOrderDetails(orderId, product.getId(), licenseId, price);
 
             if (!orderDetailsCreated) {
-                System.out.println("Lỗi khi thêm chi tiết đơn hàng cho sản phẩm ID: " + product.getId());
                 return false;
             }
         }
@@ -196,7 +195,6 @@ public class OrderDAO {
     public boolean createOrderCompleted(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
         // Bước 1: Tạo đơn hàng và lấy orderId
         int orderId = addOrderAndGetIdCompleted(uid, pmid, promotionId, totalPrice);
-        System.out.println("Đơn vừa thêm: " + orderId);
 
         // Nếu không thể lấy được orderId, trả về false
         if (orderId <= 0) {
@@ -212,7 +210,6 @@ public class OrderDAO {
             boolean orderDetailsCreated = addOrderDetails(orderId, product.getId(), licenseId, price);
 
             if (!orderDetailsCreated) {
-                System.out.println("Lỗi khi thêm chi tiết đơn hàng cho sản phẩm ID: " + product.getId());
                 return false;
             }
         }
@@ -318,16 +315,4 @@ public class OrderDAO {
                         .list()
         );
     }
-
-
-    public static void main(String[] args) {
-        OrderDAO orderDAO = new OrderDAO();
-//        System.out.println(orderDAO.getNamePaymentMethod(6));
-//        List<Order> orders = orderDAO.getAllOrders();
-//        for(Order i : orders) {
-//            System.out.println(i);
-//        }
-        System.out.println(orderDAO.getOrder(1));
-    }
-
 }

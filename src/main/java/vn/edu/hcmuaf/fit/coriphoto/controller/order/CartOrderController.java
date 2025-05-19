@@ -135,9 +135,6 @@ public class CartOrderController extends HttpServlet {
                 String absolutePath = request.getServletContext().getRealPath(imageUrl);
                 imagePaths.add(absolutePath);
 
-                System.out.println("IMG URL" + imageUrl);
-                System.out.println("PATH" + absolutePath);
-
                 licenses.add(licenseIdsArray[i]); // Lấy license tương ứng (1: Tiêu chuẩn, 2: Nâng cao)
             }
 
@@ -166,18 +163,5 @@ public class CartOrderController extends HttpServlet {
         }
         response.sendRedirect("order-fail.jsp");
         return;
-        /*
-        for (int i = 0; i < productIds.length; i++) {
-            int licenseId = licenseIdsArray[i];
-            // Gọi service để tạo đơn hàng
-            orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
-            cartService.deleteItem(uid, Integer.parseInt(productIds[i]));
-        }
-        */
-
-        // Chuyển hướng sau khi hoàn thành
     }
-
-
-
 }

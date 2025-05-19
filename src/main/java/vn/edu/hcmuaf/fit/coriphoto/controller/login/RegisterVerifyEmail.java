@@ -43,15 +43,6 @@ public class RegisterVerifyEmail extends HttpServlet {
             session.setAttribute("otp_" + email, otp);
             session.setAttribute("otp_expiry_" + email, System.currentTimeMillis() + 2 * 60 * 1000);
 
-            // Ghi log đăng nhập
-//            User user = (User) session.getAttribute("auth");
-//
-//            ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
-//                    user.getUsername(), LocalDateTime.now(),
-//                    user.getUsername() + " đã đăng nhập");
-//            new LogService().insertLog(loginLog);
-            // ----------------
-
             User user = (User) session.getAttribute("auth");
             ActivityLog log;
             if (user != null) {
