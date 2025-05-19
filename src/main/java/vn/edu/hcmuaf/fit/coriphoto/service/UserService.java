@@ -116,8 +116,4 @@ public class UserService {
     public boolean updateUser(User user) {
         return userDao.updateUser(user);
     }
-
-    public static void main(String[] args) {
-        System.out.println(new UserService().getUser(5));
-    }
 }

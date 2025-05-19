@@ -21,7 +21,6 @@ public class UserSerializer implements JsonSerializer<User> {
         jsonObject.addProperty("role", user.getRole());
         jsonObject.addProperty("fullName", user.getFullName());
         jsonObject.addProperty("username", user.getUsername());
-        //
         jsonObject.addProperty("email", user.getEmail());
 
         if (user.getCreateDate() != null) {
