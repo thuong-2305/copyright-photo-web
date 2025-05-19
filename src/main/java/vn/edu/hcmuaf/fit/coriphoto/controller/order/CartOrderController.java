@@ -130,9 +130,6 @@ public class CartOrderController extends HttpServlet {
                 String absolutePath = request.getServletContext().getRealPath(imageUrl);
                 imagePaths.add(absolutePath);
 
-                System.out.println("IMG URL" + imageUrl);
-                System.out.println("PATH" + absolutePath);
-
                 licenses.add(licenseIdsArray[i]); // Lấy license tương ứng (1: Tiêu chuẩn, 2: Nâng cao)
             }
 
@@ -153,11 +150,7 @@ public class CartOrderController extends HttpServlet {
                 cartService.deleteItem(uid, Integer.parseInt(productId));
             }
         }
-
         // Chuyển hướng sau khi hoàn thành
         response.sendRedirect("/");
     }
-
-
-
 }

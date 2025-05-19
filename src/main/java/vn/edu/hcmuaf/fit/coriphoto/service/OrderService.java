@@ -107,9 +107,4 @@ public class OrderService {
         return intArray;
     }
 
-    public static void main(String[] args) {
-        OrderService orderService = new OrderService();
-        orderService.updateOrderStatus(17, "Completed");
-        System.out.println(orderService.getOrder(17));
-    }
 }
