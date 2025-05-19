@@ -12,6 +12,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
+import vn.edu.hcmuaf.fit.coriphoto.service.ViewService;
 
 import java.io.IOException;
 import java.util.*;
@@ -33,13 +34,10 @@ public class CartController extends HttpServlet {
             uid = (user != null) ? user.getUid() : idTemp;
         } else {
             if (user == null) {
-                request.setAttribute("cart", new Cart());
-                request.setAttribute("cartItems", new ArrayList<CartDetail>());
-                request.setAttribute("products", new ArrayList<Product>());
-                request.setAttribute("total", 0);
-                request.setAttribute("suggestedProducts", new ArrayList<Product>()); // Danh sách gợi ý rỗng
-
-                request.getRequestDispatcher("new-cart.jsp").forward(request, response);
+                ViewService viewService = new ViewService();
+                List<Product> topViewedProducts = viewService.getTopViewedProducts(10);
+                request.setAttribute("topViewedProducts", topViewedProducts);
+                request.getRequestDispatcher("no-item-cart.jsp").forward(request, response);
                 return;
             } else {
                 uid = user.getUid();
@@ -48,6 +46,17 @@ public class CartController extends HttpServlet {
 
         Cart cart = cartService.getCart(uid);
         List<CartDetail> cartItems = cart.getCartItems();
+
+        int numbers = cartItems.size();
+
+        // khi trong giỏ hàng không có sản phẩm nào
+        if (numbers == 0) {
+            ViewService viewService = new ViewService();
+            List<Product> topViewedProducts = viewService.getTopViewedProducts(10);
+            request.setAttribute("topViewedProducts", topViewedProducts);
+            request.getRequestDispatcher("no-item-cart.jsp").forward(request, response);
+            return;
+        }
 
         double total = cartService.getCartTotal(uid);
 
@@ -85,12 +94,21 @@ public class CartController extends HttpServlet {
             suggestedProducts.addAll(productsFromMostPopular);
             remainingProducts -= productsFromMostPopular.size();
         }
-
-        // Nếu chưa đủ 10 sản phẩm, lấy từ danh mục phổ biến thứ hai
+        // Nếu chưa đủ 10 sản phẩm, lấy từ danh mục phổ biến thứ hai (nếu có)
         if (remainingProducts > 0 && sortedCategories.size() > 1) {
             int secondMostPopularCategoryId = sortedCategories.get(1).getKey();
             List<Product> productsFromSecondPopular = productService.getProductsByCategoryNotIn(secondMostPopularCategoryId, productIdsInCart, remainingProducts);
             suggestedProducts.addAll(productsFromSecondPopular);
+            remainingProducts -= productsFromSecondPopular.size();
+        }
+        // Nếu vẫn chưa đủ 10 sản phẩm, lấy từ danh mục ngẫu nhiên
+        if (remainingProducts > 0) {
+            List<Integer> excludeCategoryIds = new ArrayList<>();
+            // Loại trừ danh mục phổ biến nhất và thứ hai (nếu có)
+            if (!sortedCategories.isEmpty()) excludeCategoryIds.add(sortedCategories.get(0).getKey());
+            if (sortedCategories.size() > 1) excludeCategoryIds.add(sortedCategories.get(1).getKey());
+            List<Product> productsFromRandomCategory = productService.getProductsFromRandomCategoryNotIn(excludeCategoryIds, productIdsInCart, remainingProducts);
+            suggestedProducts.addAll(productsFromRandomCategory);
         }
 
         String gift = "";

@@ -15,7 +15,19 @@ public class OrderService {
         return orderDAO.addOrderAndGetId(uid, pmid, promotionId, totalPrice);
     }
 
-    public void updateOrderStatus(int orderId, String newStatus) {
+    public int addOrderAndGetIdCompleted(int uid, int pmid, int promotionId, double totalPrice) {
+        return orderDAO.addOrderAndGetIdCompleted(uid, pmid, promotionId, totalPrice);
+    }
+
+    public boolean createOrder(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
+        return orderDAO.createOrder(uid, pmid, promotionId, licenseIds, totalPrice, products);
+    }
+
+    public boolean createOrderCompleted(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
+        return orderDAO.createOrderCompleted(uid, pmid, promotionId, licenseIds, totalPrice, products);
+    }
+
+        public void updateOrderStatus(int orderId, String newStatus) {
         orderDAO.updateStatusOrder(orderId, newStatus);
     }
 
@@ -23,38 +35,11 @@ public class OrderService {
         return orderDAO.addOrderDetails(orderId, productId, licenseId, price);
     }
 
-    public boolean createOrder(int uid, int pmid, int promotionId, int licenseId, double totalPrice, List<Product> products) {
-        return orderDAO.createOrder(uid, pmid, promotionId, licenseId, totalPrice, products);
-    }
 
-    public int getLastOrderId() {
+        public int getLastOrderId() {
         return orderDAO.getLastOrderId();
     }
 
-    public boolean createOrder(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
-        // Tạo đơn hàng và lấy orderId
-        int orderId = addOrderAndGetId(uid, pmid, promotionId, totalPrice);
-
-        // Nếu không thể lấy được orderId, trả về false
-        if (orderId <= 0) {
-            return false;
-        }
-
-        // Thêm chi tiết đơn hàng vào bảng order_details
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-            int licenseId = licenseIds[i]; // Lấy licenseId tương ứng với từng sản phẩm
-
-            double price = (licenseId == 2) ? product.getPrice() * 2 : product.getPrice();
-            boolean orderDetailsCreated = addOrderDetails(orderId, product.getId(), licenseId, price);
-
-            if (!orderDetailsCreated) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     public List<Integer> getAllOrdersId() {
         return orderDAO.getAllOrdersId();
@@ -77,6 +62,7 @@ public class OrderService {
     }
 
     public List<OrderDetail> getOrderDetailsHistory(int oid) {
+
         return orderDAO.getOrderDetailsHistory(oid);
     }
 
@@ -107,4 +93,9 @@ public class OrderService {
         return intArray;
     }
 
+    public static void main(String[] args) {
+        OrderService orderService = new OrderService();
+        orderService.updateOrderStatus(17, "Completed");
+        System.out.println(orderService.getOrder(17));
+    }
 }

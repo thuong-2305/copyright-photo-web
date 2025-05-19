@@ -75,10 +75,12 @@ public class OrderController extends HttpServlet {
         }
 
         OrderService orderService = new OrderService();
+        int[] licenseIds = new int[1];
+        licenseIds[0] = licenseId;
 
         // thanh toán bằng thẻ có sẵn lưu trong tài khoản
         if (!pmid.isEmpty()) {
-            boolean isOrderCreated = orderService.createOrder(uid, Integer.parseInt(pmid), promotionId, licenseId, totalBeforeDiscount, products);
+            boolean isOrderCreated = orderService.createOrderCompleted(uid, Integer.parseInt(pmid), promotionId, licenseIds, totalBeforeDiscount, products);
             if (isOrderCreated) {
                 Product product = products.get(0);
                 String imageName = product.getName();
@@ -108,7 +110,7 @@ public class OrderController extends HttpServlet {
             if (Integer.parseInt(paymentTypeId) == 1) {
                 LocalDate cardExpiryLD = FormatDateTime.format(cardExpiry);
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, cardNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
                 if (isOrderCreated) {
                     Product product = products.get(0);
                     String imageName = product.getName();
@@ -137,7 +139,8 @@ public class OrderController extends HttpServlet {
             else if (Integer.parseInt(paymentTypeId) == 2) {
                 LocalDate bankExpiryLD = FormatDateTime.format(bankExpiry);
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
-                boolean isOrderCreated = orderService.createOrder(uid, getPmId, promotionId, licenseId, totalBeforeDiscount, products);
+                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
+
                 if (isOrderCreated) {
                     Product product = products.get(0);
                     String imageName = product.getName();

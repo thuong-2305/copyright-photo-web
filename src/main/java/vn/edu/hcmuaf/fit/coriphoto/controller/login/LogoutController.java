@@ -19,7 +19,6 @@ public class LogoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession().invalidate();
 
         HttpSession session = request.getSession(true);
         User user = (User) session.getAttribute("auth");
@@ -27,8 +26,9 @@ public class LogoutController extends HttpServlet {
         // Ghi log đăng nhập
         ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
                 user.getUsername(), LocalDateTime.now(),
-                user.getUsername() + " đã đăng nhập");
+                user.getUsername() + " đã đăng xuất");
         new LogService().insertLog(loginLog);
+        request.getSession().invalidate();
         response.sendRedirect("/");
     }
 
