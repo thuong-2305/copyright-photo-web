@@ -22,8 +22,6 @@ public class ViewService {
             }
             String sessionId = session.getId();
             viewDao.incrementView(pid, uid, sessionId);
-            // Đánh dấu flag để lần reload sau không tăng view nữa
-            System.out.println("Session id = "+sessionId);
             session.setAttribute(sessionKey, true);
         }
     }
