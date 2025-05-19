@@ -10,9 +10,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
           integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <jsp:include page="include/head.jsp"/>
+
+    <style>
+        #nav:not(.scrolled) .title-logo {
+            color: black;
+        }
+
+        #nav:not(.scrolled) .title-item {
+            color: black !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover {
+            color: #009970;
+        }
+
+        #nav:not(.scrolled) .title-item:hover {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .title-item:hover i {
+            color: #009970 !important;
+        }
+
+        #nav:not(.scrolled) .nav-item:hover .title-item {
+            color: #009970 !important;
+        }
+    </style>
 </head>
 
 <body style="background-color: #f4f4f4; font-family: Arial, sans-serif; margin: 0; padding: 20px;">
+<jsp:include page="include/navbar.jsp"/>
 
 
 <section style="margin-top: 50px; text-align: center;">
