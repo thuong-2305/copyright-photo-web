@@ -45,8 +45,17 @@ public class ajaxServlet extends HttpServlet {
 
         int promotionId = Integer.parseInt(req.getParameter("promotionId"));
 
+        // Lấy mảng licensedIds tu việc mua nhiều sản phẩm từ giỏ hàng
         String[] licenseIds = req.getParameterValues("licenseIds");
         String[] productIds = req.getParameterValues("productIds");
+
+
+        // Lấy licenseId từ việc mua 1 sản phẩm trực tiếp
+        if (licenseIds == null) {
+            String licenseId = req.getParameter("licenseId");
+            licenseIds = new String[1];
+            licenseIds[0] = licenseId;
+        }
 
         int orderId = orderService.addOrderAndGetId(auth.getUid(), -1, promotionId, totalBeforeDiscount);
 
