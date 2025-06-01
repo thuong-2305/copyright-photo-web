@@ -40,6 +40,7 @@ body {
     font-size: 12px;
     color: #fff;
     font-weight: 600;
+    display: inline-block;
 }
 
 .order-status.paid {
@@ -48,6 +49,15 @@ body {
 
 .order-status.pending {
     background-color: #ffc107;
+    color: #000;
+}
+
+.order-status.failed {
+    background-color: #dc3545;
+}
+
+.order-status.unknown {
+    background-color: #6c757d;
 }
 
 .order-price {

@@ -107,12 +107,13 @@
                     <div class="order-header">
                         <div class="order-info">
                             <span class="order-id fs-5">Đơn hàng #${order.orderId}</span>
-                            <span class="order-status ${order.status == 'Completed' ? 'paid' : 'pending'}">
-                              <c:choose>
-                                  <c:when test="${order.status == 'Completed'}">Hoàn thành</c:when>
-                                  <c:when test="${order.status == 'Waiting payment'}">Chưa thanh toán</c:when>
-                                  <c:otherwise>${order.status}</c:otherwise>
-                              </c:choose>
+                            <span class="order-status ${order.status.toLowerCase() == 'completed' ? 'paid' : order.status.toLowerCase() == 'failed' ? 'failed' : order.status.toLowerCase() == 'waiting payment' ? 'pending' : 'unknown'}">
+                                <c:choose>
+                                    <c:when test="${order.status.toLowerCase() == 'completed'}">Hoàn thành</c:when>
+                                    <c:when test="${order.status.toLowerCase() == 'waiting payment'}">Chưa thanh toán</c:when>
+                                    <c:when test="${order.status.toLowerCase() == 'failed'}">Thất bại</c:when>
+                                    <c:otherwise>Trạng thái không xác định</c:otherwise>
+                                </c:choose>
                             </span>
                         </div>
                         <div class="order-price">
