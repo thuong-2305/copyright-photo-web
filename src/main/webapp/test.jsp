@@ -127,8 +127,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="">
-                        <div class="hover-options">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">                        <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
@@ -157,8 +156,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
-                        <div class="hover-options">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">                        <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
@@ -187,8 +185,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
-                        <div class="hover-options">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">                        <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
@@ -217,8 +214,7 @@
                 %>
                 <a href="product-detail?pid=<%= product.getId() %>">
                     <div class="pic">
-                        <img src="<%= product.getUrl() %>" alt="<%= product.getName() %>">
-                        <div class="hover-options">
+                        <img src="${pageContext.request.contextPath}/watermarkedImage?url=<%= product.getUrl() %>" alt="<%= product.getName() %>">                        <div class="hover-options">
                             <button class="favorite-btn option-button" data-product-id="<%= product.getId() %>">
                                 <i class="fa-regular fa-heart"></i>
                                 <span class="text-click-hover">Thích</span>
