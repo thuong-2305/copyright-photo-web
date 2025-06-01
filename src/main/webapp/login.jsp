@@ -80,8 +80,11 @@
             &redirect_uri=http://localhost:8080/login&response_type=code
 &client_id=347849780193-j9q68d1s2iu8g598kc2tsgqcdd2r4ved.apps.googleusercontent.com"
                class="btn btn-google">
-                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">
-                    <!-- SVG paths giữ nguyên -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48">
+                    <path fill="#4285F4" d="M24 9.5c3.8 0 6.4 1.6 7.9 3l5.9-5.9C34.2 3.1 29.7 1 24 1 14.3 1 6.6 7.6 4.2 16.7l7.6 5.9C13.2 15.7 18.1 9.5 24 9.5z"/>
+                    <path fill="#34A853" d="M24 38.5c-5.7 0-10.6-4.1-11.8-9.7l-7.6 5.9C8.8 41.2 16 47 24 47c5.7 0 10.2-2.1 13.8-5.6l-7.6-5.9c-1.9 1.2-4.2 2 0 0z"/>
+                    <path fill="#FBBC05" d="M46.2 24.7c0-1.6-.1-3.2-.4-4.7H24v9.4h12.7c-.5 2.5-2 4.7-4.2 6.2l7.6 5.9c4.5-4.1 6.1-10.2 6.1-16.8z"/>
+                    <path fill="#EA4335" d="M12.2 28.3c-.6-1.8-.9-3.7-.9-5.8s.3-4 .9-5.8l-7.6-5.9c-1.8 3.6-2.8 7.6-2.8 11.7 0 4.1 1 8.1 2.8 11.7l7.6-5.9z"/>
                 </svg>
                 Đăng nhập bằng Google
             </a>
