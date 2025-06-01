@@ -35,7 +35,7 @@
             </li>
             <li class="<%= currentURL.contains("/admin-log") ? "active" : "" %>">
                 <a href="${pageContext.request.contextPath}/admin-log">
-                    <i class="fa-solid fa-user"></i><span>Tài khoản</span>
+                    <i class="bi bi-clock-history"></i><span>Nhật ký</span>
                 </a>
             </li>
             <hr>

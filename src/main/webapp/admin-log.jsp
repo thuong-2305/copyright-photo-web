@@ -42,13 +42,16 @@
             <table id="productsTable" class="table table-bordered">
               <colgroup>
                 <col style="width: 15%;">
-                <col style="width: 50%;">
+                <col style="width: 10%;">
+                <col style="width: 15%;">
                 <col style="width: 20%;">
+                <col style="width: 25%;">
                 <col style="width: 15%;">
               </colgroup>
               <thead class="table-dark">
               <tr>
                 <th>Mã log</th>
+                <th>Mức độ</th>
                 <th>Username</th>
                 <th>Thời gian</th>
                 <th>Nội dung</th>
@@ -59,8 +62,9 @@
               <c:forEach var="log" items="${logs}">
                 <tr>
                   <td>${log.id}</td>
+                  <td>${log.severity}</td>
                   <td>${log.username}</td>
-                  <td>${log.eventDate}</td>
+                  <td>${log.formatOrderDateTime}</td>
                   <td>${log.message}</td>
                   <td>
                     <div class="d-flex justify-content-start">
