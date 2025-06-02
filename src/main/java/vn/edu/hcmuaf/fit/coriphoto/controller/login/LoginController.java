@@ -59,7 +59,7 @@ public class LoginController extends HttpServlet {
         if (!isLoginGoogle) {
             request.getRequestDispatcher("login.jsp").forward(request, response);//chuyển đến trang login vẫn giữ đg dẫn gốc
         }else {
-            request.getRequestDispatcher("homepage").forward(request, response);
+            response.sendRedirect("homepage");
         }
     }
 
