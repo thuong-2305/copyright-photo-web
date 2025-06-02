@@ -13,43 +13,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/custom-nav-pages.css">
-
-    <style>
-        .view-product {
-            display: none;
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .view-product:not(.d-none) {
-            display: block;
-        }
-        .overlay.show {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-        .no-scroll {
-            overflow: hidden;
-        }
-        .product-img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -200,22 +163,26 @@
         <button class="btn-close" onclick="toggleProductDetail()"></button>
     </div>
     <hr>
-    <div class="product-info mt-2">
-        <h5 class="fw-semibold"><i class="bi bi-info-square me-2"></i>Thông tin sản phẩm</h5>
-        <div class="show-content">
-            <p class="id-image"><span class="title-info fw-semibold">Mã hình ảnh:</span></p>
-            <p class="category-image"><span class="title-info fw-semibold">Danh mục:</span></p>
-            <p class="price-image"><span class="title-info fw-semibold">Giá:</span></p>
-            <p class="size-image"><span class="title-info fw-semibold">Độ phân giải:</span></p>
-            <p class="dimension-image"><span class="title-info fw-semibold">Kích thước ảnh:</span></p>
-            <p class="date-image"><span class="title-info fw-semibold">Ngày thêm:</span></p>
-            <p class="status-image"><span class="title-info fw-semibold">Trạng thái:</span></p>
-            <p class="description-image"><span class="title-info fw-semibold me-1">Mô tả:</span></p>
+    <div class="product-content d-flex">
+        <!-- Thông tin sản phẩm (bên trái) -->
+        <div class="product-info">
+            <h5 class="fw-semibold"><i class="bi bi-info-square me-2"></i>Thông tin sản phẩm</h5>
+            <div class="show-content">
+                <p class="id-image"><span class="title-info fw-semibold">Mã hình ảnh:</span></p>
+                <p class="category-image"><span class="title-info fw-semibold">Danh mục:</span></p>
+                <p class="price-image"><span class="title-info fw-semibold">Giá:</span></p>
+                <p class="size-image"><span class="title-info fw-semibold">Độ phân giải:</span></p>
+                <p class="dimension-image"><span class="title-info fw-semibold">Kích thước ảnh:</span></p>
+                <p class="date-image"><span class="title-info fw-semibold">Ngày thêm:</span></p>
+                <p class="status-image"><span class="title-info fw-semibold">Trạng thái:</span></p>
+                <p class="description-image"><span class="title-info fw-semibold me-1">Mô tả:</span></p>
+            </div>
         </div>
-    </div>
-    <div class="show-image">
-        <h5 class="fw-semibold mb-3"><i class="bi bi-image me-2"></i>Hình ảnh</h5>
-        <img src="" alt="" class="product-img">
+        <!-- Hình ảnh (bên phải) -->
+        <div class="show-image">
+            <h5 class="fw-semibold mb-3"><i class="bi bi-image me-2"></i>Hình ảnh</h5>
+            <img src="" alt="" class="product-img">
+        </div>
     </div>
 </div>
 

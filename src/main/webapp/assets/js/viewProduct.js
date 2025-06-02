@@ -46,7 +46,16 @@ $(document).ready(function () {
 
 function toggleProductDetail() {
     const productDetail = document.getElementById('productDetail');
-    const overlay = document.getElementById('overlay');
+    let overlay = document.getElementById('overlay');
+
+    if (!overlay) {
+        console.warn('Overlay not found, creating new one');
+        overlay = document.createElement('div');
+        overlay.id = 'overlay';
+        overlay.className = 'overlay';
+        document.body.appendChild(overlay);
+    }
+
     if (productDetail && overlay) {
         console.log('Toggling product detail, current d-none:', productDetail.classList.contains('d-none'));
         productDetail.classList.toggle('d-none');
