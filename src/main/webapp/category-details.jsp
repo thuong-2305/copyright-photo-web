@@ -6,162 +6,373 @@
     <title>Category Details</title>
     <jsp:include page="include/head.jsp" />
     <link rel="stylesheet" href="./assets/css/category-details.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
 <jsp:include page="include/navbar.jsp"/>
 
-<!--section banner -->
-<section class="banner d-flex flex-column justify-content-center align-items-center">
-    <div class="banner-home">
-        <div class="main-title text-white text-center">
-            <h1 class="fw-bolder">Khám phá hàng trăm ảnh có bản quyền của chúng tôi.</h1>
-            <p class="w-50 mx-auto">Với hàng trăm hình ảnh bản quyền trong danh mục của chúng tôi và nhiều hình ảnh khác
-                được thêm
-                vào mỗi ngày, bạn chắc chắn sẽ tìm thấy hình ảnh hoặc đồ họa hoàn hảo cho dự án tiếp theo của mình tại
-                CoRiPhoto.</p>
+<!-- Enhanced Search Banner -->
+<section class="search-banner">
+    <div class="banner-background">
+        <div class="animated-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
     </div>
-</section>
-<!--section banner -->
 
-<!-- section categories -->
-<section class="category">
-    <div class="container list-category">
-        <jsp:useBean id="categories" scope="request" type="java.util.List"/>
-        <c:forEach var="item" items="${categories}">
-            <a href="products?cid=${item.getCid()}" class="box-link">
-                <div class="box">
-                    <img src="${item.getUrl()}" alt="" class="image">
-                    <p class="text-white fw-semibold fs-4">${item.getName()}</p>
-                    <i class="bi bi-back"></i>
-                </div>
-            </a>
-        </c:forEach>
-    </div>
-</section>
-<!-- section categories -->
-
-<!-- section content-add -->
-<section class="content-add">
-    <div class="container d-flex justify-content-center align-items-center bar-content">
-        <ul class="d-flex border-bottom title-content">
-            <li class="tab list-unstyled px-3 text-secondary active" data-target="social-network">Mạng xã hội</li>
-            <li class="tab list-unstyled px-3 text-secondary" data-target="marketing">Chiến dịch thị trường</li>
-            <li class="tab list-unstyled px-3 text-secondary" data-target="design">Thiết kế website</li>
-            <li class="tab list-unstyled px-3 text-secondary" data-target="creative">Sáng tạo dự án</li>
-        </ul>
-    </div>
-    <div class="container main-content">
-        <div id="social-media" class="content">
-            <div class="container content-text social-network active">
-                <ul class="float-start w-50 list-unstyled">
-                    <h2 class="my-2">Mạng xã hội</h2>
-                    <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Nghiên cứu trên mạng xã
-                        hội đã chỉ
-                        ra rằng việc thường xuyên đăng nội dung là một trong những chìa
-                        khóa thu hút khán giả. Bạn không có thời gian đi loanh quanh để chụp ảnh cho Instagram của mình? Đừng
-                        lo lắng. Thư viện hình ảnh miễn phí khổng lồ của CoRiPhoto luôn sẵn sàng trợ giúp. Ví dụ: giả sử bạn
-                        muốn đăng một câu trích dẫn đầy cảm hứng và bạn cho rằng những từ đó sẽ kết hợp tốt nhất với một bức ảnh
-                        bình minh tuyệt đẹp. Nếu không muốn dậy sớm để tự chụp ảnh, bạn chỉ cần gõ "Sunrise" vào thanh tìm kiếm
-                        của CoRiPhoto và chọn.
-                    </li>
-                    <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Bạn có bảng màu cụ thể
-                        mà bạn sử dụng trên Instagram của mình nhưng ảnh bạn
-                        tìm thấy trong thư viện của
-                        chúng tôi không hoàn toàn khớp với nhau? Sử dụng CoRiPhoto Editor để điều chỉnh màu sắc của hình ảnh
-                        miễn phí bản quyền. Tải xuống tác phẩm đã chỉnh sửa của bạn và chia sẻ.
-                    </li>
-                </ul>
-                <img src="./assets/images/People/9.jpg" alt="" class="float-end w-50 my-3">
+    <div class="banner-content">
+        <div class="container">
+            <div class="banner-header" data-aos="fade-up">
+                <h1 class="banner-title">Không tìm thấy điều bạn cần?</h1>
+                <p class="banner-subtitle">
+                    Hãy thử tìm kiếm với từ khóa khác hoặc khám phá bộ sưu tập của
+                    chúng tôi
+                </p>
             </div>
 
-            <div class="container content-text marketing">
-                <ul class="float-start w-50 list-unstyled">
-                    <h2 class="my-2">Chiến dịch thị trường</h2>
-                    <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Thêm không khí đích
-                        thực vào chiến dịch tiếp thị tiếp theo của bạn bằng
-                        những
-                        bức ảnh miễn phí bản quyền. Không có gì ngạc nhiên khi người tiêu dùng phản ứng tích cực hơn với những
-                        người
-                        có vẻ ngoài chân thật trong các quảng cáo mà họ xem. Những người cứng nhắc, tạo dáng với nụ cười gượng gạo
-                        sẽ không giúp bán được sản phẩm của bạn. May mắn thay, thư viện của CoRiPhoto tràn ngập những bức ảnh
-                        miễn phí về những người có vẻ ngoài tự nhiên. Bằng cách sử dụng các tùy chọn bộ lọc của CoRiPhoto, bạn
-                        có thể chỉ định độ tuổi, giới tính, dân tộc và số lượng người trong hình ảnh của mình.</li>
-                </ul>
-                <img src="./assets/images/Commercial/2.jpg" alt="" class="float-end w-50 my-3">
-            </div>
-
-            <div class="container content-text design">
-                <ul class="float-start w-50 list-unstyled">
-                    <h2 class="my-2">Thiết kế web</h2>
-                    <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Làm nổi bật thiết kế
-                        trang web của bạn và nổi bật giữa đám đông bằng
-                        hình ảnh miễn phí bản quyền. Hãy thử khám phá trang hình ảnh "Tóm tắt" được tuyển chọn của CoRiPhoto.
-                        Trong trang đó, bạn thậm chí sẽ tìm thấy một trang danh mục phụ dành cho "Hình nền trừu tượng" để giúp
-                        bạn tiết kiệm thời gian hơn nữa khi tìm kiếm hình ảnh. Bạn cũng có thể xem trang danh mục hình ảnh
-                        "Nền/Hoạ tiết" hoặc chỉ cần nhập từ khóa vào thanh tìm kiếm chính để tìm bất kỳ loại nền nào mà bạn
-                        có thể nghĩ đến.
-                    </li>
-                    <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Sử dụng các tùy chọn bộ
-                        lọc của CoRiPhoto để chọn màu chính bạn muốn
-                        làm nổi bật trong hình ảnh của mình. Đảm bảo màu sắc của logo công ty và nền trang web của bạn bổ sung
-                        cho nhau. Điều này sẽ giúp mang lại cho trang web của bạn một cái nhìn gắn kết, chuyên nghiệp.
-                    </li>
-                </ul>
-                <img src="./assets/images/technology/data/7.webp" alt="" class="float-end w-50 my-3">
-            </div>
-
-            <div class="container content-text creative">
-                <ul class="float-start w-50 list-unstyled">
-                    <h2 class="my-2">Sáng tạo dự án</h2>
-                    <li class="text-secondary my-3"><i class="fa-solid fa-caret-right text-success"></i> Với hàng triệu hình ảnh
-                        miễn phí bản quyền để lựa chọn và thư viện hình ảnh
-                        ngày càng phát triển, CoRiPhoto chắc chắn sẽ có ảnh, hình minh họa hoặc vectơ để đáp ứng nhu cầu sáng
-                        tạo của bạn. Hình ảnh của chúng tôi hoàn hảo cho nhiều tình huống và dự án, từ hình nền trang web đến
-                        thiệp
-                        mời đám cưới, ảnh bìa Facebook cho đến câu chuyện trên Instagram, v.v. Hãy bắt đầu ngay hôm nay.
-                    </li>
-                </ul>
-                <img src="./assets/images/HandScenery/007.jpg" alt="" class="float-end w-50 my-3">
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- section content-add -->
-
-<!--section banner2 -->
-<section class="banner ver2 d-flex flex-column justify-content-center align-items-center">
-    <div class="banner-home">
-        <div class="main-title text-white text-center">
-            <h1 class="fw-bolder mb-3">Không thể tìm thấy những gì bạn đang tìm kiếm.</h1>
-            <section class="search">
-                <div class="search-container">
-                    <div class="dropdown">
-                        <button class="text-secondary" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
-                          ảnh</span><i class="fa-solid fa-caret-down px-2"></i></button>
-                        <div class="dropdown-content">
-                            <a href="#" class="active" data-icon="fa-image"><i class="fa-solid fa-image pe-3"></i>Tất cả
-                                ảnh</a>
-                            <a href="#" data-icon="fa-camera"><i class="fa-solid fa-camera px-3"></i>Ảnh chụp</a>
-                            <a href="#" data-icon="fa-vector-square"><i class="fa-solid fa-vector-square px-3"></i>Vectors</a>
-                            <a href="#" data-icon="fa-pen-fancy"><i class="fa-solid fa-pen-fancy px-3"></i>AI</a>
+            <div class="search-wrapper" data-aos="fade-up" data-aos-delay="200">
+                <div class="search-box">
+                    <!-- Category Dropdown -->
+                    <div class="search-category">
+                        <button class="category-btn" id="categoryBtn">
+                            <i class="fas fa-images"></i>
+                            <span class="category-text">Tất cả ảnh</span>
+                            <i class="fas fa-chevron-down arrow"></i>
+                        </button>
+                        <div class="category-dropdown" id="categoryDropdown">
+                            <div
+                                    class="dropdown-item active"
+                                    data-value="all"
+                                    data-icon="fa-images"
+                            >
+                                <i class="fas fa-images"></i>
+                                <span>Tất cả ảnh</span>
+                            </div>
+                            <div
+                                    class="dropdown-item"
+                                    data-value="photo"
+                                    data-icon="fa-camera"
+                            >
+                                <i class="fas fa-camera"></i>
+                                <span>Ảnh chụp</span>
+                            </div>
+                            <div
+                                    class="dropdown-item"
+                                    data-value="vector"
+                                    data-icon="fa-vector-square"
+                            >
+                                <i class="fas fa-vector-square"></i>
+                                <span>Vectors</span>
+                            </div>
+                            <div
+                                    class="dropdown-item"
+                                    data-value="ai"
+                                    data-icon="fa-brain"
+                            >
+                                <i class="fas fa-brain"></i>
+                                <span>AI</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="search-bar">
-                        <input type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
-                        <span class="clear-btn text-dark">&#10005;</span>
+
+                    <!-- Search Input -->
+                    <div class="search-input-wrapper">
+                        <input
+                                type="text"
+                                class="search-input"
+                                id="searchInput"
+                                placeholder="Tìm kiếm hình ảnh, vectors, AI..."
+                                autocomplete="off"
+                        />
+                        <button class="clear-btn" id="clearBtn">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
-                    <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm
-                      kiếm</span></button>
+
+                    <!-- Search Button -->
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                        <span>Tìm kiếm</span>
+                    </button>
                 </div>
-            </section>
+
+                <!-- Popular Searches -->
+                <div
+                        class="popular-searches"
+                        data-aos="fade-up"
+                        data-aos-delay="400"
+                >
+                    <span class="popular-label">Tìm kiếm phổ biến:</span>
+                    <div class="tag-list">
+                        <a href="#" class="search-tag">Thiên nhiên</a>
+                        <a href="#" class="search-tag">Công nghệ</a>
+                        <a href="#" class="search-tag">Abstract</a>
+                        <a href="#" class="search-tag">Business</a>
+                        <a href="#" class="search-tag">Động vật</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
-<!--section banner2 -->
 
+<!-- Hero Banner Section -->
+<section class="hero-banner">
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+        <div class="container">
+            <h1 class="banner-title" data-aos="fade-up">
+                Khám phá hàng trăm ảnh có bản quyền của chúng tôi
+            </h1>
+            <p class="banner-description" data-aos="fade-up" data-aos-delay="200">
+                Với hàng trăm hình ảnh bản quyền trong danh mục của chúng tôi và nhiều hình ảnh khác
+                được thêm vào mỗi ngày, bạn chắc chắn sẽ tìm thấy hình ảnh hoặc đồ họa hoàn hảo cho
+                dự án tiếp theo của mình tại CoRiPhoto.
+            </p>
+            <div class="banner-stats" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <i class="fas fa-images"></i>
+                    <h3>10K+</h3>
+                    <p>Hình ảnh</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-folder"></i>
+                    <h3>50+</h3>
+                    <p>Danh mục</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-download"></i>
+                    <h3>100K+</h3>
+                    <p>Lượt tải</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="banner-shape">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="category-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">Danh mục hình ảnh</h2>
+            <p class="section-subtitle">Khám phá bộ sưu tập đa dạng với nhiều chủ đề khác nhau</p>
+        </div>
+
+        <div class="category-filter" data-aos="fade-up" data-aos-delay="200">
+            <button class="filter-btn active" data-filter="all">Tất cả</button>
+            <button class="filter-btn" data-filter="popular">Phổ biến</button>
+            <button class="filter-btn" data-filter="new">Mới nhất</button>
+            <button class="filter-btn" data-filter="trending">Xu hướng</button>
+        </div>
+
+        <div class="category-grid">
+            <jsp:useBean id="categories" scope="request" type="java.util.List"/>
+            <c:forEach var="item" items="${categories}" varStatus="status">
+                <div class="category-card" data-aos="fade-up" data-aos-delay="${status.index * 100}">
+                    <a href="products?cid=${item.getCid()}" class="card-link">
+                        <div class="card-image">
+                            <img src="${item.getUrl()}" alt="${item.getName()}" loading="lazy">
+                            <div class="card-overlay">
+                                <div class="overlay-content">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${item.getName()}</h3>
+                            <div class="card-meta">
+                                    <span class="item-count">
+                                        <i class="fas fa-images"></i> 10 ảnh
+                                    </span>
+                                <span class="view-count">
+                                        <i class="fas fa-eye"></i> 1k+
+                                    </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </c:forEach>
+        </div>
+
+        <div class="load-more" data-aos="fade-up">
+            <button class="btn-load-more">
+                Xem thêm danh mục
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Content Tabs Section -->
+<section class="content-section">
+    <div class="container">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title">Ứng dụng trong thực tế</h2>
+            <p class="section-subtitle">Khám phá cách sử dụng hình ảnh trong các lĩnh vực khác nhau</p>
+        </div>
+
+        <div class="tab-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="tab-header">
+                <button class="tab-btn active" data-target="social-network">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Mạng xã hội</span>
+                </button>
+                <button class="tab-btn" data-target="marketing">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>Chiến dịch thị trường</span>
+                </button>
+                <button class="tab-btn" data-target="design">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>Thiết kế website</span>
+                </button>
+                <button class="tab-btn" data-target="creative">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Sáng tạo dự án</span>
+                </button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Social Network Tab -->
+                <div class="content-panel active" id="social-network">
+                    <div class="content-wrapper">
+                        <div class="content-text">
+                            <h3>Mạng xã hội</h3>
+                            <div class="content-list">
+                                <div class="list-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>Nghiên cứu trên mạng xã hội đã chỉ ra rằng việc thường xuyên đăng nội dung là một trong những chìa
+                                        khóa thu hút khán giả. Bạn không có thời gian đi loanh quanh để chụp ảnh cho Instagram của mình? Đừng
+                                        lo lắng. Thư viện hình ảnh miễn phí khổng lồ của CoRiPhoto luôn sẵn sàng trợ giúp.</p>
+                                </div>
+                                <div class="list-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>Bạn có bảng màu cụ thể mà bạn sử dụng trên Instagram của mình nhưng ảnh bạn
+                                        tìm thấy trong thư viện của chúng tôi không hoàn toàn khớp với nhau? Sử dụng CoRiPhoto Editor để điều chỉnh màu sắc của hình ảnh
+                                        miễn phí bản quyền.</p>
+                                </div>
+                            </div>
+                            <a href="#" class="btn-primary">
+                                Khám phá ngay
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="content-image">
+                            <img src="./assets/images/People/9.jpg" alt="Social Media">
+                            <div class="image-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Marketing Tab -->
+                <div class="content-panel" id="marketing">
+                    <div class="content-wrapper">
+                        <div class="content-text">
+                            <h3>Chiến dịch thị trường</h3>
+                            <div class="content-list">
+                                <div class="list-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>Thêm không khí đích thực vào chiến dịch tiếp thị tiếp theo của bạn bằng
+                                        những bức ảnh miễn phí bản quyền. Không có gì ngạc nhiên khi người tiêu dùng phản ứng tích cực hơn với những
+                                        người có vẻ ngoài chân thật trong các quảng cáo mà họ xem.</p>
+                                </div>
+                            </div>
+                            <a href="#" class="btn-primary">
+                                Khám phá ngay
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="content-image">
+                            <img src="./assets/images/Commercial/2.jpg" alt="Marketing">
+                            <div class="image-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Design Tab -->
+                <div class="content-panel" id="design">
+                    <div class="content-wrapper">
+                        <div class="content-text">
+                            <h3>Thiết kế web</h3>
+                            <div class="content-list">
+                                <div class="list-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>Làm nổi bật thiết kế trang web của bạn và nổi bật giữa đám đông bằng
+                                        hình ảnh miễn phí bản quyền. Hãy thử khám phá trang hình ảnh "Tóm tắt" được tuyển chọn của CoRiPhoto.</p>
+                                </div>
+                                <div class="list-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>Sử dụng các tùy chọn bộ lọc của CoRiPhoto để chọn màu chính bạn muốn
+                                        làm nổi bật trong hình ảnh của mình.</p>
+                                </div>
+                            </div>
+                            <a href="#" class="btn-primary">
+                                Khám phá ngay
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="content-image">
+                            <img src="./assets/images/technology/data/7.webp" alt="Web Design">
+                            <div class="image-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Tab -->
+                <div class="content-panel" id="creative">
+                    <div class="content-wrapper">
+                        <div class="content-text">
+                            <h3>Sáng tạo dự án</h3>
+                            <div class="content-list">
+                                <div class="list-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>Với hàng triệu hình ảnh miễn phí bản quyền để lựa chọn và thư viện hình ảnh
+                                        ngày càng phát triển, CoRiPhoto chắc chắn sẽ có ảnh, hình minh họa hoặc vectơ để đáp ứng nhu cầu sáng
+                                        tạo của bạn.</p>
+                                </div>
+                            </div>
+                            <a href="#" class="btn-primary">
+                                Khám phá ngay
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="content-image">
+                            <img src="./assets/images/HandScenery/007.jpg" alt="Creative Projects">
+                            <div class="image-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content" data-aos="zoom-in">
+            <h2>Bắt đầu khám phá ngay hôm nay</h2>
+            <p>Tham gia cùng hàng nghìn người dùng đang sử dụng CoRiPhoto</p>
+            <button class="btn-cta">
+                Đăng ký miễn phí
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="{pageContext.request.contextPath}/assets/js/category-details.js"></script>
 <jsp:include page="include/footer.jsp"/>
 
 <jsp:include page="include/scripts.jsp"/>
