@@ -44,6 +44,7 @@
 }
 
 .btn-send {
-    background-color: var(--primary-color);
+    color: #000;
+    background-color: #fb7d7d;
 }
 
