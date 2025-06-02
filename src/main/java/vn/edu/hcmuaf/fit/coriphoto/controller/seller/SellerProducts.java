@@ -8,7 +8,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.ProductSerializer;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.model.User;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import java.io.IOException;
@@ -58,7 +61,7 @@ public class SellerProducts extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String requestedBy = request.getHeader("X-Requested-By");
         ProductService service = new ProductService();
-
+        User user = (User) request.getSession().getAttribute("auth");
         // Xóa sản phẩm dựa vào id
         if ("AJAX".equals(requestedBy)) {
             int productId =Integer.parseInt(request.getParameter("product_id"));
@@ -66,7 +69,6 @@ public class SellerProducts extends HttpServlet {
 
             if ("delete".equals(action)) {
                 boolean success = service.deleteProductById(productId);
-                System.out.println(success);
                 if (success) {
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
@@ -79,6 +81,11 @@ public class SellerProducts extends HttpServlet {
                     String jsonResponse = gson.toJson(responseData);
                     // Gửi dữ liệu JSON về client
                     response.getWriter().write(jsonResponse);
+
+                    ActivityLog loginLog = new ActivityLog("DANGER", user.getUid(),
+                            user.getUsername(), LocalDateTime.now(),
+                            user.getUsername() + " đã xóa sản phẩm đã upload có id là : " + productId);
+                    new LogService().insertLog(loginLog);
                 }
             }
         }
