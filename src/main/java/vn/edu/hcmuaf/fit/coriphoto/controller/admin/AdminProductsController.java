@@ -6,9 +6,12 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.ProductSerializer;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.Category;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.CategoryService;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
 
 import java.io.IOException;
@@ -80,9 +83,13 @@ public class AdminProductsController extends HttpServlet {
             if ("delete".equals(action)) {
                 boolean success = service.deleteProductById(productId);
                 if (success) {
-                    // Trả về dữ liệu JSON cho AJAX
-                    response.setContentType("application/json");
-                    response.setCharacterEncoding("UTF-8");
+
+                    HttpSession session = request.getSession(true);
+                    User user = (User) session.getAttribute("auth");
+                    ActivityLog loginLog = new ActivityLog("DANGER", user.getUid(),
+                            user.getUsername(), LocalDateTime.now(),
+                            user.getUsername() + " dd xóa sản phẩm có id:" + productId);
+                    new LogService().insertLog(loginLog);
 
                     // Tạo đối tượng Gson
                     Gson gson = new Gson();
