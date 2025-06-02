@@ -5,8 +5,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.UserSerializer;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.EmailSenderTask;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
 
 import java.io.IOException;
@@ -32,6 +34,8 @@ public class AdminCustomerController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        User user_root = (User) session.getAttribute("auth");
         String requestedBy = request.getHeader("X-Requested-By");
         UserService userService = new UserService();
 
@@ -48,6 +52,11 @@ public class AdminCustomerController extends HttpServlet {
                     responseData.put("success", true);
                     String jsonResponse = gson.toJson(responseData);
                     response.getWriter().write(jsonResponse);
+
+                    ActivityLog loginLog = new ActivityLog("DANGER", user_root.getUid(),
+                            user_root.getUsername(), LocalDateTime.now(),
+                            user_root.getUsername() + " đã xóa thông tin user có id:" + userId);
+                    new LogService().insertLog(loginLog);
                 }
             }
             else if ("view".equals(action)) {
@@ -91,6 +100,11 @@ public class AdminCustomerController extends HttpServlet {
                 responseData.put("success", success);
                 String jsonResponse = gson.toJson(responseData);
                 response.getWriter().write(jsonResponse);
+
+                ActivityLog loginLog = new ActivityLog("WARNING", user_root.getUid(),
+                        user_root.getUsername(), LocalDateTime.now(),
+                        user_root.getUsername() + " đã cập nhật thông tin danh mục có id:" + userId);
+                new LogService().insertLog(loginLog);
             }
             else if ("add".equals(action)) {
                 String fullName = request.getParameter("fullName");
@@ -123,6 +137,11 @@ public class AdminCustomerController extends HttpServlet {
                 responseData.put("success", success);
                 String jsonResponse = gson.toJson(responseData);
                 response.getWriter().write(jsonResponse);
+
+                ActivityLog loginLog = new ActivityLog("INFO", user_root.getUid(),
+                        user_root.getUsername(), LocalDateTime.now(),
+                        user_root.getUsername() + " đã thêm user mới có name:" + username);
+                new LogService().insertLog(loginLog);
             }
         }
     }

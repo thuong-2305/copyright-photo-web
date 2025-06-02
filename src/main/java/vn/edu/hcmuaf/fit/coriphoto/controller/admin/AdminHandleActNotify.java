@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
@@ -22,7 +23,9 @@ public class AdminHandleActNotify extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) request.getSession().getAttribute("auth");
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("auth");
+
         String act = (String) request.getParameter("act");
         int id = Integer.parseInt(request.getParameter("id"));
         int uid = Integer.parseInt(request.getParameter("uid"));
@@ -43,7 +46,7 @@ public class AdminHandleActNotify extends HttpServlet {
 
         ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
                 user.getUsername(), LocalDateTime.now(),
-                user.getUsername() + " đã accept sản phẩm có id là " + id + " lên trang web");
+                user.getUsername() + " đã " + act + " thông tin sản phẩm có " + id);
         new LogService().insertLog(loginLog);
 
         request.getRequestDispatcher("admin-notification.jsp").forward(request,response);

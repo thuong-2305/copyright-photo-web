@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.coriphoto.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ActivityLog {
     private int id;
@@ -9,6 +10,8 @@ public class ActivityLog {
     private String username;
     private LocalDateTime eventDate;
     private String message;
+
+    public ActivityLog() { }
 
     public ActivityLog(String severity, int uid, String username, LocalDateTime eventDate, String message) {
         this.severity = severity;
@@ -64,5 +67,10 @@ public class ActivityLog {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getFormatOrderDateTime() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss, dd/MM/yyyy");
+        return dateTimeFormatter.format(this.eventDate);
     }
 }

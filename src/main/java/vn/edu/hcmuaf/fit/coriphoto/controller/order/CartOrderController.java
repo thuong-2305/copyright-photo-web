@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.dao.PaymentMethodDAO;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.FormatDateTime;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.License;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
@@ -14,6 +15,7 @@ import vn.edu.hcmuaf.fit.coriphoto.service.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -119,8 +121,10 @@ public class CartOrderController extends HttpServlet {
         CartService cartService = new CartService();
 
         // Sửa
-        boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIdsArray, totalBeforeDiscount, products);
-        if (isOrderCreated) {
+//        boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIdsArray, totalBeforeDiscount, products);
+        int orderId = orderService.createOrderCompletedInt(uid, getPmId, promotionId, licenseIdsArray, totalBeforeDiscount, products);
+
+        if (orderId != -1) {
             // gửi thông tin ảnh về email của người dùng
             List<String> imageNames = new ArrayList<>();
             List<Integer> licenses = new ArrayList<>();
@@ -153,6 +157,11 @@ public class CartOrderController extends HttpServlet {
                         , imagePaths, imageNames, licenses);
             });
 
+            ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                    currentUser.getUsername(), LocalDateTime.now(),
+                    currentUser.getUsername() + " đã thanh toán thành công với đơn hàng có id là: " + orderId);
+            new LogService().insertLog(loginLog);
+
 
             // xóa tất cả những sản phẩm đã mua trong giỏ hàng
             for (String productId : productIds) {
@@ -161,6 +170,10 @@ public class CartOrderController extends HttpServlet {
             response.sendRedirect("order-success.jsp");
             return;
         }
+        ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                currentUser.getUsername(), LocalDateTime.now(),
+                currentUser.getUsername() + " đã thanh toán thất bại với đơn hàng có id là: " + orderId);
+        new LogService().insertLog(loginLog);
         response.sendRedirect("order-fail.jsp");
         return;
     }

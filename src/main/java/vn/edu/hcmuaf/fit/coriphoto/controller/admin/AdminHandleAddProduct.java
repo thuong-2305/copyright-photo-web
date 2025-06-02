@@ -4,12 +4,12 @@ package vn.edu.hcmuaf.fit.coriphoto.controller.admin;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.functions.ExtracImageFromFile;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.model.User;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 import vn.edu.hcmuaf.fit.coriphoto.model.ProductLicense;
 import vn.edu.hcmuaf.fit.coriphoto.service.ProductLicenseService;
 import vn.edu.hcmuaf.fit.coriphoto.service.SellerService;
@@ -76,6 +76,13 @@ public class AdminHandleAddProduct extends HttpServlet {
             productLicenseService.insertProductLicense(productLicense);
 
             response.getWriter().write("{\"message\": \"Success\"}");
+
+            HttpSession session = request.getSession(true);
+            User user = (User) session.getAttribute("auth");
+            ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
+                    user.getUsername(), LocalDateTime.now(),
+                    user.getUsername() + " đã thêm sản phẩm có id:" + idProduct);
+            new LogService().insertLog(loginLog);
         }
     }
 }

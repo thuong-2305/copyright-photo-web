@@ -10,14 +10,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.FormatDateTime;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.CartService;
 import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -53,10 +57,7 @@ public class VnpayReturn extends HttpServlet {
             String signValue = Config.hashAllFields(fields);
             if (signValue.equals(vnp_SecureHash)) {
                 String paymentCode = request.getParameter("vnp_TransactionNo");
-                System.out.println("Loading.........................");
                 String orderId = request.getParameter("vnp_TxnRef");
-
-                System.out.println("Test result: " + orderId);
 
                 OrderService orderService = new OrderService();
 
@@ -66,10 +67,10 @@ public class VnpayReturn extends HttpServlet {
                 if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
                     //update banking system
                     orderService.updateOrderStatus(oid, "Completed");
-                    System.out.println("Success");
                     transSuccess = true;
                     // Lấy thông tin từ session
                     HttpSession session = request.getSession();
+                    User user = (User) session.getAttribute("auth");
                     int uid = (int) session.getAttribute("uid");
                     List<Product> products = (List<Product>) session.getAttribute("products");
                     String[] licenseIds = (String[]) session.getAttribute("licenseIds");
@@ -105,7 +106,6 @@ public class VnpayReturn extends HttpServlet {
                                             "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
                                             "Trân trọng,\n",
                                     imagePaths, imageNames, licenses);
-                            System.out.println("Email sent successfully to " + userEmail);
                         } catch (Exception e) {
                             System.err.println("Failed to send email: " + e.getMessage());
                             e.printStackTrace();
@@ -117,6 +117,11 @@ public class VnpayReturn extends HttpServlet {
                     for (Product product : products) {
                         cartService.deleteItem(uid, Integer.parseInt(product.getId() + ""));
                     }
+
+                    ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
+                            user.getUsername(), LocalDateTime.now(),
+                            user.getUsername() + " đã thanh toán thành công với đơn hàng có id là: " + orderId);
+                    new LogService().insertLog(loginLog);
 
                     // Xóa session sau khi sử dụng xong
                     session.removeAttribute("products");

@@ -217,6 +217,30 @@ public class OrderDAO {
         return true;
     }
 
+    public int createOrderCompletedInt(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
+        // Bước 1: Tạo đơn hàng và lấy orderId
+        int orderId = addOrderAndGetIdCompleted(uid, pmid, promotionId, totalPrice);
+
+        // Nếu không thể lấy được orderId, trả về -1
+        if (orderId <= 0) {
+            return -1;
+        }
+
+        // Bước 2: Thêm chi tiết đơn hàng vào bảng order_details
+        for (int i = 0; i < products.size(); i++) {
+            Product product = products.get(i);
+            int licenseId = licenseIds[i];
+            double price = (licenseId == 2) ? product.getPrice() * 2 : product.getPrice();
+            boolean orderDetailsCreated = addOrderDetails(orderId, product.getId(), licenseId, price);
+
+            if (!orderDetailsCreated) {
+                return -1; // Thất bại, trả về -1
+            }
+        }
+
+        return orderId; // Thành công, trả về orderId
+    }
+
 
     public int getLastOrderId() {
         String sql = "SELECT orderId FROM orders ORDER BY orderId DESC LIMIT 1";
