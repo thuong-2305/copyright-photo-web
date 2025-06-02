@@ -79,8 +79,10 @@ public class OrderController extends HttpServlet {
 
         // thanh toán bằng thẻ có sẵn lưu trong tài khoản
         if (!pmid.isEmpty()) {
-            boolean isOrderCreated = orderService.createOrderCompleted(uid, Integer.parseInt(pmid), promotionId, licenseIds, totalBeforeDiscount, products);
-            if (isOrderCreated) {
+//            boolean isOrderCreated = orderService.createOrderCompleted(uid, Integer.parseInt(pmid), promotionId, licenseIds, totalBeforeDiscount, products);
+            int orderId = orderService.createOrderCompletedInt(uid, Integer.parseInt(pmid), promotionId, licenseIds, totalBeforeDiscount, products);
+
+            if (orderId != -1) {
                 Product product = products.get(0);
                 String imageName = product.getName();
                 String imageUrl = product.getUrl();
@@ -98,6 +100,10 @@ public class OrderController extends HttpServlet {
                                 "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
                                 "Trân trọng,\n"
                         , absolutePath, imageName, licenseId);
+                ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                        currentUser.getUsername(), LocalDateTime.now(),
+                        currentUser.getUsername() + " đã thanh toán thành công với đơn hàng có id là: " + orderId);
+                new LogService().insertLog(loginLog);
             }
         }
 
@@ -109,8 +115,9 @@ public class OrderController extends HttpServlet {
             if (Integer.parseInt(paymentTypeId) == 1) {
                 LocalDate cardExpiryLD = FormatDateTime.format(cardExpiry);
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, cardNumber);
-                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
-                if (isOrderCreated) {
+//                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
+                int orderId = orderService.createOrderCompletedInt(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
+                if (orderId != -1) {
                     Product product = products.get(0);
                     String imageName = product.getName();
                     String imageUrl = product.getUrl();
@@ -128,25 +135,27 @@ public class OrderController extends HttpServlet {
                                     "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
                                     "Trân trọng,\n"
                             , absolutePath, imageName, licenseId);
+                    ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                            currentUser.getUsername(), LocalDateTime.now(),
+                            currentUser.getUsername() + " đã thanh toán thành công với đơn hàng có id là: " + orderId);
+                    new LogService().insertLog(loginLog);
                     response.sendRedirect("order-success.jsp");
                 }
                 // XỬ LÍ RESPONSE KHI ĐƠN HÀNG không thành công
                 else {
+                    ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                            currentUser.getUsername(), LocalDateTime.now(),
+                            currentUser.getUsername() + " đã thanh toán thất bại với đơn hàng có id là: " + orderId);
+                    new LogService().insertLog(loginLog);
                     response.sendRedirect("order-fail.jsp");
                 }
             }
             else if (Integer.parseInt(paymentTypeId) == 2) {
                 LocalDate bankExpiryLD = FormatDateTime.format(bankExpiry);
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
-                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
-
-                int idOrder = orderService.addOrderAndGetIdCompleted(uid, getPmId, promotionId, totalAfterDiscount);
-                ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
-                        currentUser.getUsername(), LocalDateTime.now(),
-                        currentUser.getUsername() + " đã thanh toán đơn hàng có id là: " + idOrder);
-                new LogService().insertLog(loginLog);
-
-                if (isOrderCreated) {
+//                boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
+                int orderId = orderService.createOrderCompletedInt(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
+                if (orderId != -1) {
                     Product product = products.get(0);
                     String imageName = product.getName();
                     String imageUrl = product.getUrl();
@@ -164,12 +173,20 @@ public class OrderController extends HttpServlet {
                                     "Hỗ trợ khách hàng: coriphototpk@gmail.com\n\n" +
                                     "Trân trọng,\n"
                             , absolutePath, imageName, licenseId);
+                    ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                            currentUser.getUsername(), LocalDateTime.now(),
+                            currentUser.getUsername() + " đã thanh toán thành công với đơn hàng có id là: " + orderId);
+                    new LogService().insertLog(loginLog);
                     response.sendRedirect("order-success.jsp");
 
 
                 }
                 // XỬ LÍ RESPONSE KHI ĐƠN HÀNG không thành công
                 else {
+                    ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                            currentUser.getUsername(), LocalDateTime.now(),
+                            currentUser.getUsername() + " đã thanh toán thất bại với đơn hàng có id là: " + orderId);
+                    new LogService().insertLog(loginLog);
                     response.sendRedirect("order-fail.jsp");
                 }
             }

@@ -27,6 +27,10 @@ public class OrderService {
         return orderDAO.createOrderCompleted(uid, pmid, promotionId, licenseIds, totalPrice, products);
     }
 
+    public int createOrderCompletedInt(int uid, int pmid, int promotionId, int[] licenseIds, double totalPrice, List<Product> products) {
+        return orderDAO.createOrderCompletedInt(uid, pmid, promotionId, licenseIds, totalPrice, products);
+    }
+
         public void updateOrderStatus(int orderId, String newStatus) {
         orderDAO.updateStatusOrder(orderId, newStatus);
     }
@@ -34,6 +38,8 @@ public class OrderService {
     public boolean addOrderDetails(int orderId, int productId, int licenseId, double price) {
         return orderDAO.addOrderDetails(orderId, productId, licenseId, price);
     }
+
+
 
 
         public int getLastOrderId() {
