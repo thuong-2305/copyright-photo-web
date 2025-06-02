@@ -7,15 +7,14 @@ import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 import vn.edu.hcmuaf.fit.coriphoto.dao.PaymentMethodDAO;
 import vn.edu.hcmuaf.fit.coriphoto.dao.UserDAO;
 import vn.edu.hcmuaf.fit.coriphoto.datetime.FormatDateTime;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
-import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
-import vn.edu.hcmuaf.fit.coriphoto.service.OrderService;
-import vn.edu.hcmuaf.fit.coriphoto.service.ProductService;
-import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
+import vn.edu.hcmuaf.fit.coriphoto.service.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -141,6 +140,12 @@ public class OrderController extends HttpServlet {
                 getPmId = paymentMethodDAO.getPmidByUidAccountNumber(uid, bankAccountNumber);
                 boolean isOrderCreated = orderService.createOrderCompleted(uid, getPmId, promotionId, licenseIds, totalBeforeDiscount, products);
 
+                int idOrder = orderService.addOrderAndGetIdCompleted(uid, getPmId, promotionId, totalAfterDiscount);
+                ActivityLog loginLog = new ActivityLog("INFO", currentUser.getUid(),
+                        currentUser.getUsername(), LocalDateTime.now(),
+                        currentUser.getUsername() + " đã thanh toán đơn hàng có id là: " + idOrder);
+                new LogService().insertLog(loginLog);
+
                 if (isOrderCreated) {
                     Product product = products.get(0);
                     String imageName = product.getName();
@@ -160,6 +165,8 @@ public class OrderController extends HttpServlet {
                                     "Trân trọng,\n"
                             , absolutePath, imageName, licenseId);
                     response.sendRedirect("order-success.jsp");
+
+
                 }
                 // XỬ LÍ RESPONSE KHI ĐƠN HÀNG không thành công
                 else {
