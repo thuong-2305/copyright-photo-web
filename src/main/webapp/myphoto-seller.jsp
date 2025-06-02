@@ -158,16 +158,12 @@
                                                             <i class="fas fa-ellipsis-h"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item d-flex align-items-center" href="#"
-                                                               onclick="handleAction('Chỉnh sửa')">
+                                                            <a class="dropdown-item d-flex align-items-center edit-item" href="#"
+                                                               data-id="${item.id}" data-name="${item.name}">
                                                                 <i class="fas fa-edit mr-2"></i> Chỉnh sửa
                                                             </a>
-                                                            <a class="dropdown-item d-flex align-items-center" href="#"
-                                                               onclick="handleAction('Tải xuống')">
-                                                                <i class="fas fa-download mr-2"></i> Tải xuống
-                                                            </a>
-                                                            <a class="dropdown-item d-flex align-items-center" href="#"
-                                                               onclick="handleAction('Xóa')">
+                                                            <a class="dropdown-item d-flex align-items-center delete-item" href="#"
+                                                               data-id="${item.id}" data-name="${item.name}">
                                                                 <i class="fas fa-trash-alt mr-2"></i> Xóa
                                                             </a>
                                                         </div>
@@ -344,6 +340,65 @@
                 alertMessage.style.display = "none";
             }, 2000);
         }
+    });
+</script>
+
+<script>
+    let productIdToDelete = null;
+    let productElement = null;
+
+    // Bắt sự kiện nhấn vào nút "Xóa"
+    $(document).on("click", ".delete-item", function () {
+        productIdToDelete = $(this).data("id");
+        const productName = $(this).data("name");
+
+        // Lưu phần tử ảnh tương ứng để xóa khỏi DOM sau khi thành công
+        productElement = $(this).closest(".photo");
+
+        // Hiển thị tên trong modal xác nhận
+        $('#deleteModal .modal-body').html("Bạn có chắc chắn muốn xóa <strong>" + productName + "</strong>?");
+        $('#deleteModal').modal('show');
+    });
+
+    // Khi người dùng xác nhận xóa
+    $('#confirmDelete').on('click', function () {
+        if (productIdToDelete) {
+            $.ajax({
+                url: '/seller-products',
+                type: 'POST',
+                headers: {
+                    'X-Requested-By': 'AJAX'
+                },
+                data: {
+                    action: 'delete',
+                    product_id: productIdToDelete
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $(".alert-success span").text("Xóa thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                            $(this).addClass("d-none");
+                        });
+
+                        // Xóa ảnh khỏi giao diện
+                        if (productElement) {
+                            productElement.fadeOut(function () {
+                                $(this).remove();
+                            });
+                        }
+                    } else {
+                        $(".alert-danger span").text("Xóa thất bại!");
+                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi!');
+                }
+            });
+        }
+        $('#deleteModal').modal('hide');
     });
 </script>
 
