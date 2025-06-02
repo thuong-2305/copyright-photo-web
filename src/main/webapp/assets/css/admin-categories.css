@@ -1,4 +1,3 @@
-
 body.no-scroll {
     overflow: hidden;
 }
@@ -47,6 +46,25 @@ body.no-scroll {
     height: auto;
     border-radius: 10px;
     cursor: pointer;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+.overlay.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* View product list each category */
