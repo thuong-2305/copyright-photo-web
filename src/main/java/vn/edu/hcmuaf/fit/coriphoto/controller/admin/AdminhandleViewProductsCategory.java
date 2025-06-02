@@ -23,7 +23,6 @@ public class AdminhandleViewProductsCategory extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idCategory = Integer.parseInt(request.getParameter("id"));
-        System.out.println(idCategory);
 
         ProductService productService = new ProductService();
         List<Product> productList = productService.getByCategoryId(idCategory);
@@ -46,8 +45,6 @@ public class AdminhandleViewProductsCategory extends HttpServlet {
             .create();
 
         String jsonResponse = gson.toJson(productList);
-        System.out.println(jsonResponse);
-
         response.getWriter().write(jsonResponse);
     }
 }
