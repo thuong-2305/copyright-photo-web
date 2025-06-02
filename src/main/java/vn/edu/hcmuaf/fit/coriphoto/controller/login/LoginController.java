@@ -30,7 +30,6 @@ public class LoginController extends HttpServlet {
             LoginGoogle google = new LoginGoogle();
             String accessToken = google.getToken(code);
             GoogleAccount account = google.getUserInfo(accessToken);
-            System.out.println(account);
 
             //Xác thực tài khoản
             if (account != null) {

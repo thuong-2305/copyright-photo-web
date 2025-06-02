@@ -66,7 +66,6 @@ public class ajaxServlet extends HttpServlet {
 
         for(int i = 0; i < products.size(); i++) {
             Product p = products.get(i);
-            System.out.println(licenseIds[i]);
             int licenseId = Integer.parseInt((licenseIds[i]));
             double price = licenseId == 2 ? p.getPrice() * 2 : p.getPrice();
             orderService.addOrderDetails(orderId, p.getId(), licenseId, price);
@@ -142,7 +141,6 @@ public class ajaxServlet extends HttpServlet {
         String vnp_SecureHash = Config.hmacSHA512(Config.secretKey, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
-        System.out.println(paymentUrl);
         resp.sendRedirect(paymentUrl);
     }
 }
