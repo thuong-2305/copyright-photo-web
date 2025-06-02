@@ -55,4 +55,8 @@ public class SellerService {
         sellerDAO.uploadProduct(product, status);
     }
 
+    public int uploadProductAndReturnId(Product product, String status) {
+        return sellerDAO.uploadProductAndReturnId(product, status);
+    }
+
 }

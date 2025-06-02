@@ -13,6 +13,7 @@ const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
 const navlist = document.querySelector(".nav-list");
 const succes = document.querySelector(".success");
+const confirmCheckbox = document.getElementById('confirm');
 
 uploadButton.addEventListener('click', () => {
     windowUpload.classList.add("active");

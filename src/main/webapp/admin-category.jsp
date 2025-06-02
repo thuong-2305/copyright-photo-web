@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/admin-categories.css">
     <link rel="stylesheet" href="assets/css/admin-1.css">
     <link rel="stylesheet" href="assets/css/admin-nav.css">
     <link rel="stylesheet" href="assets/css/admin-dashboard.css"/>
@@ -61,6 +62,7 @@
                                         <td>${category.numberOfType}</td>
                                         <td>
                                             <div class="d-flex justify-content-start">
+                                                <button class="btn view-btn" data-id="${category.cid}"><i class="bi bi-eye-fill"></i></button>
                                                 <button class="btn edit-btn" data-id="${category.cid}"><i class="bi bi-pencil-square"></i></button>
                                                 <button class="btn delete-btn" data-id="${category.cid}"><i class="fa-solid fa-trash"></i></button>
                                             </div>
@@ -137,6 +139,43 @@
                             </div>
                         </div>
 
+                        <!-- Xem sản phẩm của mỗi danh mục -->
+                        <div class="overlay" id="overlay"></div>
+                        <div class="view-product d-none" id="productsCategory" >
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="fs-3 fw-semibold title-category-view">Danh mục:</h5>
+                                <button class="btn-close" onclick="toggleProductDetail()"></button>
+                            </div>
+                            <hr>
+                            <div class="product-info mt-2">
+                                <h5 class="fw-semibold"><i class="bi bi-list-nested me-2"></i>Thông tin các sản phẩm </h5>
+                                <div class="show-content">
+                                    <p class="id-image"><span class="title-info fw-semibold">Mã hình ảnh:</span> </p>
+                                    <p class="category-image"><span class="title-info fw-semibold">Danh mục:</span> </p>
+                                    <p class="price-image"><span class="title-info fw-semibold">Giá:</span> </p>
+                                    <p class="size-image"><span class="title-info fw-semibold">Độ phân giải:</span> </p>
+                                    <p class="dimension-image"><span class="title-info fw-semibold">Kích thước ảnh:</span> </p>
+                                    <p class="date-image"><span class="title-info fw-semibold">Ngày thêm:</span> </p>
+                                    <p class="status-image"><span class="title-info fw-semibold">Trạng thái:</span> </p>
+                                    <p class="d-flex align-items-start description-image"><span class="title-info fw-semibold me-1">Mô tả:</span> </p>
+                                </div>
+                                <div class="show-content2 d-none" id="content-replace">
+                                    <p class="id-image"><span class="title-info fw-semibold">Mã hình ảnh:</span> </p>
+                                    <p class="category-image"><span class="title-info fw-semibold">Danh mục:</span> </p>
+                                    <p class="price-image"><span class="title-info fw-semibold">Giá:</span> </p>
+                                    <p class="size-image"><span class="title-info fw-semibold">Độ phân giải:</span> </p>
+                                    <p class="dimension-image"><span class="title-info fw-semibold">Kích thước ảnh:</span> </p>
+                                    <p class="date-image"><span class="title-info fw-semibold">Ngày thêm:</span> </p>
+                                    <p class="status-image"><span class="title-info fw-semibold">Trạng thái:</span> </p>
+                                    <p class="d-flex align-items-start description-image"><span class="title-info fw-semibold me-1">Mô tả:</span> </p>
+                                    <button class="btn mt-2 mb-3 btn-back-view-category btn-outline-dark" onclick="backViewCategory()"><i class="bi bi-arrow-return-left"> Trở lại</i></button>
+                                </div>
+                            </div>
+                            <div class="show-image d-none">
+                                <h5 class="fw-semibold mb-3"><i class="bi bi-image me-2"></i>Hình ảnh</h5>
+                                <img src="" alt="" class="product-img">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -375,5 +414,103 @@
             });
         });
     </script>
+
+    <!-- Chức năng xem các sản phẩm -->
+    <script>
+        $(document).on('click', '.view-btn', function () {
+            parentElement = $(this).closest("tr");
+            const categoryName = parentElement.find("td").eq(1).text().trim();
+
+            const categoryId = $(this).data('id');
+            fetch(`/AdminhandleViewProductsCategory?id=` + categoryId)
+                .then(response => {
+                    $('.title-category-view').text("Danh mục: " + categoryName)
+                    return response.json()
+                })
+                .then(products => {
+                    if (products.length > 0) {
+                        toggleProductDetail();
+                        renderProducts(products);
+                    } else {
+                        alert('Không có sản phẩm nào trong danh mục này.');
+                    }
+                })
+                .catch(error => { alert('Lỗi danh mục!'); });
+        });
+
+        function toggleProductDetail() {
+            const productCategory = document.getElementById('productsCategory');
+            productCategory.classList.toggle('d-none');
+            const overlay = document.getElementById("overlay");
+            overlay.classList.toggle('show');
+            document.body.classList.toggle('no-scroll');
+            $('#content-replace').addClass("d-none");
+            $('.show-content').removeClass("d-none");
+            $('.show-image').addClass('d-none');
+        }
+
+        function renderProducts(products) {
+            const showContent = document.querySelector('.show-content');
+            showContent.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = '<div class="product-card" data-id="'+product.id+'">' +
+                    '<div class="product-image">' +
+                    '<img src="' + product.url + '" alt="' + product.name + '">' +
+                    '</div>' +
+                    '<div class="product-title">' +
+                    '<p>' + product.name + '</p>' +
+                    '</div>' +
+                    '</div>';
+                showContent.innerHTML += productCard;
+            });
+        }
+
+        function backViewCategory() {
+            $('#content-replace').addClass("d-none");
+            $('.show-content').removeClass("d-none");
+            $('.show-image').addClass('d-none');
+        }
+
+        $(document).on('click', '.product-card', function () {
+            const productId = $(this).data('id');
+            $('#content-replace').toggleClass("d-none");
+            $('.show-content').toggleClass("d-none");
+            $('.show-image').removeClass('d-none');
+            fetch(`/admin-products?id=`+productId)
+                .then(response =>{
+                    console.log('Response received:', response);
+                    return response.json()
+                })
+                .then(product => {
+                    if (product) {
+                        // Hiển thị thông tin sản phẩm
+                        $('#productsCategory h5.fs-3').text(product.name);
+                        $('#productsCategory .id-image').html("<span class=\"title-info fw-semibold\">Mã hình ảnh:</span>#" + product.id);
+                        $('#productsCategory .category-image').html("<span class=\"title-info fw-semibold\">Danh mục:</span>" + product.category);
+                        let formatPrice = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(product.price);
+                        $('#productsCategory .price-image').html("<span class=\"title-info fw-semibold\">Giá:</span>" + formatPrice);
+                        $('#productsCategory .size-image').html("<span class=\"title-info fw-semibold\">Độ phân giải:</span>" + product.size);
+                        $('#productsCategory .dimension-image').html("<span class=\"title-info fw-semibold\">Kích thước ảnh:</span>" + product.dimension);
+                        $('#productsCategory .date-image').html("<span class=\"title-info fw-semibold\">Ngày thêm:</span>" + product.formatDateUpload);
+                        let statusHtml = '';
+                        if (product.status === 'accepted') {
+                            statusHtml = `<span class="px-2 py-1 fw-semibold rounded" style="font-size: 13px; color: green; background: #d1e7dd">Accepted</span>`;
+                        } else if (product.status === 'waiting') {
+                            statusHtml = `<span class="px-2 py-1 fw-semibold rounded" style="font-size: 13px; color: orange; background: #fdffb6">Waiting</span>`;
+                        } else {
+                            statusHtml = `<span class="px-2 py-1 fw-semibold rounded" style="font-size: 13px; color: red; background: #fee0e3">Rejected</span>`;
+                        }
+
+                        $('#productsCategory .status-image').html("<span class=\"title-info fw-semibold\">Trạng thái:</span>" + statusHtml);
+                        $('#productsCategory .description-image').html("<span class=\"title-info fw-semibold\">Mô tả:</span>" + product.description);
+                        $('#productsCategory .show-image img').attr('src', product.url);
+
+                    } else { alert('Lỗi sản phẩm!'); }
+                })
+                .catch(error => { alert('Lỗi sản phẩm!'); });
+        });
+    </script>
+
 </body>
 </html>

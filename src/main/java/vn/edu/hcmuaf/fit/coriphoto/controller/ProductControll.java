@@ -234,7 +234,8 @@ public class ProductControll extends HttpServlet {
         String jsonResponse = gson.toJson(responseData);
 
         // Trả về kết quả dưới dạng JSON
-
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
         response.getWriter().write(jsonResponse);
     }
 
