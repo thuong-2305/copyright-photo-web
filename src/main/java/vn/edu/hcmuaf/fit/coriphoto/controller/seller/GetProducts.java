@@ -25,8 +25,6 @@ public class GetProducts extends HttpServlet {
         String type = request.getParameter("type");
         User user = (User) request.getSession().getAttribute("auth");
 
-        System.out.println(type);
-
         // Kiểm tra user hợp lệ
         if (user == null) {
             response.setContentType("application/json");
@@ -50,8 +48,6 @@ public class GetProducts extends HttpServlet {
             response.getWriter().write("{\"error\":\"Invalid type\"}");
             return;
         }
-
-        System.out.println(products.size());
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

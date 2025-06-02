@@ -8,69 +8,46 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./assets/css/myphoto-seller.css">
     <link rel="stylesheet" href="./assets/css/upload.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <jsp:include page="include/head.jsp"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="./assets/css/custom-nav-pages.css">
+
     <style>
-        #nav {
-            position: fixed !important;
+        .view-product {
+            display: none;
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
             background: white;
-            margin-bottom: 20px;
-        }
-
-        .modal {
-            z-index: 9999;
-        }
-
-        #nav:not(.scrolled) .title-logo {
-            color: black;
-        }
-
-        #nav:not(.scrolled) .title-item {
-            color: black !important;
-        }
-
-        #nav:not(.scrolled) .nav-item:hover {
-            color: #009970;
-        }
-
-        #nav:not(.scrolled) .title-item:hover {
-            color: #009970 !important;
-        }
-
-        #nav:not(.scrolled) .title-item:hover i {
-            color: #009970 !important;
-        }
-
-        #nav:not(.scrolled) .nav-item:hover .title-item {
-            color: #009970 !important;
-        }
-
-        #nav:not(.scrolled) .container .login-button {
-            background-color: transparent;
-            color: black;
-            padding: 7px 19px;
-            border: 1px solid black;
-        }
-
-        .image-text {
-            position: relative;
-            margin: 10px;
-        }
-        .image-text img {
-            max-width: 100px;
-            max-height: 100px;
+            padding: 20px;
             border-radius: 8px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .delete-img {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 50%;
-            padding: 5px;
-            cursor: pointer;
+        .view-product:not(.d-none) {
+            display: block;
+        }
+        .overlay.show {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .no-scroll {
+            overflow: hidden;
+        }
+        .product-img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -98,20 +75,20 @@
                                     <div class="profile-name">
                                         ${ auth.username }
                                     </div>
-                                    </div>
-                                        <ul class="menu-link stl-none mt-3">
-                                            <li class="dashboard d-flex text-center align-items-center justify-content-center">
-                                                <a href="ShowStatistic" class="text-dark">
-                                                    <i class="fa fa-chart-simple"></i>Thống Kê
-                                                </a>
-                                            </li>
-                                            <li class="my-photos d-flex text-center align-items-center justify-content-center">
-                                                <a href="#" class="text-dark">
-                                                    <i class="fas fa-image"></i> Ảnh Của Tôi
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                </div>
+                                <ul class="menu-link stl-none mt-3">
+                                    <li class="dashboard d-flex text-center align-items-center justify-content-center">
+                                        <a href="ShowStatistic" class="text-dark">
+                                            <i class="fa fa-chart-simple"></i>Thống Kê
+                                        </a>
+                                    </li>
+                                    <li class="my-photos d-flex text-center align-items-center justify-content-center">
+                                        <a href="#" class="text-dark">
+                                            <i class="fas fa-image"></i> Ảnh Của Tôi
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <!-- Main content -->
@@ -122,8 +99,6 @@
                             <div class="heading-content" style="position: sticky">
                                 <h2 class="fw-bold text-uppercase">
                                     <i class="text-success bi bi-images fs-2 me-2"></i>Ảnh của tôi
-                                    <small class=" text-success fw-semibold text-lowercase"
-                                           style="font-size: 18px !important;">( 3 ảnh )</small>
                                 </h2>
                             </div>
                             <!-- Body -->
@@ -176,10 +151,8 @@
                                             </div>
                                         </c:forEach>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
@@ -196,6 +169,53 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Xóa sản phẩm -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title user-select-none" id="deleteModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill" style="color: #fa2e2e;"></i>
+                    Xóa sản phẩm
+                </h5>
+            </div>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn xóa sản phẩm này?
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="confirmCancelDelete" class="btn btn-secondary rounded-pill fw-semibold" data-dismiss="modal">Hủy</button>
+                <button type="button" id="confirmDelete" class="btn btn-danger rounded-pill fw-semibold">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Xem sản phẩm -->
+<div class="view-product d-none" id="productDetail">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h5 class="fs-3 fw-semibold"></h5>
+        <button class="btn-close" onclick="toggleProductDetail()"></button>
+    </div>
+    <hr>
+    <div class="product-info mt-2">
+        <h5 class="fw-semibold"><i class="bi bi-info-square me-2"></i>Thông tin sản phẩm</h5>
+        <div class="show-content">
+            <p class="id-image"><span class="title-info fw-semibold">Mã hình ảnh:</span></p>
+            <p class="category-image"><span class="title-info fw-semibold">Danh mục:</span></p>
+            <p class="price-image"><span class="title-info fw-semibold">Giá:</span></p>
+            <p class="size-image"><span class="title-info fw-semibold">Độ phân giải:</span></p>
+            <p class="dimension-image"><span class="title-info fw-semibold">Kích thước ảnh:</span></p>
+            <p class="date-image"><span class="title-info fw-semibold">Ngày thêm:</span></p>
+            <p class="status-image"><span class="title-info fw-semibold">Trạng thái:</span></p>
+            <p class="description-image"><span class="title-info fw-semibold me-1">Mô tả:</span></p>
+        </div>
+    </div>
+    <div class="show-image">
+        <h5 class="fw-semibold mb-3"><i class="bi bi-image me-2"></i>Hình ảnh</h5>
+        <img src="" alt="" class="product-img">
     </div>
 </div>
 
@@ -242,6 +262,7 @@
             </div>
 
             <div class="pane-right">
+
                 <div class="bar">
                     <ul class="nav-list">
                         <li class="item complete" data-step="1" id="step1">
@@ -255,6 +276,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div class="content-2">
                     <p>Thêm và xác nhận thông tin ảnh của bạn. Để giúp dễ dàng tìm kiếm và đạt
                         được bởi người dùng đối với ảnh của bạn.</p>
@@ -302,6 +324,7 @@
                     </div>
                     <button type="submit" class="success btn btn-success rounded-pill">Hoàn tất</button>
                 </div>
+
             </div>
         </div>
     </div>
@@ -331,293 +354,20 @@
 <script src="./assets/js/upload.js"></script>
 <jsp:include page="include/scripts.jsp"/>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const alertMessage = document.getElementById("alertMessage");
-        if (alertMessage) {
-            alertMessage.style.display = "block";
-            setTimeout(() => {
-                alertMessage.style.display = "none";
-            }, 2000);
-        }
-    });
-</script>
-
-<script>
-    let productIdToDelete = null;
-    let productElement = null;
-
-    // Bắt sự kiện nhấn vào nút "Xóa"
-    $(document).on("click", ".delete-item", function () {
-        productIdToDelete = $(this).data("id");
-        const productName = $(this).data("name");
-
-        // Lưu phần tử ảnh tương ứng để xóa khỏi DOM sau khi thành công
-        productElement = $(this).closest(".photo");
-
-        // Hiển thị tên trong modal xác nhận
-        $('#deleteModal .modal-body').html("Bạn có chắc chắn muốn xóa <strong>" + productName + "</strong>?");
-        $('#deleteModal').modal('show');
-    });
-
-    // Khi người dùng xác nhận xóa
-    $('#confirmDelete').on('click', function () {
-        if (productIdToDelete) {
-            $.ajax({
-                url: '/seller-products',
-                type: 'POST',
-                headers: {
-                    'X-Requested-By': 'AJAX'
-                },
-                data: {
-                    action: 'delete',
-                    product_id: productIdToDelete
-                },
-                success: function (response) {
-                    if (response.success) {
-                        $(".alert-success span").text("Xóa thành công!");
-                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
-                            $(this).addClass("d-none");
-                        });
-
-                        // Xóa ảnh khỏi giao diện
-                        if (productElement) {
-                            productElement.fadeOut(function () {
-                                $(this).remove();
-                            });
-                        }
-                    } else {
-                        $(".alert-danger span").text("Xóa thất bại!");
-                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
-                            $(this).addClass("d-none");
-                        });
-                    }
-                },
-                error: function () {
-                    alert('Đã xảy ra lỗi!');
-                }
-            });
-        }
-        $('#deleteModal').modal('hide');
-    });
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        fetchList('accepts');
-    });
-
-    function fetchList(type) {
-        const dropdownButton = document.getElementById('timeDropdown');
-        if(type === "accepts") dropdownButton.textContent = "Hiện bán";
-        if(type === "waits") dropdownButton.textContent = "Đang xác nhận";
-        if(type === "rejects") dropdownButton.textContent = "Đã bị từ chối";
-        fetch("getProducts?type=" + type)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Lỗi HTTP: ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data.products)
-                if (data.error) {
-                    console.error('Server trả về lỗi:', data.error);
-                    alert('Lỗi: ' + data.error); // Hiển thị thông báo lỗi
-                    return;
-                }
-                updatePhotoList(data);
-            })
-            .catch(error => {
-                console.error('Lỗi khi tải danh sách:', error);
-            });
-    }
-
-    function updatePhotoList(data) {
-        const photoList = document.getElementById('photoList');
-        if (!photoList) {
-            console.error('Element #photoList not found.');
-            return;
-        }
-
-        console.log('Data received:', data);
-        if (!data.products || !Array.isArray(data.products)) {
-            console.error('Invalid data.products:', data.products);
-            return;
-        }
-
-        photoList.innerHTML = ''; // Xóa nội dung cũ
-        if (data.products.length === 0) {
-            photoList.innerHTML = '<p>Không có sản phẩm nào.</p>';
-            return;
-        }
-
-        data.products.forEach(item => {
-            if (!item.url || !item.name) {
-                console.error('Invalid item data:', item);
-                return;
-            }
-
-            const photoHtml =
-                '<div class="photo shadow-effect mr-3 mb-1">' +
-                '<div class="photo-image position-relative">' +
-                '<img src="' + item.url + '" alt="">' +
-                '<div class="dropdown">' +
-                '<button class="btn btn-link" type="button" data-toggle="dropdown">' +
-                '<i class="fas fa-ellipsis-h"></i>' +
-                '</button>' +
-                '<div class="dropdown-menu">' +
-                '<a class="dropdown-item d-flex align-items-center" href="#" onclick="handleAction(\'Chỉnh sửa\')">' +
-                '<i class="fas fa-edit mr-2"></i> Chỉnh sửa' +
-                '</a>' +
-                '<a class="dropdown-item d-flex align-items-center" href="#" onclick="handleAction(\'Tải xuống\')">' +
-                '<i class="fas fa-download mr-2"></i> Tải xuống' +
-                '</a>' +
-                '<a class="dropdown-item d-flex align-items-center" href="#" onclick="handleAction(\'Xóa\')">' +
-                '<i class="fas fa-trash-alt mr-2"></i> Xóa' +
-                '</a>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '<div class="photo-text-content d-flex justify-content-between mt-2">' +
-                '<div class="photo-text-title font-weight-bold pl-2">' + item.name + '</div>' +
-                '<div class="photo-text-privacy pr-2">Công khai</div>' +
-                '</div>' +
-                '</div>';
-            photoList.innerHTML += photoHtml;
-        });
-    }
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const fileUpload = document.getElementById('fileUpload');
-        const fileUploadAlt = document.getElementById('file-upload');
-
-        function handleImageSelection(input) {
-            const previewContainer = document.getElementById('preview-container');
-            const dimensionInput = document.getElementById('dimension');
-            const fileSizeInput = document.getElementById('file-size');
-            const priceInput = document.getElementById('price');
-
-            if (!previewContainer || !dimensionInput || !fileSizeInput || !priceInput) {
-                console.error('Missing required elements:', {
-                    previewContainer: !!previewContainer,
-                    dimensionInput: !!dimensionInput,
-                    fileSizeInput: !!fileSizeInput,
-                    priceInput: !!priceInput
-                });
-                alert('Error: Required form elements are missing.');
-                return;
-            }
-
-            const files = Array.from(input.files);
-            if (!files.length) {
-                console.error('No files selected.');
-                alert('Vui lòng chọn ít nhất một tệp ảnh.');
-                return;
-            }
-
-            previewContainer.innerHTML = '';
-
-            files.forEach((file, index) => {
-                if (!file.type.startsWith('image/')) {
-                    console.error('Tệp không phải ảnh:', file.name);
-                    alert(`Tệp ${file.name} không phải là ảnh hợp lệ.`);
-                    return;
-                }
-
-                console.log('Processing file:', file.name, file.size, file.type);
-
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    console.log('FileReader loaded:', file.name);
-                    const img = new Image();
-                    img.onload = function () {
-                        console.log('Image loaded:', file.name, img.width, img.height);
-                        const width = img.width;
-                        const height = img.height;
-                        const sizeKB = (file.size / 1024).toFixed(0);
-
-                        // Cập nhật giá trị cho file đầu tiên
-                        if (index === 0) {
-                            dimensionInput.value = width + "x" + height;
-                            fileSizeInput.value = sizeKB + " KB";
-
-                            let price = 200000;
-                            if (sizeKB > 1500) price = 400000;
-                            else if (sizeKB > 1000) price = 300000;
-                            else if (sizeKB < 500) price = 200000;
-                            else price = 250000;
-
-                            priceInput.value = price;
-                        }
-
-                        const thumb = document.createElement('img');
-                        thumb.src = e.target.result;
-                        thumb.alt = file.name;
-                        thumb.style.maxHeight = '200px';
-                        thumb.style.maxWidth = '200px';
-                        thumb.style.marginLeft = '5px';
-                        thumb.style.border = '1px solid #ccc';
-                        thumb.style.borderRadius = '5px';
-                        previewContainer.appendChild(thumb);
-                    };
-                    img.onerror = function () {
-                        console.error('Failed to load image:', file.name);
-                        alert(`Lỗi: Không thể tải ảnh ${file.name}.`);
-                    };
-                    img.src = e.target.result;
-                };
-                reader.onerror = function () {
-                    console.error('FileReader error for file:', file.name);
-                    alert(`Lỗi: Không thể đọc tệp ${file.name}.`);
-                };
-                reader.readAsDataURL(file);
-            });
-        }
-
-        if (fileUpload) {
-            fileUpload.addEventListener('change', function () {
-                console.log('fileUpload change event triggered');
-                handleImageSelection(this);
-            });
-        } else {
-            console.error('Element #fileUpload not found.');
-        }
-
-        if (fileUploadAlt) {
-            fileUploadAlt.addEventListener('change', function () {
-                console.log('file-upload change event triggered');
-                handleImageSelection(this);
-            });
-        } else {
-            console.error('Element #file-upload not found.');
-        }
-
-        // Ngăn form submit khi chọn file
-        const uploadForm = document.querySelector('form[action="uploadImage"]');
-        if (uploadForm) {
-            uploadForm.addEventListener('submit', function (e) {
-                console.log('Form submission triggered');
-                // Có thể thêm e.preventDefault() để debug nếu cần
-            });
-        }
-    });
-</script>
+<script src="./assets/js/alertMessage.js"></script>
+<script src="./assets/js/deleteProduct.js"></script>
+<script src="./assets/js/productList.js"></script>
+<script src="./assets/js/imageUpload.js"></script>
+<script src="./assets/js/viewProduct.js"></script>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>
