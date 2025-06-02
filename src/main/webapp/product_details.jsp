@@ -49,6 +49,7 @@
 <jsp:include page="include/navbar.jsp"/>
 <!--search -->
 <section class="search" style="margin-top: 80px; margin-bottom: 20px;">
+    <form action="${pageContext.request.contextPath}/search" method="get" class="search-form">
     <div class="search-container">
         <div class="dropdown">
             <button class="text-secondary" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
@@ -62,12 +63,13 @@
             </div>
         </div>
         <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
+            <input name="content" type="text" id="search-input" placeholder="Tìm kiếm tất cả nguồn">
             <span class="clear-btn">&#10005;</span>
         </div>
-        <button class="search-button"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm
+        <button class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i><span class="ps-2">Tìm
                     kiếm</span></button>
     </div>
+    </form>
 </section>
 <!--search -->
 
