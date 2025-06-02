@@ -6,11 +6,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.FileImageInputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 
 @WebServlet("/watermarkedImage")
 public class WatermarkedImageServlet extends HttpServlet {
@@ -18,48 +19,64 @@ public class WatermarkedImageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
+
         String url = req.getParameter("url");
 
-        // Xác định đường dẫn tuyệt đối tới file ảnh dựa trên thuộc tính url của Product
-        // Lưu ý: Chúng ta giả định 'url' bắt đầu bằng "./" nên dùng substring(2) để bỏ "./"
-        String imagePath = getServletContext().getRealPath("/") + url.substring(2);
+        if (url == null || url.trim().isEmpty()) {
+            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parameter 'url' is required.");
+            return;
+        }
 
+        String imagePath = getServletContext().getRealPath("/") + url.substring(3);
         File imageFile = new File(imagePath);
-        if (!imageFile.exists()) {
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "Không tìm thấy file ảnh.");
+
+        if (!imageFile.exists() || !imageFile.isFile()) {
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND, "File không tồn tại: " + imagePath);
             return;
         }
 
-        // ------------------- THÊM CACHE HEADERS -------------------
-        // Thiết lập Cache-Control và Expires để trình duyệt cache ảnh trong 1 ngày (86400 giây)
-        resp.setHeader("Cache-Control", "max-age=86400, public");
-        resp.setDateHeader("Expires", System.currentTimeMillis() + 86400000L); // 86400000 ms = 1 ngày
+        try {
+            BufferedImage originalImage = null;
 
-        // Tạo ETag dựa trên hash của URL kết hợp với thời gian chỉnh sửa của file ảnh.
-        String etag = "W/\"" + url.hashCode() + "-" + imageFile.lastModified() + "\"";
-        resp.setHeader("ETag", etag);
+            // Kiểm tra định dạng file
+            String fileName = imageFile.getName().toLowerCase();
 
-        // Cũng thiết lập Last-Modified dựa trên thời điểm file được thay đổi
-        resp.setDateHeader("Last-Modified", imageFile.lastModified());
+            if (fileName.endsWith(".webp")) {
+                // Sử dụng ImageReader để đọc WebP với library sejda
+                ImageReader reader = ImageIO.getImageReadersByMIMEType("image/webp").next();
+                if (reader != null) {
+                    reader.setInput(new FileImageInputStream(imageFile));
+                    originalImage = reader.read(0);
+                    reader.dispose();
+                } else {
+                    // Fallback: thử đọc trực tiếp
+                    originalImage = ImageIO.read(imageFile);
+                }
+            } else {
+                // Đọc các định dạng khác
+                originalImage = ImageIO.read(imageFile);
+            }
 
-        // Kiểm tra header If-None-Match từ trình duyệt để trả về 304 nếu ảnh chưa thay đổi
-        String ifNoneMatch = req.getHeader("If-None-Match");
-        if (etag.equals(ifNoneMatch)) {
-            resp.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
-            return;
+            // Kiểm tra null sau khi đọc
+            if (originalImage == null) {
+                resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
+                        "Không thể đọc file ảnh: " + imagePath);
+                return;
+            }
+
+            // Áp dụng watermark
+            BufferedImage watermarkedImage = applyDiagonalWatermark(originalImage);
+
+            // Trả về ảnh
+            resp.setContentType("image/png");
+            ImageIO.write(watermarkedImage, "png", resp.getOutputStream());
+
+        } catch (Exception e) {
+            System.err.println("Lỗi xử lý ảnh: " + imagePath);
+            e.printStackTrace();
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                    "Lỗi xử lý ảnh: " + e.getMessage());
         }
-        // ---------------- END CACHE HEADERS -----------------------
-
-        // Tiếp tục xử lý ảnh: đọc file, thêm watermark và trả kết quả cho trình duyệt
-        BufferedImage originalImage = ImageIO.read(imageFile);
-        // Chọn kiểu watermark động theo đường chéo
-        BufferedImage watermarkedImage = applyDiagonalWatermark(originalImage);
-
-        // Định dạng ảnh đầu ra là PNG
-        resp.setContentType("image/png");
-        OutputStream os = resp.getOutputStream();
-        ImageIO.write(watermarkedImage, "png", os);
-        os.close();
     }
 
     // Watermark nằm chéo: vẽ watermark theo mẫu chéo lặp lại trên toàn bộ ảnh

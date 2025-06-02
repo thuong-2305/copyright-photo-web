@@ -80,129 +80,294 @@
 
 
 <!-- section category detail -->
-<section id="tranding">
-  <div class="pane-top text-center my-3">
-    <h1 class="fw-bold">Khám phá tài nguyên theo phong cách</h1>
-    <p class="fs-3 mb-5">Khám phá các phong cách <span class="text-success fw-semibold">hình ảnh AI</span> khác nhau
-      để thể hiện những ý tưởng mạnh mẽ của bạn và kết nối với khán giả</p>
-  </div>
-  <div class="tranding-container">
-    <div class="swiper tranding-slider">
-      <div class="swiper-wrapper">
-        <jsp:useBean id="slides" scope="request" type="java.util.List"/>
-        <c:forEach var="slide" items="${slides}">
-          <!-- Slide-start -->
-          <div class="swiper-slide tranding-slide">
-            <a href="product-detail?pid=${ slide.id }">
-            <div class="tranding-slide-img">
-              <img src="${slide.url}" alt="Trending">
+<!-- section category detail -->
+<section id="tranding" class="category-section">
+  <div class="container">
+    <div class="section-header">
+      <h1 class="section-title">Khám phá tài nguyên theo phong cách</h1>
+      <p class="section-subtitle">
+        Khám phá các phong cách <span class="highlight">hình ảnh AI</span> khác nhau
+        để thể hiện những ý tưởng mạnh mẽ của bạn và kết nối với khán giả
+      </p>
+    </div>
+
+    <!-- Filter buttons -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Tất cả</button>
+      <button class="filter-btn" data-filter="nature">Thiên nhiên</button>
+      <button class="filter-btn" data-filter="abstract">Trừu tượng</button>
+      <button class="filter-btn" data-filter="portrait">Chân dung</button>
+      <button class="filter-btn" data-filter="tech">Công nghệ</button>
+    </div>
+
+    <div class="tranding-container">
+      <div class="swiper tranding-slider">
+        <div class="swiper-wrapper">
+          <jsp:useBean id="slides" scope="request" type="java.util.List"/>
+          <c:forEach var="slide" items="${slides}">
+            <!-- Slide-start -->
+            <div class="swiper-slide tranding-slide">
+              <a href="product-detail?pid=${slide.id}" class="card-link">
+                <div class="card-wrapper">
+                  <div class="tranding-slide-img">
+                    <img src="${slide.url}" alt="${slide.name}" loading="lazy">
+                    <div class="card-overlay">
+                      <button class="btn-icon btn-view" title="Xem nhanh">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
+                      <button class="btn-icon btn-favorite" title="Yêu thích">
+                        <i class="fa-regular fa-heart"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="tranding-slide-content">
+                    <h5 class="style-name">
+                      <i class="fa-solid fa-tags"></i>
+                      <span>${slide.name}</span>
+                    </h5>
+                    <div class="card-stats">
+                      <span class="stat-item">
+                        <i class="fa-solid fa-download"></i> 1.2k
+                      </span>
+                      <span class="stat-item">
+                        <i class="fa-solid fa-heart"></i> 856
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
-            <div class="tranding-slide-content">
-              <div class="tranding-slide-content-bottom">
-                <h5 class="style text-success fw-semibold mt-1">
-                  <i class="fa-solid fa-tags me-2"></i>${slide.name}
-                </h5>
-              </div>
-            </div>
-            </a>
-          </div>
-          <!-- Slide-end -->
-        </c:forEach>
+            <!-- Slide-end -->
+          </c:forEach>
+        </div>
+
+        <!-- Swiper Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </div>
 </section>
-<!-- section category detail -->
 
-<hr>
+<!-- Divider -->
+<div class="section-divider">
+  <div class="divider-shape"></div>
+</div>
+
 <!-- section category trend -->
 <section class="trend-type">
-  <div class="trending-section">
-    <h1 class="title mb-2 fs-1">Xu hướng tháng này</h1>
-    <p class="subtitle fs-5">Khám phá các vectơ hoàn hảo cho các dự án và chiến dịch trong mùa này.</p>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Xu hướng tháng này</h2>
+      <p class="section-subtitle">
+        Khám phá các vectơ hoàn hảo cho các dự án và chiến dịch trong mùa này.
+      </p>
+    </div>
+
     <div class="trending-items">
-      <div class="item">
-        <div class="image-layout">
-          <div class="column left">
-            <img src="../assets/images/ai/Plant/03.png">
-            <img src="../assets/images/ai/Plant/05.png">
+      <div class="trend-item">
+        <div class="item-inner">
+          <div class="image-layout">
+            <div class="column left">
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/Number/06.png" alt="Plant 1">
+              </div>
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/Number/03.png" alt="Plant 2">
+              </div>
+            </div>
+            <div class="column right">
+              <div class="image-placeholder large">
+                <img src="../assets/images/ai/Number/08.png" alt="Plant 3">
+              </div>
+            </div>
           </div>
-          <div class="column right">
-            <img src="../assets/images/ai/Plant/18.png">
+          <div class="trend-badge">
+            <i class="fa-solid fa-fire"></i> Hot
           </div>
         </div>
-        <p class="item-title">Hoa thực vật</p>
+        <h3 class="item-title">Hoa thực vật</h3>
+        <p class="item-count">256 hình ảnh</p>
       </div>
-      <div class="item">
-        <div class="image-layout">
-          <div class="column left">
-            <img src="../assets/images/ai/Number/02.png">
-            <img src="../assets/images/ai/Number/05.png">
+
+      <div class="trend-item">
+        <div class="item-inner">
+          <div class="image-layout">
+            <div class="column left">
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/Number/09.png" alt="Number 1">
+              </div>
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/Number/02.png" alt="Number 2">
+              </div>
+            </div>
+            <div class="column right">
+              <div class="image-placeholder large">
+                <img src="../assets/images/ai/Number/05.png" alt="Number 3">
+              </div>
+            </div>
           </div>
-          <div class="column right">
-            <img src="../assets/images/ai/Number/09.png">
+          <div class="trend-badge trending">
+            <i class="fa-solid fa-arrow-trend-up"></i> Trending
           </div>
         </div>
-        <p class="item-title">Các con số</p>
+        <h3 class="item-title">Các con số</h3>
+        <p class="item-count">189 hình ảnh</p>
       </div>
-      <div class="item">
-        <div class="image-layout">
-          <div class="column left">
-            <img src="../assets/images/ai/Animal/054.png">
-            <img src="../assets/images/ai/Animal/055.png">
+
+      <div class="trend-item">
+        <div class="item-inner">
+          <div class="image-layout">
+            <div class="column left">
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/Animal/054.png" alt="Animal 1">
+              </div>
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/Animal/055.png" alt="Animal 2">
+              </div>
+            </div>
+            <div class="column right">
+              <div class="image-placeholder large">
+                <img src="../assets/images/ai/Animal/056.png" alt="Animal 3">
+              </div>
+            </div>
           </div>
-          <div class="column right">
-            <img src="../assets/images/ai/Animal/056.png">
+          <div class="trend-badge new">
+            <i class="fa-solid fa-sparkles"></i> Mới
           </div>
         </div>
-        <p class="item-title">Động vật</p>
+        <h3 class="item-title">Động vật</h3>
+        <p class="item-count">342 hình ảnh</p>
       </div>
-      <div class="item">
-        <div class="image-layout">
-          <div class="column left">
-            <img src="../assets/images/ai/ImageWorld/006.jpg">
-            <img src="../assets/images/ai/ImageWorld/003.jpg">
-          </div>
-          <div class="column right">
-            <img src="../assets/images/ai/ImageWorld/000.jpg">
+
+      <div class="trend-item">
+        <div class="item-inner">
+          <div class="image-layout">
+            <div class="column left">
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/ImageWorld/008.jpg" alt="World 1">
+              </div>
+              <div class="image-placeholder small">
+                <img src="../assets/images/ai/ImageWorld/007.jpg" alt="World 2">
+              </div>
+            </div>
+            <div class="column right">
+              <div class="image-placeholder large">
+                <img src="../assets/images/ai/ImageWorld/006.jpg" alt="World 3">
+              </div>
+            </div>
           </div>
         </div>
-        <p class="item-title">Thế giới trong sách</p>
+        <h3 class="item-title">Thế giới trong sách</h3>
+        <p class="item-count">128 hình ảnh</p>
       </div>
     </div>
   </div>
 </section>
-<!-- section category trend -->
 
 <!-- section infomation addition -->
 <section class="info-why">
-  <h1 class="title mb-2 fs-1 text-center">Tại sao giấy phép hỉnh ảnh AI</h1>
-  <div class="contain d-flex ">
-    <div class="box">
-      <img src="../assets/images/ai/Plant/20.png" alt="">
-      <div class="content">
-        <h3>Không giới hạn về sáng tạo</h3>
-        <p>Bạn có thể tìm thấy hình ảnh minh họa cho bất kỳ chủ đề nào bạn muốn,
-          từ những hình ảnh trừu tượng đến những hình ảnh chân thực.</p>
-      </div>
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Tại sao chọn giấy phép hình ảnh AI</h2>
     </div>
-    <div class="box">
-      <img src="../assets/images/ai/Food/010.webp" alt="">
-      <div class="content">
-        <h3>Hài hòa về nghệ thuật</h3>
-        <p>Hình ảnh minh họa giúp bạn tạo ra những thiết kế đồng nhất và chuyên nghiệp.</p>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="box-inner">
+          <div class="box-icon">
+            <i class="fa-solid fa-infinity"></i>
+          </div>
+          <div class="box-image">
+            <img src="../assets/images/ai/Food/010.webp" alt="Creative">
+          </div>
+          <div class="box-content">
+            <h3>Không giới hạn về sáng tạo</h3>
+            <p>Bạn có thể tìm thấy hình ảnh minh họa cho bất kỳ chủ đề nào bạn muốn,
+              từ những hình ảnh trừu tượng đến những hình ảnh chân thực.</p>
+            <a href="#" class="learn-more">
+              Tìm hiểu thêm <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="box">
-      <img src="../assets/images/ai/Animal/045.jpg" alt="">
-      <div class="content">
-        <h3>Hoàn hảo để kể chuyện</h3>
-        <p>Hình ảnh minh họa là một cách tuyệt vời để kể những câu chuyện hấp dẫn và gây ấn tượng.</p>
+
+      <div class="info-box">
+        <div class="box-inner">
+          <div class="box-icon">
+            <i class="fa-solid fa-palette"></i>
+          </div>
+          <div class="box-image">
+            <img src="../assets/images/ai/Food/010.webp" alt="Artistic">
+          </div>
+          <div class="box-content">
+            <h3>Hài hòa về nghệ thuật</h3>
+            <p>Hình ảnh minh họa giúp bạn tạo ra những thiết kế đồng nhất và chuyên nghiệp.</p>
+            <a href="#" class="learn-more">
+              Tìm hiểu thêm <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="box-inner">
+          <div class="box-icon">
+            <i class="fa-solid fa-book-open"></i>
+          </div>
+          <div class="box-image">
+            <img src="../assets/images/ai/Food/010.webp" alt="Storytelling">
+          </div>
+          <div class="box-content">
+            <h3>Hoàn hảo để kể chuyện</h3>
+            <p>Hình ảnh minh họa là một cách tuyệt vời để kể những câu chuyện hấp dẫn và gây ấn tượng.</p>
+            <a href="#" class="learn-more">
+              Tìm hiểu thêm <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-<!-- section infomation addition -->
+
+<!-- Statistics Section -->
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-images"></i>
+        </div>
+        <h3 class="stat-number" data-count="10000">10000+</h3>
+        <p class="stat-label">Hình ảnh AI</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <h3 class="stat-number" data-count="5000">1000+</h3>
+        <p class="stat-label">Khách hàng hài lòng</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-download"></i>
+        </div>
+        <h3 class="stat-number" data-count="50000">10000+</h3>
+        <p class="stat-label">Lượt tải xuống</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <h3 class="stat-number" data-count="99">99%</h3>
+        <p class="stat-label">% Hài lòng</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!--section footer -->
 <section class="footer">
@@ -255,6 +420,70 @@
   </div>
 </section>
 <!--section footer -->
+<!-- Thêm Swiper JS vào cuối trang -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+  // Initialize Swiper
+  document.addEventListener('DOMContentLoaded', function() {
+    const swiper = new Swiper('.tranding-slider', {
+      // Số lượng slide hiển thị
+      slidesPerView: 3,
+      spaceBetween: 20, // Khoảng cách giữa các slide
+
+      // Tự động chuyển slide
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+
+      // Loop vô hạn
+      loop: true,
+
+      // Navigation
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+      // Pagination
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+      // Responsive breakpoints
+      breakpoints: {
+        // Khi màn hình >= 1200px
+        1200: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        },
+        // Khi màn hình >= 768px
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        },
+        // Khi màn hình < 768px
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 10
+        }
+      }
+    });
+
+    // Pause on hover
+    const swiperContainer = document.querySelector('.tranding-slider');
+    swiperContainer.addEventListener('mouseenter', () => {
+      swiper.autoplay.stop();
+    });
+
+    swiperContainer.addEventListener('mouseleave', () => {
+      swiper.autoplay.start();
+    });
+  });
+</script>
 
 <script src="../assets/libraries/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/libraries/swiper/js/swiper-bundle.min.js"></script>
