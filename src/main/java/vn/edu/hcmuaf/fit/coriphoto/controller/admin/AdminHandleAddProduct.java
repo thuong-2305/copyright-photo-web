@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import vn.edu.hcmuaf.fit.coriphoto.controller.functions.ExtracImageFromFile;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.model.ProductLicense;
+import vn.edu.hcmuaf.fit.coriphoto.service.ProductLicenseService;
 import vn.edu.hcmuaf.fit.coriphoto.service.SellerService;
 
 import java.io.IOException;
@@ -67,7 +69,11 @@ public class AdminHandleAddProduct extends HttpServlet {
             product.setStatus(status);
 
             SellerService sellerService = new SellerService();
-            sellerService.uploadProduct(product, status);
+            int id = sellerService.uploadProductAndReturnId(product, status);
+
+            ProductLicenseService productLicenseService = new ProductLicenseService();
+            ProductLicense productLicense = new ProductLicense(id, 1);
+            productLicenseService.insertProductLicense(productLicense);
 
             response.getWriter().write("{\"message\": \"Success\"}");
         }

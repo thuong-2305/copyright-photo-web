@@ -9,7 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
+import vn.edu.hcmuaf.fit.coriphoto.model.ProductLicense;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
+import vn.edu.hcmuaf.fit.coriphoto.service.ProductLicenseService;
 import vn.edu.hcmuaf.fit.coriphoto.service.SellerService;
 
 import java.io.IOException;
@@ -71,7 +73,11 @@ public class UploadImage extends HttpServlet {
         product.setPrice(Double.parseDouble(price));
 
         SellerService sellerService = new SellerService();
-        sellerService.uploadProduct(product, "waiting");
+        int id = sellerService.uploadProductAndReturnId(product, "waiting");
+
+        ProductLicenseService productLicenseService = new ProductLicenseService();
+        ProductLicense productLicense = new ProductLicense(id, 1);
+        productLicenseService.insertProductLicense(productLicense);
 
         request.setAttribute("msgUpload", "Upload ảnh thành công!");
         request.getRequestDispatcher("myphoto-seller.jsp").forward(request, response);

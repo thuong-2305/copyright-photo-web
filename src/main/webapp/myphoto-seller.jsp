@@ -434,38 +434,120 @@
     }
 </script>
 
-<%-- HIển thị ảnh khi thêm --%>
 <script>
-    document.getElementById('fileUpload').addEventListener('change', function (event) {
-        const previewContainer = document.getElementById('preview-container');
-        const files = event.target.files;
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileUpload = document.getElementById('fileUpload');
+        const fileUploadAlt = document.getElementById('file-upload');
 
-        previewContainer.innerHTML = '';
+        function handleImageSelection(input) {
+            const previewContainer = document.getElementById('preview-container');
+            const dimensionInput = document.getElementById('dimension');
+            const fileSizeInput = document.getElementById('file-size');
+            const priceInput = document.getElementById('price');
 
-        Array.from(files).forEach(file => {
-            if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-
-                // Khi FileReader đọc xong
-                reader.onload = function (e) {
-                    // Tạo phần tử ảnh
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.alt = file.name;
-                    img.style.maxHeight = '200px';
-                    img.style.maxWidth = '200px';
-                    img.style.marginLeft = '5px';
-                    img.style.border = '1px solid #ccc';
-                    img.style.borderRadius = '5px';
-
-                    previewContainer.appendChild(img);
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                alert('Tệp không phải ảnh: ' + file.name);
+            if (!previewContainer || !dimensionInput || !fileSizeInput || !priceInput) {
+                console.error('Missing required elements:', {
+                    previewContainer: !!previewContainer,
+                    dimensionInput: !!dimensionInput,
+                    fileSizeInput: !!fileSizeInput,
+                    priceInput: !!priceInput
+                });
+                alert('Error: Required form elements are missing.');
+                return;
             }
-        });
+
+            const files = Array.from(input.files);
+            if (!files.length) {
+                console.error('No files selected.');
+                alert('Vui lòng chọn ít nhất một tệp ảnh.');
+                return;
+            }
+
+            previewContainer.innerHTML = '';
+
+            files.forEach((file, index) => {
+                if (!file.type.startsWith('image/')) {
+                    console.error('Tệp không phải ảnh:', file.name);
+                    alert(`Tệp ${file.name} không phải là ảnh hợp lệ.`);
+                    return;
+                }
+
+                console.log('Processing file:', file.name, file.size, file.type);
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    console.log('FileReader loaded:', file.name);
+                    const img = new Image();
+                    img.onload = function () {
+                        console.log('Image loaded:', file.name, img.width, img.height);
+                        const width = img.width;
+                        const height = img.height;
+                        const sizeKB = (file.size / 1024).toFixed(0);
+
+                        // Cập nhật giá trị cho file đầu tiên
+                        if (index === 0) {
+                            dimensionInput.value = width + "x" + height;
+                            fileSizeInput.value = sizeKB + " KB";
+
+                            let price = 200000;
+                            if (sizeKB > 1500) price = 400000;
+                            else if (sizeKB > 1000) price = 300000;
+                            else if (sizeKB < 500) price = 200000;
+                            else price = 250000;
+
+                            priceInput.value = price;
+                        }
+
+                        const thumb = document.createElement('img');
+                        thumb.src = e.target.result;
+                        thumb.alt = file.name;
+                        thumb.style.maxHeight = '200px';
+                        thumb.style.maxWidth = '200px';
+                        thumb.style.marginLeft = '5px';
+                        thumb.style.border = '1px solid #ccc';
+                        thumb.style.borderRadius = '5px';
+                        previewContainer.appendChild(thumb);
+                    };
+                    img.onerror = function () {
+                        console.error('Failed to load image:', file.name);
+                        alert(`Lỗi: Không thể tải ảnh ${file.name}.`);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.onerror = function () {
+                    console.error('FileReader error for file:', file.name);
+                    alert(`Lỗi: Không thể đọc tệp ${file.name}.`);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        if (fileUpload) {
+            fileUpload.addEventListener('change', function () {
+                console.log('fileUpload change event triggered');
+                handleImageSelection(this);
+            });
+        } else {
+            console.error('Element #fileUpload not found.');
+        }
+
+        if (fileUploadAlt) {
+            fileUploadAlt.addEventListener('change', function () {
+                console.log('file-upload change event triggered');
+                handleImageSelection(this);
+            });
+        } else {
+            console.error('Element #file-upload not found.');
+        }
+
+        // Ngăn form submit khi chọn file
+        const uploadForm = document.querySelector('form[action="uploadImage"]');
+        if (uploadForm) {
+            uploadForm.addEventListener('submit', function (e) {
+                console.log('Form submission triggered');
+                // Có thể thêm e.preventDefault() để debug nếu cần
+            });
+        }
     });
 </script>
 
