@@ -122,3 +122,38 @@ p {
 .details-box strong {
     color: #333;
 }
+
+
+.table-dark {
+    background-color: #343a40;
+    color: #fff;
+}
+
+.edit-btn {
+    margin-right: 5px;
+}
+
+.dashboard-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dashboard-info .info-box {
+    flex: 1;
+    margin: 0 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.card-body {
+    overflow: hidden; !important;
+}
+
+.dashboard-info .info-box h3 {
+    margin: 10px 0;
+    font-size: 24px;
+}

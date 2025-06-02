@@ -22,6 +22,7 @@ import java.io.IOException;
             "/AdminHandleEditProduct",
             "/AdminhandleViewProductsCategory",
             "/admin-notification",
+            "/AdminHandleDeleteOrder"
         })
 public class AdminFilter implements Filter {
     @Override

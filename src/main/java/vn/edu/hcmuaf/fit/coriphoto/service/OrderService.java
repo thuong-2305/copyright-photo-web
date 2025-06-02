@@ -39,13 +39,9 @@ public class OrderService {
         return orderDAO.addOrderDetails(orderId, productId, licenseId, price);
     }
 
-
-
-
-        public int getLastOrderId() {
+    public int getLastOrderId() {
         return orderDAO.getLastOrderId();
     }
-
 
     public List<Integer> getAllOrdersId() {
         return orderDAO.getAllOrdersId();
@@ -86,12 +82,9 @@ public class OrderService {
 
     public Order getOrder(int oid) { return orderDAO.getOrder(oid); }
 
-    // Hàm chuyển đổi chuỗi có dấu ngoặc vuông và số phân tách dấu phẩy thành mảng int
     public static int[] convertStringToIntArray(String str) {
-        // Loại bỏ dấu ngoặc vuông và khoảng trắng, sau đó tách các số theo dấu phẩy
         str = str.replaceAll("[\\[\\]\\s]", "");
         String[] stringNumbers = str.split(",");
-        // Chuyển đổi mảng chuỗi thành mảng int
         int[] intArray = new int[stringNumbers.length];
         for (int i = 0; i < stringNumbers.length; i++) {
             intArray[i] = Integer.parseInt(stringNumbers[i]);
@@ -99,9 +92,5 @@ public class OrderService {
         return intArray;
     }
 
-    public static void main(String[] args) {
-        OrderService orderService = new OrderService();
-        orderService.updateOrderStatus(17, "Completed");
-        System.out.println(orderService.getOrder(17));
-    }
+    public boolean deleteOrderById(int orderId) { return orderDAO.deleteOrderById(orderId); }
 }

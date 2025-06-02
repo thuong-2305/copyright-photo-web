@@ -14,42 +14,6 @@
     <link rel="stylesheet" href="assets/css/admin-dashboard.css"/>
     <jsp:include page="include/head-libraries.jsp" />
     <title>Admin</title>
-
-    <style>
-        .table-dark {
-            background-color: #343a40;
-            color: #fff;
-        }
-
-        .edit-btn {
-            margin-right: 5px;
-        }
-
-        .dashboard-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .dashboard-info .info-box {
-            flex: 1;
-            margin: 0 10px;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            text-align: center;
-            background-color: #f8f9fa;
-        }
-
-        .card-body {
-            overflow: hidden; !important;
-        }
-
-        .dashboard-info .info-box h3 {
-            margin: 10px 0;
-            font-size: 24px;
-        }
-    </style>
 </head>
 
 <body>
@@ -121,12 +85,35 @@
                                     </td>
                                     <td>
                                         <button class="btn view-btn" data-id="${order.orderId}"><i class="bi bi-eye-fill"></i></button>
+                                        <button class="btn delete-btn" data-id="${order.orderId}"><i class="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Xác nhận xóa đơn hàng -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title user-select-none" id="deleteModalLabel">
+                                        <i class="bi bi-exclamation-triangle-fill" style="color: #fa2e2e;"></i>
+                                        Xóa sản phẩm
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc chắn muốn xóa sản phẩm này?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="confirmCancelDelete" class="btn btn-secondary rounded-pill fw-semibold" data-dismiss="modal">Hủy</button>
+                                    <button type="button" id="confirmDelete" class="btn btn-danger rounded-pill fw-semibold">Xóa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -400,6 +387,56 @@
             currency: 'VND'
         }).format(amount);
     }
+</script>
+
+<!-- Xử lý xóa danh mục -->
+<script>
+    let parentElement = null;
+
+    $('.delete-btn').on('click', function () {
+        orderIdToDelete = $(this).data('id');
+        parentElement = $(this).closest("tr");
+        $('#deleteModal .modal-body').html("Bạn có chắc chắn muốn xóa đơn này này");
+        $('#deleteModal').modal('show');
+    });
+
+    // Xử lý sau khi nhấn xóa
+    $('#confirmDelete').on('click', function () {
+        console.log("Clicked,", orderIdToDelete);
+        if (orderIdToDelete) {
+            $.ajax({
+                url: '/AdminHandleDeleteOrder',
+                type: 'POST',
+                headers: {
+                    'X-Requested-By': 'AJAX'
+                },
+                data: {
+                    action: 'delete',
+                    order_id: orderIdToDelete
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $(".alert-success span").text("Xóa thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                        parentElement.fadeOut(function () {
+                            $(this).remove();
+                        });
+                    } else {
+                        $(".alert-danger span").text("Xóa thất bại!");
+                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi!');
+                }
+            });
+        }
+        $('#deleteModal').modal('hide');
+    });
 </script>
 
 </body>

@@ -339,4 +339,14 @@ public class OrderDAO {
                         .list()
         );
     }
+
+    public boolean deleteOrderById(int orderId) {
+        String sql = "DELETE FROM orders WHERE orderId = :orderId";
+
+        return jdbi.withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("orderId", orderId)
+                .execute() > 0
+        );
+    }
 }
