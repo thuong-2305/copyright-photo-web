@@ -330,3 +330,64 @@ select[multiple] option:checked {
     border: none; /* Không viền */
 }
 
+
+/* View product upload */
+.view-product {
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px; /* Tăng max-width để chứa hai cột */
+    width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.view-product:not(.d-none) {
+    display: block;
+}
+.product-content {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa hai cột */
+}
+.product-info {
+    flex: 1; /* Chiếm 50% chiều rộng */
+    padding-right: 10px;
+}
+.show-image {
+    flex: 1; /* Chiếm 50% chiều rộng */
+    text-align: center; /* Căn giữa hình ảnh */
+}
+.product-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    max-height: 300px; /* Giới hạn chiều cao để không làm modal quá dài */
+}
+
+.overlay.show {
+    display: block;
+}
+.no-scroll {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .product-content {
+        flex-direction: column;
+    }
+    .product-info {
+        padding-right: 0;
+    }
+    .show-image {
+        text-align: left;
+    }
+}
+
+.overlay2.show {
+    display: block;
+}
+

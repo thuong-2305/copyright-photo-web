@@ -283,6 +283,30 @@ public class SellerDAO {
         );
     }
 
+    public int uploadProductAndReturnId(Product product, String status) {
+        String query = """
+                INSERT INTO products (uid, cid, name, description, size, dimension, dateUpload, url, price, status)
+                VALUES (:uid, :cid, :name, :description, :size, :dimension, :dateUpload, :url, :price, :status)
+            """;
+
+        return jdbi.withHandle(handle ->
+                handle.createUpdate(query)
+                        .bind("uid", product.getUid())
+                        .bind("cid", product.getCid())
+                        .bind("name", product.getName())
+                        .bind("description", product.getDescription())
+                        .bind("size", product.getSize())
+                        .bind("dimension", product.getDimension())
+                        .bind("dateUpload", product.getDateUpload())
+                        .bind("url", product.getUrl())
+                        .bind("price", product.getPrice())
+                        .bind("status", status)
+                        .executeAndReturnGeneratedKeys("id")  // giả sử tên cột khóa chính là "id"
+                        .mapTo(Integer.class)
+                        .one()
+        );
+    }
+
     public static void main(String[] args) {
         System.out.println(new SellerDAO().getAllProducts(37, "accepted"));
     }
