@@ -7,105 +7,134 @@
 
 <section id="nav">
     <div class="container">
-        <nav class="navbar navbar-expand-lg w-100">
+        <nav class="navbar navbar-expand-md w-100">
             <div class="container-fluid">
+                <!-- Logo -->
                 <a class="navbar-brand me-auto" href="${ pageContext.request.contextPath }/">
-                    <span class="title-logo fw-bold">
-                        CoRiPhoto
-                    </span>
+                    <span class="title-logo fw-bold">CoRiPhoto</span>
                 </a>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+
+                <!-- Mobile Right Section (Login/User) -->
+                <div class="d-flex align-items-center d-md-none order-1">
+                    <c:if test="${auth == null}">
+                        <a href="login" class="login-button fw-semibold">Đăng nhập</a>
+                    </c:if>
+                    <c:if test="${auth != null}">
+                        <div class="d-flex align-items-center user-icon me-2" id="user-mobile">
+                            <img class="avatar position-relative" src="../assets/images/avart-default.png" alt=""/>
+                        </div>
+                    </c:if>
+
+                    <!-- Hamburger Button -->
+                    <button class="navbar-toggler ms-2" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar"
+                     aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title title-logo fw-bold" id="offcanvasDarkNavbarLabel">CoRiPhoto</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                    </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-center flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link mx-lg-3" aria-current="page" href="#">
+                            <!-- Ảnh Dropdown -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle mx-lg-3" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="fw-semibold title-item">Ảnh</span>
-                                    <i class="fa-solid fa-angle-down px-2  title-item"></i>
                                 </a>
-                                <div class="link-hover">
-                                    <div class="dropdown-arrow"></div>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <span>Ảnh chụp</span>
-                                        <i class="bi bi-arrow-right d-none"></i>
-                                    </a>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <span>Ảnh vectors</span>
-                                        <i class="bi bi-arrow-right d-none"></i>
-                                    </a>
-                                    <a href="#" class="d-flex justify-content-between">
-                                        <span>Ảnh AI</span>
-                                        <i class="bi bi-arrow-right d-none"></i>
-                                    </a>
-                                </div>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Ảnh chụp</a></li>
+                                    <li><a class="dropdown-item" href="#">Ảnh vectors</a></li>
+                                    <li><a class="dropdown-item" href="#">Ảnh AI</a></li>
+                                </ul>
                             </li>
+
+                            <!-- Danh mục Dropdown -->
                             <%
                                 @SuppressWarnings("unchecked")
                                 List<Category> categories = (List<Category>) request.getAttribute("categories");
                             %>
-                            <li class="nav-item">
-                                <a class="nav-link mx-lg-3" href="categories">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle mx-lg-3" href="#" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="fw-semibold title-item">Danh mục</span>
-                                    <i class="fa-solid fa-angle-down px-2 title-item"></i>
                                 </a>
-                                <div class="link-hover">
-                                    <div class="dropdown-arrow"></div>
-                                    <div class="dropdown">
-                                        <% for(int i = 0; i < 5; i++) {
+                                <ul class="dropdown-menu dropdown-menu-categories">
+                                    <% if(categories != null) {
+                                        for(int i = 0; i < Math.min(categories.size(), 10); i++) {
                                             Category item = categories.get(i);
-                                        %>
-                                        <a href="products?cid=<%= item.getCid() %>" class="d-flex justify-content-between">
-                                            <span><%= item.getName() %></span>
-                                            <i class="bi bi-arrow-right d-none"></i>
-                                        </a>
-                                        <% } %>
-                                    </div>
-                                    <div class="dropdown">
-                                        <% for(int i = 5; i < 10; i++) {
-                                                Category item = categories.get(i);
-                                        %>
-                                        <a href="products?cid=<%= item.getCid() %>" class="d-flex justify-content-between">
-                                            <span><%= item.getName() %></span>
-                                            <i class="bi bi-arrow-right d-none"></i>
-                                        </a>
-                                        <% } %>
-                                    </div>
-                                    <div class="dropdown">
-                                        <% for(int i = 10; i < 14; i++) {
-                                                Category item = categories.get(i);
-                                        %>
-                                        <a href="products?cid=<%= item.getCid() %>" class="d-flex justify-content-between">
-                                            <span><%= item.getName() %></span>
-                                            <i class="bi bi-arrow-right d-none"></i>
-                                        </a>
-                                        <% } %>
-                                        <a href="categories" class="d-flex justify-content-between">
-                                            <span>Tất cả</span>
-                                            <i class="bi bi-arrow-right d-none"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                    %>
+                                    <li><a class="dropdown-item" href="products?cid=<%= item.getCid() %>">
+                                        <%= item.getName() %>
+                                    </a></li>
+                                    <% }} %>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="categories">Tất cả danh mục</a></li>
+                                </ul>
                             </li>
+
+                            <!-- Giấy phép -->
                             <li class="nav-item">
                                 <a class="nav-link mx-lg-3" href="${pageContext.request.contextPath}/license">
                                     <span class="fw-semibold title-item">
                                         <i class="bi bi-x-diamond me-2 title-item"></i>Giấy phép
                                     </span>
                                 </a>
-                                <div class="link-hover">
-                                    <div class="dropdown-arrow"></div>
-                                    <a href="${pageContext.request.contextPath}/license" class="d-flex justify-content-between">
-                                        <span>Xem giấy phép</span>
-                                        <i class="bi bi-arrow-right d-none"></i>
-                                    </a>
-                                </div>
+                            </li>
+
+                            <!-- Mobile Only Items -->
+                            <li class="nav-item d-md-none">
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            <!-- Sell/Contributor - Mobile -->
+                            <li class="nav-item d-md-none">
+                                <% boolean isSignupSell = (Boolean) request.getSession().getAttribute("isSignupSell"); %>
+                                <% if (isSignupSell) { %>
+                                <a class="nav-link" href="ShowStatistic">
+                                    <i class="bi bi-hexagon-half me-2"></i>
+                                    Quản lý phân phối
+                                </a>
+                                <% } else { %>
+                                <a class="nav-link" href="register-contributor">
+                                    <i class="bi bi-hexagon-half me-2"></i>
+                                    Đăng ký thành người phân phối
+                                </a>
+                                <% } %>
+                            </li>
+
+                            <!-- Wishlist - Mobile -->
+                            <li class="nav-item d-md-none">
+                                <a class="nav-link" href="Favourite">
+                                    <i class="fa-regular fa-heart me-2"></i>
+                                    Yêu thích
+                                </a>
+                            </li>
+
+                            <!-- Cart - Mobile -->
+                            <li class="nav-item d-md-none">
+                                <a class="nav-link" href="cart">
+                                    <i class="fa-solid fa-cart-shopping me-2"></i>
+                                    Giỏ hàng
+                                    <span class="badge bg-primary ms-2">${ cartLength }</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="d-flex align-items-center pt-1">
+
+                <!-- Desktop Items -->
+                <div class="d-none d-md-flex align-items-center pt-1">
+                    <!-- Sell/Contributor -->
                     <div class="sell">
-                        <% boolean isSignupSell = (Boolean) request.getSession().getAttribute("isSignupSell"); %>
-                        <% if (isSignupSell) { %>
+                        <% boolean isSignupSellDesktop = (Boolean) request.getSession().getAttribute("isSignupSell"); %>
+                        <% if (isSignupSellDesktop) { %>
                         <a href="ShowStatistic" class="sell mx-lg-2 fw-semibold title-item">
                             <i class="bi bi-hexagon-half title-item"></i>
                             Quản lý phân phối
@@ -117,36 +146,42 @@
                         </a>
                         <% } %>
                     </div>
+
                     <div class="line-separate mx-lg-1"></div>
-                    <%-- Wishlist --%>
+
+                    <!-- Wishlist -->
                     <a href="Favourite" class="love">
                         <i class="fa-regular fa-heart title-item"></i>
                     </a>
-                    <%-- Cart --%>
+
+                    <!-- Cart -->
                     <a href="cart" class="cart">
-                        <i class="fa-solid fa-cart-shopping  title-item"></i>
+                        <i class="fa-solid fa-cart-shopping title-item"></i>
                         <span>${ cartLength }</span>
                     </a>
                 </div>
 
-                <c:if test="${auth == null}">
-                    <a href="login" class="login-button fw-semibold">Đăng nhập</a>
-                </c:if>
-                <c:if test="${auth != null}">
-                    <div class="d-flex align-items-center user-icon me-2" id="user">
-                        <img class="avatar position-relative" src="../assets/images/avart-default.png"  alt=""/>
-                        <i class="fa fa-caret-down ms-2"></i>
-                    </div>
-
-                    <c:if test="${ auth.role == 0 }">
-                        <a href="ShowDashBoard" class="text-decoration-none feature-admin">
-                            <div class="d-flex align-items-center user-icon btn btn-outline-success">
-                                <i class="bi bi-person-lock me-2"></i>Admin
-                                <i class="fa fa-caret-down ms-2"></i>
-                            </div>
-                        </a>
+                <!-- Desktop Login/User -->
+                <div class="d-none d-md-block">
+                    <c:if test="${auth == null}">
+                        <a href="login" class="login-button fw-semibold">Đăng nhập</a>
                     </c:if>
-                </c:if>
+                    <c:if test="${auth != null}">
+                        <div class="d-flex align-items-center user-icon me-2" id="user">
+                            <img class="avatar position-relative" src="../assets/images/avart-default.png" alt=""/>
+                            <i class="fa fa-caret-down ms-2"></i>
+                        </div>
+
+                        <c:if test="${ auth.role == 0 }">
+                            <a href="ShowDashBoard" class="text-decoration-none feature-admin">
+                                <div class="d-flex align-items-center user-icon btn btn-outline-success">
+                                    <i class="bi bi-person-lock me-2"></i>Admin
+                                    <i class="fa fa-caret-down ms-2"></i>
+                                </div>
+                            </a>
+                        </c:if>
+                    </c:if>
+                </div>
             </div>
         </nav>
     </div>
