@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -83,6 +84,13 @@
         <jsp:include page="include/nav-admin.jsp"/>
 
         <!-- Content main -->
+        <%
+            List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+            boolean canEdit = permissions != null && permissions.contains(5);
+            boolean canDelete = permissions != null && permissions.contains(6);
+            boolean canCreate = permissions != null && permissions.contains(4);
+            boolean canCreateUser = permissions != null && permissions.contains(9);
+        %>
         <div id="admin-dashboard-graph" class="view-products-main">
             <div class="mt-4 content-view">
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
@@ -90,9 +98,23 @@
                     <div id="exportButtons">
                         <button class="btn add-btn btn-outline-primary fw-semibold ms-2"><i class="bi bi-person-plus">Thêm
                             người dùng</i></button>
+                        <% if(canCreate) {%>
+                        <button class="btn add-btn btn-outline-primary fw-semibold ms-2"><i class="bi bi-person-plus">Thêm
+                            người dùng</i></button>
+                        <% } else { %>
+                        <button class="btn add-btn-permission btn-outline-primary fw-semibold ms-2"><i class="bi bi-person-plus">Thêm
+                            người dùng</i></button>
+                        <% }%>
+
+                        <% if(canCreateUser) {%>
                         <button class="btn button-add fw-semibold btn-permission"><i class="bi bi-plus-circle me-2"></i>Phân
                             quyền người dùng
                         </button>
+                        <% } else { %>
+                        <button class="btn button-add-permission fw-semibold btn-permission"><i class="bi bi-plus-circle me-2"></i>Phân
+                            quyền người dùng
+                        </button>
+                        <% }%>
                     </div>
                 </div>
 
@@ -129,10 +151,19 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-start">
+                                            <% if(canEdit) {%>
                                             <button class="btn edit-btn" data-id="${user.uid}"><i
                                                     class="bi bi-pencil-square"></i></button>
+                                            <% } else { %>
+                                            <button class="btn edit-btn-permission" data-id="${user.uid}"><i
+                                                    class="bi bi-pencil-square"></i></button>
+                                            <% } if(canDelete) {%>
                                             <button class="btn delete-btn" data-id="${user.uid}"><i
                                                     class="fa-solid fa-trash"></i></button>
+                                            <% } else { %>
+                                            <button class="btn delete-btn-permission" data-id="${user.uid}"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                            <% } %>
                                         </div>
                                     </td>
                                 </tr>
@@ -306,7 +337,7 @@
                             <div class="permission-group">
                                 <h6>Admin</h6>
                                 <c:forEach var="permission" items="${permissions}">
-                                    <c:if test="${permission.idPermission >= 4 && permission.idPermission <= 8}">
+                                    <c:if test="${permission.idPermission >= 4 && permission.idPermission <= 9}">
                                         <div class="form-check">
                                             <input
                                                     type="checkbox"
@@ -371,8 +402,10 @@
 
 <!-- Chức năng của dataTable -->
 <script>
+    let table;
+
     $(document).ready(function () {
-        const table = $('#productsTable').DataTable({
+        table = $('#productsTable').DataTable({
             deferRender: true,
             buttons: [
                 {
@@ -415,23 +448,19 @@
 
 <!-- Chức năng ẩn hiện thêm phân quyền -->
 <script>
+    $('.button-add-permission').on("click", function () {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
     $('.button-add').on("click", function () {
         $('.view-products-main').toggleClass("d-none");
         $('.view-product-add').toggleClass("d-none");
-
     });
 
     $('.button-back').on("click", function () {
-        $('.view-products-main').toggleClass("d-none");
-        $('.view-product-add').toggleClass("d-none");
-
-        $('#userSearch').val('');
-        $('#userSelect').val('');
-        $('#roleUser').addClass('d-none').find('.role').text('');
-        $('#permissionList').addClass('d-none');
-        $('#permissionTableBody').empty();
-        $('#addPermissionSection').addClass('d-none');
-        $('input[name="permissions"]').prop('checked', false);
+        location.reload()
     });
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -451,7 +480,7 @@
     });
 </script>
 
-<!-- Phan quyền usẻr -->
+<!-- Phân quyền usẻr -->
 <script>
     let assignedPermissionIds = [];
 
@@ -712,6 +741,13 @@
     let userIdToDelete = null;
     let parentElement = null;
 
+    $('.delete-btn-permission').on('click', function () {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
+
     $('.delete-btn').on('click', function () {
         userIdToDelete = $(this).data('id');
         parentElement = $(this).closest("tr");
@@ -761,6 +797,12 @@
 
 <!-- Chỉnh sửa thông tin user -->
 <script>
+    $(document).on("click", ".edit-btn", function () {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
     $(document).on("click", ".edit-btn", function () {
         const userIdToEdit = $(this).data('id');
         parentElement = $(this).closest("tr");

@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -29,6 +30,10 @@
         <jsp:include page="include/nav-admin.jsp"/>
 
         <!-- Content main -->
+        <%
+            List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+            boolean canDelete = permissions != null && permissions.contains(6);
+        %>
         <div id="admin-dashboard-graph" class="view-products-main">
             <div class="mt-4 content-view">
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
@@ -85,7 +90,12 @@
                                     </td>
                                     <td>
                                         <button class="btn view-btn" data-id="${order.orderId}"><i class="bi bi-eye-fill"></i></button>
+
+                                        <% if(canDelete) {%>
                                         <button class="btn delete-btn" data-id="${order.orderId}"><i class="fa-solid fa-trash"></i></button>
+                                        <% } else { %>
+                                        <button class="btn delete-btn-permission" data-id="${order.orderId}"><i class="fa-solid fa-trash"></i></button>
+                                        <% }%>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -295,6 +305,13 @@
 <!-- Chức năng ẩn hiện chi tiết đơn hàng -->
 <script>
     $(document).ready(function () {
+        $('.delete-btn-permission').on("click", function() {
+            $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+            $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                $(this).addClass("d-none");
+            });
+        });
+
         $(".view-btn").on("click", function () {
             $('.view-products-main').toggleClass("d-none");
             $('.view-product-add').toggleClass("d-none");

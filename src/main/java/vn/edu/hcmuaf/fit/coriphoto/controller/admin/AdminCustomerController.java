@@ -5,21 +5,14 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.UserSerializer;
-import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
-import vn.edu.hcmuaf.fit.coriphoto.model.EmailSenderTask;
-import vn.edu.hcmuaf.fit.coriphoto.model.Permission;
-import vn.edu.hcmuaf.fit.coriphoto.model.User;
-import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
-import vn.edu.hcmuaf.fit.coriphoto.service.PermissionService;
-import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
+import vn.edu.hcmuaf.fit.coriphoto.model.*;
+import vn.edu.hcmuaf.fit.coriphoto.service.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -120,6 +113,23 @@ public class AdminCustomerController extends HttpServlet {
 
                 User user = new User(role, fullName, username, email, password);
                 boolean success = userService.createUser(user);
+
+                // Khởi tạo quyền mặc định khi tạo mới user
+                int userId = userService.getUidByEmail(email);
+                List<Integer> permissionIds = switch (user.getRole()) {
+                    case 2 -> // User
+                            Arrays.asList(1);
+                    case 1 -> // Seller
+                            Arrays.asList(1, 2);
+                    case 0 -> // Admin
+                            Arrays.asList(1, 2, 3, 8);
+                    default -> Collections.emptyList();
+                };
+                for (Integer permissionId : permissionIds) {
+                    int idPR = new PermissionRoleService().getIdPRByIdPermission(permissionId);
+                    new PermissionUserService().insertPermissionUser(idPR, userId);
+                }
+                // End
 
                 if (success) {
                     String subject = "Xác thực tài khoản của bạn trên CopyRightPhoto";

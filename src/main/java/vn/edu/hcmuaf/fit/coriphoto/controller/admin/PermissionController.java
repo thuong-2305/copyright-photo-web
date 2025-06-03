@@ -7,8 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import vn.edu.hcmuaf.fit.coriphoto.dao.PermissionRoleDAO;
-import vn.edu.hcmuaf.fit.coriphoto.dao.PermissionUserDAO;
+import vn.edu.hcmuaf.fit.coriphoto.service.PermissionRoleService;
+import vn.edu.hcmuaf.fit.coriphoto.service.PermissionUserService;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
 
@@ -24,8 +24,8 @@ public class PermissionController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PermissionUserDAO permissionUserDAO = new PermissionUserDAO();
-        PermissionRoleDAO permissionRoleDAO = new PermissionRoleDAO();
+        PermissionUserService permissionUserService = new PermissionUserService();
+        PermissionRoleService permissionRoleService = new PermissionRoleService();
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -41,13 +41,13 @@ public class PermissionController extends HttpServlet {
 
         try {
             int uid = Integer.parseInt(pathInfo.substring(1));
-            List<Integer> idPRs = permissionUserDAO.getPermissionRolesByUserId(uid);
+            List<Integer> idPRs = permissionUserService.getPermissionRolesByUserId(uid);
             List<Map<String, Object>> permissions = new ArrayList<>();
 
             for (Integer idPR : idPRs) {
-                Integer idPermission = permissionRoleDAO.getIdPermissionByIdPR(idPR);
+                Integer idPermission = permissionRoleService.getIdPermissionByIdPR(idPR);
                 if (idPermission != null) {
-                    String permissionName = permissionRoleDAO.getPermissionNameById(idPermission);
+                    String permissionName = permissionRoleService.getPermissionNameById(idPermission);
                     Map<String, Object> perm = new HashMap<>();
                     perm.put("idPR", idPR);
                     perm.put("idPermission", idPermission);
@@ -67,8 +67,8 @@ public class PermissionController extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PermissionUserDAO permissionUserDAO = new PermissionUserDAO();
-        PermissionRoleDAO permissionRoleDAO = new PermissionRoleDAO();
+        PermissionUserService permissionUserService = new PermissionUserService();
+        PermissionRoleService permissionRoleService = new PermissionRoleService();
         UserService userService = new UserService();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -120,7 +120,7 @@ public class PermissionController extends HttpServlet {
         }
 
         // Tìm idPR từ idPermission
-        Integer idPR = permissionRoleDAO.getIdPRByIdPermission(idPermission);
+        Integer idPR = permissionRoleService.getIdPRByIdPermission(idPermission);
         if (idPR == null) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             out.print(new JSONObject().put("error", "Không tìm thấy permission_role").toString());
@@ -129,7 +129,7 @@ public class PermissionController extends HttpServlet {
         }
 
         // Kiểm tra xem quyền đã được cấp chưa
-        if (permissionUserDAO.hasPermission(uid, idPR)) {
+        if (permissionUserService.hasPermission(uid, idPR)) {
             response.setStatus(HttpServletResponse.SC_CONFLICT);
             out.print(new JSONObject().put("error", "Quyền này đã được cấp cho user!").toString());
             out.flush();
@@ -137,7 +137,7 @@ public class PermissionController extends HttpServlet {
         }
 
         // Thêm quyền
-        int idPU = permissionUserDAO.insertPermissionUser(idPR, uid);
+        int idPU = permissionUserService.insertPermissionUser(idPR, uid);
         JSONObject jsonResponse = new JSONObject();
         jsonResponse.put("idPU", idPU);
         out.print(jsonResponse.toString());

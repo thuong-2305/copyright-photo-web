@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -29,12 +30,22 @@
         <jsp:include page="include/nav-admin.jsp"/>
 
         <!-- Content main -->
+        <%
+            List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+            boolean canEdit = permissions != null && permissions.contains(5);
+            boolean canDelete = permissions != null && permissions.contains(6);
+            boolean canCreate = permissions != null && permissions.contains(4);
+        %>
         <div id="admin-dashboard-graph" class="view-products-main">
             <div class="mt-4 content-view">
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
                     <h5 class="fw-semibold">Các sản phẩm</h5>
                     <div id="exportButtons">
+                        <% if(canCreate) {%>
                         <button class="btn button-add fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm sản phẩm</button>
+                        <% } else { %>
+                        <button class="btn button-add-permission fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm sản phẩm</button>
+                        <% }%>
                     </div>
                 </div>
 
@@ -105,8 +116,15 @@
                                     <td>
                                         <div class="d-flex justify-content-start">
                                             <button class="btn view-btn" data-id="${product.id}"><i class="bi bi-eye-fill"></i></button>
+                                            <% if(canEdit) {%>
                                             <button class="btn edit-btn" data-id="${product.id}"><i class="bi bi-pencil-square"></i></button>
+                                            <% } else { %>
+                                            <button class="btn edit-btn-permission" data-id="${product.id}"><i class="bi bi-pencil-square"></i></button>
+                                            <% } if(canDelete) {%>
                                             <button class="btn delete-btn" data-id="${product.id}"><i class="fa-solid fa-trash"></i></button>
+                                            <% } else { %>
+                                            <button class="btn delete-btn-permission" data-id="${product.id}"><i class="fa-solid fa-trash"></i></button>
+                                            <% } %>
                                         </div>
                                     </td>
                                 </tr>
@@ -411,6 +429,14 @@
     let productIdToDelete = null;
     let parentElement = null;
 
+
+    $('.delete-btn-permission').on('click', function () {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
+
     $('.delete-btn').on('click', function () {
         productIdToDelete = $(this).data('id');
         parentElement = $(this).closest("tr");
@@ -508,6 +534,13 @@
 
 <!-- Chức năng ẩn hiện thêm sản phẩm -->
 <script>
+    $('.button-add-permission').on("click", function() {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
+
     $('.button-add').on("click", function() {
         $('.view-products-main').toggleClass("d-none");
         $('.view-product-add').toggleClass("d-none");
@@ -702,6 +735,13 @@
     let $uploadBox = $('#uploadBox');
     let $visibleImage = $('#visibleImage');
     let $btnBox = $('.btn-box');
+
+    $('.edit-btn-permission').on('click', function () {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
 
     $('.edit-btn').on('click', function () {
         productIdToEdit = $(this).data('id');

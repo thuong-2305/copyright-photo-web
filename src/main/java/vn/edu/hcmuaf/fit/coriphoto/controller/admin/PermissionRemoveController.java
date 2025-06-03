@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
-import vn.edu.hcmuaf.fit.coriphoto.dao.PermissionUserDAO;
+import vn.edu.hcmuaf.fit.coriphoto.service.PermissionUserService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class PermissionRemoveController extends HttpServlet {
             int idPR = json.getInt("idPR");
 
             // Gọi DAO để xóa quyền
-            PermissionUserDAO permissionUserDAO = new PermissionUserDAO();
+            PermissionUserService permissionUserDAO = new PermissionUserService();
             boolean success = permissionUserDAO.removePermissionUser(uid, idPR);
 
             // Trả kết quả

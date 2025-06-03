@@ -10,6 +10,13 @@ $(document).on("click", ".delete-item", function () {
     $('#deleteModal').modal('show');
 });
 
+$(document).on("click", ".delete-permission", function () {
+    $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+    $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+        $(this).addClass("d-none");
+    });
+});
+
 $('#confirmDelete').on('click', function () {
     if (productIdToDelete) {
         fetch('/seller-products', {

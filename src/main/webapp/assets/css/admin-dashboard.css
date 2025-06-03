@@ -161,6 +161,16 @@ table.dataTable > thead > tr > th {
     background: #e15968 !important;
 }
 
+.button-add-permission {
+    background: #fa6374 !important;
+    margin-left: 7px !important;
+    color: white !important;
+}
+
+.button-add-permission:hover {
+    background: #e15968 !important;
+}
+
 /* Loading screen */
 .loading-overlay {
     position: fixed;

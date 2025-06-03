@@ -12,11 +12,15 @@ import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.AuthService;
 import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
+import vn.edu.hcmuaf.fit.coriphoto.service.PermissionRoleService;
+import vn.edu.hcmuaf.fit.coriphoto.service.PermissionUserService;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
@@ -73,6 +77,17 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("auth", user);
             session.setAttribute("loggedInUser", user);
+
+            // Lưu quyền hạn user đăng nhập
+            List<Integer> permisionRoles = new PermissionUserService().getPermissionRolesByUserId(user.getUid());
+            List<Integer> permissions = new ArrayList<>();
+            PermissionRoleService permisionRoleService = new PermissionRoleService();
+            for(int i : permisionRoles) {
+                permissions.add(permisionRoleService.getIdPermissionByIdPR(i));
+            }
+            session.setAttribute("permissions", permissions);
+            // End
+
             // Ghi log đăng nhập
             ActivityLog loginLog = new ActivityLog("INFO", user.getUid(),
                     user.getUsername(), LocalDateTime.now(),

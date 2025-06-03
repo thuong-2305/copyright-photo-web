@@ -29,13 +29,15 @@
         <jsp:include page="include/nav-admin.jsp"/>
 
         <!-- Content main -->
+        <%
+            List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+            boolean canUpdateReject = permissions != null && permissions.contains(7);
+        %>
         <div id="admin-dashboard-graph" class="view-products-main">
             <div class="mt-4 content-view">
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
                     <h5 class="fw-semibold">Danh sách các ảnh chờ xác nhận</h5>
                     <div id="exportButtons">
-                        <button class="btn button-add fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm danh mục
-                        </button>
                     </div>
                 </div>
 
@@ -73,6 +75,7 @@
                                     </td>
                                     <td>${product.formatDateUpload}</td>
                                     <td>
+                                        <% if(canUpdateReject) {%>
                                         <button
                                             data-id='${product.id}'
                                             class="btn btn-primary text-light text-decoration-none btn-accept"
@@ -84,6 +87,19 @@
                                                 class="btn btn-danger text-light text-decoration-none btn-reject"
                                         >Reject
                                         </button>
+                                        <% } else { %>
+                                        <button
+                                                data-id='${product.id}'
+                                                class="btn btn-primary text-light text-decoration-none btn-accept-permission"
+                                        >Accept
+                                        </button>
+
+                                        <button
+                                                data-id='${product.id}'
+                                                class="btn btn-danger text-light text-decoration-none btn-reject-permission"
+                                        >Reject
+                                        </button>
+                                        <% } %>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -170,6 +186,15 @@
     $(document).ready(function () {
         const controlsWrapper = $("<div class='dataTables-controls'></div>");
         $("#productsTable_filter, #productsTable_length").wrapAll(controlsWrapper);
+    });
+</script>
+
+<script>
+    $('.btn-accept-permission, .btn-reject-permission').on("click", function() {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
     });
 </script>
 

@@ -46,6 +46,11 @@ p {
     border-radius: 50%;
 }
 
+.edit-btn-permission,
+.delete-btn-permission {
+    opacity: 0.5;
+}
+
 /* Sidebar Collapsed */
 .container-main .left.collapsed {
     width: 60px;

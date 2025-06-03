@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
@@ -55,6 +56,11 @@
                         </div>
                     </div>
                     <!-- Main content -->
+                    <%
+                        List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+                        boolean canRegisterSell = permissions != null && permissions.contains(3);
+                    %>
+                    <div class="d-none deletePermissionUpload"><%= canRegisterSell %></div>
 
                     <!-- Header -->
                     <div class="col-9">
@@ -100,10 +106,17 @@
                                                                data-id="${item.id}" data-name="${item.name}">
                                                                 <i class="fas fa-edit mr-2"></i> Chỉnh sửa
                                                             </a>
+                                                            <% if (canRegisterSell) { %>
                                                             <a class="dropdown-item d-flex align-items-center delete-item" href="#"
                                                                data-id="${item.id}" data-name="${item.name}">
                                                                 <i class="fas fa-trash-alt mr-2"></i> Xóa
                                                             </a>
+                                                            <% } else { %>
+                                                            <a class="dropdown-item d-flex align-items-center delete-permission" href="#"
+                                                               data-id="${item.id}" data-name="${item.name}">
+                                                                <i class="fas fa-trash-alt mr-2"></i> Xóa
+                                                            </a>
+                                                            <% } %>
                                                         </div>
                                                     </div>
                                                 </div>
