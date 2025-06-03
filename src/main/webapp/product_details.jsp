@@ -7,6 +7,7 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Product Detail</title>
     <jsp:include page="include/head.jsp"/>
     <link rel="stylesheet" href="./assets/css/product-details.css">
@@ -377,6 +378,40 @@
                         console.error('Error:', error);
                         alert('Có lỗi xảy ra khi thêm vào danh sách yêu thích.');
                     });
+            });
+        });
+    });
+</script>
+<script>
+    // Prevent double-tap zoom on buttons
+    document.addEventListener('DOMContentLoaded', function() {
+        // Fix iOS form zoom issue
+        const inputs = document.querySelectorAll('input[type="text"], input[type="radio"]');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                if (window.innerWidth < 768) {
+                    document.querySelector('meta[name="viewport"]').setAttribute('content',
+                        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                }
+            });
+
+            input.addEventListener('blur', function() {
+                document.querySelector('meta[name="viewport"]').setAttribute('content',
+                    'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+            });
+        });
+
+        // Smooth scroll for mobile
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     });

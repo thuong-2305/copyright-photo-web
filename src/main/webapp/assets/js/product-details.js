@@ -1,79 +1,103 @@
-// Lấy tất cả các button trong div grid-btn
-const buttons = document.querySelectorAll(".grid-btn .btn--packageimg");
-const productPrice = document.querySelector(".product-price p");
+// Thêm vào cuối file product-details.js hiện tại
 
-//---------------------------------------------- Sự kiện click vào button ----------------------------------------------
-// Thêm sự kiện click cho mỗi button
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    // Loại bỏ class 'active' khỏi tất cả các button
-    buttons.forEach((btn) => btn.classList.remove("active"));
+// Mobile responsiveness
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle dropdown for mobile
+  const typeSearch = document.getElementById('type-search');
+  const dropdownContent = document.querySelector('.dropdown-content');
+  const options = document.querySelectorAll('.dropdown-content a');
 
-    // Thêm class 'active' vào button được nhấn
-    button.classList.add("active");
+  if (typeSearch && dropdownContent) {
+    typeSearch.addEventListener('click', function(event) {
+      event.preventDefault();
+      dropdownContent.style.display = dropdownContent.style.display === 'none' ? 'block' : 'none';
+    });
 
-    // Lấy discount và label từ thuộc tính data
-    const discount = parseFloat(button.getAttribute("data-discount"));
-    const label = button.getAttribute("data-label");
+    options.forEach(option => {
+      option.addEventListener('click', function(event) {
+        event.preventDefault();
 
-    // Tính giá mới
-    const discountedPrice = Math.round(basePrice * discount);
-    const discountPercentage = Math.round((1 - discount) * 100); // % giảm giá
+        options.forEach(opt => opt.classList.remove('active'));
+        option.classList.add('active');
 
-    // Tạo hoặc cập nhật span giảm giá
-    let discountSpan = document.querySelector(".product-price__old");
-    if (!discountSpan) {
-      // Nếu span chưa tồn tại, tạo mới
-      discountSpan = document.createElement("span");
-      discountSpan.className = "product-price__old";
-      productPrice.appendChild(discountSpan);
-    }
+        const selectedIcon = option.getAttribute('data-icon');
+        const isMobile = window.innerWidth <= 480;
 
-    // Cập nhật nội dung của thẻ span
-    if (discount !== 1) {
-      discountSpan.textContent = `Giảm giá ${discountPercentage}% (${label})`;
-      discountSpan.style.display = "inline-block";
-      discountSpan.style.fontSize = "14px";
-      discountSpan.style.background = "green";
-      discountSpan.style.marginLeft = "16px";
-      discountSpan.style.color = "#fff";
-      discountSpan.style.padding = "0 8px";
-    } else {
-      discountSpan.style.display = "none"; // Ẩn span nếu không giảm giá
-    }
+        if (isMobile) {
+          typeSearch.innerHTML = `<i class="fa-solid ${selectedIcon}"></i><i class="fa-solid fa-caret-down px-2"></i>`;
+        } else {
+          typeSearch.innerHTML = `<i class="fa-solid ${selectedIcon} px-2"></i> <span>${option.textContent}</span><i class="fa-solid fa-caret-down px-2"></i>`;
+        }
 
-    // Cập nhật giá trong thẻ p
-    productPrice.firstChild.textContent = `${discountedPrice.toLocaleString(
-      "vi-VN"
-    )} VND`;
-  });
-});
+        dropdownContent.style.display = 'none';
+      });
+    });
 
-let productPriceElement = document.getElementById('product-price');
-let originalPrice = parseFloat(productPriceElement.innerText.replace(' VND', '').replace(',', ''));
-
-// Lắng nghe sự thay đổi của lựa chọn giấy phép
-document.querySelectorAll('input[name="condition"]').forEach(input => {
-  input.addEventListener('change', function() {
-    updatePrice();
-  });
-});
-
-// Cập nhật giá khi lựa chọn giấy phép thay đổi
-function updatePrice() {
-  let selectedLicense = document.querySelector('input[name="condition"]:checked').value;
-
-  let newPrice = originalPrice;
-
-  // Kiểm tra giấy phép và điều chỉnh giá
-  if (selectedLicense === 'advance') {
-    newPrice *= 2; // Nhân đôi giá nếu chọn giấy phép nâng cao
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!typeSearch.contains(event.target) && !dropdownContent.contains(event.target)) {
+        dropdownContent.style.display = 'none';
+      }
+    });
   }
 
-  // Cập nhật giá hiển thị với định dạng số VND
-  productPriceElement.innerText = newPrice.toLocaleString('vi-VN') + ' VND';
-}
+  // Handle search input
+  const searchInput = document.getElementById('search-input');
+  const clearBtn = document.querySelector('.clear-btn');
 
+  if (searchInput && clearBtn) {
+    searchInput.addEventListener('input', function() {
+      if (searchInput.value) {
+        clearBtn.style.display = 'block';
+      } else {
+        clearBtn.style.display = 'none';
+      }
+    });
 
+    clearBtn.addEventListener('click', function() {
+      searchInput.value = '';
+      clearBtn.style.display = 'none';
+      searchInput.focus();
+    });
+  }
 
+  // Modal image handling
+  const productImg = document.querySelector('.product-img');
+  const modalImage = document.getElementById('modal-image');
+  const closeBtn = document.querySelector('.btn-close');
 
+  if (productImg && modalImage) {
+    productImg.addEventListener('click', function() {
+      modalImage.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        modalImage.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+    }
+
+    modalImage.addEventListener('click', function(e) {
+      if (e.target === modalImage) {
+        modalImage.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // Handle orientation change
+  window.addEventListener('orientationchange', function() {
+    setTimeout(() => {
+      // Update dropdown text visibility
+      const dropdownButton = document.getElementById('type-search');
+      if (dropdownButton) {
+        const spanText = dropdownButton.querySelector('span');
+        if (spanText) {
+          spanText.style.display = window.innerWidth <= 480 ? 'none' : '';
+        }
+      }
+    }, 300);
+  });
+});
