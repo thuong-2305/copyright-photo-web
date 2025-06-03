@@ -1,5 +1,4 @@
 :root {
-
   --swatch_1: #f0f4f9;
   --swatch_2: #b5d2e1;
   --swatch_3: #a2a9b6;
@@ -7,6 +6,35 @@
   --swatch_5: #3f4759;
   --swatch_6: #49bbae;
   --swatch_7: #696dbf;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.content {
+  display: flex;
+  min-height: 100vh;
+}
+
+.image-about {
+  flex: 1;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.image-about img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .frame-signup {
@@ -17,30 +45,74 @@
   align-items: center;
   overflow-y: auto;
   background-color: var(--swatch_1);
+  padding: 20px;
 }
 
 .signup-container {
   word-break: break-word;
-  padding: 24px;
-  width: 70vw;
+  padding: 40px;
+  width: 100%;
   max-width: 448px;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(238, 239, 242);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
+/* Form elements */
+.form-label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  transition: border-color 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--swatch_4);
+  box-shadow: 0 0 0 0.2rem rgba(3, 209, 168, 0.15);
+}
+
+/* Password toggle */
+.position-relative {
+  position: relative;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c757d;
+  z-index: 10;
+}
+
+/* Buttons */
 .btn {
   width: 100%;
   margin-top: 10px;
+  padding: 12px 20px;
   color: #fff;
   border-radius: 28px;
   font-size: 16px;
-  line-height: 30px;
-  font-weight: bold;
+  line-height: 24px;
+  font-weight: 600;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .signup-container .btn svg {
@@ -49,39 +121,369 @@
   font-size: 20px;
 }
 
-.signup-container .btn-signup:hover {
-  opacity: 0.8;
-  background: #57cc99;
-}
-
 .signup-container .btn-signup {
   color: white !important;
   background: var(--swatch_4) !important;
+}
+
+.signup-container .btn-signup:hover {
+  opacity: 0.9;
+  background: #00b893 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(3, 209, 168, 0.3);
 }
 
 .signup-container .btn-google {
   background-color: #fff;
   border: 1px solid #dee2e6;
   color: #676767;
+  margin-top: 15px;
 }
 
 .signup-container .btn-google:hover {
   border-color: #343a40;
+  background-color: #f8f9fa;
 }
 
-.content {
+/* reCAPTCHA */
+.g-recaptcha {
+  margin: 20px 0;
+  transform: scale(0.9);
+  transform-origin: 0 0;
+}
+
+/* Error messages */
+.text-danger {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#error-captcha {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Modal styles */
+.modal-dialog {
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+  padding: 20px;
+}
+
+.modal-body {
+  padding: 30px 20px;
+}
+
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 15px 20px;
+}
+
+.otp-input {
+  font-size: 24px;
+  letter-spacing: 10px;
+  text-align: center;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/* RESPONSIVE STYLES */
+
+/* Tablet (768px - 991px) */
+@media screen and (max-width: 991px) {
+  .image-about {
+    width: 40%;
+  }
+
+  .signup-container {
+    padding: 30px;
+  }
+}
+
+/* Mobile (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .image-about {
+    display: none;
+  }
+
+  .frame-signup {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 15px;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+
+  .frame-signup h1 {
+    font-size: 32px;
+    margin-bottom: 30px !important;
+    margin-top: 0 !important;
+    text-align: center;
+  }
+
+  .signup-container {
+    padding: 25px 20px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .signup-container h2 {
+    font-size: 24px;
+    margin-bottom: 25px !important;
+  }
+
+  /* Form adjustments */
+  .form-label {
+    font-size: 14px;
+  }
+
+  .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 12px 15px;
+  }
+
+  .mb-3 {
+    margin-bottom: 15px !important;
+  }
+
+  /* Button adjustments */
+  .btn {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+
+  .btn svg {
+    width: 20px;
+    height: 20px;
+    left: 20px;
+  }
+
+  /* Password toggle position fix */
+  .togglePassword {
+    right: 15px;
+    padding: 10px;
+  }
+
+  /* reCAPTCHA mobile */
+  .g-recaptcha {
+    transform: scale(0.85);
+    margin: 15px -10px;
+  }
+
+  /* Links and text */
+  .text-decoration-none {
+    font-size: 14px;
+  }
+
+  .text-center span {
+    font-size: 14px;
+  }
+
+  /* Modal responsive */
+  .modal-dialog {
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+
+  .modal-body {
+    padding: 20px 15px;
+  }
+
+  .otp-input {
+    font-size: 20px;
+    letter-spacing: 8px;
+  }
+
+  .modal-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .modal-footer button {
+    flex: 1;
+    min-width: 100px;
+  }
+}
+
+/* Small mobile (max-width: 480px) */
+@media screen and (max-width: 480px) {
+  .frame-signup {
+    padding: 20px 10px;
+    padding-top: 30px;
+  }
+
+  .frame-signup h1 {
+    font-size: 28px;
+    margin-bottom: 20px !important;
+  }
+
+  .signup-container {
+    padding: 20px 15px;
+    border-radius: 8px;
+  }
+
+  .signup-container h2 {
+    font-size: 22px;
+    margin-bottom: 20px !important;
+  }
+
+  /* Form elements smaller */
+  .mb-3 {
+    margin-bottom: 12px !important;
+  }
+
+  /* Smaller buttons */
+  .btn {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  /* reCAPTCHA smaller screens */
+  .g-recaptcha {
+    transform: scale(0.77);
+    margin: 15px -20px;
+  }
+
+  /* Modal on small screens */
+  .modal-body {
+    padding: 15px;
+  }
+
+  .otp-input {
+    font-size: 18px;
+    letter-spacing: 5px;
+    max-width: 160px;
+  }
+
+  .form-text {
+    font-size: 12px;
+  }
+}
+
+/* Very small screens (max-width: 360px) */
+@media screen and (max-width: 360px) {
+  .signup-container {
+    padding: 15px;
+  }
+
+  .g-recaptcha {
+    transform: scale(0.7);
+    margin: 15px -25px;
+  }
+}
+
+/* Landscape orientation */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+  .frame-signup {
+    padding-top: 20px;
+    justify-content: flex-start;
+  }
+
+  .frame-signup h1 {
+    margin-bottom: 15px !important;
+  }
+
+  .signup-container {
+    padding: 20px;
+  }
+
+  .mb-3 {
+    margin-bottom: 10px !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .form-control {
+    font-size: 16px; /* Prevent zoom */
+  }
+
+  .btn {
+    min-height: 48px; /* Better touch targets */
+  }
+
+  .togglePassword {
+    padding: 12px;
+    margin-right: -5px;
+  }
+}
+
+/* Alert styles */
+.alert {
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+  .alert {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+}
+
+/* reCAPTCHA responsive */
+.recaptcha-wrapper {
+  margin: 20px 0;
   display: flex;
-  height: 100vh;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 78px;
 }
 
-.image-about {
-  flex: 1;
-  position: sticky;
-  top: 0;
+.g-recaptcha {
+  transform: scale(0.9);
+  transform-origin: center center;
+  margin: 0 auto;
 }
 
-.image-about img {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .recaptcha-wrapper {
+    margin: 15px -10px;
+    width: calc(100% + 20px);
+  }
+
+  .g-recaptcha {
+    transform: scale(0.85);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .recaptcha-wrapper {
+    margin: 15px -15px;
+    width: calc(100% + 30px);
+  }
+
+  .g-recaptcha {
+    transform: scale(0.77);
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .recaptcha-wrapper {
+    margin: 15px -20px;
+    width: calc(100% + 40px);
+  }
+
+  .g-recaptcha {
+    transform: scale(0.7);
+  }
 }

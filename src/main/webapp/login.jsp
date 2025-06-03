@@ -4,6 +4,7 @@
 <%@ page import="java.time.LocalDateTime" %>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/libraries/fontawesome-free-6.6.0-web/css/all.min.css"/>
@@ -16,7 +17,7 @@
         <img src="./assets/images/login.png" alt="login"/>
     </div>
     <div class="frame-login">
-        <h1 class="fw-bold mb-5" style="color: #57cc99;">CoriPhoto</h1>
+        <h1 class="fw-bold" style="color: #57cc99;">CoriPhoto</h1>
         <%
             String signupMessage = (String) session.getAttribute("signupMessage");
             if (signupMessage != null) {
@@ -68,7 +69,9 @@
                     <p class="text-success">${message}</p>
                 </c:if>
                 <%-- Xác thực captcha --%>
-                <div class="g-recaptcha" data-sitekey="6LcalvMqAAAAAIPMHNMM3bTb4GNDzWfWGPb_0jbw"></div>
+                <div class="recaptcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="6LcalvMqAAAAAIPMHNMM3bTb4GNDzWfWGPb_0jbw"></div>
+                </div>
                 <div id="error-captcha" style="color: red"></div>
                 <%-- End captcha --%>
                 <button type="button" onclick="checkcaptcha('login')" class="btn btn-login w-100 mb-3">
@@ -108,6 +111,35 @@
         this.classList.toggle('fa-eye-slash');
     });
 </script>
+<script>
+    // Prevent double-tap zoom on buttons
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('button, .btn');
+        buttons.forEach(button => {
+            button.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                this.click();
+            });
+        });
+
+        // Fix iOS form zoom issue
+        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                if (window.innerWidth < 768) {
+                    document.querySelector('meta[name="viewport"]').setAttribute('content',
+                        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                }
+            });
+
+            input.addEventListener('blur', function() {
+                document.querySelector('meta[name="viewport"]').setAttribute('content',
+                    'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+            });
+        });
+    });
+</script>
+
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="assets/js/verify-captcha.js"></script>
 </body>
