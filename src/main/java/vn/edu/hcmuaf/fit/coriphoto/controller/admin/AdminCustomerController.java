@@ -7,8 +7,10 @@ import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.UserSerializer;
 import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
 import vn.edu.hcmuaf.fit.coriphoto.model.EmailSenderTask;
+import vn.edu.hcmuaf.fit.coriphoto.model.Permission;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
+import vn.edu.hcmuaf.fit.coriphoto.service.PermissionService;
 import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
 
 import java.io.IOException;
@@ -27,8 +29,11 @@ public class AdminCustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserService userService = new UserService();
-        List<User> users = userService.getAllCustomers();
+        List<User> users = userService.getAllUsers();
+        PermissionService permissionService = new PermissionService();
+        List<Permission> permissions = permissionService.getAllPermissions();
         request.setAttribute("users", users);
+        request.setAttribute("permissions", permissions);
         request.getRequestDispatcher("admin-customer.jsp").forward(request, response);
     }
 

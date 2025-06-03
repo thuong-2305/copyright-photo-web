@@ -101,6 +101,8 @@ public class UserService {
         return userDao.getAllCustomers();
     }
 
+    public List<User> getAllUsers() { return userDao.getAllUsers(); }
+
     public String getEmail(int uid) {
         return userDao.getEmail(uid);
     }

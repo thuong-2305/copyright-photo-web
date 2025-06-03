@@ -313,6 +313,11 @@ public class UserDAO {
                 .mapToBean(User.class).list());
     }
 
+    public List<User> getAllUsers() {
+        return jdbi.withHandle(handle -> handle.createQuery("select * from users")
+                .mapToBean(User.class).list());
+    }
+
     public User findById(int id) {
         String query = "SELECT * FROM users WHERE uid = :uid";
         return jdbi.withHandle(handle ->
@@ -336,13 +341,6 @@ public class UserDAO {
         return jdbi.withHandle(handle ->
                 handle.execute("DELETE FROM users WHERE uid = ?", userId) > 0
         );
-    }
-
-    public static void main(String[] args) {
-        UserDAO userDAO = new UserDAO();
-
-        User test = userDAO.getUser(10);
-        System.out.println(test);
     }
 
     public String getEmailById(int uid) {
