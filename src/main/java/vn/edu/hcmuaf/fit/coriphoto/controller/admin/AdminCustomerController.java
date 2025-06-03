@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.UserSerializer;
 import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
+import vn.edu.hcmuaf.fit.coriphoto.model.AccountLock;
 import vn.edu.hcmuaf.fit.coriphoto.model.EmailSenderTask;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,7 +127,6 @@ public class AdminCustomerController extends HttpServlet {
                             "Mật khẩu: " + password + "\n" +
                             "Vui lòng đổi mật khẩu sau khi đăng nhập lần đầu.";
 
-                    // Gửi email ở thread riêng để không làm chậm phản hồi ajax
                     ExecutorService executor = Executors.newSingleThreadExecutor();
                     executor.execute(new EmailSenderTask(email, subject, body));
                     executor.shutdown();
@@ -142,6 +143,40 @@ public class AdminCustomerController extends HttpServlet {
                         user_root.getUsername(), LocalDateTime.now(),
                         user_root.getUsername() + " đã thêm user mới có name:" + username);
                 new LogService().insertLog(loginLog);
+            }
+            else if ("lock".equals(action)) {
+                int userId = Integer.parseInt(request.getParameter("user_id"));
+                String lockUntilStr = request.getParameter("lockUntil");
+                String lockReason = request.getParameter("lockReason");
+
+                LocalDateTime lockUntil = LocalDateTime.parse(lockUntilStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                AccountLock accountLock = new AccountLock(0, userId, LocalDateTime.now(), lockUntil, lockReason);
+                boolean success = userService.lockUser(accountLock);
+
+                Gson gson = new Gson();
+                Map<String, Object> responseData = new HashMap<>();
+                responseData.put("success", success);
+                String jsonResponse = gson.toJson(responseData);
+                response.getWriter().write(jsonResponse);
+
+                if (success) {
+                    ActivityLog lockLog = new ActivityLog("WARNING", user_root.getUid(),
+                            user_root.getUsername(), LocalDateTime.now(),
+                            user_root.getUsername() + " đã khóa tài khoản user có id:" + userId + " đến " + lockUntilStr);
+                    new LogService().insertLog(lockLog);
+
+                    User user = userService.getUser(userId);
+                    String subject = "Tài khoản của bạn đã bị khóa";
+                    String body = "Tài khoản của bạn trên CopyRightPhoto đã bị khóa bởi quản trị viên.\n" +
+                            "Thời gian khóa: " + LocalDateTime.now() + "\n" +
+                            "Thời gian mở khóa: " + lockUntilStr + "\n" +
+                            "Lý do: " + (lockReason != null && !lockReason.isEmpty() ? lockReason : "Không có lý do cụ thể") + "\n" +
+                            "Vui lòng liên hệ quản trị viên để biết thêm chi tiết.";
+
+                    ExecutorService executor = Executors.newSingleThreadExecutor();
+                    executor.execute(new EmailSenderTask(user.getEmail(), subject, body));
+                    executor.shutdown();
+                }
             }
         }
     }
