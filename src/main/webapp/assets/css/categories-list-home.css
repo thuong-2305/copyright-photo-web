@@ -442,3 +442,56 @@ button {
         height: 50px
     }
 }
+
+/* Additional responsive styles for trending categories */
+@media (max-width: 768px) {
+    .halim-trending-slider {
+        padding: 5px 0;
+    }
+
+    .halim-trending-container {
+        margin-left: 0;
+        padding: 0 10px;
+    }
+
+    .halim-trending-track {
+        padding-bottom: 1rem;
+        gap: 1rem;
+    }
+
+    .halim-trending-card {
+        width: 180px;
+    }
+
+    .halim-trending-nav-button {
+        display: none;
+    }
+
+    .section-title {
+        text-align: center;
+        padding: 0 15px;
+    }
+
+    .section-title span {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .halim-trending-card {
+        width: 150px;
+    }
+
+    .halim-trending-title-text {
+        font-size: 1rem;
+    }
+
+    .halim-trending-original-title {
+        font-size: 0.875rem;
+    }
+
+    .halim-trending-number {
+        font-size: 2.5em;
+        width: 35px;
+    }
+}
