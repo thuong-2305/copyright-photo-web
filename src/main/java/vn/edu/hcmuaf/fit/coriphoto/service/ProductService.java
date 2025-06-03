@@ -5,6 +5,7 @@ import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.TrendProducts;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -82,4 +83,19 @@ public class ProductService {
     public boolean updateStatus(String action, int id) { return products.updateStatus(action, id); }
 
     public int getInNextProduct() { return products.getInNextProduct(); }
+
+    public List<Product> filterByPrice(List<Product> results, double minPrice ,double maxPrice ){
+        results = products.filterByPrice(results, minPrice, maxPrice);
+        return results;
+    }
+
+    public List<Product> filterBySize(List<Product> results,String size){
+        results = products.filterBySize(results, size);
+        return results;
+    }
+
+    public List<Product> filterByQuality(List<Product> results,String quality){
+        results = products.filterByQuality(results, quality);
+        return results;
+    }
 }
