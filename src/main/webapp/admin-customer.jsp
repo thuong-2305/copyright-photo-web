@@ -259,6 +259,28 @@
 <!-- Khởi tạo Tempus Dominus -->
 <script>
     $(document).ready(function () {
+        // Tạo đối tượng Date cho ngày hiện tại
+        const now = new Date();
+
+        // Tạo đối tượng Date mới cho ngày hôm sau
+        const tomorrow = new Date(now);
+        tomorrow.setDate(now.getDate() + 1); // ngày hôm sau
+
+        // Format thành yyyy-MM-dd HH:mm:ss
+        function formatDateTime(date) {
+            const pad = (n) => (n < 10 ? '0' + n : n);
+            return date.getFullYear() + '-' +
+                pad(date.getMonth() + 1) + '-' +
+                pad(date.getDate()) + ' ' +
+                pad(date.getHours()) + ':' +
+                pad(date.getMinutes()) + ':' +
+                pad(date.getSeconds());
+        }
+
+        // Gán giá trị mặc định cho input
+        $('#lockUntil').val(formatDateTime(tomorrow));
+
+        // Khởi tạo Tempus Dominus
         new tempusDominus.TempusDominus(document.getElementById('lockUntilPicker'), {
             display: {
                 components: {
@@ -291,10 +313,12 @@
             localization: {
                 format: 'yyyy-MM-dd HH:mm:ss',
                 locale: 'vi'
-            }
+            },
+            defaultDate: new tempusDominus.DateTime(tomorrow)
         });
     });
 </script>
+
 
 <!-- Chức năng ẩn hiển xóa user -->
 <script>
