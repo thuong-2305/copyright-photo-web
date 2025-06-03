@@ -46,8 +46,6 @@ public class SearchController extends HttpServlet {
                 double maxPrice = maxPriceStr != null && !maxPriceStr.isEmpty() ?
                         Double.parseDouble(maxPriceStr) : Double.MAX_VALUE;
 
-                System.out.println("minPrice: " + minPrice);
-                System.out.println("maxPrice: " + maxPrice);
                 products = productService.filterByPrice(products, minPrice, maxPrice);
             }
 
