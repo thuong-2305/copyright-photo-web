@@ -96,8 +96,6 @@
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
                     <h5 class="fw-semibold">Tài khoản người dùng</h5>
                     <div id="exportButtons">
-                        <button class="btn add-btn btn-outline-primary fw-semibold ms-2"><i class="bi bi-person-plus">Thêm
-                            người dùng</i></button>
                         <% if(canCreate) {%>
                         <button class="btn add-btn btn-outline-primary fw-semibold ms-2"><i class="bi bi-person-plus">Thêm
                             người dùng</i></button>
@@ -263,12 +261,18 @@
                             </select>
                         </div>
 
-                        <!-- Thông tin user và quyền hạn hiện tại  -->
+                        <!-- Thông tin user và quyền hạn hiện tại -->
                         <div id="roleUser" class="mb-4 d-none">
                             <h6 class="fw-semibold mb-3">Cấp độ quyền hạn</h6>
-                            <div class="d-flex justify-content-start">
-                                <p class="fs-5">Quyền hạn: <strong class="role"></strong></p>
-                                <i class="bi bi-repeat ms-3"></i>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <p class="fs-5 mb-0">Quyền hạn: <strong class="role"></strong></p>
+                                <i class="bi bi-repeat ms-3 change-role" style="cursor: pointer;"></i>
+                                <!-- Dropdown để thay đổi role -->
+                                <select id="changeRoleSelect" class="form-select ms-3 d-none" style="width: 150px;">
+                                    <option value="2">Cấp 1 (User)</option>
+                                    <option value="1">Cấp 2 (Seller)</option>
+                                    <option value="0">Cấp 3 (Admin)</option>
+                                </select>
                             </div>
                         </div>
 
@@ -548,6 +552,51 @@
                 }
             });
         }
+
+        $('.change-role').click(function () {
+            $('#changeRoleSelect').toggleClass('d-none'); // Toggle dropdown
+        });
+
+        $('#changeRoleSelect').change(function () {
+            const uid = $('#userSelect').val();
+            const newRole = parseInt($(this).val());
+
+            if (!uid) {
+                showErrorNotification('Vui lòng chọn người dùng!');
+                return;
+            }
+
+            // Gửi AJAX để cập nhật role
+            $.ajax({
+                url: '/admin-customer',
+                method: 'POST',
+                headers: {
+                    'X-Requested-By': 'AJAX'
+                },
+                data: {
+                    action: 'updateRole',
+                    user_id: uid,
+                    role: newRole
+                },
+                success: function (response) {
+                    try {
+                        if (response.success) {
+                            showSuccessNotification('Cập nhật quyền hạn thành công!');
+                            getRoleUser(uid); // Tải lại thông tin role
+                            loadPermissions(uid); // Tải lại danh sách quyền
+                            $('#changeRoleSelect').addClass('d-none'); // Ẩn dropdown sau khi cập nhật
+                        } else {
+                            showErrorNotification('Cập nhật quyền hạn thất bại!');
+                        }
+                    } catch (e) {
+                        showErrorNotification('Lỗi phân tích dữ liệu!');
+                    }
+                },
+                error: function () {
+                    showErrorNotification('Lỗi kết nối server!');
+                }
+            });
+        });
 
         // Xử lý thêm quyền
         $('#addPermissionBtn').click(function () {

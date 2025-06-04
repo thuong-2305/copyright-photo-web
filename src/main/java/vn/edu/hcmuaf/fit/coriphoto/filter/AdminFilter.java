@@ -16,6 +16,8 @@ import java.io.IOException;
             "/admin-products",
             "/admin-customer",
             "/admin-category",
+            "/admin-log",
+            "/admin-order",
             "/AdminHandleActNotify",
             "/AdminHandleAddImage",
             "/AdminHandleAddProduct",

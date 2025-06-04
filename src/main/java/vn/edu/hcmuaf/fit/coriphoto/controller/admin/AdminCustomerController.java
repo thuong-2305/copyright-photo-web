@@ -157,6 +157,33 @@ public class AdminCustomerController extends HttpServlet {
                         user_root.getUsername(), LocalDateTime.now(),
                         user_root.getUsername() + " đã thêm user mới có name:" + username);
                 new LogService().insertLog(loginLog);
+            } else if ("updateRole".equals(action)) {
+                int userId = Integer.parseInt(request.getParameter("user_id"));
+                int newRole = Integer.parseInt(request.getParameter("role"));
+
+                User user = userService.getUser(userId);
+                if (user == null) {
+                    Map<String, Object> responseData = new HashMap<>();
+                    responseData.put("success", false);
+                    responseData.put("error", "Không tìm thấy user");
+                    response.getWriter().write(new Gson().toJson(responseData));
+                    return;
+                }
+
+                user.setRole(newRole);
+                boolean success = userService.updateUser(user);
+
+                Map<String, Object> responseData = new HashMap<>();
+                responseData.put("success", success);
+                if (success) {
+                    ActivityLog loginLog = new ActivityLog("WARNING", user_root.getUid(),
+                            user_root.getUsername(), LocalDateTime.now(),
+                            user_root.getUsername() + " đã cập nhật quyền hạn của user có id:" + userId + " thành role: " + newRole);
+                    new LogService().insertLog(loginLog);
+                } else {
+                    responseData.put("error", "Cập nhật quyền hạn thất bại");
+                }
+                response.getWriter().write(new Gson().toJson(responseData));
             }
         }
     }

@@ -38,7 +38,7 @@ import java.util.List;
         Order order = orderService.getOrder(orderId);
         List<OrderDetail> orderDetails = orderService.getOrderDetailsHistory(orderId);
         OrderDetailListDTO orderdetailList = new OrderDetailListDTO(order, orderDetails);
-        response.setContentType("application/json");
+
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(LocalDate.class, new JsonSerializer<LocalDate>() {
                     @Override

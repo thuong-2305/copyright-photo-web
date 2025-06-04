@@ -303,112 +303,16 @@
 </script>
 
 <!-- Chức năng ẩn hiện chi tiết đơn hàng -->
-<script>
-    $(document).ready(function () {
-        $('.delete-btn-permission').on("click", function() {
-            $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
-            $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
-                $(this).addClass("d-none");
-            });
-        });
-
-        $(".view-btn").on("click", function () {
-            $('.view-products-main').toggleClass("d-none");
-            $('.view-product-add').toggleClass("d-none");
-
-            const orderId = $(this).data('id');
-            $.ajax({
-                url: '/admin-order',
-                type: 'POST',
-                header: {
-                    'X-requested-by': 'AJAX'
-                },
-                data: {
-                    order_id: orderId
-                },
-                success: function(response) {
-                    console.log(response.order)
-                    // Xóa nội dung cũ nếu có
-                    $('.card-first').empty();
-                    $('.fullName').text(response.order.fullName);
-                    $('.email').text(response.order.email);
-                    $('.id-order').text(response.order.orderId)
-                    $('.type-payment').text(response.order.paymentTypeName)
-                    $('.received-date').text(response.order.formatOrderPaymentDateTime)
-                    $('.time-create').text(response.order.formatDateTime)
-                    $('.payment-success').text(response.order.formatOrderPaymentDateTime)
-
-                    // Tạo HTML mới từ dữ liệu response
-                    let html = '<div class="title-details d-flex justify-content-between align-items-center">' +
-                        '<h6 class="fw-semibold">Chi tiết</h6>' +
-                        '<div class="dropdown">' +
-                        '<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">' +
-                        '<small>Hoàn thành</small>' +
-                        '</button>' +
-                        '<ul class="dropdown-menu">' +
-                        '<li><a class="dropdown-item" href="#">Hoàn thành</a></li>' +
-                        '<li><a class="dropdown-item" href="#">Hủy</a></li>' +
-                        '</ul>' +
-                        '</div>' +
-                        '</div>';
-
-                    // Thêm từng sản phẩm vào HTML
-                    let subtotal = 0;
-                    const orderDetails = response.orderDetails
-                    for (let i = 0; i < orderDetails.length; i++) {
-                        let item = orderDetails[i];
-                        const product = item.product;
-                        let productUrl = product.url;
-
-                        html += '<div class="d-flex align-items-center mt-3">' +
-                            '<img src="' + productUrl + '" alt="' + product?.name + '" ' +
-                            'class="img-fluid me-3 rounded" style="width: 50px; height: 50px;">' +
-                            '<p class="mb-0">' + product.name + '</p>' +
-                            '<span class="ms-auto fw-semibold">' + formatCurrency(product.price) + '</span>' +
-                            '</div>';
-
-                        subtotal += product.price;
-                    }
-
-                    // Tính toán tổng tiền (giả sử có giảm giá 10%)
-                    let discount = subtotal * response.order.promotionPercent;
-                    let total = subtotal - discount;
-
-                    // Thêm phần tổng kết
-                    html += '<hr><div class="detail-price">' +
-                        '<p><small>Tạm tính: </small><span class="float-end">' + formatCurrency(subtotal) + '</span></p>' +
-                        '<p class=""><small>Giảm: </small><span class="float-end text-danger">-' + formatCurrency(discount) + '</span></p>' +
-                        '<h5><small class="fw-semibold">Tổng: </small><span class="float-end">' + formatCurrency(total) + '</span></h5>' +
-                        '</div>';
-
-                    // Thêm HTML vào card
-                    $('.card-first').html(html);
-
-                },
-                error: function() {
-                    alert('Đã xảy ra lỗi khi cập nhật!');
-                }
-            })
-        })
-
-        $('.button-back').on("click", function() {
-            $('.view-products-main').toggleClass("d-none");
-            $('.view-product-add').toggleClass("d-none");
-        });
-
-    });
-
-    function formatCurrency(amount) {
-        return new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND'
-        }).format(amount);
-    }
-</script>
-
-<!-- Xử lý xóa danh mục -->
+<!-- Xử lý xóa đơn hàng -->
 <script>
     let parentElement = null;
+
+    $('.delete-btn-permission').on("click", function() {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
 
     $('.delete-btn').on('click', function () {
         orderIdToDelete = $(this).data('id');
@@ -454,6 +358,97 @@
         }
         $('#deleteModal').modal('hide');
     });
+
+    $(".view-btn").on("click", function () {
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
+        console.log('cliked')
+        const orderId = $(this).data('id');
+        $.ajax({
+            url: '/admin-order',
+            type: 'POST',
+            header: {
+                'X-requested-by': 'AJAX'
+            },
+            data: {
+                order_id: orderId
+            },
+            success: function(response) {
+                console.log(response.order)
+                // Xóa nội dung cũ nếu có
+                $('.card-first').empty();
+                $('.fullName').text(response.order.fullName);
+                $('.email').text(response.order.email);
+                $('.id-order').text(response.order.orderId)
+                $('.type-payment').text(response.order.paymentTypeName)
+                $('.received-date').text(response.order.formatOrderPaymentDateTime)
+                $('.time-create').text(response.order.formatDateTime)
+                $('.payment-success').text(response.order.formatOrderPaymentDateTime)
+
+                // Tạo HTML mới từ dữ liệu response
+                let html = '<div class="title-details d-flex justify-content-between align-items-center">' +
+                    '<h6 class="fw-semibold">Chi tiết</h6>' +
+                    '<div class="dropdown">' +
+                    '<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">' +
+                    '<small>Hoàn thành</small>' +
+                    '</button>' +
+                    '<ul class="dropdown-menu">' +
+                    '<li><a class="dropdown-item" href="#">Hoàn thành</a></li>' +
+                    '<li><a class="dropdown-item" href="#">Hủy</a></li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '</div>';
+
+                // Thêm từng sản phẩm vào HTML
+                let subtotal = 0;
+                const orderDetails = response.orderDetails
+                for (let i = 0; i < orderDetails.length; i++) {
+                    let item = orderDetails[i];
+                    const product = item.product;
+                    let productUrl = product.url;
+
+                    html += '<div class="d-flex align-items-center mt-3">' +
+                        '<img src="' + productUrl + '" alt="' + product?.name + '" ' +
+                        'class="img-fluid me-3 rounded" style="width: 50px; height: 50px;">' +
+                        '<p class="mb-0">' + product.name + '</p>' +
+                        '<span class="ms-auto fw-semibold">' + formatCurrency(product.price) + '</span>' +
+                        '</div>';
+
+                    subtotal += product.price;
+                }
+
+                // Tính toán tổng tiền (giả sử có giảm giá 10%)
+                let discount = subtotal * response.order.promotionPercent;
+                let total = subtotal - discount;
+
+                // Thêm phần tổng kết
+                html += '<hr><div class="detail-price">' +
+                    '<p><small>Tạm tính: </small><span class="float-end">' + formatCurrency(subtotal) + '</span></p>' +
+                    '<p class=""><small>Giảm: </small><span class="float-end text-danger">-' + formatCurrency(discount) + '</span></p>' +
+                    '<h5><small class="fw-semibold">Tổng: </small><span class="float-end">' + formatCurrency(total) + '</span></h5>' +
+                    '</div>';
+
+                // Thêm HTML vào card
+                $('.card-first').html(html);
+
+            },
+            error: function() {
+                alert('Đã xảy ra lỗi khi cập nhật!');
+            }
+        })
+    })
+
+    $('.button-back').on("click", function() {
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
+    });
+
+    function formatCurrency(amount) {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND'
+        }).format(amount);
+    }
 </script>
 
 </body>

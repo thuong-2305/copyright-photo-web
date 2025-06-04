@@ -2,10 +2,9 @@ let canDelete = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     let deletePermissionUpload = document.querySelector(".deletePermissionUpload");
-    console.log(deletePermissionUpload.textContent);
-    canDelete = deletePermissionUpload && deletePermissionUpload.textContent.trim() === "True";
-    console.log(canDelete);
-    fetchList('accepts');
+
+    let rawText = deletePermissionUpload.textContent.trim();
+    canDelete = deletePermissionUpload && rawText.toLowerCase() === "true";
 });
 
 function fetchList(type) {

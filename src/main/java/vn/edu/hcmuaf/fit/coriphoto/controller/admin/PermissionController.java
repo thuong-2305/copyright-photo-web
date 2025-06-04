@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
+import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
 import vn.edu.hcmuaf.fit.coriphoto.service.PermissionRoleService;
 import vn.edu.hcmuaf.fit.coriphoto.service.PermissionUserService;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
@@ -14,6 +16,7 @@ import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -73,6 +76,8 @@ public class PermissionController extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+
+        User user_root = (User) request.getSession().getAttribute("auth");
 
         // Đọc dữ liệu JSON từ request body
         StringBuilder sb = new StringBuilder();
@@ -141,6 +146,9 @@ public class PermissionController extends HttpServlet {
         JSONObject jsonResponse = new JSONObject();
         jsonResponse.put("idPU", idPU);
         out.print(jsonResponse.toString());
+        ActivityLog successLog = new ActivityLog("INFO", user_root.getUid(), user_root.getUsername(), LocalDateTime.now(),
+                user_root.getUsername() + " đã thêm quyền mới có ID: " + idPermission + " cho user ID: " + uid + " thành công");
+        new LogService().insertLog(successLog);
         out.flush();
     }
 }

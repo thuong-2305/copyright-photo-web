@@ -30,6 +30,10 @@ p {
     z-index: 999;
 }
 
+.container-main .left .title-logo {
+    text-align: center;
+}
+
 .container-main .left .text-logo {
     color: var(--primary-color);
 }
