@@ -104,13 +104,13 @@
                 <div class="d-flex flex-row mt-4 stats-overview px-2">
                     <!-- Thống kê người dùng -->
                     <div class="col-8 user-statistics-section pl-0">
-                        <div class="card rounded" id="user-statistics-card">
+                        <div class="card rounded" id="user-statistics-card" style="min-height: 300px;">
                             <div class="card-header text-white fw-semibold">
                                 <h5>Thống kê người dùng</h5>
                             </div>
                             <div class="card-body">
                                 <!-- Canvas for Chart -->
-                                <canvas id="userStatisticsChart" width="400" height="200"></canvas>
+                                <canvas id="userStatisticsChart"></canvas>
                             </div>
                         </div>
                     </div>

@@ -172,6 +172,11 @@
                                             <button class="btn delete-btn-permission" data-id="${user.uid}"><i
                                                     class="fa-solid fa-trash"></i></button>
                                             <% } %>
+                                            <% if(canCreateUser) {%>
+                                            <button class="btn lock-btn" data-id="${user.uid}"><i class="bi bi-lock"></i></button>
+                                            <% } else { %>
+                                            <button class="btn button-add-permission fw-semibold btn-permission"><i class="bi bi-lock"></i></button>
+                                            <% } %>
                                         </div>
                                     </td>
                                 </tr>
@@ -1019,7 +1024,7 @@
 
 <!-- Chỉnh sửa thông tin user -->
 <script>
-    $(document).on("click", ".edit-btn", function () {
+    $(document).on("click", ".edit-btn-permission", function () {
         $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
         $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
             $(this).addClass("d-none");
@@ -1134,6 +1139,13 @@
 
 <!-- Thêm thông tin user -->
 <script>
+    $(document).on("click", ".add-btn-permission", function () {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
+
     $(document).on("click", ".add-btn", function() {
         $('#userItem .id-user').html("");
         $('#userItem .full-name').html(

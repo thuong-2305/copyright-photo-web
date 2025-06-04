@@ -40,97 +40,97 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                     </div>
+
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-center flex-grow-1">
-                            <!-- Ảnh Dropdown -->
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle mx-lg-3" href="#" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-3" aria-current="page" href="#">
                                     <span class="fw-semibold title-item">Ảnh</span>
+                                    <i class="fa-solid fa-angle-down px-2  title-item"></i>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Ảnh chụp</a></li>
-                                    <li><a class="dropdown-item" href="#">Ảnh vectors</a></li>
-                                    <li><a class="dropdown-item" href="#">Ảnh AI</a></li>
-                                </ul>
+                                <div class="link-hover">
+                                    <div class="dropdown-arrow"></div>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <span>Ảnh chụp</span>
+                                        <i class="bi bi-arrow-right d-none"></i>
+                                    </a>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <span>Ảnh vectors</span>
+                                        <i class="bi bi-arrow-right d-none"></i>
+                                    </a>
+                                    <a href="#" class="d-flex justify-content-between">
+                                        <span>Ảnh AI</span>
+                                        <i class="bi bi-arrow-right d-none"></i>
+                                    </a>
+                                </div>
                             </li>
-
-                            <!-- Danh mục Dropdown -->
                             <%
                                 @SuppressWarnings("unchecked")
                                 List<Category> categories = (List<Category>) request.getAttribute("categories");
                             %>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle mx-lg-3" href="#" role="button"
-                                   data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-3" href="categories">
                                     <span class="fw-semibold title-item">Danh mục</span>
+                                    <i class="fa-solid fa-angle-down px-2 title-item"></i>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-categories">
-                                    <% if(categories != null) {
-                                        for(int i = 0; i < Math.min(categories.size(), 10); i++) {
+                                <div class="link-hover">
+                                    <div class="dropdown-arrow"></div>
+                                    <div class="dropdown">
+                                        <% for(int i = 0; i < 5; i++) {
                                             Category item = categories.get(i);
-                                    %>
-                                    <li><a class="dropdown-item" href="products?cid=<%= item.getCid() %>">
-                                        <%= item.getName() %>
-                                    </a></li>
-                                    <% }} %>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="categories">Tất cả danh mục</a></li>
-                                </ul>
+                                        %>
+                                        <a href="products?cid=<%= item.getCid() %>" class="d-flex justify-content-between">
+                                            <span><%= item.getName() %></span>
+                                            <i class="bi bi-arrow-right d-none"></i>
+                                        </a>
+                                        <% } %>
+                                    </div>
+                                    <div class="dropdown">
+                                        <% for(int i = 5; i < 10; i++) {
+                                            Category item = categories.get(i);
+                                        %>
+                                        <a href="products?cid=<%= item.getCid() %>" class="d-flex justify-content-between">
+                                            <span><%= item.getName() %></span>
+                                            <i class="bi bi-arrow-right d-none"></i>
+                                        </a>
+                                        <% } %>
+                                    </div>
+                                    <div class="dropdown">
+                                        <% for(int i = 10; i < 14; i++) {
+                                            Category item = categories.get(i);
+                                        %>
+                                        <a href="products?cid=<%= item.getCid() %>" class="d-flex justify-content-between">
+                                            <span><%= item.getName() %></span>
+                                            <i class="bi bi-arrow-right d-none"></i>
+                                        </a>
+                                        <% } %>
+                                        <a href="categories" class="d-flex justify-content-between">
+                                            <span>Tất cả</span>
+                                            <i class="bi bi-arrow-right d-none"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </li>
-
-                            <!-- Giấy phép -->
                             <li class="nav-item">
                                 <a class="nav-link mx-lg-3" href="${pageContext.request.contextPath}/license">
                                     <span class="fw-semibold title-item">
                                         <i class="bi bi-x-diamond me-2 title-item"></i>Giấy phép
                                     </span>
                                 </a>
-                            </li>
-
-                            <!-- Mobile Only Items -->
-                            <li class="nav-item d-md-none">
-                                <hr class="dropdown-divider">
-                            </li>
-
-                            <!-- Sell/Contributor - Mobile -->
-                            <li class="nav-item d-md-none">
-                                <% boolean isSignupSell = (Boolean) request.getSession().getAttribute("isSignupSell"); %>
-                                <% if (isSignupSell) { %>
-                                <a class="nav-link" href="ShowStatistic">
-                                    <i class="bi bi-hexagon-half me-2"></i>
-                                    Quản lý phân phối
-                                </a>
-                                <% } else { %>
-                                <a class="nav-link" href="register-contributor">
-                                    <i class="bi bi-hexagon-half me-2"></i>
-                                    Đăng ký thành người phân phối
-                                </a>
-                                <% } %>
-                            </li>
-
-                            <!-- Wishlist - Mobile -->
-                            <li class="nav-item d-md-none">
-                                <a class="nav-link" href="Favourite">
-                                    <i class="fa-regular fa-heart me-2"></i>
-                                    Yêu thích
-                                </a>
-                            </li>
-
-                            <!-- Cart - Mobile -->
-                            <li class="nav-item d-md-none">
-                                <a class="nav-link" href="cart">
-                                    <i class="fa-solid fa-cart-shopping me-2"></i>
-                                    Giỏ hàng
-                                    <span class="badge bg-primary ms-2">${ cartLength }</span>
-                                </a>
+                                <div class="link-hover">
+                                    <div class="dropdown-arrow"></div>
+                                    <a href="${pageContext.request.contextPath}/license" class="d-flex justify-content-between">
+                                        <span>Xem giấy phép</span>
+                                        <i class="bi bi-arrow-right d-none"></i>
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Desktop Items -->
-                <div class="d-none d-md-flex align-items-center pt-1">
+                <!-- Desktop Items (Combined with Login/User) -->
+                <div class="d-none d-md-flex align-items-center ms-auto">
                     <!-- Sell/Contributor -->
                     <div class="sell">
                         <% boolean isSignupSellDesktop = (Boolean) request.getSession().getAttribute("isSignupSell"); %>
@@ -144,31 +144,29 @@
                             boolean canRegisterSell = permissions != null && permissions.contains(1);
 
                             if (canRegisterSell) { %>
-                                <a href="register-contributor" class="sell mx-lg-2 fw-semibold title-item">
-                                    <i class="bi bi-hexagon-half title-item"></i>
-                                    Đăng ký thành người phân phối
-                                </a>
+                        <a href="register-contributor" class="sell mx-lg-2 fw-semibold title-item">
+                            <i class="bi bi-hexagon-half title-item"></i>
+                            Đăng ký thành người phân phối
+                        </a>
                         <% }} %>
                     </div>
 
                     <div class="line-separate mx-lg-1"></div>
 
                     <!-- Wishlist -->
-                    <a href="Favourite" class="love">
+                    <a href="Favourite" class="love me-2">
                         <i class="fa-regular fa-heart title-item"></i>
                     </a>
 
                     <!-- Cart -->
-                    <a href="cart" class="cart">
+                    <a href="cart" class="cart me-2">
                         <i class="fa-solid fa-cart-shopping title-item"></i>
                         <span>${ cartLength }</span>
                     </a>
-                </div>
 
-                <!-- Desktop Login/User -->
-                <div class="d-none d-md-block">
+                    <!-- Desktop Login/User -->
                     <c:if test="${auth == null}">
-                        <a href="login" class="login-button fw-semibold">Đăng nhập</a>
+                        <a href="login" class="login-button fw-semibold me-2">Đăng nhập</a>
                     </c:if>
                     <c:if test="${auth != null}">
                         <div class="d-flex align-items-center user-icon me-2" id="user">
@@ -177,10 +175,10 @@
                         </div>
 
                         <c:if test="${ auth.role == 0 }">
-                            <a href="ShowDashBoard" class="text-decoration-none feature-admin">
-                                <div class="d-flex align-items-center user-icon btn btn-outline-success">
-                                    <i class="bi bi-person-lock me-2"></i>Admin
-                                    <i class="fa fa-caret-down ms-2"></i>
+                            <a href="ShowDashBoard" class="text-decoration-none feature-admin d-inline">
+                                <div class="d-inline-flex align-items-center user-icon btn btn-outline-success">
+                                    <i class="bi bi-person-lock me-1"></i>Admin
+                                    <i class="fa fa-caret-down ms-1"></i>
                                 </div>
                             </a>
                         </c:if>
@@ -190,7 +188,6 @@
         </nav>
     </div>
 </section>
-
 <!-- section user account -->
 <section class="user-account bg-white">
     <div class="container">
