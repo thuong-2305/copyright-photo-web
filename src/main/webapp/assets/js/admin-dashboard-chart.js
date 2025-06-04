@@ -29,7 +29,8 @@ const config = {
     type: "line",
     data: data,
     options: {
-        responsive: true,
+        responsive: false, // Tắt responsive để cố định kích thước
+        maintainAspectRatio: false, // Cho phép điều chỉnh kích thước độc lập
         plugins: {
             legend: { display: true, position: "top" },
             tooltip: { enabled: true },
@@ -37,6 +38,9 @@ const config = {
         scales: {
             x: {
                 title: { display: true, text: "Tháng" },
+            },
+            y: {
+                beginAtZero: true, // Đảm bảo trục y bắt đầu từ 0
             },
         },
     },
@@ -55,7 +59,6 @@ function loadData() {
     })
         .then(response => response.json())
         .then(dataFromServer => {
-            // Assign the data to the chart datasets
             data.datasets[0].data = dataFromServer.sellersData; // Sellers data
             data.datasets[1].data = dataFromServer.customersData; // Customers data
             incomeChart.update(); // Update the chart only when data is loaded
@@ -65,5 +68,5 @@ function loadData() {
         });
 }
 
-// Initial data load
+// Initial data load (chỉ gọi một lần khi trang tải)
 loadData();

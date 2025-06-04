@@ -298,7 +298,15 @@ table.dataTable > thead > tr > th {
     background-color: var(--dark-right) !important;
 }
 
+#user-statistics-card {
+    width: 100%; /* Đảm bảo card chiếm toàn bộ chiều rộng */
+    min-height: 300px; /* Đặt chiều cao tối thiểu */
+}
 
+#user-statistics-chart {
+    width: 100% !important; /* Đảm bảo canvas chiếm toàn bộ chiều rộng */
+    height: 250px !important; /* Đặt chiều cao cố định */
+}
 
 
 
