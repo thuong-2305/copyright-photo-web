@@ -129,8 +129,8 @@
                     </div>
                 </div>
 
-                <!-- Desktop Items -->
-                <div class="d-none d-md-flex align-items-center pt-1">
+                <!-- Desktop Items (Combined with Login/User) -->
+                <div class="d-none d-md-flex align-items-center ms-auto">
                     <!-- Sell/Contributor -->
                     <div class="sell">
                         <% boolean isSignupSellDesktop = (Boolean) request.getSession().getAttribute("isSignupSell"); %>
@@ -144,31 +144,29 @@
                             boolean canRegisterSell = permissions != null && permissions.contains(1);
 
                             if (canRegisterSell) { %>
-                                <a href="register-contributor" class="sell mx-lg-2 fw-semibold title-item">
-                                    <i class="bi bi-hexagon-half title-item"></i>
-                                    Đăng ký thành người phân phối
-                                </a>
+                        <a href="register-contributor" class="sell mx-lg-2 fw-semibold title-item">
+                            <i class="bi bi-hexagon-half title-item"></i>
+                            Đăng ký thành người phân phối
+                        </a>
                         <% }} %>
                     </div>
 
                     <div class="line-separate mx-lg-1"></div>
 
                     <!-- Wishlist -->
-                    <a href="Favourite" class="love">
+                    <a href="Favourite" class="love me-2">
                         <i class="fa-regular fa-heart title-item"></i>
                     </a>
 
                     <!-- Cart -->
-                    <a href="cart" class="cart">
+                    <a href="cart" class="cart me-2">
                         <i class="fa-solid fa-cart-shopping title-item"></i>
                         <span>${ cartLength }</span>
                     </a>
-                </div>
 
-                <!-- Desktop Login/User -->
-                <div class="d-none d-md-block">
+                    <!-- Desktop Login/User -->
                     <c:if test="${auth == null}">
-                        <a href="login" class="login-button fw-semibold">Đăng nhập</a>
+                        <a href="login" class="login-button fw-semibold me-2">Đăng nhập</a>
                     </c:if>
                     <c:if test="${auth != null}">
                         <div class="d-flex align-items-center user-icon me-2" id="user">
@@ -177,10 +175,10 @@
                         </div>
 
                         <c:if test="${ auth.role == 0 }">
-                            <a href="ShowDashBoard" class="text-decoration-none feature-admin">
-                                <div class="d-flex align-items-center user-icon btn btn-outline-success">
-                                    <i class="bi bi-person-lock me-2"></i>Admin
-                                    <i class="fa fa-caret-down ms-2"></i>
+                            <a href="ShowDashBoard" class="text-decoration-none feature-admin d-inline">
+                                <div class="d-inline-flex align-items-center user-icon btn btn-outline-success">
+                                    <i class="bi bi-person-lock me-1"></i>Admin
+                                    <i class="fa fa-caret-down ms-1"></i>
                                 </div>
                             </a>
                         </c:if>
@@ -190,7 +188,6 @@
         </nav>
     </div>
 </section>
-
 <!-- section user account -->
 <section class="user-account bg-white">
     <div class="container">
