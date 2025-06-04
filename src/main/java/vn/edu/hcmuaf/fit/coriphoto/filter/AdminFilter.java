@@ -16,12 +16,15 @@ import java.io.IOException;
             "/admin-products",
             "/admin-customer",
             "/admin-category",
+            "/admin-log",
+            "/admin-order",
             "/AdminHandleActNotify",
             "/AdminHandleAddImage",
             "/AdminHandleAddProduct",
             "/AdminHandleEditProduct",
             "/AdminhandleViewProductsCategory",
             "/admin-notification",
+            "/AdminHandleDeleteOrder"
         })
 public class AdminFilter implements Filter {
     @Override

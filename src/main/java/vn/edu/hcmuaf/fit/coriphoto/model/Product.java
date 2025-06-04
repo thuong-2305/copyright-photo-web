@@ -136,27 +136,4 @@ public class Product {
         return new CategoryService().getNameCategoryById(this.cid);
     }
 
-    public static void main(String[] args) {
-        CategoryService tes = new CategoryService();
-        String tmp = tes.getNameCategoryById(4);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                id +
-                ", " + uid +
-                ", " + cid +
-                ", '" + name +
-                ", " + description +
-                ", " + size +
-                ", " + dimension +
-                ", " + dateUpload +
-                ", " + url +
-                ", " + price +
-                ", " + status +
-                '}';
-    }
-
-
 }

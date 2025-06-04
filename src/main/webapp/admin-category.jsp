@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -28,12 +29,22 @@
             <jsp:include page="include/nav-admin.jsp"/>
 
             <!-- Content main -->
+            <%
+                List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+                boolean canEdit = permissions != null && permissions.contains(5);
+                boolean canDelete = permissions != null && permissions.contains(6);
+                boolean canCreate = permissions != null && permissions.contains(4);
+            %>
             <div id="admin-dashboard-graph" class="view-products-main">
                 <div class="mt-4 content-view">
                     <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
                         <h5 class="fw-semibold">Các danh mục</h5>
                         <div id="exportButtons">
+                            <% if(canCreate) {%>
                             <button class="btn button-add fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm danh mục</button>
+                            <% } else { %>
+                            <button class="btn button-add-permission fw-semibold"><i class="bi bi-plus-circle me-2"></i>Thêm danh mục</button>
+                            <% }%>
                         </div>
                     </div>
 
@@ -63,8 +74,15 @@
                                         <td>
                                             <div class="d-flex justify-content-start">
                                                 <button class="btn view-btn" data-id="${category.cid}"><i class="bi bi-eye-fill"></i></button>
+                                                <% if(canEdit) {%>
                                                 <button class="btn edit-btn" data-id="${category.cid}"><i class="bi bi-pencil-square"></i></button>
+                                                <% } else { %>
+                                                <button class="btn edit-btn-permission" data-id="${category.cid}"><i class="bi bi-pencil-square"></i></button>
+                                                <% } if(canDelete) {%>
                                                 <button class="btn delete-btn" data-id="${category.cid}"><i class="fa-solid fa-trash"></i></button>
+                                                <% } else { %>
+                                                <button class="btn delete-btn-permission" data-id="${category.cid}"><i class="fa-solid fa-trash"></i></button>
+                                                <% } %>
                                             </div>
                                         </td>
                                     </tr>
@@ -265,6 +283,13 @@
             $('#addCategoryModal').modal('show');
         });
 
+        $('.button-add-permission').on("click", function() {
+            $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+            $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                $(this).addClass("d-none");
+            });
+        });
+
         $('#confirmCancel').on("click", function() {
             $('#addCategoryModal').modal('hide');
         })
@@ -321,6 +346,13 @@
             $('#deleteModal').modal('show');
         });
 
+        $('.delete-btn-permission').on('click', function () {
+            $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+            $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                $(this).addClass("d-none");
+            });
+        });
+
         // Xử lý sau khi nhấn xóa
         $('#confirmDelete').on('click', function () {
             if (categoryIdToDelete) {
@@ -361,6 +393,13 @@
 
     <!-- Chức năng chỉnh sửa danh mục -->
     <script>
+        $(document).on("click", ".edit-btn-permission", function() {
+            $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+            $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+                $(this).addClass("d-none");
+            });
+        });
+
         $(document).on("click", ".edit-btn", function() {
             const categoryId = $(this).data('id');
             parentElement = $(this).closest("tr");

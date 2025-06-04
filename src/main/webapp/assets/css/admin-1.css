@@ -30,6 +30,10 @@ p {
     z-index: 999;
 }
 
+.container-main .left .title-logo {
+    text-align: center;
+}
+
 .container-main .left .text-logo {
     color: var(--primary-color);
 }
@@ -44,6 +48,11 @@ p {
     width: 30px;
     height: 30px;
     border-radius: 50%;
+}
+
+.edit-btn-permission,
+.delete-btn-permission {
+    opacity: 0.5;
 }
 
 /* Sidebar Collapsed */

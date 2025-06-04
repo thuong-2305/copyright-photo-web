@@ -66,6 +66,10 @@
     border: none !important;
 }
 
+.card .card-body{
+    text-align: center !important;
+}
+
 .card-header h5 {
     color: #000000 !important;
 }

@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
@@ -14,42 +15,6 @@
     <link rel="stylesheet" href="assets/css/admin-dashboard.css"/>
     <jsp:include page="include/head-libraries.jsp" />
     <title>Admin</title>
-
-    <style>
-        .table-dark {
-            background-color: #343a40;
-            color: #fff;
-        }
-
-        .edit-btn {
-            margin-right: 5px;
-        }
-
-        .dashboard-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .dashboard-info .info-box {
-            flex: 1;
-            margin: 0 10px;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            text-align: center;
-            background-color: #f8f9fa;
-        }
-
-        .card-body {
-            overflow: hidden; !important;
-        }
-
-        .dashboard-info .info-box h3 {
-            margin: 10px 0;
-            font-size: 24px;
-        }
-    </style>
 </head>
 
 <body>
@@ -65,6 +30,10 @@
         <jsp:include page="include/nav-admin.jsp"/>
 
         <!-- Content main -->
+        <%
+            List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+            boolean canDelete = permissions != null && permissions.contains(6);
+        %>
         <div id="admin-dashboard-graph" class="view-products-main">
             <div class="mt-4 content-view">
                 <div class="header d-flex justify-content-between align-items-center mb-3 py-1 px-2">
@@ -121,12 +90,40 @@
                                     </td>
                                     <td>
                                         <button class="btn view-btn" data-id="${order.orderId}"><i class="bi bi-eye-fill"></i></button>
+
+                                        <% if(canDelete) {%>
+                                        <button class="btn delete-btn" data-id="${order.orderId}"><i class="fa-solid fa-trash"></i></button>
+                                        <% } else { %>
+                                        <button class="btn delete-btn-permission" data-id="${order.orderId}"><i class="fa-solid fa-trash"></i></button>
+                                        <% }%>
                                     </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Xác nhận xóa đơn hàng -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title user-select-none" id="deleteModalLabel">
+                                        <i class="bi bi-exclamation-triangle-fill" style="color: #fa2e2e;"></i>
+                                        Xóa sản phẩm
+                                    </h5>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn có chắc chắn muốn xóa sản phẩm này?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="confirmCancelDelete" class="btn btn-secondary rounded-pill fw-semibold" data-dismiss="modal">Hủy</button>
+                                    <button type="button" id="confirmDelete" class="btn btn-danger rounded-pill fw-semibold">Xóa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -306,92 +303,144 @@
 </script>
 
 <!-- Chức năng ẩn hiện chi tiết đơn hàng -->
+<!-- Xử lý xóa đơn hàng -->
 <script>
-    $(document).ready(function () {
-        $(".view-btn").on("click", function () {
-            $('.view-products-main').toggleClass("d-none");
-            $('.view-product-add').toggleClass("d-none");
+    let parentElement = null;
 
-            const orderId = $(this).data('id');
+    $('.delete-btn-permission').on("click", function() {
+        $(".alert-danger span").text("Bạn không có quyền thực hiện chức năng này!");
+        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function () {
+            $(this).addClass("d-none");
+        });
+    });
+
+    $('.delete-btn').on('click', function () {
+        orderIdToDelete = $(this).data('id');
+        parentElement = $(this).closest("tr");
+        $('#deleteModal .modal-body').html("Bạn có chắc chắn muốn xóa đơn này này");
+        $('#deleteModal').modal('show');
+    });
+
+    // Xử lý sau khi nhấn xóa
+    $('#confirmDelete').on('click', function () {
+        console.log("Clicked,", orderIdToDelete);
+        if (orderIdToDelete) {
             $.ajax({
-                url: '/admin-order',
+                url: '/AdminHandleDeleteOrder',
                 type: 'POST',
-                header: {
-                    'X-requested-by': 'AJAX'
+                headers: {
+                    'X-Requested-By': 'AJAX'
                 },
                 data: {
-                    order_id: orderId
+                    action: 'delete',
+                    order_id: orderIdToDelete
                 },
-                success: function(response) {
-                    console.log(response.order)
-                    // Xóa nội dung cũ nếu có
-                    $('.card-first').empty();
-                    $('.fullName').text(response.order.fullName);
-                    $('.email').text(response.order.email);
-                    $('.id-order').text(response.order.orderId)
-                    $('.type-payment').text(response.order.paymentTypeName)
-                    $('.received-date').text(response.order.formatOrderPaymentDateTime)
-                    $('.time-create').text(response.order.formatDateTime)
-                    $('.payment-success').text(response.order.formatOrderPaymentDateTime)
-
-                    // Tạo HTML mới từ dữ liệu response
-                    let html = '<div class="title-details d-flex justify-content-between align-items-center">' +
-                        '<h6 class="fw-semibold">Chi tiết</h6>' +
-                        '<div class="dropdown">' +
-                        '<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">' +
-                        '<small>Hoàn thành</small>' +
-                        '</button>' +
-                        '<ul class="dropdown-menu">' +
-                        '<li><a class="dropdown-item" href="#">Hoàn thành</a></li>' +
-                        '<li><a class="dropdown-item" href="#">Hủy</a></li>' +
-                        '</ul>' +
-                        '</div>' +
-                        '</div>';
-
-                    // Thêm từng sản phẩm vào HTML
-                    let subtotal = 0;
-                    const orderDetails = response.orderDetails
-                    for (let i = 0; i < orderDetails.length; i++) {
-                        let item = orderDetails[i];
-                        const product = item.product;
-                        let productUrl = product.url;
-
-                        html += '<div class="d-flex align-items-center mt-3">' +
-                            '<img src="' + productUrl + '" alt="' + product?.name + '" ' +
-                            'class="img-fluid me-3 rounded" style="width: 50px; height: 50px;">' +
-                            '<p class="mb-0">' + product.name + '</p>' +
-                            '<span class="ms-auto fw-semibold">' + formatCurrency(product.price) + '</span>' +
-                            '</div>';
-
-                        subtotal += product.price;
+                success: function (response) {
+                    if (response.success) {
+                        $(".alert-success span").text("Xóa thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                        parentElement.fadeOut(function () {
+                            $(this).remove();
+                        });
+                    } else {
+                        $(".alert-danger span").text("Xóa thất bại!");
+                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
                     }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi!');
+                }
+            });
+        }
+        $('#deleteModal').modal('hide');
+    });
 
-                    // Tính toán tổng tiền (giả sử có giảm giá 10%)
-                    let discount = subtotal * response.order.promotionPercent;
-                    let total = subtotal - discount;
+    $(".view-btn").on("click", function () {
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
+        console.log('cliked')
+        const orderId = $(this).data('id');
+        $.ajax({
+            url: '/admin-order',
+            type: 'POST',
+            header: {
+                'X-requested-by': 'AJAX'
+            },
+            data: {
+                order_id: orderId
+            },
+            success: function(response) {
+                console.log(response.order)
+                // Xóa nội dung cũ nếu có
+                $('.card-first').empty();
+                $('.fullName').text(response.order.fullName);
+                $('.email').text(response.order.email);
+                $('.id-order').text(response.order.orderId)
+                $('.type-payment').text(response.order.paymentTypeName)
+                $('.received-date').text(response.order.formatOrderPaymentDateTime)
+                $('.time-create').text(response.order.formatDateTime)
+                $('.payment-success').text(response.order.formatOrderPaymentDateTime)
 
-                    // Thêm phần tổng kết
-                    html += '<hr><div class="detail-price">' +
-                        '<p><small>Tạm tính: </small><span class="float-end">' + formatCurrency(subtotal) + '</span></p>' +
-                        '<p class=""><small>Giảm: </small><span class="float-end text-danger">-' + formatCurrency(discount) + '</span></p>' +
-                        '<h5><small class="fw-semibold">Tổng: </small><span class="float-end">' + formatCurrency(total) + '</span></h5>' +
+                // Tạo HTML mới từ dữ liệu response
+                let html = '<div class="title-details d-flex justify-content-between align-items-center">' +
+                    '<h6 class="fw-semibold">Chi tiết</h6>' +
+                    '<div class="dropdown">' +
+                    '<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">' +
+                    '<small>Hoàn thành</small>' +
+                    '</button>' +
+                    '<ul class="dropdown-menu">' +
+                    '<li><a class="dropdown-item" href="#">Hoàn thành</a></li>' +
+                    '<li><a class="dropdown-item" href="#">Hủy</a></li>' +
+                    '</ul>' +
+                    '</div>' +
+                    '</div>';
+
+                // Thêm từng sản phẩm vào HTML
+                let subtotal = 0;
+                const orderDetails = response.orderDetails
+                for (let i = 0; i < orderDetails.length; i++) {
+                    let item = orderDetails[i];
+                    const product = item.product;
+                    let productUrl = product.url;
+
+                    html += '<div class="d-flex align-items-center mt-3">' +
+                        '<img src="' + productUrl + '" alt="' + product?.name + '" ' +
+                        'class="img-fluid me-3 rounded" style="width: 50px; height: 50px;">' +
+                        '<p class="mb-0">' + product.name + '</p>' +
+                        '<span class="ms-auto fw-semibold">' + formatCurrency(product.price) + '</span>' +
                         '</div>';
 
-                    // Thêm HTML vào card
-                    $('.card-first').html(html);
-
-                },
-                error: function() {
-                    alert('Đã xảy ra lỗi khi cập nhật!');
+                    subtotal += product.price;
                 }
-            })
+
+                // Tính toán tổng tiền (giả sử có giảm giá 10%)
+                let discount = subtotal * response.order.promotionPercent;
+                let total = subtotal - discount;
+
+                // Thêm phần tổng kết
+                html += '<hr><div class="detail-price">' +
+                    '<p><small>Tạm tính: </small><span class="float-end">' + formatCurrency(subtotal) + '</span></p>' +
+                    '<p class=""><small>Giảm: </small><span class="float-end text-danger">-' + formatCurrency(discount) + '</span></p>' +
+                    '<h5><small class="fw-semibold">Tổng: </small><span class="float-end">' + formatCurrency(total) + '</span></h5>' +
+                    '</div>';
+
+                // Thêm HTML vào card
+                $('.card-first').html(html);
+
+            },
+            error: function() {
+                alert('Đã xảy ra lỗi khi cập nhật!');
+            }
         })
+    })
 
-        $('.button-back').on("click", function() {
-            $('.view-products-main').toggleClass("d-none");
-            $('.view-product-add').toggleClass("d-none");
-        });
-
+    $('.button-back').on("click", function() {
+        $('.view-products-main').toggleClass("d-none");
+        $('.view-product-add').toggleClass("d-none");
     });
 
     function formatCurrency(amount) {

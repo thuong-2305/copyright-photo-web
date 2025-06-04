@@ -139,12 +139,16 @@
                             <i class="bi bi-hexagon-half title-item"></i>
                             Quản lý phân phối
                         </a>
-                        <% } else { %>
-                        <a href="register-contributor" class="sell mx-lg-2 fw-semibold title-item">
-                            <i class="bi bi-hexagon-half title-item"></i>
-                            Đăng ký thành người phân phối
-                        </a>
-                        <% } %>
+                        <% } else {
+                            List<Integer> permissions = (List<Integer>) request.getSession().getAttribute("permissions");
+                            boolean canRegisterSell = permissions != null && permissions.contains(1);
+
+                            if (canRegisterSell) { %>
+                                <a href="register-contributor" class="sell mx-lg-2 fw-semibold title-item">
+                                    <i class="bi bi-hexagon-half title-item"></i>
+                                    Đăng ký thành người phân phối
+                                </a>
+                        <% }} %>
                     </div>
 
                     <div class="line-separate mx-lg-1"></div>

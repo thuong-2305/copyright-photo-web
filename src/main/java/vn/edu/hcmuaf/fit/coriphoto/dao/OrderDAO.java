@@ -51,7 +51,7 @@ public class OrderDAO {
     }
 
     public void updateStatusOrder(int orderId, String status) {
-        String sql = "UPDATE orders SET status = :status, orderPaymentDate = NOW() WHERE orderId = :orderId";
+        String sql = "UPDATE orders SET status = :status, orderPaymentDate = NOW(), pmid = 1 WHERE orderId = :orderId";
         jdbi.withHandle(handle ->
                 handle.createUpdate(sql)
                         .bind("orderId", orderId)
@@ -337,6 +337,16 @@ public class OrderDAO {
                 handle.createQuery(sql)
                         .mapToBean(Order.class)
                         .list()
+        );
+    }
+
+    public boolean deleteOrderById(int orderId) {
+        String sql = "DELETE FROM orders WHERE orderId = :orderId";
+
+        return jdbi.withHandle(handle ->
+            handle.createUpdate(sql)
+                .bind("orderId", orderId)
+                .execute() > 0
         );
     }
 }

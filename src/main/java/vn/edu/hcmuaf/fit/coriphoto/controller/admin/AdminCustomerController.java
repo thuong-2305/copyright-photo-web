@@ -5,21 +5,15 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import vn.edu.hcmuaf.fit.coriphoto.controller.serializer.UserSerializer;
-import vn.edu.hcmuaf.fit.coriphoto.model.ActivityLog;
-import vn.edu.hcmuaf.fit.coriphoto.model.AccountLock;
-import vn.edu.hcmuaf.fit.coriphoto.model.EmailSenderTask;
-import vn.edu.hcmuaf.fit.coriphoto.model.User;
-import vn.edu.hcmuaf.fit.coriphoto.service.LogService;
-import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
+import vn.edu.hcmuaf.fit.coriphoto.model.*;
+import vn.edu.hcmuaf.fit.coriphoto.service.*;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.*;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,8 +23,11 @@ public class AdminCustomerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserService userService = new UserService();
-        List<User> users = userService.getAllCustomers();
+        List<User> users = userService.getAllUsers();
+        PermissionService permissionService = new PermissionService();
+        List<Permission> permissions = permissionService.getAllPermissions();
         request.setAttribute("users", users);
+        request.setAttribute("permissions", permissions);
         request.getRequestDispatcher("admin-customer.jsp").forward(request, response);
     }
 
@@ -118,6 +115,23 @@ public class AdminCustomerController extends HttpServlet {
                 User user = new User(role, fullName, username, email, password);
                 boolean success = userService.createUser(user);
 
+                // Khởi tạo quyền mặc định khi tạo mới user
+                int userId = userService.getUidByEmail(email);
+                List<Integer> permissionIds = switch (user.getRole()) {
+                    case 2 -> // User
+                            Arrays.asList(1);
+                    case 1 -> // Seller
+                            Arrays.asList(1, 2);
+                    case 0 -> // Admin
+                            Arrays.asList(1, 2, 3, 8);
+                    default -> Collections.emptyList();
+                };
+                for (Integer permissionId : permissionIds) {
+                    int idPR = new PermissionRoleService().getIdPRByIdPermission(permissionId);
+                    new PermissionUserService().insertPermissionUser(idPR, userId);
+                }
+                // End
+
                 if (success) {
                     String subject = "Xác thực tài khoản của bạn trên CopyRightPhoto";
                     String body = "Chúc mừng! Tài khoản của bạn đã được tạo thành công bởi quản trị viên hệ thống trên CopyRightPhoto\n" +
@@ -143,6 +157,33 @@ public class AdminCustomerController extends HttpServlet {
                         user_root.getUsername(), LocalDateTime.now(),
                         user_root.getUsername() + " đã thêm user mới có name:" + username);
                 new LogService().insertLog(loginLog);
+            } else if ("updateRole".equals(action)) {
+                int userId = Integer.parseInt(request.getParameter("user_id"));
+                int newRole = Integer.parseInt(request.getParameter("role"));
+
+                User user = userService.getUser(userId);
+                if (user == null) {
+                    Map<String, Object> responseData = new HashMap<>();
+                    responseData.put("success", false);
+                    responseData.put("error", "Không tìm thấy user");
+                    response.getWriter().write(new Gson().toJson(responseData));
+                    return;
+                }
+
+                user.setRole(newRole);
+                boolean success = userService.updateUser(user);
+
+                Map<String, Object> responseData = new HashMap<>();
+                responseData.put("success", success);
+                if (success) {
+                    ActivityLog loginLog = new ActivityLog("WARNING", user_root.getUid(),
+                            user_root.getUsername(), LocalDateTime.now(),
+                            user_root.getUsername() + " đã cập nhật quyền hạn của user có id:" + userId + " thành role: " + newRole);
+                    new LogService().insertLog(loginLog);
+                } else {
+                    responseData.put("error", "Cập nhật quyền hạn thất bại");
+                }
+                response.getWriter().write(new Gson().toJson(responseData));
             }
             else if ("lock".equals(action)) {
                 int userId = Integer.parseInt(request.getParameter("user_id"));

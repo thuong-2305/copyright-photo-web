@@ -1,5 +1,10 @@
+let canDelete = false;
+
 document.addEventListener("DOMContentLoaded", () => {
-    fetchList('accepts');
+    let deletePermissionUpload = document.querySelector(".deletePermissionUpload");
+
+    let rawText = deletePermissionUpload.textContent.trim();
+    canDelete = deletePermissionUpload && rawText.toLowerCase() === "true";
 });
 
 function fetchList(type) {
@@ -42,6 +47,14 @@ function updatePhotoList(data) {
     data.products.forEach(item => {
         if (!item.url || !item.name) return;
 
+        const deleteButtonHtml = canDelete
+            ? `<a class="dropdown-item d-flex align-items-center delete-item" href="#" data-id="${item.id}" data-name="${item.name}">
+                   <i class="fas fa-trash-alt mr-2"></i> Xóa
+               </a>`
+            : `<a class="dropdown-item d-flex align-items-center delete-permission" href="#" data-id="${item.id}" data-name="${item.name}">
+                   <i class="fas fa-trash-alt mr-2"></i> Xóa
+               </a>`;
+
         const photoHtml =
             `<div class="photo shadow-effect mr-3 mb-1">
                 <div class="photo-image position-relative">
@@ -51,9 +64,7 @@ function updatePhotoList(data) {
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item d-flex align-items-center delete-item" href="#" data-id="${item.id}" data-name="${item.name}">
-                                <i class="fas fa-trash-alt mr-2"></i> Xóa
-                            </a>
+                            ${deleteButtonHtml}
                             <a class="dropdown-item d-flex align-items-center view-item" href="#" data-id="${item.id}" data-name="${item.name}">
                                 <i class="fas fa-edit mr-2"></i> Xem chi tiết
                             </a>
