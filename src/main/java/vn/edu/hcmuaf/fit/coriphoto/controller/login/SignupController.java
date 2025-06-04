@@ -3,13 +3,19 @@ package vn.edu.hcmuaf.fit.coriphoto.controller.login;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import vn.edu.hcmuaf.fit.coriphoto.service.AuthService;
-import vn.edu.hcmuaf.fit.coriphoto.service.EmailUtils;
+import vn.edu.hcmuaf.fit.coriphoto.model.User;
+import vn.edu.hcmuaf.fit.coriphoto.service.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @WebServlet(name = "SignupController", value = "/signup")
 public class SignupController extends HttpServlet {
+    public static final List<Integer> DEFAULT_PERMISSION_IDS = new ArrayList<>(Arrays.asList(1));
+
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Chuyển đến trang đăng ký (signup.jsp)
@@ -35,9 +41,15 @@ public class SignupController extends HttpServlet {
 
 
         AuthService authService = new AuthService();
+        UserService userService = new UserService();
         boolean isCreated = authService.registerUser(email, password, username, name);
 
         if (isCreated) {
+            int uid = userService.getUidByEmail(email);
+            for (Integer permissionId : DEFAULT_PERMISSION_IDS) {
+                int idPR = new PermissionRoleService().getIdPRByIdPermission(permissionId);
+                new PermissionUserService().insertPermissionUser(idPR, uid);
+            }
             request.getSession().setAttribute("signupMessage", "Đăng ký thành công! Vui lòng đăng nhập.");
             response.sendRedirect("login.jsp");
         } else {
