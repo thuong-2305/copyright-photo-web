@@ -162,12 +162,6 @@ public class ProductDAO {
                 .execute());
     }
 
-    public List<Product> searchGetProducts(String content) {
-        String sqlQuery = "SELECT * FROM products WHERE name LIKE ? AND description LIKE ?";
-        return jdbi.withHandle(handle -> handle.createQuery(sqlQuery)
-                .bind(0, "%" + content+  "%").bind(1, "%" + content+  "%").mapToBean(Product.class).list());
-    }
-
     public boolean addProduct(Product p) {
         jdbi.useHandle(handle -> handle.execute(
                 "INSERT INTO products (cid, uid, name, description, url, price, status) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -232,4 +226,190 @@ public class ProductDAO {
                 .mapTo(Integer.class).findOne().orElseThrow(() -> new RuntimeException("Khong thể lấy ID tiếp theo"))
         );
     }
+
+    public List<Product> searchGetProducts(String content) {
+        // Nếu content rỗng, trả về list rỗng
+        if (content == null || content.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        // Sử dụng OR thay vì AND, và chỉ tìm trong products có status = 'accepted'
+        String sqlQuery = "SELECT * FROM products WHERE (name LIKE ? OR description LIKE ?) AND status = 'accepted'";
+
+        return jdbi.withHandle(handle -> {
+            List<Product> results = handle.createQuery(sqlQuery)
+                    .bind(0, "%" + content + "%")
+                    .bind(1, "%" + content + "%")
+                    .mapToBean(Product.class)
+                    .list();
+
+            // Đảm bảo không bao giờ trả về null
+            return results != null ? results : new ArrayList<>();
+        });
+    }
+
+
+    public List<Product> searchProductsWithFilters(String content, String category,
+                                                   String minPrice, String maxPrice, String[] sizes, String[] qualities) {
+
+        StringBuilder query = new StringBuilder("SELECT * FROM products WHERE status = 'accepted'");
+        List<Object> params = new ArrayList<>();
+
+        // Search by keyword
+        if (content != null && !content.trim().isEmpty()) {
+            query.append(" AND (name LIKE ? OR description LIKE ?)");
+            params.add("%" + content + "%");
+            params.add("%" + content + "%");
+        }
+
+        // Filter by category
+        if (category != null && !category.equals("all") && !category.isEmpty()) {
+            query.append(" AND cid = (SELECT cid FROM categories WHERE LOWER(name) = LOWER(?))");
+            params.add(category);
+        }
+
+        // Filter by price range
+        if (minPrice != null && !minPrice.isEmpty()) {
+            query.append(" AND price >= ?");
+            params.add(Double.parseDouble(minPrice));
+        }
+
+        if (maxPrice != null && !maxPrice.isEmpty()) {
+            query.append(" AND price <= ?");
+            params.add(Double.parseDouble(maxPrice));
+        }
+
+        // Filter by size/dimension
+        if (sizes != null && sizes.length > 0) {
+            query.append(" AND (");
+            for (int i = 0; i < sizes.length; i++) {
+                if (i > 0) query.append(" OR ");
+                switch (sizes[i]) {
+                    case "small":
+                        query.append("(CAST(SUBSTRING_INDEX(dimension, 'x', 1) AS UNSIGNED) * " +
+                                "CAST(SUBSTRING_INDEX(dimension, 'x', -1) AS UNSIGNED) < 1000000)");
+                        break;
+                    case "medium":
+                        query.append("(CAST(SUBSTRING_INDEX(dimension, 'x', 1) AS UNSIGNED) * " +
+                                "CAST(SUBSTRING_INDEX(dimension, 'x', -1) AS UNSIGNED) BETWEEN 1000000 AND 5000000)");
+                        break;
+                    case "large":
+                        query.append("(CAST(SUBSTRING_INDEX(dimension, 'x', 1) AS UNSIGNED) * " +
+                                "CAST(SUBSTRING_INDEX(dimension, 'x', -1) AS UNSIGNED) > 5000000)");
+                        break;
+                }
+            }
+            query.append(")");
+        }
+
+        // Filter by quality (based on dimension)
+        if (qualities != null && qualities.length > 0) {
+            query.append(" AND (");
+            for (int i = 0; i < qualities.length; i++) {
+                if (i > 0) query.append(" OR ");
+                switch (qualities[i]) {
+                    case "standard":
+                        query.append("(CAST(SUBSTRING_INDEX(dimension, 'x', 1) AS UNSIGNED) <= 1920)");
+                        break;
+                    case "hd":
+                        query.append("(CAST(SUBSTRING_INDEX(dimension, 'x', 1) AS UNSIGNED) > 1920 AND " +
+                                "CAST(SUBSTRING_INDEX(dimension, 'x', 1) AS UNSIGNED) <= 2560)");
+                        break;
+                    case "4k":
+                        query.append("(CAST(SUBSTRING_INDEX(dimension, 'x', 1) AS UNSIGNED) > 2560)");
+                        break;
+                }
+            }
+            query.append(")");
+        }
+
+        return jdbi.withHandle(handle -> {
+            Query queryObj = handle.createQuery(query.toString());
+            for (int i = 0; i < params.size(); i++) {
+                queryObj.bind(i, params.get(i));
+            }
+            return queryObj.mapToBean(Product.class).list();
+        });
+    }
+    // Method lọc theo giá
+    public List<Product> filterByPrice(List<Product> products, double minPrice, double maxPrice) {
+        if (products == null || products.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return products.stream()
+                .filter(p -> p.getPrice() >= minPrice && p.getPrice() <= maxPrice)
+                .collect(Collectors.toList());
+    }
+
+    // Method lọc theo kích thước (dựa vào dimension)
+    public List<Product> filterBySize(List<Product> products, String sizeType) {
+        if (products == null || products.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return products.stream()
+                .filter(p -> {
+                    String dimension = p.getDimension();
+                    if (dimension == null || !dimension.contains("x")) {
+                        return false;
+                    }
+
+                    try {
+                        String[] parts = dimension.split("x");
+                        int width = Integer.parseInt(parts[0].trim());
+                        int height = Integer.parseInt(parts[1].trim());
+                        int pixels = width * height;
+
+                        switch (sizeType) {
+                            case "small":
+                                return pixels < 1000000; // < 1MP
+                            case "medium":
+                                return pixels >= 1000000 && pixels <= 5000000; // 1-5MP
+                            case "large":
+                                return pixels > 5000000; // > 5MP
+                            default:
+                                return true;
+                        }
+                    } catch (Exception e) {
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+
+    // Method lọc theo chất lượng
+    public List<Product> filterByQuality(List<Product> products, String quality) {
+        if (products == null || products.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return products.stream()
+                .filter(p -> {
+                    String dimension = p.getDimension();
+                    if (dimension == null || !dimension.contains("x")) {
+                        return false;
+                    }
+
+                    try {
+                        String[] parts = dimension.split("x");
+                        int width = Integer.parseInt(parts[0].trim());
+
+                        switch (quality) {
+                            case "standard":
+                                return width <= 1920; // HD or less
+                            case "hd":
+                                return width > 1920 && width <= 2560; // Full HD to 2K
+                            case "4k":
+                                return width > 2560; // 4K and above
+                            default:
+                                return true;
+                        }
+                    } catch (Exception e) {
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
+    }
+
 }

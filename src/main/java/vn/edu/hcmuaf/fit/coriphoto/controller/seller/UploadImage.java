@@ -71,7 +71,7 @@ public class UploadImage extends HttpServlet {
         product.setSize(fileSize);
         product.setDimension(dimension);
         product.setDateUpload(LocalDateTime.now());
-        product.setUrl(fileUrl);
+        product.setUrl("../" + fileUrl);
         product.setPrice(Double.parseDouble(price));
 
         SellerService sellerService = new SellerService();

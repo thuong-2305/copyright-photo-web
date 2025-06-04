@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="assets/css/admin-1.css">
     <link rel="stylesheet" href="assets/css/admin-nav.css">
     <link rel="stylesheet" href="assets/css/admin-dashboard.css"/>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"/>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Tempus Dominus CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
     <jsp:include page="include/head-libraries.jsp"/>
     <title>Admin</title>
 
@@ -68,6 +74,10 @@
 
         .view-product-add .permission-group .form-check {
             margin-bottom: 5px;
+
+        .tempus-dominus-widget {
+            z-index: 1060 !important; /* Đảm bảo nổi trên modal */
+
         }
     </style>
 </head>
@@ -180,9 +190,12 @@
                                         <i class="bi bi-exclamation-triangle-fill" style="color: #fa2e2e;"></i>
                                         Xóa tài khoản
                                     </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
                                 <div class="modal-body">
-                                    Bạn có chắc chắn muốn xóa tài khoản này này?
+                                    Bạn có chắc chắn muốn xóa tài khoản này?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary rounded-pill fw-semibold"
@@ -196,6 +209,47 @@
                         </div>
                     </div>
 
+                    <!-- Khóa tài khoản -->
+                    <div class="modal fade" id="lockModal" tabindex="-1" role="dialog" aria-labelledby="lockModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title user-select-none" id="lockModalLabel">
+                                        <i class="bi bi-lock-fill" style="color: #fa2e2e;"></i>
+                                        Khóa tài khoản
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <p>Bạn có muốn khóa tài khoản <strong id="lockUsername"></strong>?</p>
+
+                                    <!-- FORM -->
+                                    <div class="form-group mb-3">
+                                        <label for="lockUntil">Thời gian mở khóa:</label>
+                                        <div class="input-group position-relative" id="lockUntilPicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                                            <input type="text" class="form-control" id="lockUntil" name="lockUntil" data-td-target="#lockUntilPicker" />
+                                            <span class="input-group-text" data-td-toggle="datetimepicker" data-td-target="#lockUntilPicker">
+                            <i class="bi bi-calendar"></i>
+                        </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="lockReason">Lý do khóa (tùy chọn):</label>
+                                        <textarea class="form-control" id="lockReason" name="lockReason" rows="3"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary rounded-pill fw-semibold" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="button" id="confirmLock" class="btn btn-danger rounded-pill fw-semibold">Khóa</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <!-- Chỉnh sửa thông tin user -->
                     <div class="overlay" id="overlay"></div>
                     <div class="view-modal d-none" id="userItem">
@@ -394,12 +448,17 @@
 <!-- DataTables -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
 <!-- DataTables Buttons JS -->
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+<!-- Bootstrap 4 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Moment.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<!-- Tempus Dominus JS -->
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
 
 <!-- JS -->
 <jsp:include page="include/admin-libraries.jsp"/>
@@ -412,18 +471,9 @@
         table = $('#productsTable').DataTable({
             deferRender: true,
             buttons: [
-                {
-                    extend: 'copy',
-                    text: 'Sao chép'
-                },
-                {
-                    extend: 'excel',
-                    text: 'Xuất Excel'
-                },
-                {
-                    extend: 'print',
-                    text: 'In'
-                }
+                { extend: 'copy', text: 'Sao chép' },
+                { extend: 'excel', text: 'Xuất Excel' },
+                { extend: 'print', text: 'In' }
             ],
             language: {
                 search: "Nhập từ khóa:",
@@ -778,10 +828,135 @@
     }
 </script>
 
+<!-- Khởi tạo Tempus Dominus -->
+<script>
+    $(document).ready(function () {
+        // Tạo đối tượng Date cho ngày hiện tại
+        const now = new Date();
+
+        // Tạo đối tượng Date mới cho ngày hôm sau
+        const tomorrow = new Date(now);
+        tomorrow.setDate(now.getDate() + 1); // ngày hôm sau
+
+        // Format thành yyyy-MM-dd HH:mm:ss
+        function formatDateTime(date) {
+            const pad = (n) => (n < 10 ? '0' + n : n);
+            return date.getFullYear() + '-' +
+                pad(date.getMonth() + 1) + '-' +
+                pad(date.getDate()) + ' ' +
+                pad(date.getHours()) + ':' +
+                pad(date.getMinutes()) + ':' +
+                pad(date.getSeconds());
+        }
+
+        // Gán giá trị mặc định cho input
+        $('#lockUntil').val(formatDateTime(tomorrow));
+
+        // Khởi tạo Tempus Dominus
+        new tempusDominus.TempusDominus(document.getElementById('lockUntilPicker'), {
+            display: {
+                components: {
+                    calendar: false,
+                    date: false,
+                    month: false,
+                    year: false,
+                    clock: false
+                },
+                icons: {
+                    time: 'bi bi-clock',
+                    date: 'bi bi-calendar',
+                    up: 'bi bi-arrow-up',
+                    down: 'bi bi-arrow-down',
+                    previous: 'bi bi-chevron-left',
+                    next: 'bi bi-chevron-right',
+                    today: 'bi bi-calendar-check',
+                    clear: 'bi bi-trash',
+                    close: 'bi bi-x'
+                },
+                buttons: {
+                    today: true,
+                    clear: true,
+                    close: true
+                }
+            },
+            restrictions: {
+                minDate: new tempusDominus.DateTime(new Date())
+            },
+            localization: {
+                format: 'yyyy-MM-dd HH:mm:ss',
+                locale: 'vi'
+            },
+            defaultDate: new tempusDominus.DateTime(tomorrow)
+        });
+    });
+</script>
+
 <!-- Chức năng ẩn hiển xóa user -->
 <script>
     $("#deleteModal .btn-secondary").on("click", function () {
         $("#deleteModal").modal("hide");
+    });
+</script>
+
+<!-- Chức năng khóa user -->
+<script>
+    let userIdToLock = null;
+    let lockParentElement = null;
+
+    $('.lock-btn').on('click', function () {
+        userIdToLock = $(this).data('id');
+        lockParentElement = $(this).closest("tr");
+        var username = lockParentElement.find("td").eq(2).text().trim();
+        $('#lockModal #lockUsername').text(username);
+        $('#lockModal').modal('show');
+    });
+
+    $('#confirmLock').on('click', function () {
+        if (userIdToLock) {
+            const lockUntil = $('#lockUntil').val();
+            const lockReason = $('#lockReason').val();
+
+            if (!lockUntil || !moment(lockUntil, 'YYYY-MM-DD HH:mm:ss', true).isValid()) {
+                $(".alert-danger span").text("Vui lòng chọn thời gian mở khóa hợp lệ!");
+                $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                    $(this).addClass("d-none");
+                });
+                return;
+            }
+
+            $.ajax({
+                url: '/admin-customer',
+                type: 'POST',
+                headers: {
+                    'X-Requested-By': 'AJAX'
+                },
+                data: {
+                    action: 'lock',
+                    user_id: userIdToLock,
+                    lockUntil: lockUntil,
+                    lockReason: lockReason
+                },
+                success: function (response) {
+                    if (response.success) {
+                        $(".alert-success span").text("Khóa tài khoản thành công!");
+                        $(".alert-success").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    } else {
+                        $(".alert-danger span").text("Khóa tài khoản thất bại!");
+                        $(".alert-danger").removeClass("d-none").fadeIn().delay(1000).fadeOut(function() {
+                            $(this).addClass("d-none");
+                        });
+                    }
+                },
+                error: function () {
+                    alert('Đã xảy ra lỗi!');
+                }
+            });
+        }
+        $('#lockModal').modal('hide');
+        $('#lockUntil').val('');
+        $('#lockReason').val('');
     });
 </script>
 
@@ -800,13 +975,11 @@
     $('.delete-btn').on('click', function () {
         userIdToDelete = $(this).data('id');
         parentElement = $(this).closest("tr");
-        // Lây nội dung ảnh hiển thị
         var imageName = parentElement.find("td").eq(1).text().trim();
         $('#deleteModal .modal-body').html("Bạn có chắc chắn muốn xóa <strong>" + imageName + "</strong>.");
         $('#deleteModal').modal('show');
     });
 
-    // Xử lý sau khi nhấn xóa
     $('#confirmDelete').on('click', function () {
         if (userIdToDelete) {
             $.ajax({
@@ -870,7 +1043,6 @@
             success: function (response) {
                 const user = response.user;
                 if (user) {
-                    // Hiển thị thông tin user
                     $('#userItem .id-user').html(
                         "<span class=\"title-info fw-semibold\">Mã tài khoản:</span>" +
                         "<br><input class=\"form-control\" name=\"uid\" value=\"" + user.uid + "\" disabled>"
@@ -899,7 +1071,7 @@
                         "<input class=\"form-control\" name=\"createDate\" type=\"date\" value=\"" + user.createDate + "\" disabled>"
                     );
 
-                    $('#userItem .role').html("")
+                    $('#userItem .role').html("");
                     toggleUserDetail();
                 } else {
                     alert('Lỗi tài khoản!');
@@ -919,7 +1091,6 @@
         document.body.classList.toggle('no-scroll');
     }
 
-    // Xử lý khi nhấp cập nhật
     $(document).on("click", "#update-user-btn", function () {
         const uid = $('input[name="uid"]').val();
         const fullName = $('input[name="fullName"]').val();
@@ -963,8 +1134,7 @@
 
 <!-- Thêm thông tin user -->
 <script>
-    $(document).on("click", ".add-btn", function () {
-        // Hiển thị thêm thông tin
+    $(document).on("click", ".add-btn", function() {
         $('#userItem .id-user').html("");
         $('#userItem .full-name').html(
             "<span class=\"title-info fw-semibold\">Họ và tên:</span><br>" +
@@ -988,21 +1158,20 @@
         $('#userItem .date-create').html("");
 
         $('#userItem .role').html(
-            "<span class=\"title-info fw-semibold\">Quyen han:</span><br>" +
+            "<span class=\"title-info fw-semibold\">Quyền hạn:</span><br>" +
             "<select class=\"form-control\" name=\"role\" required>" +
             "<option value=\"\" disabled selected>-- Chọn vai trò --</option>" +
             "<option value=\"2\">Cấp 1 (Khách hàng)</option>" +
             "<option value=\"1\">Cấp 2 (Nhà cung cấp)</option>" +
-            "<option value=\"0\">Cấp 3 (Quản trị viên)</option>");
+            "<option value=\"0\">Cấp 3 (Quản trị viên)</option>"
+        );
 
         $('#userItem #add-user-btn').removeClass("d-none");
         $('#userItem #update-user-btn').addClass("d-none");
         toggleUserDetail();
     })
 
-    // Xử lý khi chọn thêm
     $(document).on("click", "#add-user-btn", function () {
-
         const fullName = $('input[name="fullName"]').val();
         const username = $('input[name="username"]').val();
         const email = $('input[name="email"]').val();

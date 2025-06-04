@@ -2,6 +2,7 @@ package vn.edu.hcmuaf.fit.coriphoto.dao;
 
 import org.jdbi.v3.core.Jdbi;
 import vn.edu.hcmuaf.fit.coriphoto.dbconnect.DBConnect;
+import vn.edu.hcmuaf.fit.coriphoto.model.AccountLock;
 import vn.edu.hcmuaf.fit.coriphoto.model.PaymentMethod;
 import vn.edu.hcmuaf.fit.coriphoto.model.Product;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
@@ -20,6 +21,22 @@ public class UserDAO {
     public String getFullName(int uid) {
         return jdbi.withHandle(handle -> handle.createQuery("SELECT fullname FROM users WHERE uid = ?")
                 .bind(0, uid).mapTo(String.class).one());
+    }
+
+    public boolean lockUser(AccountLock accountLock) {
+        try {
+            int rowsAffected = jdbi.withHandle(handle -> handle.createUpdate(
+                            "INSERT INTO account_locks (uid, lockTime, lockUntil, lockReason) VALUES (:uid, :lockTime, :lockUntil, :lockReason)")
+                    .bind("uid", accountLock.getUid())
+                    .bind("lockTime", accountLock.getLockTime())
+                    .bind("lockUntil", accountLock.getLockUntil())
+                    .bind("lockReason", accountLock.getLockReason())
+                    .execute());
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public User getUser(int uid) {

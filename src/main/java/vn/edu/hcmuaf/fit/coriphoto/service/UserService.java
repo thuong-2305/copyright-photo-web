@@ -1,6 +1,7 @@
 package vn.edu.hcmuaf.fit.coriphoto.service;
 
 import vn.edu.hcmuaf.fit.coriphoto.dao.UserDAO;
+import vn.edu.hcmuaf.fit.coriphoto.model.AccountLock;
 import vn.edu.hcmuaf.fit.coriphoto.model.PaymentMethod;
 import vn.edu.hcmuaf.fit.coriphoto.model.User;
 
@@ -23,6 +24,9 @@ public class UserService {
         return userDao.getAvatarPath(uid);
     }
 
+    public boolean lockUser(AccountLock accountLock) {
+        return userDao.lockUser(accountLock);
+    }
 
     public boolean isExistEmail(String email) {
         return userDao.isExistEmail(email);

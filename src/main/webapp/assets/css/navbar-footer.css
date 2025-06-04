@@ -458,3 +458,159 @@
 }
 
 /* END FOOTER */
+
+/* RESPONSIVE NAVBAR */
+@media (max-width: 768px) {
+    #nav .container {
+        max-width: 100% !important;
+        padding: 0 15px;
+    }
+
+    #nav .navbar {
+        padding: 0.5rem 0;
+    }
+
+    #nav .title-logo {
+        font-size: 20px;
+    }
+
+    /* Mobile menu button */
+    #nav .navbar-toggler {
+        padding: 0.25rem 0.5rem;
+        font-size: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    #nav.scrolled .navbar-toggler {
+        border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    #nav:not(.scrolled) .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* Offcanvas styles */
+    .offcanvas {
+        background-color: #343a40;
+        width: 280px !important;
+    }
+
+    .offcanvas-header {
+        background-color: #2c3136;
+        color: white;
+        padding: 1rem 1.5rem;
+    }
+
+    .offcanvas-title {
+        color: white;
+    }
+
+    .offcanvas-body {
+        padding: 0;
+    }
+
+    /* Mobile navigation items */
+    .offcanvas .navbar-nav {
+        padding: 1rem 0;
+    }
+
+    .offcanvas .nav-item {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .offcanvas .nav-link {
+        color: #ceced2;
+        padding: 0.75rem 1.5rem;
+        font-size: 14px;
+    }
+
+    .offcanvas .nav-link:hover,
+    .offcanvas .nav-link:focus {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: white;
+    }
+
+    /* Dropdown in mobile */
+    .offcanvas .dropdown-menu {
+        position: static !important;
+        background-color: #2c3136;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .offcanvas .dropdown-item {
+        color: #ceced2;
+        padding: 0.5rem 2.5rem;
+        font-size: 13px;
+    }
+
+    .offcanvas .dropdown-item:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        color: white;
+    }
+
+    /* Mobile login button */
+    #nav .login-button {
+        padding: 6px 15px;
+        font-size: 14px;
+        margin-left: 0;
+    }
+
+    /* Mobile cart badge */
+    .offcanvas .badge {
+        font-size: 10px;
+        padding: 0.25em 0.5em;
+    }
+
+    /* Hide desktop dropdown arrows */
+    .offcanvas .fa-angle-down {
+        display: none;
+    }
+
+    /* Categories dropdown special styling */
+    .dropdown-menu-categories {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    /* User avatar on mobile */
+    #nav .user-icon .avatar {
+        width: 25px;
+        height: 25px;
+        margin-left: 10px;
+    }
+}
+
+/* Tablet styles */
+@media (min-width: 769px) and (max-width: 991px) {
+    #nav .container {
+        max-width: 100% !important;
+    }
+
+    #nav .nav-link {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+
+    #nav .sell a.sell {
+        font-size: 14px;
+    }
+
+    #nav .login-button {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Fix overlapping issues */
+@media (max-width: 768px) {
+    .user-account {
+        z-index: 10000;
+    }
+
+    .overlay {
+        z-index: 9998;
+    }
+}

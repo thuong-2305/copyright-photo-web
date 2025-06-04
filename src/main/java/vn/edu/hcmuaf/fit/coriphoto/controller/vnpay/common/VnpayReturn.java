@@ -132,8 +132,10 @@ public class VnpayReturn extends HttpServlet {
                 } else {
                     orderService.updateOrderStatus(oid, "Failed");
                 }
-                request.setAttribute("transResult", transSuccess);
-                request.getRequestDispatcher("payment-result.jsp").forward(request, response);
+//                request.setAttribute("transResult", transSuccess);
+//                request.getRequestDispatcher("payment-result.jsp").forward(request, response);
+                if (transSuccess) response.sendRedirect("order-success.jsp");
+                else response.sendRedirect("order-failed.jsp");
             } else {
                 //RETURN PAGE ERROR
                 System.out.println("GD KO HOP LE (invalid signature)");

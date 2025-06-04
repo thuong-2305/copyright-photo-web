@@ -25,6 +25,12 @@
         <video autoplay muted loop class="background-video">
             <source src="./assets/audio/video-banner.mp4" type="video/mp4">
         </video>
+        <!-- Fallback image for mobile -->
+        <img src="./assets/images/banner-category.jpg"
+             alt="Banner"
+             class="background-video-fallback d-none"
+             style="display: none;">
+
         <div class="overlay-banner"></div>
         <div class="main-title d-flex justify-content-center flex-column align-items-center">
             <h1 class="fw-900 m-2">CoRiPhoTo, Kho ảnh bản quyền đẹp dành cho bạn</h1>

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Đăng ký</title>
     <link rel="stylesheet" href="./assets/css/forgot-pass.css"/>
     <link rel="stylesheet" href="./assets/libraries/bootstrap/css/bootstrap.min.css" />
@@ -15,7 +16,7 @@
         <img src="./assets/images/signup.png" alt=""/>
     </div>
     <div class="frame-signup">
-        <h1 class="fw-bold mb-5" style="color: #57cc99; margin-top: 250px !important;">CoriPhoto</h1>
+        <h1 class="fw-bold" style="color: #57cc99;">CoriPhoto</h1>
         <div class="signup-container mb-2">
 
             <h2 class="text-center fw-semibold mb-4">Đăng ký</h2>
@@ -49,7 +50,9 @@
                     <i class="fa fa-eye position-absolute togglePassword" style="right: 10px; top: 70%; transform: translateY(-50%); cursor: pointer; color: darkgray;"></i>
                 </div>
 
-                <div class="g-recaptcha" data-sitekey="6LcalvMqAAAAAIPMHNMM3bTb4GNDzWfWGPb_0jbw"></div>
+                <div class="recaptcha-wrapper">
+                    <div class="g-recaptcha" data-sitekey="6LcalvMqAAAAAIPMHNMM3bTb4GNDzWfWGPb_0jbw"></div>
+                </div>
                 <div id="error-captcha" style="color: red"></div>
 
                 <button type="button" onclick="checkcaptcha('signup')" id="check-email-btn" class="btn btn-signup w-100 mb-3">Đăng ký</button>
@@ -132,7 +135,34 @@
         });
     });
 </script>
+<script>
+    // Prevent double-tap zoom on buttons
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('button, .btn');
+        buttons.forEach(button => {
+            button.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                this.click();
+            });
+        });
 
+        // Fix iOS form zoom issue
+        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                if (window.innerWidth < 768) {
+                    document.querySelector('meta[name="viewport"]').setAttribute('content',
+                        'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                }
+            });
+
+            input.addEventListener('blur', function() {
+                document.querySelector('meta[name="viewport"]').setAttribute('content',
+                    'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+            });
+        });
+    });
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="module" src="./assets/js/register-verify-email.js"></script>
 <script src="./assets/js/register-verify-otp.js"></script>
