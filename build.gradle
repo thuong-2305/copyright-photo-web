@@ -2,6 +2,8 @@ plugins {
     id 'war'
     id 'java'
     id 'maven-publish'
+    id 'java-library'
+    id "org.hidetake.ssh" version "2.11.2"
 }
 
 repositories {
@@ -11,7 +13,11 @@ repositories {
     }
     maven { url = uri('https://jitpack.io') } // Thêm JitPack để tìm các thư viện từ GitHub
 }
-
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(23)
+    }
+}
 dependencies {
     // Thư viện cần trong quá trình biên dịch và runtime
     implementation 'com.google.code.gson:gson:2.11.0'
@@ -41,7 +47,6 @@ dependencies {
 group = 'vn.edu.hcmuaf.fit'
 version = '1.0-SNAPSHOT'
 description = 'CoRiPhoto'
-java.sourceCompatibility = JavaVersion.VERSION_23
 
 publishing {
     publications {
@@ -58,3 +63,62 @@ tasks.withType(JavaCompile) {
 tasks.withType(Javadoc) {
     options.encoding = 'UTF-8'
 }
+apply plugin: 'org.hidetake.ssh'
+
+remotes {
+    host {
+        host = '13.212.182.68'                  // IPv4 public của VPS
+        user = 'ubuntu'                         // hoặc 'bitnami', tùy hệ điều hành VPS bạn dùng
+        identity = file("src/LightsailDefaultKey-ap-southeast-1.pem")
+        knownHosts = allowAnyHosts              // Bỏ kiểm tra known_hosts
+    }
+}
+
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+
+import org.hidetake.groovy.ssh.core.Remote
+
+def sshSettings = project.extensions.getByName('ssh')
+def remoteHost = remotes.host
+
+tasks.register('docker_upload_file_to_server') {
+    def warFile = file("${project.projectDir}/build/libs/CoRiPhoto-1.0-SNAPSHOT.war")
+
+    doLast {
+        println 'begin docker_upload_file_to_server'
+        sshSettings.run {
+            session(remoteHost) {
+                execute 'rm -f /usr/deploy/coriphoto.war', ignoreError: true
+                execute 'rm -rf /usr/deploy/coriphoto/', ignoreError: true
+                put from: warFile.absolutePath, into: "/usr/deploy/coriphoto.war"
+            }
+        }
+    }
+}
+
+tasks.register('docker_app_start') {
+    doLast {
+        println 'begin docker_app_start'
+        sshSettings.run {
+            session(remoteHost) {
+                execute 'docker stop tomcat10', ignoreError: true
+                execute 'docker run -it --rm -d ' +
+                        '--name tomcat10 ' +
+                        '-v /usr/deploy:/usr/local/tomcat/webapps ' +
+                        '-p 80:8080 ' +
+                        'tomcat:10.1.31'
+            }
+        }
+    }
+}
+
+
+tasks.register('docker_deploy') {
+    dependsOn build, docker_upload_file_to_server, docker_app_start
+
+    docker_upload_file_to_server.mustRunAfter build
+    docker_app_start.mustRunAfter docker_upload_file_to_server
+}
+
