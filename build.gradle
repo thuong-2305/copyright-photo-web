@@ -1,0 +1,60 @@
+plugins {
+    id 'war'
+    id 'java'
+    id 'maven-publish'
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = uri('https://repo.maven.apache.org/maven2/')
+    }
+    maven { url = uri('https://jitpack.io') } // Thêm JitPack để tìm các thư viện từ GitHub
+}
+
+dependencies {
+    // Thư viện cần trong quá trình biên dịch và runtime
+    implementation 'com.google.code.gson:gson:2.11.0'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+    implementation 'org.jdbi:jdbi3-core:3.45.0'
+    implementation 'mysql:mysql-connector-java:8.0.33'
+    implementation 'ch.qos.logback:logback-classic:1.5.6'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.23.1'
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+    implementation 'org.json:json:20231013'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+    implementation 'org.apache.httpcomponents:httpcore:4.4.16'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
+    implementation 'org.apache.httpcomponents:fluent-hc:4.5.14'
+    implementation 'commons-fileupload:commons-fileupload:1.5'
+    implementation 'commons-io:commons-io:2.16.1'
+    // Thay thế org.sejda.imageio:webp-imageio bằng thư viện khác
+    implementation 'org.sejda.webp-imageio:webp-imageio-sejda:0.1.0'
+
+
+    // Test dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+}
+
+group = 'vn.edu.hcmuaf.fit'
+version = '1.0-SNAPSHOT'
+description = 'CoRiPhoto'
+java.sourceCompatibility = JavaVersion.VERSION_23
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
+    options.encoding = 'UTF-8'
+}
