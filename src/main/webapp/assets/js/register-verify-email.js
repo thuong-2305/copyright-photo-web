@@ -2,13 +2,13 @@
 import { isPasswordStrong } from './check-strong-password.js';
 
 $(document).ready(function () {
+    let isProcessing = false; // Biến flag để kiểm soát trạng thái xử lý
+
     $("#check-email-btn").click(function (event) {
         event.preventDefault(); // Ngăn hành vi mặc định
 
-        // Kiểm tra xem nút đã bị vô hiệu hóa chưa để tránh click nhiều lần
-        if ($(this).prop("disabled")) return;
-
-        $(this).prop("disabled", true); // Vô hiệu hóa nút sau khi click
+        // Kiểm tra nếu đang xử lý, ngăn click nhiều lần
+        if (isProcessing) return;
 
         let name = $("#name").val().trim();
         let username = $("#username").val().trim();
@@ -30,11 +30,14 @@ $(document).ready(function () {
 
         if (errorMessage !== "") {
             $("#error-message").text(errorMessage).show();
-            $(this).prop("disabled", false); // Bật lại nút nếu có lỗi
-            return;
+            return; // Thoát nếu có lỗi
         }
 
         $("#error-message").hide();
+
+        // Đặt flag và vô hiệu hóa nút
+        isProcessing = true;
+        $("#check-email-btn").prop("disabled", true);
 
         $.post("RegisterVerifyEmail", { email: email }, function (response) {
             if (response.valid) {
@@ -42,7 +45,15 @@ $(document).ready(function () {
             } else {
                 $("#error-message").text("Email không hợp lệ hoặc đã được sử dụng!").show();
             }
-            $("#check-email-btn").prop("disabled", false); // Bật lại nút sau khi hoàn tất
-        }, "json");
+            // Reset flag và bật lại nút
+            isProcessing = false;
+            $("#check-email-btn").prop("disabled", false);
+        }, "json").fail(function () {
+            // Xử lý lỗi nếu yêu cầu thất bại
+            $("#error-message").text("Có lỗi xảy ra, vui lòng thử lại!").show();
+            // Reset flag và bật lại nút
+            isProcessing = false;
+            $("#check-email-btn").prop("disabled", false);
+        });
     });
 });
