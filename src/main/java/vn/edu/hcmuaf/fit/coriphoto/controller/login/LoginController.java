@@ -19,14 +19,17 @@ import vn.edu.hcmuaf.fit.coriphoto.service.UserService;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "LoginController", value = "/login")
 public class LoginController extends HttpServlet {
-
+    public static final List<Integer> DEFAULT_PERMISSION_IDS = new ArrayList<>(Arrays.asList(1));
     private final AuthService authService = new AuthService();
     private final UserService userService = new UserService();
     private final LogService logService = new LogService();
+    private final PermissionRoleService permissionRoleService = new PermissionRoleService();
+    private final PermissionUserService permissionUserService = new PermissionUserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,13 +40,32 @@ public class LoginController extends HttpServlet {
             LoginGoogle google = new LoginGoogle();
             String accessToken = google.getToken(code);
             GoogleAccount account = google.getUserInfo(accessToken);
-
+            HttpSession session = request.getSession(true);
             if (account != null) {
                 User user = authService.getUserByEmail(account.getEmail());
+                List<Integer> permissions = new ArrayList<>();
                 if (user == null) {
+                    // Tạo tài khoản mới và gán quyền mặc định
                     authService.registerUser(account.getEmail(), "", "", account.getName());
                     user = authService.getUserByEmail(account.getEmail());
+                    int uid = userService.getUidByEmail(account.getEmail());
+                    for (Integer permissionId : DEFAULT_PERMISSION_IDS) {
+                        int idPR = permissionRoleService.getIdPRByIdPermission(permissionId);
+                        permissionUserService.insertPermissionUser(idPR, uid);
+                        // roleId = 2 vì người dùng mới đăng nhập google
+                        permissions.add(permissionRoleService.getIdPermissionByIdPR(2));
+                    }
                 }
+                // lấy tất cả quyền hiện có
+                else {
+                    List<Integer> permissionRoles = new PermissionUserService().getPermissionRolesByUserId(user.getUid());
+                    PermissionRoleService permissionRoleService = new PermissionRoleService();
+                    for (int roleId : permissionRoles) {
+                        permissions.add(permissionRoleService.getIdPermissionByIdPR(roleId));
+                    }
+                }
+                session.setAttribute("permissions", permissions);
+
 
                 LocalDateTime lockUntil = authService.getLockUntil(user.getUid());
                 if (lockUntil != null && lockUntil.isAfter(LocalDateTime.now())) {
@@ -52,7 +74,6 @@ public class LoginController extends HttpServlet {
                     return;
                 }
 
-                HttpSession session = request.getSession(true);
                 session.setAttribute("auth", user);
                 session.setAttribute("loggedInUser", user);
                 isLoginGoogle = true;
@@ -71,7 +92,6 @@ public class LoginController extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
