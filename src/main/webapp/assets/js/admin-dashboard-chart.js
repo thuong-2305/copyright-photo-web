@@ -29,7 +29,7 @@ const config = {
     type: "line",
     data: data,
     options: {
-        responsive: false, // Tắt responsive để cố định kích thước
+        responsive: true, // Tắt responsive để cố định kích thước
         maintainAspectRatio: false, // Cho phép điều chỉnh kích thước độc lập
         plugins: {
             legend: { display: true, position: "top" },

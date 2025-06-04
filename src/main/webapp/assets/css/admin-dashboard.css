@@ -300,12 +300,12 @@ table.dataTable > thead > tr > th {
 
 #user-statistics-card {
     width: 100%; /* Đảm bảo card chiếm toàn bộ chiều rộng */
-    min-height: 300px; /* Đặt chiều cao tối thiểu */
+    min-height: 400px; /* Tăng chiều cao tối thiểu lên 400px (tùy chỉnh theo ý muốn) */
 }
 
-#user-statistics-chart {
+#userStatisticsChart {
     width: 100% !important; /* Đảm bảo canvas chiếm toàn bộ chiều rộng */
-    height: 250px !important; /* Đặt chiều cao cố định */
+    height: 350px !important; /* Tăng chiều cao canvas lên 350px (tùy chỉnh theo ý muốn) */
 }
 
 
