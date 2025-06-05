@@ -50,7 +50,7 @@
 <jsp:include page="include/navbar.jsp"/>
 <!--search -->
 <section class="search" style="margin-top: 80px; margin-bottom: 20px;">
-    <form action="${pageContext.request.contextPath}/search" method="get" class="search-form">
+    <form action="${pageContext.request.contextPath}/search" method="get" class="search-form my-2" style="width: 100%">
     <div class="search-container">
         <div class="dropdown">
             <button class="text-secondary" id="type-search"><i class="fa-solid fa-image px-2"></i><span>Tất cả
